@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
+import { open, fadeIn2 } from "@/animations";
 import { STYLING } from "@/config";
 
 export const Wrapper = styled.div`
     height: 200px;
     width: 100%;
-    position: absolute;
-    left: 0;
     background: ${(props) => props.theme.colors.container.secondary.background};
 `;
 
@@ -18,6 +17,7 @@ export const Content = styled.div`
     padding: 20px;
     display: flex;
     align-items: center;
+    animation: ${open} ${fadeIn2};
 `;
 
 export const HeaderContainer = styled.div`
@@ -27,6 +27,12 @@ export const HeaderContainer = styled.div`
 export const H1 = styled.h1`
     font-size: 56px;
     line-height: 1.25;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        font-size: 40px;
+    }
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        font-size: 7.5vw;
+    }
 `;
 
 export const Header1 = styled(H1)`
@@ -49,6 +55,9 @@ export const Header3 = styled(H1)`
 
 export const Flex = styled.div`
     display: flex;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        flex-wrap: wrap;
+    }
 `;
 
 export const Highlight = styled.div`
@@ -57,4 +66,7 @@ export const Highlight = styled.div`
     background: ${(props) => props.theme.colors.container.tertiary.background};
     position: absolute;
     bottom: 0;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        height: 17.5px;
+    }
 `;

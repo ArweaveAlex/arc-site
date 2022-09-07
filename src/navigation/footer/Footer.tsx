@@ -10,7 +10,13 @@ export default function Footer() {
             <S.Container>
                 <S.FlexContainer>
                     <S.ContainerOne>
-                        <S.NavContainer>
+                        <S.LogoContainer>
+                            <S.LogoContent>
+                                <S.LogoHeader>{language.companyTitle}</S.LogoHeader>
+                                <S.LogoSubHeader>{language.companyDescription}</S.LogoSubHeader>
+                            </S.LogoContent>
+                        </S.LogoContainer>
+                        {/* <S.NavContainer>
                             <S.NavContainerHeader>
                                 {language.companyTitle}
                             </S.NavContainerHeader>
@@ -21,8 +27,8 @@ export default function Footer() {
                                     </S.NavLink>
                                 ))}
                             </S.NavLinkContainer>
-                        </S.NavContainer>
-                        <S.NavContainer>
+                        </S.NavContainer> */}
+                        {/* <S.NavContainer>
                             <S.NavContainerHeader>
                                 {language.community}
                             </S.NavContainerHeader>
@@ -35,15 +41,24 @@ export default function Footer() {
                                     ))}
                                 </S.SocialPaths>
                             </S.NavLinkContainer>
-                        </S.NavContainer>
+                        </S.NavContainer> */}
                     </S.ContainerOne>
+                    <S.ContainerTwo>
+                        <S.SocialPaths>
+                            {SOCIAL_PATHS.map((path, index) => (
+                                <S.SocialLink key={index} href={path.href}>
+                                    <ReactSVG src={"/assets/img/" + path.svg} />
+                                </S.SocialLink>
+                            ))}
+                        </S.SocialPaths>
+                    </S.ContainerTwo>
                 </S.FlexContainer>
-                <S.ContainerC>
-                    <S.Copyright>
-                        {new Date().getFullYear()}
-                    </S.Copyright>
-                </S.ContainerC>
             </S.Container>
+            <S.YearContainer>
+                <S.Year>
+                    {new Date().getFullYear()}
+                </S.Year>
+            </S.YearContainer>
         </S.Wrapper>
     )
 }

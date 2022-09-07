@@ -7,10 +7,16 @@ export const language = {
     },
     community: "Community",
     companyTitle: "Alex.",
-    companyDescription: "Preserving Human History.",
+    companyDescription: "Preserving Human Culture.",
     connectWallet: "Connect Wallet",
+    faq: {
+        display: "Frequently Asked Questions",
+        header1: "Still have some questions?",
+        header2: "Great!",
+        header3: "Check out our"
+    },
     loading: "Loading",
-    metaDescriptionContent: "Preserving History",
+    metaDescriptionContent: "Preserving Culture",
     paths: {
         about: "About",
         collections: "Collections"

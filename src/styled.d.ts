@@ -7,6 +7,7 @@ declare module "styled-components" {
             border: {
                 primary: string
                 secondary: string
+                tertiary: string
             }
             button: {
                 primary: {
@@ -48,8 +49,15 @@ declare module "styled-components" {
                 tertiary: {
                     base: string
                 }
+                quarternary: {
+                    base: string
+                }
             }
             icon: {
+                primary: {
+                    fill: string,
+                    hover: string,
+                }
                 inactive: string
             }
             navigation: {

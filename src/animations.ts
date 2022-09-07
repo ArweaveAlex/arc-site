@@ -36,4 +36,5 @@ export const loaderKeyFrame = keyframes`
   }
 `;
 
-export const fadeIn = "225ms cubic-bezier(0, 0, 0.2, 1) 0ms";
+export const fadeIn1 = "250ms cubic-bezier(0, 0, 0.2, 1) 0ms";
+export const fadeIn2 = "1000ms cubic-bezier(0, 0, 0.2, 1) 0ms";

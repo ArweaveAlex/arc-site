@@ -26,28 +26,25 @@ export const FlexContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-
   @media(max-width:  ${STYLING.cutoffs.secondary}) {
-    height: 80%;
+    height: 67.5%;
     flex-direction: column;
   }
 `;
 
 export const ContainerOne = styled.div`
   height: 100%;
-  width: 40%;
+  width: 50%;
   display: flex;
-
   @media(max-width: ${STYLING.cutoffs.secondary}) {
     height: auto;
-    width: 57.5%;
+    width: 100%;
   }
 `;
 
 export const ContainerTwo = styled.div`
   height: 100%;
-  width: 30%;
-
+  width: 50%;
   @media (max-width:  ${STYLING.cutoffs.secondary}) {
     height: auto;
     width: 100%;
@@ -55,64 +52,97 @@ export const ContainerTwo = styled.div`
   }
 `;
 
-export const NavContainer = styled.div`
-  height: 100%;
-  width: 50%;
-
-  @media(max-width:  ${STYLING.cutoffs.secondary}) {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+export const LogoContainer = styled.div`
+  
 `;
 
-export const NavContainerHeader = styled.p`
-  font-weight: ${props => props.theme.typography.weight.medium};
-  margin-bottom: 3.5px;
+export const LogoContent = styled.div`
+  
 `;
 
-export const NavLinkContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+export const LogoHeader = styled.h2`
+  color: ${(props) => props.theme.colors.font.primary.base};
+  font-size: ${(props) => props.theme.typography.size.h2};
+  font-family: ${(props) => props.theme.typography.family.secondary};
+  font-weight: ${(props) => props.theme.typography.weight.bold};
 `;
 
-export const NavLink = styled.a`
-  margin-top: 10px;
-  width: fit-content;
-  &:hover{
-    text-decoration: underline;
-  }
+export const LogoSubHeader = styled.p`
+  color: ${(props) => props.theme.colors.font.tertiary.base};
+  font-family: ${(props) => props.theme.typography.family.secondary};
+  font-weight: ${(props) => props.theme.typography.weight.bold};
+  margin: 10px 0 0 0;
 `;
+
+// export const NavContainer = styled.div`
+//   height: 100%;
+//   width: 50%;
+
+//   @media(max-width:  ${STYLING.cutoffs.secondary}) {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//   }
+// `;
+
+// export const NavContainerHeader = styled.p`
+//   font-weight: ${props => props.theme.typography.weight.medium};
+//   margin-bottom: 3.5px;
+// `;
+
+// export const NavLinkContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
+
+// export const NavLink = styled.a`
+//   margin-top: 10px;
+//   width: fit-content;
+//   &:hover{
+//     text-decoration: underline;
+//   }
+// `;
 
 export const SocialPaths = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  padding: 13.5px 0 0 0;
+  justify-content: end;
+  @media(max-width:  ${STYLING.cutoffs.secondary}) {
+    justify-content: start;
+  }
 `;
 
 export const SocialLink = styled.a`
-  margin: 0 20px 0 0;
-
+  margin: 0 0 0 20px;
+  height: fit-content;
   svg {
-    width: 20px;
-    fill: ${(props) => props.theme.colors.font.primary.active.base};
+    width: 22.5px;
+    fill: ${(props) => props.theme.colors.icon.primary.fill};
     &:hover {
-      fill: ${(props) => props.theme.colors.font.primary.active.hover};
+      fill: ${(props) => props.theme.colors.icon.primary.hover};
     }
   }
-`;
-
-export const ContainerC = styled.div`
-  height: 10%;
-  width: 100%;
-
   @media(max-width:  ${STYLING.cutoffs.secondary}) {
-    height: auto;
-    margin-top: 30px;
+    margin: 0 20px 0 0;
   }
 `;
 
-export const Copyright = styled.p`
-  
+export const YearContainer = styled.div`
+  height: 10%;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid ${(props) => props.theme.colors.border.tertiary};
+  @media(max-width:  ${STYLING.cutoffs.secondary}) {
+    
+  }
+`;
+
+export const Year = styled.p`
+  color: ${(props) => props.theme.colors.font.quarternary.base};
 `;

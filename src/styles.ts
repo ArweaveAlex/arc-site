@@ -55,7 +55,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: ${(props) => props.theme.typography.family.primary};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
@@ -72,15 +72,11 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-size: ${(props) => props.theme.typography.size.h1};
+    font-family: ${(props) => props.theme.typography.family.secondary};
   }
 
   h2 {
     font-size: ${(props) => props.theme.typography.size.h2};
-    font-weight: ${(props) => props.theme.typography.weight.bold};
-  }
-
-  h1, h2 {
-    font-family: ${(props) => props.theme.typography.family.secondary};
   }
 
   b {

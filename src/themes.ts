@@ -10,7 +10,8 @@ const DEFAULT = {
     neutral7: "#9D9D9D",
     neutral8: "#F0F0F0",
     primary: "#003153",
-    primaryAlt: "#265F85",
+    primary2: "#265F85",
+    primary3: "#1B72AA",
     secondary: "#DAA520",
     tertiary: "#FFD877"
 }
@@ -20,7 +21,8 @@ export const defaultTheme: DefaultTheme = {
     colors: {
         border: {
             primary: DEFAULT.neutral3,
-            secondary: DEFAULT.neutral6
+            secondary: DEFAULT.neutral6,
+            tertiary: DEFAULT.primary3
         },
         button: {
             primary: {
@@ -44,7 +46,7 @@ export const defaultTheme: DefaultTheme = {
                 background: DEFAULT.primary
             },
             tertiary: {
-                background: DEFAULT.primaryAlt
+                background: DEFAULT.primary2
             }
         },
         font: {
@@ -53,7 +55,7 @@ export const defaultTheme: DefaultTheme = {
                 alt: DEFAULT.neutral4,
                 active: {
                     base: DEFAULT.primary,
-                    hover: DEFAULT.primaryAlt
+                    hover: DEFAULT.primary2
                 }
             },
             secondary: {
@@ -61,14 +63,21 @@ export const defaultTheme: DefaultTheme = {
             },
             tertiary: {
                 base: DEFAULT.tertiary
+            },
+            quarternary: {
+                base: DEFAULT.primary3
             }
         },
         icon: {
+            primary: {
+                fill: DEFAULT.neutral1,
+                hover: DEFAULT.neutral6,
+            },
             inactive: DEFAULT.neutral4
         },
         navigation: {
             footer: {
-                background: DEFAULT.neutral8
+                background: DEFAULT.primary
             },
             header: {
                 background: DEFAULT.neutral1
@@ -84,8 +93,8 @@ export const defaultTheme: DefaultTheme = {
             secondary: "'PT Serif', serif"
         },
         size: {
-            h1: "24px",
-            h2: "18px",
+            h1: "48px",
+            h2: "24px",
             base: "16px",
             small: "15px",
             xSmall: "14px",

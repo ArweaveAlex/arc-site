@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { open, fadeIn } from "@/animations";
+import { open, fadeIn1 } from "@/animations";
 import { STYLING } from "@/config";
 
 export const Wrapper = styled.div`
@@ -56,8 +56,9 @@ export const LogoContent = styled.div`
   padding: 5px 0;
 `;
 
-export const LogoHeader = styled.h1`
+export const LogoHeader = styled.h2`
   color: ${(props) => props.theme.colors.font.primary.active.base};
+  font-size: ${(props) => props.theme.typography.size.h2};
   font-family: ${(props) => props.theme.typography.family.secondary};
   font-weight: ${(props) => props.theme.typography.weight.bold};
 `;
@@ -184,7 +185,7 @@ export const OpenContainer = styled.div`
   padding: 0 20px;
   margin: ${STYLING.dimensions.navHeight} 0 0 0;
   background: ${(props) => props.theme.colors.container.primary.background};
-  animation: ${open} ${fadeIn};
+  animation: ${open} ${fadeIn1};
 `;
 
 export const MenuContainer = styled.div`
@@ -192,7 +193,4 @@ export const MenuContainer = styled.div`
   width: 50px;
   z-index: 5;
   position: relative;
-  @media(max-width: ${STYLING.cutoffs.initial}) {
-    
-  }
 `;
