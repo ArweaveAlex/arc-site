@@ -1,4 +1,3 @@
-import * as urls from "@/urls";
 import { language } from "@/language";
 import * as S from "./styles";
 

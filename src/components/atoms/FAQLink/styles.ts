@@ -26,7 +26,6 @@ export const Content = styled.div`
 
 export const HeaderContainer = styled.div`
     margin: 0 auto;
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,6 +33,7 @@ export const HeaderContainer = styled.div`
 
 export const H2 = styled.h2`
     line-height: 1.25;
+    text-align: center;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         font-size: 24px;
     }
@@ -47,12 +47,13 @@ export const Header1 = styled(H2)`
 `;
 
 export const Header2 = styled(Header1)`
-    font-weight: ${(props) => props.theme.typography.weight.bold};
+    font-weight: ${(props) => props.theme.typography.weight.medium};
 `;
 
 export const Header3 = styled.a`
     color: ${(props) => props.theme.colors.font.secondary.base};
     font-size: ${(props) => props.theme.typography.size.h2};
+    text-align: center;
     text-decoration: underline;
     line-height: 1.25;
     @media(max-width: ${STYLING.cutoffs.tablet}) {

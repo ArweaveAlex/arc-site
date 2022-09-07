@@ -85,8 +85,8 @@ declare module "styled-components" {
                 xSmall: string
             }
             weight: {
-                bold: string
                 medium: string
+                bold: string
             }
         }
     }

@@ -80,7 +80,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   b {
-    font-weight: ${(props) => props.theme.typography.weight.bold};
+    font-weight: ${(props) => props.theme.typography.weight.medium};
   }
   
   p, span, button, a, b {

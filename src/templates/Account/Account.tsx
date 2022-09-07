@@ -5,7 +5,7 @@ import {
   Footer,
   Navbar,
   ScrollSection,
-} from "@/components";
+} from "@/components/BACKUP";
 import { ArtefactTypeEnum } from "@/components/types/ArtefactType";
 import { motion } from "framer-motion";
 import { NextSeo } from "next-seo";

@@ -7,7 +7,7 @@ import {
   Navbar,
   ScrollSection,
   TextScroll,
-} from "@/components";
+} from "@/components/BACKUP";
 import { PoolArweaveProps } from "@/components/types/PoolArweaveProps";
 
 import { AnimatePresence, motion } from "framer-motion";

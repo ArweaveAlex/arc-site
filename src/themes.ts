@@ -11,7 +11,7 @@ const DEFAULT = {
     neutral8: "#F0F0F0",
     primary: "#003153",
     primary2: "#265F85",
-    primary3: "#1B72AA",
+    primary3: "#4C8Cb8",
     secondary: "#DAA520",
     tertiary: "#FFD877"
 }
@@ -100,8 +100,8 @@ export const defaultTheme: DefaultTheme = {
             xSmall: "14px",
         },
         weight: {
-            bold: "600",
-            medium: "500"
+            medium: "500",
+            bold: "600"
         }
     }
 }
