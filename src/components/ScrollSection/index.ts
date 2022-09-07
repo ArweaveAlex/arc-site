@@ -1,1 +1,1 @@
-export { default } from './ScrollSection'
+export { default } from "./ScrollSection"

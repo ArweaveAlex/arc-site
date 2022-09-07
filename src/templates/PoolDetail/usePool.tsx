@@ -75,7 +75,7 @@ export const usePool = (id: string) => {
       setModalOpen((prev) => !prev);
     } catch (error) {
       toast.error(
-        "Something wen't wrong while connecting to your wallet, refresh the page or try to verify your browser extension.",
+        "Something wen"t wrong while connecting to your wallet, refresh the page or try to verify your browser extension.",
         {
           position: "top-right",
           duration: 8000,
@@ -101,7 +101,7 @@ export const usePool = (id: string) => {
 
   const contributeToPool = async (poolId, amount) => {
     if (!balance || amount > balance) {
-      toast.error("You don't have enough AR to contribute to this pool.", {
+      toast.error("You don"t have enough AR to contribute to this pool.", {
         position: "top-right",
         duration: 8000,
         style: {

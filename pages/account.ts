@@ -1,3 +1,3 @@
-import { Account } from '@/templates'
+import { Account } from "@/templates"
 
 export default Account

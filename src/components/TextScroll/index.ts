@@ -1,1 +1,1 @@
-export { default } from './TextScroll'
+export { default } from "./TextScroll"

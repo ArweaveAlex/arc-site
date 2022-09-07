@@ -1,1 +1,1 @@
-export { default } from './ArtifactModal'
+export { default } from "./ArtifactModal"

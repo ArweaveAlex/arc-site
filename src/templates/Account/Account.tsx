@@ -164,7 +164,7 @@ const Account = () => {
 
             {artefacts.length === 0 && (
               <div className="flex flex-col items-center justify-center rounded-full border-2 bg-[#F28E2B] p-6 text-white mt-10">
-                You don't have any artefacts yet.
+                You don"t have any artefacts yet.
               </div>
             )}
 

@@ -1,27 +1,22 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
 
-import { AppConfig } from "@/utils/AppConfig";
+import { APP } from "@/config";
 
-// Need to create a custom _document because i18n support is not compatible with `next export`.
 class MyDocument extends Document {
-  // eslint-disable-next-line class-methods-use-this
   render() {
     return (
-      <Html lang={AppConfig.locale}>
-        <Head />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap"
-          rel="stylesheet"
-        ></link>
+      <Html lang={APP.locale}>
+        <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;1,200;1,300;1,400&family=PT+Serif&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,200;1,300;1,400&family=PT+Serif&display=swap" rel="stylesheet" />
+        </Head>
         <body>
           <Main />
-          <div id="portal" />
           <NextScript />
         </body>
       </Html>

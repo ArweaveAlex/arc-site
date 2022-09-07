@@ -1,32 +1,34 @@
-import "@/styles/global.css";
-
-import "@fontsource/righteous";
-import "@fontsource/lato";
-import "@fontsource/lato/100.css";
-import "@fontsource/lato/900.css";
-
-import 'react-loading-skeleton/dist/skeleton.css'
+import Head from "next/head";
 
 import { AppProps } from "next/app";
-import NextNProgress from "nextjs-progressbar";
-import Script from "next/script";
+import { ThemeProvider } from "styled-components";
 
-import { Toaster } from "react-hot-toast";
-import { AnimatePresence } from "framer-motion";
+import { Header } from "@/navigation/header";
+import { Footer } from "@/navigation/footer";
+import { View } from "@/wrappers/View";
+import { GlobalStyle } from "@/styles";
+import { defaultTheme } from "@/themes";
+import { language } from "@/language";
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
-  <>
-    {/* @ts-ignore */}
-    <AnimatePresence
-      exitBeforeEnter
-      initial={false}
-      onExitComplete={() => window.scrollTo(0, 0)}
-    >
-      <NextNProgress color="#F6A646" height={6} key="progress-bar" />
-      <Component {...pageProps} />
-    </AnimatePresence>
-    <Toaster />
-  </>
-);
+export default function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <Head>
+        <title>{language.companyTitle}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={language.metaDescriptionContent} />
+        <meta name="theme-color" content="#003153" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-export default MyApp;
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyle />
+        <Header />
+        <View>
+          <Component {...pageProps} />
+        </View>
+        <Footer />
+      </ThemeProvider>
+    </>
+  )
+}

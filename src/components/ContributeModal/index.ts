@@ -1,1 +1,1 @@
-export { default } from './ContributeModal'
+export { default } from "./ContributeModal"

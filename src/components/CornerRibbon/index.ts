@@ -1,1 +1,1 @@
-export { default } from './CornerRibbon'
+export { default } from "./CornerRibbon"

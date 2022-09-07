@@ -1,1 +1,1 @@
-export { default } from './Artifact'
+export { default } from "./Artifact"
