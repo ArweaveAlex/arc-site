@@ -3,10 +3,15 @@ import styled from "styled-components";
 import { open, fadeIn2 } from "@/animations";
 import { STYLING } from "@/config";
 
+const BANNER_CUTOFF = "1200px";
+
 export const Wrapper = styled.div`
     height: 200px;
     width: 100%;
     background: ${(props) => props.theme.colors.container.secondary.background};
+    @media(max-width: ${BANNER_CUTOFF}) {
+        height: auto;
+    }
 `;
 
 export const Content = styled.div`
@@ -18,11 +23,19 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     animation: ${open} ${fadeIn2};
+    @media(max-width: ${BANNER_CUTOFF}) {
+        flex-direction: column;
+        align-items: start;
+        padding: 35px 20px;
+    }
 `;
 
 export const HeaderContainer = styled.div`
     height: 90%;
     width: 700px;
+    @media(max-width: ${BANNER_CUTOFF}) {
+        width: auto;
+    }
 `;
 
 export const H1 = styled.h1`
@@ -75,25 +88,41 @@ export const Highlight = styled.div`
 export const SubheaderContainer = styled.div`
     height: 90%;
     width: calc(100% - 700px);
-    padding: 10px 0px 10px 0;
+    min-width: 460px;
+    padding: 10px 0;
+    @media(max-width: ${BANNER_CUTOFF}) {
+        width: auto;
+        min-width: 0;
+    }
 `;
 
 export const FlexSubheader = styled.div`
     display: flex;
     align-items: center;
     justify-content: end;
+    @media(max-width: ${BANNER_CUTOFF}) {
+        justify-content: start;
+    }
 `;
 
 export const Subheader1 = styled.p`
     font-size: 18px;
     color: ${(props) => props.theme.colors.font.quinary.base};
     font-weight: ${(props) => props.theme.typography.weight.medium};
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        font-size: ${(props) => props.theme.typography.size.small};
+    }
 `;
 
 export const Logo = styled.div`
     margin: 0 0 0 10px;
     svg {
         width: 100px;
+    }
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        svg {
+            width: 75px;
+        }
     }
 `;
 
@@ -106,5 +135,26 @@ export const Subheader2 = styled.div`
         font-size: 17px;
         line-height: 1.5;
         color: ${(props) => props.theme.colors.font.primary.base};
+    }
+    @media(max-width: ${BANNER_CUTOFF}) {
+        margin: 0;
+        text-align: left;
+    }
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        p {
+            font-size: ${(props) => props.theme.typography.size.xSmall};
+        }
+    }
+`;
+
+export const Link = styled.div`
+    width: fit-content;
+    margin: 12.5px 0 0 auto;
+    a {
+        color: ${(props) => props.theme.colors.font.tertiary.base};
+        font-weight: ${(props) => props.theme.typography.weight.medium};
+    }
+    @media(max-width: ${BANNER_CUTOFF}) {
+        margin: 12.5px 0 0 0;
     }
 `;

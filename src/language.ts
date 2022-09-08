@@ -30,7 +30,7 @@ export const language = {
         about: 'About',
         collections: 'Collections'
     },
-    readMode: 'Read More',
+    readMore: 'Read More',
     social: {
         discord: 'Discord',
         twitter: 'Twitter'

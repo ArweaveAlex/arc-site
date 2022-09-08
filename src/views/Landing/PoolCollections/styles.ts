@@ -61,7 +61,8 @@ export const C1 = styled.div`
 export const C1Content = styled.div`
     height: calc(100% - 60px);
     width: calc(100% - 10px);
-    padding: 30px;
+    padding: 20px;
+    overflow-y: auto;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.secondary};
     @media(max-width: ${STYLING.cutoffs.tablet}) {

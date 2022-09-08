@@ -1,5 +1,6 @@
 import { ReactSVG } from "react-svg";
 
+import * as urls from "@/urls";
 import { language } from "@/language";
 import * as S from "./styles";
 
@@ -34,6 +35,9 @@ export default function Banner() {
                     <S.Subheader2>
                         <p>{language.banner.subheader2}</p>
                     </S.Subheader2>
+                    <S.Link >
+                        <a href={urls.readMore}>{language.readMore}</a>
+                    </S.Link>
                 </S.SubheaderContainer>
             </S.Content>
         </S.Wrapper>

@@ -7,6 +7,7 @@ export const STYLING = {
         initial: "1024px",
         tablet: "840px",
         secondary: "540px",
+        
         max: "1400px"
     },
     dimensions: {
