@@ -31,6 +31,9 @@ export const Header = styled.div`
         padding: 0 35px;
         margin: 0 0 20px 0;
     }
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        padding: 0 20px;
+    }
 `;
 
 export const H2 = styled.h2`
