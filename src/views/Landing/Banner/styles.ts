@@ -21,7 +21,8 @@ export const Content = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
-    width: 750px;
+    height: 90%;
+    width: 700px;
 `;
 
 export const H1 = styled.h1`
@@ -53,7 +54,7 @@ export const Header3 = styled(H1)`
     color: ${(props) => props.theme.colors.font.tertiary.base};
 `;
 
-export const Flex = styled.div`
+export const FlexHeader = styled.div`
     display: flex;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         flex-wrap: wrap;
@@ -68,5 +69,42 @@ export const Highlight = styled.div`
     bottom: 0;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: 17.5px;
+    }
+`;
+
+export const SubheaderContainer = styled.div`
+    height: 90%;
+    width: calc(100% - 700px);
+    padding: 10px 0px 10px 0;
+`;
+
+export const FlexSubheader = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: end;
+`;
+
+export const Subheader1 = styled.p`
+    font-size: 18px;
+    color: ${(props) => props.theme.colors.font.quinary.base};
+    font-weight: ${(props) => props.theme.typography.weight.medium};
+`;
+
+export const Logo = styled.div`
+    margin: 0 0 0 10px;
+    svg {
+        width: 100px;
+    }
+`;
+
+export const Subheader2 = styled.div`
+    width: 95%;
+    max-width: 460px;
+    margin: 0 0 0 auto;
+    text-align: right;
+    p {
+        font-size: 17px;
+        line-height: 1.5;
+        color: ${(props) => props.theme.colors.font.primary.base};
     }
 `;

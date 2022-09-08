@@ -1,9 +1,10 @@
 import React from "react";
 
-import { Banner } from "@/components/atoms/Banner";
-import { FAQLink } from "@/components/atoms/FAQLink";
-import { PoolCollections } from "@/components/organisms/PoolCollections";
-import { Steps } from "@/components/organisms/Steps";
+import { Banner } from "./Banner";
+import { PoolCollections } from "./PoolCollections";
+import { Info } from "./Info";
+import { Steps } from "./Steps";
+import { FAQLink } from "./FAQLink";
 
 import * as S from "./styles";
 
@@ -12,6 +13,7 @@ export default function Landing({ data }) {
         <S.Wrapper>
             <Banner />
             <PoolCollections data={data}/>
+            <Info />
             <Steps />
             <FAQLink />
         </S.Wrapper>

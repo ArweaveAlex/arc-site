@@ -4,6 +4,8 @@ export const language = {
         header1: 'The Answer to',
         header2: 'Preserving',
         header3: 'Human History is',
+        subheader1: 'Archives are permanently stored on',
+        subheader2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed justo bibendum ipsum commodo aliquet.'
     },
     community: 'Community',
     companyTitle: 'Alex.',
@@ -15,18 +17,26 @@ export const language = {
         header2: 'Great!',
         header3: 'Check out our'
     },
+    info: {
+        header1: "What is Alex. & How Does it Work?",
+        header2: "Those who cannot remember the past are condemned to repeat it.",
+        subheader: "<b>Alex.</b> The new fireproof Library of Alexandria",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae purus fringilla, suscipit est sed, sodales erat. Vestibulum dapibus urna elementum neque venenatis, sit amet auctor leo venenatis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed nunc enim, sagittis vel ante in, egestas lobortis nulla. Phasellus nec quam nec nisi dignissim rutrum eget ut sapien. In a fermentum urna.<br><br>Vestibulum urna turpis, vehicula vitae ex vestibulum, auctor suscipit metus.Nulla nec lectus mauris. Praesent consequat bibendum massa. Cras venenatis magna at orci bibendum, a gravida nibh accumsan. Pellentesque quis blandit lorem. Donec volutpat vulputate nisi et sollicitudin. Phasellus lacinia fringilla luctus. Mauris at accumsan augue. Mauris placerat mauris sem, at blandit felis mollis vitae. Cras tincidunt, justo eget auctor porttitor, ex enim imperdiet urna, at ornare urna tellus ut libero. In id feugiat nisl.",
+        assetSrc: "A 19th century illustration of the burning of the Library of Alexandria. Heritage Images/Getty Images."
+    },
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
     paths: {
         about: 'About',
         collections: 'Collections'
     },
+    readMode: 'Read More',
     social: {
         discord: 'Discord',
         twitter: 'Twitter'
     },
     steps: {
-        header1: 'A New Way to Get involved in Human History',
+        header1: 'A New Way to Get Involved in the Human Story',
         header2: 'Alex. offers a unique way for everyone to participate and "own" a piece of the human story. By supporting the participating archival institutions, you are helping protect our history from edits, omissions, narratives, & malicious intent. <b>Here&#8217;s how.</b>',
         display: 'Step',
         list: [

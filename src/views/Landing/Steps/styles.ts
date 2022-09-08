@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
-    height: 100%;
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
     margin: 0 auto;
@@ -48,6 +47,21 @@ export const Header1 = styled(H2)`
     font-family: ${(props) => props.theme.typography.family.secondary};
 `;
 
+export const HeaderFlex = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+    width: 67.5%;
+    max-width: 1200px;
+    text-align: center;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        width: 100%;
+        padding: 0 20px;
+        flex-direction: column;
+        margin: 0 0 20px 0;
+    }
+`;
+
 export const Header2 = styled.p`
     font-size: 18px;
     line-height: 1.295;
@@ -65,22 +79,9 @@ export const Header2 = styled.p`
     }
 `;
 
-export const HeaderFlex = styled.div`
-    display: flex;
-    margin: 5px 0;
-    width: 67.5%;
-    max-width: 1200px;
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        width: 100%;
-        padding: 0 20px;
-        flex-direction: column;
-        margin: 0 0 20px 0;
-    }
-`;
-
 export const Body = styled.div`
-    margin: 0 auto;
     width: 100%;
+    margin: 0 auto;
     display: flex;
     padding: 20px;
     @media(max-width: ${STYLING.cutoffs.tablet}) {

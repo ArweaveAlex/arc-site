@@ -130,7 +130,7 @@ export const Connect = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 20px 0 20px;
   @media (max-width: ${STYLING.cutoffs.initial}) {
     height: auto;
     margin-top: 25px;

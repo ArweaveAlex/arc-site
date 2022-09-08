@@ -52,6 +52,9 @@ declare module "styled-components" {
                 quarternary: {
                     base: string
                 }
+                quinary: {
+                    base: string
+                }
             }
             icon: {
                 primary: {

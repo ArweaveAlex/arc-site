@@ -1,9 +1,27 @@
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+// import { Carousel } from 'react-responsive-carousel';
+// import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import { PoolCard } from "@/components/molecules/PoolCard"
-
+import { language } from "@/language";
 import * as S from "./styles";
+
+function PoolCard(props) {
+    return (
+        <S.PCWrapper>
+            <S.C1>
+                <S.C1Content>
+                    <S.Title>{props.state.title}</S.Title>
+                    <S.Description>{props.state.description}</S.Description>
+                </S.C1Content>
+                <S.Link href="#">
+                    <S.LinkContainer>
+                        <span>{language.viewCollection}</span>
+                    </S.LinkContainer>
+                </S.Link>
+            </S.C1>
+            <S.C2 style={{ backgroundImage: `url('/assets/img/MOCK_IMAGE.jpeg')` }} />
+        </S.PCWrapper>
+    )
+}
 
 export default function PoolCollections({ data }) {
     function getPools() {

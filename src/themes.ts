@@ -11,7 +11,8 @@ const DEFAULT = {
     neutral8: "#F0F0F0",
     primary: "#003153",
     primary2: "#265F85",
-    primary3: "#4C8Cb8",
+    primary3: "#4C8CB8",
+    primary4: "#A4CCE9",
     secondary: "#DAA520",
     tertiary: "#FFD877"
 }
@@ -66,6 +67,9 @@ export const defaultTheme: DefaultTheme = {
             },
             quarternary: {
                 base: DEFAULT.primary3
+            },
+            quinary: {
+                base: DEFAULT.primary4
             }
         },
         icon: {
@@ -97,7 +101,7 @@ export const defaultTheme: DefaultTheme = {
             h2: "24px",
             base: "16px",
             small: "15px",
-            xSmall: "14px",
+            xSmall: "14px"
         },
         weight: {
             medium: "500",
