@@ -29,7 +29,7 @@ export default function Banner() {
                     <S.FlexSubheader>
                         <S.Subheader1>{language.banner.subheader1}</S.Subheader1>
                         <S.Logo>
-                            <ReactSVG src={"/assets/img/logo.svg"}/>
+                            <ReactSVG src={"/assets/img/logo.svg"} />
                         </S.Logo>
                     </S.FlexSubheader>
                     <S.Subheader2>

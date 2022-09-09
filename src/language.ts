@@ -11,6 +11,10 @@ export const language = {
     companyTitle: 'Alex.',
     companyDescription: 'Preserving Human Culture.',
     connectWallet: 'Connect Wallet',
+    connectionError: 'Connection Error',
+    copied: "Copied!",
+    copyAddress: "Copy Address",
+    disconnect: "Disconnect",
     faq: {
         display: 'Frequently Asked Questions',
         header1: 'Still have some questions?',
@@ -46,5 +50,6 @@ export const language = {
             '<b>These Artifcats are randomly sent to participating contributor&#8217;s wallets.</b> Contributors will receive an equal percentage of their $AR contribution (relative to the total $AR contributed) in digital artifacts. For example: If John contributed 10 $AR tokens and the total amount contributed was 100 $AR tokens, John will receive 10% of the Artifacts into his wallet.'
         ]
     },
+    viewAccount: "View Account",
     viewCollection: "View Collection"
 }

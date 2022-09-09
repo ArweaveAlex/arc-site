@@ -18,15 +18,6 @@ export const openLeft = keyframes`
     }
 `;
 
-export const opaqueKeyframe = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
 export const loaderKeyFrame = keyframes`
   0% {
     opacity: 1;

@@ -14,7 +14,9 @@ const DEFAULT = {
     primary3: "#4C8CB8",
     primary4: "#A4CCE9",
     secondary: "#DAA520",
-    tertiary: "#FFD877"
+    tertiary: "#FFD877",
+    overlay1: "rgba(59, 70, 78, 0.75)",
+    warning: "#EE3C3C"
 }
 
 export const defaultTheme: DefaultTheme = {
@@ -87,9 +89,13 @@ export const defaultTheme: DefaultTheme = {
                 background: DEFAULT.neutral1
             }
         },
+        overlay: {
+            primary: DEFAULT.overlay1
+        },
         view: {
             background: DEFAULT.neutral2
-        }
+        },
+        warning: DEFAULT.warning
     },
     typography: {
         family: {

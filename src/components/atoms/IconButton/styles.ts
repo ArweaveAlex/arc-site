@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.button<{ sm: boolean | undefined }>`
+export const Wrapper = styled.button<{ sm: boolean | undefined, warning: boolean | undefined }>`
   height: auto;
   width: ${(props) => props.sm ? "15px" : "17.5px"};
   color: inherit;
@@ -11,7 +11,8 @@ export const Wrapper = styled.button<{ sm: boolean | undefined }>`
   svg {
     height: 100%;
     width: 100%;
-    fill: ${(props) => props.theme.colors.icon.inactive};
+    fill: ${(props) => props.warning ? 
+      props.theme.colors.warning :  props.theme.colors.icon.inactive};
     
     &:hover {
       cursor: pointer;

@@ -71,9 +71,13 @@ declare module "styled-components" {
                     background: string
                 }
             }
+            overlay: {
+                primary: string
+            }
             view: {
                 background: string
             }
+            warning: string
         }
         typography: {
             family: {

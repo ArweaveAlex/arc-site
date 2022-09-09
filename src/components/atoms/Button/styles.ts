@@ -7,6 +7,9 @@ export const Primary = styled.button`
   border: 1.5px solid ${(props) => props.theme.colors.button.primary.border};
   height: 33.5px;
   width: 150px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  padding: 1.5px 9.5px 1.5px 11.5px;
   &:hover {
     background: ${(props) => props.theme.colors.button.primary.hover};
   }

@@ -71,6 +71,7 @@ export default function DynamicNaviation() {
                         <S.MenuContainer>
                             <S.Menu>
                                 <IconButton
+                                    warning={open}
                                     src={open ? "/assets/img/close.svg" : "/assets/img/menu.svg"}
                                     handlePress={handleNavStatus}
                                 />

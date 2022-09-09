@@ -1,6 +1,11 @@
 export const APP = {
-    locale: "en"
+    locale: "en",
+    walletStorage: "wallet"
 }
+
+export const DOM = {
+    modal: "modal-portal"
+  };
 
 export const STYLING = {
     cutoffs: {
@@ -14,3 +19,7 @@ export const STYLING = {
         navHeight: "70px"
     }
 }
+
+export const WALLETS = [
+    "arconnect"
+]

@@ -135,6 +135,7 @@ export const Subheader2 = styled.div`
         font-size: 17px;
         line-height: 1.5;
         color: ${(props) => props.theme.colors.font.primary.base};
+        font-weight: ${(props) => props.theme.typography.weight.medium};
     }
     @media(max-width: ${BANNER_CUTOFF}) {
         margin: 0;
