@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { STYLING } from "@/config";
 
 export const Wrapper = styled.div`
-    min-height: calc(100vh - ${STYLING.dimensions.navHeight});
+    height: 100%;
     width: 100%;
-    margin: ${STYLING.dimensions.navHeight} auto 0 auto;
+    max-width: ${STYLING.cutoffs.max};
+    margin: 0 auto;
+    padding: 20px;
 `;

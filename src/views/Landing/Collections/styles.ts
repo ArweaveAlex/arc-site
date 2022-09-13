@@ -115,10 +115,11 @@ export const LinkContainer = styled.div`
     }
 `;
 
-export const C2 = styled.div`
+export const C2 = styled.div<{ image: string }>`
     height: 100%;
     width: 65%;
     border: 1px solid ${(props) => props.theme.colors.border.primary};
+    background-image: ${(props) => `url("${props.image}")`};
     background-size: cover;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: 200px;

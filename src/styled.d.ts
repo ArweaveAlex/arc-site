@@ -21,6 +21,17 @@ declare module "styled-components" {
                         label: string
                     }
                 }
+                secondary: {
+                    background: string
+                    border: string
+                    hover: string
+                    label: string
+                    disabled: {
+                        background: string
+                        border: string
+                        label: string
+                    }
+                }
             }
             container: {
                 primary: {
@@ -37,23 +48,16 @@ declare module "styled-components" {
             font: {
                 primary: {
                     base: string
-                    alt: string
+                    alt1: string
+                    alt2: string
+                    alt3: string
+                    alt4: string
+                    alt5: string
+                    alt6: string
                     active: {
                         base: string
                         hover: string
                     }
-                }
-                secondary: {
-                    base: string
-                }
-                tertiary: {
-                    base: string
-                }
-                quarternary: {
-                    base: string
-                }
-                quinary: {
-                    base: string
                 }
             }
             icon: {
@@ -92,6 +96,7 @@ declare module "styled-components" {
                 xSmall: string
             }
             weight: {
+                regular: string
                 medium: string
                 bold: string
             }

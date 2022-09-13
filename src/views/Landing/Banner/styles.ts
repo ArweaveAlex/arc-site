@@ -3,13 +3,11 @@ import styled from "styled-components";
 import { open, fadeIn2 } from "@/animations";
 import { STYLING } from "@/config";
 
-const BANNER_CUTOFF = "1200px";
-
 export const Wrapper = styled.div`
     height: 200px;
     width: 100%;
     background: ${(props) => props.theme.colors.container.secondary.background};
-    @media(max-width: ${BANNER_CUTOFF}) {
+    @media(max-width: ${STYLING.cutoffs.banner}) {
         height: auto;
     }
 `;
@@ -23,7 +21,7 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     animation: ${open} ${fadeIn2};
-    @media(max-width: ${BANNER_CUTOFF}) {
+    @media(max-width: ${STYLING.cutoffs.banner}) {
         flex-direction: column;
         align-items: start;
         padding: 35px 20px;
@@ -33,7 +31,7 @@ export const Content = styled.div`
 export const HeaderContainer = styled.div`
     height: 90%;
     width: 700px;
-    @media(max-width: ${BANNER_CUTOFF}) {
+    @media(max-width: ${STYLING.cutoffs.banner}) {
         width: auto;
     }
 `;
@@ -64,7 +62,7 @@ export const Header2Container = styled.div`
 `;
 
 export const Header3 = styled(H1)`
-    color: ${(props) => props.theme.colors.font.tertiary.base};
+    color: ${(props) => props.theme.colors.font.primary.alt3};
 `;
 
 export const FlexHeader = styled.div`
@@ -90,7 +88,7 @@ export const SubheaderContainer = styled.div`
     width: calc(100% - 700px);
     min-width: 460px;
     padding: 10px 0;
-    @media(max-width: ${BANNER_CUTOFF}) {
+    @media(max-width: ${STYLING.cutoffs.banner}) {
         width: auto;
         min-width: 0;
     }
@@ -100,14 +98,14 @@ export const FlexSubheader = styled.div`
     display: flex;
     align-items: center;
     justify-content: end;
-    @media(max-width: ${BANNER_CUTOFF}) {
+    @media(max-width: ${STYLING.cutoffs.banner}) {
         justify-content: start;
     }
 `;
 
 export const Subheader1 = styled.p`
     font-size: 18px;
-    color: ${(props) => props.theme.colors.font.quinary.base};
+    color: ${(props) => props.theme.colors.font.primary.alt5};
     font-weight: ${(props) => props.theme.typography.weight.medium};
     @media(max-width: ${STYLING.cutoffs.secondary}) {
         font-size: ${(props) => props.theme.typography.size.small};
@@ -137,7 +135,7 @@ export const Subheader2 = styled.div`
         color: ${(props) => props.theme.colors.font.primary.base};
         font-weight: ${(props) => props.theme.typography.weight.medium};
     }
-    @media(max-width: ${BANNER_CUTOFF}) {
+    @media(max-width: ${STYLING.cutoffs.banner}) {
         margin: 0;
         text-align: left;
     }
@@ -152,10 +150,10 @@ export const Link = styled.div`
     width: fit-content;
     margin: 12.5px 0 0 auto;
     a {
-        color: ${(props) => props.theme.colors.font.tertiary.base};
+        color: ${(props) => props.theme.colors.font.primary.alt3};
         font-weight: ${(props) => props.theme.typography.weight.medium};
     }
-    @media(max-width: ${BANNER_CUTOFF}) {
+    @media(max-width: ${STYLING.cutoffs.banner}) {
         margin: 12.5px 0 0 0;
     }
 `;

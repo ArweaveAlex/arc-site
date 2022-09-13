@@ -1,7 +1,7 @@
 import { ReactSVG } from "react-svg";
 
 import { language } from "@/language";
-import { NAV_PATHS, SOCIAL_PATHS } from "@/paths";
+import { SOCIAL_PATHS } from "@/paths";
 import * as S from "./styles";
 
 export default function Footer() {

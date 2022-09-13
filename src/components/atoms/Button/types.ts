@@ -3,11 +3,13 @@ import React from "react";
 import { ButtonType } from "@/types";
 
 export interface IProps {
-  formSubmit?: boolean;
-  noFocus?: boolean;
   label: string | React.ReactNode;
-  disabled?: boolean;
-  loading?: boolean;
   type: ButtonType;
   handlePress: (e: React.MouseEvent) => void;
+  disabled?: boolean;
+  loading?: boolean;
+  icon?: string;
+  formSubmit?: boolean;
+  noFocus?: boolean;
+  useMaxWidth?: boolean;
 }

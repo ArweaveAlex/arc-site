@@ -17,7 +17,12 @@ export default function Header() {
                 <S.LogoContainer>
                     <S.LogoLink href={urls.base}>
                         <S.LogoContent>
-                            <S.LogoHeader>{language.companyTitle}</S.LogoHeader>
+                            <S.LogoHeaderContent>
+                                <S.LogoHeader>{language.companyTitle}</S.LogoHeader>
+                                <S.Version>
+                                    <span>{language.beta.toUpperCase()}</span>
+                                </S.Version>
+                            </S.LogoHeaderContent>
                             <S.LogoSubHeader>{language.companyDescription}</S.LogoSubHeader>
                         </S.LogoContent>
                     </S.LogoLink>

@@ -8,6 +8,7 @@ import { Modal } from "../Modal";
 import { CloseHandler } from "@/handlers/CloseHandler";
 
 import { APP, WALLETS } from "@/config";
+import * as util from "@/util";
 import { language } from "@/language";
 import * as S from "./styles";
 
@@ -107,8 +108,9 @@ export default function ConnectWallet() {
                 }
                 <Button
                     type={"primary"}
-                    label={connected ? address : language.connectWallet}
+                    label={connected ? util.formatAddress(address) : language.connectWallet}
                     handlePress={handlePress}
+                    useMaxWidth
                 />
                 {showDropdown &&
                     <S.WalletDropdown>

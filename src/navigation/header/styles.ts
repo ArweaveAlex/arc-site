@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
     top: 0;
     z-index: 2;
     background: ${props => props.theme.colors.navigation.header.background};
-    border-bottom: 1px solid ${(props) => props.theme.colors.border.secondary};    
+    border-bottom: 1px solid ${(props) => props.theme.colors.border.secondary};
 `;
 
 export const NavContainer = styled.div`
@@ -56,6 +56,10 @@ export const LogoContent = styled.div`
   padding: 5px 0;
 `;
 
+export const LogoHeaderContent = styled.div`
+  display: flex;
+`;
+
 export const LogoHeader = styled.h2`
   color: ${(props) => props.theme.colors.font.primary.active.base};
   font-size: ${(props) => props.theme.typography.size.h2};
@@ -63,8 +67,22 @@ export const LogoHeader = styled.h2`
   font-weight: ${(props) => props.theme.typography.weight.bold};
 `;
 
+export const Version = styled.div`
+  height: 20.5px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -5.5px 0px 0 5.5px;
+  background: ${(props) => props.theme.colors.container.secondary.background};
+  span {
+    color: ${(props) => props.theme.colors.font.primary.base};
+    font-size: 12px;
+  }
+`;
+
 export const LogoSubHeader = styled.p`
-  color: ${(props) => props.theme.colors.font.secondary.base};
+  color: ${(props) => props.theme.colors.font.primary.alt2};
   font-family: ${(props) => props.theme.typography.family.secondary};
   font-weight: ${(props) => props.theme.typography.weight.bold};
 `;
@@ -132,7 +150,7 @@ export const Connect = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 20px 0 17.5px;
   @media (max-width: ${STYLING.cutoffs.initial}) {
     height: auto;
     margin-top: 25px;

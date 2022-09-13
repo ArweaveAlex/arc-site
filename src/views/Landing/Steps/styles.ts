@@ -70,11 +70,11 @@ export const Header2 = styled.p`
     line-height: 1.295;
     text-align: center;
     margin: 20px 0 0 0;
-    color: ${(props) => props.theme.colors.font.quarternary.base};
+    color: ${(props) => props.theme.colors.font.primary.alt4};
     b {
         font-size: 18px;
         margin: 20px 0 0 0;
-        color: ${(props) => props.theme.colors.font.quarternary.base};
+        color: ${(props) => props.theme.colors.font.primary.alt4};
     }
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         line-height: 1.5;
@@ -127,7 +127,7 @@ export const Step = styled.div`
 `;
 
 export const StepHeader = styled.p`
-    color: ${(props) => props.theme.colors.font.secondary.base};
+    color: ${(props) => props.theme.colors.font.primary.alt2};
     font-weight: ${(props) => props.theme.typography.weight.medium};
     font-size: ${(props) => props.theme.typography.size.base};
     margin: 0 0 7.5px 0;

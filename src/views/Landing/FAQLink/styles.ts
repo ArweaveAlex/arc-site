@@ -51,7 +51,7 @@ export const Header2 = styled(Header1)`
 `;
 
 export const Header3 = styled.a`
-    color: ${(props) => props.theme.colors.font.secondary.base};
+    color: ${(props) => props.theme.colors.font.primary.alt2};
     font-size: ${(props) => props.theme.typography.size.h2};
     text-align: center;
     text-decoration: underline;

@@ -68,7 +68,7 @@ export const LogoHeader = styled.h2`
 `;
 
 export const LogoSubHeader = styled.p`
-  color: ${(props) => props.theme.colors.font.tertiary.base};
+  color: ${(props) => props.theme.colors.font.primary.alt3};
   font-family: ${(props) => props.theme.typography.family.secondary};
   font-weight: ${(props) => props.theme.typography.weight.bold};
   margin: 10px 0 0 0;
@@ -129,7 +129,6 @@ export const SocialLink = styled.a`
 `;
 
 export const YearContainer = styled.div`
-  height: 10%;
   width: 100%;
   height: 50px;
   display: flex;
@@ -144,5 +143,5 @@ export const YearContainer = styled.div`
 `;
 
 export const Year = styled.p`
-  color: ${(props) => props.theme.colors.font.quarternary.base};
+  color: ${(props) => props.theme.colors.font.primary.alt4};
 `;

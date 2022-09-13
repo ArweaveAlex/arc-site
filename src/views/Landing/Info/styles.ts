@@ -70,11 +70,11 @@ export const Header2 = styled.p`
     line-height: 1.295;
     text-align: center;
     margin: 20px 0 0 0;
-    color: ${(props) => props.theme.colors.font.quarternary.base};
+    color: ${(props) => props.theme.colors.font.primary.alt4};
     b {
         font-size: 18px;
         margin: 20px 0 0 0;
-        color: ${(props) => props.theme.colors.font.quarternary.base};
+        color: ${(props) => props.theme.colors.font.primary.alt4};
     }
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         line-height: 1.5;
@@ -97,8 +97,8 @@ export const Body = styled.div`
 export const InfoContainer = styled.div`
     height: 100%;
     width: 51.5%;
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
     background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.secondary};
     padding: 20px;
     overflow-y: auto;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
@@ -108,12 +108,12 @@ export const InfoContainer = styled.div`
 
 export const Title = styled.h2`
     line-height: 1.55;
-    color: ${(props) => props.theme.colors.font.secondary.base};
+    color: ${(props) => props.theme.colors.font.primary.alt2};
     font-family: ${(props) => props.theme.typography.family.secondary};
     margin: 0 0 20px 0;
     b {
         font-family: ${(props) => props.theme.typography.family.secondary};
-        color: ${(props) => props.theme.colors.font.secondary.base};
+        color: ${(props) => props.theme.colors.font.primary.alt2};
         font-size: ${(props) => props.theme.typography.size.h2};
         font-weight: ${(props) => props.theme.typography.weight.bold};
     }
@@ -133,9 +133,10 @@ export const AssetContainer = styled.div`
     }
 `;
 
-export const Asset = styled.div`
+export const Asset = styled.div<{ image: string }>`
     height: 100%;
     width: 100%;
+    background-image: ${(props) => `url("${props.image}")`};
     background-size: cover;
     border: 1px solid ${(props) => props.theme.colors.border.primary};
     @media(max-width: ${STYLING.cutoffs.tablet}) {
@@ -146,6 +147,6 @@ export const Asset = styled.div`
 export const AssetSource = styled.p`
     font-size: 12px;
     line-height: 1.25;
-    color: ${(props) => props.theme.colors.font.primary.alt};
+    color: ${(props) => props.theme.colors.font.primary.alt1};
     margin: 5px 0 0 0;
 `;

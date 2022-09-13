@@ -7,7 +7,7 @@ const DEFAULT = {
     neutral4: "#3B464E",
     neutral5: "#DDDDDD",
     neutral6: "#D4D4D4",
-    neutral7: "#9D9D9D",
+    neutral7: "#959595",
     neutral8: "#F0F0F0",
     primary: "#003153",
     primary2: "#265F85",
@@ -16,7 +16,8 @@ const DEFAULT = {
     secondary: "#DAA520",
     tertiary: "#FFD877",
     overlay1: "rgba(59, 70, 78, 0.75)",
-    warning: "#EE3C3C"
+    warning: "#EE3C3C",
+    transparent: "rgba(255, 255, 255, 0)"
 }
 
 export const defaultTheme: DefaultTheme = {
@@ -33,6 +34,17 @@ export const defaultTheme: DefaultTheme = {
                 border: DEFAULT.primary,
                 hover: DEFAULT.neutral2,
                 label: DEFAULT.primary,
+                disabled: {
+                    background: DEFAULT.neutral5,
+                    border: DEFAULT.neutral3,
+                    label: DEFAULT.neutral7
+                }
+            },
+            secondary: {
+                background: DEFAULT.primary,
+                border: DEFAULT.transparent,
+                hover: DEFAULT.primary2,
+                label: DEFAULT.neutral1,
                 disabled: {
                     background: DEFAULT.neutral5,
                     border: DEFAULT.neutral3,
@@ -55,23 +67,16 @@ export const defaultTheme: DefaultTheme = {
         font: {
             primary: {
                 base: DEFAULT.neutral1,
-                alt: DEFAULT.neutral4,
+                alt1: DEFAULT.neutral4,
+                alt2: DEFAULT.secondary,
+                alt3: DEFAULT.tertiary,
+                alt4: DEFAULT.primary3,
+                alt5: DEFAULT.primary4,
+                alt6: DEFAULT.neutral7,
                 active: {
                     base: DEFAULT.primary,
                     hover: DEFAULT.primary2
                 }
-            },
-            secondary: {
-                base: DEFAULT.secondary
-            },
-            tertiary: {
-                base: DEFAULT.tertiary
-            },
-            quarternary: {
-                base: DEFAULT.primary3
-            },
-            quinary: {
-                base: DEFAULT.primary4
             }
         },
         icon: {
@@ -110,6 +115,7 @@ export const defaultTheme: DefaultTheme = {
             xSmall: "14px"
         },
         weight: {
+            regular: "400",
             medium: "500",
             bold: "600"
         }

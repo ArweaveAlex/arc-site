@@ -19,7 +19,7 @@ export default function Info() {
                         <S.Description>{parse(language.info.content)}</S.Description>
                     </S.InfoContainer>
                     <S.AssetContainer>
-                        <S.Asset style={{ backgroundImage: `url('/assets/img/info-graphic.png')` }} />
+                        <S.Asset image={"/assets/img/info-graphic.png"} />
                         <S.AssetSource>{language.info.assetSrc}</S.AssetSource>
                     </S.AssetContainer>
                 </S.Body>

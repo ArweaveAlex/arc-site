@@ -1,20 +1,46 @@
+import { ReactSVG } from "react-svg";
+
+import { language } from "@/language";
 import { IProps } from "./types";
 import * as S from "./styles";
-import { language } from "@/language";
-
 
 export default function Button(props: IProps) {
   const buttonStyle = getType();
   const StyledButton = buttonStyle.wrapper;
+  const StyledIcon = buttonStyle.icon;
 
   function getType() {
     let buttonObj: {
       wrapper: any;
+      icon: any;
     };
-    buttonObj = {
-      wrapper: S.Primary,
-    };
-    return buttonObj;
+    switch (props.type) {
+      case "secondary":
+        buttonObj = {
+          wrapper: S.Secondary,
+          icon: S.IconSecondary
+        };
+        return buttonObj;
+      default:
+        buttonObj = {
+          wrapper: S.Primary,
+          icon: S.IconPrimary
+        };
+        return buttonObj;
+    }
+  }
+
+  function getLabel() {
+    return (
+      <>
+        <span>{props.label}</span>
+        {props.icon &&
+          <StyledIcon disabled={props.disabled}>
+            <ReactSVG src={props.icon}/>
+          </StyledIcon>
+        }
+      </>
+    )
   }
 
   return (
@@ -24,8 +50,9 @@ export default function Button(props: IProps) {
       onClick={props.handlePress}
       onKeyPress={props.handlePress}
       disabled={props.disabled}
+      useMaxWidth={props.useMaxWidth}
     >
-      {props.loading ? language.loading : props.label}
+      {props.loading ? language.loading : getLabel()}
     </StyledButton>
   );
 }

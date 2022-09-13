@@ -89,7 +89,7 @@ export const GlobalStyle = createGlobalStyle`
     sans-serif;
     font-family: ${(props) => props.theme.typography.family.primary};
     font-size: ${(props) => props.theme.typography.size.small};
-    color: ${(props) => props.theme.colors.font.primary.alt};
+    color: ${(props) => props.theme.colors.font.primary.alt1};
   }
 
   button {

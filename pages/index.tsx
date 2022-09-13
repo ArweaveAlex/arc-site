@@ -10,13 +10,13 @@ export async function getServerSideProps() {
   await dbConnect();
 
 
-  const allPools = await PoolModel.find({
+  const allCollections = await PoolModel.find({
     id: CURRENT_WHITELISTED_POOLS
   }).select(["-_id", "-ts"]).lean().exec();
 
   return {
     props: {
-      data: allPools,
+      data: allCollections,
     },
   };
 }
