@@ -18,7 +18,7 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 0 40px;
+  padding: 0 25px;
 `;
 
 export const FlexContainer = styled.div`

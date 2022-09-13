@@ -12,6 +12,7 @@ export default function CollectionHeader(props: IProps) {
                 <S.HeaderFlex>
                     <S.Header1>{props.title}</S.Header1>
                     <Button
+                        disabled
                         label={language.shareCollection}
                         type={"secondary"}
                         handlePress={() => console.log('Share collection')}

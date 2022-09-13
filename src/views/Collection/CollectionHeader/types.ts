@@ -3,5 +3,5 @@ export interface IProps {
     image: string;
     title: string;
     artefactCount: number;
-    totalContributions: string;
+    totalContributions: number;
 }

@@ -129,6 +129,9 @@ export const TileData = styled.div`
         font-weight: ${(props) => props.theme.typography.weight.bold};
         text-align: center;
     }
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+
+    }
 `;
 
 export const TContainer = styled.div`
