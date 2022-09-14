@@ -17,13 +17,13 @@ function CollectionCard(props: ArweaveCollectionProps) {
                     <S.Title>{props.state.title}</S.Title>
                     <S.Description>{parse(props.state.shortDescription)}</S.Description>
                 </S.C1Content>
-                <S.Link href={`${urls.collection}${slugify(
-                    props.state.title.toLowerCase() + "-" + props.id
-                )}`}>
-                    <S.LinkContainer>
+                <S.LinkContainer>
+                    <S.Link href={`${urls.collection}${slugify(
+                        props.state.title.toLowerCase() + "-" + props.id
+                    )}`}>
                         <span>{language.viewCollection}</span>
-                    </S.LinkContainer>
-                </S.Link>
+                    </S.Link>
+                </S.LinkContainer>
             </S.C1>
             <S.C2 image={props.state.image} />
         </S.PCWrapper>

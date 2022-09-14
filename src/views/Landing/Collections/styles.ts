@@ -63,6 +63,7 @@ export const Body = styled.div`
     }
     &:hover {
         cursor: grab;
+        opacity: 0.95;
     }
 `;
 
@@ -125,6 +126,11 @@ export const Description = styled.p`
 `;
 
 export const Link = styled.a`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &:hover {
         text-decoration: none;
     }
