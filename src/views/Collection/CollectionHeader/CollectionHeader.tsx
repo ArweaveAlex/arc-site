@@ -24,9 +24,17 @@ export default function CollectionHeader(props: IProps) {
                     />
                 </S.HeaderFlex>
                 <S.SubheaderFlex>
-                    <S.Subheader1><p>{language.collection.subheader1}</p></S.Subheader1>
+                    <S.SubheaderContainer>
+                        <S.Subheader1><p>{language.collection.subheader1}</p></S.Subheader1>
+                        &nbsp;
+                        <S.ID><p>{util.formatAddress(props.id)}</p></S.ID>
+                    </S.SubheaderContainer>
                     &nbsp;
-                    <S.ID><p>{util.formatAddress(props.id)}</p></S.ID>
+                    <S.SubheaderContainer>
+                        <S.Subheader1><p>{language.collection.createdOn}</p></S.Subheader1>
+                        &nbsp;
+                        <S.Subheader2><p>{util.formatDate(props.dateCreated)}</p></S.Subheader2>
+                    </S.SubheaderContainer>
                 </S.SubheaderFlex>
             </S.Header>
             <S.Image image={props.image} />

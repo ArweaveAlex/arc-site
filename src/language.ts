@@ -14,7 +14,8 @@ export const language = {
     collection: {
         subheader1: 'Collection',
         totalContributed: 'Total Contributed',
-        artifactsCreated: 'Artifacts Created'
+        artifactsCreated: 'Artifacts Created',
+        createdOn: 'Created on'
     },
     community: 'Community',
     companyTitle: 'Alex.',

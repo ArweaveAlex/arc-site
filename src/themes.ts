@@ -6,7 +6,7 @@ const DEFAULT = {
     neutral3: "#EEEEEE",
     neutral4: "#3A3A3A",
     neutral5: "#DDDDDD",
-    neutral6: "#D4D4D4",
+    neutral6: "#D9D9D9",
     neutral7: "#959595",
     neutral8: "#ACACAC",
     primary: "#003153",
@@ -86,6 +86,16 @@ export const defaultTheme: DefaultTheme = {
                 hover: DEFAULT.neutral6,
             },
             inactive: DEFAULT.neutral4
+        },
+        indicator: {
+            active: {
+                base: DEFAULT.primary,
+                hover: DEFAULT.primary2
+            },
+            inactive: {
+                base: DEFAULT.neutral6,
+                hover: DEFAULT.neutral8
+            }
         },
         navigation: {
             footer: {

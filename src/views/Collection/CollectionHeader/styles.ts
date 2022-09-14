@@ -18,7 +18,7 @@ export const Header = styled.div`
     flex-direction: column;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: auto;
-        margin: 0 0 35px 0;
+        margin: 0 0 20px 0;
     }
 `;
 
@@ -51,6 +51,9 @@ export const Header1 = styled(H2)`
 export const SubheaderFlex = styled.div`
     display: flex;
     margin: 7.5px 0 0 0;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        flex-direction: column;
+    }
 `;
 
 export const Subheader1 = styled.div`
@@ -66,11 +69,17 @@ export const Subheader2 = styled.div`
 `;
 
 export const ID = styled(Subheader2)`
-    width: 125px;
     p {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+`;
+
+export const SubheaderContainer = styled.div`
+    display: flex;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        margin: 0 0 7.5px 0;
     }
 `;
 

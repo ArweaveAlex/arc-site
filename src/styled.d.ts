@@ -63,10 +63,20 @@ declare module "styled-components" {
             }
             icon: {
                 primary: {
-                    fill: string,
-                    hover: string,
+                    fill: string
+                    hover: string
                 }
                 inactive: string
+            }
+            indicator: {
+                active: {
+                    base: string
+                    hover: string
+                }
+                inactive: {
+                    base: string
+                    hover: string
+                }
             }
             navigation: {
                 footer: {
@@ -88,7 +98,7 @@ declare module "styled-components" {
             family: {
                 primary: string
                 secondary: string
-            },
+            }
             size: {
                 h1: string
                 h2: string

@@ -12,6 +12,7 @@ export interface ArweaveCollectionProps {
     image: string;
     shortDescription: string;
     longDescription: string;
+    dateCreated: string;
     link: string;
     ownerInfo: string;
     contributors: { [key: string]: string };

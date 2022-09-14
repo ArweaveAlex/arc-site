@@ -117,7 +117,7 @@ export const SocialLink = styled.a`
   margin: 0 0 0 20px;
   height: fit-content;
   svg {
-    width: 22.5px;
+    width: 25px;
     fill: ${(props) => props.theme.colors.icon.primary.fill};
     &:hover {
       fill: ${(props) => props.theme.colors.icon.primary.hover};

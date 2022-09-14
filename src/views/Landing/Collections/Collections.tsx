@@ -1,7 +1,8 @@
 import slugify from "slugify";
+import parse from "html-react-parser";
 
-// import { Carousel } from 'react-responsive-carousel';
-// import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from "react-responsive-carousel";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import * as urls from "@/urls";
 import { language } from "@/language";
@@ -14,7 +15,7 @@ function CollectionCard(props: ArweaveCollectionProps) {
             <S.C1>
                 <S.C1Content>
                     <S.Title>{props.state.title}</S.Title>
-                    <S.Description>{props.state.shortDescription}</S.Description>
+                    <S.Description>{parse(props.state.shortDescription)}</S.Description>
                 </S.C1Content>
                 <S.Link href={`${urls.collection}${slugify(
                     props.state.title.toLowerCase() + "-" + props.id
@@ -43,21 +44,33 @@ export default function Collections(props: { data: ArweaveCollectionProps[] }) {
                     <S.Header1>{language.activeCollections}</S.Header1>
                 </S.Header>
                 <S.Body>
-                    {/* <Carousel
-                        autoPlay
-                        interval={5500}
-                        showArrows={true}
+                    <Carousel
+                        autoPlay={false}
+                        interval={0}
+                        showArrows={false}
+                        showStatus={false}
                         showThumbs={false}
-                        infiniteLoop
+                        infiniteLoop={false}
                         stopOnHover={false}
-                        useKeyboardArrows={true}
+                        useKeyboardArrows={false}
                         swipeScrollTolerance={100}
-                        preventMovementUntilSwipeScrollTolerance={true}
+                        swipeable={true}
                         emulateTouch={true}
+                        renderIndicator={(onClickHandler, isSelected, index) => {
+                            return (
+                                <S.Indicator
+                                    onClick={onClickHandler}
+                                    onKeyDown={onClickHandler}
+                                    selected={isSelected}
+                                    value={index}
+                                    key={index}
+                                />
+                            )
+                        }}
                     >
                         {getCollections()}
-                    </Carousel> */}
-                    {getCollections()[0]}
+                    </Carousel>
+                    {/* {getCollections()[0]} */}
                 </S.Body>
             </S.Content>
         </S.Wrapper>

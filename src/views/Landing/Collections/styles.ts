@@ -39,6 +39,44 @@ export const Header1 = styled.h2`
 export const Body = styled.div`
     height: calc(100% - 50px);
     width: 100%;
+    .carousel-root {
+        height: 100%;
+    }
+    .carousel.carousel-slider {
+        overflow: visible;
+        height: 100%;
+    }
+    .carousel .slider-wrapper {
+        height: 100%;
+    }
+    .control-dots {
+        top: -31.5px;
+        left: 180px;
+        height: fit-content;
+        width: fit-content;
+        margin: 0;
+        text-align: left;
+        display: flex;
+    }
+    .slider {
+        height: 100%;
+    }
+    &:hover {
+        cursor: grab;
+    }
+`;
+
+export const Indicator = styled.button<{ selected: boolean }>`
+    height: 15px;
+    width: 15px;
+    margin: 0 7.5px 0 0;
+    border-radius: 50%;
+    background ${(props) => props.selected ?
+        props.theme.colors.indicator.active.base : props.theme.colors.indicator.inactive.base};
+    &:hover {
+        background ${(props) => props.selected ?
+            props.theme.colors.indicator.active.hover : props.theme.colors.indicator.inactive.hover};
+    }
 `;
 
 export const PCWrapper = styled.div`
@@ -54,6 +92,7 @@ export const C1 = styled.div`
     height: 100%;
     width: 35%;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
+        height: auto;
         width: 100%;
     }
 `;
@@ -62,6 +101,7 @@ export const C1Content = styled.div`
     height: calc(100% - 60px);
     width: calc(100% - 10px);
     padding: 20px;
+    text-align: left;
     overflow-y: auto;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.secondary};
@@ -121,9 +161,18 @@ export const C2 = styled.div<{ image: string }>`
     border: 1px solid ${(props) => props.theme.colors.border.primary};
     background-image: ${(props) => `url("${props.image}")`};
     background-size: cover;
+    background-position: center;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: 200px;
         width: 100%;
         margin: 10px 0 0 0;
     }
+`;
+
+export const TESTCOLLECTION = styled.div`
+    height: 430px;
+    width: 100%;
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    padding: 20px;
 `;

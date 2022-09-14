@@ -3,8 +3,8 @@ import dbConnect from "@/utils/DbConnect";
 import { CURRENT_WHITELISTED_POOLS } from "@/utils/PoolExtraData";
 
 import { Landing } from "@/views/Landing";
-
- import { MOCK_DATA } from "@/mock-data";
+ 
+import { MOCK_DATA } from "@/mock-data";
 
 export async function getServerSideProps() {
   await dbConnect();

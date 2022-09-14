@@ -31,5 +31,5 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 };
 
 export default function Collection({ data }) {
-  return <_Collection data={MOCK_DATA[0]!}/>
+  return <_Collection data={MOCK_DATA[1]!}/>
 }

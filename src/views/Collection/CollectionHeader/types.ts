@@ -3,6 +3,7 @@ export interface IProps {
     image: string;
     title: string;
     longDescription: string;
+    dateCreated: string;
     artefactCount: number;
     totalContributions: number;
 }
