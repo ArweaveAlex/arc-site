@@ -4,11 +4,11 @@ const DEFAULT = {
     neutral1: "#FFFFFF",
     neutral2: "#F2F3F4",
     neutral3: "#EEEEEE",
-    neutral4: "#3B464E",
+    neutral4: "#3A3A3A",
     neutral5: "#DDDDDD",
     neutral6: "#D4D4D4",
     neutral7: "#959595",
-    neutral8: "#F0F0F0",
+    neutral8: "#ACACAC",
     primary: "#003153",
     primary2: "#265F85",
     primary3: "#4C8CB8",
@@ -73,6 +73,7 @@ export const defaultTheme: DefaultTheme = {
                 alt4: DEFAULT.primary3,
                 alt5: DEFAULT.primary4,
                 alt6: DEFAULT.neutral7,
+                alt7: DEFAULT.neutral8,
                 active: {
                     base: DEFAULT.primary,
                     hover: DEFAULT.primary2

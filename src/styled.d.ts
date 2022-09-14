@@ -54,6 +54,7 @@ declare module "styled-components" {
                     alt4: string
                     alt5: string
                     alt6: string
+                    alt7: string
                     active: {
                         base: string
                         hover: string

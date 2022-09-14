@@ -1,4 +1,8 @@
+import parse from "html-react-parser";
+
 import { Button } from "@/components/atoms/Button";
+
+import { CollectionContribute } from "../CollectionContribute";
 
 import * as util from "@/util";
 import { language } from "@/language";
@@ -31,7 +35,7 @@ export default function CollectionHeader(props: IProps) {
                     <S.TileTitle><p>{language.collection.totalContributed}</p></S.TileTitle>
                     <S.TileData>
                         <p>{props.totalContributions}</p>
-                        <S.TContainer><p>$AR</p></S.TContainer>
+                        <S.TContainer><p>{language.arTokens}</p></S.TContainer>
                     </S.TileData>
                 </S.Tile>
                 <S.Tile>
@@ -40,8 +44,14 @@ export default function CollectionHeader(props: IProps) {
                         <p>{props.artefactCount}</p>
                     </S.TileData>
                 </S.Tile>
-                <S.ContributeTile></S.ContributeTile>
+                <S.ContributeTile>
+                    <CollectionContribute />
+                </S.ContributeTile>
             </S.FlexTiles>
+            <S.LongDescription>
+                <S.LDHeader><h2>{language.about}</h2></S.LDHeader>
+                <S.LDBody>{parse(props.longDescription)}</S.LDBody>
+            </S.LongDescription>
         </S.Wrapper>
     )
 }

@@ -147,6 +147,6 @@ export const Asset = styled.div<{ image: string }>`
 export const AssetSource = styled.p`
     font-size: 12px;
     line-height: 1.25;
-    color: ${(props) => props.theme.colors.font.primary.alt1};
+    color: ${(props) => props.theme.colors.font.primary.alt7};
     margin: 5px 0 0 0;
 `;

@@ -55,7 +55,7 @@ export const SubheaderFlex = styled.div`
 
 export const Subheader1 = styled.div`
     p {
-        color: ${(props) => props.theme.colors.font.primary.alt1};
+        color: ${(props) => props.theme.colors.font.primary.alt6};
     }
 `;
 
@@ -106,8 +106,9 @@ export const Tile = styled.div`
 `;
 
 export const ContributeTile = styled(Tile)`
-    background: ${(props) => props.theme.colors.container.secondary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.tertiary};
+    padding: 0;
+    background: none;
+    border: none;
 `;
 
 export const TileTitle = styled.div`
@@ -123,7 +124,7 @@ export const TileData = styled.div`
     transform: translate(-50%, -50%);
     display: flex;
     p {
-        font-size: 22px;
+        font-size: 24px;
         color: ${(props) => props.theme.colors.font.primary.active.base};
         font-family: ${(props) => props.theme.typography.family.secondary};   
         font-weight: ${(props) => props.theme.typography.weight.bold};
@@ -137,9 +138,43 @@ export const TileData = styled.div`
 export const TContainer = styled.div`
     margin: 1.15px 0 0 7.5px;
     p {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: ${(props) => props.theme.typography.weight.regular};
         font-family: ${(props) => props.theme.typography.family.primary};
         color: ${(props) => props.theme.colors.font.primary.alt2};
+    }
+`;
+
+export const LongDescription = styled.div`
+    width: 100%;
+    margin: 30px 0 0 0;
+`;
+
+export const LDHeader = styled.div`
+    h2 {
+        font-size: 32px;
+        font-family: ${(props) => props.theme.typography.family.secondary};
+        color: ${(props) => props.theme.colors.font.primary.alt4};
+    }
+`;
+
+export const LDBody = styled.div`
+    margin: 20px 0;
+    padding: 0 10px 0 0;
+    color: ${(props) => props.theme.colors.font.primary.active.base};
+    font-size: ${(props) => props.theme.typography.size.base};
+    line-height: 1.5;
+    b {
+        color: ${(props) => props.theme.colors.font.primary.active.base};
+        font-weight: ${(props) => props.theme.typography.weight.medium};
+        font-size: ${(props) => props.theme.typography.size.base};
+    }
+    span {
+        color: ${(props) => props.theme.colors.font.primary.active.base};
+        font-size: ${(props) => props.theme.typography.size.base};
+        text-decoration: underline;
+    }
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        padding: 0;
     }
 `;

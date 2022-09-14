@@ -21,6 +21,7 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
                 id={props.data.id}
                 image={props.data.state.image}
                 title={props.data.state.title}
+                longDescription={props.data.state.longDescription}
                 artefactCount={props.data.artefacts}
                 totalContributions={Math.floor(
                     +arweave.ar.winstonToAr(

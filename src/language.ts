@@ -1,6 +1,8 @@
 
 export const language = {
+    about: 'About',
     activeCollections: 'Active Collections',
+    arTokens: '$AR',
     banner: {
         header1: 'The Answer to',
         header2: 'Preserving',
@@ -19,6 +21,8 @@ export const language = {
     companyDescription: 'Preserving Human Culture.',
     connectWallet: 'Connect Wallet',
     connectionError: 'Connection Error',
+    contribute: 'Contribute',
+    contributeTo: 'Contribute to',
     copied: 'Copied!',
     copyAddress: 'Copy Address',
     disconnect: 'Disconnect',
