@@ -50,7 +50,9 @@ export default function Button(props: IProps) {
       onClick={props.handlePress}
       onKeyPress={props.handlePress}
       disabled={props.disabled}
+      active={props.active}
       useMaxWidth={props.useMaxWidth}
+      noMinWidth={props.noMinWidth}
     >
       {props.loading ? language.loading : getLabel()}
     </StyledButton>

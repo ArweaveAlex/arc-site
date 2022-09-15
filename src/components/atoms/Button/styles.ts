@@ -2,13 +2,18 @@ import styled from "styled-components";
 
 import { STYLING } from "@/config";
 
-export const Primary = styled.button<{ useMaxWidth: boolean | undefined }>`
+export const Primary = styled.button<{ 
+  useMaxWidth: boolean | undefined, 
+  noMinWidth: boolean | undefined,
+  active: boolean | undefined 
+}>`
   position: relative;
-  background: ${(props) => props.theme.colors.button.primary.background};
-  color: ${(props) => props.theme.colors.button.primary.label};
+  background: ${(props) => props.active ? 
+    props.theme.colors.button.primary.active.background : props.theme.colors.button.primary.background};
   border: 1.5px solid ${(props) => props.theme.colors.button.primary.border};
   height: ${STYLING.dimensions.buttonHeight};
-  min-width: ${STYLING.dimensions.buttonWidth};
+  min-width: ${(props) => props.noMinWidth ? 
+    "none" : STYLING.dimensions.buttonWidth};
   max-width: ${(props) => props.useMaxWidth ? 
     STYLING.dimensions.buttonWidth : "none"};
   overflow-x: hidden;
@@ -18,10 +23,16 @@ export const Primary = styled.button<{ useMaxWidth: boolean | undefined }>`
   align-items: center;
   justify-content: center;
   &:hover {
-    background: ${(props) => props.theme.colors.button.primary.hover};
+    border: 1.5px solid ${(props) => props.active ? 
+      "transparent" : props.theme.colors.button.primary.border};
+    background: ${(props) => props.active ? 
+      props.theme.colors.button.primary.active.hover : props.theme.colors.button.primary.hover};
   }
   &:focus {
-    background: ${(props) => props.theme.colors.button.primary.hover};
+    border: 1.5px solid ${(props) => props.active ? 
+      "transparent" : props.theme.colors.button.primary.border};
+    background: ${(props) => props.active ? 
+      props.theme.colors.button.primary.active.hover : props.theme.colors.button.primary.hover};
   }
   &:disabled {
     background: ${(props) => props.theme.colors.button.primary.disabled.background};
@@ -36,7 +47,8 @@ export const Primary = styled.button<{ useMaxWidth: boolean | undefined }>`
     text-overflow: ellipsis;
     overflow-x: hidden;
     font-size: ${(props) => props.theme.typography.size.xSmall};
-    color: ${(props) => props.theme.colors.button.primary.label};
+    color: ${(props) => props.active ? 
+      props.theme.colors.button.primary.active.label : props.theme.colors.button.primary.label};
   }
 `;
 
@@ -50,14 +62,20 @@ export const IconPrimary = styled.div<{ disabled: boolean }>`
 `;
 
 export const Secondary = styled(Primary)`
-    background: ${(props) => props.theme.colors.button.secondary.background};
-    color: ${(props) => props.theme.colors.button.secondary.label};
+    background: ${(props) => props.active ? 
+      props.theme.colors.button.secondary.active.background : props.theme.colors.button.secondary.background};
     border: 1.5px solid ${(props) => props.theme.colors.button.secondary.border};
     &:hover {
-      background: ${(props) => props.theme.colors.button.secondary.hover};
+      border: 1.5px solid ${(props) => props.active ? 
+        "transparent" : props.theme.colors.button.secondary.border};
+      background: ${(props) => props.active ? 
+        props.theme.colors.button.secondary.active.hover : props.theme.colors.button.secondary.hover};
     }
     &:focus {
-      background: ${(props) => props.theme.colors.button.secondary.hover};
+      border: 1.5px solid ${(props) => props.active ? 
+        "transparent" : props.theme.colors.button.secondary.border};
+      background: ${(props) => props.active ? 
+        props.theme.colors.button.secondary.active.hover : props.theme.colors.button.secondary.hover};
     }
     &:disabled {
       background: ${(props) => props.theme.colors.button.secondary.disabled.background};
@@ -68,7 +86,8 @@ export const Secondary = styled(Primary)`
       }
     }
     span {
-      color: ${(props) => props.theme.colors.button.secondary.label};
+      color: ${(props) => props.active ? 
+        props.theme.colors.button.secondary.active.label : props.theme.colors.button.secondary.label};
     }
 `;
 

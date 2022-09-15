@@ -74,7 +74,7 @@ export const Version = styled.div`
   align-items: center;
   justify-content: center;
   margin: -5.5px 0px 0 5.5px;
-  background: ${(props) => props.theme.colors.container.secondary.background};
+  background: ${(props) => props.theme.colors.container.alt1.background};
   span {
     color: ${(props) => props.theme.colors.font.primary.base};
     font-size: 12px;

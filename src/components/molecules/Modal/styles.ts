@@ -28,7 +28,7 @@ export const Container = styled.div`
 export const Header = styled.div`
     height: 65px;
     width: 100%;
-    background: ${(props) => props.theme.colors.container.secondary.background};
+    background: ${(props) => props.theme.colors.container.alt1.background};
     display: flex;
     justify-content: space-between;
     align-items: center;

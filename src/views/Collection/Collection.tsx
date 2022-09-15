@@ -3,6 +3,7 @@ import Arweave from "arweave";
 import { ArweaveCollectionProps } from "@/types";
 
 import { CollectionHeader } from "./CollectionHeader";
+import { CollectionDetail } from "./CollectionDetail";
 
 import * as S from "./styles";
 
@@ -30,6 +31,7 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
                     ) * 1e5
                 ) / 1e5}
             />
+            <CollectionDetail />
         </S.Wrapper>
     )
 }

@@ -2,6 +2,7 @@
 export const language = {
     about: 'About',
     activeCollections: 'Active Collections',
+    artefacts: 'Artifacts',
     arTokens: '$AR',
     banner: {
         header1: 'The Answer to',
@@ -15,7 +16,11 @@ export const language = {
         subheader1: 'Collection',
         totalContributed: 'Total Contributed',
         artifactsCreated: 'Artifacts Created',
-        createdOn: 'Created on'
+        createdOn: 'Created on',
+        detail: {
+            title: 'Title',
+            dateCreated: 'Date Created'
+        }
     },
     community: 'Community',
     companyTitle: 'Alex.',
@@ -42,11 +47,13 @@ export const language = {
     },
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
+    next: 'Next',
     pageNotFound: 'Page Not Found',
     paths: {
         about: 'About',
         collections: 'Collections'
     },
+    previous: 'Previous',
     readMore: 'Read More',
     shareCollection: 'Share this Collection',
     social: {

@@ -4,7 +4,7 @@ import { CURRENT_WHITELISTED_POOLS } from "@/utils/PoolExtraData";
 
 import { Landing } from "@/views/Landing";
  
-import { MOCK_DATA } from "@/mock-data";
+import { MOCK_DATA_HEADER } from "@/mock-data";
 
 export async function getServerSideProps() {
   await dbConnect();
@@ -22,5 +22,5 @@ export async function getServerSideProps() {
 }
 
 export default function Index({ data }) {
-  return <Landing data={MOCK_DATA}/>;
+  return <Landing data={MOCK_DATA_HEADER}/>;
 }

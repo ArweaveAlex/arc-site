@@ -15,6 +15,11 @@ declare module "styled-components" {
                     border: string
                     hover: string
                     label: string
+                    active: {
+                        background: string
+                        hover: string
+                        label: string
+                    }
                     disabled: {
                         background: string
                         border: string
@@ -26,6 +31,11 @@ declare module "styled-components" {
                     border: string
                     hover: string
                     label: string
+                    active: {
+                        background: string
+                        hover: string
+                        label: string
+                    }
                     disabled: {
                         background: string
                         border: string
@@ -38,10 +48,16 @@ declare module "styled-components" {
                     background: string
                     hover: string
                 }
-                secondary: {
-                    background: stringß
+                alt1: {
+                    background: string
                 }
-                tertiary: {
+                alt2: {
+                    background: string
+                }
+                alt3: {
+                    background: string
+                }
+                alt4: {
                     background: string
                 }
             }

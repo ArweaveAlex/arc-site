@@ -4,7 +4,7 @@ import { GetServerSideProps } from "next";
 
 import { _Collection } from "@/views/Collection";
 
-import { MOCK_DATA } from "@/mock-data";
+import { MOCK_DATA_HEADER } from "@/mock-data";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { slug } = query;
@@ -31,5 +31,5 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 };
 
 export default function Collection({ data }) {
-  return <_Collection data={MOCK_DATA[1]!}/>
+  return <_Collection data={MOCK_DATA_HEADER[1]!}/>
 }

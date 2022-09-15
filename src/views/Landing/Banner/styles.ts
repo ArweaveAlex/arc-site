@@ -6,7 +6,7 @@ import { STYLING } from "@/config";
 export const Wrapper = styled.div`
     height: 200px;
     width: 100%;
-    background: ${(props) => props.theme.colors.container.secondary.background};
+    background: ${(props) => props.theme.colors.container.alt1.background};
     @media(max-width: ${STYLING.cutoffs.banner}) {
         height: auto;
     }
@@ -75,7 +75,7 @@ export const FlexHeader = styled.div`
 export const Highlight = styled.div`
     height: 32.5px;
     width: 100%;
-    background: ${(props) => props.theme.colors.container.tertiary.background};
+    background: ${(props) => props.theme.colors.container.alt2.background};
     position: absolute;
     bottom: 0;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
