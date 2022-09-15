@@ -108,6 +108,7 @@ export const C1Content = styled.div`
     border: 1px solid ${(props) => props.theme.colors.border.secondary};
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: auto;
+        min-height: 300px;
         width: 100%;
     }
 `;

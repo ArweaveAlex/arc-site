@@ -11,12 +11,12 @@ export default function CollectionDetail() {
     const data = MOCK_DATA_DETAIL;
     
     const [currentPage, setCurrentPage] = React.useState(1);
-    const [recordsPerPage] = React.useState(50);
+    const [recordsPerPage] = React.useState(5);
 
     const lastRecordIndex = currentPage * recordsPerPage;
     const firstRecordIndex = lastRecordIndex - recordsPerPage;
     const currentRecords = data.slice(firstRecordIndex, lastRecordIndex);
-    const pages = Math.ceil(data.length / recordsPerPage);
+    const nPages = Math.ceil(data.length / recordsPerPage);
 
     return (
         <S.Wrapper>
@@ -39,7 +39,7 @@ export default function CollectionDetail() {
                     ))}
                 </S.Table>
                 <Paginator 
-                    pages={pages}
+                    nPages={nPages}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                 />

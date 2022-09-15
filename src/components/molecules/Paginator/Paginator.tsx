@@ -6,19 +6,39 @@ import * as S from "./styles";
 
 export default function Paginator(props: IProps) {
     let pageNumbers: number[] = [];
-    for (let i = 0; i < props.pages + 1; i++) {
+    for (let i = 0; i < props.nPages + 1; i++) {
         pageNumbers[i] = i;
     }
     pageNumbers = pageNumbers.slice(1);
-    const pageLength = pageNumbers.length - 1;
+    const pageLength = pageNumbers.length;
 
-    const sliceStart = props.currentPage >= (pageLength - 2) ? props.currentPage - 2 : props.currentPage - 1;
-    const sliceEnd = props.currentPage >= (pageLength - 1) ? pageLength : props.currentPage + 2;
+    function getSliceStart() {
+        switch (true) {
+            case props.currentPage === 1:
+                return 0;
+            case props.currentPage <= pageLength:
+                return props.currentPage - 2;
+            default:
+                return 0;
+        }
+    }
 
-    const mapNumbers = pageNumbers.slice(sliceStart, sliceEnd);
+    function getSliceEnd() {
+        switch (true) {
+            case props.currentPage === 1:
+                return props.currentPage + 2;
+            case props.currentPage <= pageLength:
+                return props.currentPage + 1;
+            default:
+                return 0;
+        }
+    }
+
+    const sliceStart = getSliceStart();
+    const sliceEnd = getSliceEnd();
 
     const handleNextPage = () => {
-        if (props.currentPage !== props.pages) props.setCurrentPage(props.currentPage + 1)
+        if (props.currentPage !== props.nPages) props.setCurrentPage(props.currentPage + 1)
     }
 
     const handlePreviousPage = () => {
@@ -31,10 +51,11 @@ export default function Paginator(props: IProps) {
                 label={language.previous}
                 type={"secondary"}
                 handlePress={handlePreviousPage}
+                disabled={props.currentPage === 1}
                 noMinWidth
             />
             <S.NumberContainer>
-                {mapNumbers.map((number: number, index: number) => {
+                {pageNumbers.slice(sliceStart, sliceEnd).map((number: number, index: number) => {
                     return (
                         <S.NumberButtonContainer key={index}>
                             <Button
@@ -47,9 +68,9 @@ export default function Paginator(props: IProps) {
                         </S.NumberButtonContainer>
                     )
                 })}
-                {!(props.currentPage >= pageLength - 2) &&
+                {!(props.currentPage >= pageLength - 1) &&
                     <>
-                        {!(props.currentPage === pageLength - 3) && 
+                        {!(props.currentPage === pageLength - 2) && 
                             <S.Ellipses><span>...</span></S.Ellipses>
                         }
                         <S.NumberButtonContainer>
@@ -68,6 +89,7 @@ export default function Paginator(props: IProps) {
                 label={language.next}
                 type={"secondary"}
                 handlePress={handleNextPage}
+                disabled={props.currentPage === props.nPages}
                 noMinWidth
             />
         </S.Wrapper>

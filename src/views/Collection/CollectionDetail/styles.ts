@@ -68,7 +68,7 @@ export const Row = styled.div<{ even: boolean }>`
 export const RowData = styled.div`
     height: 100%;
     display: flex;
-    padding: 0 0 0 10px;
+    padding: 0 10px;
     background: ${(props) => props.theme.colors.container.alt3.background}; 
     border-left: 1px solid ${(props) => props.theme.colors.border.secondary};
     border-right: 1px solid ${(props) => props.theme.colors.border.secondary};
@@ -78,16 +78,25 @@ export const RowData = styled.div`
         font-family: ${(props) => props.theme.typography.family.secondary};
         font-weight: ${(props) => props.theme.typography.weight.bold};
         color: ${(props) => props.theme.colors.font.primary.active.base};
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 `;
 
 export const THeader = styled(RowData)`
     width: calc(100% - 300px);
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        width: 75%;
+    }
 `;
 
 export const DCHeader = styled(RowData)`
     border-left: none;
     width: 300px;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        width: 25%;
+    }
 `;
 
 export const TableBody = styled.div`
@@ -101,6 +110,9 @@ export const TData = styled(RowData)`
         font-family: ${(props) => props.theme.typography.family.primary};
         font-weight: ${(props) => props.theme.typography.weight.regular};
     }
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        width: 75%;
+    }
 `;
 
 export const DCData = styled(RowData)`
@@ -110,5 +122,8 @@ export const DCData = styled(RowData)`
     p {
         font-family: ${(props) => props.theme.typography.family.primary};
         font-weight: ${(props) => props.theme.typography.weight.regular};
+    }
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        width: 25%;
     }
 `;
