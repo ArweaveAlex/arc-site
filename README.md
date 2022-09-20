@@ -22,7 +22,7 @@ $ npm run start
 ```
 
 
-Create optimized production build with:
+Create optimized production build:
 
 ```
 npm run build-prod
