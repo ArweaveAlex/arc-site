@@ -9,9 +9,10 @@ import { MOCK_DATA_DETAIL } from "@/mock-data";
 
 export default function CollectionDetail() {
     const data = MOCK_DATA_DETAIL;
+    const scrollRef = React.useRef(null);
     
     const [currentPage, setCurrentPage] = React.useState(1);
-    const [recordsPerPage] = React.useState(5);
+    const [recordsPerPage] = React.useState(50);
 
     const lastRecordIndex = currentPage * recordsPerPage;
     const firstRecordIndex = lastRecordIndex - recordsPerPage;
@@ -19,7 +20,7 @@ export default function CollectionDetail() {
     const nPages = Math.ceil(data.length / recordsPerPage);
 
     return (
-        <S.Wrapper>
+        <S.Wrapper ref={scrollRef}>
             <S.Header>
                 <S.HeaderFlex>
                     <S.H2>{language.artefacts}</S.H2>
@@ -38,7 +39,8 @@ export default function CollectionDetail() {
                         </S.Row>
                     ))}
                 </S.Table>
-                <Paginator 
+                <Paginator
+                    scrollRef={scrollRef}
                     nPages={nPages}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}

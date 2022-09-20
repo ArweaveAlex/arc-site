@@ -42,6 +42,22 @@ declare module "styled-components" {
                         label: string
                     }
                 }
+                tertiary: {
+                    background: string
+                    border: string
+                    hover: string
+                    label: string
+                    active: {
+                        background: string
+                        hover: string
+                        label: string
+                    }
+                    disabled: {
+                        background: string
+                        border: string
+                        label: string
+                    }
+                }
             }
             container: {
                 primary: {

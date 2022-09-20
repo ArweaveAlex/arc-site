@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { STYLING } from "@/config";
+import { STYLING } from "@/styling-config";
 
 export const Wrapper = styled.div`
     height: 40vh;

@@ -2,7 +2,7 @@ import React from "react";
 import { ReactSVG } from "react-svg";
 
 import { IconButton } from "@/components/atoms/IconButton";
-import { ConnectWallet } from "@/components/molecules/ConnectWallet";
+import { WalletConnect } from "@/wallet/WalletConnect";
 
 import { NAV_PATHS, SOCIAL_PATHS } from "@/paths";
 import * as window from "@/window";
@@ -49,12 +49,12 @@ export default function DynamicNaviation() {
                         <S.SocialPaths>
                             {SOCIAL_PATHS.map((path, index) => (
                                 <S.SocialLink key={index} href={path.href}>
-                                    <ReactSVG src={"/assets/img/" + path.svg} />
+                                    <ReactSVG src={"/assets/" + path.svg} />
                                 </S.SocialLink>
                             ))}
                         </S.SocialPaths>
                         <S.Connect>
-                            <ConnectWallet />
+                            <WalletConnect setDynamicNavigationStatus={() => setOpen(false)}/>
                         </S.Connect>
                     </S.SC>
                 </S.NC>
@@ -72,7 +72,7 @@ export default function DynamicNaviation() {
                             <S.Menu>
                                 <IconButton
                                     warning={open}
-                                    src={open ? "/assets/img/close.svg" : "/assets/img/menu.svg"}
+                                    src={open ? "/assets/close.svg" : "/assets/menu.svg"}
                                     handlePress={handleNavStatus}
                                 />
                             </S.Menu>

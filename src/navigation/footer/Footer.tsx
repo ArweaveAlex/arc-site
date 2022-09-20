@@ -36,7 +36,7 @@ export default function Footer() {
                                 <S.SocialPaths>
                                     {SOCIAL_PATHS.map((path, index) => (
                                         <S.SocialLink key={index} href={path.href}>
-                                            <ReactSVG src={"/assets/img/" + path.svg} />
+                                            <ReactSVG src={"/assets/" + path.svg} />
                                         </S.SocialLink>
                                     ))}
                                 </S.SocialPaths>
@@ -47,7 +47,7 @@ export default function Footer() {
                         <S.SocialPaths>
                             {SOCIAL_PATHS.map((path, index) => (
                                 <S.SocialLink key={index} href={path.href}>
-                                    <ReactSVG src={"/assets/img/" + path.svg} />
+                                    <ReactSVG src={"/assets/" + path.svg} />
                                 </S.SocialLink>
                             ))}
                         </S.SocialPaths>

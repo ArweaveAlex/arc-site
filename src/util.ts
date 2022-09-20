@@ -1,5 +1,6 @@
-export function formatAddress(address: string) {
-    return address.substring(0, 5) + "..." + address.substring(36, address.length - 1);
+export function formatAddress(address: string, wrap: boolean) {
+    const formattedAddress = address.substring(0, 5) + "..." + address.substring(36, address.length - 1);
+    return wrap ? `(${formattedAddress})` : formattedAddress;
 }
 
 export function formatDate(date: string) {

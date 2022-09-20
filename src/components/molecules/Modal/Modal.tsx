@@ -25,14 +25,14 @@ export default function Modal(props: IProps) {
                     <S.Header>
                         <S.LT>
                             <S.Logo>
-                                <ReactSVG src={"/assets/img/logo-alt.svg"}/>
+                                <ReactSVG src={"/assets/logo-alt.svg"}/>
                             </S.Logo>
                             <S.Title>{props.title}</S.Title>
                         </S.LT>
                         <S.Close>
                             <IconButton
                                 warning
-                                src={"/assets/img/close.svg"}
+                                src={"/assets/close.svg"}
                                 handlePress={props.handleClose}
                             />
                         </S.Close>

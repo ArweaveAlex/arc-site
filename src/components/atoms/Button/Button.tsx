@@ -21,6 +21,12 @@ export default function Button(props: IProps) {
           icon: S.IconSecondary
         };
         return buttonObj;
+      case "tertiary":
+        buttonObj = {
+          wrapper: S.Tertiary,
+          icon: S.IconTertiary
+        };
+        return buttonObj;
       default:
         buttonObj = {
           wrapper: S.Primary,
@@ -33,9 +39,14 @@ export default function Button(props: IProps) {
   function getLabel() {
     return (
       <>
+      {(props.icon && props.iconLeftAlign) &&
+          <StyledIcon disabled={props.disabled} active={props.active} leftAlign={props.iconLeftAlign}>
+            <ReactSVG src={props.icon}/>
+          </StyledIcon>
+        }
         <span>{props.label}</span>
-        {props.icon &&
-          <StyledIcon disabled={props.disabled}>
+        {(props.icon && !props.iconLeftAlign) &&
+          <StyledIcon disabled={props.disabled} active={props.active} leftAlign={props.iconLeftAlign}>
             <ReactSVG src={props.icon}/>
           </StyledIcon>
         }

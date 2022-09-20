@@ -21,6 +21,6 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Index({ data }) {
+export default function LandingIndex({ data }) {
   return <Landing data={MOCK_DATA_HEADER}/>;
 }

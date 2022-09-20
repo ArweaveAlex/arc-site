@@ -1,3 +1,13 @@
+import { IURLView } from "./types";
+
+import { AccountAll } from "./views/Account/AccountAll";
+import { AccountNew } from "./views/Account/AccountNew";
+import { AccountFavorites } from "./views/Account/AccountFavorites";
+import { AccountContributions } from "./views/Account/AccountContributions";
+
+import * as urls from "./urls";
+import { language } from "./language";
+
 export const APP = {
     locale: "en",
     walletStorage: "wallet"
@@ -22,6 +32,22 @@ export const STYLING = {
     }
 }
 
+export const URLS: IURLView = {
+    account: [
+        { index: 0, label: language.account.all.title, icon: "account-all.svg", url: urls.accountAll, view: AccountAll },
+        { index: 1, label: language.account.new.title, icon: "account-new.svg", url: urls.accountNew, view: AccountNew },
+        { index: 2, label: language.account.favorites.title, icon: "account-favorites.svg", url: urls.accountFavorites, view: AccountFavorites },
+        { index: 2, label: language.account.contributions.title, icon: "account-contributions.svg", url: urls.accountContributions, view: AccountContributions }
+    ]
+}
+
 export const WALLETS = [
-    "arconnect"
+    {
+        name: "arconnect",
+        logo: "arconnect-wallet-logo.png"
+    },
+    // {
+    //     name: "arweave",
+    //     logo: "arweave-wallet-logo.png"
+    // }
 ]

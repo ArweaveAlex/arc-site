@@ -1,21 +1,21 @@
 import React from "react";
 
-import { Banner } from "./Banner";
-import { Collections } from "./Collections";
-import { Info } from "./Info";
-import { Steps } from "./Steps";
-import { FAQLink } from "./FAQLink";
+import { LandingHeader } from "./LandingHeader";
+import { LandingCollections } from "./LandingCollections";
+import { LandingInfo } from "./LandingInfo";
+import { LandingSteps } from "./LandingSteps";
+import { LandingFAQLink } from "./LandingFAQLink";
 
 import * as S from "./styles";
 
 export default function Landing({ data }) {
     return (
         <S.Wrapper>
-            <Banner />
-            <Collections data={data}/>
-            <Info />
-            <Steps />
-            <FAQLink />
+            <LandingHeader />
+            <LandingCollections data={data}/>
+            <LandingInfo />
+            <LandingSteps />
+            <LandingFAQLink />
         </S.Wrapper>
     )
 }

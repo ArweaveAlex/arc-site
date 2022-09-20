@@ -20,14 +20,14 @@ export default function CollectionHeader(props: IProps) {
                         label={language.shareCollection}
                         type={"secondary"}
                         handlePress={() => console.log('Share collection')}
-                        icon={"/assets/img/share.svg"}
+                        icon={"/assets/share.svg"}
                     />
                 </S.HeaderFlex>
                 <S.SubheaderFlex>
                     <S.SubheaderContainer>
                         <S.Subheader1><p>{language.collection.subheader1}</p></S.Subheader1>
                         &nbsp;
-                        <S.ID><p>{util.formatAddress(props.id)}</p></S.ID>
+                        <S.ID><p>{util.formatAddress(props.id, false)}</p></S.ID>
                     </S.SubheaderContainer>
                     &nbsp;
                     <S.SubheaderContainer>

@@ -62,6 +62,22 @@ export const defaultTheme: DefaultTheme = {
                     border: DEFAULT.neutral3,
                     label: DEFAULT.neutral7
                 }
+            },
+            tertiary: {
+                background: DEFAULT.neutral1,
+                border: DEFAULT.transparent,
+                hover: DEFAULT.neutral2,
+                label: DEFAULT.primary,
+                active: {
+                    background: DEFAULT.primary3,
+                    hover: DEFAULT.primary2,
+                    label: DEFAULT.neutral1
+                },
+                disabled: {
+                    background: DEFAULT.neutral5,
+                    border: DEFAULT.neutral3,
+                    label: DEFAULT.neutral7
+                }
             }
         },
         container: {

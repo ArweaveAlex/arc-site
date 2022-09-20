@@ -1,5 +1,6 @@
 import { Button } from "@/components/atoms/Button";
 
+import * as window from "@/window";
 import { language } from "@/language";
 import { IProps } from "./types"
 import * as S from "./styles";
@@ -37,12 +38,27 @@ export default function Paginator(props: IProps) {
     const sliceStart = getSliceStart();
     const sliceEnd = getSliceEnd();
 
+    function handleScroll() {
+        props.scrollRef.current.scrollIntoView({behavior: "smooth", block: "start"});
+    }
+
     const handleNextPage = () => {
-        if (props.currentPage !== props.nPages) props.setCurrentPage(props.currentPage + 1)
+        if (props.currentPage !== props.nPages) {
+            props.setCurrentPage(props.currentPage + 1);
+            handleScroll();
+        }
     }
 
     const handlePreviousPage = () => {
-        if (props.currentPage !== 1) props.setCurrentPage(props.currentPage - 1)
+        if (props.currentPage !== 1) {
+            props.setCurrentPage(props.currentPage - 1);
+            handleScroll();
+        }
+    }
+
+    const handleCurrentPage = (number: number) => {
+        props.setCurrentPage(number);
+        handleScroll();
     }
 
     return (
@@ -61,7 +77,7 @@ export default function Paginator(props: IProps) {
                             <Button
                                 label={number}
                                 type={"primary"}
-                                handlePress={() => props.setCurrentPage(number)}
+                                handlePress={() => handleCurrentPage(number)}
                                 active={number === props.currentPage}
                                 noMinWidth
                             />
@@ -77,7 +93,7 @@ export default function Paginator(props: IProps) {
                             <Button
                                 label={pageLength}
                                 type={"primary"}
-                                handlePress={() => props.setCurrentPage(pageLength)}
+                                handlePress={() => handleCurrentPage(pageLength)}
                                 active={pageLength === props.currentPage}
                                 noMinWidth
                             />

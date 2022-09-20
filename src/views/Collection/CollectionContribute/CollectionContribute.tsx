@@ -23,7 +23,7 @@ export default function CollectionContribute() {
                 onClick={() => setShowModal(true)}
             >
                 <S.Label>
-                    <ReactSVG src={"/assets/img/logo-alt-active.svg"}/>
+                    <ReactSVG src={"/assets/logo-alt-active.svg"}/>
                 <span>{language.contribute}</span>
                 </S.Label>
             </S.Wrapper>

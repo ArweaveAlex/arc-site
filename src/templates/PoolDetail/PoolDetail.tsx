@@ -12,7 +12,7 @@ import { PoolArweaveProps } from "@/components/types/PoolArweaveProps";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import UkRuConflictImage from "@/public/assets/img/uk-ru-conflict-big.png";
+import UkRuConflictImage from "@/public/assets/uk-ru-conflict-big.png";
 import Image from "next/image";
 
 import cx from "classnames";

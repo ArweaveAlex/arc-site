@@ -1,6 +1,25 @@
 
 export const language = {
     about: 'About',
+    account: {
+        header1: 'Your Account',
+        all: {
+            title: 'All',
+            header1: 'All Artifacts'
+        },
+        new: {
+            title: 'New',
+            header1: 'New Artifacts'
+        },
+        favorites: {
+            title: 'Favorites',
+            header1: 'Favorites'
+        },
+        contributions: {
+            title: 'My Contributions',
+            header1: 'My Contributions'
+        }
+    },
     activeCollections: 'Active Collections',
     artefacts: 'Artifacts',
     arTokens: '$AR',

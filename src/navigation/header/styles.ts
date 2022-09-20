@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { open, fadeIn1 } from "@/animations";
-import { STYLING } from "@/config";
+import { STYLING } from "@/styling-config";
 
 export const Wrapper = styled.div`
     height: ${STYLING.dimensions.navHeight};

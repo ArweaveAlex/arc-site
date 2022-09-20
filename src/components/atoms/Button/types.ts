@@ -10,6 +10,7 @@ export interface IProps {
   active?: boolean;
   loading?: boolean;
   icon?: string;
+  iconLeftAlign?: boolean;
   formSubmit?: boolean;
   noFocus?: boolean;
   useMaxWidth?: boolean;

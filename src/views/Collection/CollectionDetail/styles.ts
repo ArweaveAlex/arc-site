@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 import { open, fadeIn2 } from "@/animations";
-import { STYLING } from "@/config";
+import { STYLING } from "@/styling-config";
 
 export const Wrapper = styled.div`
     width: 100%;
     animation: ${open} ${fadeIn2};
+    scroll-margin-top: 25px;
     @media(max-width: ${STYLING.cutoffs.secondary}) {
         height: auto;
+        scroll-margin-top: 20px;
     }
 `;
 
@@ -18,7 +20,7 @@ export const Header = styled.div`
     flex-direction: column;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: auto;
-        margin: 0 0 20px 0;
+        margin: 0 0 15px 0;
     }
 `;
 

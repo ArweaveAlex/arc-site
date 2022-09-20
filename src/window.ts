@@ -17,5 +17,8 @@ export function checkWindowResize(fn: () => void): void {
 }
 
 export function scrollTo(x: number, y: number) {
-  window.scrollTo(x, y);
+  window.scrollTo({
+    left: x,
+    top: y
+  });
 }
