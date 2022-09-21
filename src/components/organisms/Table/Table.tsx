@@ -30,7 +30,7 @@ export default function Table(props: IProps) {
                     <S.TableHeader>
                         {Object.keys(props.header).map((element: string, index: number) => {
                             return (
-                                <S.THeader key={index} width={props.header[element]!.width}>{util.formatTitle(element)}</S.THeader>
+                                <S.THeader key={index} width={props.header[element]!.width}><p>{util.formatTitle(element)}</p></S.THeader>
                             )
                         })}
                     </S.TableHeader>

@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 
 export const Header = styled.div`
     width: 100%;
-    margin: 0 0 20px 0;
+    margin: 0 0 25px 0;
     display: flex;
     flex-direction: column;
     @media(max-width: ${STYLING.cutoffs.tablet}) {

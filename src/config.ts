@@ -40,14 +40,3 @@ export const URLS: IURLView = {
         { index: 2, label: language.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
     ]
 }
-
-export const WALLETS = [
-    {
-        name: "arconnect",
-        logo: "arconnect-wallet-logo.png"
-    },
-    // {
-    //     name: "arweave",
-    //     logo: "arweave-wallet-logo.png"
-    // }
-]

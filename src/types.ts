@@ -1,5 +1,3 @@
-export type ButtonType = "primary" | "secondary" | "tertiary";
-
 export interface ArweaveCollectionProps {
   state: ArweaveCollectionState;
   id: string;
@@ -22,6 +20,8 @@ export interface ArweaveCollectionState {
   balance: string;
 }
 
+export type ButtonType = "primary" | "secondary" | "tertiary";
+
 export interface IURLView {
   account: URLViewType[]
 }
@@ -36,3 +36,4 @@ export type URLViewType = {
 }
 
 export type KeyValueStringType = { [key: string]: string };
+export type TableHeaderType = { [key: string]: { width: string } };

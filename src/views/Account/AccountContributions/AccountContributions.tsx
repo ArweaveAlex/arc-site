@@ -1,5 +1,11 @@
+import { ContributionsList } from "./ContributionsList";
+
+import * as S from "./styles";
+
 export default function AccountContributions() {
     return (
-        <p>Account Contributions</p>
+        <S.Wrapper>
+            <ContributionsList />
+        </S.Wrapper>
     )
 }

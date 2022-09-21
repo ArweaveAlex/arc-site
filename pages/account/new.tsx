@@ -1,7 +1,7 @@
-import { Account } from "@/views/Account/Account";
+import { AccountTabs } from "@/views/Account/AccountTabs";
 
 export default function AccountNew() {
     return (
-        <Account />
+        <AccountTabs />
     )
 }

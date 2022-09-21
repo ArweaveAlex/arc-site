@@ -50,20 +50,29 @@ export const Header1 = styled(H2)`
 
 export const SubheaderFlex = styled.div`
     display: flex;
-    margin: 7.5px 0 0 0;
+    margin: 10px 0 0 0;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         flex-direction: column;
     }
 `;
 
+export const SubheaderContainer = styled.div`
+    display: flex;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        margin: 0 0 7.5px 0;
+    }
+`;
+
 export const Subheader1 = styled.div`
     p {
+        font-size: ${(props) => props.theme.typography.size.base};
         color: ${(props) => props.theme.colors.font.primary.alt6};
     }
 `;
 
 export const Subheader2 = styled.div`
     p {
+        font-size: ${(props) => props.theme.typography.size.base};
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
 `;
@@ -73,13 +82,6 @@ export const ID = styled(Subheader2)`
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-    }
-`;
-
-export const SubheaderContainer = styled.div`
-    display: flex;
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        margin: 0 0 7.5px 0;
     }
 `;
 

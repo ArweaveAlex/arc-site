@@ -2,21 +2,26 @@ import React from "react";
 import { useArjs } from "arjs-react";
 // import { ReactSVG } from "react-svg";
 
+import { useARProvider } from "@/providers/ARProvider";
+
 import { URLTabs } from "@/components/organisms/URLTabs";
 
 // import * as urls from "@/urls";
 import * as util from "@/util";
-import { APP, URLS } from "@/config";
+import { URLS } from "@/config";
 import { language } from "@/language";
 import * as S from "./styles";
 
-export default function Account() {
+export default function AccountTabs() {
     const arJsWallet = useArjs();
+    const { connected } = useARProvider();
+
+    // console.log(connected)
 
     // const permissions = { permissions: ["SIGN_TRANSACTION"] };
 
     const [address, setAddress] = React.useState("");
-    const [connected, setConnected] = React.useState(false);
+    // const [connected, setConnected] = React.useState(false);
 
     // React.useEffect(() => {
     //     const walletStorageItem = localStorage.getItem(APP.walletStorage);
@@ -25,18 +30,18 @@ export default function Account() {
     //     }
     // })
 
-    React.useEffect(() => {
-        setConnected(arJsWallet.status === "connected");
-    })
+    // React.useEffect(() => {
+    //     setConnected(arJsWallet.status === "connected");
+    // })
 
-    React.useEffect(() => {
-        async function getAddress() {
-            setAddress(await arJsWallet.getAddress())
-        }
-        if (connected) {
-            getAddress();
-        }
-    })
+    // React.useEffect(() => {
+    //     async function getAddress() {
+    //         setAddress(await arJsWallet.getAddress())
+    //     }
+    //     if (connected) {
+    //         getAddress();
+    //     }
+    // })
 
     return (
         <S.Wrapper>
