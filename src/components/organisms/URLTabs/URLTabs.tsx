@@ -22,7 +22,7 @@ function Tab(props: ITProps) {
         active={props.active}
         icon={`/assets/${props.icon}`}
         iconLeftAlign
-        // noMinWidth
+        disabled={props.disabled}
       />
     </S.Tab>
   );
@@ -68,6 +68,7 @@ export default function URLTabs(props: IUProps) {
                 url={elem.url}
                 label={elem.label}
                 icon={elem.icon}
+                disabled={elem.disabled}
                 active={elem.url.includes(activeUrl)}
                 handlePress={() => handleRedirect(elem.url)}
               />

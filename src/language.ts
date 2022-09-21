@@ -35,11 +35,7 @@ export const language = {
         subheader1: 'Collection',
         totalContributed: 'Total Contributed',
         artifactsCreated: 'Artifacts Created',
-        createdOn: 'Created on',
-        detail: {
-            title: 'Title',
-            dateCreated: 'Date Created'
-        }
+        createdOn: 'Created on'
     },
     community: 'Community',
     companyTitle: 'Alex.',
@@ -50,6 +46,7 @@ export const language = {
     contributeTo: 'Contribute to',
     copied: 'Copied!',
     copyAddress: 'Copy Address',
+    dateCreated: 'Date Created',
     disconnect: 'Disconnect',
     faq: {
         display: 'Frequently Asked Questions',
@@ -90,6 +87,7 @@ export const language = {
             '<b>These Artifcats are randomly sent to participating contributor&#8217;s wallets.</b> Contributors will receive an equal percentage of their $AR contribution (relative to the total $AR contributed) in digital artifacts. For example: If John contributed 10 $AR tokens and the total amount contributed was 100 $AR tokens, John will receive 10% of the Artifacts into his wallet.'
         ]
     },
+    title: 'Title',
     viewAccount: 'View Account',
     viewCollection: 'View Collection'
 }

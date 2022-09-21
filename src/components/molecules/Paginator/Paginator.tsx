@@ -39,7 +39,9 @@ export default function Paginator(props: IProps) {
     const sliceEnd = getSliceEnd();
 
     function handleScroll() {
-        props.scrollRef.current.scrollIntoView({behavior: "smooth", block: "start"});
+        if (props.scrollRef.current) {
+            props.scrollRef.current.scrollIntoView({behavior: "smooth", block: "start"});
+        }
     }
 
     const handleNextPage = () => {

@@ -86,46 +86,19 @@ export const RowData = styled.div`
     }
 `;
 
-export const THeader = styled(RowData)`
-    width: calc(100% - 300px);
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        width: 75%;
-    }
-`;
-
-export const DCHeader = styled(RowData)`
-    border-left: none;
-    width: 300px;
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        width: 25%;
-    }
+export const THeader = styled(RowData)<{ width: string }>`
+    width: ${(props) => props.width};
 `;
 
 export const TableBody = styled.div`
     width: 100%;
 `;
 
-export const TData = styled(RowData)`
-    width: calc(100% - 300px);
+export const TData = styled(RowData)<{ width: string }>`
+    width: ${(props) => props.width};
     background: none;
     p {
         font-family: ${(props) => props.theme.typography.family.primary};
         font-weight: ${(props) => props.theme.typography.weight.regular};
-    }
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        width: 75%;
-    }
-`;
-
-export const DCData = styled(RowData)`
-    width: 300px;
-    background: none;
-    border-left: none;
-    p {
-        font-family: ${(props) => props.theme.typography.family.primary};
-        font-weight: ${(props) => props.theme.typography.weight.regular};
-    }
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        width: 25%;
     }
 `;

@@ -30,6 +30,9 @@ export type URLViewType = {
   index: number;
   label: string;
   icon: string;
+  disabled: boolean;
   url: string;
   view: React.ComponentType;
 }
+
+export type KeyValueStringType = { [key: string]: string };
