@@ -2,7 +2,7 @@ import React from "react";
 import { useArjs } from "arjs-react";
 // import { ReactSVG } from "react-svg";
 
-// import { useArcProvider } from "@/providers/ARProvider";
+// import { useARProvder } from "@/providers/ARProvider";
 
 import { URLTabs } from "@/components/organisms/URLTabs";
 
@@ -14,7 +14,7 @@ import * as S from "./styles";
 
 export default function AccountTabs() {
     // const arJsWallet = useArjs();
-    // const { walletAddress } = useArcProvider();
+    // const { walletAddress } = useARProvder();
 
     // console.log(connected)
 

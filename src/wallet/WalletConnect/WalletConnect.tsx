@@ -1,67 +1,26 @@
 import React from "react";
 import Router from "next/router";
 import { ReactSVG } from "react-svg";
-import { useArjs } from "arjs-react";
-import { ArweaveWebWallet } from "arweave-wallet-connector";
 
-import { useArcProvider } from "@/providers/ARProvider";
+import { useARProvder } from "@/providers/ARProvider";
 
 import { Button } from "@/components/atoms/Button";
 import { Modal } from "../../components/molecules/Modal";
 
 import { CloseHandler } from "@/components/organisms/CloseHandler";
 
-import { APP, URLS } from "@/config";
 import * as util from "@/util";
+import { URLS } from "@/config";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
-const ARCONNECT_WALLET = "arconnect";
-const ARWEAVE_WALLET = "arweave";
-
-// function WalletList({ handleClose, setArAppWalletConnect }) {
 function WalletList() {
-    // const arJsWallet = useArjs();
-
-    // const permissions = { permissions: ["SIGN_TRANSACTION"] };
-
-    const { wallets, handleConnect } = useArcProvider();
-
-    // async function activate(connector: string, key: Object) {
-    //     localStorage.setItem(APP.walletStorage, connector)
-    //     await arJsWallet.connect(connector, key).then(() => {
-    //         handleClose()
-    //     }).catch((error: any) => {
-    //         console.log(error)
-    //         alert(LANGUAGE.connectionError);
-    //     })
-    // }
-
-    // async function handleArweaveWalletConnection() {
-    //     localStorage.setItem(APP.walletStorage, ARWEAVE_WALLET);
-    //     setArAppWalletConnect();
-    //     handleClose();
-    // }
-
-    // function handlePress(wallet: { name: string, logo: string }, permissions: any) {
-    //     switch (wallet.name) {
-    //         case ARCONNECT_WALLET:
-    //             return activate(wallet.name, permissions);
-    //         // case ARWEAVE_WALLET:
-    //         //     return handleArweaveWalletConnection();
-    //         default:
-    //             return activate(wallet.name, permissions);
-    //     }
-    // }
+    const arProvider = useARProvder();
 
     return (
         <S.WalletListContainer>
-            {wallets.map((wallet, index) => (
-                // <S.WalletListItem key={index} onClick={() => handlePress(wallet, permissions)}>
-                //     <img src={`/assets/${wallet.logo}`} />
-                //     <span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
-                // </S.WalletListItem>
-                <S.WalletListItem key={index} onClick={() => handleConnect(wallet.name)}>
+            {arProvider.wallets.map((wallet, index) => (
+                <S.WalletListItem key={index} onClick={() => arProvider.handleConnect(wallet.name)}>
                     <img src={`/assets/${wallet.logo}`} />
                     <span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
                 </S.WalletListItem>
@@ -71,139 +30,34 @@ function WalletList() {
 }
 
 export default function WalletConnect({ setDynamicNavigationStatus }) {
-    const arJsWallet = useArjs();
-    const arAppWallet = new ArweaveWebWallet({
-        name: LANGUAGE.companyTitle,
-        logo: "/assets/arweave-wallet-logo.png"
-    })
+    const arProvider = useARProvder();
 
-    const arcProvider = useArcProvider();
-
-    const permissions = { permissions: ["SIGN_TRANSACTION"] };
-
-    // const [showModal, setShowModal] = React.useState(false);
     const [showDropdown, setShowDropdown] = React.useState(false);
     const [copied, setCopied] = React.useState(false);
-    // const [arcProvider.walletAddress, setAddress] = React.useState("");
-    // const [arcProvider.walletAddress, setarcProvider.walletAddress] = React.useState(false);
-    // const [arAppWalletConnect, setArAppWalletConnect] = React.useState(false);
-
-    // React.useEffect(() => {
-    //     //     async function connectArweaveWallet() {
-    //     //         arAppWallet.setUrl("arweave.app");
-    //     //         console.log(arAppWallet)
-    //     //         await arAppWallet.namespaces.arweaveWallet.connect().then(() => {
-    //     //             console.log("!!!")
-    //     //             // console.log(arAppWallet.namespaces.arweaveWallet.getActiveAddress())
-    //     //         }).catch((error: any) => {
-    //     //             console.log(error)
-    //     //         });
-
-    //     // (async function () {
-    //     //     arAppWallet.setUrl("arweave.app");
-    //     //     await arAppWallet.connect()
-    //     // })();
-
-    //     const walletStorageItem = localStorage.getItem(APP.walletStorage);
-    //     if (walletStorageItem && walletStorageItem === ARWEAVE_WALLET) {
-    //         // connectArweaveWallet();
-    //         (async function () {
-    //             arAppWallet.setUrl("arweave.app");
-    //             await arAppWallet.connect()
-    //         })();
-    //     }
-    // })
-
-    // React.useEffect(() => {
-    //     async function connectArweaveWallet() {
-    //         arAppWallet.setUrl("arweave.app");
-    //         console.log(arAppWallet)
-    //         await arAppWallet.namespaces.arweaveWallet.connect().then(() => {
-    //             console.log("!!!")
-    //             // console.log(arAppWallet.namespaces.arweaveWallet.getActiveAddress())
-    //         }).catch((error: any) => {
-    //             console.log(error)
-    //         });
-    //         const arAppWalletAddress = arAppWallet.namespaces.arweaveWallet.getActiveAddress();
-    //         if (arAppWalletAddress) {
-    //             setarcProvider.walletAddress(true);
-    //             setAddress(arAppWalletAddress);
-    //         }
-    //     }
-    //     const walletStorageItem = localStorage.getItem(APP.walletStorage);
-    //     if (walletStorageItem && walletStorageItem === ARWEAVE_WALLET) {
-    //         connectArweaveWallet();
-    //     }
-    // })
-
-    // React.useEffect(() => {
-    //     const walletStorageItem = localStorage.getItem(APP.walletStorage);
-    //     if ((walletStorageItem && walletStorageItem !== ARWEAVE_WALLET)
-    //         && arJsWallet.status !== "arcProvider.walletAddress" && window.arweaveWallet) {
-    //         arJsWallet.connect(walletStorageItem, permissions)
-    //     }
-    //     // else {
-    //     //     if (arAppWalletConnect && (walletStorageItem && walletStorageItem === ARWEAVE_WALLET) && !arcProvider.walletAddress) {
-    //     //         (async function () {
-    //     //             arAppWallet.setUrl("arweave.app");
-    //     //             await arAppWallet.connect();
-    //     //             const arAppWalletAddress = arAppWallet.namespaces.arweaveWallet.getActiveAddress();
-    //     //             if (arAppWalletAddress) {
-    //     //                 setarcProvider.walletAddress(true);
-    //     //                 setAddress(arAppWalletAddress);
-    //     //             }
-    //     //         })();
-    //     //     }
-    //     // }
-    // })
-
-    // React.useEffect(() => {
-    //     if (!arAppWalletConnect) {
-    //         setarcProvider.walletAddress(arJsWallet.status === "arcProvider.walletAddress");
-    //     }
-    // })
-
-    // React.useEffect(() => {
-    //     async function getAddress() {
-    //         setAddress(await arJsWallet.getAddress())
-    //     }
-    //     if (arcProvider.walletAddress && !arAppWalletConnect) {
-    //         getAddress();
-    //     }
-    // })
 
     const copyAddress = React.useCallback(async () => {
-        if (arcProvider.walletAddress) {
-            if (arcProvider.walletAddress.length > 0) {
-                await navigator.clipboard.writeText(arcProvider.walletAddress);
+        if (arProvider.walletAddress) {
+            if (arProvider.walletAddress.length > 0) {
+                await navigator.clipboard.writeText(arProvider.walletAddress);
                 setCopied(true);
                 setTimeout(() => setCopied(false), 2000);
             }
         }
-    }, [arcProvider.walletAddress]);
+    }, [arProvider.walletAddress]);
 
     function handlePress() {
-        if (arcProvider.walletAddress) {
+        if (arProvider.walletAddress) {
             setShowDropdown(true)
         }
         else {
-            arcProvider.setWalletModalVisible(true);
+            arProvider.setWalletModalVisible(true);
         }
     }
 
-    async function handleDisconnect() {
-        if (localStorage.getItem(APP.walletStorage) === ARCONNECT_WALLET) {
-            localStorage.removeItem(APP.walletStorage)
-            arJsWallet.disconnect();
-            setShowDropdown(false);
-        }
-        else {
-            localStorage.removeItem(APP.walletStorage)
-            arAppWallet.disconnect();
-            // setAddress("");
-            // setarcProvider.walletAddress(false);
-            setShowDropdown(false);
-        }
+    function handleDisconnect() {
+        arProvider.handleDisconnect();
+        setShowDropdown(false);
+
     }
 
     function handleViewAccount() {
@@ -215,18 +69,18 @@ export default function WalletConnect({ setDynamicNavigationStatus }) {
     return (
         <CloseHandler handler={() => setShowDropdown(!showDropdown)} active={showDropdown}>
             <S.Wrapper>
-                {arcProvider.modalVisible &&
+                {arProvider.modalVisible &&
                     <Modal
                         title={LANGUAGE.connectWallet}
-                        handleClose={() => arcProvider.setWalletModalVisible(false)}
+                        handleClose={() => arProvider.setWalletModalVisible(false)}
                     >
                         <WalletList />
                     </Modal>
                 }
                 <Button
                     type={"primary"}
-                    label={arcProvider.walletAddress ?
-                        util.formatAddress(arcProvider.walletAddress, false) : LANGUAGE.connectWallet}
+                    label={arProvider.walletAddress ?
+                        util.formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet}
                     handlePress={handlePress}
                     useMaxWidth
                 />
