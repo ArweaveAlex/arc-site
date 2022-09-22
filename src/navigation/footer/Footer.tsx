@@ -1,6 +1,6 @@
 import { ReactSVG } from "react-svg";
 
-import { language } from "@/language";
+import { LANGUAGE } from "@/language";
 import { SOCIAL_PATHS } from "@/paths";
 import * as S from "./styles";
 
@@ -12,13 +12,13 @@ export default function Footer() {
                     <S.ContainerOne>
                         <S.LogoContainer>
                             <S.LogoContent>
-                                <S.LogoHeader>{language.companyTitle}</S.LogoHeader>
-                                <S.LogoSubHeader>{language.companyDescription}</S.LogoSubHeader>
+                                <S.LogoHeader>{LANGUAGE.companyTitle}</S.LogoHeader>
+                                <S.LogoSubHeader>{LANGUAGE.companyDescription}</S.LogoSubHeader>
                             </S.LogoContent>
                         </S.LogoContainer>
                         {/* <S.NavContainer>
                             <S.NavContainerHeader>
-                                {language.companyTitle}
+                                {LANGUAGE.companyTitle}
                             </S.NavContainerHeader>
                             <S.NavLinkContainer>
                                 {NAV_PATHS.map((path, index) => (
@@ -30,7 +30,7 @@ export default function Footer() {
                         </S.NavContainer> */}
                         {/* <S.NavContainer>
                             <S.NavContainerHeader>
-                                {language.community}
+                                {LANGUAGE.community}
                             </S.NavContainerHeader>
                             <S.NavLinkContainer>
                                 <S.SocialPaths>

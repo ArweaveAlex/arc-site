@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import * as urls from "@/urls";
-import { language } from "@/language";
+import { LANGUAGE } from "@/language";
 import { ArweaveCollectionProps } from "@/types";
 import * as S from "./styles";
 
@@ -21,7 +21,7 @@ function CollectionCard(props: ArweaveCollectionProps) {
                     <S.Link href={`${urls.collection}${slugify(
                         props.state.title.toLowerCase() + "-" + props.id
                     )}`}>
-                        <span>{language.viewCollection}</span>
+                        <span>{LANGUAGE.viewCollection}</span>
                     </S.Link>
                 </S.LinkContainer>
             </S.C1>
@@ -41,7 +41,7 @@ export default function LandingCollections(props: { data: ArweaveCollectionProps
         <S.Wrapper>
             <S.Content>
                 <S.Header>
-                    <S.Header1>{language.activeCollections}</S.Header1>
+                    <S.Header1>{LANGUAGE.activeCollections}</S.Header1>
                 </S.Header>
                 <S.Body>
                     <Carousel

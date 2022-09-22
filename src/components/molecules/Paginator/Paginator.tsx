@@ -1,7 +1,7 @@
 import { Button } from "@/components/atoms/Button";
 
 import * as window from "@/window";
-import { language } from "@/language";
+import { LANGUAGE } from "@/language";
 import { IProps } from "./types"
 import * as S from "./styles";
 
@@ -66,7 +66,7 @@ export default function Paginator(props: IProps) {
     return (
         <S.Wrapper>
             <Button
-                label={language.previous}
+                label={LANGUAGE.previous}
                 type={"secondary"}
                 handlePress={handlePreviousPage}
                 disabled={props.currentPage === 1}
@@ -104,7 +104,7 @@ export default function Paginator(props: IProps) {
                 }
                 </S.NumberContainer>
             <Button
-                label={language.next}
+                label={LANGUAGE.next}
                 type={"secondary"}
                 handlePress={handleNextPage}
                 disabled={props.currentPage === props.nPages}

@@ -1,7 +1,7 @@
 import { ReactSVG } from "react-svg";
 
 import * as util from "@/util";
-import { language } from "@/language";
+import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
 import { MOCK_DATA_HEADER } from "@/mock-data";
@@ -11,7 +11,7 @@ export default function ContributionsList() {
         <S.Wrapper>
             <S.Header>
                 <S.HeaderFlex>
-                    <S.H2>{language.contributions}</S.H2>
+                    <S.H2>{LANGUAGE.contributions}</S.H2>
                 </S.HeaderFlex>
             </S.Header>
             <S.List>
@@ -22,13 +22,13 @@ export default function ContributionsList() {
                                 <S.LIHeader1>{collection.state.title}</S.LIHeader1>
                                 <S.SubheaderFlex>
                                     <S.SubheaderContainer>
-                                        <S.Subheader1><p>{language.collection.subheader1}</p></S.Subheader1>
+                                        <S.Subheader1><p>{LANGUAGE.collection.subheader1}</p></S.Subheader1>
                                         &nbsp;
                                         <S.ID><p>{util.formatAddress(collection.id, false)}</p></S.ID>
                                     </S.SubheaderContainer>
                                     &nbsp;
                                     <S.SubheaderContainer>
-                                        <S.Subheader1><p>{language.collection.createdOn}</p></S.Subheader1>
+                                        <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
                                         &nbsp;
                                         <S.Subheader2><p>{util.formatDate(collection.state.dateCreated)}</p></S.Subheader2>
                                     </S.SubheaderContainer>

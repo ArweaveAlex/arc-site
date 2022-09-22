@@ -2,7 +2,7 @@ import React from "react";
 
 import { Table } from "@/components/organisms/Table";
 
-import { language } from "@/language"
+import { LANGUAGE } from "@/language"
 
 import { MOCK_DATA_DETAIL } from "@/mock-data";
 
@@ -16,7 +16,7 @@ export default function CollectionDetail() {
 
     return (
         <Table
-            title={language.artefacts}
+            title={LANGUAGE.artefacts}
             header={header}
             data={data}
             recordsPerPage={50}

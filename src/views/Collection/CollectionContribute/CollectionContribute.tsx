@@ -3,7 +3,7 @@ import { ReactSVG } from "react-svg";
 
 import { Modal } from "@/components/molecules/Modal"
 
-import { language } from "@/language";
+import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
 export default function CollectionContribute() {
@@ -13,7 +13,7 @@ export default function CollectionContribute() {
         <>
             {showModal &&
                     <Modal
-                        title={language.contributeTo}
+                        title={LANGUAGE.contributeTo}
                         handleClose={() => setShowModal(false)}
                     >
                         
@@ -24,7 +24,7 @@ export default function CollectionContribute() {
             >
                 <S.Label>
                     <ReactSVG src={"/assets/logo-alt-active.svg"}/>
-                <span>{language.contribute}</span>
+                <span>{LANGUAGE.contribute}</span>
                 </S.Label>
             </S.Wrapper>
         </>

@@ -1,5 +1,5 @@
 
-export const language = {
+export const LANGUAGE = {
     about: 'About',
     account: {
         header1: 'Your Account',

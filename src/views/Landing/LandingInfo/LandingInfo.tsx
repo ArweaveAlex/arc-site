@@ -1,6 +1,6 @@
 import parse from "html-react-parser";
 
-import { language } from "@/language";
+import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
 export default function LandingInfo() {
@@ -8,19 +8,19 @@ export default function LandingInfo() {
         <S.Wrapper>
             <S.Content>
                 <S.Header>
-                    <S.Header1>{language.info.header1}</S.Header1>
+                    <S.Header1>{LANGUAGE.info.header1}</S.Header1>
                     <S.HeaderFlex>
-                        <S.Header2>{language.info.header2}</S.Header2>
+                        <S.Header2>{LANGUAGE.info.header2}</S.Header2>
                     </S.HeaderFlex>
                 </S.Header>
                 <S.Body>
                     <S.InfoContainer>
-                        <S.Title>{parse(language.info.subheader)}</S.Title>
-                        <S.Description>{parse(language.info.content)}</S.Description>
+                        <S.Title>{parse(LANGUAGE.info.subheader)}</S.Title>
+                        <S.Description>{parse(LANGUAGE.info.content)}</S.Description>
                     </S.InfoContainer>
                     <S.AssetContainer>
                         <S.Asset image={"/assets/info-graphic.png"} />
-                        <S.AssetSource>{language.info.assetSrc}</S.AssetSource>
+                        <S.AssetSource>{LANGUAGE.info.assetSrc}</S.AssetSource>
                     </S.AssetContainer>
                 </S.Body>
             </S.Content>

@@ -1,6 +1,6 @@
 import * as S from "./styles";
 
-import { language } from "@/language";
+import { LANGUAGE } from "@/language";
 
 export default function _404() {
     return (
@@ -8,7 +8,7 @@ export default function _404() {
             <S.Content>
                 <S.Header>404</S.Header>
                 <S.Divider />
-                <S.Message>{language.pageNotFound}</S.Message>
+                <S.Message>{LANGUAGE.pageNotFound}</S.Message>
             </S.Content>
         </S.Wrapper>
     )

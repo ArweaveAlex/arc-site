@@ -2,19 +2,19 @@ import React from "react";
 import { useArjs } from "arjs-react";
 // import { ReactSVG } from "react-svg";
 
-import { useARProvider } from "@/providers/ARProvider";
+// import { useArcProvider } from "@/providers/ARProvider";
 
 import { URLTabs } from "@/components/organisms/URLTabs";
 
 // import * as urls from "@/urls";
 import * as util from "@/util";
 import { URLS } from "@/config";
-import { language } from "@/language";
+import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
 export default function AccountTabs() {
-    const arJsWallet = useArjs();
-    const { connected } = useARProvider();
+    // const arJsWallet = useArjs();
+    // const { walletAddress } = useArcProvider();
 
     // console.log(connected)
 
@@ -49,7 +49,7 @@ export default function AccountTabs() {
                 <S.HeaderContent>
                     <S.HeaderContainer>
                         <S.FlexHeader>
-                            <S.Header1>{language.account.header1}</S.Header1>
+                            <S.Header1>{LANGUAGE.account.header1}</S.Header1>
                             &nbsp;
                             &nbsp;
                             &nbsp;

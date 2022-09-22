@@ -1,25 +1,25 @@
 import * as urls from "./urls";
-import { language } from "./language";
+import { LANGUAGE } from "./language";
 
 export const NAV_PATHS = [
     {
-        name: language.paths.about, 
+        name: LANGUAGE.paths.about, 
         href: urls.about
     }, 
     {
-        name: language.paths.collections, 
+        name: LANGUAGE.paths.collections, 
         href: urls.collections
     }
 ]
 
 export const SOCIAL_PATHS = [
     {
-        name: language.social.twitter, 
+        name: LANGUAGE.social.twitter, 
         href: "#",
         svg: "twitter.svg"
     }, 
     {
-        name: language.social.discord, 
+        name: LANGUAGE.social.discord, 
         href: "#",
         svg: "discord.svg"
     }
