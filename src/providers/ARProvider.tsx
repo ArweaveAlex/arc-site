@@ -1,14 +1,17 @@
 import React from "react";
-import { useArjs, ArjsProvider } from "arjs-react";
 
 import { LANGUAGE } from "@/language";
-import { APP } from "@/config";
 
 const AR_WALLETS = [
     { name: "arconnect", logo: "arconnect-wallet-logo.png" }
 ]
 
-const PERMISSIONS = { permissions: ["SIGN_TRANSACTION"] };
+const PERMISSIONS = [
+    "ACCESS_ADDRESS",
+    "ACCESS_ALL_ADDRESSES",
+    "SIGN_TRANSACTION",
+    "ACCESS_PUBLIC_KEY"
+]
 
 interface ARContextState {
     wallets: { name: string, logo: string }[];
@@ -38,27 +41,26 @@ const DEFAULT_CONTEXT = {
     modalVisible: false
 }
 
-export const ARContext = React.createContext<ARContextState>(DEFAULT_CONTEXT);
+const ARContext = React.createContext<ARContextState>(DEFAULT_CONTEXT);
 
 export function useARProvder(): ARContextState {
     return React.useContext(ARContext);
 }
 
-export function WalletProvider(props: ARProviderProps) {
+export function ARProvider(props: ARProviderProps) {
     const wallets = AR_WALLETS;
-    const arJsWallet = useArjs();
 
     const [modalVisible, setWalletModalVisible] = React.useState(false);
     const [walletAddress, setWalletAddress] = React.useState(null);
     const [connected, setConnected] = React.useState(false);
 
-    async function connect(connector: string, permissions: Object, consoleError: boolean) {
-        localStorage.setItem(APP.walletStorage, connector);
-        await arJsWallet.connect(connector, permissions).then(() => {
-            setWalletModalVisible(false)
+    async function connect(connector: string, consoleError: boolean) {
+        await global.window?.arweaveWallet?.connect(PERMISSIONS as any).then(() => {
+            setWalletModalVisible(false),
+            setConnected(true)
         }).catch((error: any) => {
             if (consoleError) {
-                console.warn(error);
+                console.error(error);
             }
             else {
                 alert(`${connector.charAt(0).toUpperCase() + connector.slice(1)} ${LANGUAGE.connectionError}`);
@@ -66,40 +68,40 @@ export function WalletProvider(props: ARProviderProps) {
         })
     }
 
-    function handleConnect(walletName: string) {
-        connect(walletName, PERMISSIONS, false);
+    async function handleConnect(walletName: string) {
+        connect(walletName, true);
     }
 
-    function handleDisconnect() {
-        if (localStorage.getItem(APP.walletStorage)) {
-            localStorage.removeItem(APP.walletStorage);
-            arJsWallet.disconnect();
-            setWalletAddress(null);
-            setConnected(false)
-        }
+    async function handleDisconnect() {
+        await global.window?.arweaveWallet?.disconnect();
+        setWalletAddress(null);
+        setConnected(false);
     }
 
     React.useEffect(() => {
-        const walletStorageItem = localStorage.getItem(APP.walletStorage);
         window.addEventListener("arweaveWalletLoaded", async () => {
-            if (window.arweaveWallet && walletStorageItem && arJsWallet.status !== "connected") {
-                connect(walletStorageItem, PERMISSIONS, true);
+            let walletAddress: string | null = null;
+            try {
+                walletAddress = await global.window?.arweaveWallet?.getActiveAddress();
+            }
+            catch {}
+            if (walletAddress) {
+                setConnected(true);
             }
         });
     }, [])
 
     React.useEffect(() => {
-        setConnected(arJsWallet.status === "connected");
-    })
-
-    React.useEffect(() => {
         async function getAddress() {
-            setWalletAddress(await arJsWallet.getAddress())
+            const walletAddress = await global.window?.arweaveWallet?.getActiveAddress();
+            if (walletAddress) {
+                setWalletAddress(walletAddress as any);
+            }
         }
         if (connected) {
             getAddress();
         }
-    })
+    }, [connected])
 
     return (
         <ARContext.Provider
@@ -114,15 +116,5 @@ export function WalletProvider(props: ARProviderProps) {
         >
             {props.children}
         </ARContext.Provider>
-    )
-}
-
-export function ARProvider(props: ARProviderProps) {
-    return (
-        <ArjsProvider connectors={{ arconnect: true, arweave: true }}>
-            <WalletProvider>
-                {props.children}
-            </WalletProvider>
-        </ArjsProvider>
     )
 }

@@ -1,6 +1,5 @@
-import PoolModel from "@/models/pool";
-import dbConnect from "@/utils/DbConnect";
-import { CURRENT_WHITELISTED_POOLS } from "@/utils/PoolExtraData";
+import PoolModel from "@/models";
+import dbConnect from "@/lib";
 
 import { Landing } from "@/views/Landing";
  
@@ -10,9 +9,7 @@ export async function getServerSideProps() {
   await dbConnect();
 
 
-  const allCollections = await PoolModel.find({
-    id: CURRENT_WHITELISTED_POOLS
-  }).select(["-_id", "-ts"]).lean().exec();
+  const allCollections = await PoolModel.find({}).select(["-_id", "-ts"]).lean().exec();
 
   return {
     props: {

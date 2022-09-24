@@ -86,16 +86,18 @@ export const RowData = styled.div`
     }
 `;
 
-export const THeader = styled(RowData)<{ width: string }>`
+export const THeader = styled(RowData)<{ even: boolean, width: string }>`
     width: ${(props) => props.width};
+    border-left: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
 `;
 
 export const TableBody = styled.div`
     width: 100%;
 `;
 
-export const TData = styled(RowData)<{ width: string }>`
+export const TData = styled(RowData)<{ even: boolean, width: string }>`
     width: ${(props) => props.width};
+    border-left: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
     background: none;
     p {
         font-family: ${(props) => props.theme.typography.family.primary};

@@ -9,8 +9,7 @@ import * as urls from "./urls";
 import { LANGUAGE } from "./language";
 
 export const APP = {
-    locale: "en",
-    walletStorage: "wallet"
+    locale: "en"
 }
 
 export const DOM = {

@@ -1,5 +1,5 @@
-import dbConnect from "@/utils/DbConnect";
-import PoolModel from "@/models/pool";
+import dbConnect from "@/lib";
+import PoolModel from "@/models";
 import { GetServerSideProps } from "next";
 
 import { _Collection } from "@/views/Collection";
