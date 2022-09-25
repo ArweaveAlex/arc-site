@@ -52,12 +52,10 @@ export function ARProvider(props: ARProviderProps) {
 
     const [modalVisible, setWalletModalVisible] = React.useState(false);
     const [walletAddress, setWalletAddress] = React.useState(null);
-    const [connected, setConnected] = React.useState(false);
 
     async function connect(connector: string, consoleError: boolean) {
         await global.window?.arweaveWallet?.connect(PERMISSIONS as any).then(() => {
-            setWalletModalVisible(false),
-            setConnected(true)
+            setWalletModalVisible(false)
         }).catch((error: any) => {
             if (consoleError) {
                 console.error(error);
@@ -75,33 +73,28 @@ export function ARProvider(props: ARProviderProps) {
     async function handleDisconnect() {
         await global.window?.arweaveWallet?.disconnect();
         setWalletAddress(null);
-        setConnected(false);
     }
 
     React.useEffect(() => {
-        window.addEventListener("arweaveWalletLoaded", async () => {
+        async function handleWallet() {
             let walletAddress: string | null = null;
             try {
-                walletAddress = await global.window?.arweaveWallet?.getActiveAddress();
+                walletAddress = await global.window.arweaveWallet.getActiveAddress();
             }
             catch {}
             if (walletAddress) {
-                setConnected(true);
+                setWalletAddress(walletAddress as any)
             }
-        });
-    }, [])
+        }
 
-    React.useEffect(() => {
-        async function getAddress() {
-            const walletAddress = await global.window?.arweaveWallet?.getActiveAddress();
-            if (walletAddress) {
-                setWalletAddress(walletAddress as any);
-            }
-        }
-        if (connected) {
-            getAddress();
-        }
-    }, [connected])
+        handleWallet();
+        
+        window.addEventListener("arweaveWalletLoaded", handleWallet);
+
+        return () => {
+            window.removeEventListener("arweaveWalletLoaded", handleWallet);
+        };
+    })
 
     return (
         <ARContext.Provider
