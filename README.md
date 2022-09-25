@@ -21,14 +21,6 @@ $ npm run build
 $ npm run start
 ```
 
-
-Create optimized production build:
-
-```
-npm run build-prod
-```
-
-
 ### License
 
 Licensed under the MIT License, Copyright © 2022
