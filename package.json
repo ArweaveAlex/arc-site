@@ -19,7 +19,8 @@
     "react-responsive-carousel": "^3.2.23",
     "react-svg": "^15.1.7",
     "slugify": "^1.6.5",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "redstone-smartweave": "^0.5.7"
   },
   "devDependencies": {
     "@types/react": "^16.0.4",

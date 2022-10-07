@@ -1,4 +1,6 @@
 import React from "react";
+import Arweave from "arweave";
+import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
 import { LANGUAGE } from "@/language";
 
@@ -43,6 +45,25 @@ const DEFAULT_CONTEXT = {
 
 const ARContext = React.createContext<ARContextState>(DEFAULT_CONTEXT);
 
+const arweave: any = Arweave.init({
+    host: "arweave.net",
+    port: 443,
+    protocol: "https",
+    timeout: 40000,
+    logging: false,
+});
+
+export interface ContractDataProps {
+    title: string;
+    useOfProceeds: string;
+    link: string;
+    owner: string;
+    contributors: unknown;
+    tokens: unknown;
+    totalContributions: string;
+    totalSupply: string;
+  }
+
 export function useARProvder(): ARContextState {
     return React.useContext(ARContext);
 }
@@ -52,6 +73,7 @@ export function ARProvider(props: ARProviderProps) {
 
     const [modalVisible, setWalletModalVisible] = React.useState(false);
     const [walletAddress, setWalletAddress] = React.useState(null);
+    const [balance, setBalance] = React.useState<null | number>(null);
 
     async function connect(connector: string, consoleError: boolean) {
         await global.window?.arweaveWallet?.connect(PERMISSIONS as any).then(() => {
@@ -75,6 +97,66 @@ export function ARProvider(props: ARProviderProps) {
         setWalletAddress(null);
     }
 
+
+
+    const fetchUserBalance = async () => {
+        // const wallet = await window.arweaveWallet.getActiveAddress();
+        // const raw = await fetch(`${getURL()}/api/balance/${wallet}`);
+        // const json = await raw.json();
+    
+        setBalance(4);
+      };
+
+    async function handleContribute(poolId: string, amount: number) {
+        // const currentWallet = await window.arweaveWallet.getActiveAddress();
+        // await fetchUserBalance();
+
+        // if (!balance || amount > balance) {
+        //     console.log("You don't have enough AR to contribute to this pool.");
+        //     return;
+        // }
+
+        try {
+            const smartweave = SmartWeaveNodeFactory.memCached(arweave);
+      
+            const { data: contractData }: { data: ContractDataProps; } = await arweave.api.get(`/${poolId}`);
+      
+            if (!contractData.owner) {
+              throw new Error(
+                "Failed to fetch contract owner. Please, try again in a few minutes."
+              );
+            }
+      
+            const token = smartweave
+              .contract(poolId)
+              .connect("use_wallet")
+              .setEvaluationOptions({
+                waitForConfirmation: false,
+              });
+      
+            const result = await token.writeInteraction<any>(
+              {
+                function: "contribute",
+              },
+              [],
+              {
+                target: contractData.owner,
+                // .000001 AR
+                winstonQty: arweave.ar.arToWinston(amount.toString()),
+              }
+            );
+      
+            if (!result) {
+              throw new Error("Failed to contribute to pool. Please, try again.");
+            }
+      
+            console.log("thank you for your contribution")
+      
+          } catch (error) {
+            console.log(error);
+          }
+    }
+
     React.useEffect(() => {
         async function handleWallet() {
             let walletAddress: string | null = null;
@@ -90,6 +172,7 @@ export function ARProvider(props: ARProviderProps) {
         handleWallet();
         
         window.addEventListener("arweaveWalletLoaded", handleWallet);
+        
 
         return () => {
             window.removeEventListener("arweaveWalletLoaded", handleWallet);
