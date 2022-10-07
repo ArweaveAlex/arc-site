@@ -25,7 +25,7 @@ export default function Modal(props: IProps) {
                     <S.Header>
                         <S.LT>
                             <S.Logo>
-                                <ReactSVG src={ASSETS.logoAlt}/>
+                                <ReactSVG src={ASSETS.logoAlt} />
                             </S.Logo>
                             <S.Title>{props.title}</S.Title>
                         </S.LT>

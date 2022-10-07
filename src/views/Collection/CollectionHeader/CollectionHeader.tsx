@@ -61,7 +61,8 @@ export default function CollectionHeader(props: IProps) {
                     </S.TileData>
                 </S.Tile>
                 <S.ContributeTile>
-                    <CollectionContribute 
+                    <CollectionContribute
+                        poolId={props.id}
                         header={props.title}
                         subheader={getSubheader()}
                     />

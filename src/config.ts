@@ -8,6 +8,14 @@ import { AccountContributions } from "./views/Account/AccountContributions";
 import * as urls from "./urls";
 import { LANGUAGE } from "./language";
 
+export const API_URI = process.env.API_URI || "http://localhost:3000";
+
+if (!API_URI) {
+    throw new Error(
+        "Please define the API_URI environment variable inside .env"
+    )
+}
+
 export const APP = {
     locale: "en"
 }

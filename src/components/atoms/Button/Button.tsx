@@ -65,7 +65,7 @@ export default function Button(props: IProps) {
       useMaxWidth={props.useMaxWidth}
       noMinWidth={props.noMinWidth}
     >
-      {props.loading ? LANGUAGE.loading : getLabel()}
+      {props.loading ? <span>{LANGUAGE.loading}&nbsp;...</span> : getLabel()}
     </StyledButton>
   );
 }

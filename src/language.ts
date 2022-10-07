@@ -24,6 +24,7 @@ export const LANGUAGE = {
     artefacts: 'Artifacts',
     allArtefacts: 'All Artifacts',
     arTokens: '$AR',
+    availableBalance: 'Available Balance',
     banner: {
         header1: 'The Answer to',
         header2: 'Preserving',

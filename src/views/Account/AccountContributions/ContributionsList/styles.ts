@@ -52,6 +52,7 @@ export const ListItemWrapper = styled.li`
     @media(max-width: ${STYLING.cutoffs.initial}) {
         height: auto;
         flex-direction: column;
+        padding: 25px;
     }
 `;
 

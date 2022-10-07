@@ -1,6 +1,8 @@
 import React from "react"
 import { ReactSVG } from "react-svg";
 
+import { useARProvder } from "@/providers/ARProvider";
+
 import { Button } from "@/components/atoms/Button";
 import { FormField } from "@/components/atoms/FormField";
 import { Modal } from "@/components/molecules/Modal"
@@ -11,8 +13,36 @@ import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function CollectionContribute(props: IProps) {
+    const arProvider = useARProvder();
+
     const [showModal, setShowModal] = React.useState(true);
-    const [amount, setAmount] = React.useState<number | string>(0);
+    const [amount, setAmount] = React.useState<number>(0);
+    const [loading, setLoading] = React.useState<boolean>(false);
+
+    async function handlePoolContribute() {
+        setLoading(true);
+        await arProvider.handlePoolContribute(props.poolId, amount)
+        setLoading(false);
+    }
+
+    function getAvailableBalance() {
+        if (arProvider.availableBalance) {
+            return (
+                <S.BalanceWrapper>
+                    <S.AvailableBalance>{LANGUAGE.availableBalance}:&nbsp;</S.AvailableBalance>
+                    <S.BalanceAmount>{arProvider.availableBalance.toFixed(3)}&nbsp;</S.BalanceAmount>
+                    <S.ARTokens>{LANGUAGE.arTokens}</S.ARTokens>
+                </S.BalanceWrapper>
+            )
+        }
+        else {
+            return (
+                <S.BalanceWrapper>
+                    <p>Fetching balance ...</p>
+                </S.BalanceWrapper>
+            )
+        }
+    }
 
     return (
         <>
@@ -28,22 +58,24 @@ export default function CollectionContribute(props: IProps) {
                             </S.HeaderFlex>
                             {props.subheader}
                         </S.Header>
+                        {getAvailableBalance()}
                         <S.FormField>
                             <FormField
                                 type={"number"}
                                 value={amount}
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
+                                disabled={loading}
                                 invalid={{ status: false, message: null }}
                                 endText={LANGUAGE.arTokens}
                             />
                         </S.FormField>
                         <S.Button>
-                            <Button 
+                            <Button
                                 label={LANGUAGE.submit}
                                 type={"secondary"}
-                                handlePress={() => console.log("Submit AR")}
-                                disabled={false}
-                                loading={false}
+                                handlePress={() => handlePoolContribute()}
+                                disabled={loading}
+                                loading={loading}
                             />
                         </S.Button>
                         <S.SignMessage>

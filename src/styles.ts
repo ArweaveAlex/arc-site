@@ -137,6 +137,9 @@ export const GlobalStyle = createGlobalStyle`
     height: ${STYLING.dimensions.formHeight};
     margin: 0;
     padding: 10px;
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   input {

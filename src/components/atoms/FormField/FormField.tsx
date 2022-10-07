@@ -19,7 +19,7 @@ export default function FormField(props: IProps) {
         type={props.type ? props.type : "text"}
         value={getValue()}
         onChange={props.onChange}
-        disabled={false}
+        disabled={props.disabled}
         invalid={props.invalid.status}
         placeholder={props.placeholder ? props.placeholder : ""}
       />

@@ -102,3 +102,24 @@ export const SignMessage = styled.div`
         color: ${(props) => props.theme.colors.font.primary.alt1};
     }
 `;
+
+export const BalanceWrapper = styled.div`
+    display: flex;
+`;
+
+export const AvailableBalance = styled.p`
+    color: ${(props) => props.theme.colors.font.primary.alt1};
+    line-height: 18px;
+`;
+
+export const BalanceAmount = styled.p`
+    color: ${(props) => props.theme.colors.font.primary.alt1};
+    font-size: 18px;
+    font-weight: ${(props) => props.theme.typography.weight.medium};
+`;
+
+export const ARTokens = styled.p`
+    color: ${(props) => props.theme.colors.font.primary.alt4};
+    font-size: 18px;
+    font-weight: ${(props) => props.theme.typography.weight.medium};
+`;

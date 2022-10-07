@@ -5,7 +5,7 @@ import { ReactSVG } from "react-svg";
 import { useARProvder } from "@/providers/ARProvider";
 
 import { Button } from "@/components/atoms/Button";
-import { Modal } from "../../components/molecules/Modal";
+import { Modal } from "@/components/molecules/Modal";
 
 import { CloseHandler } from "@/components/organisms/CloseHandler";
 
@@ -69,7 +69,7 @@ export default function WalletConnect({ setDynamicNavigationStatus }) {
     return (
         <CloseHandler handler={() => setShowDropdown(!showDropdown)} active={showDropdown}>
             <S.Wrapper>
-                {arProvider.modalVisible &&
+                {arProvider.walletModalVisible &&
                     <Modal
                         title={LANGUAGE.connectWallet}
                         handleClose={() => arProvider.setWalletModalVisible(false)}

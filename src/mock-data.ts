@@ -24,7 +24,7 @@ export const MOCK_DATA_HEADER = [
             "totalSupply": "10000000",
             "balance": "1100100000000",
         },
-        "id": "0v4qUzj-3SaHLKq_uGt8dT5yan2wO2ylkOwXLf3mLaE",
+        "id": "j85xAc6MjorDiupDXyO_jyJ6pf-TYGlX0HIuq45JCGw",
         "artefacts": 20321,
         "lastCursor": "WyIyMDIyLTA3LTA1VDAwOjMyOjI3LjQ1MFoiLDIwXQ=="
     },
@@ -53,7 +53,7 @@ export const MOCK_DATA_HEADER = [
             "totalSupply": "10000000",
             "balance": "1100100000000",
         },
-        "id": "Ljf98zj-3SaHLKq_uGt8dT5yan2wO2ylkOwXLfG7j4f",
+        "id": "j85xAc6MjorDiupDXyO_jyJ6pf-TYGlX0HIuq45JCGw",
         "artefacts": 10452,
         "lastCursor": "WyIyMDIyLTA3LTA1VDAwOjMyOjI3LjQ1MFoiLDIwXQ=="
     }

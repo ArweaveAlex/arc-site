@@ -13,7 +13,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Input = styled.input<{ disabled: boolean; invalid: boolean }>`
-  margin-top: 5px;
+  color: ${(props) => props.theme.colors.font.primary.active.base};
+  font-size: 19px;
+  font-weight: ${(props) => props.theme.typography.weight.medium};
+  margin: 5px 0 0 0;
   border: 1px solid ${(props) => props.invalid 
     ? props.theme.colors.form.invalid.outline
     : props.theme.colors.form.border};
@@ -31,9 +34,6 @@ export const Input = styled.input<{ disabled: boolean; invalid: boolean }>`
       : props.theme.colors.form.valid.shadow};
     transition: box-shadow, border 225ms ease-in-out;
   }
-  color: ${(props) => props.theme.colors.font.primary.active.base};
-  font-size: 19px;
-  font-weight: ${(props) => props.theme.typography.weight.medium};
 `;
 
 export const EndTextContainer = styled.div`
