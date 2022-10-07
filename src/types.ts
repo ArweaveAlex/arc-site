@@ -35,5 +35,10 @@ export type URLViewType = {
   view: React.ComponentType;
 }
 
+export type ValidationType = {
+  status: boolean,
+  message: string | null
+}
+
 export type KeyValueStringType = { [key: string]: string };
 export type TableHeaderType = { [key: string]: { width: string } };
