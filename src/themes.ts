@@ -19,6 +19,7 @@ const DEFAULT = {
     tertiary: "#FFD877",
     overlay1: "rgba(59, 70, 78, 0.75)",
     warning: "#EE3C3C",
+    warningShadow: "#F27979",
     transparent: "rgba(255, 255, 255, 0)"
 }
 
@@ -111,7 +112,20 @@ export const defaultTheme: DefaultTheme = {
                 active: {
                     base: DEFAULT.primary,
                     hover: DEFAULT.primary2
-                }
+                },
+                invalid: DEFAULT.warning
+            }
+        },
+        form: {
+            background: DEFAULT.neutral1,
+            border: DEFAULT.neutral8,
+            invalid: {
+                outline: DEFAULT.warning,
+                shadow: DEFAULT.warningShadow
+            },
+            valid: {
+                outline: DEFAULT.primary3,
+                shadow: DEFAULT.primary4
             }
         },
         icon: {

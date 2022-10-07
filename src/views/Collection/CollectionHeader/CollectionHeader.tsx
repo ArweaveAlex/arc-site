@@ -10,6 +10,25 @@ import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function CollectionHeader(props: IProps) {
+
+    function getSubheader() {
+        return (
+            <S.SubheaderFlex>
+                    <S.SubheaderContainer>
+                        <S.Subheader1><p>{LANGUAGE.collection.subheader1}</p></S.Subheader1>
+                        &nbsp;
+                        <S.ID><p>{util.formatAddress(props.id, false)}</p></S.ID>
+                    </S.SubheaderContainer>
+                    &nbsp;
+                    <S.SubheaderContainer>
+                        <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
+                        &nbsp;
+                        <S.Subheader2><p>{util.formatDate(props.dateCreated)}</p></S.Subheader2>
+                    </S.SubheaderContainer>
+                </S.SubheaderFlex>
+        )
+    }
+
     return (
         <S.Wrapper>
             <S.Header>
@@ -23,19 +42,7 @@ export default function CollectionHeader(props: IProps) {
                         icon={"/assets/share.svg"}
                     />
                 </S.HeaderFlex>
-                <S.SubheaderFlex>
-                    <S.SubheaderContainer>
-                        <S.Subheader1><p>{LANGUAGE.collection.subheader1}</p></S.Subheader1>
-                        &nbsp;
-                        <S.ID><p>{util.formatAddress(props.id, false)}</p></S.ID>
-                    </S.SubheaderContainer>
-                    &nbsp;
-                    <S.SubheaderContainer>
-                        <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
-                        &nbsp;
-                        <S.Subheader2><p>{util.formatDate(props.dateCreated)}</p></S.Subheader2>
-                    </S.SubheaderContainer>
-                </S.SubheaderFlex>
+                {getSubheader()}
             </S.Header>
             <S.Image image={props.image} />
             <S.FlexTiles>
@@ -53,7 +60,10 @@ export default function CollectionHeader(props: IProps) {
                     </S.TileData>
                 </S.Tile>
                 <S.ContributeTile>
-                    <CollectionContribute />
+                    <CollectionContribute 
+                        header={props.title}
+                        subheader={getSubheader()}
+                    />
                 </S.ContributeTile>
             </S.FlexTiles>
             <S.LongDescription>

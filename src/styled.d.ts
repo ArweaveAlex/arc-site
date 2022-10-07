@@ -91,6 +91,19 @@ declare module "styled-components" {
                         base: string
                         hover: string
                     }
+                    invalid: string
+                }
+            }
+            form: {
+                background: string
+                border: string
+                invalid: {
+                    outline: string
+                    shadow: string
+                },
+                valid: {
+                    outline: string
+                    shadow: string
                 }
             }
             icon: {

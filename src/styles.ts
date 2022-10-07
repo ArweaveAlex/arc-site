@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
+import { STYLING } from "./styling-config";
+
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -83,7 +85,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: ${(props) => props.theme.typography.weight.medium};
   }
   
-  p, span, button, a, b, li {
+  p, span, button, a, b, li, input {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -123,4 +125,31 @@ export const GlobalStyle = createGlobalStyle`
       cursor: not-allowed;
     }
   }
+
+  input, textarea {
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: ${(props) => props.theme.colors.form.background};
+    border: 1px solid ${(props) => props.theme.colors.form.border};
+    color: ${(props) => props.theme.colors.font.primary.alt1};
+    height: ${STYLING.dimensions.formHeight};
+    margin: 0;
+    padding: 10px;
+  }
+
+  input {
+    padding: 10px 15px;
+  }
+
+  input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+  }
+
+  textarea {
+    resize: none;
+    height: 170px;
+  }
+
 `;
