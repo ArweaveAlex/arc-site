@@ -4,7 +4,7 @@ import { ReactSVG } from "react-svg";
 import { IconButton } from "@/components/atoms/IconButton";
 import { Portal } from "@/components/atoms/Portal";
 
-import { DOM } from "@/config";
+import { ASSETS, DOM } from "@/config";
 import * as window from "@/window";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -25,14 +25,14 @@ export default function Modal(props: IProps) {
                     <S.Header>
                         <S.LT>
                             <S.Logo>
-                                <ReactSVG src={"/assets/logo-alt.svg"}/>
+                                <ReactSVG src={ASSETS.logoAlt}/>
                             </S.Logo>
                             <S.Title>{props.title}</S.Title>
                         </S.LT>
                         <S.Close>
                             <IconButton
                                 warning
-                                src={"/assets/close.svg"}
+                                src={ASSETS.close}
                                 handlePress={props.handleClose}
                             />
                         </S.Close>

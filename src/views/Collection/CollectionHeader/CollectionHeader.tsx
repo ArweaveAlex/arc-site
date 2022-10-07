@@ -5,6 +5,7 @@ import { Button } from "@/components/atoms/Button";
 import { CollectionContribute } from "../CollectionContribute";
 
 import * as util from "@/util";
+import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
 import { IProps } from "./types";
 import * as S from "./styles";
@@ -39,7 +40,7 @@ export default function CollectionHeader(props: IProps) {
                         label={LANGUAGE.shareCollection}
                         type={"secondary"}
                         handlePress={() => console.log('Share collection')}
-                        icon={"/assets/share.svg"}
+                        icon={ASSETS.share}
                     />
                 </S.HeaderFlex>
                 {getSubheader()}

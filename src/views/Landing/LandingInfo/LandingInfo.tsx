@@ -1,5 +1,6 @@
 import parse from "html-react-parser";
 
+import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
@@ -19,7 +20,7 @@ export default function LandingInfo() {
                         <S.Description>{parse(LANGUAGE.info.content)}</S.Description>
                     </S.InfoContainer>
                     <S.AssetContainer>
-                        <S.Asset image={"/assets/info-graphic.png"} />
+                        <S.Asset image={ASSETS.infoGraphic} />
                         <S.AssetSource>{LANGUAGE.info.assetSrc}</S.AssetSource>
                     </S.AssetContainer>
                 </S.Body>

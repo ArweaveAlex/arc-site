@@ -88,6 +88,8 @@ export const LANGUAGE = {
             '<b>These Artifcats are randomly sent to participating contributor&#8217;s wallets.</b> Contributors will receive an equal percentage of their $AR contribution (relative to the total $AR contributed) in digital artifacts. For example: If John contributed 10 $AR tokens and the total amount contributed was 100 $AR tokens, John will receive 10% of the Artifacts into his wallet.'
         ]
     },
+    submit: 'Submit',
     viewAccount: 'View Account',
-    viewCollection: 'View Collection'
+    viewCollection: 'View Collection',
+    walletSignMessage: 'You will be prompted to sign the transaction via your wallet.'
 }

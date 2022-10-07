@@ -33,6 +33,12 @@ export const Label = styled.div`
     }
 `;
 
+export const ModalWrapper = styled.div`
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+`;
+
 export const Header = styled.div`
     width: 100%;
     margin: 0 0 20px 0;
@@ -74,4 +80,25 @@ export const FormField = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     width: 300px;
+`;
+
+export const Button = styled.div`
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translate(-50%, 0);
+`;
+
+export const SignMessage = styled.div`
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    text-align: center;
+    p {
+        font-size: 12px;
+        line-height: 1.25;
+        color: ${(props) => props.theme.colors.font.primary.alt1};
+    }
 `;

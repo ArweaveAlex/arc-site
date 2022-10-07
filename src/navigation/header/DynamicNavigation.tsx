@@ -4,6 +4,7 @@ import { ReactSVG } from "react-svg";
 import { IconButton } from "@/components/atoms/IconButton";
 import { WalletConnect } from "@/wallet/WalletConnect";
 
+import { ASSETS, ASSET_SRC } from "@/config";
 import { NAV_PATHS, SOCIAL_PATHS } from "@/paths";
 import * as window from "@/window";
 import * as S from "./styles";
@@ -49,7 +50,7 @@ export default function DynamicNaviation() {
                         <S.SocialPaths>
                             {SOCIAL_PATHS.map((path, index) => (
                                 <S.SocialLink key={index} href={path.href}>
-                                    <ReactSVG src={"/assets/" + path.svg} />
+                                    <ReactSVG src={`${ASSET_SRC}/${path.svg}`} />
                                 </S.SocialLink>
                             ))}
                         </S.SocialPaths>
@@ -72,7 +73,7 @@ export default function DynamicNaviation() {
                             <S.Menu>
                                 <IconButton
                                     warning={open}
-                                    src={open ? "/assets/close.svg" : "/assets/menu.svg"}
+                                    src={open ? ASSETS.close : ASSETS.menu}
                                     handlePress={handleNavStatus}
                                 />
                             </S.Menu>

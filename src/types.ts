@@ -21,6 +21,7 @@ export interface ArweaveCollectionState {
 }
 
 export type ButtonType = "primary" | "secondary" | "tertiary";
+export type FormFieldType = "number" | "password";
 
 export interface IURLView {
   account: URLViewType[]

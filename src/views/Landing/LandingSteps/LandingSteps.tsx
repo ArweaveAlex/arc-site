@@ -1,5 +1,6 @@
 import parse from "html-react-parser";
 
+import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
@@ -16,7 +17,7 @@ export default function LandingSteps() {
                 </S.Header>
                 <S.Body>
                     <S.Asset>
-                        <img src={"/assets/cycle.png"} />
+                        <img src={ASSETS.cycle} />
                     </S.Asset>
                     <S.StepList>
                         {stepList.map((step, index) => (

@@ -10,7 +10,7 @@ import { Modal } from "../../components/molecules/Modal";
 import { CloseHandler } from "@/components/organisms/CloseHandler";
 
 import * as util from "@/util";
-import { URLS } from "@/config";
+import { ASSETS, ASSET_SRC, URLS } from "@/config";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
@@ -21,7 +21,7 @@ function WalletList() {
         <S.WalletListContainer>
             {arProvider.wallets.map((wallet, index) => (
                 <S.WalletListItem key={index} onClick={() => arProvider.handleConnect(wallet.name)}>
-                    <img src={`/assets/${wallet.logo}`} />
+                    <img src={`${ASSET_SRC}/${wallet.logo}`} />
                     <span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
                 </S.WalletListItem>
             ))}
@@ -88,7 +88,7 @@ export default function WalletConnect({ setDynamicNavigationStatus }) {
                     <S.WalletDropdown>
                         <li onClick={copyAddress}>
                             <S.Icon strokeFill={false}>
-                                <ReactSVG src={"/assets/copy.svg"} />
+                                <ReactSVG src={ASSETS.copy} />
                             </S.Icon>
                             {copied ?
                                 <div>
@@ -100,13 +100,13 @@ export default function WalletConnect({ setDynamicNavigationStatus }) {
                         </li>
                         <li onClick={handleDisconnect}>
                             <S.Icon strokeFill={false}>
-                                <ReactSVG src={"/assets/disconnect.svg"} />
+                                <ReactSVG src={ASSETS.disconnect} />
                             </S.Icon>
                             {LANGUAGE.disconnect}
                         </li>
                         <li onClick={handleViewAccount}>
                             <S.Icon strokeFill={true}>
-                                <ReactSVG src={"/assets/user.svg"} />
+                                <ReactSVG src={ASSETS.user} />
                             </S.Icon>
                             {LANGUAGE.viewAccount}
                         </li>

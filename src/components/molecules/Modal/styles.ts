@@ -60,5 +60,4 @@ export const Body = styled.div`
     height: calc(100% - 65px);
     width: 100%;
     overflow-y: auto;
-    padding: 20px;
 `;

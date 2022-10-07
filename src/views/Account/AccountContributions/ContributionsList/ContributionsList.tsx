@@ -1,6 +1,7 @@
 import { ReactSVG } from "react-svg";
 
 import * as util from "@/util";
+import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
@@ -53,7 +54,7 @@ export default function ContributionsList() {
                             </S.LIBodyContainer>
                             <S.LIDropdownContainer>
                                 <S.LIButton onClick={() => console.log('test')}>
-                                    <ReactSVG src={"/assets/dropdown.svg"} />
+                                    <ReactSVG src={ASSETS.dropdown} />
                                 </S.LIButton>
                             </S.LIDropdownContainer>
                         </S.ListItemWrapper>

@@ -12,24 +12,28 @@ export const APP = {
     locale: "en"
 }
 
+export const ASSET_SRC = "/assets";
+
+export const ASSETS = {
+    close: `${ASSET_SRC}/close.svg`,
+    copy: `${ASSET_SRC}/copy.svg`,
+    cycle: `${ASSET_SRC}/cycle.png`,
+    disconnect: `${ASSET_SRC}/disconnect.svg`,
+    dropdown: `${ASSET_SRC}/dropdown.svg`,
+    faviconDark: `${ASSET_SRC}/favicon-dark.svg`,
+    faviconLight: `${ASSET_SRC}/favicon-light.svg`,
+    infoGraphic: `${ASSET_SRC}/info-graphic.png`,
+    logo: `${ASSET_SRC}/logo.svg`,
+    logoAlt: `${ASSET_SRC}/logo-alt.svg`,
+    logoAltActive: `${ASSET_SRC}/logo-alt-active.svg`,
+    menu: `${ASSET_SRC}/menu.svg`,
+    share: `${ASSET_SRC}/share.svg`,
+    user: `${ASSET_SRC}/user.svg`,
+}
+
 export const DOM = {
     modal: "modal-portal"
-  };
-
-export const STYLING = {
-    cutoffs: {
-        initial: "1024px",
-        tablet: "840px",
-        secondary: "540px",
-        banner: "1200px",
-        max: "1400px"
-    },
-    dimensions: {
-        buttonHeight: "33.5px",
-        buttonWidth: "150px",
-        navHeight: "70px",
-    }
-}
+};
 
 export const URLS: IURLView = {
     account: [

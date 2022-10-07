@@ -99,7 +99,7 @@ export const C1 = styled.div`
 `;
 
 export const C1Content = styled.div`
-    height: calc(100% - 60px);
+    height: calc(100% - 90px);
     width: calc(100% - 10px);
     padding: 20px;
     text-align: left;
@@ -141,7 +141,7 @@ export const Link = styled.a`
 `;
 
 export const LinkContainer = styled.div`
-    height: 50px;
+    height: 80px;
     width: calc(100% - 10px);
     margin: 10px 0 0 0;
     border: 1px solid ${(props) => props.theme.colors.border.tertiary};

@@ -5,6 +5,7 @@ import { Button } from "@/components/atoms/Button";
 
 import { _404 } from "@/views/404"
 
+import { ASSET_SRC } from "@/config";
 import * as S from "./styles";
 import { ITProps, ICProps, IUProps } from "./types";
 
@@ -20,7 +21,7 @@ function Tab(props: ITProps) {
         label={props.label}
         handlePress={handlePress}
         active={props.active}
-        icon={`/assets/${props.icon}`}
+        icon={`${ASSET_SRC}/${props.icon}`}
         iconLeftAlign
         disabled={props.disabled}
       />

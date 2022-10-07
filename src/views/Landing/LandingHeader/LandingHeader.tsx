@@ -1,6 +1,7 @@
 import { ReactSVG } from "react-svg";
 
 import * as urls from "@/urls";
+import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
@@ -29,7 +30,7 @@ export default function LandingHeader() {
                     <S.FlexSubheader>
                         <S.Subheader1>{LANGUAGE.banner.subheader1}</S.Subheader1>
                         <S.Logo>
-                            <ReactSVG src={"/assets/logo.svg"} />
+                            <ReactSVG src={ASSETS.logo} />
                         </S.Logo>
                     </S.FlexSubheader>
                     <S.Subheader2>

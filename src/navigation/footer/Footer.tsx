@@ -1,5 +1,6 @@
 import { ReactSVG } from "react-svg";
 
+import { ASSET_SRC } from "@/config";
 import { LANGUAGE } from "@/language";
 import { SOCIAL_PATHS } from "@/paths";
 import * as S from "./styles";
@@ -16,38 +17,12 @@ export default function Footer() {
                                 <S.LogoSubHeader>{LANGUAGE.companyDescription}</S.LogoSubHeader>
                             </S.LogoContent>
                         </S.LogoContainer>
-                        {/* <S.NavContainer>
-                            <S.NavContainerHeader>
-                                {LANGUAGE.companyTitle}
-                            </S.NavContainerHeader>
-                            <S.NavLinkContainer>
-                                {NAV_PATHS.map((path, index) => (
-                                    <S.NavLink key={index} href={path.href}>
-                                        {path.name}
-                                    </S.NavLink>
-                                ))}
-                            </S.NavLinkContainer>
-                        </S.NavContainer> */}
-                        {/* <S.NavContainer>
-                            <S.NavContainerHeader>
-                                {LANGUAGE.community}
-                            </S.NavContainerHeader>
-                            <S.NavLinkContainer>
-                                <S.SocialPaths>
-                                    {SOCIAL_PATHS.map((path, index) => (
-                                        <S.SocialLink key={index} href={path.href}>
-                                            <ReactSVG src={"/assets/" + path.svg} />
-                                        </S.SocialLink>
-                                    ))}
-                                </S.SocialPaths>
-                            </S.NavLinkContainer>
-                        </S.NavContainer> */}
                     </S.ContainerOne>
                     <S.ContainerTwo>
                         <S.SocialPaths>
                             {SOCIAL_PATHS.map((path, index) => (
                                 <S.SocialLink key={index} href={path.href}>
-                                    <ReactSVG src={"/assets/" + path.svg} />
+                                    <ReactSVG src={`${ASSET_SRC}/${path.svg}`} />
                                 </S.SocialLink>
                             ))}
                         </S.SocialPaths>

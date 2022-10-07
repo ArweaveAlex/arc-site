@@ -1,11 +1,11 @@
 import React from "react";
 
-import { ValidationType } from "../../../types";
+import { FormFieldType, ValidationType } from "@/types";
 
 export interface IProps {
   label?: string;
   value: number | string;
-  type?: "number" | "password";
+  type?: FormFieldType;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   endText?: string;

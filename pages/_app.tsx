@@ -9,16 +9,16 @@ import { Header } from "@/navigation/header";
 import { Footer } from "@/navigation/footer";
 import { View } from "@/wrappers/View";
 
-import { DOM } from "@/config";
+import { ASSETS, DOM } from "@/config";
 import { GlobalStyle } from "@/styles";
 import { defaultTheme } from "@/themes";
 import { LANGUAGE } from "@/language";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [faviconHref, setFaviconHref] = React.useState("/assets/favicon-dark.svg");
+  const [faviconHref, setFaviconHref] = React.useState(ASSETS.faviconDark);
 
-  const getFaviconPath = (isDarkMode = false) => {
-    return `/assets/favicon-${isDarkMode ? "light" : "dark"}.svg`;
+  const getFaviconPath = (darkNav = false) => {
+    return darkNav ? ASSETS.faviconLight : ASSETS.faviconDark;
   };
 
   React.useEffect(() => {
