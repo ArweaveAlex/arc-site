@@ -8,7 +8,7 @@ import { MOCK_DATA_HEADER } from "@/mock-data";
 export async function getServerSideProps() {
   await dbConnect();
 
-
+  // @ts-ignore
   const allCollections = await PoolModel.find({}).select(["-_id", "-ts"]).lean().exec();
 
   return {
@@ -19,5 +19,6 @@ export async function getServerSideProps() {
 }
 
 export default function LandingIndex({ data }) {
+  console.log(data);
   return <Landing data={MOCK_DATA_HEADER}/>;
 }

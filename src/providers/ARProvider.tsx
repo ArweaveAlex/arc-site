@@ -2,7 +2,8 @@ import React from "react";
 import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
-import { API_URI } from "@/config";
+import { ContributionResultType } from "@/types";
+import { getBalanceEndpoint } from "@/endpoints";
 import { LANGUAGE } from "@/language";
 
 const AR_WALLETS = [
@@ -20,11 +21,11 @@ interface ARContextState {
     wallets: { name: string, logo: string }[];
     walletAddress: string | null;
     availableBalance: number | null;
-    handleConnect: (walletName: string) => void;
+    handleConnect: () => void;
     handleDisconnect: () => void;
     walletModalVisible: boolean;
     setWalletModalVisible: (open: boolean) => void;
-    handlePoolContribute: (poolId: string, amount: number) => void;
+    handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
 }
 
 interface ARProviderProps {
@@ -35,8 +36,8 @@ const DEFAULT_CONTEXT = {
     wallets: [],
     walletAddress: null,
     availableBalance: null,
-    handleConnect(walletName: string) {
-        console.error(`No Connector Found for ${walletName}`);
+    handleConnect() {
+        console.error(`No Connector Found`);
     },
     handleDisconnect() {
         console.error(`No Connection Found`);
@@ -45,8 +46,9 @@ const DEFAULT_CONTEXT = {
         console.error('Make sure to render ARProvider as an ancestor of the component that uses ARContext.Provider');
     },
     walletModalVisible: false,
-    handlePoolContribute(poolId: string, amount: number) {
+    handlePoolContribute(poolId: string, amount: number): any {
         console.log(`Contribute to ${poolId} - amount: ${amount}`);
+        return { status: false, message: null }
     }
 }
 
@@ -82,21 +84,16 @@ export function ARProvider(props: ARProviderProps) {
     const [walletAddress, setWalletAddress] = React.useState(null);
     const [availableBalance, setAvailableBalance] = React.useState(null);
 
-    async function connect(connector: string, consoleError: boolean) {
+    async function connect() {
         await global.window?.arweaveWallet?.connect(PERMISSIONS as any).then(() => {
             setWalletModalVisible(false)
-        }).catch((error: any) => {
-            if (consoleError) {
-                console.error(error);
-            }
-            else {
-                alert(`${connector.charAt(0).toUpperCase() + connector.slice(1)} ${LANGUAGE.connectionError}`);
-            }
+        }).catch(() => {
+            alert(LANGUAGE.connectionError);
         })
     }
 
-    async function handleConnect(walletName: string) {
-        connect(walletName, true);
+    async function handleConnect() {
+        connect();
     }
 
     async function handleDisconnect() {
@@ -105,16 +102,15 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     const getUserBalance = async (wallet: string) => {
-        const rawBalance = await fetch(`${API_URI}/api/balance/${wallet}`);
+        const rawBalance = await fetch(getBalanceEndpoint(wallet));
         const jsonBalance = await rawBalance.json();
         return jsonBalance.balance;
     };
 
-    async function handlePoolContribute(poolId: string, amount: number) {
+    async function handlePoolContribute(poolId: string, amount: number): Promise<ContributionResultType> {
 
         if (!availableBalance || amount > availableBalance) {
-            console.log("You don't have enough AR to contribute to this pool.");
-            return;
+            return { status: true, message: LANGUAGE.collection.contribute.notEnoughFunds };
         }
 
         try {
@@ -123,12 +119,8 @@ export function ARProvider(props: ARProviderProps) {
             const { data: contractData }: { data: ContractDataProps; } = await arweave.api.get(`/${poolId}`);
 
             if (!contractData.owner) {
-                throw new Error(
-                    "Failed to fetch contract owner. Please, try again in a few minutes."
-                );
+                return { status: false, message: LANGUAGE.collection.contribute.failed };
             }
-
-            console.log(`Contribute ${amount} to pool owner: ${contractData.owner}`)
 
             const token = smartweave
                 .contract(poolId)
@@ -142,14 +134,14 @@ export function ARProvider(props: ARProviderProps) {
             );
 
             if (!result) {
-                throw new Error("Failed to contribute to pool. Please, try again.");
+                return { status: false, message: LANGUAGE.collection.contribute.failed };
             }
 
-            console.log("Thank you for your contribution")
+            return { status: true, message: LANGUAGE.collection.contribute.success };
 
         }
-        catch (error) {
-            console.log(error);
+        catch (error: any) {
+            return { status: false, message: error };
         }
     }
 

@@ -22,6 +22,8 @@ export interface ArweaveCollectionState {
 
 export type ButtonType = "primary" | "secondary" | "tertiary";
 export type FormFieldType = "number" | "password";
+export type NotificationType = "success" | "warning" | "neutral";
+export type ContributionResultType = { status: boolean, message: string | null };
 
 export interface IURLView {
   account: URLViewType[]

@@ -75,11 +75,14 @@ export const Header1 = styled(H2)`
 `;
 
 export const FormField = styled.div`
+    width: ${STYLING.dimensions.formWidth};
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        top: 57.5%;
+    }
 `;
 
 export const Button = styled.div`

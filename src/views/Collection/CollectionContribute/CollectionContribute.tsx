@@ -2,10 +2,12 @@ import React from "react"
 import { ReactSVG } from "react-svg";
 
 import { useARProvder } from "@/providers/ARProvider";
+import { ContributionResultType } from "@/types";
 
 import { Button } from "@/components/atoms/Button";
 import { FormField } from "@/components/atoms/FormField";
-import { Modal } from "@/components/molecules/Modal"
+import { Modal } from "@/components/molecules/Modal";
+import { Notification } from "@/components/atoms/Notification";
 
 import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
@@ -15,13 +17,15 @@ import * as S from "./styles";
 export default function CollectionContribute(props: IProps) {
     const arProvider = useARProvder();
 
-    const [showModal, setShowModal] = React.useState(true);
+    const [showModal, setShowModal] = React.useState(false);
     const [amount, setAmount] = React.useState<number>(0);
     const [loading, setLoading] = React.useState<boolean>(false);
 
+    const [contributionResult, setContributionResult] = React.useState<ContributionResultType | null>(null);
+
     async function handlePoolContribute() {
         setLoading(true);
-        await arProvider.handlePoolContribute(props.poolId, amount)
+        setContributionResult(await arProvider.handlePoolContribute(props.poolId, amount));
         setLoading(false);
     }
 
@@ -38,7 +42,7 @@ export default function CollectionContribute(props: IProps) {
         else {
             return (
                 <S.BalanceWrapper>
-                    <p>Fetching balance ...</p>
+                    <p>{LANGUAGE.fetchingBalance}&nbsp;...</p>
                 </S.BalanceWrapper>
             )
         }
@@ -46,6 +50,13 @@ export default function CollectionContribute(props: IProps) {
 
     return (
         <>
+            {contributionResult && 
+                <Notification 
+                    type={contributionResult.status === true ? "success" : "warning"}
+                    message={contributionResult.message!}
+                    callback={() => setContributionResult(null)}
+                />
+            }
             {showModal &&
                 <Modal
                     title={LANGUAGE.contributeTo}
@@ -74,7 +85,7 @@ export default function CollectionContribute(props: IProps) {
                                 label={LANGUAGE.submit}
                                 type={"secondary"}
                                 handlePress={() => handlePoolContribute()}
-                                disabled={loading}
+                                disabled={loading || amount <= 0}
                                 loading={loading}
                             />
                         </S.Button>

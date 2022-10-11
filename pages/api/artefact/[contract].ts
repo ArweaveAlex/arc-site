@@ -40,7 +40,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (!WHITELISTED_OWNERS.includes(contractInfo.owner)) {
       return res.status(403).json({
-        error: "This artefact doesn"t have a whitelisted owner.",
+        error: "This artefact doesn't have a whitelisted owner.",
       });
     }
 

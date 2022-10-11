@@ -31,6 +31,7 @@ export default function Modal(props: IProps) {
                         </S.LT>
                         <S.Close>
                             <IconButton
+                                sm
                                 warning
                                 src={ASSETS.close}
                                 handlePress={props.handleClose}

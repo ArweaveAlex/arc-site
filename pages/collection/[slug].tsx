@@ -11,11 +11,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   await dbConnect();
 
-  const NUMBER_OF_CHARACTERS_TO_MATCH_QUERY = 41;
+  const CHAR_NUM_MATCH = 41;
 
+  // @ts-ignore
   const collectionData = await PoolModel.findOne({
     id: {
-      $regex: slug?.slice(-NUMBER_OF_CHARACTERS_TO_MATCH_QUERY),
+      $regex: slug?.slice(-CHAR_NUM_MATCH),
       $options: "i",
     },
   })
@@ -31,5 +32,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 };
 
 export default function Collection({ data }) {
+  console.log(data);
   return <_Collection data={MOCK_DATA_HEADER[1]!}/>
 }
