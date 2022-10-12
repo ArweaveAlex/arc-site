@@ -3,8 +3,8 @@ export const MOCK_DATA_HEADER = [
         "state": {
             "title": "The Russia/Ukraine Conflict",
             "image": "/assets/MOCK_IMAGE.jpeg",
-            "shortDescription": "Russia and Ukraine have had a tense relationship for years, but the tipping point came in 2014 when Russia annexed the Crimean Peninsula. This past year, the conflict has escalated to new heights that can only be described as a war.<br><br>Help preserve the truth by contributing to the Ukraine & Russia Conflict Archive.",
-            "longDescription": "Arweave has been archiving data coming from Russia and Ukraine since before the war began. It was important to ensure that information individuals were posting online were permanently stored so governments and other centralized entities could not censor it in the future.<br><br>Censorship during a time of war is undeniable, even more so when countries that already have mass control over what is said and written, are involved. It was inevitable that we would see high levels of censorship during this time.<br><br><b>The truth must be preserved, which is why this Archive was created. We want everyone to have their voice heard, so we and future generations can truly understand what has happened.</b>",
+            "briefDescription": "Russia and Ukraine have had a tense relationship for years, but the tipping point came in 2014 when Russia annexed the Crimean Peninsula. This past year, the conflict has escalated to new heights that can only be described as a war.<br><br>Help preserve the truth by contributing to the Ukraine & Russia Conflict Archive.",
+            "description": "Arweave has been archiving data coming from Russia and Ukraine since before the war began. It was important to ensure that information individuals were posting online were permanently stored so governments and other centralized entities could not censor it in the future.<br><br>Censorship during a time of war is undeniable, even more so when countries that already have mass control over what is said and written, are involved. It was inevitable that we would see high levels of censorship during this time.<br><br><b>The truth must be preserved, which is why this Archive was created. We want everyone to have their voice heard, so we and future generations can truly understand what has happened.</b>",
             "dateCreated": "November 2nd, 2021",
             "link": "",
             "owner": "7smNXWVNbTinRPuKbrke0XR0N9N6FgTBVCh20niXEbU",
@@ -24,7 +24,7 @@ export const MOCK_DATA_HEADER = [
             "totalSupply": "10000000",
             "balance": "1100100000000",
         },
-        "id": "j85xAc6MjorDiupDXyO_jyJ6pf-TYGlX0HIuq45JCGw",
+        "id": "jpfRH01z2dAaJV75dsCzfhfdxHI5IL3gSjBLlLHOGtY",
         "artefacts": 20321,
         "lastCursor": "WyIyMDIyLTA3LTA1VDAwOjMyOjI3LjQ1MFoiLDIwXQ=="
     },
@@ -32,8 +32,8 @@ export const MOCK_DATA_HEADER = [
         "state": {
             "title": "The Shanghai Lockdown",
             "image": "/assets/MOCK_IMAGE2.png",
-            "shortDescription": "During a Covid spike in Shanghai, the Chinese government cracked down on censoring the information emerging from the city. The people faced food shortages, lack of care, and many other issues, but their voices were stifled by the government.<br><br>Ensure every story is heard by contributing to the Shanghai Lockdown Archive.",
-            "longDescription": "Arweave has been archiving data coming from Shanghai since before the lockdown began. It was important to ensure that information individuals were posting online were permanently stored so governments and other centralized entities could not censor it in the future.<br><br>Censorship during a time of war is undeniable, even more so when countries that already have mass control over what is said and written, are involved. It was inevitable that we would see high levels of censorship during this time.<br><br><b>The truth must be preserved, which is why this Archive was created. We want everyone to have their voice heard, so we and future generations can truly understand what has happened.</b>",
+            "briefDescription": "During a Covid spike in Shanghai, the Chinese government cracked down on censoring the information emerging from the city. The people faced food shortages, lack of care, and many other issues, but their voices were stifled by the government.<br><br>Ensure every story is heard by contributing to the Shanghai Lockdown Archive.",
+            "description": "Arweave has been archiving data coming from Shanghai since before the lockdown began. It was important to ensure that information individuals were posting online were permanently stored so governments and other centralized entities could not censor it in the future.<br><br>Censorship during a time of war is undeniable, even more so when countries that already have mass control over what is said and written, are involved. It was inevitable that we would see high levels of censorship during this time.<br><br><b>The truth must be preserved, which is why this Archive was created. We want everyone to have their voice heard, so we and future generations can truly understand what has happened.</b>",
             "dateCreated": "December 15th, 2021",
             "link": "",
             "owner": "7smNXWVNbTinRPuKbrke0XR0N9N6FgTBVCh20niXEbU",
@@ -53,7 +53,7 @@ export const MOCK_DATA_HEADER = [
             "totalSupply": "10000000",
             "balance": "1100100000000",
         },
-        "id": "j85xAc6MjorDiupDXyO_jyJ6pf-TYGlX0HIuq45JCGw",
+        "id": "jpfRH01z2dAaJV75dsCzfhfdxHI5IL3gSjBLlLHOGtY",
         "artefacts": 10452,
         "lastCursor": "WyIyMDIyLTA3LTA1VDAwOjMyOjI3LjQ1MFoiLDIwXQ=="
     }

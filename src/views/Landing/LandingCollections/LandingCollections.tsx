@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 import { Carousel } from "react-responsive-carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
+import { getTxUrl } from "@/util";
 import * as urls from "@/urls";
 import { LANGUAGE } from "@/language";
 import { ArweaveCollectionProps } from "@/types";
@@ -23,7 +24,7 @@ function CollectionCard(props: ArweaveCollectionProps) {
             <S.C1>
                 <S.C1Content>
                     <S.Title>{props.state.title}</S.Title>
-                    <S.Description>{parse(props.state.shortDescription)}</S.Description>
+                    <S.Description>{parse(props.state.briefDescription)}</S.Description>
                 </S.C1Content>
                 <S.LinkContainer>
                     <S.Link href={collectionUrl}>
@@ -31,7 +32,7 @@ function CollectionCard(props: ArweaveCollectionProps) {
                     </S.Link>
                 </S.LinkContainer>
             </S.C1>
-            <S.C2 image={props.state.image} />
+            <S.C2 image={getTxUrl(props.state.image)} />
         </S.PCWrapper>
     ) : null
 }

@@ -5,6 +5,7 @@ import { ArweaveCollectionProps } from "@/types";
 import { CollectionHeader } from "./CollectionHeader";
 import { CollectionDetail } from "./CollectionDetail";
 
+import { getTxUrl } from "@/util";
 import * as S from "./styles";
 
 const arweave = Arweave.init({
@@ -20,9 +21,9 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
         <S.Wrapper>
             <CollectionHeader
                 id={props.data.id}
-                image={props.data.state.image}
+                image={getTxUrl(props.data.state.image)}
                 title={props.data.state.title}
-                longDescription={props.data.state.longDescription}
+                description={props.data.state.description}
                 dateCreated={props.data.state.dateCreated}
                 artefactCount={props.data.artefacts}
                 totalContributions={Math.floor(

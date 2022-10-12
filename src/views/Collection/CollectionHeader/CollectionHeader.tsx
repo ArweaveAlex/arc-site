@@ -70,7 +70,7 @@ export default function CollectionHeader(props: IProps) {
             </S.FlexTiles>
             <S.LongDescription>
                 <S.LDHeader><h2>{LANGUAGE.about}</h2></S.LDHeader>
-                <S.LDBody>{parse(props.longDescription)}</S.LDBody>
+                <S.LDBody>{parse(props.description)}</S.LDBody>
             </S.LongDescription>
         </S.Wrapper>
     )
