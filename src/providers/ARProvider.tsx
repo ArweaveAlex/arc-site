@@ -25,12 +25,7 @@ interface ARContextState {
     handleDisconnect: () => void;
     walletModalVisible: boolean;
     setWalletModalVisible: (open: boolean) => void;
-<<<<<<< HEAD
     handlePoolContribute: (poolId: string, amount: number) => void;
-    arweave: Arweave;
-=======
-    handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
->>>>>>> da631821b36601d6219eba7b92d7b69978be525c
 }
 
 interface ARProviderProps {
@@ -61,13 +56,8 @@ const DEFAULT_CONTEXT = {
     walletModalVisible: false,
     handlePoolContribute(poolId: string, amount: number): any {
         console.log(`Contribute to ${poolId} - amount: ${amount}`);
-<<<<<<< HEAD
-    },
-    arweave: arweave
-=======
         return { status: false, message: null }
     }
->>>>>>> da631821b36601d6219eba7b92d7b69978be525c
 }
 
 const ARContext = React.createContext<ARContextState>(DEFAULT_CONTEXT);
