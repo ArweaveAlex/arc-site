@@ -6,6 +6,7 @@ const PoolSchema = new mongoose.Schema(
         id: String,
         state: Object,
         artefacts: Number,
+        ts: Date
     }
 );
 

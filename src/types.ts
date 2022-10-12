@@ -10,7 +10,7 @@ export interface ArweaveCollectionState {
   image: string;
   shortDescription: string;
   longDescription: string;
-  dateCreated: string;
+  ts: string;
   link: string;
   ownerInfo: string;
   contributors: { [key: string]: string };

@@ -20,13 +20,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       $options: "i",
     },
   })
-    .select(["-_id", "-ts"])
+    .select(["-_id"])
     .lean()
     .exec();
 
   return {
     props: {
-      data: collectionData,
+      data: JSON.parse(JSON.stringify(collectionData)),
     },
   };
 };

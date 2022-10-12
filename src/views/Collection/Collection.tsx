@@ -23,7 +23,7 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
                 image={props.data.state.image}
                 title={props.data.state.title}
                 longDescription={props.data.state.longDescription}
-                dateCreated={props.data.state.dateCreated}
+                dateCreated={props.data.state.ts}
                 artefactCount={props.data.artefacts}
                 totalContributions={Math.floor(
                     +arweave.ar.winstonToAr(
