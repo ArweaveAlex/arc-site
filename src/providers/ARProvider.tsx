@@ -25,7 +25,7 @@ interface ARContextState {
     handleDisconnect: () => void;
     walletModalVisible: boolean;
     setWalletModalVisible: (open: boolean) => void;
-    handlePoolContribute: (poolId: string, amount: number) => void;
+    handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
 }
 
 interface ARProviderProps {
@@ -54,9 +54,9 @@ const DEFAULT_CONTEXT = {
         console.error('Make sure to render ARProvider as an ancestor of the component that uses ARContext.Provider');
     },
     walletModalVisible: false,
-    handlePoolContribute(poolId: string, amount: number): any {
+    async handlePoolContribute(poolId: string, amount: number): Promise<ContributionResultType> {
         console.log(`Contribute to ${poolId} - amount: ${amount}`);
-        return { status: false, message: null }
+        return await { status: false, message: null }
     }
 }
 
