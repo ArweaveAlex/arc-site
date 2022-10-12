@@ -8,8 +8,8 @@ export interface ArweaveCollectionProps {
 export interface ArweaveCollectionState {
   title: string;
   image: string;
-  shortDescription: string;
-  longDescription: string;
+  briefDescription: string;
+  description: string;
   ts: string;
   link: string;
   ownerInfo: string;
