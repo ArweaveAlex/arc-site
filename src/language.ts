@@ -37,6 +37,11 @@ export const LANGUAGE = {
         subheader1: 'Collection',
         totalContributed: 'Total Contributed',
         artifactsCreated: 'Artifacts Created',
+        contribute: {
+            notEnoughFunds: 'Not enough AR to contribute to this pool.',
+            failed: 'Failed to contribute to pool. Please, try again.',
+            success: 'Thank you for your contribution.'
+        },
         createdOn: 'Created on'
     },
     community: 'Community',
@@ -56,6 +61,7 @@ export const LANGUAGE = {
         header2: 'Great!',
         header3: 'Check out our'
     },
+    fetchingBalance: 'Fetching balance',
     info: {
         header1: 'What is Alex. & How Does it Work?',
         header2: 'Those who cannot remember the past are condemned to repeat it.',

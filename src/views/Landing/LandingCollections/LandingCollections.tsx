@@ -1,3 +1,4 @@
+import React from "react";
 import slugify from "slugify";
 import parse from "html-react-parser";
 
@@ -10,7 +11,14 @@ import { ArweaveCollectionProps } from "@/types";
 import * as S from "./styles";
 
 function CollectionCard(props: ArweaveCollectionProps) {
-    return (
+
+    const [collectionUrl, setCollectionUrl] = React.useState<string | null>(null);
+
+    React.useEffect(() => {
+        setCollectionUrl(`${urls.collection}${slugify(props.state.title.toLowerCase() + "-" + props.id)}`)
+    })
+
+    return collectionUrl ? (
         <S.PCWrapper>
             <S.C1>
                 <S.C1Content>
@@ -18,16 +26,14 @@ function CollectionCard(props: ArweaveCollectionProps) {
                     <S.Description>{parse(props.state.shortDescription)}</S.Description>
                 </S.C1Content>
                 <S.LinkContainer>
-                    <S.Link href={`${urls.collection}${slugify(
-                        props.state.title.toLowerCase() + "-" + props.id
-                    )}`}>
+                    <S.Link href={collectionUrl}>
                         <span>{LANGUAGE.viewCollection}</span>
                     </S.Link>
                 </S.LinkContainer>
             </S.C1>
             <S.C2 image={props.state.image} />
         </S.PCWrapper>
-    )
+    ) : null
 }
 
 export default function LandingCollections(props: { data: ArweaveCollectionProps[] }) {

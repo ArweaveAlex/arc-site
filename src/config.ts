@@ -40,7 +40,8 @@ export const ASSETS = {
 }
 
 export const DOM = {
-    modal: "modal-portal"
+    modal: "modal-portal",
+    notification: "notification-portal"
 };
 
 export const URLS: IURLView = {

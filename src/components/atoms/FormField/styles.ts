@@ -34,9 +34,13 @@ export const Input = styled.input<{ disabled: boolean; invalid: boolean }>`
       : props.theme.colors.form.valid.shadow};
     transition: box-shadow, border 225ms ease-in-out;
   }
+  &:disabled {
+    background: ${(props) => props.theme.colors.form.disabled.background};
+    color: ${(props) => props.theme.colors.form.disabled.label};
+  }
 `;
 
-export const EndTextContainer = styled.div`
+export const EndTextContainer = styled.div<{ disabled: boolean }>`
   height: calc(${STYLING.dimensions.formHeight} - 7.5px);
   max-width: 100px;
   position: absolute;
@@ -49,7 +53,8 @@ export const EndTextContainer = styled.div`
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  background-color: ${(props) => props.theme.colors.form.background};
+  background: ${(props) => props.disabled ? 
+    props.theme.colors.form.disabled.background : props.theme.colors.form.background};
 `;
 
 export const EndText = styled.span`

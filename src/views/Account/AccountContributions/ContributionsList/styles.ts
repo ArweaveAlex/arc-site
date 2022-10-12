@@ -68,6 +68,7 @@ export const LIHeaderContainer = styled.div`
 
 export const LIHeader1 = styled(H2)`
     font-size: 28px;
+    line-height: 34px;
     color: ${(props) => props.theme.colors.font.primary.active.base};
     font-family: ${(props) => props.theme.typography.family.secondary};
 `;
@@ -83,6 +84,7 @@ export const SubheaderFlex = styled.div`
 
 export const SubheaderContainer = styled.div`
     display: flex;
+    overflow: hidden;
     @media(max-width: ${STYLING.cutoffs.initial}) {
         margin: 0 0 7.5px 0;
     }
@@ -90,6 +92,9 @@ export const SubheaderContainer = styled.div`
 
 export const Subheader1 = styled.div`
     p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         font-size: ${(props) => props.theme.typography.size.base};
         color: ${(props) => props.theme.colors.font.primary.alt6};
     }
@@ -97,6 +102,9 @@ export const Subheader1 = styled.div`
 
 export const Subheader2 = styled.div`
     p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         font-size: ${(props) => props.theme.typography.size.base};
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
@@ -124,13 +132,20 @@ export const LIBodyContainer = styled.div`
 export const LIBodyFlex = styled.div`
     display: flex;
     margin: 0 0 10px 0;
+    width: 100%;
 `;
 
-export const LIBodyHeader = styled.p`
+export const P = styled.p`
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+`;
+
+export const LIBodyHeader = styled(P)`
     color: ${(props) => props.theme.colors.font.primary.alt2};
 `;
 
-export const LIBodyData = styled.p`
+export const LIBodyData = styled(P)`
     color: ${(props) => props.theme.colors.font.primary.active.base};
     font-weight: ${(props) => props.theme.typography.weight.medium};
 `;

@@ -105,6 +105,10 @@ declare module "styled-components" {
                     outline: string
                     shadow: string
                 }
+                disabled: {
+                    background: string
+                    label: string
+                }
             }
             icon: {
                 primary: {
@@ -130,6 +134,11 @@ declare module "styled-components" {
                 header: {
                     background: string
                 }
+            }
+            notification: {
+                success: string
+                warning: string
+                neutral: string
             }
             overlay: {
                 primary: string

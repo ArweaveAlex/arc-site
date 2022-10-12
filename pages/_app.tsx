@@ -40,6 +40,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={defaultTheme}>
           <GlobalStyle />
           <Header />
+          <div id={DOM.notification}></div>
           <div id={DOM.modal}></div>
           <View>
             <Component {...pageProps} />

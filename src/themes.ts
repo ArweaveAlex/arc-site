@@ -20,6 +20,8 @@ const DEFAULT = {
     overlay1: "rgba(59, 70, 78, 0.75)",
     warning: "#EE3C3C",
     warningShadow: "#F27979",
+    success: "#32C422",
+    neutral: "#FFB600",
     transparent: "rgba(255, 255, 255, 0)"
 }
 
@@ -126,6 +128,10 @@ export const defaultTheme: DefaultTheme = {
             valid: {
                 outline: DEFAULT.primary3,
                 shadow: DEFAULT.primary4
+            },
+            disabled: {
+                background: DEFAULT.neutral3,
+                label: DEFAULT.neutral7
             }
         },
         icon: {
@@ -152,6 +158,11 @@ export const defaultTheme: DefaultTheme = {
             header: {
                 background: DEFAULT.neutral1
             }
+        },
+        notification: {
+            success: DEFAULT.success,
+            warning: DEFAULT.warning,
+            neutral: DEFAULT.neutral
         },
         overlay: {
             primary: DEFAULT.overlay1

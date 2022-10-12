@@ -1,7 +1,7 @@
-import { ReactSVG } from "react-svg";
+// import { ReactSVG } from "react-svg";
 
 import * as util from "@/util";
-import { ASSETS } from "@/config";
+// import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
@@ -52,11 +52,11 @@ export default function ContributionsList() {
                                     <S.LIBodyData>5% of Artifacts Created</S.LIBodyData>
                                 </S.LIBodyFlex>
                             </S.LIBodyContainer>
-                            <S.LIDropdownContainer>
+                            {/* <S.LIDropdownContainer>
                                 <S.LIButton onClick={() => console.log('test')}>
                                     <ReactSVG src={ASSETS.dropdown} />
                                 </S.LIButton>
-                            </S.LIDropdownContainer>
+                            </S.LIDropdownContainer> */}
                         </S.ListItemWrapper>
                     )
                 })}

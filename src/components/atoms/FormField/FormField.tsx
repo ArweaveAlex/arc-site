@@ -23,7 +23,7 @@ export default function FormField(props: IProps) {
         invalid={props.invalid.status}
         placeholder={props.placeholder ? props.placeholder : ""}
       />
-      <S.EndTextContainer>
+      <S.EndTextContainer disabled={props.disabled}>
         {
           props.endText && <S.EndText>{props.endText}</S.EndText>
         }
