@@ -20,7 +20,7 @@ const DEFAULT = {
     overlay1: "rgba(59, 70, 78, 0.75)",
     warning: "#EE3C3C",
     warningShadow: "#F27979",
-    success: "#3DC22E",
+    success: "#32C422",
     neutral: "#FFB600",
     transparent: "rgba(255, 255, 255, 0)"
 }

@@ -17,7 +17,7 @@ export const Container = styled.div`
     height: 600px;
     max-height: 80vh;
     width: 500px;
-    max-width: 95vw;
+    max-width: 90vw;
     background: ${(props) => props.theme.colors.container.primary.background};
     position: absolute;
     top: 50%;

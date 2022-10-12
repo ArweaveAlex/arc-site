@@ -2,7 +2,6 @@ import styled, { DefaultTheme } from "styled-components";
 
 import { NotificationType } from "@/types";
 
-import { STYLING } from "@/styling-config";
 import { open, fadeIn1 } from "@/animations";
 
 type NotificationProps = {
@@ -26,12 +25,12 @@ function getColor(m: NotificationType, theme: DefaultTheme) {
 export const Wrapper = styled.div`
   height: 55px;
   width: 500px;
-  max-width: 95vw;
+  max-width: 90vw;
   background: ${(props) => props.theme.colors.container.primary.background};
   border: 1px solid ${(props) => props.theme.colors.border.secondary};
   position: fixed;
   left: 50%;
-  bottom: 42.5px;
+  bottom: 20px;
   transform: translate(-50%, 0);
   z-index: 12;
   animation: ${open} ${fadeIn1};

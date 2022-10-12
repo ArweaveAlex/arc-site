@@ -50,8 +50,8 @@ export default function CollectionContribute(props: IProps) {
 
     return (
         <>
-            {contributionResult && 
-                <Notification 
+            {contributionResult &&
+                <Notification
                     type={contributionResult.status === true ? "success" : "warning"}
                     message={contributionResult.message!}
                     callback={() => setContributionResult(null)}
@@ -70,25 +70,28 @@ export default function CollectionContribute(props: IProps) {
                             {props.subheader}
                         </S.Header>
                         {getAvailableBalance()}
-                        <S.FormField>
-                            <FormField
-                                type={"number"}
-                                value={amount}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
-                                disabled={loading}
-                                invalid={{ status: false, message: null }}
-                                endText={LANGUAGE.arTokens}
-                            />
-                        </S.FormField>
-                        <S.Button>
-                            <Button
-                                label={LANGUAGE.submit}
-                                type={"secondary"}
-                                handlePress={() => handlePoolContribute()}
-                                disabled={loading || amount <= 0}
-                                loading={loading}
-                            />
-                        </S.Button>
+                        <form>
+                            <S.FormField>
+                                <FormField
+                                    type={"number"}
+                                    value={amount}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
+                                    disabled={loading}
+                                    invalid={{ status: false, message: null }}
+                                    endText={LANGUAGE.arTokens}
+                                />
+                            </S.FormField>
+                            <S.Button>
+                                <Button
+                                    label={LANGUAGE.submit}
+                                    type={"secondary"}
+                                    handlePress={() => handlePoolContribute()}
+                                    disabled={loading || amount <= 0}
+                                    loading={loading}
+                                    formSubmit
+                                />
+                            </S.Button>
+                        </form>
                         <S.SignMessage>
                             <p>{LANGUAGE.walletSignMessage}</p>
                         </S.SignMessage>
