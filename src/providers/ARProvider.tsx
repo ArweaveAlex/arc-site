@@ -25,11 +25,20 @@ interface ARContextState {
     walletModalVisible: boolean;
     setWalletModalVisible: (open: boolean) => void;
     handlePoolContribute: (poolId: string, amount: number) => void;
+    arweave: Arweave;
 }
 
 interface ARProviderProps {
     children: React.ReactNode;
 }
+
+const arweave: any = Arweave.init({
+    host: "arweave.net",
+    port: 443,
+    protocol: "https",
+    timeout: 40000,
+    logging: false,
+});
 
 const DEFAULT_CONTEXT = {
     wallets: [],
@@ -47,18 +56,13 @@ const DEFAULT_CONTEXT = {
     walletModalVisible: false,
     handlePoolContribute(poolId: string, amount: number) {
         console.log(`Contribute to ${poolId} - amount: ${amount}`);
-    }
+    },
+    arweave: arweave
 }
 
 const ARContext = React.createContext<ARContextState>(DEFAULT_CONTEXT);
 
-const arweave: any = Arweave.init({
-    host: "arweave.net",
-    port: 443,
-    protocol: "https",
-    timeout: 40000,
-    logging: false,
-});
+
 
 export interface ContractDataProps {
     title: string;

@@ -31,7 +31,7 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
                     ) * 1e5
                 ) / 1e5}
             />
-            <CollectionDetail />
+            <CollectionDetail collectionData={props.data}/>
         </S.Wrapper>
     )
 }
