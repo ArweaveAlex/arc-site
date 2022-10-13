@@ -3,6 +3,7 @@ export interface ArweaveCollectionProps {
   id: string;
   artefacts: number;
   lastCursor: string;
+  ts: string;
 }
 
 export interface ArweaveCollectionState {
@@ -10,7 +11,6 @@ export interface ArweaveCollectionState {
   image: string;
   briefDescription: string;
   description: string;
-  ts: string;
   link: string;
   ownerInfo: string;
   contributors: { [key: string]: string };

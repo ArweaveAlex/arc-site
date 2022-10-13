@@ -31,7 +31,8 @@ export default function CollectionDetail(props: { collectionData: ArweaveCollect
                             values: [pool]
                         },
                         type: "[TagFilter!]"
-                    }
+                    },
+                    first: 1000
                 },
                 fields: [
                     {

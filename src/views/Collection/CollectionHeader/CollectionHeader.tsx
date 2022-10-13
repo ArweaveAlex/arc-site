@@ -11,7 +11,6 @@ import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function CollectionHeader(props: IProps) {
-
     function getSubheader() {
         return (
             <S.SubheaderFlex>
