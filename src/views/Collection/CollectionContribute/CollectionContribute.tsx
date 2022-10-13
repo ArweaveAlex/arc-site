@@ -94,7 +94,7 @@ export default function CollectionContribute(props: IProps) {
                                     label={LANGUAGE.submit}
                                     type={"secondary"}
                                     handlePress={(e) => handlePoolContribute(e)}
-                                    disabled={loading || !arProvider.walletAddress || amount <= 0}
+                                    disabled={loading || !arProvider.walletAddress || isNaN(amount) || amount <= 0}
                                     loading={loading}
                                     formSubmit
                                 />

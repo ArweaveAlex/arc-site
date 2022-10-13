@@ -37,7 +37,7 @@ interface ARProviderProps {
     children: React.ReactNode;
 }
 
-const arweave: any = Arweave.init({
+const arweave = Arweave.init({
     host: "arweave.net",
     port: 443,
     protocol: "https",
@@ -133,7 +133,7 @@ export function ARProvider(props: ARProviderProps) {
         }
 
         try {
-            const smartweave = SmartWeaveNodeFactory.memCached(arweave);
+            const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 
             const { data: contractData }: { data: ContractDataProps; } = await arweave.api.get(`/${poolId}`);
 
@@ -149,7 +149,10 @@ export function ARProvider(props: ARProviderProps) {
                 });
 
             const result = await token.writeInteraction<any>(
-                { function: "contribute" }, [], { target: contractData.owner, winstonQty: arweave.ar.arToWinston(amount.toString()) }
+                { function: "contribute" }, [], { 
+                    target: contractData.owner, 
+                    winstonQty: arweave.ar.arToWinston(amount.toString()) 
+                }
             );
 
             if (!result) {
@@ -267,7 +270,6 @@ export function ARProvider(props: ARProviderProps) {
         handleWallet();
 
         window.addEventListener("arweaveWalletLoaded", handleWallet);
-
 
         return () => {
             window.removeEventListener("arweaveWalletLoaded", handleWallet);

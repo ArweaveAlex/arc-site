@@ -16,7 +16,6 @@ export default function CollectionDetail(props: { collectionData: ArweaveCollect
 
     React.useEffect(() => {
         (async function () {
-            console.log(await arProvider.getAllArtefactsByPool(props.collectionData.id))
             setData((await arProvider.getAllArtefactsByPool(props.collectionData.id)).map((element: any) => {
                 return { title: getTagValue(element.node.tags, "Artefact-Name"), dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "ts") }
             }));

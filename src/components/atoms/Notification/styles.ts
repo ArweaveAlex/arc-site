@@ -24,7 +24,7 @@ function getColor(m: NotificationType, theme: DefaultTheme) {
 
 export const Wrapper = styled.div`
   height: 55px;
-  width: 500px;
+  width: 555px;
   max-width: 90vw;
   background: ${(props) => props.theme.colors.container.primary.background};
   border: 1px solid ${(props) => props.theme.colors.border.secondary};
