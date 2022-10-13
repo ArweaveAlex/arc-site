@@ -2,6 +2,7 @@ import PoolModel from "@/models";
 import dbConnect from "@/lib";
 
 import { Landing } from "@/views/Landing";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps() {
   await dbConnect();
@@ -16,6 +17,12 @@ export async function getServerSideProps() {
   };
 }
 
-export default function LandingIndex({ data }) {
-  return <Landing data={data}/>;
+export default function LandingIndex() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    
+  });
+
+  return data ? (<Landing data={data}/>) : <div></div>;
 }
