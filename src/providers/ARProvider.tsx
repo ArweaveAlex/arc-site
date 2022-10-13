@@ -2,7 +2,6 @@ import React from "react";
 import * as gql from "gql-query-builder";
 import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
-// import { FundingPool } from "@nickj202/arc-funds";
 
 import { ContributionResultType } from "@/types";
 import { getBalanceEndpoint } from "@/endpoints";
@@ -37,13 +36,15 @@ interface ARProviderProps {
     children: React.ReactNode;
 }
 
-const arweave: any = Arweave.init({
+const arweave = Arweave.init({
     host: "arweave.net",
     port: 443,
     protocol: "https",
     timeout: 40000,
     logging: false,
 });
+
+const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 
 const DEFAULT_CONTEXT = {
     wallets: [],
@@ -133,7 +134,6 @@ export function ARProvider(props: ARProviderProps) {
         }
 
         try {
-            const smartweave = SmartWeaveNodeFactory.memCached(arweave);
 
             const { data: contractData }: { data: ContractDataProps; } = await arweave.api.get(`/${poolId}`);
 
@@ -141,16 +141,15 @@ export function ARProvider(props: ARProviderProps) {
                 return { status: false, message: LANGUAGE.collection.contribute.failed };
             }
 
-            const token = smartweave
-                .contract(poolId)
-                .connect("use_wallet")
-                .setEvaluationOptions({
-                    waitForConfirmation: false,
-                });
+            const contract = smartweave.contract(poolId).connect("use_wallet").setEvaluationOptions({
+                waitForConfirmation: false,
+            });
 
-            const result = await token.writeInteraction<any>(
-                { function: "contribute" }, [], { target: contractData.owner, winstonQty: arweave.ar.arToWinston(amount.toString()) }
-            );
+            const result = await contract.writeInteraction<any>(
+                { function: "contribute" }, [], {
+                target: contractData.owner,
+                winstonQty: arweave.ar.arToWinston(amount.toString())
+            });
 
             if (!result) {
                 return { status: false, message: LANGUAGE.collection.contribute.failed };
@@ -203,53 +202,19 @@ export function ARProvider(props: ARProviderProps) {
         return (await arweave.api.post("/graphql", query)).data.data.transactions.edges;
     }
 
-    // async function getAllPools(){
-    //     let fetchedContractIds = [
-    //         {
-    //             contractId: "6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", 
-    //             nftContractSrc: "PgQwauWRSNNXjtVhyBrJHfa0UcLsjKeNocsG5NXttdU"
-    //         }, 
-    //         {
-    //             contractId: "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA", 
-    //             nftContractSrc: "pGJXPTCT59xbxbCmF4ulIsqt2UafDEBV-0HaIhIB_T0"
-    //         }
-    //     ] as any;
+    async function getAllPools() {
+        const POOL_IDS = ["6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA"];
+        const TS = "2022-10-13T00:41:52.395+00:00"
 
-    //     const contractInfoPromises = fetchedContractIds.map(
-    //         (contract: any) => new Promise((resolve, _reject) => {
-    //             (async () => {
-    //                 const ts = new Date();
-    
-    //                 try {
-    //                     console.info("[i] Fetching contract info for contract: " + contract.contractId);
-    
-    //                     const fund = new FundingPool({ poolId: contract.contractId, nftContractSrc: contract.nftContractSrc, arweave });
-    //                     const fundState = await (fund as any).getState();
-    
-    //                     resolve({
-    //                         id: contract.contractId,
-    //                         state: {
-    //                             ...fundState,
-    //                         },
-    //                         ts
-    //                     });
-    //                 } catch (e) {
-    //                     console.error(e)
-    //                     console.error("[!] Error fetching contract info: " + contract.contractId);
-    //                     resolve({
-    //                         id: contract.contractId,
-    //                         state: null,
-    //                         ts
-    //                     });
-    //                 }
-    //             })();
-    //         })
-    //     );
-    
-    //     const allContractInfo = await Promise.all(contractInfoPromises);
+        const blockweavePools: any = [];
 
-    //     return allContractInfo;
-    // }
+        for (let i = 0; i < POOL_IDS.length; i++) {
+            const contract = smartweave.contract(POOL_IDS[i]!);
+            blockweavePools.push({id: POOL_IDS[i], state: (await contract.readState()).state, ts: TS});
+        }
+
+        return blockweavePools;
+    }
 
     React.useEffect(() => {
         async function handleWallet() {
@@ -268,7 +233,6 @@ export function ARProvider(props: ARProviderProps) {
 
         window.addEventListener("arweaveWalletLoaded", handleWallet);
 
-
         return () => {
             window.removeEventListener("arweaveWalletLoaded", handleWallet);
         };
@@ -286,7 +250,8 @@ export function ARProvider(props: ARProviderProps) {
                 setWalletModalVisible,
                 handlePoolContribute,
                 getARAmount,
-                getAllArtefactsByPool
+                getAllArtefactsByPool,
+                getAllPools
             }}
         >
             {props.children}

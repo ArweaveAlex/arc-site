@@ -96,7 +96,7 @@ export const ARTokens = styled.p`
     font-weight: ${(props) => props.theme.typography.weight.medium};
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
     height: 70%;
     display: flex;
     flex-direction: column;

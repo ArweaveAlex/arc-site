@@ -19,7 +19,7 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
                 title={props.data.state.title}
                 description={props.data.state.description}
                 dateCreated={formatDate(props.data.ts, "iso")}
-                artefactCount={props.data.artefacts}
+                artefactCount={props.data.artefacts || 0}
                 totalContributions={arProvider.getARAmount(props.data.state.totalContributions)}
             />
             <CollectionDetail collectionData={props.data}/>
