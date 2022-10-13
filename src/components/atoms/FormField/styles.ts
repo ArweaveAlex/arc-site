@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   margin: 10px 0;
   display: flex;
   flex-direction: column;
+  position: relative;
   @media (max-width: ${STYLING.cutoffs.initial}) {
     max-width: none;
   }
@@ -45,7 +46,7 @@ export const EndTextContainer = styled.div<{ disabled: boolean }>`
   max-width: 100px;
   position: absolute;
   right: 47.5px;
-  top: 39.5%;
+  top: 35%;
   transform: translate(0, -50%);
   display: flex;
   justify-content: center;

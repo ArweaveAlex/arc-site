@@ -1,3 +1,5 @@
+import { DateType } from "./types";
+
 export function formatAddress(address: string | null, wrap: boolean) {
     if (!address) {
         return "";
@@ -6,8 +8,28 @@ export function formatAddress(address: string | null, wrap: boolean) {
     return wrap ? `(${formattedAddress})` : formattedAddress;
 }
 
-export function formatDate(date: string) {
-    return date;
+export function formatDate(dateArg: string | null, dateType: DateType) {
+    if (!dateArg) {
+        return "";
+    }
+
+    let date: Date | null = null;
+
+    switch (dateType) {
+        case "iso":
+            date = new Date(dateArg);
+            break;
+        case "ts": 
+            date = new Date(Number(dateArg));
+            break;
+        default:
+            date = new Date(dateArg);
+            break;
+    }
+
+    return `${date.toLocaleString('default', { month: 'long' })} 
+            ${date.getDate()}, ${date.getUTCFullYear()} @ 
+            ${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`;
 }
 
 export function formatTitle(string: string) {

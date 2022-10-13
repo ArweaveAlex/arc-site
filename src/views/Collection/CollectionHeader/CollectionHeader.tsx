@@ -4,7 +4,7 @@ import { Button } from "@/components/atoms/Button";
 
 import { CollectionContribute } from "../CollectionContribute";
 
-import * as util from "@/util";
+import { formatAddress } from "@/util";
 import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
 import { IProps } from "./types";
@@ -17,13 +17,13 @@ export default function CollectionHeader(props: IProps) {
                     <S.SubheaderContainer>
                         <S.Subheader1><p>{LANGUAGE.collection.subheader1}</p></S.Subheader1>
                         &nbsp;
-                        <S.ID><p>{util.formatAddress(props.id, false)}</p></S.ID>
+                        <S.ID><p>{formatAddress(props.id, false)}</p></S.ID>
                     </S.SubheaderContainer>
                     &nbsp;
                     <S.SubheaderContainer>
                         <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
                         &nbsp;
-                        <S.Subheader2><p>{util.formatDate(props.dateCreated)}</p></S.Subheader2>
+                        <S.Subheader2><p>{props.dateCreated}</p></S.Subheader2>
                     </S.SubheaderContainer>
                 </S.SubheaderFlex>
         )

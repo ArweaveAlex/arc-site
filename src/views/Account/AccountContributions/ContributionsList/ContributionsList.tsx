@@ -31,7 +31,7 @@ export default function ContributionsList() {
                                     <S.SubheaderContainer>
                                         <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
                                         &nbsp;
-                                        <S.Subheader2><p>{util.formatDate(collection.state.dateCreated)}</p></S.Subheader2>
+                                        {/* <S.Subheader2><p>{util.formatDate(collection.state.dateCreated)}</p></S.Subheader2> */}
                                     </S.SubheaderContainer>
                                 </S.SubheaderFlex>
                             </S.LIHeaderContainer>

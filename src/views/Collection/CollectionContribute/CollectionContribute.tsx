@@ -39,18 +39,16 @@ export default function CollectionContribute(props: IProps) {
         else {
             if (arProvider.availableBalance) {
                 return (
-                    <S.BalanceWrapper>
+                    <>
                         <S.AvailableBalance>{LANGUAGE.availableBalance}:&nbsp;</S.AvailableBalance>
                         <S.BalanceAmount>{arProvider.availableBalance.toFixed(3)}&nbsp;</S.BalanceAmount>
                         <S.ARTokens>{LANGUAGE.arTokens}</S.ARTokens>
-                    </S.BalanceWrapper>
+                    </>
                 )
             }
             else {
                 return (
-                    <S.BalanceWrapper>
-                        <p>{LANGUAGE.fetchingBalance}&nbsp;...</p>
-                    </S.BalanceWrapper>
+                    <p>{LANGUAGE.fetchingBalance}&nbsp;...</p>
                 )
             }
         }
@@ -76,9 +74,11 @@ export default function CollectionContribute(props: IProps) {
                                 <S.Header1>{props.header}</S.Header1>
                             </S.HeaderFlex>
                             {props.subheader}
+                            <S.BalanceWrapper>
+                                {getAvailableBalance()}
+                            </S.BalanceWrapper>
                         </S.Header>
-                        {getAvailableBalance()}
-                        <form onSubmit={(e) => handlePoolContribute(e)}>
+                        <S.Form onSubmit={(e) => handlePoolContribute(e)}>
                             <S.FormField>
                                 <FormField
                                     type={"number"}
@@ -89,7 +89,7 @@ export default function CollectionContribute(props: IProps) {
                                     endText={LANGUAGE.arTokens}
                                 />
                             </S.FormField>
-                            <S.Button>
+                            <S.SubmitWrapper>
                                 <Button
                                     label={LANGUAGE.submit}
                                     type={"secondary"}
@@ -98,11 +98,11 @@ export default function CollectionContribute(props: IProps) {
                                     loading={loading}
                                     formSubmit
                                 />
-                            </S.Button>
-                        </form>
-                        <S.SignMessage>
-                            <p>{LANGUAGE.walletSignMessage}</p>
-                        </S.SignMessage>
+                                <S.SignMessage>
+                                    <p>{LANGUAGE.walletSignMessage}</p>
+                                </S.SignMessage>
+                            </S.SubmitWrapper>
+                        </S.Form>
                     </S.ModalWrapper>
                 </Modal>
             }
