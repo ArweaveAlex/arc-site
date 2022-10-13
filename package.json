@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^12.3.1",
-    "@nickj202/arc-funds": "^0.0.2",
     "arweave": "^1.10.23",
     "gql-query-builder": "^3.7.2",
     "html-react-parser": "^3.0.4",

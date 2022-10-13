@@ -53,7 +53,7 @@ export default function ContributionsList() {
                                 </S.LIBodyFlex>
                             </S.LIBodyContainer>
                             {/* <S.LIDropdownContainer>
-                                <S.LIButton onClick={() => console.log('test')}>
+                                <S.LIButton onClick={() => console.log('')}>
                                     <ReactSVG src={ASSETS.dropdown} />
                                 </S.LIButton>
                             </S.LIDropdownContainer> */}
