@@ -30,7 +30,7 @@ interface ARContextState {
     handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
     getARAmount: (amount: string) => number;
     getAllArtefactsByPool: (poolId: string) => any;
-    getAllPools: () => any;
+    // getAllPools: () => any;
 }
 
 interface ARProviderProps {
@@ -71,9 +71,9 @@ const DEFAULT_CONTEXT = {
         console.log(`Get All Artefacts for ${poolId}`);
         return null;
     },
-    async getAllPools() {
-        return null;
-    }
+    // async getAllPools() {
+    //     return null;
+    // }
 }
 
 const ARContext = React.createContext<ARContextState>(DEFAULT_CONTEXT);
