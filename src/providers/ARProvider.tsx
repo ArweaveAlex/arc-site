@@ -2,6 +2,7 @@ import React from "react";
 import * as gql from "gql-query-builder";
 import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
+// import { FundingPool } from "@nickj202/arc-funds";
 
 import { ContributionResultType } from "@/types";
 import { getBalanceEndpoint } from "@/endpoints";
@@ -29,6 +30,7 @@ interface ARContextState {
     handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
     getARAmount: (amount: string) => number;
     getAllArtefactsByPool: (poolId: string) => any;
+    getAllPools: () => any;
 }
 
 interface ARProviderProps {
@@ -67,6 +69,9 @@ const DEFAULT_CONTEXT = {
     },
     async getAllArtefactsByPool(poolId: string): Promise<any> {
         console.log(`Get All Artefacts for ${poolId}`);
+        return null;
+    },
+    async getAllPools() {
         return null;
     }
 }
@@ -198,6 +203,54 @@ export function ARProvider(props: ARProviderProps) {
         return (await arweave.api.post("/graphql", query)).data.data.transactions.edges;
     }
 
+    // async function getAllPools(){
+    //     let fetchedContractIds = [
+    //         {
+    //             contractId: "6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", 
+    //             nftContractSrc: "PgQwauWRSNNXjtVhyBrJHfa0UcLsjKeNocsG5NXttdU"
+    //         }, 
+    //         {
+    //             contractId: "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA", 
+    //             nftContractSrc: "pGJXPTCT59xbxbCmF4ulIsqt2UafDEBV-0HaIhIB_T0"
+    //         }
+    //     ] as any;
+
+    //     const contractInfoPromises = fetchedContractIds.map(
+    //         (contract: any) => new Promise((resolve, _reject) => {
+    //             (async () => {
+    //                 const ts = new Date();
+    
+    //                 try {
+    //                     console.info("[i] Fetching contract info for contract: " + contract.contractId);
+    
+    //                     const fund = new FundingPool({ poolId: contract.contractId, nftContractSrc: contract.nftContractSrc, arweave });
+    //                     const fundState = await (fund as any).getState();
+    
+    //                     resolve({
+    //                         id: contract.contractId,
+    //                         state: {
+    //                             ...fundState,
+    //                         },
+    //                         ts
+    //                     });
+    //                 } catch (e) {
+    //                     console.error(e)
+    //                     console.error("[!] Error fetching contract info: " + contract.contractId);
+    //                     resolve({
+    //                         id: contract.contractId,
+    //                         state: null,
+    //                         ts
+    //                     });
+    //                 }
+    //             })();
+    //         })
+    //     );
+    
+    //     const allContractInfo = await Promise.all(contractInfoPromises);
+
+    //     return allContractInfo;
+    // }
+
     React.useEffect(() => {
         async function handleWallet() {
             let walletAddress: string | null = null;
@@ -240,3 +293,4 @@ export function ARProvider(props: ARProviderProps) {
         </ARContext.Provider>
     )
 }
+
