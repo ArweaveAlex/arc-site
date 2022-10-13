@@ -40,8 +40,8 @@ export const ModalWrapper = styled.div`
 `;
 
 export const Header = styled.div`
+    height: 30%;
     width: 100%;
-    margin: 0 0 20px 0;
     display: flex;
     flex-direction: column;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
@@ -74,40 +74,9 @@ export const Header1 = styled(H2)`
     }
 `;
 
-export const FormField = styled.div`
-    width: ${STYLING.dimensions.formWidth};
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        top: 57.5%;
-    }
-`;
-
-export const Button = styled.div`
-    position: absolute;
-    bottom: 55px;
-    left: 50%;
-    transform: translate(-50%, 0);
-`;
-
-export const SignMessage = styled.div`
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 100%;
-    text-align: center;
-    p {
-        font-size: 12px;
-        line-height: 1.25;
-        color: ${(props) => props.theme.colors.font.primary.alt1};
-    }
-`;
-
 export const BalanceWrapper = styled.div`
     display: flex;
+    margin: 20px 0 0 0;
 `;
 
 export const AvailableBalance = styled.p`
@@ -125,4 +94,35 @@ export const ARTokens = styled.p`
     color: ${(props) => props.theme.colors.font.primary.alt4};
     font-size: 18px;
     font-weight: ${(props) => props.theme.typography.weight.medium};
+`;
+
+export const Form = styled.div`
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
+export const FormField = styled.div`
+    width: ${STYLING.dimensions.formWidth};
+    margin: 50px auto 0 auto;
+`;
+
+export const SubmitWrapper = styled.div`
+    margin: 0 auto 15px auto;
+    button {
+        width: fit-content;
+        margin: 0 auto;
+    }
+`;
+
+export const SignMessage = styled.div`
+    width: 100%;
+    margin: 12.5px auto 0 auto;
+    text-align: center;
+    p {
+        font-size: 12px;
+        line-height: 1.25;
+        color: ${(props) => props.theme.colors.font.primary.alt1};
+    }
 `;

@@ -1,4 +1,5 @@
 import React from "react";
+import * as gql from "gql-query-builder";
 import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
@@ -26,6 +27,8 @@ interface ARContextState {
     walletModalVisible: boolean;
     setWalletModalVisible: (open: boolean) => void;
     handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
+    getARAmount: (amount: string) => number;
+    getAllArtefactsByPool: (poolId: string) => any;
 }
 
 interface ARProviderProps {
@@ -57,12 +60,18 @@ const DEFAULT_CONTEXT = {
     async handlePoolContribute(poolId: string, amount: number): Promise<ContributionResultType> {
         console.log(`Contribute to ${poolId} - amount: ${amount}`);
         return await { status: false, message: null }
+    },
+    getARAmount(amount: string): number {
+        console.error(`Get ${amount} AR Amount`);
+        return 0
+    },
+    async getAllArtefactsByPool(poolId: string): Promise<any> {
+        console.log(`Get All Artefacts for ${poolId}`);
+        return null;
     }
 }
 
 const ARContext = React.createContext<ARContextState>(DEFAULT_CONTEXT);
-
-
 
 export interface ContractDataProps {
     title: string;
@@ -110,9 +119,12 @@ export function ARProvider(props: ARProviderProps) {
     };
 
     async function handlePoolContribute(poolId: string, amount: number): Promise<ContributionResultType> {
+        if (!availableBalance) {
+            return { status: false, message: LANGUAGE.walletNotConnected };
+        }
 
-        if (!availableBalance || amount > availableBalance) {
-            return { status: true, message: LANGUAGE.collection.contribute.notEnoughFunds };
+        if (amount > availableBalance) {
+            return { status: false, message: LANGUAGE.collection.contribute.notEnoughFunds };
         }
 
         try {
@@ -145,6 +157,45 @@ export function ARProvider(props: ARProviderProps) {
         catch (error: any) {
             return { status: false, message: error };
         }
+    }
+
+    function getARAmount(amount: string): number {
+        return Math.floor(+arweave.ar.winstonToAr(amount) * 1e5) / 1e5
+    }
+
+    async function getAllArtefactsByPool(poolId: string) {
+        const query = gql.query({
+            operation: "transactions",
+            variables: {
+                tags: {
+                    value: {
+                        name: "Pool-Id",
+                        values: [poolId]
+                    },
+                    type: "[TagFilter!]"
+                },
+                first: 1000
+            },
+            fields: [
+                {
+                    edges: [
+                        {
+                            node: [
+                                "id",
+                                {
+                                    "tags": [
+                                        "name",
+                                        "value"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        })
+
+        return (await arweave.api.post("/graphql", query)).data.data.transactions.edges;
     }
 
     React.useEffect(() => {
@@ -180,7 +231,9 @@ export function ARProvider(props: ARProviderProps) {
                 wallets,
                 walletModalVisible,
                 setWalletModalVisible,
-                handlePoolContribute
+                handlePoolContribute,
+                getARAmount,
+                getAllArtefactsByPool
             }}
         >
             {props.children}

@@ -124,6 +124,16 @@ export const Description = styled.p`
     color: ${(props) => props.theme.colors.font.primary.active.base};
     font-size: ${(props) => props.theme.typography.size.base};
     line-height: 1.45;
+    b {
+        color: ${(props) => props.theme.colors.font.primary.active.base};
+        font-weight: ${(props) => props.theme.typography.weight.medium};
+        font-size: ${(props) => props.theme.typography.size.base};
+    }
+    span {
+        color: ${(props) => props.theme.colors.font.primary.active.base};
+        font-size: ${(props) => props.theme.typography.size.base};
+        text-decoration: underline;
+    }
 `;
 
 export const Link = styled.a`

@@ -98,5 +98,6 @@ export const LANGUAGE = {
     submit: 'Submit',
     viewAccount: 'View Account',
     viewCollection: 'View Collection',
-    walletSignMessage: 'You will be prompted to sign the transaction via your wallet.'
+    walletSignMessage: 'You will be prompted to sign the transaction via your wallet.',
+    walletNotConnected: 'You must connect a wallet to continue.'
 }

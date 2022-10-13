@@ -1,22 +1,16 @@
-import Arweave from "arweave";
+import { useARProvder } from "@/providers/ARProvider";
 
 import { ArweaveCollectionProps } from "@/types";
 
 import { CollectionHeader } from "./CollectionHeader";
 import { CollectionDetail } from "./CollectionDetail";
 
-import { getTxUrl } from "@/util";
+import { getTxUrl, formatDate } from "@/util";
 import * as S from "./styles";
 
-const arweave = Arweave.init({
-    host: "arweave.net",
-    port: 443,
-    protocol: "https",
-    timeout: 40000,
-    logging: false,
-});
-
 export default function _Collection(props: { data: ArweaveCollectionProps }) {
+    const arProvider = useARProvder();
+    
     return (
         <S.Wrapper>
             <CollectionHeader
@@ -24,13 +18,9 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
                 image={getTxUrl(props.data.state.image)}
                 title={props.data.state.title}
                 description={props.data.state.description}
-                dateCreated={props.data.ts}
+                dateCreated={formatDate(props.data.ts, "iso")}
                 artefactCount={props.data.artefacts}
-                totalContributions={Math.floor(
-                    +arweave.ar.winstonToAr(
-                        props.data.state.totalContributions
-                    ) * 1e5
-                ) / 1e5}
+                totalContributions={arProvider.getARAmount(props.data.state.totalContributions)}
             />
             <CollectionDetail collectionData={props.data}/>
         </S.Wrapper>

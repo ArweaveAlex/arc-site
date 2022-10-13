@@ -25,6 +25,7 @@ export type FormFieldType = "number" | "password";
 export type NotificationType = "success" | "warning" | "neutral";
 export type ContributionResultType = { status: boolean, message: string | null };
 export type RefType = { current: HTMLElement };
+export type DateType = "iso" | "ts";
 
 export interface IURLView {
   account: URLViewType[]
