@@ -150,6 +150,7 @@ export const TContainer = styled.div`
     margin: 1.15px 0 0 7.5px;
     p {
         font-size: 18px;
+        line-height: 24px;
         font-weight: ${(props) => props.theme.typography.weight.regular};
         font-family: ${(props) => props.theme.typography.family.primary};
         color: ${(props) => props.theme.colors.font.primary.alt2};

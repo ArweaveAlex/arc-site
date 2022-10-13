@@ -23,28 +23,36 @@ export default function CollectionContribute(props: IProps) {
 
     const [contributionResult, setContributionResult] = React.useState<ContributionResultType | null>(null);
 
-    async function handlePoolContribute() {
+    async function handlePoolContribute(e: any) {
+        e.preventDefault();
         setLoading(true);
         setContributionResult(await arProvider.handlePoolContribute(props.poolId, amount));
         setLoading(false);
     }
 
     function getAvailableBalance() {
-        if (arProvider.availableBalance) {
+        if (!arProvider.walletAddress) {
             return (
-                <S.BalanceWrapper>
-                    <S.AvailableBalance>{LANGUAGE.availableBalance}:&nbsp;</S.AvailableBalance>
-                    <S.BalanceAmount>{arProvider.availableBalance.toFixed(3)}&nbsp;</S.BalanceAmount>
-                    <S.ARTokens>{LANGUAGE.arTokens}</S.ARTokens>
-                </S.BalanceWrapper>
+                <p>{LANGUAGE.walletNotConnected}</p>
             )
         }
         else {
-            return (
-                <S.BalanceWrapper>
-                    <p>{LANGUAGE.fetchingBalance}&nbsp;...</p>
-                </S.BalanceWrapper>
-            )
+            if (arProvider.availableBalance) {
+                return (
+                    <S.BalanceWrapper>
+                        <S.AvailableBalance>{LANGUAGE.availableBalance}:&nbsp;</S.AvailableBalance>
+                        <S.BalanceAmount>{arProvider.availableBalance.toFixed(3)}&nbsp;</S.BalanceAmount>
+                        <S.ARTokens>{LANGUAGE.arTokens}</S.ARTokens>
+                    </S.BalanceWrapper>
+                )
+            }
+            else {
+                return (
+                    <S.BalanceWrapper>
+                        <p>{LANGUAGE.fetchingBalance}&nbsp;...</p>
+                    </S.BalanceWrapper>
+                )
+            }
         }
     }
 
@@ -70,13 +78,13 @@ export default function CollectionContribute(props: IProps) {
                             {props.subheader}
                         </S.Header>
                         {getAvailableBalance()}
-                        <form>
+                        <form onSubmit={(e) => handlePoolContribute(e)}>
                             <S.FormField>
                                 <FormField
                                     type={"number"}
                                     value={amount}
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
-                                    disabled={loading}
+                                    disabled={loading || !arProvider.walletAddress}
                                     invalid={{ status: false, message: null }}
                                     endText={LANGUAGE.arTokens}
                                 />
@@ -85,8 +93,8 @@ export default function CollectionContribute(props: IProps) {
                                 <Button
                                     label={LANGUAGE.submit}
                                     type={"secondary"}
-                                    handlePress={() => handlePoolContribute()}
-                                    disabled={loading || amount <= 0}
+                                    handlePress={(e) => handlePoolContribute(e)}
+                                    disabled={loading || !arProvider.walletAddress || amount <= 0}
                                     loading={loading}
                                     formSubmit
                                 />

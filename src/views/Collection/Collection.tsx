@@ -17,6 +17,7 @@ const arweave = Arweave.init({
 });
 
 export default function _Collection(props: { data: ArweaveCollectionProps }) {
+    console.log(props.data)
     return (
         <S.Wrapper>
             <CollectionHeader

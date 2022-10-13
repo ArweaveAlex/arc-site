@@ -110,9 +110,12 @@ export function ARProvider(props: ARProviderProps) {
     };
 
     async function handlePoolContribute(poolId: string, amount: number): Promise<ContributionResultType> {
+        if (!availableBalance) {
+            return { status: false, message: LANGUAGE.walletNotConnected };
+        }
 
-        if (!availableBalance || amount > availableBalance) {
-            return { status: true, message: LANGUAGE.collection.contribute.notEnoughFunds };
+        if (amount > availableBalance) {
+            return { status: false, message: LANGUAGE.collection.contribute.notEnoughFunds };
         }
 
         try {
