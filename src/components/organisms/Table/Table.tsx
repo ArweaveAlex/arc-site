@@ -5,7 +5,7 @@ import { Paginator } from "@/components/molecules/Paginator";
 import * as util from "@/util";
 import * as S from "./styles";
 import { IProps } from "./types";
-import { KeyValueStringType } from "@/types";
+import { KeyValueType } from "@/types";
 
 export default function Table(props: IProps) {
     const scrollRef = React.useRef(null);
@@ -34,7 +34,7 @@ export default function Table(props: IProps) {
                             )
                         })}
                     </S.TableHeader>
-                    {currentRecords.map((element: KeyValueStringType, index: number) => {
+                    {currentRecords.map((element: KeyValueType, index: number) => {
                         return (
                             <S.Row key={index} even={index % 2 === 0}>
                                 {Object.keys(element).map((row: string, rowIndex: number) => {
