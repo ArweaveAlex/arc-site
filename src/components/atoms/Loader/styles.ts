@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { loaderKeyFrame, open, fadeIn1 } from "@/animations";
+import { loaderKeyFrame, open } from "@/animations";
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -9,8 +9,8 @@ export const Wrapper = styled.div`
   z-index: 11;
   top: 0;
   left: 0;
-  background: ${(props) => props.theme.colors.overlay.primary};
-  animation: ${open} ${fadeIn1};
+  background: ${(props) => props.theme.colors.container.primary.background};
+  animation: ${open};
 `;
 
 export const Container = styled.div`
@@ -24,7 +24,7 @@ export const Container = styled.div`
 `;
 
 export const Blade = styled.div`
-  background-color: ${(props) => props.theme.colors.font.primary.alt7};
+  background-color: ${(props) => props.theme.colors.font.primary.active.base};
   position: absolute;
   left: 0.4629em;
   bottom: 0;

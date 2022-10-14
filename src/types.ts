@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ArweaveCollectionProps {
   state: ArweaveCollectionState;
   id: string;
@@ -45,5 +47,5 @@ export type ValidationType = {
   message: string | null
 }
 
-export type KeyValueStringType = { [key: string]: string };
+export type KeyValueType = { [key: string]: string | React.ReactNode };
 export type TableHeaderType = { [key: string]: { width: string } };
