@@ -14,10 +14,20 @@ export default function CollectionDetail(props: { collectionData: ArweaveCollect
 
     const [data, setData] = React.useState<any>(null);
 
+    function getViewblockLink(uploaderTxId: string | null, label: string | null) {
+        if (!uploaderTxId || !label) {
+            return <a target="_blank" href={"#"}>{"None"}</a>
+        }
+        return <a target="_blank" href={`https://v2.viewblock.io/arweave/tx/${uploaderTxId}`}>{label}</a>
+    }
+
     React.useEffect(() => {
         (async function () {
             setData((await arProvider.getAllArtefactsByPool(props.collectionData.id)).map((element: any) => {
-                return { title: getTagValue(element.node.tags, "Artefact-Name"), dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "ts") }
+                return { 
+                    title: getViewblockLink(getTagValue(element.node.tags, "Uploader-Tx-Id"), getTagValue(element.node.tags, "Artefact-Name")), 
+                    dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "ts") 
+                }
             }));
         })();
     }, [])
