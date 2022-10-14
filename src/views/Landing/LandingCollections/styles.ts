@@ -63,7 +63,6 @@ export const Body = styled.div`
     }
     &:hover {
         cursor: grab;
-        opacity: 0.95;
     }
 `;
 
