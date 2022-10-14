@@ -4,14 +4,12 @@ import { useARProvder } from "@/providers/ARProvider";
 
 import { Table } from "@/components/organisms/Table";
 
-import { getTagValue, formatDate } from "@/util";
 import { LANGUAGE } from "@/language"
 
 import { ArweaveCollectionProps } from "@/types";
 
 export default function CollectionDetail(props: { artefactData: any }) {
-
-    return props.artefactData ? (
+    return (
         <Table
             title={LANGUAGE.artefacts}
             header={{
@@ -21,6 +19,6 @@ export default function CollectionDetail(props: { artefactData: any }) {
             data={props.artefactData}
             recordsPerPage={50}
         />
-    ) : <p>{LANGUAGE.loading}&nbsp;...</p>
+    );
 }
 
