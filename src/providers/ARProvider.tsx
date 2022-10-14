@@ -30,6 +30,7 @@ interface ARContextState {
     getARAmount: (amount: string) => number;
     getAllArtefactsByPool: (poolId: string) => any;
     getAllPools: () => any;
+    getPoolById: (poolId: string) => any;
     getUserArtefacts: (userWallet: string) => any;
     getUserContributions: (userWallet: string) => any;
 }
@@ -79,10 +80,14 @@ const DEFAULT_CONTEXT = {
     async getAllPools() {
         return null;
     },
+    async getPoolById(poolId: string) {
+        console.log(`Get Pool ${poolId}`);
+        return null
+    },
     async getUserArtefacts(_userWallet: string) {
         return null;
     },
-    async getUserContributions(_userWallet: string){
+    async getUserContributions(_userWallet: string) {
         return null;
     }
 }
@@ -107,9 +112,9 @@ export function useARProvder(): ARContextState {
 export function ARProvider(props: ARProviderProps) {
     const wallets = AR_WALLETS;
 
-    const [walletModalVisible, setWalletModalVisible] = React.useState(false);
-    const [walletAddress, setWalletAddress] = React.useState(null);
-    const [availableBalance, setAvailableBalance] = React.useState(null);
+    const [walletModalVisible, setWalletModalVisible] = React.useState<boolean>(false);
+    const [walletAddress, setWalletAddress] = React.useState<string | null>(null);
+    const [availableBalance, setAvailableBalance] = React.useState<number | null>(null);
 
     async function connect() {
         await global.window?.arweaveWallet?.connect(PERMISSIONS as any).then(() => {
@@ -131,7 +136,7 @@ export function ARProvider(props: ARProviderProps) {
     const getUserBalance = async (wallet: string) => {
         const rawBalance = await fetch(getBalanceEndpoint(wallet));
         const jsonBalance = await rawBalance.json();
-        return jsonBalance.balance;
+        return jsonBalance / 1e12;
     };
 
     async function handlePoolContribute(poolId: string, amount: number): Promise<ContributionResultType> {
@@ -218,10 +223,17 @@ export function ARProvider(props: ARProviderProps) {
 
         for (let i = 0; i < POOL_IDS.length; i++) {
             const contract = smartweave.contract(POOL_IDS[i]!);
-            blockweavePools.push({id: POOL_IDS[i], state: (await contract.readState()).state, ts: TS});
+            blockweavePools.push({ id: POOL_IDS[i], state: (await contract.readState()).state, ts: TS });
         }
 
         return blockweavePools;
+    }
+
+    async function getPoolById(poolId: string) {
+        const TS = "2022-10-13T00:41:52.395+00:00"
+
+        const contract = smartweave.contract(poolId);
+        return { id: poolId, state: (await contract.readState()).state, ts: TS };
     }
 
     async function getUserArtefacts(userWallet: string) {
@@ -231,11 +243,11 @@ export function ARProvider(props: ARProviderProps) {
             contributions = contributions.concat(artefacts);
         }
         return contributions.filter((artefact: any) => {
-            if(artefact.node && artefact.node.tags){
+            if (artefact.node && artefact.node.tags) {
                 let tags = artefact.node.tags;
-                for(let j=0;j<tags.length;j++){
-                    if(tags[j].name === "Initial-Owner"){
-                        if(tags[j].value === userWallet){
+                for (let j = 0; j < tags.length; j++) {
+                    if (tags[j].name === "Initial-Owner") {
+                        if (tags[j].value === userWallet) {
                             return true;
                         }
                     }
@@ -245,25 +257,25 @@ export function ARProvider(props: ARProviderProps) {
         });
     }
 
-    function calcARDonated(userWallet: string, pool: any){
-        let calc = pool.state.tokens[userWallet]/1000000000000;
+    function calcARDonated(userWallet: string, pool: any) {
+        let calc = pool.state.tokens[userWallet] / 1000000000000;
         let tokens = (calc).toFixed(calc.toString().length);
         return tokens + " $AR";
     }
 
-    function calcReceivingPercent(userWallet: string, pool: any){
-        let calc = (pool.state.tokens[userWallet]/parseFloat(pool.state.totalContributions)) * 100;
+    function calcReceivingPercent(userWallet: string, pool: any) {
+        let calc = (pool.state.tokens[userWallet] / parseFloat(pool.state.totalContributions)) * 100;
         let tokens = (calc).toFixed(4);
         return tokens + "%";
     }
 
-    async function calcLastContributions(userWallet: string){
+    async function calcLastContributions(userWallet: string) {
         let contributions = await getUserArtefacts(userWallet);
         let lastDate = 0;
         contributions.map((c: any) => {
             c.node.tags.map((tag: any) => {
-                if(tag === "Created-At"){
-                    if(tag.value > lastDate){
+                if (tag === "Created-At") {
+                    if (tag.value > lastDate) {
                         lastDate = tag.value;
                     }
                 }
@@ -272,11 +284,11 @@ export function ARProvider(props: ARProviderProps) {
         return lastDate;
     }
 
-    async function getUserContributions(userWallet: string){
+    async function getUserContributions(userWallet: string) {
         let pools = await getAllPools();
         let lastContributions = await calcLastContributions(userWallet);
         return pools.filter((pool: any) => {
-            if(pool.state.contributors.hasOwnProperty(userWallet)){
+            if (pool.state.contributors.hasOwnProperty(userWallet)) {
                 return true;
             }
             return false;
@@ -311,7 +323,7 @@ export function ARProvider(props: ARProviderProps) {
             window.removeEventListener("arweaveWalletLoaded", handleWallet);
         };
     })
-
+    
     return (
         <ARContext.Provider
             value={{
@@ -326,6 +338,7 @@ export function ARProvider(props: ARProviderProps) {
                 getARAmount,
                 getAllArtefactsByPool,
                 getAllPools,
+                getPoolById,
                 getUserArtefacts,
                 getUserContributions
             }}
@@ -334,4 +347,3 @@ export function ARProvider(props: ARProviderProps) {
         </ARContext.Provider>
     )
 }
-

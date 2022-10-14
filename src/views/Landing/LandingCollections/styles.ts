@@ -100,7 +100,7 @@ export const C1 = styled.div`
 export const C1Content = styled.div`
     height: calc(100% - 90px);
     width: calc(100% - 10px);
-    padding: 20px;
+    padding: 25px;
     text-align: left;
     overflow-y: auto;
     background: ${(props) => props.theme.colors.container.primary.background};

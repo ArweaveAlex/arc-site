@@ -53,3 +53,5 @@ export const URLS: IURLView = {
         { index: 2, label: LANGUAGE.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
     ]
 }
+
+export const ID_LENGTH = 43;

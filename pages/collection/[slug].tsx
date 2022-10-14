@@ -1,34 +1,30 @@
-import dbConnect from "@/lib";
-import PoolModel from "@/models";
-import { GetServerSideProps } from "next";
+import React from "react";
+
+import { useARProvder } from "@/providers/ARProvider";
+
+import { Loader } from "@/components/atoms/Loader";
+
+import { useRouter } from "next/router";
 
 import { _Collection } from "@/views/Collection";
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { slug } = query;
+import { ID_LENGTH } from "@/config";
 
-  await dbConnect();
+export default function Collection() {
+  const router = useRouter()
+  const arProvider = useARProvder();
 
-  const CHAR_NUM_MATCH = 41;
+  const [blockweavePool, setBlockweavePool] = React.useState<any>(null);
 
-  // @ts-ignore
-  const collectionData = await PoolModel.findOne({
-    id: {
-      $regex: slug?.slice(-CHAR_NUM_MATCH),
-      $options: "i",
-    },
-  })
-    .select(["-_id"])
-    .lean()
-    .exec();
+  React.useEffect(() => {
+    (async function () {
+      if (router.query.slug) {
+        setBlockweavePool(await arProvider.getPoolById(router.query.slug?.slice(-ID_LENGTH) as string));
+      }
+    })()
+  }, [router.query.slug])
 
-  return {
-    props: {
-      data: JSON.parse(JSON.stringify(collectionData)),
-    },
-  };
-};
-
-export default function Collection({ data }) {
-  return <_Collection data={data}/>
+  return blockweavePool ? (
+    <_Collection data={blockweavePool}/>
+  ) : <Loader />
 }

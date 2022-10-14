@@ -6,6 +6,7 @@ export const accountFavorites = `${account}favorites/`;
 export const accountContributions = `${account}contributions/`;
 export const collection = `${base}collection/`;
 export const collections = `${base}collections/`;
-export const about = `#`;
+export const about = `${base}about/`;
+
 export const faq = `#`;
 export const readMore = `#`;
