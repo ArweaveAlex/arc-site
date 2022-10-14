@@ -245,19 +245,47 @@ export function ARProvider(props: ARProviderProps) {
         });
     }
 
+    function calcARDonated(userWallet: string, pool: any){
+        let calc = pool.state.tokens[userWallet]/1000000000000;
+        let tokens = (calc).toFixed(calc.toString().length);
+        return tokens + " $AR";
+    }
+
+    function calcReceivingPercent(userWallet: string, pool: any){
+        let calc = (pool.state.tokens[userWallet]/parseFloat(pool.state.totalContributions)) * 100;
+        let tokens = (calc).toFixed(4);
+        return tokens + "%";
+    }
+
+    async function calcLastContributions(userWallet: string){
+        let contributions = await getUserArtefacts(userWallet);
+        let lastDate = 0;
+        contributions.map((c: any) => {
+            c.node.tags.map((tag: any) => {
+                if(tag === "Created-At"){
+                    if(tag.value > lastDate){
+                        lastDate = tag.value;
+                    }
+                }
+            })
+        })
+        return lastDate;
+    }
+
     async function getUserContributions(userWallet: string){
         let pools = await getAllPools();
+        let lastContributions = await calcLastContributions(userWallet);
         return pools.filter((pool: any) => {
-            console.log(pool);
             if(pool.state.contributors.hasOwnProperty(userWallet)){
                 return true;
             }
             return false;
         }).map((pool: any) => {
             let p = pool;
-            p["totalContributed"] = "500 $AR";
-            p["lastContribution"] = "November 7th, 2021 for 100 $AR";
-            p["receivingPercent"] = "5%";
+            console.log(pool);
+            p["totalContributed"] = calcARDonated(userWallet, pool);
+            p["lastContribution"] = lastContributions[pool];
+            p["receivingPercent"] = calcReceivingPercent(userWallet, pool);
             return p;
         });
     }
