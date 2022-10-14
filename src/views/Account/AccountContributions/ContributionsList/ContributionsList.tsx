@@ -7,7 +7,7 @@ import * as S from "./styles";
 
 import { MOCK_DATA_HEADER } from "@/mock-data";
 
-export default function ContributionsList() {
+export default function ContributionsList({data}) {
     return (
         <S.Wrapper>
             <S.Header>
@@ -16,7 +16,7 @@ export default function ContributionsList() {
                 </S.HeaderFlex>
             </S.Header>
             <S.List>
-                {MOCK_DATA_HEADER.map((collection: any, index: number) => {
+                {data.map((collection: any, index: number) => {
                     return (
                         <S.ListItemWrapper key={index}>
                             <S.LIHeaderContainer>
@@ -39,17 +39,17 @@ export default function ContributionsList() {
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>Total Contributed:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>200 $AR</S.LIBodyData>
+                                    <S.LIBodyData>{collection.totalContributed}</S.LIBodyData>
                                 </S.LIBodyFlex>
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>Last Contribution:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>November 7th, 2021 for 100 $AR</S.LIBodyData>
+                                    <S.LIBodyData>{collection.lastContribution}</S.LIBodyData>
                                 </S.LIBodyFlex>
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>Receiving:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>5% of Artifacts Created</S.LIBodyData>
+                                    <S.LIBodyData>{collection.receivingPercent} of Artifacts Created</S.LIBodyData>
                                 </S.LIBodyFlex>
                             </S.LIBodyContainer>
                             {/* <S.LIDropdownContainer>

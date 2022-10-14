@@ -29,7 +29,9 @@ interface ARContextState {
     handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
     getARAmount: (amount: string) => number;
     getAllArtefactsByPool: (poolId: string) => any;
-    // getAllPools: () => any;
+    getAllPools: () => any;
+    getUserArtefacts: (userWallet: string) => any;
+    getUserContributions: (userWallet: string) => any;
 }
 
 interface ARProviderProps {
@@ -45,6 +47,8 @@ const arweave = Arweave.init({
 });
 
 const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
+
+const POOL_IDS: string[] = ["6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA"];
 
 const DEFAULT_CONTEXT = {
     wallets: [],
@@ -72,9 +76,15 @@ const DEFAULT_CONTEXT = {
         console.log(`Get All Artefacts for ${poolId}`);
         return null;
     },
-    // async getAllPools() {
-    //     return null;
-    // }
+    async getAllPools() {
+        return null;
+    },
+    async getUserArtefacts(_userWallet: string) {
+        return null;
+    },
+    async getUserContributions(_userWallet: string){
+        return null;
+    }
 }
 
 const ARContext = React.createContext<ARContextState>(DEFAULT_CONTEXT);
@@ -198,12 +208,10 @@ export function ARProvider(props: ARProviderProps) {
                 }
             ]
         })
-
         return (await arweave.api.post("/graphql", query)).data.data.transactions.edges;
     }
 
     async function getAllPools() {
-        const POOL_IDS = ["6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA"];
         const TS = "2022-10-13T00:41:52.395+00:00"
 
         const blockweavePools: any = [];
@@ -214,6 +222,44 @@ export function ARProvider(props: ARProviderProps) {
         }
 
         return blockweavePools;
+    }
+
+    async function getUserArtefacts(userWallet: string) {
+        let contributions = [];
+        for (let i = 0; i < POOL_IDS.length; i++) {
+            let artefacts = await getAllArtefactsByPool(POOL_IDS[i]!);
+            contributions = contributions.concat(artefacts);
+        }
+        return contributions.filter((artefact: any) => {
+            if(artefact.node && artefact.node.tags){
+                let tags = artefact.node.tags;
+                for(let j=0;j<tags.length;j++){
+                    if(tags[j].name === "Initial-Owner"){
+                        if(tags[j].value === userWallet){
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        });
+    }
+
+    async function getUserContributions(userWallet: string){
+        let pools = await getAllPools();
+        return pools.filter((pool: any) => {
+            console.log(pool);
+            if(pool.state.contributors.hasOwnProperty(userWallet)){
+                return true;
+            }
+            return false;
+        }).map((pool: any) => {
+            let p = pool;
+            p["totalContributed"] = "500 $AR";
+            p["lastContribution"] = "November 7th, 2021 for 100 $AR";
+            p["receivingPercent"] = "5%";
+            return p;
+        });
     }
 
     React.useEffect(() => {
@@ -251,7 +297,9 @@ export function ARProvider(props: ARProviderProps) {
                 handlePoolContribute,
                 getARAmount,
                 getAllArtefactsByPool,
-                getAllPools
+                getAllPools,
+                getUserArtefacts,
+                getUserContributions
             }}
         >
             {props.children}
