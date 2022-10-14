@@ -6,6 +6,7 @@ import { SmartWeaveNodeFactory } from "redstone-smartweave";
 import { ContributionResultType } from "@/types";
 import { getBalanceEndpoint } from "@/endpoints";
 import { LANGUAGE } from "@/language";
+import { formatDate } from "@/util";
 
 const AR_WALLETS = [
     { name: "arconnect", logo: "arconnect-wallet-logo.png" }
@@ -260,33 +261,38 @@ export function ARProvider(props: ARProviderProps) {
     function calcARDonated(userWallet: string, pool: any) {
         let calc = pool.state.tokens[userWallet] / 1000000000000;
         let tokens = (calc).toFixed(calc.toString().length);
-        return tokens + " $AR";
+        return tokens;
     }
 
     function calcReceivingPercent(userWallet: string, pool: any) {
         let calc = (pool.state.tokens[userWallet] / parseFloat(pool.state.totalContributions)) * 100;
         let tokens = (calc).toFixed(4);
-        return tokens + "%";
+        return tokens;
     }
 
-    async function calcLastContributions(userWallet: string) {
+    async function calcLastContributions(userWallet: string, pools: any[]){
         let contributions = await getUserArtefacts(userWallet);
-        let lastDate = 0;
-        contributions.map((c: any) => {
-            c.node.tags.map((tag: any) => {
-                if (tag === "Created-At") {
-                    if (tag.value > lastDate) {
-                        lastDate = tag.value;
+        let conMap = {};
+        pools.map((pool: any) => {
+            let lastDate = 0;
+            contributions.map((c: any) => {
+                c.node.tags.map((tag: any) => {
+                    if(tag.name === "Created-At"){
+                        let v = parseInt(tag.value);
+                        if(v > lastDate){
+                            lastDate = v;
+                            conMap[pool.id] = v;
+                        }
                     }
-                }
+                })
             })
         })
-        return lastDate;
+        return conMap;
     }
 
     async function getUserContributions(userWallet: string) {
         let pools = await getAllPools();
-        let lastContributions = await calcLastContributions(userWallet);
+        let lastContributions = await calcLastContributions(userWallet, pools);
         return pools.filter((pool: any) => {
             if (pool.state.contributors.hasOwnProperty(userWallet)) {
                 return true;
@@ -294,9 +300,8 @@ export function ARProvider(props: ARProviderProps) {
             return false;
         }).map((pool: any) => {
             let p = pool;
-            console.log(pool);
             p["totalContributed"] = calcARDonated(userWallet, pool);
-            p["lastContribution"] = lastContributions[pool];
+            p["lastContribution"] = lastContributions[pool.id];
             p["receivingPercent"] = calcReceivingPercent(userWallet, pool);
             return p;
         });

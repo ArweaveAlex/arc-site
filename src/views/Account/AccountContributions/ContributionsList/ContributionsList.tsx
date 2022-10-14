@@ -39,17 +39,17 @@ export default function ContributionsList({data}) {
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>Total Contributed:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>{collection.totalContributed}</S.LIBodyData>
+                                    <S.LIBodyData>{collection.totalContributed + " "  + LANGUAGE.arTokens}</S.LIBodyData>
                                 </S.LIBodyFlex>
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>Last Contribution:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>{collection.lastContribution}</S.LIBodyData>
+                                    <S.LIBodyData>{util.formatDate(collection.lastContribution, "ts")}</S.LIBodyData>
                                 </S.LIBodyFlex>
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>Receiving:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>{collection.receivingPercent} of Artifacts Created</S.LIBodyData>
+                                    <S.LIBodyData>{collection.receivingPercent}% of Artifacts Created</S.LIBodyData>
                                 </S.LIBodyFlex>
                             </S.LIBodyContainer>
                             {/* <S.LIDropdownContainer>
