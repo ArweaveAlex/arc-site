@@ -5,8 +5,6 @@ import * as util from "@/util";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
-import { MOCK_DATA_HEADER } from "@/mock-data";
-
 export default function ContributionsList({data}) {
     return (
         <S.Wrapper>
@@ -31,25 +29,24 @@ export default function ContributionsList({data}) {
                                     <S.SubheaderContainer>
                                         <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
                                         &nbsp;
-                                        {/* <S.Subheader2><p>{util.formatDate(collection.state.dateCreated)}</p></S.Subheader2> */}
                                     </S.SubheaderContainer>
                                 </S.SubheaderFlex>
                             </S.LIHeaderContainer>
                             <S.LIBodyContainer>
                                 <S.LIBodyFlex>
-                                    <S.LIBodyHeader>Total Contributed:</S.LIBodyHeader>
+                                    <S.LIBodyHeader>{LANGUAGE.totalContributed}:</S.LIBodyHeader>
                                     &nbsp;
                                     <S.LIBodyData>{collection.totalContributed + " "  + LANGUAGE.arTokens}</S.LIBodyData>
                                 </S.LIBodyFlex>
                                 <S.LIBodyFlex>
-                                    <S.LIBodyHeader>Last Contribution:</S.LIBodyHeader>
+                                    <S.LIBodyHeader>{LANGUAGE.lastContribution}:</S.LIBodyHeader>
                                     &nbsp;
                                     <S.LIBodyData>{util.formatDate(collection.lastContribution, "ts")}</S.LIBodyData>
                                 </S.LIBodyFlex>
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>Receiving:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>{collection.receivingPercent}% of Artifacts Created</S.LIBodyData>
+                                    <S.LIBodyData>{collection.receivingPercent}% {LANGUAGE.artefactsCreated}</S.LIBodyData>
                                 </S.LIBodyFlex>
                             </S.LIBodyContainer>
                             {/* <S.LIDropdownContainer>

@@ -1,6 +1,7 @@
 
 export const LANGUAGE = {
     about: 'About',
+    artefactsCreated: 'of Artifacts Created',
     account: {
         header1: 'Your Account',
         all: {
@@ -69,6 +70,7 @@ export const LANGUAGE = {
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae purus fringilla, suscipit est sed, sodales erat. Vestibulum dapibus urna elementum neque venenatis, sit amet auctor leo venenatis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed nunc enim, sagittis vel ante in, egestas lobortis nulla. Phasellus nec quam nec nisi dignissim rutrum eget ut sapien. In a fermentum urna.<br><br>Vestibulum urna turpis, vehicula vitae ex vestibulum, auctor suscipit metus.Nulla nec lectus mauris. Praesent consequat bibendum massa. Cras venenatis magna at orci bibendum, a gravida nibh accumsan. Pellentesque quis blandit lorem. Donec volutpat vulputate nisi et sollicitudin. Phasellus lacinia fringilla luctus. Mauris at accumsan augue. Mauris placerat mauris sem, at blandit felis mollis vitae. Cras tincidunt, justo eget auctor porttitor, ex enim imperdiet urna, at ornare urna tellus ut libero. In id feugiat nisl.',
         assetSrc: 'A 19th century illustration of the burning of the Library of Alexandria. Heritage Images/Getty Images.'
     },
+    lastContribution: 'Last Contribution',
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
     next: 'Next',
@@ -96,6 +98,7 @@ export const LANGUAGE = {
         ]
     },
     submit: 'Submit',
+    totalContributed: 'Total Contributed',
     viewAccount: 'View Account',
     viewCollection: 'View Collection',
     walletSignMessage: 'You will be prompted to sign the transaction via your wallet.',
