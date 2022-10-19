@@ -99,11 +99,7 @@ const DEFAULT_CONTEXT = {
     async getUserFavorites(_userWallet: string) {
         return null;
     },
-<<<<<<< HEAD
-    async toggleUserFavorite(_artefactId: string, _userWallet: string) {
-=======
     async toggleUserFavorite(_artifactId: string, _userWallet: string) {
->>>>>>> 34ae018 (Paginate GraqhQL Artifact Queries, Handle UI Pagination, Add Media-Id Asset Tags)
         return null
     }
 }
@@ -325,11 +321,7 @@ export function ARProvider(props: ARProviderProps) {
     }
 
 
-<<<<<<< HEAD
-    async function toggleUserFavorite(artefactId: string, userWallet: string){
-=======
     async function toggleUserFavorite(artifactId: string, userWallet: string){
->>>>>>> 34ae018 (Paginate GraqhQL Artifact Queries, Handle UI Pagination, Add Media-Id Asset Tags)
         let favorites: any[] = [];
         let f = await getUserFavorites(userWallet);
 
@@ -343,17 +335,10 @@ export function ARProvider(props: ARProviderProps) {
             }
         }
         
-<<<<<<< HEAD
-        if(favorites.includes(artefactId)){
-            favorites = favorites.splice(favorites.indexOf(artefactId), 1);
-        } else {
-            favorites = favorites.concat(artefactId);
-=======
         if(favorites.includes(artifactId)){
             favorites = favorites.splice(favorites.indexOf(artifactId), 1);
         } else {
             favorites = favorites.concat(artifactId);
->>>>>>> 34ae018 (Paginate GraqhQL Artifact Queries, Handle UI Pagination, Add Media-Id Asset Tags)
         }
 
         console.log(favorites);
