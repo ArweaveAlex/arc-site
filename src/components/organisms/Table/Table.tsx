@@ -6,9 +6,11 @@ import * as util from "@/util";
 import * as S from "./styles";
 import { IProps } from "./types";
 import { KeyValueType } from "@/types";
+import { useARProvder } from "@/providers/ARProvider";
 
 export default function Table(props: IProps) {
     const scrollRef = React.useRef(null);
+    const arProvider = useARProvder();
 
     const [currentPage, setCurrentPage] = React.useState(1);
     const [recordsPerPage] = React.useState(props.recordsPerPage);
@@ -59,7 +61,7 @@ export default function Table(props: IProps) {
                                                 {
                                                     props.toggleUserFavorite && row === 'id' && 
                                                         <button onClick={
-                                                            () => {props.toggleUserFavorite!(element[row]!.toString())
+                                                            () => {props.toggleUserFavorite!(element[row]!.toString(), arProvider.walletAddress!)
                                                         }}>Add to My Library</button>
                                                 }
                                                 

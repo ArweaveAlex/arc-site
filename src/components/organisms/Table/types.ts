@@ -5,5 +5,5 @@ export interface IProps {
     header: TableHeaderType,
     data: KeyValueType[],
     recordsPerPage: number,
-    toggleUserFavorite?: (artefactId: string) => void
+    toggleUserFavorite?: (artefactId: string, userWallet: string) => void
 }

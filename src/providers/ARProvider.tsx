@@ -6,7 +6,8 @@ import { SmartWeaveNodeFactory } from "redstone-smartweave";
 import { ContributionResultType } from "@/types";
 import { getBalanceEndpoint } from "@/endpoints";
 import { LANGUAGE } from "@/language";
-import { formatDate } from "@/util";
+import { formatDate, getTagValue } from "@/util";
+import { Tag } from "arweave/node/lib/transaction";
 
 const AR_WALLETS = [
     { name: "arconnect", logo: "arconnect-wallet-logo.png" }
@@ -35,7 +36,7 @@ interface ARContextState {
     getUserArtefacts: (userWallet: string) => any;
     getUserContributions: (userWallet: string) => any;
     getUserFavorites: (userWallet: string) => any;
-    toggleUserFavorite: (artefactId: string) => any;
+    toggleUserFavorite: (artefactId: string, userWallet: string) => any;
 }
 
 interface ARProviderProps {
@@ -97,7 +98,7 @@ const DEFAULT_CONTEXT = {
     async getUserFavorites(_userWallet: string) {
         return null;
     },
-    async toggleUserFavorite(_artefactId: string) {
+    async toggleUserFavorite(_artefactId: string, _userWallet: string) {
         return null
     }
 }
@@ -267,30 +268,78 @@ export function ARProvider(props: ARProviderProps) {
         });
     }
 
+    
+
     async function getUserFavorites(userWallet: string) {
-        let contributions = [];
-        for (let i = 0; i < POOL_IDS.length; i++) {
-            let artefacts = await getAllArtefactsByPool(POOL_IDS[i]!);
-            contributions = contributions.concat(artefacts);
-        }
-        return contributions.filter((artefact: any) => {
-            if (artefact.node && artefact.node.tags) {
-                let tags = artefact.node.tags;
-                for (let j = 0; j < tags.length; j++) {
-                    if (tags[j].name === "Initial-Owner") {
-                        if (tags[j].value === userWallet) {
-                            return true;
+        const query = gql.query({
+            operation: "transactions",
+            variables: {
+                tags: {
+                    value: {
+                        name: "Alex-Favorite-Search",
+                        values: [userWallet]
+                    },
+                    type: "[TagFilter!]"
+                },
+                first: 1000
+            },
+            fields: [
+                {
+                    edges: [
+                        {
+                            node: [
+                                "id",
+                                {
+                                    "tags": [
+                                        "name",
+                                        "value"
+                                    ]
+                                }
+                            ]
                         }
-                    }
+                    ]
                 }
-            }
-            return false;
-        });
+            ]
+        })
+        return (await arweave.api.post("/graphql", query)).data.data.transactions.edges;
     }
 
 
-    async function toggleUserFavorite(artefactId: string){
-        alert(artefactId);
+    async function toggleUserFavorite(artefactId: string, userWallet: string){
+        let favorites: any[] = [];
+        let f = await getUserFavorites(userWallet);
+
+        console.log(f);
+
+        if(f.tags){
+            let n = getTagValue(f.tags, "Favorite-Ids-Tag");
+            if(n){
+                let favoriteIds = JSON.parse(n);
+                favorites.concat(favoriteIds);
+            }
+        }
+        
+        if(favorites.includes(artefactId)){
+            favorites = favorites.splice(favorites.indexOf(artefactId), 1);
+        } else {
+            favorites = favorites.concat(artefactId);
+        }
+
+        console.log(favorites);
+
+        let searchTag: Tag = new Tag("Alex-Favorite-Search", userWallet);
+        let dateCreatedTag: Tag = new Tag("Date-Created", Date.now().toString());
+        let favoriteIdsTag: Tag = new Tag("Favorite-Ids-Tag", JSON.stringify(favorites));
+        let res = await arweave.createTransaction({
+            data: JSON.stringify({}),
+            tags: [
+                searchTag,
+                dateCreatedTag,
+                favoriteIdsTag
+            ]
+        }, "use_wallet");
+
+        console.log(res);
     }
 
     function calcARDonated(userWallet: string, pool: any) {
