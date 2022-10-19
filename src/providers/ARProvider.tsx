@@ -34,6 +34,8 @@ interface ARContextState {
     getPoolById: (poolId: string) => any;
     getUserArtefacts: (userWallet: string) => any;
     getUserContributions: (userWallet: string) => any;
+    getUserFavorites: (userWallet: string) => any;
+    toggleUserFavorite: (artefactId: string) => any;
 }
 
 interface ARProviderProps {
@@ -50,7 +52,8 @@ const arweave = Arweave.init({
 
 const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 
-const POOL_IDS: string[] = ["6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA"];
+// const POOL_IDS: string[] = ["6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA"];
+const POOL_IDS: string[] = ["t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M"]
 
 const DEFAULT_CONTEXT = {
     wallets: [],
@@ -90,6 +93,12 @@ const DEFAULT_CONTEXT = {
     },
     async getUserContributions(_userWallet: string) {
         return null;
+    },
+    async getUserFavorites(_userWallet: string) {
+        return null;
+    },
+    async toggleUserFavorite(_artefactId: string) {
+        return null
     }
 }
 
@@ -258,6 +267,32 @@ export function ARProvider(props: ARProviderProps) {
         });
     }
 
+    async function getUserFavorites(userWallet: string) {
+        let contributions = [];
+        for (let i = 0; i < POOL_IDS.length; i++) {
+            let artefacts = await getAllArtefactsByPool(POOL_IDS[i]!);
+            contributions = contributions.concat(artefacts);
+        }
+        return contributions.filter((artefact: any) => {
+            if (artefact.node && artefact.node.tags) {
+                let tags = artefact.node.tags;
+                for (let j = 0; j < tags.length; j++) {
+                    if (tags[j].name === "Initial-Owner") {
+                        if (tags[j].value === userWallet) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        });
+    }
+
+
+    async function toggleUserFavorite(artefactId: string){
+        alert(artefactId);
+    }
+
     function calcARDonated(userWallet: string, pool: any) {
         let calc = pool.state.tokens[userWallet] / 1000000000000;
         let tokens = (calc).toFixed(calc.toString().length);
@@ -345,7 +380,9 @@ export function ARProvider(props: ARProviderProps) {
                 getAllPools,
                 getPoolById,
                 getUserArtefacts,
-                getUserContributions
+                getUserContributions,
+                getUserFavorites,
+                toggleUserFavorite
             }}
         >
             {props.children}

@@ -13,8 +13,8 @@ export const LANGUAGE = {
             header1: 'New Artifacts'
         },
         favorites: {
-            title: 'Favorites',
-            header1: 'Favorites'
+            title: 'My Library',
+            header1: 'My Library'
         },
         contributions: {
             title: 'My Contributions',

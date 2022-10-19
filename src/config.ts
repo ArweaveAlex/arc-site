@@ -49,7 +49,7 @@ export const URLS: IURLView = {
     account: [
         { index: 0, label: LANGUAGE.account.all.title, icon: "account-all.svg", disabled: false, url: urls.accountAll, view: AccountAll },
         { index: 1, label: LANGUAGE.account.new.title, icon: "account-new.svg", disabled: true, url: urls.accountNew, view: AccountNew },
-        { index: 2, label: LANGUAGE.account.favorites.title, icon: "account-favorites.svg", disabled: true, url: urls.accountFavorites, view: AccountFavorites },
+        { index: 2, label: LANGUAGE.account.favorites.title, icon: "account-favorites.svg", disabled: false, url: urls.accountFavorites, view: AccountFavorites },
         { index: 2, label: LANGUAGE.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
     ]
 }

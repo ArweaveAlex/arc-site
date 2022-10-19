@@ -29,7 +29,8 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
             setData((await arProvider.getAllArtefactsByPool(props.data.id)).map((element: any) => {
                 return { 
                     title: getViewblockLink(getTagValue(element.node.tags, "Uploader-Tx-Id"), getTagValue(element.node.tags, "Artefact-Name")), 
-                    dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "ts") 
+                    dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "ts"),
+                    id: element.node.id
                 }
             }));
         })();
