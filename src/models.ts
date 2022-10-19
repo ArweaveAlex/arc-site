@@ -5,7 +5,7 @@ const PoolSchema = new mongoose.Schema(
     {
         id: String,
         state: Object,
-        artefacts: Number,
+        artifacts: Number,
         ts: Date
     }
 );

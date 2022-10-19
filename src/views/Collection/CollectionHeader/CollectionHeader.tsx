@@ -56,7 +56,7 @@ export default function CollectionHeader(props: IProps) {
                 <S.Tile>
                     <S.TileTitle><p>{LANGUAGE.collection.artifactsCreated}</p></S.TileTitle>
                     <S.TileData>
-                        <p>{props.artefactCount}</p>
+                        <p>{props.artifactCount}</p>
                     </S.TileData>
                 </S.Tile>
                 <S.ContributeTile>

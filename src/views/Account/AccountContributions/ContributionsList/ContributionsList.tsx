@@ -41,12 +41,12 @@ export default function ContributionsList({data}) {
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>{LANGUAGE.lastContribution}:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>{util.formatDate(collection.lastContribution, "ts")}</S.LIBodyData>
+                                    <S.LIBodyData>{util.formatDate(collection.lastContribution, "epoch")}</S.LIBodyData>
                                 </S.LIBodyFlex>
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>Receiving:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>{collection.receivingPercent}% {LANGUAGE.artefactsCreated}</S.LIBodyData>
+                                    <S.LIBodyData>{collection.receivingPercent}% {LANGUAGE.artifactsCreated}</S.LIBodyData>
                                 </S.LIBodyFlex>
                             </S.LIBodyContainer>
                             {/* <S.LIDropdownContainer>

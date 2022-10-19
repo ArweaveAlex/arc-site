@@ -4,6 +4,6 @@ export interface IProps {
     title: string;
     description: string;
     dateCreated: string;
-    artefactCount: number;
+    artifactCount: number;
     totalContributions: number;
 }

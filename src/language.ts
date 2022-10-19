@@ -1,7 +1,7 @@
 
 export const LANGUAGE = {
     about: 'About',
-    artefactsCreated: 'of Artifacts Created',
+    artifactsCreated: 'of Artifacts Created',
     account: {
         header1: 'Your Account',
         all: {
@@ -22,8 +22,9 @@ export const LANGUAGE = {
         }
     },
     activeCollections: 'Active Collections',
-    artefacts: 'Artifacts',
-    allArtefacts: 'All Artifacts',
+    artifacts: 'Artifacts',
+    allArtifacts: 'All Artifacts',
+    appVersion: 'Alpha',
     arTokens: '$AR',
     availableBalance: 'Available Balance',
     banner: {
@@ -33,7 +34,6 @@ export const LANGUAGE = {
         subheader1: 'Archives are permanently stored on',
         subheader2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed justo bibendum ipsum commodo aliquet.'
     },
-    beta: 'Beta',
     collection: {
         subheader1: 'Collection',
         totalContributed: 'Total Contributed',
@@ -74,6 +74,7 @@ export const LANGUAGE = {
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
     next: 'Next',
+    noArtifactsCreated: 'No Artifacts have been created for this collection',
     pageNotFound: 'Page Not Found',
     paths: {
         about: 'About',
@@ -99,7 +100,7 @@ export const LANGUAGE = {
     },
     submit: 'Submit',
     totalContributed: 'Total Contributed',
-    viewAccount: 'View Account',
+    viewAccount: 'My Museum',
     viewCollection: 'View Collection',
     walletSignMessage: 'You will be prompted to sign the transaction via your wallet.',
     walletNotConnected: 'You must connect a wallet to continue.'

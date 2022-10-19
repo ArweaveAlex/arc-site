@@ -25,7 +25,7 @@ export const MOCK_DATA_HEADER = [
             "balance": "1100100000000",
         },
         "id": "jpfRH01z2dAaJV75dsCzfhfdxHI5IL3gSjBLlLHOGtY",
-        "artefacts": 20321,
+        "artifacts": 20321,
         "lastCursor": "WyIyMDIyLTA3LTA1VDAwOjMyOjI3LjQ1MFoiLDIwXQ=="
     },
     {
@@ -54,7 +54,7 @@ export const MOCK_DATA_HEADER = [
             "balance": "1100100000000",
         },
         "id": "jpfRH01z2dAaJV75dsCzfhfdxHI5IL3gSjBLlLHOGtY",
-        "artefacts": 10452,
+        "artifacts": 10452,
         "lastCursor": "WyIyMDIyLTA3LTA1VDAwOjMyOjI3LjQ1MFoiLDIwXQ=="
     }
 ]

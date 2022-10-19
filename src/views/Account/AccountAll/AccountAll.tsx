@@ -2,7 +2,7 @@ import React from "react";
 
 import { Table } from "@/components/organisms/Table";
 
-import { getViewblockEndpoint } from "@/endpoints";
+// import { getViewblockEndpoint } from "@/endpoints";
 import { LANGUAGE } from "@/language"
 import * as S from "./styles";
 
@@ -14,20 +14,20 @@ export default function AccountAll() {
 
     const [data, setData] = React.useState<any>(null);
 
-    function getViewblockLink(uploaderTxId: string | null, label: string | null) {
-        if (!uploaderTxId || !label) {
-            return <a target="_blank" href={"#"}></a>
-        }
-        return <a target="_blank" href={getViewblockEndpoint(uploaderTxId)}>{label}</a>
-    }
+    // function getViewblockLink(uploaderTxId: string | null, label: string | null) {
+    //     if (!uploaderTxId || !label) {
+    //         return <a target="_blank" href={"#"}></a>
+    //     }
+    //     return <a target="_blank" href={getViewblockEndpoint(uploaderTxId)}>{label}</a>
+    // }
 
     React.useEffect(() => {
         if (arProvider.walletAddress) {
             (async function () {
-                setData((await arProvider.getUserArtefacts(arProvider.walletAddress!)).map((element: any) => {
+                setData((await arProvider.getUserArtifacts(arProvider.walletAddress!)).map((element: any) => {
                     return { 
-                        title: getViewblockLink(getTagValue(element.node.tags, "Uploader-Tx-Id"), getTagValue(element.node.tags, "Artefact-Name")),
-                        dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "ts") 
+                        title: getTagValue(element.node.tags, "Artifact-Name"),
+                        dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "epoch") 
                     }
                 }));
             })();
@@ -37,7 +37,7 @@ export default function AccountAll() {
     return data ? (
         <S.Wrapper>
             <Table
-                title={LANGUAGE.allArtefacts}
+                title={LANGUAGE.allArtifacts}
                 header={{ title: { width: "77.5%" }, dateCreated: { width: "22.5%" } }}
                 data={data}
                 recordsPerPage={50}

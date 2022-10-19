@@ -20,7 +20,7 @@ export default function Header() {
                             <S.LogoHeaderContent>
                                 <S.LogoHeader>{LANGUAGE.companyTitle}</S.LogoHeader>
                                 <S.Version>
-                                    <span>{LANGUAGE.beta.toUpperCase()}</span>
+                                    <span>{LANGUAGE.appVersion.toUpperCase()}</span>
                                 </S.Version>
                             </S.LogoHeaderContent>
                             <S.LogoSubHeader>{LANGUAGE.companyDescription}</S.LogoSubHeader>

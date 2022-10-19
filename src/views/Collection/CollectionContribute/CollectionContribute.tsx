@@ -47,6 +47,15 @@ export default function CollectionContribute(props: IProps) {
                 )
             }
             else {
+                if (arProvider.availableBalance === 0) {
+                    return (
+                        <>
+                            <S.AvailableBalance>{LANGUAGE.availableBalance}:&nbsp;</S.AvailableBalance>
+                            <S.BalanceAmount>{0}&nbsp;</S.BalanceAmount>
+                            <S.ARTokens>{LANGUAGE.arTokens}</S.ARTokens>
+                        </>
+                    )
+                }
                 return (
                     <p>{LANGUAGE.fetchingBalance}&nbsp;...</p>
                 )

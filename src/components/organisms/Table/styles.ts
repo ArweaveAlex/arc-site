@@ -80,9 +80,11 @@ export const RowData = styled.div`
         font-family: ${(props) => props.theme.typography.family.secondary};
         font-weight: ${(props) => props.theme.typography.weight.bold};
         color: ${(props) => props.theme.colors.font.primary.active.base};
-        text-overflow: ellipsis;
         overflow: hidden;
+        text-overflow: ellipsis;
         white-space: nowrap;
+        height: 50%;
+        padding-top: 2.5px;
     }
 `;
 

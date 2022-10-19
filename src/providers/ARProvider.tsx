@@ -5,9 +5,10 @@ import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
 import { ContributionResultType } from "@/types";
 import { getBalanceEndpoint } from "@/endpoints";
-import { LANGUAGE } from "@/language";
-import { formatDate, getTagValue } from "@/util";
+import { getTagValue } from "@/util";
 import { Tag } from "arweave/node/lib/transaction";
+import { LANGUAGE } from "@/language";
+import { PAGINATOR } from "@/config";
 
 const AR_WALLETS = [
     { name: "arconnect", logo: "arconnect-wallet-logo.png" }
@@ -30,10 +31,10 @@ interface ARContextState {
     setWalletModalVisible: (open: boolean) => void;
     handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
     getARAmount: (amount: string) => number;
-    getAllArtefactsByPool: (poolId: string) => any;
+    getAllArtifactsByPool: (poolId: string) => any;
     getAllPools: () => any;
     getPoolById: (poolId: string) => any;
-    getUserArtefacts: (userWallet: string) => any;
+    getUserArtifacts: (userWallet: string) => any;
     getUserContributions: (userWallet: string) => any;
     getUserFavorites: (userWallet: string) => any;
     toggleUserFavorite: (artefactId: string, userWallet: string) => any;
@@ -53,8 +54,8 @@ const arweave = Arweave.init({
 
 const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 
-// const POOL_IDS: string[] = ["6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA"];
-const POOL_IDS: string[] = ["t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M"]
+// "6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA", "t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M"
+const POOL_IDS: string[] = ["AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo"];
 
 const DEFAULT_CONTEXT = {
     wallets: [],
@@ -78,8 +79,8 @@ const DEFAULT_CONTEXT = {
         console.error(`Get ${amount} AR Amount`);
         return 0
     },
-    async getAllArtefactsByPool(poolId: string): Promise<any> {
-        console.log(`Get All Artefacts for ${poolId}`);
+    async getAllArtifactsByPool(poolId: string): Promise<any> {
+        console.log(`Get All Artifacts for ${poolId}`);
         return null;
     },
     async getAllPools() {
@@ -89,7 +90,7 @@ const DEFAULT_CONTEXT = {
         console.log(`Get Pool ${poolId}`);
         return null
     },
-    async getUserArtefacts(_userWallet: string) {
+    async getUserArtifacts(_userWallet: string) {
         return null;
     },
     async getUserContributions(_userWallet: string) {
@@ -193,8 +194,11 @@ export function ARProvider(props: ARProviderProps) {
         return Math.floor(+arweave.ar.winstonToAr(amount) * 1e5) / 1e5
     }
 
-    async function getAllArtefactsByPool(poolId: string) {
-        const query = gql.query({
+    async function getAllArtifactsByPool(poolId: string) {
+        const aggregatedArtifacts: any = [];
+        let cursor: string | null = "";
+
+        const query = (cursor: string) => gql.query({
             operation: "transactions",
             variables: {
                 tags: {
@@ -204,11 +208,13 @@ export function ARProvider(props: ARProviderProps) {
                     },
                     type: "[TagFilter!]"
                 },
-                first: 1000
+                first: PAGINATOR,
+                after: cursor
             },
             fields: [
                 {
                     edges: [
+                        "cursor",
                         {
                             node: [
                                 "id",
@@ -224,7 +230,17 @@ export function ARProvider(props: ARProviderProps) {
                 }
             ]
         })
-        return (await arweave.api.post("/graphql", query)).data.data.transactions.edges;
+
+        while (cursor !== null) {
+            const response = (await arweave.api.post("/graphql", query(cursor))).data.data.transactions.edges;
+            cursor = response[response.length - 1].cursor;
+            aggregatedArtifacts.push(...response);
+            if (response.length < PAGINATOR) {
+                cursor = null;
+            }
+        }
+
+        return aggregatedArtifacts;
     }
 
     async function getAllPools() {
@@ -247,15 +263,15 @@ export function ARProvider(props: ARProviderProps) {
         return { id: poolId, state: (await contract.readState()).state, ts: TS };
     }
 
-    async function getUserArtefacts(userWallet: string) {
+    async function getUserArtifacts(userWallet: string) {
         let contributions = [];
         for (let i = 0; i < POOL_IDS.length; i++) {
-            let artefacts = await getAllArtefactsByPool(POOL_IDS[i]!);
-            contributions = contributions.concat(artefacts);
+            let artifacts = await getAllArtifactsByPool(POOL_IDS[i]!);
+            contributions = contributions.concat(artifacts);
         }
-        return contributions.filter((artefact: any) => {
-            if (artefact.node && artefact.node.tags) {
-                let tags = artefact.node.tags;
+        return contributions.filter((artifact: any) => {
+            if (artifact.node && artifact.node.tags) {
+                let tags = artifact.node.tags;
                 for (let j = 0; j < tags.length; j++) {
                     if (tags[j].name === "Initial-Owner") {
                         if (tags[j].value === userWallet) {
@@ -366,7 +382,7 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     async function calcLastContributions(userWallet: string, pools: any[]){
-        let contributions = await getUserArtefacts(userWallet);
+        let contributions = await getUserArtifacts(userWallet);
         let conMap = {};
         pools.map((pool: any) => {
             let lastDate = 0;
@@ -436,10 +452,10 @@ export function ARProvider(props: ARProviderProps) {
                 setWalletModalVisible,
                 handlePoolContribute,
                 getARAmount,
-                getAllArtefactsByPool,
+                getAllArtifactsByPool,
                 getAllPools,
                 getPoolById,
-                getUserArtefacts,
+                getUserArtifacts,
                 getUserContributions,
                 getUserFavorites,
                 toggleUserFavorite

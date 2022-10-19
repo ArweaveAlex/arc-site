@@ -3,7 +3,7 @@ import React from "react";
 export interface ArweaveCollectionProps {
   state: ArweaveCollectionState;
   id: string;
-  artefacts: number;
+  artifacts: number;
   lastCursor: string;
   ts: string;
 }
@@ -27,7 +27,7 @@ export type FormFieldType = "number" | "password";
 export type NotificationType = "success" | "warning" | "neutral";
 export type ContributionResultType = { status: boolean, message: string | null };
 export type RefType = { current: HTMLElement };
-export type DateType = "iso" | "ts";
+export type DateType = "iso" | "epoch";
 
 export interface IURLView {
   account: URLViewType[]

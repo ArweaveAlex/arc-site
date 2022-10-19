@@ -86,6 +86,12 @@ export default function WalletConnect({ setDynamicNavigationStatus }) {
                 />
                 {showDropdown &&
                     <S.WalletDropdown>
+                        <li onClick={handleViewAccount}>
+                            <S.Icon strokeFill={true}>
+                                <ReactSVG src={ASSETS.user} />
+                            </S.Icon>
+                            {LANGUAGE.viewAccount}
+                        </li>
                         <li onClick={copyAddress}>
                             <S.Icon strokeFill={false}>
                                 <ReactSVG src={ASSETS.copy} />
@@ -103,12 +109,6 @@ export default function WalletConnect({ setDynamicNavigationStatus }) {
                                 <ReactSVG src={ASSETS.disconnect} />
                             </S.Icon>
                             {LANGUAGE.disconnect}
-                        </li>
-                        <li onClick={handleViewAccount}>
-                            <S.Icon strokeFill={true}>
-                                <ReactSVG src={ASSETS.user} />
-                            </S.Icon>
-                            {LANGUAGE.viewAccount}
                         </li>
                     </S.WalletDropdown>
                 }

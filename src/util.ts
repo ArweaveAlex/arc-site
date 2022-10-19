@@ -19,7 +19,7 @@ export function formatDate(dateArg: string | null, dateType: DateType) {
         case "iso":
             date = new Date(dateArg);
             break;
-        case "ts": 
+        case "epoch": 
             date = new Date(Number(dateArg));
             break;
         default:
@@ -46,7 +46,6 @@ export function getTagValue(list: { name: string, value: string }[], name: strin
             }
         }
     }
-
     return null;
 }
 
