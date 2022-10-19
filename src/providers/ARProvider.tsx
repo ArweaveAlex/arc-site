@@ -329,17 +329,28 @@ export function ARProvider(props: ARProviderProps) {
 
         let searchTag: Tag = new Tag("Alex-Favorite-Search", userWallet);
         let dateCreatedTag: Tag = new Tag("Date-Created", Date.now().toString());
-        let favoriteIdsTag: Tag = new Tag("Favorite-Ids-Tag", JSON.stringify(favorites));
+        let favoriteIdsTag: Tag = new Tag("Favorite-Ids-Tag", JSON.stringify(favorites).toString());
+        
+        console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
         let res = await arweave.createTransaction({
-            data: JSON.stringify({}),
-            tags: [
-                searchTag,
-                dateCreatedTag,
-                favoriteIdsTag
-            ]
+            data: JSON.stringify(favorites)
         }, "use_wallet");
+        console.log(res)
+        try {
+            await arweave.transactions.sign(res, "use_wallet");
+        } catch(e){
+            console.log(e)
+        }
 
+        res.addTag("Alex-Favorite-Search", userWallet);
+        res.addTag("Date-Created", Date.now().toString());
+        res.addTag("Favorite-Ids-Tag", JSON.stringify(favorites));
+        
         console.log(res);
+
+        const response = await arweave.transactions.post(res);
+
+        console.log(response)
     }
 
     function calcARDonated(userWallet: string, pool: any) {
