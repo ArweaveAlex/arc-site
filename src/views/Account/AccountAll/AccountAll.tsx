@@ -25,23 +25,37 @@ export default function AccountAll() {
         if (arProvider.walletAddress) {
             (async function () {
                 setData((await arProvider.getUserArtifacts(arProvider.walletAddress!)).map((element: any) => {
-                    return { 
+                    return {
                         title: getTagValue(element.node.tags, "Artifact-Name"),
-                        dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "epoch") 
+                        dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "epoch")
                     }
                 }));
             })();
         }
     }, [arProvider.walletAddress])
 
+    function getData() {
+        if (data && data.length > 0) {
+            return (
+                <S.Wrapper>
+                    <Table
+                        title={LANGUAGE.allArtifacts}
+                        header={{ title: { width: "77.5%" }, dateCreated: { width: "22.5%" } }}
+                        data={data}
+                        recordsPerPage={50}
+                    />
+                </S.Wrapper>
+            )
+        }
+        else {
+            return <p>{LANGUAGE.noArtifactsCreated}</p>
+        }
+    }
+
     return data ? (
-        <S.Wrapper>
-            <Table
-                title={LANGUAGE.allArtifacts}
-                header={{ title: { width: "77.5%" }, dateCreated: { width: "22.5%" } }}
-                data={data}
-                recordsPerPage={50}
-            />
-        </S.Wrapper>
+        <>
+            {getData()}
+        </>
+
     ) : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

@@ -54,8 +54,8 @@ const arweave = Arweave.init({
 
 const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 
-// "6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA", "t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M"
-const POOL_IDS: string[] = ["AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo"];
+// "6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA", "t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M", AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo
+const POOL_IDS: string[] = ["t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M"];
 
 const DEFAULT_CONTEXT = {
     wallets: [],
@@ -232,10 +232,18 @@ export function ARProvider(props: ARProviderProps) {
         })
 
         while (cursor !== null) {
-            const response = (await arweave.api.post("/graphql", query(cursor))).data.data.transactions.edges;
-            cursor = response[response.length - 1].cursor;
-            aggregatedArtifacts.push(...response);
-            if (response.length < PAGINATOR) {
+            const response = await arweave.api.post("/graphql", query(cursor));
+            if (response.data.data) {
+                const responseData = response.data.data.transactions.edges;
+                if (responseData.length > 0) {
+                    cursor = responseData[responseData.length - 1].cursor;
+                    aggregatedArtifacts.push(...responseData);
+                    if (responseData.length < PAGINATOR) {
+                        cursor = null;
+                    }
+                }
+            }
+            else {
                 cursor = null;
             }
         }
@@ -346,21 +354,34 @@ export function ARProvider(props: ARProviderProps) {
         let searchTag: Tag = new Tag("Alex-Favorite-Search", userWallet);
         let dateCreatedTag: Tag = new Tag("Date-Created", Date.now().toString());
         let favoriteIdsTag: Tag = new Tag("Favorite-Ids-Tag", JSON.stringify(favorites).toString());
+
+        // let key = await arweave.wallets.generate();
+
+        // let transaction = await arweave.createTransaction({
+        //     target: '1seRanklLU_1VTGkEk7P0xAwMJfA7owA1JHW5KyZKlY',
+        //     quantity: arweave.ar.arToWinston('10.5')
+        // }, key);
+
+        // await arweave.transactions.sign(transaction, key);
+
+        // console.log(transaction);
         
-        console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
-        let res = await arweave.createTransaction({
-            data: JSON.stringify(favorites)
-        }, "use_wallet");
+        let res = await arweave.createTransaction({data: JSON.stringify(favorites)}, "use_wallet");
         console.log(res)
+
+        res.addTag("Alex-Favorite-Search", userWallet);
+        res.addTag("Date-Created", Date.now().toString());
+        res.addTag("Favorite-Ids-Tag", JSON.stringify(favorites));
+        
         try {
             await arweave.transactions.sign(res, "use_wallet");
         } catch(e){
             console.log(e)
         }
 
-        res.addTag("Alex-Favorite-Search", userWallet);
-        res.addTag("Date-Created", Date.now().toString());
-        res.addTag("Favorite-Ids-Tag", JSON.stringify(favorites));
+        // res.addTag("Alex-Favorite-Search", userWallet);
+        // res.addTag("Date-Created", Date.now().toString());
+        // res.addTag("Favorite-Ids-Tag", JSON.stringify(favorites));
         
         console.log(res);
 
