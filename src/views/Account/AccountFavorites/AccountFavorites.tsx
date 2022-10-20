@@ -27,7 +27,7 @@ export default function AccountFavorites() {
                 setData((await arProvider.getUserFavorites(arProvider.walletAddress!)).map((element: any) => {
                     return { 
                         title: getViewblockLink(getTagValue(element.node.tags, "Uploader-Tx-Id"), getTagValue(element.node.tags, "Artefact-Name")),
-                        dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "ts") 
+                        dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "epoch") 
                     }
                 }));
             })();

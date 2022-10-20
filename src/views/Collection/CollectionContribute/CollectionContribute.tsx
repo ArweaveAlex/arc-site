@@ -107,9 +107,9 @@ export default function CollectionContribute(props: IProps) {
                                     loading={loading}
                                     formSubmit
                                 />
-                                <S.SignMessage>
+                                {/* <S.SignMessage>
                                     <p>{LANGUAGE.walletSignMessage}</p>
-                                </S.SignMessage>
+                                </S.SignMessage> */}
                             </S.SubmitWrapper>
                         </S.Form>
                     </S.ModalWrapper>

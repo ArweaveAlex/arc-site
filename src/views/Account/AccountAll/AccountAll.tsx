@@ -48,7 +48,7 @@ export default function AccountAll() {
             )
         }
         else {
-            return <p>{LANGUAGE.noArtifactsCreated}</p>
+            return <p>{LANGUAGE.noArtifacts}</p>
         }
     }
 

@@ -74,7 +74,7 @@ export const LANGUAGE = {
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
     next: 'Next',
-    noArtifactsCreated: 'No Artifacts Created',
+    noArtifacts: 'No Artifacts',
     pageNotFound: 'Page Not Found',
     paths: {
         about: 'About',

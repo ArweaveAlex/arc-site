@@ -40,7 +40,7 @@ export const ASSETS = {
 }
 
 export const DOM = {
-    loader: "loader",
+    loader: "loader-portal",
     modal: "modal-portal",
     notification: "notification-portal"
 };

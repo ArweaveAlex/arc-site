@@ -7,8 +7,6 @@ import { Loader } from "@/components/atoms/Loader";
 import { CollectionHeader } from "./CollectionHeader";
 import { CollectionDetail } from "./CollectionDetail";
 
-// import { getViewblockEndpoint } from "@/endpoints";
-
 import { getTxUrl, formatDate, getTagValue } from "@/util";
 import * as S from "./styles";
 import React from "react";
@@ -18,22 +16,20 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
 
     const [data, setData] = React.useState<any>(null);
 
-    // function getViewblockLink(uploaderTxId: string | null, label: string | null) {
-    //     if (!uploaderTxId || !label) {
-    //         return <a target="_blank" href={"#"}></a>
-    //     }
-    //     return <a target="_blank" href={getViewblockEndpoint(uploaderTxId)}>{label}</a>
-    // }
-
     React.useEffect(() => {
         (async function () {
             setData((await arProvider.getAllArtifactsByPool(props.data.id)).map((element: any) => {
-                return {
-                    title: getTagValue(element.node.tags, "Artefact-Name"), 
-                    dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "epoch"),
-                    id: element.node.id
+                if (!getTagValue(element.node.tags, "Uploader-Tx-Id")) {
+                    return {
+                        title: getTagValue(element.node.tags, "Artefact-Name"), 
+                        dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "epoch"),
+                        id: element.node.id
+                    }
                 }
-            }));
+                else {
+                    return null;
+                }
+            }).filter((element: any) => element !== null));
         })();
     }, [])
     

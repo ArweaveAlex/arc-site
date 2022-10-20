@@ -26,7 +26,7 @@ export default function CollectionDetail(props: { artifactData: any }) {
         />
     ) : 
         <S.EmptyWrapper>
-            <p>{LANGUAGE.noArtifactsCreated}</p>
+            <p>{LANGUAGE.noArtifacts}</p>
         </S.EmptyWrapper>
 }
 

@@ -6,7 +6,6 @@ import { SmartWeaveNodeFactory } from "redstone-smartweave";
 import { ContributionResultType } from "@/types";
 import { getBalanceEndpoint } from "@/endpoints";
 import { getTagValue } from "@/util";
-import { Tag } from "arweave/node/lib/transaction";
 import { LANGUAGE } from "@/language";
 import { PAGINATOR } from "@/config";
 
@@ -54,8 +53,8 @@ const arweave = Arweave.init({
 
 const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 
-// "6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA", "t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M", AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo
-const POOL_IDS: string[] = ["t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M"];
+// "6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA", "t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M", "AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo"
+const POOL_IDS: string[] = ["AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo"];
 
 const DEFAULT_CONTEXT = {
     wallets: [],
@@ -242,6 +241,9 @@ export function ARProvider(props: ARProviderProps) {
                         cursor = null;
                     }
                 }
+                else {
+                    cursor = null;
+                }
             }
             else {
                 cursor = null;
@@ -351,41 +353,26 @@ export function ARProvider(props: ARProviderProps) {
 
         console.log(favorites);
 
-        let searchTag: Tag = new Tag("Alex-Favorite-Search", userWallet);
-        let dateCreatedTag: Tag = new Tag("Date-Created", Date.now().toString());
-        let favoriteIdsTag: Tag = new Tag("Favorite-Ids-Tag", JSON.stringify(favorites).toString());
-
-        // let key = await arweave.wallets.generate();
-
-        // let transaction = await arweave.createTransaction({
-        //     target: '1seRanklLU_1VTGkEk7P0xAwMJfA7owA1JHW5KyZKlY',
-        //     quantity: arweave.ar.arToWinston('10.5')
-        // }, key);
-
-        // await arweave.transactions.sign(transaction, key);
-
-        // console.log(transaction);
+        // let searchTag: Tag = new Tag("Alex-Favorite-Search", userWallet);
+        // let dateCreatedTag: Tag = new Tag("Date-Created", Date.now().toString());
+        // let favoriteIdsTag: Tag = new Tag("Favorite-Ids-Tag", JSON.stringify(favorites).toString());
         
-        let res = await arweave.createTransaction({data: JSON.stringify(favorites)}, "use_wallet");
-        console.log(res)
+        let txRes = await arweave.createTransaction({data: JSON.stringify(favorites)}, "use_wallet");
+        console.log(txRes)
 
-        res.addTag("Alex-Favorite-Search", userWallet);
-        res.addTag("Date-Created", Date.now().toString());
-        res.addTag("Favorite-Ids-Tag", JSON.stringify(favorites));
+        txRes.addTag("Alex-Favorite-Search", userWallet);
+        txRes.addTag("Date-Created", Date.now().toString());
+        txRes.addTag("Favorite-Ids-Tag", JSON.stringify(favorites));
         
         try {
-            await arweave.transactions.sign(res, "use_wallet");
+            await arweave.transactions.sign(txRes, "use_wallet");
         } catch(e){
             console.log(e)
         }
-
-        // res.addTag("Alex-Favorite-Search", userWallet);
-        // res.addTag("Date-Created", Date.now().toString());
-        // res.addTag("Favorite-Ids-Tag", JSON.stringify(favorites));
         
-        console.log(res);
+        console.log(txRes);
 
-        const response = await arweave.transactions.post(res);
+        const response = await arweave.transactions.post(txRes);
 
         console.log(response)
     }
