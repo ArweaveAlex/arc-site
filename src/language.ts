@@ -3,7 +3,7 @@ export const LANGUAGE = {
     about: 'About',
     artifactsCreated: 'of Artifacts Created',
     account: {
-        header1: 'Your Account',
+        header1: 'Your Library',
         all: {
             title: 'All',
             header1: 'All Artifacts'
@@ -12,9 +12,9 @@ export const LANGUAGE = {
             title: 'New',
             header1: 'New Artifacts'
         },
-        favorites: {
-            title: 'My Library',
-            header1: 'My Library'
+        bookmarks: {
+            title: 'Bookmarks',
+            header1: 'Bookmarks'
         },
         contributions: {
             title: 'My Contributions',
@@ -82,6 +82,7 @@ export const LANGUAGE = {
     },
     previous: 'Previous',
     readMore: 'Read More',
+    receiving: 'Receiving',
     shareCollection: 'Share this Collection',
     social: {
         discord: 'Discord',
@@ -100,7 +101,7 @@ export const LANGUAGE = {
     },
     submit: 'Submit',
     totalContributed: 'Total Contributed',
-    viewAccount: 'My Museum',
+    viewAccount: 'My Library',
     viewCollection: 'View Collection',
     walletSignMessage: 'You will be prompted to sign the transaction via your wallet.',
     walletNotConnected: 'You must connect a wallet to continue.'

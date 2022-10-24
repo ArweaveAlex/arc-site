@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { AlignType } from "@/types";
+
 import { open, fadeIn2 } from "@/animations";
 import { STYLING } from "@/styling-config";
 
@@ -50,6 +52,8 @@ export const Body = styled.div`
 export const Table = styled.div`
     height: 100%;
     width: 100%;
+    border-right: 1px solid ${(props) => props.theme.colors.border.secondary};
+    box-shadow: 1px 2px 2px ${(props) => props.theme.colors.border.secondary};
 `;
 
 export const TableHeader = styled.div`
@@ -88,9 +92,12 @@ export const RowData = styled.div`
     }
 `;
 
-export const THeader = styled(RowData)<{ even: boolean, width: string }>`
+export const THeader = styled(RowData)<{ even: boolean, width: string, align: AlignType }>`
     width: ${(props) => props.width};
     border-left: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
+    border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
+    display: flex;
+    justify-content: ${(props) => props.align};
 `;
 
 export const TableBody = styled.div`
@@ -100,7 +107,14 @@ export const TableBody = styled.div`
 export const TData = styled(RowData)<{ even: boolean, width: string }>`
     width: ${(props) => props.width};
     border-left: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
+    border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
     background: none;
+    font-family: ${(props) => props.theme.typography.family.primary};
+    font-weight: ${(props) => props.theme.typography.weight.regular};
+    div {
+        height: 100%;
+        width: 100%;
+    }
     p {
         font-family: ${(props) => props.theme.typography.family.primary};
         font-weight: ${(props) => props.theme.typography.weight.regular};

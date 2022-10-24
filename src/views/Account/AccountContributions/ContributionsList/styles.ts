@@ -92,6 +92,7 @@ export const SubheaderContainer = styled.div`
 
 export const Subheader1 = styled.div`
     p {
+        height: 20px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -102,6 +103,7 @@ export const Subheader1 = styled.div`
 
 export const Subheader2 = styled.div`
     p {
+        height: 20px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -110,13 +112,9 @@ export const Subheader2 = styled.div`
     }
 `;
 
-export const ID = styled(Subheader2)`
-    p {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-`;
+export const ID = styled(Subheader2)``;
+
+export const Date = styled(ID)``;
 
 export const LIBodyContainer = styled.div`
     height: 100%;
@@ -136,6 +134,7 @@ export const LIBodyFlex = styled.div`
 `;
 
 export const P = styled.p`
+    height: 18px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

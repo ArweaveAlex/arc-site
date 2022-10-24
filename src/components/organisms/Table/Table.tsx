@@ -32,15 +32,8 @@ export default function Table(props: IProps) {
                     <S.TableHeader>
                         {Object.keys(props.header).map((element: string, index: number) => {
                             return (
-                                <S.THeader key={index} even={(index + 1) % 2 === 0} width={props.header[element]!.width}>
-                                    {
-                                         element !== 'id' &&
-                                         <p>{util.formatTitle(element)}</p>
-                                    }
-                                    {
-                                         element === 'id' &&
-                                         <p>{"My Library"}</p>
-                                    }
+                                <S.THeader key={index} even={(index + 1) % 2 === 0} width={props.header[element]!.width} align={props.header[element]!.align}>
+                                    <p>{util.formatTitle(element)}</p>
                                 </S.THeader>
                             )
                         })}
@@ -49,22 +42,14 @@ export default function Table(props: IProps) {
                         return (
                             <S.Row key={index} even={index % 2 === 0}>
                                 {Object.keys(element).map((row: string, rowIndex: number) => {
+                                    const rowData = typeof element[row] === "object" ? <div>{element[row]}</div> : <p>{element[row]}</p>
                                     return (
-                                        <S.TData 
-                                            key={rowIndex} 
-                                            even={(rowIndex + 1) % 2 === 0} 
-                                            width={props.header[row]!.width}>
-                                                { row !== 'id' &&
-                                                    <p>{element[row]}</p>
-                                                }
-                                                
-                                                {
-                                                    props.toggleUserFavorite && row === 'id' && 
-                                                        <button onClick={
-                                                            () => {props.toggleUserFavorite!(element[row]!.toString(), arProvider.walletAddress!)
-                                                        }}>Add to My Library</button>
-                                                }
-                                                
+                                        <S.TData
+                                            key={rowIndex}
+                                            even={(rowIndex + 1) % 2 === 0}
+                                            width={props.header[row]!.width}
+                                        >
+                                            {rowData}
                                         </S.TData>
                                     )
                                 })}

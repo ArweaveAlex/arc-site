@@ -1,6 +1,6 @@
 export interface IProps {
-  sm?: boolean;
-  warning?: boolean,
   src: string;
   handlePress: () => void;
+  sm?: boolean;
+  warning?: boolean;
 }

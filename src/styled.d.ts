@@ -115,6 +115,9 @@ declare module "styled-components" {
                     fill: string
                     hover: string
                 }
+                secondary: {
+                    fill: string
+                }
                 inactive: string
             }
             indicator: {

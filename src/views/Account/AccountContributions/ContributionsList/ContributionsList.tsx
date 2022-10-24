@@ -29,6 +29,7 @@ export default function ContributionsList({data}) {
                                     <S.SubheaderContainer>
                                         <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
                                         &nbsp;
+                                        <S.Date><p>{util.formatDate(collection.ts, "epoch")}</p></S.Date>
                                     </S.SubheaderContainer>
                                 </S.SubheaderFlex>
                             </S.LIHeaderContainer>
@@ -36,7 +37,7 @@ export default function ContributionsList({data}) {
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>{LANGUAGE.totalContributed}:</S.LIBodyHeader>
                                     &nbsp;
-                                    <S.LIBodyData>{collection.totalContributed + " "  + LANGUAGE.arTokens}</S.LIBodyData>
+                                    <S.LIBodyData>{`${collection.totalContributed} ${LANGUAGE.arTokens}`}</S.LIBodyData>
                                 </S.LIBodyFlex>
                                 <S.LIBodyFlex>
                                     <S.LIBodyHeader>{LANGUAGE.lastContribution}:</S.LIBodyHeader>
@@ -44,7 +45,7 @@ export default function ContributionsList({data}) {
                                     <S.LIBodyData>{util.formatDate(collection.lastContribution, "epoch")}</S.LIBodyData>
                                 </S.LIBodyFlex>
                                 <S.LIBodyFlex>
-                                    <S.LIBodyHeader>Receiving:</S.LIBodyHeader>
+                                    <S.LIBodyHeader>{LANGUAGE.receiving}:</S.LIBodyHeader>
                                     &nbsp;
                                     <S.LIBodyData>{collection.receivingPercent}% {LANGUAGE.artifactsCreated}</S.LIBodyData>
                                 </S.LIBodyFlex>

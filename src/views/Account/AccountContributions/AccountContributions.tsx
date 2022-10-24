@@ -1,6 +1,5 @@
 import { LANGUAGE } from "@/language";
 import { useARProvder } from "@/providers/ARProvider";
-import { formatDate, getTagValue } from "@/util";
 import React from "react";
 import { ContributionsList } from "./ContributionsList";
 
@@ -11,7 +10,7 @@ export default function AccountContributions() {
     const arProvider = useARProvder();
 
     React.useEffect(() => {
-        if(arProvider.walletAddress){
+        if (arProvider.walletAddress) {
             (async function () {
                 setData((await arProvider.getUserContributions(arProvider.walletAddress!)).map((element: any) => {
                     return element;
@@ -19,10 +18,10 @@ export default function AccountContributions() {
             })();
         }
     }, [arProvider.walletAddress])
-    
+
     return data ? (
         <S.Wrapper>
-            <ContributionsList data={data}/>
+            <ContributionsList data={data} />
         </S.Wrapper>
     ) : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

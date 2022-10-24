@@ -1,6 +1,6 @@
 import { AccountTabs } from "@/views/Account/AccountTabs";
 
-export default function AccountFavorites() {
+export default function AccountBookmarks() {
     return (
         <AccountTabs />
     )

@@ -2,7 +2,7 @@ import { IURLView } from "./types";
 
 import { AccountAll } from "./views/Account/AccountAll";
 // import { AccountNew } from "./views/Account/AccountNew";
-import { AccountFavorites } from "./views/Account/AccountFavorites";
+import { AccountBookmarks } from "./views/Account/AccountBookmarks";
 import { AccountContributions } from "./views/Account/AccountContributions";
 
 import * as urls from "./urls";
@@ -30,6 +30,8 @@ export const ASSETS = {
     dropdown: `${ASSET_SRC}/dropdown.svg`,
     faviconDark: `${ASSET_SRC}/favicon-dark.svg`,
     faviconLight: `${ASSET_SRC}/favicon-light.svg`,
+    bookmark: `${ASSET_SRC}/bookmark.svg`,
+    bookmarkSelected: `${ASSET_SRC}/bookmark-selected.svg`,
     infoGraphic: `${ASSET_SRC}/info-graphic.png`,
     logo: `${ASSET_SRC}/logo.svg`,
     logoAlt: `${ASSET_SRC}/logo-alt.svg`,
@@ -49,7 +51,7 @@ export const DOM = {
 //     account: [
 //         { index: 0, label: LANGUAGE.account.all.title, icon: "account-all.svg", disabled: false, url: urls.accountAll, view: AccountAll },
 //         { index: 1, label: LANGUAGE.account.new.title, icon: "account-new.svg", disabled: true, url: urls.accountNew, view: AccountNew },
-//         { index: 2, label: LANGUAGE.account.favorites.title, icon: "account-favorites.svg", disabled: true, url: urls.accountFavorites, view: AccountFavorites },
+//         { index: 2, label: LANGUAGE.account.bookmarks.title, icon: "account-bookmarks.svg", disabled: true, url: urls.accountBookmarks, view: AccountBookmarks },
 //         { index: 2, label: LANGUAGE.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
 //     ]
 // }
@@ -57,7 +59,7 @@ export const DOM = {
 export const URLS: IURLView = {
     account: [
         { index: 0, label: LANGUAGE.account.all.title, icon: "account-all.svg", disabled: false, url: urls.accountAll, view: AccountAll },
-        { index: 2, label: LANGUAGE.account.favorites.title, icon: "account-favorites.svg", disabled: true, url: urls.accountFavorites, view: AccountFavorites },
+        { index: 2, label: LANGUAGE.account.bookmarks.title, icon: "account-bookmarks.svg", disabled: false, url: urls.accountBookmarks, view: AccountBookmarks },
         { index: 2, label: LANGUAGE.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
     ]
 }

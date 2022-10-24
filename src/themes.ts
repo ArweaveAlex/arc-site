@@ -139,6 +139,9 @@ export const defaultTheme: DefaultTheme = {
                 fill: DEFAULT.neutral1,
                 hover: DEFAULT.neutral6,
             },
+            secondary: {
+                fill: DEFAULT.secondary
+            },
             inactive: DEFAULT.neutral4
         },
         indicator: {

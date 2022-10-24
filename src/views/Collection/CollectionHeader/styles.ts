@@ -77,13 +77,7 @@ export const Subheader2 = styled.div`
     }
 `;
 
-export const ID = styled(Subheader2)`
-    p {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-`;
+export const ID = styled(Subheader2)``;
 
 export const Image = styled.div<{ image: string }>`
     height: 425px;

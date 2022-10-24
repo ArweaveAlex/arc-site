@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import { Carousel } from "react-responsive-carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import { getTxUrl } from "@/util";
+import { getTxEndpoint } from "@/endpoints";
 import * as urls from "@/urls";
 import { LANGUAGE } from "@/language";
 import { ArweaveCollectionProps } from "@/types";
@@ -32,16 +32,18 @@ function CollectionCard(props: ArweaveCollectionProps) {
                     </S.Link>
                 </S.LinkContainer>
             </S.C1>
-            <S.C2 image={getTxUrl(props.state.image)} />
+            <S.C2 image={getTxEndpoint(props.state.image)} />
         </S.PCWrapper>
     ) : null
 }
 
 export default function LandingCollections(props: { data: ArweaveCollectionProps[] }) {
     function getCollections() {
-        return props.data.map((collection: ArweaveCollectionProps) => (
-            <CollectionCard {...collection} key={collection.id} />
-        ))
+        return props.data.map((collection: ArweaveCollectionProps) => {
+            return (
+                <CollectionCard {...collection} key={collection.id} />
+            )
+        })
     }
 
     return (
@@ -77,7 +79,6 @@ export default function LandingCollections(props: { data: ArweaveCollectionProps
                     >
                         {getCollections()}
                     </Carousel>
-                    {/* {getCollections()[0]} */}
                 </S.Body>
             </S.Content>
         </S.Wrapper>

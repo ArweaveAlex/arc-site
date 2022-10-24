@@ -10,7 +10,7 @@ export function formatAddress(address: string | null, wrap: boolean) {
 
 export function formatDate(dateArg: string | null, dateType: DateType) {
     if (!dateArg) {
-        return "";
+        return "N/A";
     }
 
     let date: Date | null = null;
@@ -47,8 +47,4 @@ export function getTagValue(list: { name: string, value: string }[], name: strin
         }
     }
     return null;
-}
-
-export function getTxUrl(tx: string) {
-    return `https://arweave.net/${tx}`;
 }

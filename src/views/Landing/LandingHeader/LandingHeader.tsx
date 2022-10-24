@@ -1,6 +1,6 @@
 import { ReactSVG } from "react-svg";
 
-import * as urls from "@/urls";
+// import * as urls from "@/urls";
 import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
@@ -33,12 +33,12 @@ export default function LandingHeader() {
                             <ReactSVG src={ASSETS.logo} />
                         </S.Logo>
                     </S.FlexSubheader>
-                    <S.Subheader2>
+                    {/* <S.Subheader2>
                         <p>{LANGUAGE.banner.subheader2}</p>
                     </S.Subheader2>
                     <S.Link >
                         <a href={urls.readMore}>{LANGUAGE.readMore}</a>
-                    </S.Link>
+                    </S.Link> */}
                 </S.SubheaderContainer>
             </S.Content>
         </S.Wrapper>

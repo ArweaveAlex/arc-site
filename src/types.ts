@@ -25,6 +25,7 @@ export interface ArweaveCollectionState {
 export type ButtonType = "primary" | "secondary" | "tertiary";
 export type FormFieldType = "number" | "password";
 export type NotificationType = "success" | "warning" | "neutral";
+export type AlignType = "left" | "center" | "right";
 export type ContributionResultType = { status: boolean, message: string | null };
 export type RefType = { current: HTMLElement };
 export type DateType = "iso" | "epoch";
@@ -48,4 +49,10 @@ export type ValidationType = {
 }
 
 export type KeyValueType = { [key: string]: string | React.ReactNode };
-export type TableHeaderType = { [key: string]: { width: string } };
+export type TableHeaderType = { [key: string]: { width: string, align: AlignType } };
+
+export type ArtifactTableRowType = { 
+  title: string, 
+  dateCreated: string, 
+  bookmark: React.ReactNode
+};
