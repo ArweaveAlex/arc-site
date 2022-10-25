@@ -1,5 +1,4 @@
 import React from "react";
-import slugify from "slugify";
 import parse from "html-react-parser";
 
 import { Carousel } from "react-responsive-carousel";
@@ -8,16 +7,16 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { getTxEndpoint } from "@/endpoints";
 import * as urls from "@/urls";
 import { LANGUAGE } from "@/language";
-import { ArweaveCollectionProps } from "@/types";
+import { CollectionType } from "@/types";
 import * as S from "./styles";
 
-function CollectionCard(props: ArweaveCollectionProps) {
+function CollectionCard(props: CollectionType) {
 
     const [collectionUrl, setCollectionUrl] = React.useState<string | null>(null);
 
     React.useEffect(() => {
-        setCollectionUrl(`${urls.collection}${slugify(props.state.title.toLowerCase() + "-" + props.id)}`)
-    })
+        setCollectionUrl(`${urls.collection}${props.id}`);
+    }, [])
 
     return collectionUrl ? (
         <S.PCWrapper>
@@ -37,9 +36,9 @@ function CollectionCard(props: ArweaveCollectionProps) {
     ) : null
 }
 
-export default function LandingCollections(props: { data: ArweaveCollectionProps[] }) {
+export default function LandingCollections(props: { data: CollectionType[] }) {
     function getCollections() {
-        return props.data.map((collection: ArweaveCollectionProps) => {
+        return props.data.map((collection: CollectionType) => {
             return (
                 <CollectionCard {...collection} key={collection.id} />
             )

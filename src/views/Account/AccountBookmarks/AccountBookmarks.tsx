@@ -2,13 +2,10 @@ import React from "react";
 
 import { useARProvder } from "@/providers/ARProvider";
 
-import { IconButton } from "@/components/atoms/IconButton";
-
 import { ArtifactTable } from "@/global/ArtifactTable";
 
-import { ASSETS } from "@/config";
+import { ArtifactQueryType } from "@/types";
 import { LANGUAGE } from "@/language";
-import { formatDate, getTagValue } from "@/util";
 import * as S from "./styles";
 
 export default function AccountBookmarks() {
@@ -16,41 +13,32 @@ export default function AccountBookmarks() {
 
     const [data, setData] = React.useState<any>(null);
 
-    function getBookmarkToggle(txId: string, selected: boolean) {
-        return (
-            <S.BookmarkToggle>
-                <IconButton
-                    src={selected ? ASSETS.bookmarkSelected : ASSETS.bookmark}
-                    handlePress={() => { arProvider.toggleUserBookmark!(txId) }}
-                />
-            </S.BookmarkToggle>
-        )
-    }
-
     React.useEffect(() => {
         (async function () {
             const bookmarksIds = await arProvider.getBookmarksIds();
-            
+
             if (arProvider.walletAddress) {
-                setData((await arProvider.getUserArtifacts(arProvider.walletAddress)).map((element: any) => {
-                    if (!getTagValue(element.node.tags, "Uploader-Tx-Id") && bookmarksIds.includes(element.node.id)) {
-                        return {
-                            title: getTagValue(element.node.tags, "Artefact-Name"),
-                            dateCreated: formatDate(getTagValue(element.node.tags, "Created-At"), "epoch"),
-                            bookmark: getBookmarkToggle(element.node.id, bookmarksIds.includes(element.node.id))
-                        }
-                    }
-                    else {
-                        return null;
-                    }
-                }).filter((element: any) => element !== null));
+                setData((await arProvider.getUserArtifacts(arProvider.walletAddress)).filter((element: ArtifactQueryType) => 
+                    bookmarksIds.includes(element.node.id)));
             }
         })();
     }, [arProvider.walletAddress])
 
+    function getData() {
+        if (data && data.length > 0) {
+            return (
+                <S.Wrapper>
+                    <ArtifactTable data={data} showBookmarks={true} />
+                </S.Wrapper>
+            )
+        }
+        else {
+            return <p>{LANGUAGE.noArtifacts}</p>
+        }
+    }
+
     return data ? (
-        <S.Wrapper>
-            <ArtifactTable data={data} showBookmarks={true} />
-        </S.Wrapper>
+        <>{getData()}</>
+
     ) : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

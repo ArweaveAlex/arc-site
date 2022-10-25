@@ -14,17 +14,17 @@ export default function Collection() {
   const router = useRouter()
   const arProvider = useARProvder();
 
-  const [blockweavePool, setBlockweavePool] = React.useState<any>(null);
+  const [collection, setCollection] = React.useState<any>(null);
 
   React.useEffect(() => {
     (async function () {
-      if (router.query.slug) {
-        setBlockweavePool(await arProvider.getPoolById(router.query.slug?.slice(-ID_LENGTH) as string));
+      if (router.query.id) {
+        setCollection(await arProvider.getPoolById(router.query.id?.slice(-ID_LENGTH) as string));
       }
     })()
-  }, [router.query.slug])
+  }, [router.query.id])
 
-  return blockweavePool ? (
-    <_Collection data={blockweavePool}/>
+  return collection ? (
+    <_Collection data={collection}/>
   ) : <Loader />
 }

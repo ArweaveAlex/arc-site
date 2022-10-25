@@ -8,12 +8,21 @@ import { AccountContributions } from "./views/Account/AccountContributions";
 import * as urls from "./urls";
 import { LANGUAGE } from "./language";
 
-export const API_URI = process.env.API_URI || "http://localhost:3000";
-
-if (!API_URI) {
-    throw new Error(
-        "Please define the API_URI environment variable inside .env"
-    )
+export const TAGS = {
+    keys: {
+        artifactName: "Artefact-Name",
+        artifactSeries: "ArtefactSeries",
+        bookmarkIds: "Bookmark-Ids-Tag",
+        bookmarkSearch: "Alex-Bookmark-Search",
+        createdAt: "Created-At",
+        dateCreated: "Date-Created",
+        initialOwner: "Initial-Owner",
+        poolId: "Pool-Id",
+        uploaderTxId: "Uploader-Tx-Id"
+    },
+    values: {
+        defaultArtifactType: "Alex-Default"
+    }
 }
 
 export const APP = {
@@ -66,3 +75,9 @@ export const URLS: IURLView = {
 
 export const ID_LENGTH = 43;
 export const PAGINATOR = 50;
+
+export const STORAGE = {
+    none: "N/A",
+    pending: "pending",
+    txUpdate: "txUpdate"
+}

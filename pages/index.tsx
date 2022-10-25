@@ -9,15 +9,15 @@ import { Landing } from "@/views/Landing";
 export default function LandingIndex() {
   const arProvider = useARProvder();
 
-  const [blockweavePools, setBlockweavePools] = React.useState<any>(null);
+  const [collections, setCollections] = React.useState<any>(null);
 
   React.useEffect(() => {
     (async function () {
-      setBlockweavePools(await arProvider.getAllPools());
+      setCollections(await arProvider.getAllPools());
     })()
   }, [])
 
-  return blockweavePools ? (
-    <Landing data={blockweavePools} />
+  return collections ? (
+    <Landing data={collections} />
   ) : <Loader />;
 }

@@ -1,20 +1,29 @@
 import React from "react";
 
-export interface ArweaveCollectionProps {
-  state: ArweaveCollectionState;
-  id: string;
-  artifacts: number;
-  lastCursor: string;
-  ts: string;
+export enum ArtifactEnum {
+  Tweet = "Alex-Tweet",
+  Wiki = "Alex-Wiki"
 }
 
-export interface ArweaveCollectionState {
+export interface ArtifactType {
+  artifactType: ArtifactEnum.Tweet | ArtifactEnum.Wiki,
+  dataUrl: string;
+  rawData: string
+}
+
+export interface CollectionType {
+  id: string;
+  state: CollectionStateType;
+}
+
+export interface CollectionStateType {
   title: string;
   image: string;
   briefDescription: string;
   description: string;
   link: string;
   ownerInfo: string;
+  timestamp: string;
   contributors: { [key: string]: string };
   tokens: { [key: string]: string };
   totalContributions: string;
@@ -52,7 +61,15 @@ export type KeyValueType = { [key: string]: string | React.ReactNode };
 export type TableHeaderType = { [key: string]: { width: string, align: AlignType } };
 
 export type ArtifactTableRowType = { 
-  title: string, 
+  title: React.ReactNode, 
   dateCreated: string, 
-  bookmark: React.ReactNode
+  bookmark?: React.ReactNode
 };
+
+export type ArtifactQueryType = {
+  cursor: string;
+  node: {
+    id: string,
+    tags: KeyValueType[]
+  }
+}

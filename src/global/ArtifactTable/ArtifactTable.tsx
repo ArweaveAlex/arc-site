@@ -1,47 +1,144 @@
 import React from "react";
 
+import { useARProvder } from "@/providers/ARProvider";
+
+import { Loader } from "@/components/atoms/Loader";
+import { IconButton } from "@/components/atoms/IconButton";
+
 import { Table } from "@/components/organisms/Table";
 
 import { LANGUAGE } from "@/language";
-import { PAGINATOR } from "@/config";
+import { ASSETS, PAGINATOR, STORAGE, TAGS } from "@/config";
 
-import { AlignType, ArtifactTableRowType } from "@/types";
+import { AlignType, ArtifactTableRowType, TableHeaderType } from "@/types";
+import { formatDate, getTagValue, getJSONStorage } from "@/util";
+import * as urls from "@/urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 
+function BookmarkToggle(props: { artifactId: string }) {
+    const arProvider = useARProvder();
+
+    const [txPending, setTxPending] = React.useState<boolean>(false);
+    const [bookmarkIds, setBookmarkIds] = React.useState<any>(null);
+
+    async function getBookmarkIds() {
+        setBookmarkIds(await await arProvider.getBookmarksIds());
+    }
+
+    React.useEffect(() => {
+        if (localStorage.getItem(props.artifactId)) {
+            const txJson = getJSONStorage(props.artifactId);
+            const txIdValue = Object.values(txJson)[0];
+            if (txIdValue === STORAGE.pending) {
+                arProvider.setTxInterval(Object.keys(txJson)[0]!, props.artifactId);
+                setTxPending(true);
+            }
+        }
+        (async function () {
+            await getBookmarkIds();
+        })()
+    }, [])
+
+    React.useEffect(() => {
+        window.addEventListener(STORAGE.txUpdate, () => {
+            if (localStorage.getItem(props.artifactId)) {
+                setTxPending(true);
+            }
+            else {
+                (async function () {
+                    await getBookmarkIds();
+                })()
+                setTxPending(false);
+            }
+        })
+    }, []);
+
+    function getIcon() {
+        if (!bookmarkIds) {
+            return (
+                <Loader alt />
+            )
+        }
+        else {
+            if (txPending) {
+                return (
+                    <Loader alt />
+                )
+            }
+            else {
+                return (
+                    <IconButton
+                        src={bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
+                        handlePress={() => { arProvider.toggleUserBookmark!(props.artifactId) }}
+                    />
+                )
+            }
+        }
+    }
+    return (
+        <S.BookmarkToggle>
+            {getIcon()}
+        </S.BookmarkToggle>
+    );
+}
+
 export default function ArtifactTable(props: IProps) {
+    const arProvider = useARProvder();
+
+    const [data, setData] = React.useState<any>(null);
+
+    function getLink(id : string, label: string) {
+        const href = `${urls.artifact}${id}`;
+        return (
+            <S.Link><a href={href}>{label}</a></S.Link>
+        )
+    }
+
+    React.useEffect(() => {
+        if (props.data) {
+            (async function () {
+                setData(props.data.map((element: any) => { // ArtifactQueryType
+                    const row: ArtifactTableRowType = {
+                        title: getLink(element.node.id, getTagValue(element.node.tags, TAGS.keys.artifactName)),
+                        dateCreated: formatDate(getTagValue(element.node.tags, TAGS.keys.createdAt), "epoch")
+                    }
+                    if (props.showBookmarks) {
+                        row.bookmark = (
+                            <BookmarkToggle artifactId={element.node.id} />
+                        );
+                    }
+
+                    if (getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none) {
+                        return row;
+                    }
+                    else {
+                        return null;
+                    }
+                }).filter((element: any) => element !== null));
+            })();
+
+        }
+    }, [props.data, arProvider.walletAddress])
+
     function getHeader() {
+        const header: TableHeaderType = {
+            title: { width: "75%", align: "left" as AlignType },
+            dateCreated: { width: "25%", align: "left" as AlignType }
+        }
+
         if (props.showBookmarks) {
-            return ({
-                title: { width: "70%", align: "left" as AlignType },
-                dateCreated: { width: "20%", align: "left" as AlignType },
-                bookmark: { width: "10%", align: "center" as AlignType }
-            })
+            header.bookmark = { width: "10%", align: "center" as AlignType };
         }
-        else {
-            return ({
-                title: { width: "75%", align: "left" as AlignType },
-                dateCreated: { width: "25%", align: "left" as AlignType }
-            })
-        }
+
+        return header;
     }
 
-    function getData() {
-        if (props.showBookmarks) {
-            return props.data;
-        }
-        else {
-            return props.data.map((element: ArtifactTableRowType) => { 
-                return { title: element.title, dateCreated: element.dateCreated }
-            })
-        }
-    }
-
-    return props.data.length > 0 ? (
+    return data && data.length > 0 ? (
         <Table
             title={LANGUAGE.artifacts}
             header={getHeader() as any}
-            data={getData()}
+            data={data}
             recordsPerPage={PAGINATOR}
         />
     ) :

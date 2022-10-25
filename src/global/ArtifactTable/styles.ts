@@ -7,3 +7,27 @@ export const EmptyWrapper = styled.div`
         color: ${(props) => props.theme.colors.font.primary.alt1};
     }
 `;
+
+export const BookmarkToggle = styled.div`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    svg {
+        fill: ${(props) => props.theme.colors.icon.secondary.fill};
+    }
+`;
+
+export const Link = styled.div`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    a {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+`;

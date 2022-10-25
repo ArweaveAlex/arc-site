@@ -9,12 +9,14 @@ import * as window from "@/window";
 
 export default function Loader(props: IProps) {
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-    window.hideDocumentBody();
+    if (!props.alt) {
+      window.scrollTo(0, 0);
+      window.hideDocumentBody();
+    }
     return () => {
-        window.showDocumentBody();
+      window.showDocumentBody();
     };
-}, []);
+  }, []);
 
   if (props.alt) {
     return (
@@ -23,7 +25,7 @@ export default function Loader(props: IProps) {
       </S.AltContainer>
     );
   }
-  
+
   return (
     <Portal node={DOM.loader}>
       <S.Wrapper>

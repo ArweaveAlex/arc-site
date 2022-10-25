@@ -1,4 +1,5 @@
-import { DateType } from "./types";
+import { STORAGE } from "./config";
+import { DateType, KeyValueType } from "./types";
 
 export function formatAddress(address: string | null, wrap: boolean) {
     if (!address) {
@@ -10,7 +11,7 @@ export function formatAddress(address: string | null, wrap: boolean) {
 
 export function formatDate(dateArg: string | null, dateType: DateType) {
     if (!dateArg) {
-        return "N/A";
+        return STORAGE.none;
     }
 
     let date: Date | null = null;
@@ -38,13 +39,17 @@ export function formatTitle(string: string) {
     return finalResult;
 }
 
-export function getTagValue(list: { name: string, value: string }[], name: string): string | null {
+export function getTagValue(list: KeyValueType[], name: string): string {
     for (let i = 0; i < list.length; i++) {
         if (list[i]) {
             if (list[i]!.name === name) {
-                return list[i]!.value
+                return list[i]!.value as string;
             }
         }
     }
-    return null;
+    return STORAGE.none;
+}
+
+export function getJSONStorage(key: string) {
+    return JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem(key))));
 }

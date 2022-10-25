@@ -3,11 +3,11 @@ import * as gql from "gql-query-builder";
 import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
-import { ContributionResultType } from "@/types";
-import { getBalanceEndpoint } from "@/endpoints";
+import { ArtifactQueryType, ContributionResultType } from "@/types";
+import { getBalanceEndpoint, getTxEndpoint } from "@/endpoints";
 import { getTagValue } from "@/util";
 import { LANGUAGE } from "@/language";
-import { PAGINATOR } from "@/config";
+import { PAGINATOR, STORAGE, TAGS } from "@/config";
 
 const AR_WALLETS = [
     { name: "arconnect", logo: "arconnect-wallet-logo.png" }
@@ -33,11 +33,13 @@ interface ARContextState {
     getAllArtifactsByPool: (poolId: string) => any;
     getAllPools: () => any;
     getPoolById: (poolId: string) => any;
+    getArtifactById: (artifactId: string) => any;
     getUserArtifacts: (userWallet: string) => any;
     getUserContributions: (userWallet: string) => any;
     getUserBookmarks: () => any;
     toggleUserBookmark: (artifactId: string) => any;
     getBookmarksIds: () => any;
+    setTxInterval: (txId: string, parentTxId: string) => any
 }
 
 interface ARProviderProps {
@@ -54,7 +56,14 @@ const arweave = Arweave.init({
 
 const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 
-// "6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ", "tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA", "t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M", "AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo", "O-S-Dt7cV5fUFgfkROTdXe_ZtmCA2PlEB15ECPE1R8Y", "jnEaMCUyYE3DshJEZaEwBXc9OwhGB-hBhSlL7pXB9dc", "8JgQiIdiFvU--9yr_AKqBhNXsfVPBxUMiD17fotkUZs"
+// 6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ
+// tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA
+// t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M
+// AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo
+// O-S-Dt7cV5fUFgfkROTdXe_ZtmCA2PlEB15ECPE1R8Y
+// jnEaMCUyYE3DshJEZaEwBXc9OwhGB-hBhSlL7pXB9dc
+// 8JgQiIdiFvU--9yr_AKqBhNXsfVPBxUMiD17fotkUZs
+
 const POOL_IDS: string[] = ["AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo"];
 
 const DEFAULT_CONTEXT = {
@@ -90,6 +99,10 @@ const DEFAULT_CONTEXT = {
         console.log(`Get Pool ${poolId}`);
         return null
     },
+    async getArtifactById(artifactId: string) {
+        console.log(`Get Artifact ${artifactId}`);
+        return null
+    },
     async getUserArtifacts(_userWallet: string) {
         return null;
     },
@@ -103,6 +116,9 @@ const DEFAULT_CONTEXT = {
         return null
     },
     async getBookmarksIds() {
+        return null
+    },
+    setTxInterval(_txId: string, _parentTxId: string) {
         return null
     }
 }
@@ -206,7 +222,7 @@ export function ARProvider(props: ARProviderProps) {
             variables: {
                 tags: {
                     value: {
-                        name: "Pool-Id",
+                        name: TAGS.keys.poolId,
                         values: [poolId]
                     },
                     type: "[TagFilter!]"
@@ -254,23 +270,23 @@ export function ARProvider(props: ARProviderProps) {
             }
         }
 
-        return aggregatedArtifacts;
+        return aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none);
     }
 
     async function getAllPools() {
-        const blockweavePools: any = [];
+        const collections: any = [];
 
         for (let i = 0; i < POOL_IDS.length; i++) {
             try {
                 const contract = smartweave.contract(POOL_IDS[i]!);
-                blockweavePools.push({ id: POOL_IDS[i], state: (await contract.readState()).state });
+                collections.push({ id: POOL_IDS[i], state: (await contract.readState()).state });
             }
             catch (error: any) {
                 console.error(error)
             }
         }
 
-        return blockweavePools;
+        return collections;
     }
 
     async function getPoolById(poolId: string) {
@@ -284,18 +300,83 @@ export function ARProvider(props: ARProviderProps) {
         }
     }
 
+    async function getArtifactById(artifactId: string) {
+        const query = () => gql.query({
+            operation: "transactions",
+            variables: {
+                tags: {
+                    value: {
+                        name: TAGS.keys.uploaderTxId,
+                        values: [artifactId]
+                    },
+                    type: "[TagFilter!]"
+                }
+            },
+            fields: [
+                {
+                    edges: [
+                        "cursor",
+                        {
+                            node: [
+                                "id",
+                                {
+                                    "tags": [
+                                        "name",
+                                        "value"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        })
+
+        const response = await arweave.api.post("/graphql", query());
+        if (response.data.data) {
+            const responseData = response.data.data.transactions.edges;
+            if (responseData.length > 0) {
+                // console.log(getTagValue(responseData[0].node.tags, TAGS.keys.artifactName)); // TODO Get Artifact Type return artifactType
+            }
+        }
+
+        try {
+            const response = await fetch(getTxEndpoint(artifactId))
+            if (response.status === 200) {
+                try {
+                    return ({
+                        artifactType: TAGS.values.defaultArtifactType,
+                        dataUrl: response.url,
+                        rawData: await response.text()
+                    });
+                }
+                catch (error: any) {
+                    console.error(error);
+                    return null;
+                }
+            }
+            else {
+                return null;
+            }
+        }
+        catch (error: any) {
+            console.error(error);
+            return null;
+        }
+    }
+
     async function getUserArtifacts(userWallet: string) {
         let contributions = [];
         for (let i = 0; i < POOL_IDS.length; i++) {
             let artifacts = await getAllArtifactsByPool(POOL_IDS[i]!);
             contributions = contributions.concat(artifacts);
         }
-        return contributions.filter((artifact: any) => {
+        return contributions.filter((artifact: ArtifactQueryType) => {
             if (artifact.node && artifact.node.tags) {
                 let tags = artifact.node.tags;
                 for (let j = 0; j < tags.length; j++) {
-                    if (tags[j].name === "Initial-Owner") {
-                        if (tags[j].value === userWallet) {
+                    if (tags[j]!.name === TAGS.keys.initialOwner) {
+                        if (tags[j]!.value === userWallet) {
                             return true;
                         }
                     }
@@ -314,7 +395,7 @@ export function ARProvider(props: ARProviderProps) {
             variables: {
                 tags: {
                     value: {
-                        name: "Alex-Bookmark-Search",
+                        name: TAGS.keys.bookmarkSearch,
                         values: [walletAddress]
                     },
                     type: "[TagFilter!]"
@@ -371,16 +452,16 @@ export function ARProvider(props: ARProviderProps) {
         const aggregatedBookmarks = await getUserBookmarks();
 
         if (aggregatedBookmarks.length > 0) {
-            let recentDate = Number(getTagValue(aggregatedBookmarks[0].node.tags, "Date-Created")!)
+            let recentDate = Number(getTagValue(aggregatedBookmarks[0].node.tags, TAGS.keys.dateCreated)!)
 
             for (let i = 0; i < aggregatedBookmarks.length; i++) {
-                const date = Number(getTagValue(aggregatedBookmarks[i].node.tags, "Date-Created")!);
+                const date = Number(getTagValue(aggregatedBookmarks[i].node.tags, TAGS.keys.dateCreated)!);
                 recentDate = Math.max(recentDate, date)
             }
 
             for (let i = 0; i < aggregatedBookmarks.length; i++) {
-                if (recentDate === Number(getTagValue(aggregatedBookmarks[i].node.tags, "Date-Created")!)) {
-                    return JSON.parse(getTagValue(aggregatedBookmarks[i].node.tags, "Bookmark-Ids-Tag")!)
+                if (recentDate === Number(getTagValue(aggregatedBookmarks[i].node.tags, TAGS.keys.dateCreated)!)) {
+                    return JSON.parse(getTagValue(aggregatedBookmarks[i].node.tags, TAGS.keys.bookmarkIds)!)
                 }
             }
         }
@@ -402,9 +483,9 @@ export function ARProvider(props: ARProviderProps) {
 
             let txRes = await arweave.createTransaction({ data: JSON.stringify(bookmarksIds) }, "use_wallet");
 
-            txRes.addTag("Alex-Bookmark-Search", walletAddress!);
-            txRes.addTag("Date-Created", Date.now().toString());
-            txRes.addTag("Bookmark-Ids-Tag", JSON.stringify(bookmarksIds));
+            txRes.addTag(TAGS.keys.bookmarkSearch, walletAddress!);
+            txRes.addTag(TAGS.keys.dateCreated, Date.now().toString());
+            txRes.addTag(TAGS.keys.bookmarkIds, JSON.stringify(bookmarksIds));
 
             try {
                 await arweave.transactions.sign(txRes, "use_wallet");
@@ -414,16 +495,18 @@ export function ARProvider(props: ARProviderProps) {
             }
 
             await arweave.transactions.post(txRes);
-            localStorage.setItem(artifactId, JSON.stringify({ [txRes.id]: "pending" }));
+            localStorage.setItem(artifactId, JSON.stringify({ [txRes.id]: STORAGE.pending }));
+            window.dispatchEvent(new Event(STORAGE.txUpdate));
             setTxInterval(txRes.id, artifactId);
         }
     }
 
-    function setTxInterval(txId: string, artifactId: string) {
+    function setTxInterval(txId: string, parentTxId: string) {
         const interval = setInterval(function () {
             arweave.transactions.getStatus(txId).then(res => {
-                if (res.confirmed && localStorage.getItem(artifactId)) {
-                    localStorage.removeItem(artifactId);
+                if (res.confirmed && localStorage.getItem(parentTxId)) {
+                    localStorage.removeItem(parentTxId);
+                    window.dispatchEvent(new Event(STORAGE.txUpdate));
                     clearInterval(interval);
                 }
             })
@@ -449,7 +532,7 @@ export function ARProvider(props: ARProviderProps) {
             let lastDate = 0;
             contributions.map((c: any) => {
                 c.node.tags.map((tag: any) => {
-                    if (tag.name === "Created-At") {
+                    if (tag.name === TAGS.keys.createdAt) {
                         let v = parseInt(tag.value);
                         if (v > lastDate) {
                             lastDate = v;
@@ -471,11 +554,11 @@ export function ARProvider(props: ARProviderProps) {
             }
             return false;
         }).map((pool: any) => {
-            let p = pool;
-            p["totalContributed"] = calcARDonated(userWallet, pool);
-            p["lastContribution"] = lastContributions[pool.id];
-            p["receivingPercent"] = calcReceivingPercent(userWallet, pool);
-            return p;
+            let poolElement = pool;
+            poolElement.totalContributed = calcARDonated(userWallet, pool);
+            poolElement.lastContribution = lastContributions[pool.id];
+            poolElement.receivingPercent = calcReceivingPercent(userWallet, pool);
+            return poolElement;
         });
     }
 
@@ -516,11 +599,13 @@ export function ARProvider(props: ARProviderProps) {
                 getAllArtifactsByPool,
                 getAllPools,
                 getPoolById,
+                getArtifactById,
                 getUserArtifacts,
                 getUserContributions,
                 getUserBookmarks,
                 toggleUserBookmark,
-                getBookmarksIds
+                getBookmarksIds,
+                setTxInterval
             }}
         >
             {props.children}
