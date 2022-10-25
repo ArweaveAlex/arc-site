@@ -99,23 +99,25 @@ export const Spinner = styled.div`
 `;
 
 export const AltContainer = styled.div`
+  height: fit-content !important;
+  width: fit-content !important;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: transparent
+  background-color: transparent;
   z-index: 3;
 `;
 
 export const AltLoader = styled.div`
-  border: 2.25px solid transparent
-  border-top: 2.25px solid ${(props) => props.theme.colors.icon.primary.fill};
-  border-right: 2.25px solid ${(props) => props.theme.colors.icon.primary.fill};
+  width: 13.5px !important;
+  height: 13.5px !important;
+  border: 2.25px solid transparent;
+  border-top: 2.25px solid ${(props) => props.theme.colors.font.primary.active.base};
+  border-right: 2.25px solid ${(props) => props.theme.colors.font.primary.active.base};
   border-radius: 50%;
-  width: 16.5px;
-  height: 16.5px;
   margin-top: 2.5px;
-  animation: spin 0.5s linear infinite;
+  animation: spin 0.575s linear infinite;
   @keyframes spin {
     0% {
       transform: rotate(0deg);

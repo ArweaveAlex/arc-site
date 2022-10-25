@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Table } from "@/components/organisms/Table";
 
 import { LANGUAGE } from "@/language";

@@ -33,7 +33,6 @@ export default function _Collection(props: { data: ArweaveCollectionProps }) {
     React.useEffect(() => {
         (async function () {
             setData((await arProvider.getAllArtifactsByPool(props.data.id)).map((element: any) => {
-                console.log(element.node.id)
                 if (!getTagValue(element.node.tags, "Uploader-Tx-Id")) {
                     return {
                         title: getTagValue(element.node.tags, "Artefact-Name"), 

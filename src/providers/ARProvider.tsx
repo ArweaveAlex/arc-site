@@ -395,7 +395,7 @@ export function ARProvider(props: ARProviderProps) {
 
             if (bookmarksIds.includes(artifactId)) {
                 bookmarksIds.splice(bookmarksIds.indexOf(artifactId), 1)
-            } 
+            }
             else {
                 bookmarksIds.push(artifactId);
             }
@@ -408,12 +408,26 @@ export function ARProvider(props: ARProviderProps) {
 
             try {
                 await arweave.transactions.sign(txRes, "use_wallet");
-            } catch (e) {
+            }
+            catch (e) {
                 console.log(e)
             }
 
             await arweave.transactions.post(txRes);
+            localStorage.setItem(artifactId, JSON.stringify({ [txRes.id]: "pending" }));
+            setTxInterval(txRes.id, artifactId);
         }
+    }
+
+    function setTxInterval(txId: string, artifactId: string) {
+        const interval = setInterval(function () {
+            arweave.transactions.getStatus(txId).then(res => {
+                if (res.confirmed && localStorage.getItem(artifactId)) {
+                    localStorage.removeItem(artifactId);
+                    clearInterval(interval);
+                }
+            })
+        }, 2000);
     }
 
     function calcARDonated(userWallet: string, pool: any) {

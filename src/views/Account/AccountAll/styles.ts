@@ -10,6 +10,7 @@ export const BookmarkToggle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     svg {
         fill: ${(props) => props.theme.colors.icon.secondary.fill};
     }
