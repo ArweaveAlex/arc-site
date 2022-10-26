@@ -333,12 +333,21 @@ export function ARProvider(props: ARProviderProps) {
         })
 
         const response = await arweave.api.post("/graphql", query());
+        let origResponseData;
+        let pool;
         if (response.data.data) {
             const responseData = response.data.data.transactions.edges;
             if (responseData.length > 0) {
-                // console.log(getTagValue(responseData[0].node.tags, TAGS.keys.artifactName)); // TODO Get Artifact Type return artifactType
+                origResponseData = responseData;
+
+                pool = await getPoolById(getTagValue(origResponseData[0].node.tags, TAGS.keys.poolId));
+
+                // TODO Get Artifact Type return artifactType
+
             }
         }
+
+        
 
         try {
             const response = await fetch(getTxEndpoint(artifactId));
@@ -347,7 +356,10 @@ export function ARProvider(props: ARProviderProps) {
                     return ({
                         artifactType: TAGS.values.defaultArtifactType,
                         dataUrl: response.url,
-                        rawData: await response.text()
+                        rawData: await response.text(),
+                        minted: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.createdAt) : "",
+                        archivist: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.initialOwner) : "",
+                        poolName: pool ? pool.state.title : "",
                     });
                 }
                 catch (error: any) {

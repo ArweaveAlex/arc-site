@@ -22,7 +22,7 @@ export default function Artifact() {
         setArtifact(await arProvider.getArtifactById(router.query.id?.slice(-ID_LENGTH) as string));
       }
     })()
-  }, [router.query.id])
+  }, [router.query.id]);
 
   return artifact ? (
     <_Artifact data={artifact}/>
