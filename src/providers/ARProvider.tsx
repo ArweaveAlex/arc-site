@@ -341,7 +341,7 @@ export function ARProvider(props: ARProviderProps) {
         }
 
         try {
-            const response = await fetch(getTxEndpoint(artifactId))
+            const response = await fetch(getTxEndpoint(artifactId));
             if (response.status === 200) {
                 try {
                     return ({

@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
     height: 40vh;
     width: 100%;
     position: relative;
+    z-index: 2;
     background: ${props => props.theme.colors.navigation.footer.background};
     border-top: 1px solid ${(props) => props.theme.colors.border.secondary};
 `;

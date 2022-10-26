@@ -1,64 +1,25 @@
 import React from "react";
 
-import { ArtifactType, ArtifactEnum } from "@/types"
+import { ArtifactHeader } from "./ArtifactHeader";
+import { ArtifactShare } from "./ArtifactShare";
+import { ArtifactDetail } from "./ArtifactDetail";
 
-function WikiArtifact(props: { data: ArtifactType }) {
-    return (
-        <iframe src={props.data.dataUrl} style={{
-            position: "absolute",
-            height: "50%",
-            width: "50%",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            border: "1px solid red",
-            overflow: "hidden"
-        }}></iframe>
-    )
-}
+import { IProps } from "./types";
+import * as S from "./styles";
 
-function TweetArtifact(props: { data: ArtifactType }) {
-    return (
-        <div style={{
-            position: "absolute",
-            height: "50%",
-            width: "50%",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            border: "1px solid red",
-            overflow: "hidden"
-        }}>
-            <p>{props.data.rawData}</p>
-        </div>
-    );
-}
-
-export default function _Artifact(props: { data: ArtifactType }) {
-
-    function getArtifact() {
-        if (props.data) {
-            switch (props.data.artifactType) {
-                case ArtifactEnum.Tweet:
-                    return <TweetArtifact data={props.data} />
-                case ArtifactEnum.Wiki:
-                    return <TweetArtifact data={props.data} />
-                default:
-                    try {
-                        JSON.parse(props.data.rawData);
-                        return <TweetArtifact data={props.data} />
-                    }
-                    catch (e) {
-                        return <WikiArtifact data={props.data} />
-                    }
-            }
-        }
-        else {
-            return null;
-        }
-    }
+export default function _Artifact(props: IProps) {
 
     return (
-        <>{getArtifact()}</>
+        <S.Wrapper>
+            <S.Content>
+                <ArtifactHeader />
+                <S.FlexWrapper>
+                    <ArtifactShare />
+                    <S.ArtifactWrapper>
+                        <ArtifactDetail data={props.data}/>
+                    </S.ArtifactWrapper>
+                </S.FlexWrapper>
+            </S.Content>
+        </S.Wrapper>
     );
 }
