@@ -32,6 +32,9 @@ export const APP = {
 export const ASSET_SRC = "/assets";
 
 export const ASSETS = {
+    artifactTypes: {
+        webpage: `${ASSET_SRC}/artifact-types/webpage.svg`
+    },
     close: `${ASSET_SRC}/close.svg`,
     copy: `${ASSET_SRC}/copy.svg`,
     cycle: `${ASSET_SRC}/cycle.png`,
@@ -45,6 +48,7 @@ export const ASSETS = {
     logo: `${ASSET_SRC}/logo.svg`,
     logoAlt: `${ASSET_SRC}/logo-alt.svg`,
     logoAltActive: `${ASSET_SRC}/logo-alt-active.svg`,
+    logoAlt1: `${ASSET_SRC}/logo-alt-1.svg`,
     menu: `${ASSET_SRC}/menu.svg`,
     share: `${ASSET_SRC}/share.svg`,
     user: `${ASSET_SRC}/user.svg`,

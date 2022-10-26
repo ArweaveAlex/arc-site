@@ -1,7 +1,7 @@
 import { IProps } from "../../types";
 import * as S from "./styles";
 
-export default function ArtifactTweet(props: IProps) {
+export default function ArtifactMessaging(props: IProps) {
     return (
         <S.Wrapper>
             <S.Content>

@@ -53,7 +53,7 @@ export const Table = styled.div`
     height: 100%;
     width: 100%;
     border-right: 1px solid ${(props) => props.theme.colors.border.secondary};
-    box-shadow: 1px 2px 2px ${(props) => props.theme.colors.border.secondary};
+    box-shadow: 1px 2px 2px ${(props) => props.theme.colors.shadow.secondary};
 `;
 
 export const TableHeader = styled.div`

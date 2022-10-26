@@ -146,6 +146,10 @@ declare module "styled-components" {
             overlay: {
                 primary: string
             }
+            shadow: {
+                primary: string
+                secondary: string
+            }
             view: {
                 background: string
             }

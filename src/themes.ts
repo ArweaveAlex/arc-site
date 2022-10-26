@@ -11,6 +11,7 @@ const DEFAULT = {
     neutral8: "#ACACAC",
     neutral9: "#F4F5F6",
     neutral10: "#EAEAEA",
+    neutral11: "#BABABA",
     primary: "#003153",
     primary2: "#265F85",
     primary3: "#4C8CB8",
@@ -169,6 +170,10 @@ export const defaultTheme: DefaultTheme = {
         },
         overlay: {
             primary: DEFAULT.overlay1
+        },
+        shadow: {
+            primary: DEFAULT.neutral11,
+            secondary: DEFAULT.neutral6
         },
         view: {
             background: DEFAULT.neutral2

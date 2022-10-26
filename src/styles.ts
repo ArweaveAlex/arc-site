@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
   b, u, i, center,
   dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
+  caption, tbody, tfoot, thead, tr, th, td,
   article, aside, canvas, details, embed,
   figure, figcaption, footer, header, hgroup,
   menu, nav, output, ruby, section, summary,
@@ -45,11 +45,6 @@ export const GlobalStyle = createGlobalStyle`
   blockquote:before, blockquote:after,
   q:before, q:after {
     content: none;
-  }
-
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
   }
 
   html, body {

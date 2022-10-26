@@ -14,7 +14,7 @@ export default function _Artifact(props: IProps) {
             <S.Content>
                 <ArtifactHeader />
                 <S.FlexWrapper>
-                    <ArtifactShare />
+                    {/* <ArtifactShare /> */}
                     <S.ArtifactWrapper>
                         <ArtifactDetail data={props.data}/>
                     </S.ArtifactWrapper>

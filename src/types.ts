@@ -1,12 +1,12 @@
 import React from "react";
 
 export enum ArtifactEnum {
-  Tweet = "Alex-Tweet",
-  Wiki = "Alex-Wiki"
+  Messaging = "Alex-Messaging",
+  Webpage = "Alex-Webpage"
 }
 
 export interface ArtifactType {
-  artifactType: ArtifactEnum.Tweet | ArtifactEnum.Wiki,
+  artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage,
   dataUrl: string;
   rawData: string
 }

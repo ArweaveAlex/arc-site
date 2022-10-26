@@ -1,5 +1,5 @@
-import { ArtifactTweet } from "./ArtifactTweet";
-import { ArtifactWiki } from "./ArtifactWiki";
+import { ArtifactMessaging } from "./ArtifactMessaging";
+import { ArtifactWebpage } from "./ArtifactWebpage";
 
 import { ArtifactEnum } from "@/types";
 import { IProps } from "../types";
@@ -9,17 +9,17 @@ export default function ArtifactDetail(props: IProps) {
     function getArtifact() {
         if (props.data) {
             switch (props.data.artifactType) {
-                case ArtifactEnum.Tweet:
-                    return <ArtifactTweet data={props.data} />
-                case ArtifactEnum.Wiki:
-                    return <ArtifactWiki data={props.data} />
+                case ArtifactEnum.Messaging:
+                    return <ArtifactMessaging data={props.data} />
+                case ArtifactEnum.Webpage:
+                    return <ArtifactWebpage data={props.data} />
                 default:
                     try {
                         JSON.parse(props.data.rawData);
-                        return <ArtifactTweet data={props.data} />
+                        return <ArtifactMessaging data={props.data} />
                     }
                     catch (e) {
-                        return <ArtifactWiki data={props.data} />
+                        return <ArtifactWebpage data={props.data} />
                     }
             }
         }

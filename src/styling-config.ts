@@ -7,6 +7,7 @@ export const STYLING = {
         max: "1400px"
     },
     dimensions: {
+        borderRadius: "10px",
         buttonHeight: "33.5px",
         buttonWidth: "150px",
         navHeight: "70px",
