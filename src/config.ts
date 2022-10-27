@@ -11,7 +11,6 @@ import { LANGUAGE } from "./language";
 export const TAGS = {
     keys: {
         artifactName: "Artefact-Name",
-        artifactSeries: "ArtefactSeries",
         bookmarkIds: "Bookmark-Ids-Tag",
         bookmarkSearch: "Alex-Bookmark-Search",
         dateCreated: "Date-Created",

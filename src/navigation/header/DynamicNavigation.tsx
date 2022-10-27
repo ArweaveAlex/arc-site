@@ -40,11 +40,11 @@ export default function DynamicNaviation() {
         return (
                 <S.NC>
                     <S.NavPaths>
-                        {NAV_PATHS.map((path, index) => (
+                        {/* {NAV_PATHS.map((path, index) => (
                             <S.Link key={index} href={path.href}>
                                 {path.name}
                             </S.Link>
-                        ))}
+                        ))} */}
                     </S.NavPaths>
                     <S.SC>
                         <S.SocialPaths>

@@ -87,7 +87,7 @@ export const defaultTheme: DefaultTheme = {
         container: {
             primary: {
                 background: DEFAULT.neutral1,
-                hover: DEFAULT.neutral2
+                hover: DEFAULT.neutral9
             },
             alt1: {
                 background: DEFAULT.primary

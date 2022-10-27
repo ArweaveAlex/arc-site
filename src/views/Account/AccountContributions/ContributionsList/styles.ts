@@ -40,15 +40,27 @@ export const List = styled.ol`
     flex-direction: column;
 `;
 
+export const Link = styled.a`
+    &:hover {
+        text-decoration: none;
+    }
+    &:focus {
+        text-decoration: none;
+    }
+    margin: 0 0 20px 0;
+`;
+
 export const ListItemWrapper = styled.li`
     height: 115px;
     width: 100%;
-    margin: 0 0 20px 0;
     padding: 20px;
     display: flex;
     position: relative;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    &:hover {
+        background: ${(props) => props.theme.colors.container.primary.hover};
+    }
     @media(max-width: ${STYLING.cutoffs.initial}) {
         height: auto;
         flex-direction: column;
