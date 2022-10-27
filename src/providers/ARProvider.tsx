@@ -67,8 +67,7 @@ const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 // -l30SLZA6XET_A7iAbUTgBIAc7nTqP5PfK6v1aVt4bA
 // STAGING POOLS - 8Y9XTSDkdNVylhuDwdosZhvFFKr1hrhYjf3Vw-mQII0, CbX34uhYDBGV5U0xg8_iOZJrcXLkvG2q06KvaXB2BDw
 
-// const POOL_IDS: string[] = ["8Y9XTSDkdNVylhuDwdosZhvFFKr1hrhYjf3Vw-mQII0", "CbX34uhYDBGV5U0xg8_iOZJrcXLkvG2q06KvaXB2BDw"];
-const POOL_IDS: string[] = ["AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo", "CbX34uhYDBGV5U0xg8_iOZJrcXLkvG2q06KvaXB2BDw"];
+const POOL_IDS: string[] = ["8Y9XTSDkdNVylhuDwdosZhvFFKr1hrhYjf3Vw-mQII0", "CbX34uhYDBGV5U0xg8_iOZJrcXLkvG2q06KvaXB2BDw"];
 
 const DEFAULT_CONTEXT = {
     wallets: [],
