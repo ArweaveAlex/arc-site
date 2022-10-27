@@ -24,7 +24,7 @@ export const Container = styled.div`
 `;
 
 export const Blade = styled.div`
-  background-color: ${(props) => props.theme.colors.font.primary.active.base};
+  background-color: ${(props) =>  props.theme.colors.font.primary.active.base};
   position: absolute;
   left: 0.4629em;
   bottom: 0;
@@ -109,12 +109,14 @@ export const AltContainer = styled.div`
   z-index: 3;
 `;
 
-export const AltLoader = styled.div`
+export const AltLoader = styled.div<{ disabled?: boolean }>`
   width: 13.5px !important;
   height: 13.5px !important;
   border: 2.25px solid transparent;
-  border-top: 2.25px solid ${(props) => props.theme.colors.font.primary.active.base};
-  border-right: 2.25px solid ${(props) => props.theme.colors.font.primary.active.base};
+  border-top: 2.25px solid ${(props) => props.disabled ? 
+    props.theme.colors.button.primary.disabled.label : props.theme.colors.font.primary.active.base};
+  border-right: 2.25px solid ${(props) => props.disabled ? 
+    props.theme.colors.button.primary.disabled.label : props.theme.colors.font.primary.active.base};
   border-radius: 50%;
   margin-top: 2.5px;
   animation: spin 0.575s linear infinite;

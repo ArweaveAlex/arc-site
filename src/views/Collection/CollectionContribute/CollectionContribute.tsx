@@ -9,6 +9,7 @@ import { FormField } from "@/components/atoms/FormField";
 import { Modal } from "@/components/molecules/Modal";
 import { Notification } from "@/components/atoms/Notification";
 
+import { ValidationType } from "@/types";
 import { ASSETS } from "@/config";
 import { LANGUAGE } from "@/language";
 import { IProps } from "./types";
@@ -63,6 +64,22 @@ export default function CollectionContribute(props: IProps) {
         }
     }
 
+    function getInvalidForm(): ValidationType {
+        if (!arProvider.availableBalance) {
+            return { status: false, message: null };
+        }
+        else {
+            if (amount > arProvider.availableBalance) {
+                return { status: true, message: LANGUAGE.amountExceedsBalance };
+            }
+            return { status: false, message: null };
+        }
+    }
+
+    function getDisabledSubmit() {
+        return getInvalidForm().status || loading || !arProvider.walletAddress || isNaN(amount) || amount <= 0;
+    }
+
     return (
         <>
             {contributionResult &&
@@ -94,7 +111,7 @@ export default function CollectionContribute(props: IProps) {
                                     value={amount}
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
                                     disabled={loading || !arProvider.walletAddress}
-                                    invalid={{ status: false, message: null }}
+                                    invalid={getInvalidForm()}
                                     endText={LANGUAGE.arTokens}
                                 />
                             </S.FormField>
@@ -103,7 +120,7 @@ export default function CollectionContribute(props: IProps) {
                                     label={LANGUAGE.submit}
                                     type={"secondary"}
                                     handlePress={(e) => handlePoolContribute(e)}
-                                    disabled={loading || !arProvider.walletAddress || isNaN(amount) || amount <= 0}
+                                    disabled={getDisabledSubmit()}
                                     loading={loading}
                                     formSubmit
                                 />

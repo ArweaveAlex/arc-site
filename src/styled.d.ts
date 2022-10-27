@@ -150,6 +150,10 @@ declare module "styled-components" {
                 primary: string
                 secondary: string
             }
+            tabs: {
+                active: string
+                inactive: string
+            }
             view: {
                 background: string
             }

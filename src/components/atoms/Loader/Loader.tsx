@@ -21,7 +21,7 @@ export default function Loader(props: IProps) {
   if (props.alt) {
     return (
       <S.AltContainer>
-        <S.AltLoader />
+        <S.AltLoader disabled={props.disabled} />
       </S.AltContainer>
     );
   }

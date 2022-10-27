@@ -22,9 +22,12 @@ export const LANGUAGE = {
         }
     },
     activeCollections: 'Active Collections',
-    artifacts: 'Artifacts',
     allArtifacts: 'All Artifacts',
+    amountExceedsBalance: 'Amount exceeds available balance',
     appVersion: 'Alpha',
+    archivist: 'Archivist',
+    artifactDetails: 'Artifact Details',
+    artifacts: 'Artifacts',
     arTokens: '$AR',
     availableBalance: 'Available Balance',
     banner: {
@@ -55,6 +58,7 @@ export const LANGUAGE = {
     contributions: 'My Contributions',
     copied: 'Copied!',
     copyAddress: 'Copy Address',
+    default: 'Default',
     disconnect: 'Disconnect',
     faq: {
         display: 'Frequently Asked Questions',
@@ -63,6 +67,7 @@ export const LANGUAGE = {
         header3: 'Check out our'
     },
     fetchingBalance: 'Fetching balance',
+    file: 'File',
     info: {
         header1: 'What is Alex. & How Does it Work?',
         header2: 'Those who cannot remember the past are condemned to repeat it.',
@@ -73,8 +78,10 @@ export const LANGUAGE = {
     lastContribution: 'Last Contribution',
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
+    minted: 'Minted',
     next: 'Next',
     noArtifacts: 'No Artifacts',
+    noContributions: 'No Contributions',
     pageNotFound: 'Page Not Found',
     paths: {
         about: 'About',

@@ -6,9 +6,15 @@ export enum ArtifactEnum {
 }
 
 export interface ArtifactType {
+  artifactName: string,
   artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage,
+  archivist: string;
+  minted: string;
+  poolName: string;
+  poolId: string;
   dataUrl: string;
-  rawData: string
+  rawData: string;
+
 }
 
 export interface CollectionType {

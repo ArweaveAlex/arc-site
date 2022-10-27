@@ -175,6 +175,10 @@ export const defaultTheme: DefaultTheme = {
             primary: DEFAULT.neutral11,
             secondary: DEFAULT.neutral6
         },
+        tabs: {
+            active: DEFAULT.primary,
+            inactive: DEFAULT.transparent
+        },
         view: {
             background: DEFAULT.neutral2
         },

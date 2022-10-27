@@ -55,25 +55,18 @@ function BookmarkToggle(props: { artifactId: string }) {
     }, []);
 
     function getIcon() {
-        if (!bookmarkIds) {
+        if (!bookmarkIds || txPending) {
             return (
                 <Loader alt />
             )
         }
         else {
-            if (txPending) {
-                return (
-                    <Loader alt />
-                )
-            }
-            else {
-                return (
-                    <IconButton
-                        src={bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
-                        handlePress={() => { arProvider.toggleUserBookmark!(props.artifactId) }}
-                    />
-                )
-            }
+            return (
+                <IconButton
+                    src={bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
+                    handlePress={() => { arProvider.toggleUserBookmark!(props.artifactId) }}
+                />
+            )
         }
     }
     return (
@@ -88,7 +81,7 @@ export default function ArtifactTable(props: IProps) {
 
     const [data, setData] = React.useState<any>(null);
 
-    function getLink(id : string, label: string) {
+    function getLink(id: string, label: string) {
         const href = `${urls.artifact}${id}`;
         return (
             <S.Link><a href={href}>{label}</a></S.Link>
@@ -98,10 +91,10 @@ export default function ArtifactTable(props: IProps) {
     React.useEffect(() => {
         if (props.data) {
             (async function () {
-                setData(props.data.map((element: any) => { // ArtifactQueryType
+                setData(props.data.map((element: any) => { // TODO - Type ArtifactQueryType
                     const row: ArtifactTableRowType = {
                         title: getLink(element.node.id, getTagValue(element.node.tags, TAGS.keys.artifactName)),
-                        dateCreated: formatDate(getTagValue(element.node.tags, TAGS.keys.createdAt), "epoch")
+                        dateCreated: formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), "epoch")
                     }
                     if (props.showBookmarks) {
                         row.bookmark = (

@@ -20,13 +20,11 @@ export const ContentWrapper = styled.div`
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
-    // border: 1px solid #e511ff;
 `;
 
 export const HideWrapper = styled.div`
     height: 100%;
     width: 50px;
-    // border: 1px solid red;
 `;
 
 export const Content = styled.div`
@@ -34,7 +32,6 @@ export const Content = styled.div`
     width: calc(100% - 110px);
     max-width: ${STYLING.cutoffs.max};
     width: 100%;
-    // margin: 0 0 0 20px;
     background: ${(props) => props.theme.colors.container.primary.background};
     border-radius: ${STYLING.dimensions.borderRadius};
     box-shadow: 0px 3px 5px ${(props) => props.theme.colors.shadow.primary};
@@ -43,7 +40,6 @@ export const Content = styled.div`
 export const Info = styled.div`
     height: 50%;
     width: 100%;
-    padding: 0 10px;
     display: flex;
     background: ${(props) => props.theme.colors.container.alt1.background};
     border-top-left-radius: ${STYLING.dimensions.borderRadius};
@@ -60,7 +56,6 @@ export const InfoLogo = styled.div`
         width: 30px;
         fill: ${(props) => props.theme.colors.icon.primary.fill};
     }
-    // border: 1px solid red;
 `;
 
 export const InfoData = styled.div`
@@ -70,8 +65,7 @@ export const InfoData = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0 10px;
-    // border: 1px solid red;
-    p {
+    p, a {
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -93,37 +87,49 @@ export const InfoType = styled(InfoData)`
     svg {
         fill: ${(props) => props.theme.colors.font.primary.alt5};
     }
-`;
-
-export const InfoMintDate = styled(InfoData)`
-    height: 100%;
-    width: 16.5%;
-    p {
-        color: ${(props) => props.theme.colors.font.primary.alt5};
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        p {
+            display: none;
+        }
     }
 `;
 
-export const InfoOwner = styled(InfoData)`
+export const InfoStyled = styled(InfoData)`
+    p, a {
+        color: ${(props) => props.theme.colors.font.primary.alt5};
+    }
+    a {
+        text-decoration: underline;
+        &:hover {
+            color: ${(props) => props.theme.colors.font.primary.alt4};
+        }
+    }
+`;
+
+export const InfoMintDate = styled(InfoStyled)`
+    height: 100%;
+    width: 19.5%;
+`;
+
+export const InfoOwner = styled(InfoStyled)`
     height: 100%;
     width: 13.5%;
-    p {
-        color: ${(props) => props.theme.colors.font.primary.alt5};
-    }
 `;
 
-export const InfoCollection = styled(InfoData)`
+export const InfoCollection = styled(InfoStyled)`
     height: 100%;
     width: 20%;
-    p {
-        color: ${(props) => props.theme.colors.font.primary.alt5};
-    }
-    // border: 1px solid red;
 `;
 
-export const Tabs = styled.div`
+export const TabsWrapper = styled.div`
     height: 50%;
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
     border-bottom-left-radius: ${STYLING.dimensions.borderRadius};
     border-bottom-right-radius: ${STYLING.dimensions.borderRadius};
+    display: flex;
+    align-items: end;
+    padding: 0 60px;
 `;
+
+export const TabWrapper = styled.div<{ label: string }>``;

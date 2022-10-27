@@ -63,8 +63,11 @@ const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 // O-S-Dt7cV5fUFgfkROTdXe_ZtmCA2PlEB15ECPE1R8Y
 // jnEaMCUyYE3DshJEZaEwBXc9OwhGB-hBhSlL7pXB9dc
 // 8JgQiIdiFvU--9yr_AKqBhNXsfVPBxUMiD17fotkUZs
+// J193OyFgZoR9r7fvjnnHsz82nj9V6JXvT7zMFl7Xqrc
+// -l30SLZA6XET_A7iAbUTgBIAc7nTqP5PfK6v1aVt4bA
+// STAGING POOLS - 8Y9XTSDkdNVylhuDwdosZhvFFKr1hrhYjf3Vw-mQII0, CbX34uhYDBGV5U0xg8_iOZJrcXLkvG2q06KvaXB2BDw
 
-const POOL_IDS: string[] = ["AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo"];
+const POOL_IDS: string[] = ["8Y9XTSDkdNVylhuDwdosZhvFFKr1hrhYjf3Vw-mQII0", "CbX34uhYDBGV5U0xg8_iOZJrcXLkvG2q06KvaXB2BDw"];
 
 const DEFAULT_CONTEXT = {
     wallets: [],
@@ -333,33 +336,32 @@ export function ARProvider(props: ARProviderProps) {
         })
 
         const response = await arweave.api.post("/graphql", query());
-        let origResponseData;
-        let pool;
+        let origResponseData: any;
+        let pool: any;
         if (response.data.data) {
             const responseData = response.data.data.transactions.edges;
             if (responseData.length > 0) {
                 origResponseData = responseData;
 
-                pool = await getPoolById(getTagValue(origResponseData[0].node.tags, TAGS.keys.poolId));
-
+                pool = await getPoolById(getTagValue(origResponseData[0].node.tags, TAGS.keys.poolId)); 
                 // TODO Get Artifact Type return artifactType
 
             }
         }
-
-        
 
         try {
             const response = await fetch(getTxEndpoint(artifactId));
             if (response.status === 200) {
                 try {
                     return ({
+                        artifactName: getTagValue(origResponseData[0].node.tags, TAGS.keys.artifactName),
                         artifactType: TAGS.values.defaultArtifactType,
-                        dataUrl: response.url,
-                        rawData: await response.text(),
-                        minted: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.createdAt) : "",
+                        minted: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.dateCreated) : "",
                         archivist: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.initialOwner) : "",
                         poolName: pool ? pool.state.title : "",
+                        poolId: pool ? pool.id : "",
+                        dataUrl: response.url,
+                        rawData: await response.text(),
                     });
                 }
                 catch (error: any) {
@@ -544,7 +546,7 @@ export function ARProvider(props: ARProviderProps) {
             let lastDate = 0;
             contributions.map((c: any) => {
                 c.node.tags.map((tag: any) => {
-                    if (tag.name === TAGS.keys.createdAt) {
+                    if (tag.name === TAGS.keys.dateCreated) {
                         let v = parseInt(tag.value);
                         if (v > lastDate) {
                             lastDate = v;

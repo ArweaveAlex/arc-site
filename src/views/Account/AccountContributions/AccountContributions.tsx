@@ -19,9 +19,21 @@ export default function AccountContributions() {
         }
     }, [arProvider.walletAddress])
 
+    function getData() {
+        if (data && data.length > 0) {
+            return (
+                <S.Wrapper>
+                    <ContributionsList data={data} />
+                </S.Wrapper>
+            )
+        }
+        else {
+            return <p>{LANGUAGE.noContributions}</p>
+        }
+    }
+
     return data ? (
-        <S.Wrapper>
-            <ContributionsList data={data} />
-        </S.Wrapper>
+        <>{getData()}</>
+
     ) : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

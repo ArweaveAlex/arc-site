@@ -14,7 +14,6 @@ export const TAGS = {
         artifactSeries: "ArtefactSeries",
         bookmarkIds: "Bookmark-Ids-Tag",
         bookmarkSearch: "Alex-Bookmark-Search",
-        createdAt: "Created-At",
         dateCreated: "Date-Created",
         initialOwner: "Initial-Owner",
         poolId: "Pool-Id",
@@ -33,6 +32,7 @@ export const ASSET_SRC = "/assets";
 
 export const ASSETS = {
     artifactTypes: {
+        default: `${ASSET_SRC}/artifact-types/webpage.svg`,
         webpage: `${ASSET_SRC}/artifact-types/webpage.svg`
     },
     close: `${ASSET_SRC}/close.svg`,
@@ -52,6 +52,27 @@ export const ASSETS = {
     menu: `${ASSET_SRC}/menu.svg`,
     share: `${ASSET_SRC}/share.svg`,
     user: `${ASSET_SRC}/user.svg`,
+}
+
+export const TAB_OPTIONS = {
+    artifactDetails: "Artifact Details",
+    file: "File"
+}
+
+export const ARTIFACT_TABS = [
+    // {
+    //     label: TAB_OPTIONS.artifactDetails
+    // },
+    {
+        label: TAB_OPTIONS.file
+    }
+]
+
+export const ARTIFACT_TYPES = {
+    [TAGS.values.defaultArtifactType]: {
+        label: LANGUAGE.default,
+        icon: ASSETS.artifactTypes.default
+    }
 }
 
 export const DOM = {
