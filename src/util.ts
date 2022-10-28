@@ -9,6 +9,10 @@ export function formatAddress(address: string | null, wrap: boolean) {
     return wrap ? `(${formattedAddress})` : formattedAddress;
 }
 
+export function formatDataSize(size: string) {
+    return `${size} KB`;
+}
+
 export function formatDate(dateArg: string | null, dateType: DateType) {
     if (!dateArg) {
         return STORAGE.none;

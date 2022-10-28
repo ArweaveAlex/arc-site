@@ -41,6 +41,7 @@ export const Info = styled.div`
     height: 50%;
     width: 100%;
     display: flex;
+    position: relative;
     background: ${(props) => props.theme.colors.container.alt1.background};
     border-top-left-radius: ${STYLING.dimensions.borderRadius};
     border-top-right-radius: ${STYLING.dimensions.borderRadius};
@@ -59,12 +60,13 @@ export const InfoLogo = styled.div`
 `;
 
 export const InfoData = styled.div`
-    height: 100%;
+    height: 77.5%;
     width: calc(30.5% - 50px);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 10px;
+    margin: auto 0;
     p, a {
         text-overflow: ellipsis;
         overflow: hidden;
@@ -77,23 +79,6 @@ export const InfoData = styled.div`
 
 export const InfoTitle = styled(InfoData)``;
 
-export const InfoType = styled(InfoData)`
-    height: 100%;
-    width: 10%;
-    justify-content: space-evenly;
-    p {
-        color: ${(props) => props.theme.colors.font.primary.alt5};
-    }
-    svg {
-        fill: ${(props) => props.theme.colors.font.primary.alt5};
-    }
-    @media(max-width: ${STYLING.cutoffs.initial}) {
-        p {
-            display: none;
-        }
-    }
-`;
-
 export const InfoStyled = styled(InfoData)`
     p, a {
         color: ${(props) => props.theme.colors.font.primary.alt5};
@@ -104,21 +89,28 @@ export const InfoStyled = styled(InfoData)`
             color: ${(props) => props.theme.colors.font.primary.alt4};
         }
     }
+    svg {
+        width: 25px;
+        margin: 0 10px 0 0;
+        fill: ${(props) => props.theme.colors.font.primary.alt5};
+    }
+    border-left: 1px solid ${(props) => props.theme.colors.border.tertiary};
+`;
+
+export const InfoType = styled(InfoStyled)`
+    width: 12.5%;
 `;
 
 export const InfoMintDate = styled(InfoStyled)`
-    height: 100%;
-    width: 19.5%;
+    width: 21.5%;
 `;
 
 export const InfoOwner = styled(InfoStyled)`
-    height: 100%;
-    width: 13.5%;
+    width: 15.5%;
 `;
 
 export const InfoCollection = styled(InfoStyled)`
-    height: 100%;
-    width: 20%;
+    width: 21.5%;
 `;
 
 export const TabsWrapper = styled.div`

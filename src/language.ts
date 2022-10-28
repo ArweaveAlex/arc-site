@@ -25,9 +25,14 @@ export const LANGUAGE = {
     allArtifacts: 'All Artifacts',
     amountExceedsBalance: 'Amount exceeds available balance',
     appVersion: 'Alpha',
-    archivist: 'Archivist',
-    artifactDetails: 'Artifact Details',
     artifacts: 'Artifacts',
+    artifactDetail: {
+        description: 'Description',
+        fileInformation: 'File Information',
+        viewRaw: 'View Raw',
+        tags: 'Tags',
+        title: 'Title'
+    },
     arTokens: '$AR',
     availableBalance: 'Available Balance',
     banner: {
@@ -59,6 +64,7 @@ export const LANGUAGE = {
     copied: 'Copied!',
     copyAddress: 'Copy Address',
     default: 'Default',
+    details: 'Details',
     disconnect: 'Disconnect',
     faq: {
         display: 'Frequently Asked Questions',
@@ -67,7 +73,6 @@ export const LANGUAGE = {
         header3: 'Check out our'
     },
     fetchingBalance: 'Fetching balance',
-    file: 'File',
     info: {
         header1: 'What is Alex. & How Does it Work?',
         header2: 'Those who cannot remember the past are condemned to repeat it.',
@@ -78,7 +83,13 @@ export const LANGUAGE = {
     lastContribution: 'Last Contribution',
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
-    minted: 'Minted',
+    messaging: {
+        handle: 'Handle',
+        message: 'Message',
+        name: 'Name',
+        originalPostDate: 'Original Post Date',
+        source: 'Source'
+    },
     next: 'Next',
     noArtifacts: 'No Artifacts',
     noContributions: 'No Contributions',
@@ -108,6 +119,7 @@ export const LANGUAGE = {
     },
     submit: 'Submit',
     totalContributed: 'Total Contributed',
+    view: 'View',
     viewAccount: 'My Library',
     viewCollection: 'View Collection',
     walletSignMessage: 'You will be prompted to sign the transaction via your wallet.',

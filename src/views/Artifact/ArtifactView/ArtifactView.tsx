@@ -5,7 +5,7 @@ import { ArtifactEnum } from "@/types";
 import { IProps } from "../types";
 import * as S from "./styles";
 
-export default function ArtifactFile(props: IProps) {
+export default function ArtifactView(props: IProps) {
     function getArtifact() {
         if (props.data) {
             switch (props.data.artifactType) {
@@ -14,13 +14,7 @@ export default function ArtifactFile(props: IProps) {
                 case ArtifactEnum.Webpage:
                     return <ArtifactWebpage data={props.data} />
                 default:
-                    try {
-                        JSON.parse(props.data.rawData);
-                        return <ArtifactMessaging data={props.data} />
-                    }
-                    catch (e) {
-                        return <ArtifactWebpage data={props.data} />
-                    }
+                    return null
             }
         }
         else {

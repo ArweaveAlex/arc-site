@@ -9,12 +9,14 @@ export interface ArtifactType {
   artifactName: string,
   artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage,
   archivist: string;
+  ansTitle: string;
   minted: string;
+  keywords: string;
   poolName: string;
   poolId: string;
   dataUrl: string;
+  dataSize: string;
   rawData: string;
-
 }
 
 export interface CollectionType {

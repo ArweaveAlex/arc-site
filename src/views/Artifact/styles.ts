@@ -25,9 +25,5 @@ export const ArtifactWrapper = styled.div`
     min-height: calc(100vh - (165px + ${STYLING.dimensions.navHeight}));
     width: calc(100% - 70px);
     width: 100%;
-    // margin: 100px 0 0 70px;
     margin: 100px 0 0 0;
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
-    background: ${(props) => props.theme.colors.container.primary.background};
-    // border-radius: ${STYLING.dimensions.borderRadius};
 `;

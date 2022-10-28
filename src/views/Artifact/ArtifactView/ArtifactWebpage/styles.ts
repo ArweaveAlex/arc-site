@@ -5,6 +5,8 @@ export const Wrapper = styled.div`
     width: 100%;
     position: relative;
     padding: 20px;
+    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    background: ${(props) => props.theme.colors.container.primary.background};
 
     p, span, button, a, b, li, input {
         font-family: sans-serif;
@@ -1361,7 +1363,7 @@ export const Wrapper = styled.div`
     }
 
     /* Prevent floating boxes from overlapping any category listings,
-    file histories, edit previews, and edit [Show changes] views. */
+    view histories, edit previews, and edit [Show changes] views. */
     #mw-subcategories,
     #mw-pages,
     #mw-category-media,
@@ -1585,7 +1587,7 @@ export const Wrapper = styled.div`
         }
 
         /* Put a chequered background behind images, only visible if they have transparency.
-        '.filehistory a img' and '#file img:hover' are handled by MediaWiki core (as of 1.19) */
+        '.filehistory a img' and '#view img:hover' are handled by MediaWiki core (as of 1.19) */
         .gallerybox .thumb img {
             background: #fff url("upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png") repeat;
         }
@@ -2118,7 +2120,7 @@ export const Wrapper = styled.div`
         input[type='submit'],
         input[type='button'],
         input[type='reset'],
-        input[type='file'] {
+        input[type='view'] {
             direction: ltr
         }
 

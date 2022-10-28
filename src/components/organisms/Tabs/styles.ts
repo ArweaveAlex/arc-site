@@ -18,14 +18,13 @@ export const Content = styled.div`
 `;
 
 export const Tab = styled.div<{ active: boolean }>`
-  margin: 0 15px 0 0;
+  margin: 0 25px 0 0;
   font-size: ${(props) => props.theme.typography.size.small};
   border-bottom: ${(props) =>
     props.active
       ? `2px solid ${props.theme.colors.tabs.active}`
       : `2px solid ${props.theme.colors.tabs.inactive}`};
 
-  font-weight: ${(props) => props.theme.typography.weight.medium};
   color: ${(props) =>
     props.active
       ? props.theme.colors.font.primary.active.base
