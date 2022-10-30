@@ -136,7 +136,7 @@ export const Description = styled.p`
     }
 `;
 
-export const Link = styled.p`
+export const Link = styled.div`
     height: 100%;
     width: 100%;
     display: flex;
@@ -144,6 +144,7 @@ export const Link = styled.p`
     align-items: center;
     &:hover {
         text-decoration: none;
+        cursor: pointer;
     }
     &:focus {
         text-decoration: none;

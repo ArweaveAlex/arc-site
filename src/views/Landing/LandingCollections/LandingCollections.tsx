@@ -1,4 +1,5 @@
 import React from "react";
+import Router from "next/router";
 import parse from "html-react-parser";
 
 import { Carousel } from "react-responsive-carousel";
@@ -9,14 +10,13 @@ import * as urls from "@/urls";
 import { LANGUAGE } from "@/language";
 import { CollectionType } from "@/types";
 import * as S from "./styles";
-import Router from "next/router";
 
 function CollectionCard(props: CollectionType) {
 
     const [collectionUrl, setCollectionUrl] = React.useState<string | null>(null);
 
     function handleViewAccount() {
-        Router.push(collectionUrl!);
+        Router.push(`/${urls.collection}[id]`, collectionUrl!);
     }
 
     React.useEffect(() => {

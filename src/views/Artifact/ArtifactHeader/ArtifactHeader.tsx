@@ -1,3 +1,4 @@
+import Router from "next/router";
 import { ReactSVG } from "react-svg";
 
 import { Tabs } from "@/components/organisms/Tabs";
@@ -9,6 +10,9 @@ import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function ArtifactHeader(props: IProps) {
+    function handleViewAccount() {
+        Router.push('/collection/[id]', `${urls.collection}/${props.data.poolId}`);
+    }
 
     return (
         <S.Wrapper>

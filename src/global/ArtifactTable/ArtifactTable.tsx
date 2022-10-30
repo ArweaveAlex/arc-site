@@ -1,4 +1,5 @@
 import React from "react";
+import Router from "next/router";
 
 import { useARProvder } from "@/providers/ARProvider";
 
@@ -81,10 +82,14 @@ export default function ArtifactTable(props: IProps) {
 
     const [data, setData] = React.useState<any>(null);
 
+    function handleViewArtifact(url: string) {
+        Router.push('/${urls.artifact}[id]', url);
+    }
+
     function getLink(id: string, label: string) {
         const href = `${urls.artifact}${id}`;
         return (
-            <S.Link><a href={href}>{label}</a></S.Link>
+            <S.Link onClick={() => handleViewArtifact(href)}>{label}</S.Link>
         )
     }
 

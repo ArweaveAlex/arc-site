@@ -25,6 +25,13 @@ export const Link = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
     a {
         overflow: hidden;
         text-overflow: ellipsis;
