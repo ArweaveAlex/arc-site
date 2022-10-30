@@ -1,4 +1,4 @@
-// import { ReactSVG } from "react-svg";
+import Router from "next/router";
 
 import { formatAddress, formatDate } from "@/util";
 import * as urls from "@/urls";
@@ -6,6 +6,10 @@ import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
 export default function ContributionsList({ data }) {
+    function handleViewCollection(url: string) {
+        Router.push(`/${urls.collection}[id]`, url);
+    }
+
     return (
         <S.Wrapper>
             <S.Header>
@@ -16,7 +20,7 @@ export default function ContributionsList({ data }) {
             <S.List>
                 {data.map((collection: any, index: number) => {
                     return (
-                        <S.Link href={`${urls.collection}/${collection.id}`} key={index}>
+                        <S.Link onClick={() => handleViewCollection(`${urls.collection}/${collection.id}`)} key={index}>
                             <S.ListItemWrapper>
                                 <S.LIHeaderContainer>
                                     <S.LIHeader1>{collection.state.title}</S.LIHeader1>

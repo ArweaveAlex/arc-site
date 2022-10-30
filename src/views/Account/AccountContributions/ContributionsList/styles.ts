@@ -40,7 +40,7 @@ export const List = styled.ol`
     flex-direction: column;
 `;
 
-export const Link = styled.a`
+export const Link = styled.div`
     &:hover {
         text-decoration: none;
     }

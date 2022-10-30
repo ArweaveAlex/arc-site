@@ -10,8 +10,8 @@ import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function ArtifactHeader(props: IProps) {
-    function handleViewAccount() {
-        Router.push('/collection/[id]', `${urls.collection}/${props.data.poolId}`);
+    function handleViewCollection() {
+        Router.push(`/${urls.collection}[id]`, `${urls.collection}/${props.data.poolId}`);
     }
 
     return (
@@ -49,7 +49,7 @@ export default function ArtifactHeader(props: IProps) {
                         <S.InfoCollection>
                             <>
                                 <ReactSVG src={ASSETS.collection} />
-                                <a href={`${urls.collection}/${props.data.poolId}`}>{props.data.poolName}</a>
+                                <div onClick={handleViewCollection}>{props.data.poolName}</div>
                             </>
                         </S.InfoCollection>
                     </S.Info>
