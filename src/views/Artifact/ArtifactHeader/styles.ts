@@ -80,10 +80,10 @@ export const InfoData = styled.div`
 export const InfoTitle = styled(InfoData)``;
 
 export const InfoStyled = styled(InfoData)`
-    p, a {
+    div, p, a {
         color: ${(props) => props.theme.colors.font.primary.alt5};
     }
-    a {
+    div, a {
         text-decoration: underline;
         &:hover {
             color: ${(props) => props.theme.colors.font.primary.alt4};
