@@ -10,7 +10,8 @@ import * as S from "./styles";
 import { ITProps, ICProps, IUProps } from "./types";
 
 function Tab(props: ITProps) {
-  function handlePress() {
+  function handlePress(e) {
+    e.preventDefault();
     props.handlePress(props.url);
   }
 

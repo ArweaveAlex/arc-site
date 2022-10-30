@@ -136,7 +136,7 @@ export const Description = styled.p`
     }
 `;
 
-export const Link = styled.a`
+export const Link = styled.p`
     height: 100%;
     width: 100%;
     display: flex;

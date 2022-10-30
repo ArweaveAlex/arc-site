@@ -9,10 +9,15 @@ import * as urls from "@/urls";
 import { LANGUAGE } from "@/language";
 import { CollectionType } from "@/types";
 import * as S from "./styles";
+import Router from "next/router";
 
 function CollectionCard(props: CollectionType) {
 
     const [collectionUrl, setCollectionUrl] = React.useState<string | null>(null);
+
+    function handleViewAccount() {
+        Router.push(collectionUrl!);
+    }
 
     React.useEffect(() => {
         setCollectionUrl(`${urls.collection}${props.id}`);
@@ -26,7 +31,7 @@ function CollectionCard(props: CollectionType) {
                     <S.Description>{parse(props.state.briefDescription)}</S.Description>
                 </S.C1Content>
                 <S.LinkContainer>
-                    <S.Link href={collectionUrl}>
+                    <S.Link onClick={handleViewAccount}>
                         <span>{LANGUAGE.viewCollection}</span>
                     </S.Link>
                 </S.LinkContainer>
