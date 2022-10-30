@@ -67,7 +67,7 @@ export const InfoData = styled.div`
     justify-content: center;
     padding: 0 10px;
     margin: auto 0;
-    p, a {
+    div, p, a {
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -86,6 +86,7 @@ export const InfoStyled = styled(InfoData)`
     div, a {
         text-decoration: underline;
         &:hover {
+            cursor: pointer;
             color: ${(props) => props.theme.colors.font.primary.alt4};
         }
     }
