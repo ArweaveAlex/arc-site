@@ -83,6 +83,7 @@ export const RowData = styled.div`
     div, p {
         font-family: ${(props) => props.theme.typography.family.secondary};
         font-weight: ${(props) => props.theme.typography.weight.bold};
+        font-size: ${(props) => props.theme.typography.size.small};
         color: ${(props) => props.theme.colors.font.primary.active.base};
         overflow: hidden;
         text-overflow: ellipsis;
@@ -118,5 +119,6 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
     div, p {
         font-family: ${(props) => props.theme.typography.family.primary};
         font-weight: ${(props) => props.theme.typography.weight.regular};
+        font-size: ${(props) => props.theme.typography.size.small};
     }
 `;
