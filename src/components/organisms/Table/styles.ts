@@ -80,7 +80,7 @@ export const RowData = styled.div`
     border-right: 1px solid ${(props) => props.theme.colors.border.secondary};
     border-bottom: 1px solid ${(props) => props.theme.colors.border.secondary};
     align-items: center;
-    p {
+    div, p {
         font-family: ${(props) => props.theme.typography.family.secondary};
         font-weight: ${(props) => props.theme.typography.weight.bold};
         color: ${(props) => props.theme.colors.font.primary.active.base};
@@ -115,7 +115,7 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
         height: 100%;
         width: 100%;
     }
-    p {
+    div, p {
         font-family: ${(props) => props.theme.typography.family.primary};
         font-weight: ${(props) => props.theme.typography.weight.regular};
     }

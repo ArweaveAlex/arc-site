@@ -28,6 +28,11 @@ export const Link = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: ${(props) => props.theme.typography.size.base};
+    color: ${(props) => props.theme.colors.font.primary.alt1};
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     &:hover {
         text-decoration: underline;
         cursor: pointer;
