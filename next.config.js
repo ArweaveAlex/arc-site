@@ -1,5 +1,3 @@
-
-
 // const nextConfig = {
 //   reactStrictMode: false,
 //   trailingSlash: true,

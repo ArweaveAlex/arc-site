@@ -83,13 +83,13 @@ export default function ArtifactTable(props: IProps) {
     const [data, setData] = React.useState<any>(null);
 
     function handleViewArtifact(url: string) {
-        Router.push('/${urls.artifact}[id]', url);
+        Router.push(`/${urls.artifact}[id]`, url);
     }
 
     function getLink(id: string, label: string) {
-        const href = `${urls.artifact}${id}`;
+        const url = `${urls.artifact}${id}`;
         return (
-            <S.Link onClick={() => handleViewArtifact(href)}>{label}</S.Link>
+            <S.Link onClick={() => handleViewArtifact(url)}>{label}</S.Link>
         )
     }
 
