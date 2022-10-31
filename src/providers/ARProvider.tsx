@@ -30,7 +30,7 @@ interface ARContextState {
     setWalletModalVisible: (open: boolean) => void;
     handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
     getARAmount: (amount: string) => number;
-    getAllArtifactsByPool: (poolId: string) => any;
+    getAllArtifactsByPool: (poolId: string, cursor: string | null) => any;
     getAllPools: () => any;
     getPoolById: (poolId: string) => any;
     getArtifactById: (artifactId: string) => any;
@@ -217,11 +217,11 @@ export function ARProvider(props: ARProviderProps) {
         return Math.floor(+arweave.ar.winstonToAr(amount) * 1e5) / 1e5
     }
 
-    async function getAllArtifactsByPool(poolId: string) {
+    async function getAllArtifactsByPool(poolId: string, cursor: string | null) {
         const aggregatedArtifacts: any = [];
-        let cursor: string | null = "";
+        // let cursor: string | null = "";
 
-        const query = (cursor: string) => gql.query({
+        const query = (cursor: string | null) => gql.query({
             operation: "transactions",
             variables: {
                 tags: {
@@ -232,7 +232,7 @@ export function ARProvider(props: ARProviderProps) {
                     type: "[TagFilter!]"
                 },
                 first: PAGINATOR,
-                after: cursor
+                after: cursor ? cursor : ""
             },
             fields: [
                 {
@@ -254,18 +254,33 @@ export function ARProvider(props: ARProviderProps) {
             ]
         })
 
-        while (cursor !== null) {
-            const response = await arweave.api.post("/graphql", query(cursor));
-            if (response.data.data) {
-                const responseData = response.data.data.transactions.edges;
-                if (responseData.length > 0) {
-                    cursor = responseData[responseData.length - 1].cursor;
-                    aggregatedArtifacts.push(...responseData);
-                    if (responseData.length < PAGINATOR) {
-                        cursor = null;
-                    }
-                }
-                else {
+        // while (cursor !== null) {
+        //     const response = await arweave.api.post("/graphql", query(cursor));
+        //     if (response.data.data) {
+        //         const responseData = response.data.data.transactions.edges;
+        //         if (responseData.length > 0) {
+        //             cursor = responseData[responseData.length - 1].cursor;
+        //             aggregatedArtifacts.push(...responseData);
+        //             if (responseData.length < PAGINATOR) {
+        //                 cursor = null;
+        //             }
+        //         }
+        //         else {
+        //             cursor = null;
+        //         }
+        //     }
+        //     else {
+        //         cursor = null;
+        //     }
+        // }
+
+        const response = await arweave.api.post("/graphql", query(cursor));
+        if (response.data.data) {
+            const responseData = response.data.data.transactions.edges;
+            if (responseData.length > 0) {
+                cursor = responseData[responseData.length - 1].cursor;
+                aggregatedArtifacts.push(...responseData);
+                if (responseData.length < PAGINATOR) {
                     cursor = null;
                 }
             }
@@ -274,7 +289,10 @@ export function ARProvider(props: ARProviderProps) {
             }
         }
 
-        return aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none);
+        return ({
+            cursor: cursor,
+            contracts: aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none)
+        })
     }
 
     async function getAllPools() {
@@ -347,7 +365,7 @@ export function ARProvider(props: ARProviderProps) {
             const responseData = response.data.data.transactions.edges;
             if (responseData.length > 0) {
                 origResponseData = responseData;
-                pool = await getPoolById(getTagValue(origResponseData[0].node.tags, TAGS.keys.poolId)); 
+                pool = await getPoolById(getTagValue(origResponseData[0].node.tags, TAGS.keys.poolId));
             }
         }
 
@@ -385,23 +403,26 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     async function getUserArtifacts(userWallet: string) {
-        let contributions = [];
+        let contributions: any = [];
         for (let i = 0; i < POOL_IDS.length; i++) {
-            let artifacts = await getAllArtifactsByPool(POOL_IDS[i]!);
-            contributions = contributions.concat(artifacts);
+            let artifacts = (await getAllArtifactsByPool(POOL_IDS[i]!, null));
+            contributions = contributions.concat(artifacts.contracts);
         }
-        return contributions.filter((artifact: ArtifactQueryType) => {
-            if (artifact.node && artifact.node.tags) {
-                let tags = artifact.node.tags;
-                for (let j = 0; j < tags.length; j++) {
-                    if (tags[j]!.name === TAGS.keys.initialOwner) {
-                        if (tags[j]!.value === userWallet) {
-                            return true;
+
+        return ({
+            cursor: null, contracts: contributions.filter((artifact: ArtifactQueryType) => {
+                if (artifact.node && artifact.node.tags) {
+                    let tags = artifact.node.tags;
+                    for (let j = 0; j < tags.length; j++) {
+                        if (tags[j]!.name === TAGS.keys.initialOwner) {
+                            if (tags[j]!.value === userWallet) {
+                                return true;
+                            }
                         }
                     }
                 }
-            }
-            return false;
+                return false;
+            })
         });
     }
 
@@ -549,7 +570,7 @@ export function ARProvider(props: ARProviderProps) {
         let conMap = {};
         pools.map((pool: any) => {
             let lastDate = 0;
-            contributions.map((c: any) => {
+            contributions.contracts.map((c: any) => {
                 c.node.tags.map((tag: any) => {
                     if (tag.name === TAGS.keys.dateCreated) {
                         let v = parseInt(tag.value);

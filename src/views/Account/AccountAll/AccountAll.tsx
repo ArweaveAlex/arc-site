@@ -1,16 +1,17 @@
 import React from "react";
 
+import { useARProvder } from "@/providers/ARProvider";
+
 import { ArtifactTable } from "@/global/ArtifactTable";
 
 import { LANGUAGE } from "@/language"
 import * as S from "./styles";
 
-import { useARProvder } from "@/providers/ARProvider";
-
 export default function AccountAll() {
     const arProvider = useARProvder();
 
     const [data, setData] = React.useState<any>(null);
+    const [state, setState] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         (async function () {
@@ -20,11 +21,19 @@ export default function AccountAll() {
         })();
     }, [arProvider.walletAddress])
 
+    function handleUpdateFetch() {
+        setState(!state);
+    }
+
     function getData() {
-        if (data && data.length > 0) {
+        if (data && data.contracts.length > 0) {
             return (
                 <S.Wrapper>
-                    <ArtifactTable data={data} showBookmarks={true} />
+                    <ArtifactTable 
+                        data={data} 
+                        showBookmarks={true}
+                        handleUpdateFetch={handleUpdateFetch}
+                    />
                 </S.Wrapper>
             )
         }
@@ -35,6 +44,5 @@ export default function AccountAll() {
 
     return data ? (
         <>{getData()}</>
-
     ) : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

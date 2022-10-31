@@ -81,3 +81,8 @@ export type ArtifactQueryType = {
     tags: KeyValueType[]
   }
 }
+
+export type ArtifactResponseType = {
+  cursor: string | null,
+  contracts: ArtifactQueryType[]
+}

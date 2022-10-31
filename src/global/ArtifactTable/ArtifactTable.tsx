@@ -96,7 +96,7 @@ export default function ArtifactTable(props: IProps) {
     React.useEffect(() => {
         if (props.data) {
             (async function () {
-                setData(props.data.map((element: any) => { // TODO - Type ArtifactQueryType
+                setData(props.data.contracts.map((element: any) => {
                     const row: ArtifactTableRowType = {
                         title: getLink(element.node.id, getTagValue(element.node.tags, TAGS.keys.artifactName)),
                         dateCreated: formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), "epoch")
@@ -138,6 +138,8 @@ export default function ArtifactTable(props: IProps) {
             header={getHeader() as any}
             data={data}
             recordsPerPage={PAGINATOR}
+            showPageNumbers={false}
+            handleUpdateFetch={props.handleUpdateFetch}
         />
     ) :
         <S.EmptyWrapper>

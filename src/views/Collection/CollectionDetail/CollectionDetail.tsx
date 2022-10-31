@@ -4,6 +4,10 @@ import { IProps } from "./types";
 
 export default function CollectionDetail(props: IProps) {
     return (
-        <ArtifactTable data={props.data} showBookmarks={false} />
+        <ArtifactTable 
+            data={props.data} 
+            showBookmarks={false}
+            handleUpdateFetch={props.handleUpdateFetch}
+        />
     )
 }

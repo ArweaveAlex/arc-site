@@ -1,8 +1,10 @@
 import { KeyValueType, TableHeaderType } from "@/types"
 
 export interface IProps {
-    title: string,
-    header: TableHeaderType,
-    data: KeyValueType[],
-    recordsPerPage: number
+    title: string;
+    header: TableHeaderType;
+    data: KeyValueType[];
+    recordsPerPage: number;
+    showPageNumbers: boolean;
+    handleUpdateFetch: () => void;
 }

@@ -39,15 +39,17 @@ export default function Paginator(props: IProps) {
 
     function handleScroll() {
         if (props.scrollRef.current) {
-            props.scrollRef.current.scrollIntoView({behavior: "smooth", block: "start"});
+            props.scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     }
 
     const handleNextPage = () => {
-        if (props.currentPage !== props.nPages) {
-            props.setCurrentPage(props.currentPage + 1);
-            handleScroll();
-        }
+        // if (props.currentPage !== props.nPages) {
+        //     props.setCurrentPage(props.currentPage + 1);
+        //     handleScroll();
+        // }
+        props.handleUpdateFetch();
+        handleScroll();
     }
 
     const handlePreviousPage = () => {
@@ -68,47 +70,51 @@ export default function Paginator(props: IProps) {
                 label={LANGUAGE.previous}
                 type={"secondary"}
                 handlePress={handlePreviousPage}
-                disabled={props.currentPage === 1}
+                // disabled={props.currentPage === 1}
+                disabled={true}
                 noMinWidth
             />
-            <S.NumberContainer>
-                {pageNumbers.slice(sliceStart, sliceEnd).map((number: number, index: number) => {
-                    return (
-                        <S.NumberButtonContainer key={index}>
-                            <Button
-                                label={number}
-                                type={"primary"}
-                                handlePress={() => handleCurrentPage(number)}
-                                active={number === props.currentPage}
-                                noMinWidth
-                            />
-                        </S.NumberButtonContainer>
-                    )
-                })}
-                {!(props.currentPage >= pageLength - 1) &&
-                    <>
-                        {!(props.currentPage === pageLength - 2) && 
-                            <S.Ellipses><span>...</span></S.Ellipses>
-                        }
-                        {!(props.nPages === 3) &&
-                            <S.NumberButtonContainer>
-                            <Button
-                                label={pageLength}
-                                type={"primary"}
-                                handlePress={() => handleCurrentPage(pageLength)}
-                                active={pageLength === props.currentPage}
-                                noMinWidth
-                            />
-                        </S.NumberButtonContainer>
-                        }
-                    </>
-                }
+            {props.showPageNumbers &&
+                <S.NumberContainer>
+                    {pageNumbers.slice(sliceStart, sliceEnd).map((number: number, index: number) => {
+                        return (
+                            <S.NumberButtonContainer key={index}>
+                                <Button
+                                    label={number}
+                                    type={"primary"}
+                                    handlePress={() => handleCurrentPage(number)}
+                                    active={number === props.currentPage}
+                                    noMinWidth
+                                />
+                            </S.NumberButtonContainer>
+                        )
+                    })}
+                    {!(props.currentPage >= pageLength - 1) &&
+                        <>
+                            {!(props.currentPage === pageLength - 2) &&
+                                <S.Ellipses><span>...</span></S.Ellipses>
+                            }
+                            {!(props.nPages === 3) &&
+                                <S.NumberButtonContainer>
+                                    <Button
+                                        label={pageLength}
+                                        type={"primary"}
+                                        handlePress={() => handleCurrentPage(pageLength)}
+                                        active={pageLength === props.currentPage}
+                                        noMinWidth
+                                    />
+                                </S.NumberButtonContainer>
+                            }
+                        </>
+                    }
                 </S.NumberContainer>
+            }
             <Button
                 label={LANGUAGE.next}
                 type={"secondary"}
                 handlePress={handleNextPage}
-                disabled={props.currentPage === props.nPages}
+                // disabled={props.currentPage === props.nPages}
+                disabled={false}
                 noMinWidth
             />
         </S.Wrapper>

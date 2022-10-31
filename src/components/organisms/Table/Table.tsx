@@ -2,15 +2,14 @@ import React from "react";
 
 import { Paginator } from "@/components/molecules/Paginator";
 
-import * as util from "@/util";
-import * as S from "./styles";
-import { IProps } from "./types";
 import { KeyValueType } from "@/types";
-import { useARProvder } from "@/providers/ARProvider";
+
+import * as util from "@/util";
+import { IProps } from "./types";
+import * as S from "./styles";
 
 export default function Table(props: IProps) {
     const scrollRef = React.useRef(null);
-    const arProvider = useARProvder();
 
     const [currentPage, setCurrentPage] = React.useState(1);
     const [recordsPerPage] = React.useState(props.recordsPerPage);
@@ -62,6 +61,8 @@ export default function Table(props: IProps) {
                     nPages={nPages}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
+                    showPageNumbers={props.showPageNumbers}
+                    handleUpdateFetch={props.handleUpdateFetch}
                 />
             </S.Body>
         </S.Wrapper>

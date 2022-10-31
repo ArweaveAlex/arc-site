@@ -1,6 +1,7 @@
-import { ArtifactTableRowType } from "@/types";
+import { ArtifactResponseType } from "@/types";
 
 export interface IProps {
-    data: ArtifactTableRowType[];
+    data: ArtifactResponseType;
     showBookmarks: boolean;
+    handleUpdateFetch: () => void;
 }
