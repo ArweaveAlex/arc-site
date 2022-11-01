@@ -1,38 +1,58 @@
 {
-  "name": "next-js-boilerplate",
-  "version": "1.1.0",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start",
-    "lint": "next lint",
-    "export": "next export"
-  },
+  "name": "arc-site",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@next/bundle-analyzer": "^12.3.1",
-    "arweave": "^1.10.23",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.3",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "arweave": "^1.11.6",
+    "constants-browserify": "^1.0.0",
+    "crypto-browserify": "^3.12.0",
     "gql-query-builder": "^3.7.2",
     "html-react-parser": "^3.0.4",
-    "mongoose": "^6.3.3",
-    "next": "^12.3.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-is": "^18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-responsive-carousel": "^3.2.23",
-    "react-svg": "^15.1.7",
+    "react-router-dom": "^6.4.2",
+    "react-scripts": "5.0.1",
+    "react-svg": "^15.1.11",
     "redstone-smartweave": "^0.5.7",
-    "styled-components": "^5.3.5"
+    "stream-browserify": "^3.0.0",
+    "styled-components": "^5.3.6",
+    "typescript": "^4.8.4",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@types/react": "^16.0.4",
-    "@types/react-dom": "^16.2.1",
     "@types/styled-components": "^5.1.26",
-    "cross-env": "^7.0.3",
-    "lint-staged": "^12.4.0",
-    "plop": "^3.0.6",
-    "prettier": "^2.6.2",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.6.3"
-  },
-  "license": "ISC"
+    "react-app-rewired": "^2.2.1"
+  }
 }

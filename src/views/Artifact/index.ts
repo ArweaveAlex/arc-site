@@ -1,1 +1,1 @@
-export { default as _Artifact } from "./Artifact"
+export { default as Artifact } from "./Artifact"

@@ -1,1 +1,0 @@
-export { default as _404 } from "./404";

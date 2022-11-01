@@ -1,4 +1,4 @@
-import { ArtifactType } from "@/types";
+import { ArtifactType } from "types";
 
 export interface IProps {
     data: ArtifactType;

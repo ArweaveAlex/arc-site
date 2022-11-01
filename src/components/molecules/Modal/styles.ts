@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { open, fadeIn1 } from "@/animations";
+import { open, fadeIn1 } from "animations";
 
 export const Wrapper = styled.div`
     height: 100%;

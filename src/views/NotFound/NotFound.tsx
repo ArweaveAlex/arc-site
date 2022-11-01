@@ -1,8 +1,8 @@
 import * as S from "./styles";
 
-import { LANGUAGE } from "@/language";
+import { LANGUAGE } from "language";
 
-export default function _404() {
+export default function NotFound() {
     return (
         <S.Wrapper>
             <S.Content>

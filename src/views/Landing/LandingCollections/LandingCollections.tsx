@@ -1,26 +1,22 @@
 import React from "react";
-import Router from "next/router";
 import parse from "html-react-parser";
 
 import { Carousel } from "react-responsive-carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import { getTxEndpoint } from "@/endpoints";
-import * as urls from "@/urls";
-import { LANGUAGE } from "@/language";
-import { CollectionType } from "@/types";
+import { getTxEndpoint } from "endpoints";
+import * as urls from "urls";
+import { getHashUrl } from "utils";
+import { LANGUAGE } from "language";
+import { CollectionType } from "types";
 import * as S from "./styles";
 
 function CollectionCard(props: CollectionType) {
 
     const [collectionUrl, setCollectionUrl] = React.useState<string | null>(null);
 
-    function handleViewAccount() {
-        Router.push(`/${urls.collection}[id]`, collectionUrl!);
-    }
-
     React.useEffect(() => {
-        setCollectionUrl(`${urls.collection}${props.id}`);
+        setCollectionUrl(getHashUrl(`${urls.collection}${props.id}`));
     }, [])
 
     return collectionUrl ? (
@@ -31,7 +27,7 @@ function CollectionCard(props: CollectionType) {
                     <S.Description>{parse(props.state.briefDescription)}</S.Description>
                 </S.C1Content>
                 <S.LinkContainer>
-                    <S.Link onClick={handleViewAccount}>
+                    <S.Link href={collectionUrl}>
                         <span>{LANGUAGE.viewCollection}</span>
                     </S.Link>
                 </S.LinkContainer>

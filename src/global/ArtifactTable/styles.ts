@@ -33,10 +33,7 @@ export const Link = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    &:hover {
-        text-decoration: underline;
-        cursor: pointer;
-    }
+   
     a {
         overflow: hidden;
         text-overflow: ellipsis;

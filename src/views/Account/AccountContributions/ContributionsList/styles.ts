@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { open, fadeIn2 } from "@/animations";
-import { STYLING } from "@/styling-config";
+import { open, fadeIn2 } from "animations";
+import { STYLING } from "styling-config";
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -40,7 +40,7 @@ export const List = styled.ol`
     flex-direction: column;
 `;
 
-export const Link = styled.div`
+export const Link = styled.a`
     &:hover {
         text-decoration: none;
     }

@@ -1,17 +1,18 @@
 import React from "react";
-import Router from "next/router";
+import { useNavigate } from "react-router-dom";
+
 import { ReactSVG } from "react-svg";
 
-import { useARProvder } from "@/providers/ARProvider";
+import { useARProvder } from "providers/ARProvider";
 
-import { Button } from "@/components/atoms/Button";
-import { Modal } from "@/components/molecules/Modal";
+import { Button } from "components/atoms/Button";
+import { Modal } from "components/molecules/Modal";
 
-import { CloseHandler } from "@/components/organisms/CloseHandler";
+import { CloseHandler } from "components/organisms/CloseHandler";
 
-import * as util from "@/util";
-import { ASSETS, ASSET_SRC, URLS } from "@/config";
-import { LANGUAGE } from "@/language";
+import { formatAddress } from "utils";
+import { ASSETS, ASSET_SRC, URLS } from "config";
+import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 function WalletList() {
@@ -29,7 +30,9 @@ function WalletList() {
     )
 }
 
-export default function WalletConnect({ setDynamicNavigationStatus }) {
+export default function WalletConnect() {
+    const navigate = useNavigate();
+    
     const arProvider = useARProvder();
 
     const [showDropdown, setShowDropdown] = React.useState(false);
@@ -61,9 +64,8 @@ export default function WalletConnect({ setDynamicNavigationStatus }) {
     }
 
     function handleViewAccount() {
-        Router.push(URLS.account[0]!.url);
+        navigate(URLS.account[0]!.url);
         setShowDropdown(false);
-        setDynamicNavigationStatus()
     }
 
     return (
@@ -80,7 +82,7 @@ export default function WalletConnect({ setDynamicNavigationStatus }) {
                 <Button
                     type={"primary"}
                     label={arProvider.walletAddress ?
-                        util.formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet}
+                        formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet}
                     handlePress={handlePress}
                     useMaxWidth
                 />

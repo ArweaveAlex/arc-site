@@ -1,4 +1,4 @@
-import { ArtifactTable } from "@/global/ArtifactTable";
+import { ArtifactTable } from "global/ArtifactTable";
 
 import { IProps } from "./types";
 

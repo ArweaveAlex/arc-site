@@ -1,19 +1,18 @@
 import React from "react";
-import Router from "next/router";
 
-import { useARProvder } from "@/providers/ARProvider";
+import { useARProvder } from "providers/ARProvider";
 
-import { Loader } from "@/components/atoms/Loader";
-import { IconButton } from "@/components/atoms/IconButton";
+import { Loader } from "components/atoms/Loader";
+import { IconButton } from "components/atoms/IconButton";
 
-import { Table } from "@/components/organisms/Table";
+import { Table } from "components/organisms/Table";
 
-import { LANGUAGE } from "@/language";
-import { ASSETS, PAGINATOR, STORAGE, TAGS } from "@/config";
+import { LANGUAGE } from "language";
+import { ASSETS, PAGINATOR, STORAGE, TAGS } from "config";
 
-import { AlignType, ArtifactTableRowType, TableHeaderType } from "@/types";
-import { formatDate, getTagValue, getJSONStorage } from "@/util";
-import * as urls from "@/urls";
+import { AlignType, ArtifactTableRowType, TableHeaderType } from "types";
+import { formatDate, getTagValue, getJSONStorage, getHashUrl } from "utils";
+import * as urls from "urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 
@@ -82,14 +81,10 @@ export default function ArtifactTable(props: IProps) {
 
     const [data, setData] = React.useState<any>(null);
 
-    function handleViewArtifact(url: string) {
-        Router.push(`/${urls.artifact}[id]`, url);
-    }
-
     function getLink(id: string, label: string) {
-        const url = `${urls.artifact}${id}`;
+        const url = getHashUrl(`${urls.artifact}${id}`);
         return (
-            <S.Link onClick={() => handleViewArtifact(url)}>{label}</S.Link>
+            <S.Link><a href={url}>{label}</a></S.Link>
         )
     }
 

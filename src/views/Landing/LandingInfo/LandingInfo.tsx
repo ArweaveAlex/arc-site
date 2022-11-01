@@ -1,7 +1,7 @@
 import parse from "html-react-parser";
 
-import { ASSETS } from "@/config";
-import { LANGUAGE } from "@/language";
+import { ASSETS } from "config";
+import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 export default function LandingInfo() {

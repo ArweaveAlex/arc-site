@@ -1,20 +1,15 @@
-import Router from "next/router";
 import { ReactSVG } from "react-svg";
 
-import { Tabs } from "@/components/organisms/Tabs";
+import { Tabs } from "components/organisms/Tabs";
 
-import { formatAddress, formatDate } from "@/util";
-import { ARTIFACT_TABS, ASSETS } from "@/config";
-import * as urls from "@/urls";
+import { formatAddress, formatDate, getHashUrl } from "utils";
+import { ARTIFACT_TABS, ASSETS } from "config";
+import * as urls from "urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function ArtifactHeader(props: IProps) {
-    function handleViewCollection() {
-        Router.push(`/${urls.collection}[id]`, `${urls.collection}/${props.data.poolId}`);
-    }
-
-    return (
+    return (props.data && props.type) ? (
         <S.Wrapper>
             <S.ContentWrapper>
                 {/* <S.HideWrapper>
@@ -49,7 +44,7 @@ export default function ArtifactHeader(props: IProps) {
                         <S.InfoCollection>
                             <>
                                 <ReactSVG src={ASSETS.collection} />
-                                <div onClick={handleViewCollection}>{props.data.poolName}</div>
+                                <a href={getHashUrl(`${urls.collection}${props.data.poolId}`)}>{props.data.poolName}</a>
                             </>
                         </S.InfoCollection>
                     </S.Info>
@@ -65,5 +60,5 @@ export default function ArtifactHeader(props: IProps) {
                 </S.Content>
             </S.ContentWrapper>
         </S.Wrapper>
-    )
+    ) : null;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import parse from "html-react-parser";
 
-import { LANGUAGE } from "@/language";
+import { LANGUAGE } from "language";
 import { IProps } from "../../types";
 import * as S from "./styles";
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
 
-import { IconButton } from "@/components/atoms/IconButton";
-import { Portal } from "@/components/atoms/Portal";
+import { IconButton } from "components/atoms/IconButton";
+import { Portal } from "components/atoms/Portal";
 
-import { ASSETS, DOM } from "@/config";
-import * as window from "@/window";
+import { ASSETS, DOM } from "config";
+import * as window from "window";
 import * as S from "./styles";
 import { IProps } from "./types";
 

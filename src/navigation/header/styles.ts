@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { open, fadeIn1 } from "@/animations";
-import { STYLING } from "@/styling-config";
+import { open, fadeIn1 } from "animations";
+import { STYLING } from "styling-config";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.header`
     height: ${STYLING.dimensions.navHeight};
     width: 100%;
     position: fixed;

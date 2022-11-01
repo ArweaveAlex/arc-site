@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { STYLING } from "@/styling-config";
+import { STYLING } from "styling-config";
 
 export const Primary = styled.button<{ 
   useMaxWidth: boolean | undefined, 

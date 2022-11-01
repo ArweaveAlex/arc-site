@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Paginator } from "@/components/molecules/Paginator";
+import { Paginator } from "components/molecules/Paginator";
 
-import { KeyValueType } from "@/types";
+import { KeyValueType } from "types";
 
-import * as util from "@/util";
+import { formatTitle } from "utils";
 import { IProps } from "./types";
 import * as S from "./styles";
 
@@ -32,7 +32,7 @@ export default function Table(props: IProps) {
                         {Object.keys(props.header).map((element: string, index: number) => {
                             return (
                                 <S.THeader key={index} even={(index + 1) % 2 === 0} width={props.header[element]!.width} align={props.header[element]!.align}>
-                                    <p>{util.formatTitle(element)}</p>
+                                    <p>{formatTitle(element)}</p>
                                 </S.THeader>
                             )
                         })}

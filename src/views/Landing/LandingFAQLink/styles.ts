@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { open, fadeIn2 } from "@/animations";
-import { STYLING } from "@/styling-config";
+import { open, fadeIn2 } from "animations";
+import { STYLING } from "styling-config";
 
 export const Wrapper = styled.div`
     height: 135px;

@@ -1,5 +1,5 @@
-import { LANGUAGE } from "@/language";
-import { useARProvder } from "@/providers/ARProvider";
+import { LANGUAGE } from "language";
+import { useARProvder } from "providers/ARProvider";
 import React from "react";
 import { ContributionsList } from "./ContributionsList";
 

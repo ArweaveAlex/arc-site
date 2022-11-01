@@ -11,18 +11,5 @@
 npm install
 ```
 ```
-npm run dev
+npm start
 ```
-
-### Deploy to production
-
-Local results in production mode:
-
-```
-$ npm run build
-$ npm run start
-```
-
-### License
-
-Licensed under the MIT License, Copyright © 2022

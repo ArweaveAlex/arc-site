@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ButtonType } from "@/types";
+import { ButtonType } from "types";
 
 export interface IProps {
   label: string | number | React.ReactNode;
