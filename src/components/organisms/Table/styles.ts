@@ -112,6 +112,7 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
     background: none;
     font-family: ${(props) => props.theme.typography.family.primary};
     font-weight: ${(props) => props.theme.typography.weight.regular};
+    overflow: hidden;
     div {
         height: 100%;
         width: 100%;

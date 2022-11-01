@@ -85,5 +85,5 @@ export type ArtifactQueryType = {
 export type ArtifactResponseType = {
   cursor: string | null,
   contracts: ArtifactQueryType[],
-  count: number
+  count: number | null
 }

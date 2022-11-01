@@ -19,7 +19,7 @@ export default function Collection() {
     const arProvider = useARProvder();
 
     const [headerData, setHeaderData] = React.useState<CollectionType | null>(null);
-    const [detailData, setDetailData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [], count: 0 });
+    const [detailData, setDetailData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [], count: null });
 
     const [state, setState] = React.useState<boolean>(false);
 
@@ -34,7 +34,9 @@ export default function Collection() {
         setState(!state);
     }
 
-    return (headerData && detailData) ? (
+    console.log(detailData)
+
+    return (headerData && (detailData && detailData.count)) ? (
         <S.Wrapper>
             <CollectionHeader
                 id={headerData.id}
