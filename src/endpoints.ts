@@ -9,3 +9,7 @@ export function getViewblockEndpoint(txId: string) {
 export function getTxEndpoint(txId: string) {
     return `https://arweave.net/${txId}`;
 }
+
+export function getRedstoneEndpoint(contractId: string){
+    return `https://gateway.redstone.finance/gateway/contracts-by-source?id=${contractId}&limit=15&page=1`;
+}

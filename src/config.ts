@@ -19,7 +19,8 @@ export const TAGS = {
         keywords: "Keywords",
         initialOwner: "Initial-Owner",
         poolId: "Pool-Id",
-        uploaderTxId: "Uploader-Tx-Id"
+        uploaderTxId: "Uploader-Tx-Id",
+        contractSrc: "Contract-Src"
     },
     values: {
         defaultArtifactType: "Alex-Default",

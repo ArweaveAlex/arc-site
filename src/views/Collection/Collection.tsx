@@ -16,7 +16,7 @@ import React from "react";
 export default function _Collection(props: { data: CollectionType }) {
     const arProvider = useARProvder();
 
-    const [data, setData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [] });
+    const [data, setData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [], count: 0 });
     const [state, setState] = React.useState<boolean>(false);
 
     React.useEffect(() => {
@@ -37,7 +37,7 @@ export default function _Collection(props: { data: CollectionType }) {
                 title={props.data.state.title}
                 description={props.data.state.description}
                 dateCreated={formatDate(props.data.state.timestamp, "epoch")}
-                count={data ? data.contracts.length : 0}
+                count={data.count}
                 totalContributions={arProvider.getARAmount(props.data.state.totalContributions)}
             />
             <CollectionDetail

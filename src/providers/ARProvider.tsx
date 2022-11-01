@@ -4,7 +4,7 @@ import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
 import { ArtifactQueryType, ContributionResultType } from "@/types";
-import { getBalanceEndpoint, getTxEndpoint } from "@/endpoints";
+import { getBalanceEndpoint, getTxEndpoint, getRedstoneEndpoint } from "@/endpoints";
 import { getTagValue } from "@/util";
 import { LANGUAGE } from "@/language";
 import { PAGINATOR, STORAGE, TAGS } from "@/config";
@@ -289,9 +289,19 @@ export function ARProvider(props: ARProviderProps) {
             }
         }
 
+        let count = 0;
+        if(aggregatedArtifacts.length > 0){
+            let nftContractSrc = getTagValue(aggregatedArtifacts[0].node.tags, TAGS.keys.contractSrc);
+            let redstoneContracts = await fetch(getRedstoneEndpoint(nftContractSrc));
+            let j = await redstoneContracts.json();
+            count = parseInt(j.paging.total);
+        }
+        
+
         return ({
             cursor: cursor,
-            contracts: aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none)
+            contracts: aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
+            count: count
         })
     }
 
