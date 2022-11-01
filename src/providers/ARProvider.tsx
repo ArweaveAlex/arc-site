@@ -425,7 +425,7 @@ export function ARProvider(props: ARProviderProps) {
         let queryObj = {
             operation: "transactions",
             variables: {
-                ids: ["Fo0pHwHVd5Vc-OobUGPeNK-W05XnNdt-QrAMBtYk1KY"],
+                ids: ["Fo0pHwHVd5Vc-OobUGPeNK-W05XnNdt-QrAMBtYk1KY"!],
                 first: PAGINATOR,
                 after: cursor ? cursor : ""
             },
