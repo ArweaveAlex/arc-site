@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { AlignType } from "@/types";
+import { AlignType } from "types";
 
-import { open, fadeIn2 } from "@/animations";
-import { STYLING } from "@/styling-config";
+import { open, fadeIn2 } from "animations";
+import { STYLING } from "styling-config";
 
 export const Wrapper = styled.div`
     width: 100%;

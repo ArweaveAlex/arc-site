@@ -1,47 +1,77 @@
 import React from "react";
-import { ReactSVG } from "react-svg";
+import { useParams } from "react-router-dom";
+
+import { useARProvder } from "providers/ARProvider";
 
 import { ArtifactHeader } from "./ArtifactHeader";
 // import { ArtifactShare } from "./ArtifactShare";
 import { ArtifactDetail } from "./ArtifactDetail";
 import { ArtifactView } from "./ArtifactView";
 
-import { ARTIFACT_TABS, ARTIFACT_TYPES, TAB_OPTIONS, TAGS } from "@/config";
-import { IProps } from "./types";
+import * as window from "window";
+import { 
+    ARTIFACT_TABS, 
+    ARTIFACT_TYPES, 
+    TAB_OPTIONS, 
+    TAGS 
+} from "config";
+import { ArtifactType } from "types";
 import * as S from "./styles";
 
-export default function _Artifact(props: IProps) {
+export default function Artifact() {
+    const { id } = useParams();
+
+    const arProvider = useARProvder();
+
+    const [data, setData] = React.useState<ArtifactType | null>(null);
     const [currentTab, setCurrentTab] = React.useState<string>(ARTIFACT_TABS[0]!.label);
+
+    React.useEffect(() => {
+        (async function () {
+            window.scrollTo(0, 0);
+            setData(await arProvider.getArtifactById(id!));
+        })()
+    }, []);
 
     function handleTabClick(label: string) {
         setCurrentTab(label);
     }
 
     function getArtifactType() {
-        let artifactType = ARTIFACT_TYPES[props.data.artifactType];
-        if (artifactType) {
-            return artifactType;
+        if (data) {
+            let artifactType = ARTIFACT_TYPES[data.artifactType];
+            if (artifactType) {
+                return artifactType;
+            }
+            else {
+                return  ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
+            }
         }
         else {
-            return  ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
+            return null;
         }
     }
 
     function getArtifact() {
-        switch (currentTab) {
-            case TAB_OPTIONS.view:
-                return <ArtifactView data={props.data} />
-            case TAB_OPTIONS.details:
-                return <ArtifactDetail data={props.data} type={getArtifactType()} />
-            default:
-                return <ArtifactDetail data={props.data} type={getArtifactType()} />
+        if (data) {
+            switch (currentTab) {
+                case TAB_OPTIONS.view:
+                    return <ArtifactView data={data} />
+                case TAB_OPTIONS.details:
+                    return <ArtifactDetail data={data} type={getArtifactType()} />
+                default:
+                    return <ArtifactDetail data={data} type={getArtifactType()} />
+            }
+        }
+        else {
+            return null;
         }
     }
 
     return (
         <S.Wrapper>
             <S.Content>
-                <ArtifactHeader data={props.data} type={getArtifactType()} onTabPropClick={(label: string) => handleTabClick(label)} />
+                <ArtifactHeader data={data} type={getArtifactType()} onTabPropClick={(label: string) => handleTabClick(label)} />
                 <S.FlexWrapper>
                     {/* <ArtifactShare /> */}
                     <S.ArtifactWrapper>
@@ -52,3 +82,4 @@ export default function _Artifact(props: IProps) {
         </S.Wrapper>
     );
 }
+  

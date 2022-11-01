@@ -1,27 +1,32 @@
-import { useARProvder } from "@/providers/ARProvider";
+import React from "react";
+import { useParams } from "react-router-dom";
 
-import { CollectionType } from "@/types";
+import { useARProvder } from "providers/ARProvider";
 
-import { Loader } from "@/components/atoms/Loader";
+import { Loader } from "components/atoms/Loader";
 
 import { CollectionHeader } from "./CollectionHeader";
 import { CollectionDetail } from "./CollectionDetail";
 
-import { ArtifactResponseType } from "@/types";
-import { getTxEndpoint } from "@/endpoints";
-import { formatDate } from "@/util";
+import { CollectionType, ArtifactResponseType } from "types";
+import { getTxEndpoint } from "endpoints";
+import { formatDate } from "utils";
 import * as S from "./styles";
-import React from "react";
 
-export default function _Collection(props: { data: CollectionType }) {
+export default function Collection() {
+    const { id } = useParams();
+
     const arProvider = useARProvder();
 
-    const [data, setData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [], count: 0 });
+    const [headerData, setHeaderData] = React.useState<CollectionType | null>(null);
+    const [detailData, setDetailData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [], count: 0 });
+
     const [state, setState] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         (async function () {
-            setData((await arProvider.getAllArtifactsByPool([props.data.id], data.cursor ? data.cursor: null, null)));
+            setHeaderData(await arProvider.getPoolById(id!));
+            setDetailData((await arProvider.getAllArtifactsByPool([id!], detailData.cursor ? detailData.cursor : null, null)));
         })();
     }, [arProvider.walletAddress, state])
 
@@ -29,19 +34,19 @@ export default function _Collection(props: { data: CollectionType }) {
         setState(!state);
     }
 
-    return data ? (
+    return (headerData && detailData) ? (
         <S.Wrapper>
             <CollectionHeader
-                id={props.data.id}
-                image={getTxEndpoint(props.data.state.image)}
-                title={props.data.state.title}
-                description={props.data.state.description}
-                dateCreated={formatDate(props.data.state.timestamp, "epoch")}
-                count={data.count}
-                totalContributions={arProvider.getARAmount(props.data.state.totalContributions)}
+                id={headerData.id}
+                image={getTxEndpoint(headerData.state.image)}
+                title={headerData.state.title}
+                description={headerData.state.description}
+                dateCreated={formatDate(headerData.state.timestamp, "epoch")}
+                count={detailData.count}
+                totalContributions={arProvider.getARAmount(headerData.state.totalContributions)}
             />
             <CollectionDetail
-                data={data}
+                data={detailData}
                 handleUpdateFetch={handleUpdateFetch}
             />
         </S.Wrapper>

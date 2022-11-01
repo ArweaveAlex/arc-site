@@ -1,17 +1,17 @@
 import React from "react"
 import { ReactSVG } from "react-svg";
 
-import { useARProvder } from "@/providers/ARProvider";
-import { ContributionResultType } from "@/types";
+import { useARProvder } from "providers/ARProvider";
+import { ContributionResultType } from "types";
 
-import { Button } from "@/components/atoms/Button";
-import { FormField } from "@/components/atoms/FormField";
-import { Modal } from "@/components/molecules/Modal";
-import { Notification } from "@/components/atoms/Notification";
+import { Button } from "components/atoms/Button";
+import { FormField } from "components/atoms/FormField";
+import { Modal } from "components/molecules/Modal";
+import { Notification } from "components/atoms/Notification";
 
-import { ValidationType } from "@/types";
-import { ASSETS } from "@/config";
-import { LANGUAGE } from "@/language";
+import { ValidationType } from "types";
+import { ASSETS } from "config";
+import { LANGUAGE } from "language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

@@ -1,10 +1,10 @@
 import React from "react";
 
-import { useARProvder } from "@/providers/ARProvider";
+import { useARProvder } from "providers/ARProvider";
 
-import { ArtifactTable } from "@/global/ArtifactTable";
+import { ArtifactTable } from "global/ArtifactTable";
 
-import { LANGUAGE } from "@/language"
+import { LANGUAGE } from "language"
 import * as S from "./styles";
 import { ArtifactResponseType } from "@/types";
 

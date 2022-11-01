@@ -1,5 +1,9 @@
-import { STORAGE } from "./config";
-import { DateType, KeyValueType } from "./types";
+import { STORAGE } from "config";
+import { DateType, KeyValueType } from "types";
+
+export function getHashUrl(url: string) {
+    return `/#${url}`;
+}
 
 export function formatAddress(address: string | null, wrap: boolean) {
     if (!address) {

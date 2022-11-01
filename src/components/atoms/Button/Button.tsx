@@ -2,7 +2,6 @@ import { ReactSVG } from "react-svg";
 
 import { Loader } from "../Loader";
 
-import { LANGUAGE } from "@/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

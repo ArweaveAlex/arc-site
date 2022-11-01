@@ -1,18 +1,17 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
 
-import { formatAddress, formatDataSize, formatDate } from "@/util";
-import * as urls from "@/urls";
-import { LANGUAGE } from "@/language";
-import { ASSETS } from "@/config";
+import { formatAddress, formatDataSize, formatDate } from "utils";
+import * as urls from "urls";
+import { LANGUAGE } from "language";
+import { ASSETS } from "config";
 import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function ArtifactDetail(props: IProps) {
     const [viewRaw, setViewRaw] = React.useState<boolean>(false);
-
-    console.log(JSON.parse(props.data.keywords))
-    return (
+    
+    return props.type ?  (
         <S.Wrapper>
             <S.IconWrapper>
                 <S.Icon>
@@ -109,5 +108,5 @@ export default function ArtifactDetail(props: IProps) {
 
             </S.Content>
         </S.Wrapper>
-    )
+    ) : null;
 }

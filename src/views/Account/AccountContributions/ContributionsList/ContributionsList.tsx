@@ -1,15 +1,9 @@
-import Router from "next/router";
-
-import { formatAddress, formatDate } from "@/util";
-import * as urls from "@/urls";
-import { LANGUAGE } from "@/language";
+import { formatAddress, formatDate, getHashUrl } from "utils";
+import * as urls from "urls";
+import { LANGUAGE } from "language";
 import * as S from "./styles";
 
-export default function ContributionsList({ data }) {
-    function handleViewCollection(url: string) {
-        Router.push(`/${urls.collection}[id]`, url);
-    }
-
+export default function ContributionsList({ data }: any) {
     return (
         <S.Wrapper>
             <S.Header>
@@ -20,7 +14,7 @@ export default function ContributionsList({ data }) {
             <S.List>
                 {data.map((collection: any, index: number) => {
                     return (
-                        <S.Link onClick={() => handleViewCollection(`${urls.collection}/${collection.id}`)} key={index}>
+                        <S.Link href={getHashUrl(`${urls.collection}${collection.id}`)} key={index}>
                             <S.ListItemWrapper>
                                 <S.LIHeaderContainer>
                                     <S.LIHeader1>{collection.state.title}</S.LIHeader1>

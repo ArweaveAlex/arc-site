@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { loaderKeyFrame, open } from "@/animations";
+import { loaderKeyFrame, open } from "animations";
 
 export const Wrapper = styled.div`
   height: 100%;

@@ -3,11 +3,11 @@ import * as gql from "gql-query-builder";
 import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
-import { ArtifactQueryType, ContributionResultType } from "@/types";
-import { getBalanceEndpoint, getTxEndpoint, getRedstoneEndpoint } from "@/endpoints";
-import { getTagValue } from "@/util";
-import { LANGUAGE } from "@/language";
-import { PAGINATOR, STORAGE, TAGS } from "@/config";
+import { ArtifactQueryType, ContributionResultType } from "types";
+import { getBalanceEndpoint, getTxEndpoint, getRedstoneEndpoint } from "endpoints";
+import { getTagValue } from "utils";
+import { LANGUAGE } from "language";
+import { PAGINATOR, STORAGE, TAGS } from "config";
 
 const AR_WALLETS = [
     { name: "arconnect", logo: "arconnect-wallet-logo.png" }
@@ -305,6 +305,7 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     async function getAllPools() {
+        console.log('get all pools')
         const collections: any = [];
 
         for (let i = 0; i < POOL_IDS.length; i++) {
@@ -514,7 +515,7 @@ export function ARProvider(props: ARProviderProps) {
 
         if (walletAddress) {
             while (cursor !== null) {
-                const response = await arweave.api.post("/graphql", query(cursor));
+                const response: any = await arweave.api.post("/graphql", query(cursor));
                 if (response.data.data) {
                     const responseData = response.data.data.transactions.edges;
                     if (responseData.length > 0) {
@@ -616,7 +617,7 @@ export function ARProvider(props: ARProviderProps) {
 
     async function calcLastContributions(userWallet: string, pools: any[]) {
         let contributions = await getUserArtifacts(userWallet, null);
-        let conMap = {};
+        let conMap: any = {};
         pools.map((pool: any) => {
             let lastDate = 0;
             contributions.contracts.map((c: any) => {
@@ -636,7 +637,7 @@ export function ARProvider(props: ARProviderProps) {
 
     async function getUserContributions(userWallet: string) {
         let pools = await getAllPools();
-        let lastContributions = await calcLastContributions(userWallet, pools);
+        let lastContributions: any = await calcLastContributions(userWallet, pools);
         return pools.filter((pool: any) => {
             if (pool.state.contributors.hasOwnProperty(userWallet)) {
                 return true;

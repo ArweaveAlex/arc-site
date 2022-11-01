@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import { STYLING } from "@/styling-config";
+import { STYLING } from "styling-config";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.main`
     min-height: calc(100vh - ${STYLING.dimensions.navHeight});
     width: 100%;
     margin: ${STYLING.dimensions.navHeight} auto 0 auto;

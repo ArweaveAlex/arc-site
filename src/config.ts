@@ -118,7 +118,6 @@ export const URLS: IURLView = {
     ]
 }
 
-export const ID_LENGTH = 43;
 export const PAGINATOR = 100;
 
 export const STORAGE = {

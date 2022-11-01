@@ -1,8 +1,8 @@
 import { ReactSVG } from "react-svg";
 
-// import * as urls from "@/urls";
-import { ASSETS } from "@/config";
-import { LANGUAGE } from "@/language";
+// import * as urls from "urls";
+import { ASSETS } from "config";
+import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 export default function LandingHeader() {

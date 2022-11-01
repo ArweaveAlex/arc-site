@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import { STYLING } from "@/styling-config";
+import { STYLING } from "styling-config";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.footer`
     height: 40vh;
     width: 100%;
     position: relative;

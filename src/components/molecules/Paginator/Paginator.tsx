@@ -1,6 +1,6 @@
-import { Button } from "@/components/atoms/Button";
+import { Button } from "components/atoms/Button";
 
-import { LANGUAGE } from "@/language";
+import { LANGUAGE } from "language";
 import { IProps } from "./types"
 import * as S from "./styles";
 

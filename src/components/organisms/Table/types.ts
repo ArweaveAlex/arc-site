@@ -1,4 +1,4 @@
-import { KeyValueType, TableHeaderType } from "@/types"
+import { KeyValueType, TableHeaderType } from "types"
 
 export interface IProps {
     title: string;

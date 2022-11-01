@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { open, fadeIn2 } from "@/animations";
-import { STYLING } from "@/styling-config";
+import { open, fadeIn2 } from "animations";
+import { STYLING } from "styling-config";
 
 export const Wrapper = styled.div`
     height: 500px;
@@ -136,7 +136,7 @@ export const Description = styled.p`
     }
 `;
 
-export const Link = styled.div`
+export const Link = styled.a`
     height: 100%;
     width: 100%;
     display: flex;

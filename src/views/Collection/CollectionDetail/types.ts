@@ -1,4 +1,4 @@
-import { ArtifactResponseType } from "@/types";
+import { ArtifactResponseType } from "types";
 
 export interface IProps {
     data: ArtifactResponseType;

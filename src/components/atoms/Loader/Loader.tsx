@@ -2,10 +2,10 @@ import React from "react";
 import { Portal } from "../Portal";
 
 import * as S from "./styles";
-import { DOM } from "@/config";
+import { DOM } from "config";
 import { IProps } from "./types";
 
-import * as window from "@/window";
+import * as window from "window";
 
 export default function Loader(props: IProps) {
   React.useEffect(() => {
@@ -16,7 +16,7 @@ export default function Loader(props: IProps) {
     return () => {
       window.showDocumentBody();
     };
-  }, []);
+  }, [props.alt]);
 
   if (props.alt) {
     return (

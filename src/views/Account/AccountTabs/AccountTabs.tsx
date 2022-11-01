@@ -1,12 +1,10 @@
-import React from "react";
+import { useARProvder } from "providers/ARProvider";
 
-import { useARProvder } from "@/providers/ARProvider";
+import { URLTabs } from "components/organisms/URLTabs";
 
-import { URLTabs } from "@/components/organisms/URLTabs";
-
-import * as util from "@/util";
-import { URLS } from "@/config";
-import { LANGUAGE } from "@/language";
+import { formatAddress } from "utils";
+import { URLS } from "config";
+import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 export default function AccountTabs() {
@@ -23,7 +21,7 @@ export default function AccountTabs() {
                             &nbsp;
                             &nbsp;
                             <S.Header2Container>
-                                <S.Header2>{util.formatAddress(arProvider.walletAddress, true)}</S.Header2>
+                                <S.Header2>{formatAddress(arProvider.walletAddress, true)}</S.Header2>
                             </S.Header2Container>
                         </S.FlexHeader>
                     </S.HeaderContainer>

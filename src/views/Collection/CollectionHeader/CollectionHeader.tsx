@@ -1,12 +1,12 @@
 import parse from "html-react-parser";
 
-import { Button } from "@/components/atoms/Button";
+// import { Button } from "components/atoms/Button";
 
 import { CollectionContribute } from "../CollectionContribute";
 
-import { formatAddress } from "@/util";
-import { ASSETS } from "@/config";
-import { LANGUAGE } from "@/language";
+import { formatAddress } from "utils";
+// import { ASSETS } from "config";
+import { LANGUAGE } from "language";
 import { IProps } from "./types";
 import * as S from "./styles";
 
@@ -34,13 +34,13 @@ export default function CollectionHeader(props: IProps) {
             <S.Header>
                 <S.HeaderFlex>
                     <S.Header1>{props.title}</S.Header1>
-                    <Button
+                    {/* <Button
                         disabled
                         label={LANGUAGE.shareCollection}
                         type={"secondary"}
                         handlePress={() => console.log('Share collection')}
                         icon={ASSETS.share}
-                    />
+                    /> */}
                 </S.HeaderFlex>
                 {getSubheader()}
             </S.Header>

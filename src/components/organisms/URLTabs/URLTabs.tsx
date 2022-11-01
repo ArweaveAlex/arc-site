@@ -1,45 +1,41 @@
 import React from "react";
-import Router, { useRouter } from "next/router";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { Button } from "@/components/atoms/Button";
+import { Button } from "components/atoms/Button";
 
-import { _404 } from "@/views/404"
+import { NotFound } from "views/NotFound";
 
-import { ASSET_SRC } from "@/config";
 import * as S from "./styles";
+import { ASSET_SRC } from "config";
 import { ITProps, ICProps, IUProps } from "./types";
 
 function Tab(props: ITProps) {
-  function handlePress(e) {
-    e.preventDefault();
-    props.handlePress(props.url);
-  }
+    function handlePress(e: any) {
+      e.preventDefault();
+      props.handlePress(props.url);
+    }
 
-  return (
-    <S.Tab>
-      <Button
-        type={"tertiary"}
-        label={props.label}
-        handlePress={handlePress}
-        active={props.active}
-        icon={`${ASSET_SRC}/${props.icon}`}
-        iconLeftAlign
-        disabled={props.disabled}
-      />
-    </S.Tab>
-  );
+    return (
+      <S.Tab>
+        <Button
+          type={"tertiary"}
+          label={props.label}
+          handlePress={handlePress}
+          active={props.active}
+          icon={`${ASSET_SRC}/${props.icon}`}
+          iconLeftAlign
+          disabled={props.disabled}
+        />
+      </S.Tab>
+    );
 }
 
 function TabContent(props: ICProps) {
-  const router = useRouter();
-  const activeUrl = router.pathname;
-
-  let TabView: React.ComponentType = _404;
+  const { active } = useParams() as { active: string };
+  let TabView: React.ComponentType = NotFound;
   for (let i = 0; i < props.tabs.length; i++) {
-    if (props.tabs[i]) {
-      if (props.tabs[i]!.url.includes(activeUrl)) {
-        TabView = props.tabs[i]!.view!;
-      }
+    if (props.tabs[i].url.includes(active)) {
+      TabView = props.tabs[i].view;
     }
   }
   return (
@@ -48,14 +44,19 @@ function TabContent(props: ICProps) {
     </S.View>
   );
 }
-
 export default function URLTabs(props: IUProps) {
-  const router = useRouter();
-  const activeUrl = router.pathname;
+  const navigate = useNavigate();
+  const { active } = useParams() as { active: string };
+
+  React.useEffect(() => {
+    if (!active) {
+      navigate(props.activeUrl);
+    }
+  }, [active, navigate, props.activeUrl]);
 
   const handleRedirect = (url: string) => {
-    if (activeUrl !== url) {
-      Router.push(url);
+    if (active !== url) {
+      navigate(url);
     }
   };
 
@@ -71,7 +72,7 @@ export default function URLTabs(props: IUProps) {
                 label={elem.label}
                 icon={elem.icon}
                 disabled={elem.disabled}
-                active={elem.url.includes(activeUrl)}
+                active={elem.url.includes(active)}
                 handlePress={() => handleRedirect(elem.url)}
               />
             );
