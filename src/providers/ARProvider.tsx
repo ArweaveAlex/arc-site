@@ -30,11 +30,12 @@ interface ARContextState {
     setWalletModalVisible: (open: boolean) => void;
     handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
     getARAmount: (amount: string) => number;
-    getAllArtifactsByPool: (poolId: string, cursor: string | null) => any;
+    getAllArtifactsByPool: (poolIds: string[], cursor: string | null, owner: string | null) => any;
     getAllPools: () => any;
     getPoolById: (poolId: string) => any;
     getArtifactById: (artifactId: string) => any;
-    getUserArtifacts: (userWallet: string) => any;
+    getUserArtifacts: (userWallet: string, cursor: string | null) => any;
+    getUserBookmarkArtifacts: (cursor: string | null) => any;
     getUserContributions: (userWallet: string) => any;
     getUserBookmarks: () => any;
     toggleUserBookmark: (artifactId: string) => any;
@@ -92,8 +93,8 @@ const DEFAULT_CONTEXT = {
         console.error(`Get ${amount} AR Amount`);
         return 0
     },
-    async getAllArtifactsByPool(poolId: string): Promise<any> {
-        console.log(`Get All Artifacts for ${poolId}`);
+    async getAllArtifactsByPool(poolIds: string[]): Promise<any> {
+        console.log(`Get All Artifacts for ${poolIds}`);
         return null;
     },
     async getAllPools() {
@@ -107,7 +108,10 @@ const DEFAULT_CONTEXT = {
         console.log(`Get Artifact ${artifactId}`);
         return null
     },
-    async getUserArtifacts(_userWallet: string) {
+    async getUserArtifacts(_userWallet: string, _cursor: string | null) {
+        return null;
+    },
+    async getUserBookmarkArtifacts(_cursor: string | null) {
         return null;
     },
     async getUserContributions(_userWallet: string) {
@@ -217,18 +221,31 @@ export function ARProvider(props: ARProviderProps) {
         return Math.floor(+arweave.ar.winstonToAr(amount) * 1e5) / 1e5
     }
 
-    async function getAllArtifactsByPool(poolId: string, cursor: string | null) {
+    async function getAllArtifactsByPool(
+        poolIds: string[], 
+        cursor: string | null, 
+        owner: string | null
+    ) {
         const aggregatedArtifacts: any = [];
         // let cursor: string | null = "";
 
-        const query = (cursor: string | null) => gql.query({
+        let allTags = [{
+            name: TAGS.keys.poolId,
+            values: poolIds
+        }];
+
+        if(owner){
+            allTags.push({
+                name: TAGS.keys.initialOwner,
+                values: [owner]
+            });
+        }
+
+        let queryObj = {
             operation: "transactions",
             variables: {
                 tags: {
-                    value: {
-                        name: TAGS.keys.poolId,
-                        values: [poolId]
-                    },
+                    value: allTags,
                     type: "[TagFilter!]"
                 },
                 first: PAGINATOR,
@@ -252,27 +269,9 @@ export function ARProvider(props: ARProviderProps) {
                     ]
                 }
             ]
-        })
+        };
 
-        // while (cursor !== null) {
-        //     const response = await arweave.api.post("/graphql", query(cursor));
-        //     if (response.data.data) {
-        //         const responseData = response.data.data.transactions.edges;
-        //         if (responseData.length > 0) {
-        //             cursor = responseData[responseData.length - 1].cursor;
-        //             aggregatedArtifacts.push(...responseData);
-        //             if (responseData.length < PAGINATOR) {
-        //                 cursor = null;
-        //             }
-        //         }
-        //         else {
-        //             cursor = null;
-        //         }
-        //     }
-        //     else {
-        //         cursor = null;
-        //     }
-        // }
+        const query = (_cursor: string | null) => gql.query(queryObj);
 
         const response = await arweave.api.post("/graphql", query(cursor));
         if (response.data.data) {
@@ -412,28 +411,68 @@ export function ARProvider(props: ARProviderProps) {
         }
     }
 
-    async function getUserArtifacts(userWallet: string) {
-        let contributions: any = [];
-        for (let i = 0; i < POOL_IDS.length; i++) {
-            let artifacts = (await getAllArtifactsByPool(POOL_IDS[i]!, null));
-            contributions = contributions.concat(artifacts.contracts);
+    async function getUserArtifacts(userWallet: string, cursor: string | null) {
+        let artifacts = await getAllArtifactsByPool(POOL_IDS!, cursor, userWallet);
+        return artifacts;
+    }
+
+    async function getUserBookmarkArtifacts(cursor: string | null) {
+        let bookmarkIds = await getBookmarksIds();
+        console.log(JSON.stringify(bookmarkIds))
+        const aggregatedArtifacts: any = [];
+
+        let queryObj = {
+            operation: "transactions",
+            variables: {
+                ids: ["Fo0pHwHVd5Vc-OobUGPeNK-W05XnNdt-QrAMBtYk1KY"],
+                first: PAGINATOR,
+                after: cursor ? cursor : ""
+            },
+            fields: [
+                {
+                    edges: [
+                        "cursor",
+                        {
+                            node: [
+                                "id",
+                                {
+                                    "tags": [
+                                        "name",
+                                        "value"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const query = (_cursor: string | null) => gql.query(queryObj);
+
+        const response = await arweave.api.post("/graphql", query(cursor));
+        if (response.data.data) {
+            const responseData = response.data.data.transactions.edges;
+            if (responseData.length > 0) {
+                cursor = responseData[responseData.length - 1].cursor;
+                aggregatedArtifacts.push(...responseData);
+                if (responseData.length < PAGINATOR) {
+                    cursor = null;
+                }
+            }
+            else {
+                cursor = null;
+            }
         }
 
+        let count = 0;
+        
         return ({
-            cursor: null, contracts: contributions.filter((artifact: ArtifactQueryType) => {
-                if (artifact.node && artifact.node.tags) {
-                    let tags = artifact.node.tags;
-                    for (let j = 0; j < tags.length; j++) {
-                        if (tags[j]!.name === TAGS.keys.initialOwner) {
-                            if (tags[j]!.value === userWallet) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-                return false;
-            })
-        });
+            cursor: cursor,
+            contracts: aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
+            count: count
+        })
+        
     }
 
     async function getUserBookmarks() {
@@ -576,7 +615,7 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     async function calcLastContributions(userWallet: string, pools: any[]) {
-        let contributions = await getUserArtifacts(userWallet);
+        let contributions = await getUserArtifacts(userWallet, null);
         let conMap = {};
         pools.map((pool: any) => {
             let lastDate = 0;
@@ -651,6 +690,7 @@ export function ARProvider(props: ARProviderProps) {
                 getPoolById,
                 getArtifactById,
                 getUserArtifacts,
+                getUserBookmarkArtifacts,
                 getUserContributions,
                 getUserBookmarks,
                 toggleUserBookmark,

@@ -21,7 +21,7 @@ export default function _Collection(props: { data: CollectionType }) {
 
     React.useEffect(() => {
         (async function () {
-            setData((await arProvider.getAllArtifactsByPool(props.data.id, data.cursor ? data.cursor: null)));
+            setData((await arProvider.getAllArtifactsByPool([props.data.id], data.cursor ? data.cursor: null, null)));
         })();
     }, [arProvider.walletAddress, state])
 

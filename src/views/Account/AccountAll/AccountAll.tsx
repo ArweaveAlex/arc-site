@@ -6,20 +6,21 @@ import { ArtifactTable } from "@/global/ArtifactTable";
 
 import { LANGUAGE } from "@/language"
 import * as S from "./styles";
+import { ArtifactResponseType } from "@/types";
 
 export default function AccountAll() {
     const arProvider = useARProvder();
 
-    const [data, setData] = React.useState<any>(null);
+    const [data, setData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [], count: 0 });
     const [state, setState] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         (async function () {
             if (arProvider.walletAddress) {
-                setData((await arProvider.getUserArtifacts(arProvider.walletAddress)));
+                setData((await arProvider.getUserArtifacts(arProvider.walletAddress, data.cursor ? data.cursor: null)));
             }
         })();
-    }, [arProvider.walletAddress])
+    }, [arProvider.walletAddress, state])
 
     function handleUpdateFetch() {
         setState(!state);

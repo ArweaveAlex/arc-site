@@ -4,34 +4,30 @@ import { useARProvder } from "@/providers/ARProvider";
 
 import { ArtifactTable } from "@/global/ArtifactTable";
 
-import { ArtifactQueryType } from "@/types";
+import { ArtifactQueryType, ArtifactResponseType } from "@/types";
 import { LANGUAGE } from "@/language";
 import * as S from "./styles";
 
 export default function AccountBookmarks() {
     const arProvider = useARProvder();
 
-    const [data, setData] = React.useState<any>(null);
+    const [data, setData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [], count: 0 });
     const [state, setState] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         (async function () {
-            const bookmarksIds = await arProvider.getBookmarksIds();
-
             if (arProvider.walletAddress) {
-                // setData((await arProvider.getUserArtifacts(arProvider.walletAddress)).filter((element: ArtifactQueryType) => 
-                //     bookmarksIds.includes(element.node.id)));
-                setData((await arProvider.getUserArtifacts(arProvider.walletAddress)));
+                setData((await arProvider.getUserBookmarkArtifacts(data.cursor ? data.cursor: null)));
             }
         })();
-    }, [arProvider.walletAddress])
+    }, [arProvider.walletAddress, state])
 
     function handleUpdateFetch() {
         setState(!state);
     }
 
     function getData() {
-        if (data && data.length > 0) {
+        if (data && data.contracts.length > 0) {
             return (
                 <S.Wrapper>
                     <ArtifactTable 
