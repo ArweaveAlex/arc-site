@@ -28,13 +28,11 @@ export default function Collection() {
             setHeaderData(await arProvider.getPoolById(id!));
             setDetailData((await arProvider.getAllArtifactsByPool([id!], detailData.cursor ? detailData.cursor : null, null)));
         })();
-    }, [arProvider.walletAddress, state])
+    }, [arProvider, arProvider.walletAddress, state, id, detailData.cursor])
 
     function handleUpdateFetch() {
         setState(!state);
     }
-
-    console.log(detailData)
 
     return (headerData && (detailData && detailData.count)) ? (
         <S.Wrapper>
