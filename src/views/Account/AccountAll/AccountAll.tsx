@@ -6,7 +6,7 @@ import { ArtifactTable } from "global/ArtifactTable";
 
 import { LANGUAGE } from "language"
 import * as S from "./styles";
-import { ArtifactResponseType } from "@/types";
+import { ArtifactResponseType } from "types";
 
 export default function AccountAll() {
     const arProvider = useARProvder();
