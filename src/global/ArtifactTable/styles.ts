@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-export const EmptyWrapper = styled.div`
-    margin: 20px 0;
-    p {
-        font-size: ${(props) => props.theme.typography.size.base};
-        color: ${(props) => props.theme.colors.font.primary.alt1};
-    }
-`;
-
 export const BookmarkToggle = styled.div`
     height: 100%;
     width: 100%;
@@ -17,6 +9,7 @@ export const BookmarkToggle = styled.div`
     position: relative;
     svg {
         fill: ${(props) => props.theme.colors.icon.secondary.fill};
+        margin: 0 0 5px 0;
     }
 `;
 

@@ -227,7 +227,6 @@ export function ARProvider(props: ARProviderProps) {
         owner: string | null
     ) {
         const aggregatedArtifacts: any = [];
-        // let cursor: string | null = "";
 
         let allTags = [{
             name: TAGS.keys.poolId,
@@ -305,7 +304,6 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     async function getAllPools() {
-        console.log('get all pools')
         const collections: any = [];
 
         for (let i = 0; i < POOL_IDS.length; i++) {
@@ -419,39 +417,19 @@ export function ARProvider(props: ARProviderProps) {
 
     async function getUserBookmarkArtifacts(cursor: string | null) {
         let bookmarkIds = await getBookmarksIds();
-        console.log(JSON.stringify(bookmarkIds))
         const aggregatedArtifacts: any = [];
-
-        let queryObj = {
-            operation: "transactions",
+        
+        const operation = {
+            operationName: null,
+            query: `{\n  transactions(ids: ${JSON.stringify(bookmarkIds)}) {\n    edges {\n      node {\n        id\n        tags {\n          name\n          value\n        }\n        data {\n          size\n          type\n        }\n      }\n    }\n  }\n}\n`,
             variables: {
-                id: bookmarkIds[0],
                 first: PAGINATOR,
                 after: cursor ? cursor : ""
-            },
-            fields: [
-                {
-                    edges: [
-                        "cursor",
-                        {
-                            node: [
-                                "id",
-                                {
-                                    "tags": [
-                                        "name",
-                                        "value"
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        };
+            }
+        }
 
-        const query = (_cursor: string | null) => gql.query(queryObj);
+        const response = await arweave.api.post("/graphql", operation);
 
-        const response = await arweave.api.post("/graphql", query(cursor));
         if (response.data.data) {
             const responseData = response.data.data.transactions.edges;
             if (responseData.length > 0) {
@@ -465,8 +443,6 @@ export function ARProvider(props: ARProviderProps) {
                 cursor = null;
             }
         }
-
-        console.log(aggregatedArtifacts);
 
         let count = aggregatedArtifacts.length;
         
@@ -620,20 +596,23 @@ export function ARProvider(props: ARProviderProps) {
     async function calcLastContributions(userWallet: string, pools: any[]) {
         let contributions = await getUserArtifacts(userWallet, null);
         let conMap: any = {};
-        pools.map((pool: any) => {
+
+        for (let i = 0; i < pools.length; i++) {
             let lastDate = 0;
-            contributions.contracts.map((c: any) => {
-                c.node.tags.map((tag: any) => {
+            for (let j = 0; j < contributions.contracts.length; j++) {
+                for (let k = 0; k < contributions.contracts[j].node.tags.length; k++) {
+                    const tag: any = contributions.contracts[j].node.tags[k];
                     if (tag.name === TAGS.keys.dateCreated) {
                         let v = parseInt(tag.value);
                         if (v > lastDate) {
                             lastDate = v;
-                            conMap[pool.id] = v;
+                            conMap[pools[i].id] = v;
                         }
                     }
-                })
-            })
-        })
+                }
+            }
+        }
+
         return conMap;
     }
 

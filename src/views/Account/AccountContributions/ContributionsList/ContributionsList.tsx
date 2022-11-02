@@ -28,7 +28,7 @@ export default function ContributionsList({ data }: any) {
                                         <S.SubheaderContainer>
                                             <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
                                             &nbsp;
-                                            <S.Date><p>{formatDate(collection.ts, "epoch")}</p></S.Date>
+                                            <S.Date><p>{formatDate(collection.state.timestamp, "epoch")}</p></S.Date>
                                         </S.SubheaderContainer>
                                     </S.SubheaderFlex>
                                 </S.LIHeaderContainer>

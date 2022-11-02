@@ -17,7 +17,7 @@ export default function AccountContributions() {
                 }));
             })();
         }
-    }, [arProvider.walletAddress])
+    }, [arProvider, arProvider.walletAddress])
 
     function getData() {
         if (data && data.length > 0) {
@@ -34,6 +34,5 @@ export default function AccountContributions() {
 
     return data ? (
         <>{getData()}</>
-
     ) : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

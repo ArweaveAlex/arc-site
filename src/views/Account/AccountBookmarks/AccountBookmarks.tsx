@@ -20,6 +20,10 @@ export default function AccountBookmarks() {
                 setData((await arProvider.getUserBookmarkArtifacts(data.cursor ? data.cursor: null)));
             }
         })();
+        /*  ESLint used to avoid warning with data.cursor not being used in dependency array
+            By adding data.cursor to dependency array this effect will continue to run
+            getUserBookmarkArtifacts and return each subsequent query set */
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [arProvider.walletAddress, state])
 
     function handleUpdateFetch() {
@@ -27,7 +31,6 @@ export default function AccountBookmarks() {
     }
 
     function getData() {
-        console.log(data);
         if (data && data.contracts.length > 0) {
             return (
                 <S.Wrapper>

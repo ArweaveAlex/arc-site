@@ -16,15 +16,15 @@ import * as urls from "urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 
-function BookmarkToggle(props: { artifactId: string }) {
+function BookmarkToggle(props: { artifactId: string, bookmarkIds: string[] }) {
     const arProvider = useARProvder();
 
     const [txPending, setTxPending] = React.useState<boolean>(false);
-    const [bookmarkIds, setBookmarkIds] = React.useState<any>(null);
+    // const [bookmarkIds, setBookmarkIds] = React.useState<any>(null);
 
-    async function getBookmarkIds() {
-        setBookmarkIds(await await arProvider.getBookmarksIds());
-    }
+    // async function getBookmarkIds() {
+    //     setBookmarkIds(await await arProvider.getBookmarksIds());
+    // }
 
     React.useEffect(() => {
         if (localStorage.getItem(props.artifactId)) {
@@ -35,27 +35,28 @@ function BookmarkToggle(props: { artifactId: string }) {
                 setTxPending(true);
             }
         }
-        (async function () {
-            await getBookmarkIds();
-        })()
-    }, [])
+        // (async function () {
+        //     await getBookmarkIds();
+        // })()
+    }, [arProvider, props.artifactId])
 
     React.useEffect(() => {
         window.addEventListener(STORAGE.txUpdate, () => {
             if (localStorage.getItem(props.artifactId)) {
                 setTxPending(true);
             }
-            else {
-                (async function () {
-                    await getBookmarkIds();
-                })()
-                setTxPending(false);
-            }
+            // else {
+            //     (async function () {
+            //         await getBookmarkIds();
+            //     })()
+            //     setTxPending(false);
+            // }
         })
-    }, []);
+    }, [props.artifactId]);
 
     function getIcon() {
-        if (!bookmarkIds || txPending) {
+        // if (!bookmarkIds || txPending) {
+        if (txPending) {
             return (
                 <Loader alt />
             )
@@ -63,7 +64,8 @@ function BookmarkToggle(props: { artifactId: string }) {
         else {
             return (
                 <IconButton
-                    src={bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
+                    // src={bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
+                    src={props.bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
                     handlePress={() => { arProvider.toggleUserBookmark!(props.artifactId) }}
                 />
             )
@@ -91,6 +93,7 @@ export default function ArtifactTable(props: IProps) {
     React.useEffect(() => {
         if (props.data) {
             (async function () {
+                const bookmarkIds = await await arProvider.getBookmarksIds();
                 setData(props.data.contracts.map((element: any) => {
                     const row: ArtifactTableRowType = {
                         title: getLink(element.node.id, getTagValue(element.node.tags, TAGS.keys.artifactName)),
@@ -98,7 +101,7 @@ export default function ArtifactTable(props: IProps) {
                     }
                     if (props.showBookmarks) {
                         row.bookmark = (
-                            <BookmarkToggle artifactId={element.node.id} />
+                            <BookmarkToggle artifactId={element.node.id} bookmarkIds={bookmarkIds} />
                         );
                     }
 
@@ -112,11 +115,11 @@ export default function ArtifactTable(props: IProps) {
             })();
 
         }
-    }, [props.data, arProvider.walletAddress])
+    }, [props.data, props.showBookmarks, arProvider, arProvider.walletAddress])
 
     function getHeader() {
         const header: TableHeaderType = {
-            title: { width: "75%", align: "left" as AlignType },
+            title: { width: props.showBookmarks ? "65%" : "75%", align: "left" as AlignType },
             dateCreated: { width: "25%", align: "left" as AlignType }
         }
 
@@ -136,8 +139,5 @@ export default function ArtifactTable(props: IProps) {
             showPageNumbers={false}
             handleUpdateFetch={props.handleUpdateFetch}
         />
-    ) :
-        <S.EmptyWrapper>
-            <p>{LANGUAGE.noArtifacts}</p>
-        </S.EmptyWrapper>
+    ) : null
 }

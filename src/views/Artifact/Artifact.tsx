@@ -8,6 +8,8 @@ import { ArtifactHeader } from "./ArtifactHeader";
 import { ArtifactDetail } from "./ArtifactDetail";
 import { ArtifactView } from "./ArtifactView";
 
+import { Loader } from "components/atoms/Loader";
+
 import * as window from "window";
 import { 
     ARTIFACT_TABS, 
@@ -31,7 +33,7 @@ export default function Artifact() {
             window.scrollTo(0, 0);
             setData(await arProvider.getArtifactById(id!));
         })()
-    }, []);
+    }, [arProvider, id]);
 
     function handleTabClick(label: string) {
         setCurrentTab(label);
@@ -64,7 +66,7 @@ export default function Artifact() {
             }
         }
         else {
-            return null;
+            return <Loader />;
         }
     }
 

@@ -34,8 +34,6 @@ export default function AccountAll() {
         return data && (data.count !== null);
     }
 
-    console.log(data);
-
     function getData() {
         if (data.contracts.length > 0) {
             return (
