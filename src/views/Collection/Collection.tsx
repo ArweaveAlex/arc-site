@@ -28,22 +28,30 @@ export default function Collection() {
             setHeaderData(await arProvider.getPoolById(id!));
             setDetailData((await arProvider.getAllArtifactsByPool([id!], detailData.cursor ? detailData.cursor : null, null)));
         })();
-    }, [arProvider, arProvider.walletAddress, state, id, detailData.cursor])
+        // ESLinst used to avoid warning with detailData.cursor not being used in dependency array
+        // By adding detailData.cursor to dependency array this effect will continue to run
+        // getAllArtifactsByPool and return each subsequent query set
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [arProvider, arProvider.walletAddress, state, id])
 
     function handleUpdateFetch() {
         setState(!state);
     }
 
-    return (headerData && (detailData && detailData.count)) ? (
+    function checkState() {
+        return headerData && (detailData && (detailData.count !== null));
+    }
+
+    return checkState() ? (
         <S.Wrapper>
             <CollectionHeader
-                id={headerData.id}
-                image={getTxEndpoint(headerData.state.image)}
-                title={headerData.state.title}
-                description={headerData.state.description}
-                dateCreated={formatDate(headerData.state.timestamp, "epoch")}
-                count={detailData.count}
-                totalContributions={arProvider.getARAmount(headerData.state.totalContributions)}
+                id={headerData!.id}
+                image={getTxEndpoint(headerData!.state.image)}
+                title={headerData!.state.title}
+                description={headerData!.state.description}
+                dateCreated={formatDate(headerData!.state.timestamp, "epoch")}
+                count={detailData.count!}
+                totalContributions={arProvider.getARAmount(headerData!.state.totalContributions)}
             />
             <CollectionDetail
                 data={detailData}
