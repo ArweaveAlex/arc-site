@@ -20,7 +20,7 @@ export default function AccountAll() {
                 setData((await arProvider.getUserArtifacts(arProvider.walletAddress, data.cursor ? data.cursor: null)));
             }
         })();
-    }, [arProvider.walletAddress, state])
+    }, [arProvider.walletAddress])
 
     function handleUpdateFetch() {
         setState(!state);

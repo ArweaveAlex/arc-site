@@ -425,7 +425,7 @@ export function ARProvider(props: ARProviderProps) {
         let queryObj = {
             operation: "transactions",
             variables: {
-                ids: ["Fo0pHwHVd5Vc-OobUGPeNK-W05XnNdt-QrAMBtYk1KY"!],
+                id: bookmarkIds[0],
                 first: PAGINATOR,
                 after: cursor ? cursor : ""
             },
@@ -466,7 +466,9 @@ export function ARProvider(props: ARProviderProps) {
             }
         }
 
-        let count = 0;
+        console.log(aggregatedArtifacts);
+
+        let count = aggregatedArtifacts.length;
         
         return ({
             cursor: cursor,

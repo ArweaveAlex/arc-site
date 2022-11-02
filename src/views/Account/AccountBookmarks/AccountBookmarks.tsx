@@ -27,6 +27,7 @@ export default function AccountBookmarks() {
     }
 
     function getData() {
+        console.log(data);
         if (data && data.contracts.length > 0) {
             return (
                 <S.Wrapper>

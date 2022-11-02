@@ -28,7 +28,7 @@ export default function Collection() {
             setHeaderData(await arProvider.getPoolById(id!));
             setDetailData((await arProvider.getAllArtifactsByPool([id!], detailData.cursor ? detailData.cursor : null, null)));
         })();
-    }, [arProvider, arProvider.walletAddress, state, id, detailData.cursor])
+    }, [arProvider.walletAddress, state])
 
     function handleUpdateFetch() {
         setState(!state);
