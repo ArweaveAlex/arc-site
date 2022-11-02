@@ -20,9 +20,9 @@ export default function AccountAll() {
                 setData((await arProvider.getUserArtifacts(arProvider.walletAddress, data.cursor ? data.cursor : null)));
             }
         })();
-        // ESLint used to avoid warning with data.cursor not being used in dependency array
-        // By adding data.cursor to dependency array this effect will continue to run
-        // getUserArtifacts and return each subsequent query set
+        /*  ESLint used to avoid warning with data.cursor not being used in dependency array
+            By adding data.cursor to dependency array this effect will continue to run
+            getUserArtifacts and return each subsequent query set */
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [arProvider.walletAddress, state])
 
