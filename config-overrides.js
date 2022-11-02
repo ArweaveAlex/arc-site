@@ -1,4 +1,4 @@
-module.exports = function override (config, env) {
+module.exports = function override(config, env) {
     console.log('override')
     let loaders = config.resolve
     loaders.fallback = {
@@ -6,6 +6,6 @@ module.exports = function override (config, env) {
         "stream": require.resolve("stream-browserify"),
         "constants": require.resolve("constants-browserify")
     }
-    
-    return config
+
+    return { ...config, ignoreWarnings: [/Failed to parse source map/] };
 }
