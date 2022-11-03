@@ -3,4 +3,5 @@ export interface IProps {
   handlePress: () => void;
   sm?: boolean;
   warning?: boolean;
+  disabled?: boolean;
 }

@@ -5,7 +5,7 @@ import { IProps } from "./types";
 
 export default function IconButton(props: IProps) {
   return (
-    <S.Wrapper sm={props.sm} warning={props.warning} onClick={props.handlePress}>
+    <S.Wrapper disabled={props.disabled} sm={props.sm} warning={props.warning} onClick={props.handlePress}>
       <ReactSVG src={props.src} />
     </S.Wrapper>
   );

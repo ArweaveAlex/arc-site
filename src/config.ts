@@ -2,7 +2,7 @@ import { IURLView } from "./types";
 
 import { AccountAll } from "./views/Account/AccountAll";
 // import { AccountNew } from "./views/Account/AccountNew";
-import { AccountBookmarks } from "./views/Account/AccountBookmarks";
+// import { AccountBookmarks } from "./views/Account/AccountBookmarks";
 import { AccountContributions } from "./views/Account/AccountContributions";
 
 import * as urls from "./urls";
@@ -111,10 +111,17 @@ export const DOM = {
 //     ]
 // }
 
+// export const URLS: IURLView = {
+//     account: [
+//         { index: 0, label: LANGUAGE.account.all.title, icon: "account-all.svg", disabled: false, url: urls.accountAll, view: AccountAll },
+//         { index: 2, label: LANGUAGE.account.bookmarks.title, icon: "account-bookmarks.svg", disabled: false, url: urls.accountBookmarks, view: AccountBookmarks },
+//         { index: 2, label: LANGUAGE.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
+//     ]
+// }
+
 export const URLS: IURLView = {
     account: [
         { index: 0, label: LANGUAGE.account.all.title, icon: "account-all.svg", disabled: false, url: urls.accountAll, view: AccountAll },
-        { index: 2, label: LANGUAGE.account.bookmarks.title, icon: "account-bookmarks.svg", disabled: false, url: urls.accountBookmarks, view: AccountBookmarks },
         { index: 2, label: LANGUAGE.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
     ]
 }

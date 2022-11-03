@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
+import { STYLING } from "styling-config";
+
 export const Wrapper = styled.div`
     height: 100%;
     width: 100%;
     display: flex;
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        flex-direction: column;
+    }
 `;
 
 export const IconWrapper = styled.div`
@@ -18,6 +23,9 @@ export const IconWrapper = styled.div`
         font-size: ${(props) => props.theme.typography.size.xSmall};
         font-weight: ${(props) => props.theme.typography.weight.medium};
         color: ${(props) => props.theme.colors.font.primary.base};
+    }
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        width: 100%
     }
 `;
 
@@ -40,12 +48,26 @@ export const Icon = styled.div`
         transform: translate(-50%, -50%);
         fill: ${(props) => props.theme.colors.font.primary.base};
     }
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        svg {
+            width: 27.5%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            fill: ${(props) => props.theme.colors.font.primary.base};
+        }
+    }
 `;
 
 export const Content = styled.div`
     height: 100%;
     width: calc(100% - 400px);
     margin: 0 0 0 25px;
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        width: 100%;
+        margin: 25px 0;
+    }
 `;
 
 export const ContentLine = styled.div`
