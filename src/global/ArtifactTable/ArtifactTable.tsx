@@ -20,11 +20,6 @@ function BookmarkToggle(props: { artifactId: string, bookmarkIds: string[] }) {
     const arProvider = useARProvder();
 
     const [txPending, setTxPending] = React.useState<boolean>(false);
-    // const [bookmarkIds, setBookmarkIds] = React.useState<any>(null);
-
-    // async function getBookmarkIds() {
-    //     setBookmarkIds(await await arProvider.getBookmarksIds());
-    // }
 
     React.useEffect(() => {
         if (localStorage.getItem(props.artifactId)) {
@@ -35,9 +30,6 @@ function BookmarkToggle(props: { artifactId: string, bookmarkIds: string[] }) {
                 setTxPending(true);
             }
         }
-        // (async function () {
-        //     await getBookmarkIds();
-        // })()
     }, [arProvider, props.artifactId])
 
     React.useEffect(() => {
@@ -45,17 +37,10 @@ function BookmarkToggle(props: { artifactId: string, bookmarkIds: string[] }) {
             if (localStorage.getItem(props.artifactId)) {
                 setTxPending(true);
             }
-            // else {
-            //     (async function () {
-            //         await getBookmarkIds();
-            //     })()
-            //     setTxPending(false);
-            // }
         })
     }, [props.artifactId]);
 
     function getIcon() {
-        // if (!bookmarkIds || txPending) {
         if (txPending) {
             return (
                 <Loader alt />
@@ -64,9 +49,9 @@ function BookmarkToggle(props: { artifactId: string, bookmarkIds: string[] }) {
         else {
             return (
                 <IconButton
-                    // src={bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
                     src={props.bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
                     handlePress={() => { arProvider.toggleUserBookmark!(props.artifactId) }}
+                    disabled
                 />
             )
         }

@@ -96,6 +96,11 @@ export const InfoStyled = styled(InfoData)`
         fill: ${(props) => props.theme.colors.font.primary.alt5};
     }
     border-left: 1px solid ${(props) => props.theme.colors.border.tertiary};
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        svg {
+            display: none;
+        }
+    }
 `;
 
 export const InfoType = styled(InfoStyled)`

@@ -41,7 +41,7 @@ export default function AccountAll() {
                 <S.Wrapper>
                     <ArtifactTable 
                         data={data} 
-                        showBookmarks={true}
+                        showBookmarks={false}
                         handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
                         cursors={{
                             next: data.nextCursor,
