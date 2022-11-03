@@ -37,6 +37,7 @@ interface ARContextState {
     getARAmount: (amount: string) => number;
     getAllArtifactsByPool: (args: ArtifactArgsType) => any;
     getAllPools: () => any;
+    getPoolIds:() => any;
     getPoolById: (poolId: string) => any;
     getArtifactById: (artifactId: string) => any;
     getUserArtifacts: (userWallet: string, cursor: string | null) => any;
@@ -74,8 +75,6 @@ const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 // STAGING POOL - 8Y9XTSDkdNVylhuDwdosZhvFFKr1hrhYjf3Vw-mQII0
 // STAGING POOL - CbX34uhYDBGV5U0xg8_iOZJrcXLkvG2q06KvaXB2BDw
 
-const POOL_IDS: string[] = ["8Y9XTSDkdNVylhuDwdosZhvFFKr1hrhYjf3Vw-mQII0", "CbX34uhYDBGV5U0xg8_iOZJrcXLkvG2q06KvaXB2BDw"];
-
 const DEFAULT_CONTEXT = {
     wallets: [],
     walletAddress: null,
@@ -103,6 +102,9 @@ const DEFAULT_CONTEXT = {
         return null;
     },
     async getAllPools() {
+        return null;
+    },
+    async getPoolIds() {
         return null;
     },
     async getPoolById(poolId: string) {
@@ -307,13 +309,72 @@ export function ARProvider(props: ARProviderProps) {
         })
     }
 
+    async function getPoolIds(){
+        const aggregatedPools: any = [];
+        let cursor: string | null = "";
+
+        const query = (cursor: string) => gql.query({
+            operation: "transactions",
+            variables: {
+                tags: {
+                    value: {
+                        name: TAGS.keys.appType,
+                        values: ["Alex-Archiving-Pool-v1.0"]
+                    },
+                    type: "[TagFilter!]"
+                },
+                first: PAGINATOR,
+                after: cursor
+            },
+            fields: [
+                {
+                    edges: [
+                        "cursor",
+                        {
+                            node: [
+                                "id"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        })
+
+        
+        while (cursor !== null) {
+            const response: any = await arweave.api.post("/graphql", query(cursor));
+            if (response.data.data) {
+                const responseData = response.data.data.transactions.edges;
+                if (responseData.length > 0) {
+                    cursor = responseData[responseData.length - 1].cursor;
+                    aggregatedPools.push(...responseData);
+                    if (responseData.length < PAGINATOR) {
+                        cursor = null;
+                    }
+                }
+                else {
+                    cursor = null;
+                }
+            }
+            else {
+                cursor = null;
+            }
+        }
+        
+
+        return aggregatedPools.map((p: any) => {
+            return p.node.id;
+        });
+    }
+
     async function getAllPools() {
         const collections: any = [];
+        let pool_ids = await getPoolIds();
 
-        for (let i = 0; i < POOL_IDS.length; i++) {
+        for (let i = 0; i < pool_ids.length; i++) {
             try {
-                const contract = smartweave.contract(POOL_IDS[i]!);
-                collections.push({ id: POOL_IDS[i], state: (await contract.readState()).state });
+                const contract = smartweave.contract(pool_ids[i]!);
+                collections.push({ id: pool_ids[i], state: (await contract.readState()).state });
             }
             catch (error: any) {
                 console.error(error)
@@ -415,7 +476,8 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     async function getUserArtifacts(userWallet: string, cursor: string | null) {
-        let artifacts = await getAllArtifactsByPool({ poolIds: POOL_IDS!, cursor: cursor, owner: userWallet });
+        let pool_ids = await getPoolIds();
+        let artifacts = await getAllArtifactsByPool({ poolIds: pool_ids!, cursor: cursor, owner: userWallet });
         return artifacts;
     }
 
@@ -673,6 +735,7 @@ export function ARProvider(props: ARProviderProps) {
                 getARAmount,
                 getAllArtifactsByPool,
                 getAllPools,
+                getPoolIds,
                 getPoolById,
                 getArtifactById,
                 getUserArtifacts,

@@ -10,6 +10,7 @@ import { LANGUAGE } from "./language";
 
 export const TAGS = {
     keys: {
+        appType:"App-Type",
         artifactName: "Artifact-Name",
         artifactType: "Artifact-Type",
         ansTitle: "Title",
