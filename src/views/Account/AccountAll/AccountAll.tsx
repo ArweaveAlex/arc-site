@@ -11,24 +11,25 @@ import { ArtifactResponseType } from "types";
 export default function AccountAll() {
     const arProvider = useARProvder();
 
-    const [data, setData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [], count: null });
-    const [state, setState] = React.useState<boolean>(false);
+    const [cursor, setCursor] = React.useState<string | null>(null);
+    const [data, setData] = React.useState<ArtifactResponseType>({ 
+        nextCursor: null, 
+        previousCursor: null, 
+        contracts: [], 
+        count: null 
+    });
 
     React.useEffect(() => {
         (async function () {
             if (arProvider.walletAddress) {
-                setData((await arProvider.getUserArtifacts(arProvider.walletAddress, data.cursor ? data.cursor : null)));
+                setData((await arProvider.getUserArtifacts(arProvider.walletAddress, cursor)));
             }
         })();
-        /*  ESLint used to avoid warning with data.cursor not being used in dependency array
-            By adding data.cursor to dependency array this effect will continue to run
+        /*  ESLint used to avoid warning with data.nextCursor not being used in dependency array
+            By adding data.nextCursor to dependency array this effect will continue to run
             getUserArtifacts and return each subsequent query set */
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [arProvider.walletAddress, state])
-
-    function handleUpdateFetch() {
-        setState(!state);
-    }
+    }, [arProvider.walletAddress, cursor])
 
     function checkState() {
         return data && (data.count !== null);
@@ -41,7 +42,11 @@ export default function AccountAll() {
                     <ArtifactTable 
                         data={data} 
                         showBookmarks={true}
-                        handleUpdateFetch={handleUpdateFetch}
+                        handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
+                        cursors={{
+                            next: data.nextCursor,
+                            previous: data.previousCursor
+                        }}
                     />
                 </S.Wrapper>
             )

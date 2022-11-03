@@ -138,6 +138,7 @@ export default function ArtifactTable(props: IProps) {
             recordsPerPage={PAGINATOR}
             showPageNumbers={false}
             handleUpdateFetch={props.handleUpdateFetch}
+            cursors={props.cursors}
         />
     ) : null
 }

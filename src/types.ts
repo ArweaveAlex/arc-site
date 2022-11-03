@@ -46,6 +46,10 @@ export type AlignType = "left" | "center" | "right";
 export type ContributionResultType = { status: boolean, message: string | null };
 export type RefType = { current: HTMLElement };
 export type DateType = "iso" | "epoch";
+export type CursorType =  {
+  next: string | null,
+  previous: string | null
+}
 
 export interface IURLView {
   account: URLViewType[]
@@ -68,9 +72,9 @@ export type ValidationType = {
 export type KeyValueType = { [key: string]: string | React.ReactNode };
 export type TableHeaderType = { [key: string]: { width: string, align: AlignType } };
 
-export type ArtifactTableRowType = { 
-  title: React.ReactNode, 
-  dateCreated: string, 
+export type ArtifactTableRowType = {
+  title: React.ReactNode,
+  dateCreated: string,
   bookmark?: React.ReactNode
 };
 
@@ -82,8 +86,15 @@ export type ArtifactQueryType = {
   }
 }
 
-export type ArtifactResponseType = {
+export type ArtifactArgsType = {
+  poolIds: string[],
   cursor: string | null,
+  owner: string | null
+}
+
+export type ArtifactResponseType = {
+  nextCursor: string | null,
+  previousCursor: string | null,
   contracts: ArtifactQueryType[],
   count: number | null
 }

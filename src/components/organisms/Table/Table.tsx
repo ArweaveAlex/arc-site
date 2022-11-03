@@ -62,7 +62,8 @@ export default function Table(props: IProps) {
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     showPageNumbers={props.showPageNumbers}
-                    handleUpdateFetch={props.handleUpdateFetch}
+                    handleUpdateFetch={(cursor: string | null) => props.handleUpdateFetch(cursor)}
+                    cursors={props.cursors}
                 />
             </S.Body>
         </S.Wrapper>

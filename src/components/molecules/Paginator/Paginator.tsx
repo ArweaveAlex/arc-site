@@ -48,15 +48,17 @@ export default function Paginator(props: IProps) {
         //     props.setCurrentPage(props.currentPage + 1);
         //     handleScroll();
         // }
-        props.handleUpdateFetch();
+        props.handleUpdateFetch(props.cursors.next);
         handleScroll();
     }
 
     const handlePreviousPage = () => {
-        if (props.currentPage !== 1) {
-            props.setCurrentPage(props.currentPage - 1);
-            handleScroll();
-        }
+        // if (props.currentPage !== 1) {
+        //     props.setCurrentPage(props.currentPage - 1);
+        //     handleScroll();
+        // }
+        props.handleUpdateFetch(props.cursors.previous);
+        handleScroll();
     }
 
     const handleCurrentPage = (number: number) => {
@@ -70,8 +72,7 @@ export default function Paginator(props: IProps) {
                 label={LANGUAGE.previous}
                 type={"secondary"}
                 handlePress={handlePreviousPage}
-                // disabled={props.currentPage === 1}
-                disabled={true}
+                disabled={!props.cursors.previous}
                 noMinWidth
             />
             {props.showPageNumbers &&
@@ -113,8 +114,7 @@ export default function Paginator(props: IProps) {
                 label={LANGUAGE.next}
                 type={"secondary"}
                 handlePress={handleNextPage}
-                // disabled={props.currentPage === props.nPages}
-                disabled={false}
+                disabled={!props.cursors.next}
                 noMinWidth
             />
         </S.Wrapper>

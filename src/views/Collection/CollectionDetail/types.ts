@@ -1,6 +1,7 @@
-import { ArtifactResponseType } from "types";
+import { ArtifactResponseType, CursorType } from "types";
 
 export interface IProps {
     data: ArtifactResponseType;
-    handleUpdateFetch: () => void;
+    handleUpdateFetch: (cursor: string | null) => void;
+    cursors: CursorType
 }

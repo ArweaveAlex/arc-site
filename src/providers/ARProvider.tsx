@@ -3,7 +3,12 @@ import * as gql from "gql-query-builder";
 import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
-import { ArtifactQueryType, ContributionResultType } from "types";
+import {
+    ArtifactArgsType,
+    ArtifactQueryType,
+    ArtifactResponseType,
+    ContributionResultType
+} from "types";
 import { getBalanceEndpoint, getTxEndpoint, getRedstoneEndpoint } from "endpoints";
 import { getTagValue } from "utils";
 import { LANGUAGE } from "language";
@@ -30,7 +35,7 @@ interface ARContextState {
     setWalletModalVisible: (open: boolean) => void;
     handlePoolContribute: (poolId: string, amount: number) => Promise<ContributionResultType>;
     getARAmount: (amount: string) => number;
-    getAllArtifactsByPool: (poolIds: string[], cursor: string | null, owner: string | null) => any;
+    getAllArtifactsByPool: (args: ArtifactArgsType) => any;
     getAllPools: () => any;
     getPoolById: (poolId: string) => any;
     getArtifactById: (artifactId: string) => any;
@@ -93,8 +98,8 @@ const DEFAULT_CONTEXT = {
         console.error(`Get ${amount} AR Amount`);
         return 0
     },
-    async getAllArtifactsByPool(poolIds: string[]): Promise<any> {
-        console.log(`Get All Artifacts for ${poolIds}`);
+    async getAllArtifactsByPool(args: ArtifactArgsType): Promise<any> {
+        console.log(`Get All Artifacts for ${args.poolIds}`);
         return null;
     },
     async getAllPools() {
@@ -221,22 +226,20 @@ export function ARProvider(props: ARProviderProps) {
         return Math.floor(+arweave.ar.winstonToAr(amount) * 1e5) / 1e5
     }
 
-    async function getAllArtifactsByPool(
-        poolIds: string[], 
-        cursor: string | null, 
-        owner: string | null
-    ) {
-        const aggregatedArtifacts: any = [];
+    async function getAllArtifactsByPool(args: ArtifactArgsType): Promise<ArtifactResponseType> {
+        const aggregatedArtifacts: ArtifactQueryType[] = [];
+        let nextCursor: string | null = null;
+        let previousCursor: string | null = null;
 
         let allTags = [{
             name: TAGS.keys.poolId,
-            values: poolIds
+            values: args.poolIds
         }];
 
-        if(owner){
+        if (args.owner) {
             allTags.push({
                 name: TAGS.keys.initialOwner,
-                values: [owner]
+                values: [args.owner]
             });
         }
 
@@ -248,7 +251,7 @@ export function ARProvider(props: ARProviderProps) {
                     type: "[TagFilter!]"
                 },
                 first: PAGINATOR,
-                after: cursor ? cursor : ""
+                after: args.cursor ? args.cursor : ""
             },
             fields: [
                 {
@@ -272,32 +275,33 @@ export function ARProvider(props: ARProviderProps) {
 
         const query = (_cursor: string | null) => gql.query(queryObj);
 
-        const response = await arweave.api.post("/graphql", query(cursor));
+        const response = await arweave.api.post("/graphql", query(args.cursor));
         if (response.data.data) {
             const responseData = response.data.data.transactions.edges;
             if (responseData.length > 0) {
-                cursor = responseData[responseData.length - 1].cursor;
+                previousCursor = args.cursor;
+                nextCursor = responseData[responseData.length - 1].cursor;
                 aggregatedArtifacts.push(...responseData);
                 if (responseData.length < PAGINATOR) {
-                    cursor = null;
+                    nextCursor = null;
                 }
             }
             else {
-                cursor = null;
+                nextCursor = null;
             }
         }
 
         let count = 0;
-        if(aggregatedArtifacts.length > 0){
+        if (aggregatedArtifacts.length > 0) {
             let nftContractSrc = getTagValue(aggregatedArtifacts[0].node.tags, TAGS.keys.contractSrc);
             let redstoneContracts = await fetch(getRedstoneEndpoint(nftContractSrc));
             let j = await redstoneContracts.json();
             count = parseInt(j.paging.total);
         }
-        
 
         return ({
-            cursor: cursor,
+            nextCursor: nextCursor,
+            previousCursor: previousCursor,
             contracts: aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
             count: count
         })
@@ -411,14 +415,14 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     async function getUserArtifacts(userWallet: string, cursor: string | null) {
-        let artifacts = await getAllArtifactsByPool(POOL_IDS!, cursor, userWallet);
+        let artifacts = await getAllArtifactsByPool({ poolIds: POOL_IDS!, cursor: cursor, owner: userWallet });
         return artifacts;
     }
 
     async function getUserBookmarkArtifacts(cursor: string | null) {
         let bookmarkIds = await getBookmarksIds();
         const aggregatedArtifacts: any = [];
-        
+
         const operation = {
             operationName: null,
             query: `{\n  transactions(ids: ${JSON.stringify(bookmarkIds)}) {\n    edges {\n      node {\n        id\n        tags {\n          name\n          value\n        }\n        data {\n          size\n          type\n        }\n      }\n    }\n  }\n}\n`,
@@ -445,13 +449,13 @@ export function ARProvider(props: ARProviderProps) {
         }
 
         let count = aggregatedArtifacts.length;
-        
+
         return ({
             cursor: cursor,
             contracts: aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
             count: count
         })
-        
+
     }
 
     async function getUserBookmarks() {

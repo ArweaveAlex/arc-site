@@ -18,25 +18,29 @@ export default function Collection() {
 
     const arProvider = useARProvder();
 
+    const [cursor, setCursor] = React.useState<string | null>(null);
     const [headerData, setHeaderData] = React.useState<CollectionType | null>(null);
-    const [detailData, setDetailData] = React.useState<ArtifactResponseType>({ cursor: null, contracts: [], count: null });
-
-    const [state, setState] = React.useState<boolean>(false);
+    const [detailData, setDetailData] = React.useState<ArtifactResponseType>({
+        nextCursor: null,
+        previousCursor: null,
+        contracts: [],
+        count: null
+    });
 
     React.useEffect(() => {
         (async function () {
             setHeaderData(await arProvider.getPoolById(id!));
-            setDetailData((await arProvider.getAllArtifactsByPool([id!], detailData.cursor ? detailData.cursor : null, null)));
+            setDetailData((await arProvider.getAllArtifactsByPool({ 
+                poolIds: [id!], 
+                cursor: cursor, 
+                owner: null 
+            })));
         })();
-        /*  ESLint used to avoid warning with detailData.cursor not being used in dependency array
-            By adding detailData.cursor to dependency array this effect will continue to run
+        /*  ESLint used to avoid warning with detailData.nextCursor not being used in dependency array
+            By adding detailData.nextCursor to dependency array this effect will continue to run
             getAllArtifactsByPool and return each subsequent query set */
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [arProvider, arProvider.walletAddress, state, id])
-
-    function handleUpdateFetch() {
-        setState(!state);
-    }
+    }, [arProvider, arProvider.walletAddress, id, cursor])
 
     function checkState() {
         return headerData && (detailData && (detailData.count !== null));
@@ -55,7 +59,11 @@ export default function Collection() {
             />
             <CollectionDetail
                 data={detailData}
-                handleUpdateFetch={handleUpdateFetch}
+                handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
+                cursors={{
+                    next: detailData.nextCursor,
+                    previous: detailData.previousCursor
+                }}
             />
         </S.Wrapper>
     ) : <Loader />

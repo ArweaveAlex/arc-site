@@ -1,4 +1,4 @@
-import { KeyValueType, TableHeaderType } from "types"
+import { KeyValueType, TableHeaderType, CursorType } from "types"
 
 export interface IProps {
     title: string;
@@ -6,5 +6,6 @@ export interface IProps {
     data: KeyValueType[];
     recordsPerPage: number;
     showPageNumbers: boolean;
-    handleUpdateFetch: () => void;
+    handleUpdateFetch: (cursor: string | null) => void;
+    cursors: CursorType
 }
