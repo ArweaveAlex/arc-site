@@ -40,7 +40,7 @@ export default function Collection() {
             By adding detailData.nextCursor to dependency array this effect will continue to run
             getAllArtifactsByPool and return each subsequent query set */
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [arProvider, arProvider.walletAddress, id, cursor])
+    }, [arProvider.walletAddress, id, cursor])
 
     function checkState() {
         return headerData && (detailData && (detailData.count !== null));

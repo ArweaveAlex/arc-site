@@ -161,6 +161,7 @@ export function ARProvider(props: ARProviderProps) {
     const [walletModalVisible, setWalletModalVisible] = React.useState<boolean>(false);
     const [walletAddress, setWalletAddress] = React.useState<string | null>(null);
     const [availableBalance, setAvailableBalance] = React.useState<number | null>(null);
+    const [cursorState, setCursorState] = React.useState<any>({});
 
     async function connect() {
         await global.window?.arweaveWallet?.connect(PERMISSIONS as any).then(() => {
@@ -233,6 +234,8 @@ export function ARProvider(props: ARProviderProps) {
         let nextCursor: string | null = null;
         let previousCursor: string | null = null;
 
+        let cursors = cursorState;
+
         let allTags = [{
             name: TAGS.keys.poolId,
             values: args.poolIds
@@ -253,7 +256,7 @@ export function ARProvider(props: ARProviderProps) {
                     type: "[TagFilter!]"
                 },
                 first: PAGINATOR,
-                after: args.cursor ? args.cursor : ""
+                after: args.cursor && args.cursor !== " " ? args.cursor : ""
             },
             fields: [
                 {
@@ -281,8 +284,10 @@ export function ARProvider(props: ARProviderProps) {
         if (response.data.data) {
             const responseData = response.data.data.transactions.edges;
             if (responseData.length > 0) {
-                previousCursor = args.cursor;
                 nextCursor = responseData[responseData.length - 1].cursor;
+
+                // the next cursor holds an index to its previous cursor in state
+                if(nextCursor && !cursors.hasOwnProperty(nextCursor)) cursors[nextCursor] = args.cursor ? args.cursor : " ";
                 aggregatedArtifacts.push(...responseData);
                 if (responseData.length < PAGINATOR) {
                     nextCursor = null;
@@ -292,6 +297,12 @@ export function ARProvider(props: ARProviderProps) {
                 nextCursor = null;
             }
         }
+
+        
+        setCursorState(cursors);
+
+        // the previous cursor is the cursor state[the current cursor]
+        if(args.cursor) previousCursor = cursors[args.cursor];
 
         let count = 0;
         if (aggregatedArtifacts.length > 0) {
