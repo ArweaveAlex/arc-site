@@ -659,13 +659,13 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     function calcARDonated(userWallet: string, pool: any) {
-        let calc = pool.state.tokens[userWallet] / 1000000000000;
+        let calc = pool.state.contributors[userWallet] / 1000000000000;
         let tokens = (calc).toFixed(calc.toString().length);
         return tokens;
     }
 
     function calcReceivingPercent(userWallet: string, pool: any) {
-        let calc = (pool.state.tokens[userWallet] / parseFloat(pool.state.totalContributions)) * 100;
+        let calc = (pool.state.contributors[userWallet] / parseFloat(pool.state.totalContributions)) * 100;
         let tokens = (calc).toFixed(4);
         return tokens;
     }
