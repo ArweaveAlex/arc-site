@@ -5,6 +5,10 @@ export function getHashUrl(url: string) {
     return `/#${url}`;
 }
 
+export function formatArtifactType(artifactType: string) {
+    return artifactType.substring(5);
+}
+
 export function formatAddress(address: string | null, wrap: boolean) {
     if (!address) {
         return "";

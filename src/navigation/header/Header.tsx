@@ -4,7 +4,7 @@ import { ReactSVG } from "react-svg";
 import { IconButton } from "components/atoms/IconButton";
 import { WalletConnect } from "wallet/WalletConnect";
 
-import { ASSETS, ASSET_SRC } from "config";
+import { ASSETS } from "config";
 import { SOCIAL_PATHS } from "paths";
 import { LANGUAGE } from "language";
 import * as urls from "urls";
@@ -57,7 +57,7 @@ export default function Header() {
                         <S.SocialPaths>
                             {SOCIAL_PATHS.map((path, index) => (
                                 <S.SocialLink key={index} href={path.href}>
-                                    <ReactSVG src={`${ASSET_SRC}/${path.svg}`} />
+                                    <ReactSVG src={`${path.svg}`} />
                                 </S.SocialLink>
                             ))}
                         </S.SocialPaths>
@@ -79,6 +79,7 @@ export default function Header() {
                         <S.MenuContainer>
                             <S.Menu>
                                 <IconButton
+                                    type={"primary"}
                                     warning={open}
                                     src={open ? ASSETS.close : ASSETS.menu}
                                     handlePress={handleNavStatus}

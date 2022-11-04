@@ -81,6 +81,7 @@ export const LANGUAGE = {
         assetSrc: 'A 19th century illustration of the burning of the Library of Alexandria. Heritage Images/Getty Images.'
     },
     lastContribution: 'Last Contribution',
+    linkCopied: 'Link Copied!',
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
     messaging: {
@@ -101,7 +102,7 @@ export const LANGUAGE = {
     previous: 'Previous',
     readMore: 'Read More',
     receiving: 'Receiving',
-    shareCollection: 'Share this Collection',
+    share: 'Share',
     social: {
         discord: 'Discord',
         twitter: 'Twitter'

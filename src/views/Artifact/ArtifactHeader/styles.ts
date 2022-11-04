@@ -81,13 +81,13 @@ export const InfoTitle = styled(InfoData)``;
 
 export const InfoStyled = styled(InfoData)`
     div, p, a {
-        color: ${(props) => props.theme.colors.font.primary.alt5};
+        color: ${(props) => props.theme.colors.font.primary.base};
     }
     div, a {
         text-decoration: underline;
         &:hover {
             cursor: pointer;
-            color: ${(props) => props.theme.colors.font.primary.alt4};
+            color: ${(props) => props.theme.colors.font.primary.alt5};
         }
     }
     svg {

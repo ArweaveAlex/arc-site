@@ -50,7 +50,6 @@ export const Header1 = styled(H2)`
 
 export const SubheaderFlex = styled.div`
     display: flex;
-    margin: 10px 0 0 0;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         flex-direction: column;
     }

@@ -80,7 +80,7 @@ export const RowData = styled.div`
     border-right: 1px solid ${(props) => props.theme.colors.border.secondary};
     border-bottom: 1px solid ${(props) => props.theme.colors.border.secondary};
     align-items: center;
-    div, p {
+    div, p, span {
         font-family: ${(props) => props.theme.typography.family.secondary};
         font-weight: ${(props) => props.theme.typography.weight.bold};
         font-size: ${(props) => props.theme.typography.size.small};
@@ -88,8 +88,6 @@ export const RowData = styled.div`
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        height: 50%;
-        padding-top: 2.5px;
     }
 `;
 
@@ -117,7 +115,7 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
         height: 100%;
         width: 100%;
     }
-    div, p {
+    div, p, span {
         font-family: ${(props) => props.theme.typography.family.primary};
         font-weight: ${(props) => props.theme.typography.weight.regular};
         font-size: ${(props) => props.theme.typography.size.small};

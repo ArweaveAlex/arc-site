@@ -8,7 +8,7 @@ import { LandingHeader } from "./LandingHeader";
 import { LandingCollections } from "./LandingCollections";
 import { LandingInfo } from "./LandingInfo";
 import { LandingSteps } from "./LandingSteps";
-import { LandingFAQLink } from "./LandingFAQLink";
+// import { LandingFAQLink } from "./LandingFAQLink";
 
 import * as S from "./styles";
 
@@ -21,7 +21,7 @@ export default function Landing() {
         (async function () {
             setData(await arProvider.getAllPools());
         })()
-    }, [])
+    }, [arProvider])
 
     return data ? (
         <S.Wrapper>

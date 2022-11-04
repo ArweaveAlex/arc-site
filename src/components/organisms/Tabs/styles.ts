@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { STYLING } from "styling-config";
-
 export const Container = styled.div`
   height: fit-content;
 `;

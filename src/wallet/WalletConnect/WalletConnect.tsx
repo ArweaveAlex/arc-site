@@ -22,7 +22,7 @@ function WalletList() {
         <S.WalletListContainer>
             {arProvider.wallets.map((wallet, index) => (
                 <S.WalletListItem key={index} onClick={() => arProvider.handleConnect()}>
-                    <img src={`${ASSET_SRC}/${wallet.logo}`} />
+                    <img src={`${ASSET_SRC}/${wallet.logo}`} alt={""}/>
                     <span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
                 </S.WalletListItem>
             ))}
@@ -35,8 +35,8 @@ export default function WalletConnect() {
     
     const arProvider = useARProvder();
 
-    const [showDropdown, setShowDropdown] = React.useState(false);
-    const [copied, setCopied] = React.useState(false);
+    const [showDropdown, setShowDropdown] = React.useState<boolean>(false);
+    const [copied, setCopied] = React.useState<boolean>(false);
 
     const copyAddress = React.useCallback(async () => {
         if (arProvider.walletAddress) {

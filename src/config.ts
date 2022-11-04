@@ -55,6 +55,7 @@ export const ASSETS = {
     faviconDark: `${ASSET_SRC}/favicon-dark.svg`,
     faviconLight: `${ASSET_SRC}/favicon-light.svg`,
     infoGraphic: `${ASSET_SRC}/info-graphic.png`,
+    link: `${ASSET_SRC}/link.svg`,
     logo: `${ASSET_SRC}/logo.svg`,
     logoAlt: `${ASSET_SRC}/logo-alt.svg`,
     logoAltActive: `${ASSET_SRC}/logo-alt-active.svg`,
@@ -64,6 +65,11 @@ export const ASSETS = {
     mint: `${ASSET_SRC}/mint.svg`,
     owner: `${ASSET_SRC}/owner.svg`,
     share: `${ASSET_SRC}/share.svg`,
+    shareLink: `${ASSET_SRC}/share-link.svg`,
+    social: {
+        discord: `${ASSET_SRC}/discord.svg`,
+        twitter: `${ASSET_SRC}/twitter.svg`
+    },
     user: `${ASSET_SRC}/user.svg`,
 }
 
