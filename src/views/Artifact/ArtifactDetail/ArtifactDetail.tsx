@@ -73,7 +73,6 @@ export default function ArtifactDetail(props: IProps) {
                         </S.Tags>
                     </S.InfoData>
                 </S.ContentLine>
-
                 <S.ContentLine>
                     <S.InfoData>
                         <span>
@@ -91,7 +90,7 @@ export default function ArtifactDetail(props: IProps) {
                             <S.InfoData>
                                 <S.IconLine>
                                     <ReactSVG src={ASSETS.logoAlt2} />
-                                    <a target={"_blank"} href={props.data.dataUrl}>{props.data.dataUrl}</a>
+                                    <a target={"_blank"} rel={"noreferrer"} href={props.data.dataUrl}>{props.data.dataUrl}</a>
                                 </S.IconLine>
                             </S.InfoData>
                         </S.LinkWrapperAlt>
@@ -105,7 +104,6 @@ export default function ArtifactDetail(props: IProps) {
                         </S.LinkWrapper>
                     </S.InfoData>
                 </S.ContentLine>
-
             </S.Content>
         </S.Wrapper>
     ) : null;
