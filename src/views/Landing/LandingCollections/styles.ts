@@ -91,6 +91,11 @@ export const PCWrapper = styled.div`
 export const C1 = styled.div`
     height: 100%;
     width: 35%;
+    a {
+        &:hover {
+            text-decoration: none;
+        }
+    }
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: auto;
         width: 100%;
@@ -136,21 +141,6 @@ export const Description = styled.p`
     }
 `;
 
-export const Link = styled.a`
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &:hover {
-        text-decoration: none;
-        cursor: pointer;
-    }
-    &:focus {
-        text-decoration: none;
-    }
-`;
-
 export const LinkContainer = styled.div`
     height: 80px;
     width: calc(100% - 10px);
@@ -161,7 +151,7 @@ export const LinkContainer = styled.div`
     align-items: center;
     background: ${(props) => props.theme.colors.font.primary.active.base};
     &:hover {
-      background: ${(props) => props.theme.colors.font.primary.active.hover};
+        background: ${(props) => props.theme.colors.font.primary.active.hover};
     }
     span {
         color: ${(props) => props.theme.colors.font.primary.base};

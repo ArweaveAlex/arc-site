@@ -1,4 +1,5 @@
 import * as urls from "./urls";
+import { ASSETS } from "config";
 import { LANGUAGE } from "./language";
 
 export const NAV_PATHS = [
@@ -16,11 +17,11 @@ export const SOCIAL_PATHS = [
     {
         name: LANGUAGE.social.twitter, 
         href: "#",
-        svg: "twitter.svg"
+        svg: ASSETS.social.twitter
     }, 
     {
         name: LANGUAGE.social.discord, 
         href: "#",
-        svg: "discord.svg"
+        svg: ASSETS.social.discord
     }
 ]

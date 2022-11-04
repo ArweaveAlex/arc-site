@@ -66,8 +66,6 @@ export default function Paginator(props: IProps) {
         handleScroll();
     }
 
-    console.log(!props.cursors.previous);
-
     return (
         <S.Wrapper>
             <Button

@@ -1,31 +1,30 @@
 import parse from "html-react-parser";
 
-// import { Button } from "components/atoms/Button";
-
+import { PageShare } from "global/PageShare";
 import { CollectionContribute } from "../CollectionContribute";
 
 import { formatAddress } from "utils";
-// import { ASSETS } from "config";
 import { LANGUAGE } from "language";
 import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function CollectionHeader(props: IProps) {
+
     function getSubheader() {
         return (
             <S.SubheaderFlex>
-                    <S.SubheaderContainer>
-                        <S.Subheader1><p>{LANGUAGE.collection.subheader1}</p></S.Subheader1>
-                        &nbsp;
-                        <S.ID><p>{formatAddress(props.id, false)}</p></S.ID>
-                    </S.SubheaderContainer>
+                <S.SubheaderContainer>
+                    <S.Subheader1><p>{LANGUAGE.collection.subheader1}</p></S.Subheader1>
                     &nbsp;
-                    <S.SubheaderContainer>
-                        <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
-                        &nbsp;
-                        <S.Subheader2><p>{props.dateCreated}</p></S.Subheader2>
-                    </S.SubheaderContainer>
-                </S.SubheaderFlex>
+                    <S.ID><p>{formatAddress(props.id, false)}</p></S.ID>
+                </S.SubheaderContainer>
+                &nbsp;
+                <S.SubheaderContainer>
+                    <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
+                    &nbsp;
+                    <S.Subheader2><p>{props.dateCreated}</p></S.Subheader2>
+                </S.SubheaderContainer>
+            </S.SubheaderFlex>
         )
     }
 
@@ -34,13 +33,10 @@ export default function CollectionHeader(props: IProps) {
             <S.Header>
                 <S.HeaderFlex>
                     <S.Header1>{props.title}</S.Header1>
-                    {/* <Button
-                        disabled
-                        label={LANGUAGE.shareCollection}
-                        type={"secondary"}
-                        handlePress={() => console.log('Share collection')}
-                        icon={ASSETS.share}
-                    /> */}
+                    <PageShare 
+                        href={window.location.href}
+                        title={"Check out this collection on Alex. !"}
+                    />
                 </S.HeaderFlex>
                 {getSubheader()}
             </S.Header>

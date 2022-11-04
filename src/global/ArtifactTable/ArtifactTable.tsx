@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { useARProvder } from "providers/ARProvider";
 
@@ -11,7 +12,11 @@ import { LANGUAGE } from "language";
 import { ASSETS, PAGINATOR, STORAGE, TAGS } from "config";
 
 import { AlignType, ArtifactTableRowType, TableHeaderType } from "types";
-import { formatDate, getTagValue, getJSONStorage, getHashUrl } from "utils";
+import { 
+    formatDate, 
+    getTagValue, 
+    getJSONStorage 
+} from "utils";
 import * as urls from "urls";
 import { IProps } from "./types";
 import * as S from "./styles";
@@ -49,6 +54,7 @@ function BookmarkToggle(props: { artifactId: string, bookmarkIds: string[] }) {
         else {
             return (
                 <IconButton
+                    type={"primary"}
                     src={props.bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
                     handlePress={() => { arProvider.toggleUserBookmark!(props.artifactId) }}
                     disabled
@@ -69,9 +75,14 @@ export default function ArtifactTable(props: IProps) {
     const [data, setData] = React.useState<any>(null);
 
     function getLink(id: string, label: string) {
-        const url = getHashUrl(`${urls.artifact}${id}`);
+        const url = `${urls.artifact}${id}`;
         return (
-            <S.Link><a href={url}>{label}</a></S.Link>
+                <S.Link>
+                    <Link to={url}>
+                        <span>{label}</span>
+                    </Link>
+                </S.Link>
+            
         )
     }
 

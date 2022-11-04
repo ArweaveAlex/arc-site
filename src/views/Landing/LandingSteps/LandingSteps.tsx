@@ -17,7 +17,7 @@ export default function LandingSteps() {
                 </S.Header>
                 <S.Body>
                     <S.Asset>
-                        <img src={ASSETS.cycle} />
+                        <img src={ASSETS.cycle} alt={""}/>
                     </S.Asset>
                     <S.StepList>
                         {stepList.map((step, index) => (

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 
 import { Carousel } from "react-responsive-carousel";
@@ -6,7 +7,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import { getTxEndpoint } from "endpoints";
 import * as urls from "urls";
-import { getHashUrl } from "utils";
 import { LANGUAGE } from "language";
 import { CollectionType } from "types";
 import * as S from "./styles";
@@ -16,8 +16,8 @@ function CollectionCard(props: CollectionType) {
     const [collectionUrl, setCollectionUrl] = React.useState<string | null>(null);
 
     React.useEffect(() => {
-        setCollectionUrl(getHashUrl(`${urls.collection}${props.id}`));
-    }, [])
+        setCollectionUrl(`${urls.collection}${props.id}`);
+    }, [props.id])
 
     return collectionUrl ? (
         <S.PCWrapper>
@@ -26,11 +26,11 @@ function CollectionCard(props: CollectionType) {
                     <S.Title>{props.state.title}</S.Title>
                     <S.Description>{parse(props.state.briefDescription)}</S.Description>
                 </S.C1Content>
-                <S.LinkContainer>
-                    <S.Link href={collectionUrl}>
+                <Link to={collectionUrl}>
+                    <S.LinkContainer>
                         <span>{LANGUAGE.viewCollection}</span>
-                    </S.Link>
-                </S.LinkContainer>
+                    </S.LinkContainer>
+                </Link>
             </S.C1>
             <S.C2 image={getTxEndpoint(props.state.image)} />
         </S.PCWrapper>

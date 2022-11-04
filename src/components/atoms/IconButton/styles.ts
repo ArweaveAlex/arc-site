@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.button<{ sm: boolean | undefined, warning: boolean | undefined, disabled: boolean | undefined }>`
+export const Primary = styled.button<{
+  sm: boolean | undefined,
+  warning: boolean | undefined,
+  disabled: boolean | undefined
+}>`
   height: auto;
   width: ${(props) => props.sm ? "15px" : "17.5px"};
   color: inherit;
@@ -11,8 +15,8 @@ export const Wrapper = styled.button<{ sm: boolean | undefined, warning: boolean
   svg {
     height: 100%;
     width: 100%;
-    fill: ${(props) => props.warning ? 
-      props.theme.colors.warning :  props.theme.colors.icon.inactive};
+    fill: ${(props) => props.warning ?
+      props.theme.colors.warning : props.theme.colors.icon.inactive};
     
     &:hover {
       cursor: ${(props) => props.disabled ? "not-allowed" : "pointer"};
@@ -20,3 +24,38 @@ export const Wrapper = styled.button<{ sm: boolean | undefined, warning: boolean
     }
   }
 `;
+
+export const Secondary = styled(Primary)`
+  height: 32.5px;
+  width: 32.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5px 0 0 0;
+  background: ${(props) => props.theme.colors.button.secondary.background};
+
+  &:hover {
+    background: ${(props) => props.theme.colors.button.secondary.hover};
+  }
+
+  svg {
+    height: 17.5px;
+    width: 17.5px;
+    fill: ${(props) => props.theme.colors.button.secondary.label};
+    
+    &:hover {
+      cursor: ${(props) => props.disabled ? "not-allowed" : "pointer"};
+      opacity: 1;
+    }
+  }
+
+  &:disabled {
+    background: ${(props) => props.theme.colors.button.secondary.disabled.background};
+    color: ${(props) => props.theme.colors.button.secondary.disabled.label};
+    svg {
+      fill: ${(props) => props.theme.colors.button.secondary.disabled.label};
+    }
+  }
+`;
+
+export const Tertiary = styled(Primary)``;

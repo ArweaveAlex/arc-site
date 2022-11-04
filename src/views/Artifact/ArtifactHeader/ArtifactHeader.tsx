@@ -1,8 +1,13 @@
+import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 
 import { Tabs } from "components/organisms/Tabs";
 
-import { formatAddress, formatDate, getHashUrl } from "utils";
+import { 
+    formatAddress, 
+    formatDate,
+    formatArtifactType 
+} from "utils";
 import { ARTIFACT_TABS, ASSETS } from "config";
 import * as urls from "urls";
 import { IProps } from "./types";
@@ -26,7 +31,7 @@ export default function ArtifactHeader(props: IProps) {
                         <S.InfoType>
                             <>
                                 <ReactSVG src={props.type.icon} />
-                                <p>{props.type.label}</p>
+                                <p>{formatArtifactType(props.type.label)}</p>
                             </>
                         </S.InfoType>
                         <S.InfoMintDate>
@@ -44,7 +49,7 @@ export default function ArtifactHeader(props: IProps) {
                         <S.InfoCollection>
                             <>
                                 <ReactSVG src={ASSETS.collection} />
-                                <a href={getHashUrl(`${urls.collection}${props.data.poolId}`)}>{props.data.poolName}</a>
+                                <Link to={`${urls.collection}${props.data.poolId}`}>{props.data.poolName}</Link>
                             </>
                         </S.InfoCollection>
                     </S.Info>
