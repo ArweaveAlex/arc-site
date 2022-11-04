@@ -57,6 +57,7 @@ export const SubheaderFlex = styled.div`
 
 export const SubheaderContainer = styled.div`
     display: flex;
+    margin: 10px 0 0 0;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         margin: 0 0 7.5px 0;
     }

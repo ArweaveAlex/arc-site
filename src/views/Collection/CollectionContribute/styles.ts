@@ -52,7 +52,6 @@ export const Header = styled.div`
 export const HeaderFlex = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 0 0 10px 0;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         width: fit-content;
         flex-direction: column;

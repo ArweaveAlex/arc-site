@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: fit-content;
+  margin: auto 0 0 0;
 `;
 
 export const List = styled.div`

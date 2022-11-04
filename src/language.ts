@@ -103,6 +103,8 @@ export const LANGUAGE = {
     readMore: 'Read More',
     receiving: 'Receiving',
     share: 'Share',
+    shareArtifact: 'Check out this Alex. Artifact !',
+    shareCollection: 'Check out this Alex. Collection !',
     social: {
         discord: 'Discord',
         twitter: 'Twitter'

@@ -2,10 +2,14 @@ import styled from "styled-components";
 
 import { STYLING } from "styling-config";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+`;
 
 export const Info = styled.div`
     display: flex;
+    margin: 5.5px 15px 0 0;
     p {
         color: ${(props) => props.theme.colors.font.primary.active.base};
         font-size: ${(props) => props.theme.typography.size.xSmall};
@@ -19,7 +23,6 @@ export const Info = styled.div`
 
 export const Actions = styled.div`
    display: flex;
-   margin: 7.5px 0 0 0;
    position: relative;
     > * {
         margin: 0 10px 0 0;
@@ -50,7 +53,8 @@ export const Icon = styled.div`
 export const LinkCopied = styled.div`
     position: absolute;
     bottom: 100%;
-    right: 100%;
+    right: 90%;
+    z-index: 3;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.secondary};
     padding: 6.5px 15px 5px 15px;

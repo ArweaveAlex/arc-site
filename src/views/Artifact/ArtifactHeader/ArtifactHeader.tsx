@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 
+import { PageShare } from "global/PageShare";
+
 import { Tabs } from "components/organisms/Tabs";
 
-import { 
-    formatAddress, 
+import {
+    formatAddress,
     formatDate,
-    formatArtifactType 
+    formatArtifactType
 } from "utils";
+import { LANGUAGE } from "language";
 import { ARTIFACT_TABS, ASSETS } from "config";
 import * as urls from "urls";
 import { IProps } from "./types";
@@ -17,14 +20,11 @@ export default function ArtifactHeader(props: IProps) {
     return (props.data && props.type) ? (
         <S.Wrapper>
             <S.ContentWrapper>
-                {/* <S.HideWrapper>
-
-                </S.HideWrapper> */}
                 <S.Content>
                     <S.Info>
-                        <S.InfoLogo>
+                        {/* <S.InfoLogo>
                             <ReactSVG src={ASSETS.logoAlt1} />
-                        </S.InfoLogo>
+                        </S.InfoLogo> */}
                         <S.InfoTitle>
                             <p>{props.data.ansTitle}</p>
                         </S.InfoTitle>
@@ -53,7 +53,7 @@ export default function ArtifactHeader(props: IProps) {
                             </>
                         </S.InfoCollection>
                     </S.Info>
-                    <S.TabsWrapper>
+                    <S.Body>
                         <Tabs onTabPropClick={(label: string) => props.onTabPropClick(label)}>
                             {ARTIFACT_TABS.map((tab: { label: string }, index: number) => {
                                 return (
@@ -61,7 +61,11 @@ export default function ArtifactHeader(props: IProps) {
                                 )
                             })}
                         </Tabs>
-                    </S.TabsWrapper>
+                        <PageShare
+                            href={window.location.href}
+                            title={LANGUAGE.shareArtifact}
+                        />
+                    </S.Body>
                 </S.Content>
             </S.ContentWrapper>
         </S.Wrapper>

@@ -35,7 +35,7 @@ export default function CollectionHeader(props: IProps) {
                     <S.Header1>{props.title}</S.Header1>
                     <PageShare 
                         href={window.location.href}
-                        title={"Check out this collection on Alex. !"}
+                        title={LANGUAGE.shareCollection}
                     />
                 </S.HeaderFlex>
                 {getSubheader()}

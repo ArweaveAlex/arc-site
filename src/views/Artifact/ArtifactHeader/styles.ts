@@ -22,11 +22,6 @@ export const ContentWrapper = styled.div`
     transform: translate(0, -50%);
 `;
 
-export const HideWrapper = styled.div`
-    height: 100%;
-    width: 50px;
-`;
-
 export const Content = styled.div`
     height: 100%;
     width: calc(100% - 110px);
@@ -62,6 +57,7 @@ export const InfoLogo = styled.div`
 export const InfoData = styled.div`
     height: 77.5%;
     width: calc(30.5% - 50px);
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,7 +73,9 @@ export const InfoData = styled.div`
     }
 `;
 
-export const InfoTitle = styled(InfoData)``;
+export const InfoTitle = styled(InfoData)`
+    padding: 0 20px;
+`;
 
 export const InfoStyled = styled(InfoData)`
     div, p, a {
@@ -104,29 +102,31 @@ export const InfoStyled = styled(InfoData)`
 `;
 
 export const InfoType = styled(InfoStyled)`
-    width: 12.5%;
+    width: 15%;
 `;
 
 export const InfoMintDate = styled(InfoStyled)`
-    width: 21.5%;
+    width: 20%;
 `;
 
 export const InfoOwner = styled(InfoStyled)`
-    width: 15.5%;
+    width: 15%;
 `;
 
 export const InfoCollection = styled(InfoStyled)`
-    width: 21.5%;
+    width: 20%;
 `;
 
-export const TabsWrapper = styled.div`
+export const Body = styled.div`
     height: 50%;
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
     border-bottom-left-radius: ${STYLING.dimensions.borderRadius};
     border-bottom-right-radius: ${STYLING.dimensions.borderRadius};
     display: flex;
-    align-items: end;
+    justify-content: space-between;
+    align-items: center;
+
     padding: 0 60px;
 `;
 
