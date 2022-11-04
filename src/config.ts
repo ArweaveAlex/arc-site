@@ -35,7 +35,7 @@ export const APP = {
     locale: "en"
 }
 
-export const ASSET_SRC = "/assets";
+export const ASSET_SRC = "assets";
 
 export const ASSETS = {
     artifact: `${ASSET_SRC}/artifact.svg`,
