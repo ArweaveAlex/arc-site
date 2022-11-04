@@ -18,7 +18,15 @@ export const Link = styled.div`
     width: fit-content;
     display: flex;
     align-items: center;
-    a, span {
+    a {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: 20px;
+        display: flex;
+        align-items: center;
+    }
+    span {
         padding: 0 !important;
     }
 `;

@@ -79,7 +79,7 @@ export default function ArtifactTable(props: IProps) {
         return (
                 <S.Link>
                     <Link to={url}>
-                        <span>{label}</span>
+                        <p>{label}</p>
                     </Link>
                 </S.Link>
             

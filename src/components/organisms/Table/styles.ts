@@ -80,7 +80,7 @@ export const RowData = styled.div`
     border-right: 1px solid ${(props) => props.theme.colors.border.secondary};
     border-bottom: 1px solid ${(props) => props.theme.colors.border.secondary};
     align-items: center;
-    div, p, span {
+    p {
         font-family: ${(props) => props.theme.typography.family.secondary};
         font-weight: ${(props) => props.theme.typography.weight.bold};
         font-size: ${(props) => props.theme.typography.size.small};
@@ -88,6 +88,9 @@ export const RowData = styled.div`
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        height: 20px;
+        display: flex;
+        align-items: center;
     }
 `;
 
@@ -108,14 +111,11 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
     border-left: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
     border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
     background: none;
-    font-family: ${(props) => props.theme.typography.family.primary};
-    font-weight: ${(props) => props.theme.typography.weight.regular};
-    overflow: hidden;
     div {
         height: 100%;
         width: 100%;
     }
-    div, p, span {
+    p {
         font-family: ${(props) => props.theme.typography.family.primary};
         font-weight: ${(props) => props.theme.typography.weight.regular};
         font-size: ${(props) => props.theme.typography.size.small};
