@@ -57,7 +57,7 @@ function BookmarkToggle(props: { artifactId: string, bookmarkIds: string[] }) {
                     type={"primary"}
                     src={props.bookmarkIds.includes(props.artifactId) ? ASSETS.bookmarkSelected : ASSETS.bookmark}
                     handlePress={() => { arProvider.toggleUserBookmark!(props.artifactId) }}
-                    disabled
+                    
                 />
             )
         }

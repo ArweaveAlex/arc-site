@@ -11,6 +11,9 @@ export const BookmarkToggle = styled.div`
         fill: ${(props) => props.theme.colors.icon.secondary.fill};
         margin: 0 0 5px 0;
     }
+    button {
+        margin: 7.5px 0 0 0;
+    }
 `;
 
 export const Link = styled.div`
