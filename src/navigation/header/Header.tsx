@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 
 import { IconButton } from "components/atoms/IconButton";
@@ -97,7 +98,7 @@ export default function Header() {
         <S.Wrapper>
             <S.NavContainer>
                 <S.LogoContainer>
-                    <S.LogoLink href={urls.base}>
+                    <Link to={urls.base}>
                         <S.LogoContent>
                             <S.LogoHeaderContent>
                                 <S.LogoHeader>{LANGUAGE.companyTitle}</S.LogoHeader>
@@ -107,7 +108,7 @@ export default function Header() {
                             </S.LogoHeaderContent>
                             <S.LogoSubHeader>{LANGUAGE.companyDescription}</S.LogoSubHeader>
                         </S.LogoContent>
-                    </S.LogoLink>
+                    </Link>
                 </S.LogoContainer>
                 {getNav()}
             </S.NavContainer>
