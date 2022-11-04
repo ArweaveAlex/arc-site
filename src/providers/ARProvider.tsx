@@ -330,7 +330,7 @@ export function ARProvider(props: ARProviderProps) {
                 tags: {
                     value: {
                         name: TAGS.keys.appType,
-                        values: ["Alex-Archiving-Pool-v1.0"]
+                        values: [TAGS.values.poolv1]
                     },
                     type: "[TagFilter!]"
                 },
