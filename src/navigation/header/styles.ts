@@ -30,6 +30,15 @@ export const LogoContainer = styled.div`
   align-items: center;
   width: 17.5%;
   min-width: 200px;
+  a {
+    &:hover {
+      text-decoration: none;
+      opacity: 0.85;
+    }
+    &:focus {
+      text-decoration: none;
+    }
+  }
   @media(max-width: ${STYLING.cutoffs.initial}) {
     position: relative;
     left: auto;
@@ -39,13 +48,7 @@ export const LogoContainer = styled.div`
 
 export const LogoLink = styled.a`
   height: 100%;
-  &:hover {
-    text-decoration: none;
-    opacity: 0.85;
-  }
-  &:focus {
-    text-decoration: none;
-  }
+  
 `;
 
 export const LogoContent = styled.div`
