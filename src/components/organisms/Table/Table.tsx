@@ -24,6 +24,10 @@ export default function Table(props: IProps) {
             <S.Header>
                 <S.HeaderFlex>
                     <S.H2>{props.title}</S.H2>
+                    {
+                        props.titleAction &&
+                        <>{props.titleAction}</>
+                    }
                 </S.HeaderFlex>
             </S.Header>
             <S.Body>

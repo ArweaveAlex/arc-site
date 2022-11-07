@@ -122,6 +122,7 @@ export const LANGUAGE = {
     },
     submit: 'Submit',
     totalContributed: 'Total Contributed',
+    setBookmarks: 'Update Bookmarks',
     view: 'View',
     viewAccount: 'My Library',
     viewCollection: 'View Collection',

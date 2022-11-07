@@ -11,7 +11,7 @@ export const Primary = styled.button<{
   border: none;
   padding: 0;
   font: inherit;
-
+  
   svg {
     height: 100%;
     width: 100%;

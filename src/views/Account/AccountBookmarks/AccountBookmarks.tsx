@@ -2,6 +2,8 @@ import React from "react";
 
 import { useARProvder } from "providers/ARProvider";
 
+import { getArtifactsByBookmarks } from "gql/artifacts";
+
 import { ArtifactTable } from "global/ArtifactTable";
 
 import { LANGUAGE } from "language";
@@ -22,12 +24,12 @@ export default function AccountBookmarks() {
     React.useEffect(() => {
         (async function () {
             if (arProvider.walletAddress) {
-                setData((await arProvider.getUserBookmarkArtifacts(cursor)));
+                setData(await getArtifactsByBookmarks(arProvider.walletAddress, cursor));
             }
         })();
         /*  ESLint used to avoid warning with data.nextCursor not being used in dependency array
             By adding data.nextCursor to dependency array this effect will continue to run
-            getUserBookmarkArtifacts and return each subsequent query set */
+            getArtifactsByBookmarks and return each subsequent query set */
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [arProvider.walletAddress, cursor])
 
@@ -43,6 +45,7 @@ export default function AccountBookmarks() {
                             next: data.nextCursor,
                             previous: data.previousCursor
                         }}
+                        owner={arProvider.walletAddress}
                     />
                 </S.Wrapper>
             )

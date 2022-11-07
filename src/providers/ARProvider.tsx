@@ -18,11 +18,15 @@ const AR_WALLETS = [
     { name: "arconnect", logo: "arconnect-wallet-logo.png" }
 ]
 
-const PERMISSIONS = [
+export const PERMISSIONS = [
     "ACCESS_ADDRESS",
     "ACCESS_ALL_ADDRESSES",
+    "ACCESS_PUBLIC_KEY",
     "SIGN_TRANSACTION",
-    "ACCESS_PUBLIC_KEY"
+    "ENCRYPT",
+    "DECRYPT",
+    "SIGNATURE",
+    "ACCESS_ARWEAVE_CONFIG"
 ]
 
 interface ARContextState {
@@ -43,9 +47,7 @@ interface ARContextState {
     getUserArtifacts: (userWallet: string, cursor: string | null) => any;
     getUserBookmarkArtifacts: (cursor: string | null) => any;
     getUserContributions: (userWallet: string) => any;
-    getUserBookmarks: () => any;
-    toggleUserBookmark: (artifactId: string) => any;
-    getBookmarksIds: () => any;
+    toggleUserBookmarks: (artifactIds: string[]) => any;
     setTxInterval: (txId: string, parentTxId: string) => any
 }
 
@@ -53,7 +55,7 @@ interface ARProviderProps {
     children: React.ReactNode;
 }
 
-const arweave = Arweave.init({
+export const arweave = Arweave.init({
     host: "arweave.net",
     port: 443,
     protocol: "https",
@@ -124,13 +126,7 @@ const DEFAULT_CONTEXT = {
     async getUserContributions(_userWallet: string) {
         return null;
     },
-    async getUserBookmarks() {
-        return null;
-    },
-    async toggleUserBookmark(_artifactId: string) {
-        return null
-    },
-    async getBookmarksIds() {
+    async toggleUserBookmarks(_artifactIds: string[]) {
         return null
     },
     setTxInterval(_txId: string, _parentTxId: string) {
@@ -226,7 +222,7 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     function getARAmount(amount: string): number {
-        return Math.floor(+arweave.ar.winstonToAr(amount) * 1e5) / 1e5
+        return Math.floor(+arweave.ar.winstonToAr(amount) * 1e6) / 1e6
     }
 
     async function getAllArtifactsByPool(args: ArtifactArgsType): Promise<ArtifactResponseType> {
@@ -494,6 +490,7 @@ export function ARProvider(props: ARProviderProps) {
 
     async function getUserBookmarkArtifacts(cursor: string | null) {
         let bookmarkIds = await getBookmarksIds();
+
         const aggregatedArtifacts: any = [];
 
         const operation = {
@@ -528,7 +525,6 @@ export function ARProvider(props: ARProviderProps) {
             contracts: aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
             count: count
         })
-
     }
 
     async function getUserBookmarks() {
@@ -615,15 +611,15 @@ export function ARProvider(props: ARProviderProps) {
     }
 
 
-    async function toggleUserBookmark(artifactId: string) {
+    async function toggleUserBookmarks(artifactIds: string[]) {
         if (walletAddress) {
             const bookmarksIds = await getBookmarksIds();
 
-            if (bookmarksIds.includes(artifactId)) {
-                bookmarksIds.splice(bookmarksIds.indexOf(artifactId), 1)
+            if (bookmarksIds.includes(artifactIds)) {
+                bookmarksIds.splice(bookmarksIds.indexOf(artifactIds), 1)
             }
             else {
-                bookmarksIds.push(artifactId);
+                bookmarksIds.push(artifactIds);
             }
 
             let txRes = await arweave.createTransaction({ data: JSON.stringify(bookmarksIds) }, "use_wallet");
@@ -632,17 +628,22 @@ export function ARProvider(props: ARProviderProps) {
             txRes.addTag(TAGS.keys.dateCreated, Date.now().toString());
             txRes.addTag(TAGS.keys.bookmarkIds, JSON.stringify(bookmarksIds));
 
-            try {
-                await arweave.transactions.sign(txRes, "use_wallet");
-            }
-            catch (e) {
-                console.log(e)
-            }
+            // try {
+            //     await arweave.transactions.sign(txRes, "use_wallet");
+            // }
+            // catch (e) {
+            //     console.log(e)
+            // }
 
-            await arweave.transactions.post(txRes);
-            localStorage.setItem(artifactId, JSON.stringify({ [txRes.id]: STORAGE.pending }));
-            window.dispatchEvent(new Event(STORAGE.txUpdate));
-            setTxInterval(txRes.id, artifactId);
+            // await arweave.transactions.post(txRes);
+
+            console.log(txRes);
+            const d = await global.window.arweaveWallet.dispatch(txRes);
+            console.log(d);
+
+            // localStorage.setItem(artifactId, JSON.stringify({ [txRes.id]: STORAGE.pending }));
+            // window.dispatchEvent(new Event(STORAGE.txUpdate));
+            // setTxInterval(txRes.id, artifactId);
         }
     }
 
@@ -752,9 +753,7 @@ export function ARProvider(props: ARProviderProps) {
                 getUserArtifacts,
                 getUserBookmarkArtifacts,
                 getUserContributions,
-                getUserBookmarks,
-                toggleUserBookmark,
-                getBookmarksIds,
+                toggleUserBookmarks,
                 setTxInterval
             }}
         >

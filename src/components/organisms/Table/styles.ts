@@ -29,11 +29,9 @@ export const Header = styled.div`
 export const HeaderFlex = styled.div`
     display: flex;
     justify-content: space-between;
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        width: fit-content;
-        flex-direction: column;
-        margin: 0 0 20px 0;
-    }
+    flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 20px;
 `;
 
 export const H2 = styled.h2`
@@ -89,8 +87,7 @@ export const RowData = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
         height: 20px;
-        display: flex;
-        align-items: center;
+        margin: 5.5px 0 0 0;
     }
 `;
 
@@ -112,7 +109,6 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
     border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
     background: none;
     div {
-        height: 100%;
         width: 100%;
     }
     p {

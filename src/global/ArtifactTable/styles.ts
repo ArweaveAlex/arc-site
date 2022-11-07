@@ -16,20 +16,4 @@ export const BookmarkToggle = styled.div`
     }
 `;
 
-export const Link = styled.div`
-    height: 100%;
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    a {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        height: 20px;
-        display: flex;
-        align-items: center;
-    }
-    span {
-        padding: 0 !important;
-    }
-`;
+export const Link = styled.div``;

@@ -9,6 +9,7 @@ export default function CollectionDetail(props: IProps) {
             showBookmarks={false}
             handleUpdateFetch={(cursor: string | null) => props.handleUpdateFetch(cursor)}
             cursors={props.cursors}
+            owner={null}
         />
     )
 }

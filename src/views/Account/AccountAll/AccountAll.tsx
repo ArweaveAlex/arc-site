@@ -47,6 +47,7 @@ export default function AccountAll() {
                             next: data.nextCursor,
                             previous: data.previousCursor
                         }}
+                        owner={arProvider.walletAddress}
                     />
                 </S.Wrapper>
             )

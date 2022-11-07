@@ -1,4 +1,5 @@
 import React from "react";
+import { BookmarksType } from "redux/artifacts/types";
 
 export enum ArtifactEnum {
   Messaging = "Alex-Messaging",
@@ -50,6 +51,8 @@ export type CursorType =  {
   next: string | null,
   previous: string | null
 }
+export type NStringType = string | null;
+export type NStringListType = string[] | null;
 
 export interface IURLView {
   account: URLViewType[]
@@ -98,3 +101,8 @@ export type ArtifactResponseType = {
   contracts: ArtifactQueryType[],
   count: number | null
 }
+
+export type ReduxActionType = {
+  type: string;
+  payload: BookmarksType;
+};
