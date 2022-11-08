@@ -1,6 +1,6 @@
-
 export const LANGUAGE = {
     about: 'About',
+    archivist: 'Archivist',
     artifactsCreated: 'of Artifacts Created',
     account: {
         header1: 'Your Library',
@@ -42,6 +42,7 @@ export const LANGUAGE = {
         subheader1: 'Archives are permanently stored on',
         subheader2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed justo bibendum ipsum commodo aliquet.'
     },
+    bookmarksUpdated: 'Bookmarks Updated',
     collection: {
         subheader1: 'Collection',
         totalContributed: 'Total Contributed',
@@ -66,6 +67,8 @@ export const LANGUAGE = {
     default: 'Default',
     details: 'Details',
     disconnect: 'Disconnect',
+    errorFetchingArtifact: 'Error Fetching Artifact',
+    errorOccurred: 'Error Occurred',
     faq: {
         display: 'Frequently Asked Questions',
         header1: 'Still have some questions?',
@@ -81,6 +84,9 @@ export const LANGUAGE = {
         assetSrc: 'A 19th century illustration of the burning of the Library of Alexandria. Heritage Images/Getty Images.'
     },
     lastContribution: 'Last Contribution',
+    library: {
+        header1: 'Library'
+    },
     linkCopied: 'Link Copied!',
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
@@ -91,6 +97,7 @@ export const LANGUAGE = {
         originalPostDate: 'Original Post Date',
         source: 'Source'
     },
+    minted: 'Minted',
     next: 'Next',
     noArtifacts: 'No Artifacts',
     noContributions: 'No Contributions',

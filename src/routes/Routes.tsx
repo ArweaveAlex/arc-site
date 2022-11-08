@@ -5,7 +5,8 @@ import { View } from "wrappers/View";
 import { Landing } from "views/Landing";
 import { Collection } from "views/Collection";
 import { Artifact } from "views/Artifact";
-import { AccountTabs } from "views/Account/AccountTabs";
+import { Account } from "views/Account";
+import { Library } from "views/Library";
 import { NotFound } from "views/NotFound";
 
 import * as urls from "urls";
@@ -23,6 +24,11 @@ export default function _Routes() {
           <Collection />
         </View>
       } />
+      <Route path={`${urls.library}:id`} element={
+        <View>
+          <Library />
+        </View>
+      } />
       <Route path={`${urls.artifact}:id`} element={
         <View>
           <Artifact />
@@ -30,7 +36,7 @@ export default function _Routes() {
       } />
       <Route path={`${urls.account}:active`} element={
         <View>
-          <AccountTabs />
+          <Account />
         </View>
       } />
       <Route path={"*"} element={

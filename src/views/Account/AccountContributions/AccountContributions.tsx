@@ -32,7 +32,5 @@ export default function AccountContributions() {
         }
     }
 
-    return data ? (
-        <>{getData()}</>
-    ) : <p>{LANGUAGE.loading}&nbsp;...</p>
+    return data ? <>{getData()}</> : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

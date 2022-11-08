@@ -12,7 +12,7 @@ import * as S from "./styles";
 export default function PageShare(props: IProps) {
     const [copied, setCopied] = React.useState<boolean>(false);
 
-    const copyAddress = React.useCallback(async () => {
+    const copyUrl = React.useCallback(async () => {
         await navigator.clipboard.writeText(props.href);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -33,7 +33,7 @@ export default function PageShare(props: IProps) {
                 <IconButton
                     type={"secondary"}
                     src={ASSETS.link}
-                    handlePress={copyAddress}
+                    handlePress={copyUrl}
                 />
                 <TwitterShareButton
                     title={props.title}

@@ -7,7 +7,7 @@ import { URLS } from "config";
 import { LANGUAGE } from "language";
 import * as S from "./styles";
 
-export default function AccountTabs() {
+export default function Account() {
     const arProvider = useARProvder();
 
     return (

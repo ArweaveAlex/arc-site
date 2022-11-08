@@ -22,9 +22,6 @@ export default function ArtifactHeader(props: IProps) {
             <S.ContentWrapper>
                 <S.Content>
                     <S.Info>
-                        {/* <S.InfoLogo>
-                            <ReactSVG src={ASSETS.logoAlt1} />
-                        </S.InfoLogo> */}
                         <S.InfoTitle>
                             <p>{props.data.ansTitle}</p>
                         </S.InfoTitle>
@@ -43,7 +40,7 @@ export default function ArtifactHeader(props: IProps) {
                         <S.InfoOwner>
                             <>
                                 <ReactSVG src={ASSETS.owner} />
-                                <p>{formatAddress(props.data.archivist, false)}</p>
+                                <Link to={`${urls.library}${props.data.owner}`}>{formatAddress(props.data.owner, false)}</Link>
                             </>
                         </S.InfoOwner>
                         <S.InfoCollection>

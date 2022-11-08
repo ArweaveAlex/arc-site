@@ -75,6 +75,7 @@ export const ContentLine = styled.div`
     margin: 0 0 15px 0;
     padding: 17.5px;
     background: ${(props) => props.theme.colors.container.primary.background};
+    position: relative;
 `;
 
 export const InfoData = styled.div`
@@ -88,9 +89,10 @@ export const InfoData = styled.div`
             color: ${(props) => props.theme.colors.font.primary.active.hover};
         }
     }
-    p, a {
+    p, code, a {
         font-size: ${(props) => props.theme.typography.size.xSmall};
         color: ${(props) => props.theme.colors.font.primary.active.base};
+        line-height: 18px;
     }
     span, p, a {
         text-overflow: ellipsis;
@@ -103,17 +105,53 @@ export const InfoData = styled.div`
         fill: ${(props) => props.theme.colors.font.primary.alt5};
     }
     overflow: hidden;
+    overflow-wrap: break-word;
 `;
 
 export const BodyData = styled.p`
     margin: 15px 0 0 0;
 `;
 
+export const RawContainer = styled(InfoData)`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    svg {
+        width: 100%;
+        margin: 0;
+    }
+`;
+
 export const RawData = styled.div`
     margin: 15px 0 0 0;
-    p {
+    background: ${(props) => props.theme.colors.container.alt3.background};
+    border: 1px solid ${(props) => props.theme.colors.border.primary};
+    padding: 15px;
+    border-radius: 5px;
+    p, code {
         overflow: visible;
         white-space: normal;
+    }
+    code {
+        color: ${(props) => props.theme.colors.font.primary.alt1};
+    }
+`;
+
+export const RawDataCopied = styled.div`
+    position: absolute;
+    top: -10px;
+    right: 35px;
+    z-index: 3;
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    padding: 6.5px 15px 5px 15px;
+    p {
+        font-size: 12px;
+        color: ${(props) => props.theme.colors.font.primary.alt4};
+        white-space: nowrap;
+    }
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        
     }
 `;
 
@@ -123,10 +161,14 @@ export const Icons = styled.div`
     display: flex;
 `;
 
-export const IconLine = styled.div`
+export const DataLine = styled.div`
     display: flex;
     align-items: center;
     margin: 0 20px 0 0;
+`;
+
+export const DataHeader = styled.p`
+    color: ${(props) => props.theme.colors.font.primary.alt4} !important;
 `;
 
 export const LinkWrapper = styled.div`
@@ -157,7 +199,7 @@ export const Tags = styled.div`
 `;
 
 export const Tag = styled.div`
-    padding: 12.5px;
+    padding: 8px 14.5px;
     width: fit-content;
     margin: 0 10px 10px 0;
     background: ${(props) => props.theme.colors.view.background};

@@ -71,6 +71,9 @@ export const InfoData = styled.div`
         font-weight: ${(props) => props.theme.typography.weight.medium};
         color: ${(props) => props.theme.colors.font.primary.base};
     }
+    p {
+        line-height: 16px;
+    }
 `;
 
 export const InfoTitle = styled(InfoData)`

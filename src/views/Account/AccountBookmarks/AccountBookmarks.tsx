@@ -55,8 +55,5 @@ export default function AccountBookmarks() {
         }
     }
 
-    return data ? (
-        <>{getData()}</>
-
-    ) : <p>{LANGUAGE.loading}&nbsp;...</p>
+    return data ? <>{getData()}</> : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

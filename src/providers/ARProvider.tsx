@@ -65,18 +65,6 @@ export const arweave = Arweave.init({
 
 const smartweave = SmartWeaveNodeFactory.memCached(arweave as any);
 
-// 6AwT3c-PCJGyUC0od5MLnsokPzyXtGYGzCy7K9vTppQ
-// tVw9PU3ysGdimjcbX7QCQPnZXXOt8oai3AbDW85Z_KA
-// t6AAwEvvR-dbp_1FrSfJQsruLraJCobKl9qsJh9yb2M
-// AwTgrMvxylqBuxsrkMPYxFS8b-uWavrgtRI28S25qfo
-// O-S-Dt7cV5fUFgfkROTdXe_ZtmCA2PlEB15ECPE1R8Y
-// jnEaMCUyYE3DshJEZaEwBXc9OwhGB-hBhSlL7pXB9dc
-// 8JgQiIdiFvU--9yr_AKqBhNXsfVPBxUMiD17fotkUZs
-// J193OyFgZoR9r7fvjnnHsz82nj9V6JXvT7zMFl7Xqrc
-// -l30SLZA6XET_A7iAbUTgBIAc7nTqP5PfK6v1aVt4bA
-// STAGING POOL - 8Y9XTSDkdNVylhuDwdosZhvFFKr1hrhYjf3Vw-mQII0
-// STAGING POOL - CbX34uhYDBGV5U0xg8_iOZJrcXLkvG2q06KvaXB2BDw
-
 const DEFAULT_CONTEXT = {
     wallets: [],
     walletAddress: null,
@@ -282,7 +270,7 @@ export function ARProvider(props: ARProviderProps) {
             if (responseData.length > 0) {
                 nextCursor = responseData[responseData.length - 1].cursor;
 
-                // the next cursor holds an index to its previous cursor in state
+                // The next cursor holds an index to its previous cursor in state
                 if(nextCursor && !cursors.hasOwnProperty(nextCursor)) cursors[nextCursor] = args.cursor ? args.cursor : " ";
                 aggregatedArtifacts.push(...responseData);
                 if (responseData.length < PAGINATOR) {
@@ -293,11 +281,10 @@ export function ARProvider(props: ARProviderProps) {
                 nextCursor = null;
             }
         }
-
         
         setCursorState(cursors);
 
-        // the previous cursor is the cursor state[the current cursor]
+        // The previous cursor is the cursor state[the current cursor]
         if(args.cursor) previousCursor = cursors[args.cursor];
 
         let count = 0;
@@ -311,7 +298,8 @@ export function ARProvider(props: ARProviderProps) {
         return ({
             nextCursor: nextCursor,
             previousCursor: previousCursor,
-            contracts: aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
+            contracts: aggregatedArtifacts.filter(
+                (element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
             count: count
         })
     }
@@ -376,12 +364,12 @@ export function ARProvider(props: ARProviderProps) {
 
     async function getAllPools() {
         const collections: any = [];
-        let pool_ids = await getPoolIds();
+        let POOL_IDS = await getPoolIds();
 
-        for (let i = 0; i < pool_ids.length; i++) {
+        for (let i = 0; i < POOL_IDS.length; i++) {
             try {
-                const contract = smartweave.contract(pool_ids[i]!);
-                collections.push({ id: pool_ids[i], state: (await contract.readState()).state });
+                const contract = smartweave.contract(POOL_IDS[i]!);
+                collections.push({ id: POOL_IDS[i], state: (await contract.readState()).state });
             }
             catch (error: any) {
                 console.error(error)
@@ -454,16 +442,16 @@ export function ARProvider(props: ARProviderProps) {
             if (response.status === 200) {
                 try {
                     return ({
-                        artifactName: getTagValue(origResponseData[0].node.tags, TAGS.keys.artifactName),
-                        artifactType: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.artifactType) : "",
-                        archivist: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.initialOwner) : "",
-                        ansTitle: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.ansTitle) : "",
-                        minted: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.dateCreated) : "",
-                        keywords: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.keywords) : "",
-                        poolName: pool ? pool.state.title : "",
-                        poolId: pool ? pool.id : "",
+                        artifactName: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.artifactName) : null,
+                        artifactType: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.artifactType) : null,
+                        owner: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.initialOwner) : null,
+                        ansTitle: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.ansTitle) : null,
+                        minted: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.dateCreated) : null,
+                        keywords: origResponseData ? getTagValue(origResponseData[0].node.tags, TAGS.keys.keywords) : null,
+                        poolName: pool ? pool.state.title : null,
+                        poolId: pool ? pool.id : null,
                         dataUrl: response.url,
-                        dataSize: origResponseData ? origResponseData[0].node.data.size : "",
+                        dataSize: origResponseData ? origResponseData[0].node.data.size : null,
                         rawData: await response.text(),
                     });
                 }
@@ -483,8 +471,8 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     async function getUserArtifacts(userWallet: string, cursor: string | null) {
-        let pool_ids = await getPoolIds();
-        let artifacts = await getAllArtifactsByPool({ poolIds: pool_ids!, cursor: cursor, owner: userWallet });
+        let POOL_IDS = await getPoolIds();
+        let artifacts = await getAllArtifactsByPool({ poolIds: POOL_IDS!, cursor: cursor, owner: userWallet });
         return artifacts;
     }
 
@@ -522,7 +510,8 @@ export function ARProvider(props: ARProviderProps) {
 
         return ({
             cursor: cursor,
-            contracts: aggregatedArtifacts.filter((element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
+            contracts: aggregatedArtifacts.filter(
+                (element: ArtifactQueryType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
             count: count
         })
     }

@@ -11,14 +11,16 @@ import { ArtifactView } from "./ArtifactView";
 import { Loader } from "components/atoms/Loader";
 
 import * as window from "window";
-import { 
-    ARTIFACT_TABS, 
-    ARTIFACT_TYPES, 
-    TAB_OPTIONS, 
-    TAGS 
+import {
+    ARTIFACT_TABS,
+    ARTIFACT_TYPES,
+    TAB_OPTIONS,
+    TAGS
 } from "config";
+import { checkNullValues } from "utils";
 import { ArtifactType } from "types";
 import * as S from "./styles";
+import { LANGUAGE } from "language";
 
 export default function Artifact() {
     const { id } = useParams();
@@ -46,7 +48,7 @@ export default function Artifact() {
                 return artifactType;
             }
             else {
-                return  ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
+                return ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
             }
         }
         else {
@@ -70,18 +72,38 @@ export default function Artifact() {
         }
     }
 
-    return (
-        <S.Wrapper>
-            <S.Content>
-                <ArtifactHeader data={data} type={getArtifactType()} onTabPropClick={(label: string) => handleTabClick(label)} />
-                <S.FlexWrapper>
-                    {/* <ArtifactShare /> */}
-                    <S.ArtifactWrapper>
-                        {getArtifact()}
-                    </S.ArtifactWrapper>
-                </S.FlexWrapper>
-            </S.Content>
-        </S.Wrapper>
-    );
+    function validateData() {
+        if (data) {
+            return !checkNullValues(data);
+        }
+        else {
+            return false;
+        }
+    }
+
+    function getData() {
+        if (validateData()) {
+            return (
+                <S.Wrapper>
+                    <S.Content>
+                        <ArtifactHeader data={data} type={getArtifactType()} onTabPropClick={(label: string) => handleTabClick(label)} />
+                        <S.FlexWrapper>
+                            <S.ArtifactWrapper>
+                                {getArtifact()}
+                            </S.ArtifactWrapper>
+                        </S.FlexWrapper>
+                    </S.Content>
+                </S.Wrapper>
+            )
+        }
+        else {
+            return (
+                <S.MessageContainer>
+                    <p>{LANGUAGE.errorFetchingArtifact}</p>
+                </S.MessageContainer>
+            )
+        }
+    }
+
+    return data ? <>{getData()}</> : <Loader /> ;
 }
-  

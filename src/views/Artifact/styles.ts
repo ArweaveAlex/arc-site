@@ -27,3 +27,9 @@ export const ArtifactWrapper = styled.div`
     width: 100%;
     margin: 100px 0 0 0;
 `;
+
+export const MessageContainer = styled.div`
+    position: absolute;
+    top: calc(${STYLING.dimensions.navHeight} + 20px);
+    left: 20px;
+`;

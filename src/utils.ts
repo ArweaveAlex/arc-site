@@ -65,3 +65,12 @@ export function getTagValue(list: KeyValueType[], name: string): string {
 export function getJSONStorage(key: string) {
     return JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem(key))));
 }
+
+export function checkNullValues(obj: any) {
+    for (const key in obj) {
+      if (obj[key] === null) {
+        return true;
+      }
+    }
+    return false;
+  }

@@ -92,6 +92,9 @@ export const GlobalStyle = createGlobalStyle`
   button {
     font-size: ${(props) => props.theme.typography.size.xSmall};
     font-weight: ${(props) => props.theme.typography.weight.medium};
+    &:focus {
+      outline: none;
+    }
   }
 
   a {

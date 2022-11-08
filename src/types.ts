@@ -9,7 +9,7 @@ export enum ArtifactEnum {
 export interface ArtifactType {
   artifactName: string,
   artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage,
-  archivist: string;
+  owner: string;
   ansTitle: string;
   minted: string;
   keywords: string;
@@ -76,6 +76,7 @@ export type KeyValueType = { [key: string]: string | React.ReactNode };
 export type TableHeaderType = { [key: string]: { width: string, align: AlignType } };
 
 export type ArtifactTableRowType = {
+  type: React.ReactNode,
   title: React.ReactNode,
   dateCreated: string,
   bookmark?: React.ReactNode
@@ -106,3 +107,8 @@ export type ReduxActionType = {
   type: string;
   payload: BookmarksType;
 };
+
+export type BookmarkResponseType = {
+  status: number | null,
+  message: string | null
+}

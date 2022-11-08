@@ -4,9 +4,9 @@ import { useARProvder } from "providers/ARProvider";
 
 import { ArtifactTable } from "global/ArtifactTable";
 
-import { LANGUAGE } from "language"
-import * as S from "./styles";
 import { ArtifactResponseType } from "types";
+import { LANGUAGE } from "language";
+import * as S from "./styles";
 
 export default function AccountAll() {
     const arProvider = useARProvder();
@@ -57,7 +57,5 @@ export default function AccountAll() {
         }
     }
 
-    return checkState() ? (
-        <>{getData()}</>
-    ) : <p>{LANGUAGE.loading}&nbsp;...</p>
+    return checkState() ? <>{getData()}</> : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

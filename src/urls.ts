@@ -1,4 +1,5 @@
 export const base = "/";
+export const about = `${base}about/`;
 export const account = `${base}account/`;
 export const accountAll = `${account}all/`;
 export const accountNew = `${account}new/`;
@@ -7,4 +8,4 @@ export const accountContributions = `${account}contributions/`;
 export const artifact = `${base}artifact/`;
 export const collection = `${base}collection/`;
 export const collections = `${base}collections/`;
-export const about = `${base}about/`;
+export const library = `${base}library/`;

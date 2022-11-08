@@ -79,8 +79,7 @@ export const RowData = styled.div`
     border-bottom: 1px solid ${(props) => props.theme.colors.border.secondary};
     align-items: center;
     p {
-        font-family: ${(props) => props.theme.typography.family.secondary};
-        font-weight: ${(props) => props.theme.typography.weight.bold};
+        font-family: ${(props) => props.theme.typography.family.primary};
         font-size: ${(props) => props.theme.typography.size.small};
         color: ${(props) => props.theme.colors.font.primary.active.base};
         overflow: hidden;
@@ -97,6 +96,9 @@ export const THeader = styled(RowData)<{ even: boolean, width: string, align: Al
     border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
     display: flex;
     justify-content: ${(props) => props.align};
+    p {
+        color: ${(props) => props.theme.colors.font.primary.alt4};
+    }
 `;
 
 export const TableBody = styled.div`
@@ -109,7 +111,7 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
     border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.secondary};
     background: none;
     div {
-        width: 100%;
+        overflow: hidden;
     }
     p {
         font-family: ${(props) => props.theme.typography.family.primary};

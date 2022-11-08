@@ -3,8 +3,9 @@ import * as gql from "gql-query-builder";
 import { store } from "redux/store";
 import * as actions from "redux/artifacts/actions";
 import { arweave } from "providers/ARProvider";
-import { ArtifactQueryType, ArtifactResponseType } from "types";
+import { ArtifactQueryType, ArtifactResponseType, BookmarkResponseType } from "types";
 import { getTagValue } from "utils";
+import { LANGUAGE } from "language";
 import { TAGS, PAGINATOR, STORAGE } from "config";
 
 export async function getBookmarks(owner: string): Promise<string[]> {
@@ -85,14 +86,7 @@ export async function getBookmarks(owner: string): Promise<string[]> {
     }
 }
 
-export async function setBookmarks(owner: string, ids: string[]): Promise<void> {
-    // TODO - setTxPending --> disable Update Bookmarks if (txPending - txRes Id)
-
-    store.dispatch(actions.setBookmarks({
-        owner: owner,
-        ids: ids
-    }));
-
+export async function setBookmarks(owner: string, ids: string[]): Promise<BookmarkResponseType> {
     let txRes = await arweave.createTransaction({ data: JSON.stringify(ids) }, "use_wallet");
     txRes.addTag(TAGS.keys.bookmarkSearch, owner);
     txRes.addTag(TAGS.keys.dateCreated, Date.now().toString());
@@ -104,8 +98,20 @@ export async function setBookmarks(owner: string, ids: string[]): Promise<void> 
     catch (e) {
         console.log(e)
     }
+    
+    const response = await arweave.transactions.post(txRes);
 
-    await arweave.transactions.post(txRes);
+    if (response.status === 200) {
+        store.dispatch(actions.setBookmarks({
+            owner: owner,
+            ids: ids
+        }));
+    }
+
+    return ({
+        status: response.status,
+        message: response.status === 200 ? LANGUAGE.bookmarksUpdated : LANGUAGE.errorOccurred
+    })
 }
 
 export async function getArtifactsByBookmarks(owner: string, cursor: string | null): Promise<ArtifactResponseType> {
@@ -125,7 +131,7 @@ export async function getArtifactsByBookmarks(owner: string, cursor: string | nu
         operationName: null,
         query: `
                 {\n  
-                    transactions(ids: ${JSON.stringify(bookmarkIds)}) 
+                    transactions(ids: ${JSON.stringify(bookmarkIds)}, first: ${PAGINATOR}, after: ${cursor}) 
                     {\n    
                         edges {\n      
                             node {\n        
@@ -141,11 +147,7 @@ export async function getArtifactsByBookmarks(owner: string, cursor: string | nu
                             }\n  
                     }\n
                 }\n
-            `,
-        variables: {
-            first: PAGINATOR,
-            after: cursor ? cursor : ""
-        }
+            `
     }
 
     const response = await arweave.api.post("/graphql", operation);

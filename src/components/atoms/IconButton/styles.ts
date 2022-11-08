@@ -11,6 +11,13 @@ export const Primary = styled.button<{
   border: none;
   padding: 0;
   font: inherit;
+
+  &:focus {
+    outline: none;
+    svg {
+      opacity: ${(props) => props.disabled ? "1" : "0.75"};
+    }
+  }
   
   svg {
     height: 100%;

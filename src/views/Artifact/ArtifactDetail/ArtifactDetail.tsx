@@ -1,5 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
+
+import { IconButton } from "components/atoms/IconButton";
 
 import { formatAddress, formatDataSize, formatDate } from "utils";
 import * as urls from "urls";
@@ -10,8 +13,15 @@ import * as S from "./styles";
 
 export default function ArtifactDetail(props: IProps) {
     const [viewRaw, setViewRaw] = React.useState<boolean>(false);
-    
-    return props.type ?  (
+    const [copied, setCopied] = React.useState<boolean>(false);
+
+    const copyRawData = React.useCallback(async () => {
+        await navigator.clipboard.writeText(props.data.rawData);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    }, [props.data.rawData]);
+
+    return props.type ? (
         <S.Wrapper>
             <S.IconWrapper>
                 <S.Icon>
@@ -22,18 +32,18 @@ export default function ArtifactDetail(props: IProps) {
                 <S.ContentLine>
                     <S.InfoData>
                         <S.Icons>
-                            <S.IconLine>
-                                <ReactSVG src={ASSETS.owner} />
-                                <p>{formatAddress(props.data.archivist, false)}</p>
-                            </S.IconLine>
-                            <S.IconLine>
-                                <ReactSVG src={ASSETS.mint} />
+                            <S.DataLine>
+                                <S.DataHeader>{LANGUAGE.archivist}:&nbsp;</S.DataHeader>
+                                <Link to={`${urls.library}${props.data.owner}`}>{formatAddress(props.data.owner, false)}</Link>
+                            </S.DataLine>
+                            <S.DataLine>
+                                <S.DataHeader>{LANGUAGE.minted}:&nbsp;</S.DataHeader>
                                 <p>{formatDate(props.data.minted, "epoch")}</p>
-                            </S.IconLine>
-                            <S.IconLine>
-                                <ReactSVG src={ASSETS.collection} />
-                                <a href={`${urls.collection}/${props.data.poolId}`}>{props.data.poolName}</a>
-                            </S.IconLine>
+                            </S.DataLine>
+                            <S.DataLine>
+                                <S.DataHeader>{LANGUAGE.collection.subheader1}:&nbsp;</S.DataHeader>
+                                <Link to={`${urls.collection}${props.data.poolId}`}>{props.data.poolName}</Link>
+                            </S.DataLine>
                         </S.Icons>
                     </S.InfoData>
                 </S.ContentLine>
@@ -48,13 +58,25 @@ export default function ArtifactDetail(props: IProps) {
                     </S.InfoData>
                 </S.ContentLine>
                 <S.ContentLine>
+                    {copied &&
+                        <S.RawDataCopied>
+                            <p>{LANGUAGE.copied}</p>
+                        </S.RawDataCopied>
+                    }
                     <S.InfoData>
-                        <button onClick={() => setViewRaw(!viewRaw)}>
-                            {LANGUAGE.artifactDetail.viewRaw}
-                        </button>
+                        <S.RawContainer>
+                            <button onClick={() => setViewRaw(!viewRaw)}>
+                                {LANGUAGE.artifactDetail.viewRaw}
+                            </button>
+                            <IconButton
+                                type={"primary"}
+                                src={ASSETS.copy}
+                                handlePress={copyRawData}
+                            />
+                        </S.RawContainer>
                         {viewRaw &&
                             <S.RawData>
-                                <p>{props.data.rawData}</p>
+                                <code>{props.data.rawData}</code>
                             </S.RawData>
                         }
                     </S.InfoData>
@@ -80,26 +102,26 @@ export default function ArtifactDetail(props: IProps) {
                         </span>
                         <S.LinkWrapper>
                             <S.InfoData>
-                                <S.IconLine>
+                                <S.DataLine>
                                     <ReactSVG src={ASSETS.artifact} />
                                     <p>{props.data.artifactName}</p>
-                                </S.IconLine>
+                                </S.DataLine>
                             </S.InfoData>
                         </S.LinkWrapper>
                         <S.LinkWrapperAlt>
                             <S.InfoData>
-                                <S.IconLine>
+                                <S.DataLine>
                                     <ReactSVG src={ASSETS.logoAlt2} />
                                     <a target={"_blank"} rel={"noreferrer"} href={props.data.dataUrl}>{props.data.dataUrl}</a>
-                                </S.IconLine>
+                                </S.DataLine>
                             </S.InfoData>
                         </S.LinkWrapperAlt>
                         <S.LinkWrapper>
                             <S.InfoData>
-                                <S.IconLine>
+                                <S.DataLine>
                                     <ReactSVG src={ASSETS.data} />
                                     <p>{formatDataSize(props.data.dataSize)}</p>
-                                </S.IconLine>
+                                </S.DataLine>
                             </S.InfoData>
                         </S.LinkWrapper>
                     </S.InfoData>
