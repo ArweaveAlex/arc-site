@@ -112,7 +112,7 @@ export default function ArtifactDetail(props: IProps) {
                             <S.InfoData>
                                 <S.DataLine>
                                     <ReactSVG src={ASSETS.logoAlt2} />
-                                    <a target={"_blank"} rel={"noreferrer"} href={props.data.dataUrl}>{props.data.dataUrl}</a>
+                                    <S.DataUrl target={"_blank"} rel={"noreferrer"} href={props.data.dataUrl}>{props.data.dataUrl}</S.DataUrl>
                                 </S.DataLine>
                             </S.InfoData>
                         </S.LinkWrapperAlt>

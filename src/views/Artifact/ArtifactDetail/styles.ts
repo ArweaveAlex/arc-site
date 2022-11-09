@@ -207,3 +207,7 @@ export const Tag = styled.div`
         color: ${(props) => props.theme.colors.font.primary.alt1};
     }
 `;
+
+export const DataUrl = styled.a`
+    overflow-wrap: anywhere;
+`;
