@@ -16,8 +16,8 @@ export default function ContributionsList({ data }: any) {
             <S.List>
                 {data.map((collection: any, index: number) => {
                     return (
-                        <S.Link>
-                            <Link to={getHashUrl(`${urls.collection}${collection.id}`)} key={index}>
+                        <S.Link  key={index}>
+                            <Link to={getHashUrl(`${urls.collection}${collection.id}`)}>
                                 <S.ListItemWrapper>
                                     <S.LIHeaderContainer>
                                         <S.LIHeader1>{collection.state.title}</S.LIHeader1>

@@ -10,6 +10,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export default function Modal(props: IProps) {
+
     React.useEffect(() => {
         window.scrollTo(0, 0);
         window.hideDocumentBody();

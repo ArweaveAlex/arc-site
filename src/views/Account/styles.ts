@@ -25,6 +25,7 @@ export const HeaderContent = styled.div`
     padding: 20px 20px 30px 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     animation: ${open} ${fadeIn2};
     @media(max-width: ${STYLING.cutoffs.banner}) {
         flex-direction: column;

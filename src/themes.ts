@@ -32,7 +32,8 @@ export const defaultTheme: DefaultTheme = {
         border: {
             primary: DEFAULT.neutral3,
             secondary: DEFAULT.neutral6,
-            tertiary: DEFAULT.primary3
+            tertiary: DEFAULT.primary3,
+            quarternary: DEFAULT.primary4
         },
         button: {
             primary: {
@@ -173,7 +174,8 @@ export const defaultTheme: DefaultTheme = {
         },
         shadow: {
             primary: DEFAULT.neutral11,
-            secondary: DEFAULT.neutral6
+            secondary: DEFAULT.neutral6,
+            tertiary: DEFAULT.neutral7,
         },
         tabs: {
             active: DEFAULT.primary,

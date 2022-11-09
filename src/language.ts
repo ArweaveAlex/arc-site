@@ -26,6 +26,7 @@ export const LANGUAGE = {
     amountExceedsBalance: 'Amount exceeds available balance',
     appVersion: 'Alpha',
     artifacts: 'Artifacts',
+    artifactsMinted: 'Artifacts Minted',
     artifactDetail: {
         description: 'Description',
         fileInformation: 'File Information',
@@ -62,6 +63,10 @@ export const LANGUAGE = {
     contribute: 'Contribute',
     contributeTo: 'Contribute to',
     contributions: 'My Contributions',
+    contributors: {
+        recent: 'Recent Contributors',
+        top: 'Top Contributors'
+    },
     copied: 'Copied!',
     copyAddress: 'Copy Address',
     default: 'Default',
@@ -76,6 +81,7 @@ export const LANGUAGE = {
         header3: 'Check out our'
     },
     fetchingBalance: 'Fetching balance',
+    fetchingCount: 'Fetching count',
     info: {
         header1: 'What is Alex. & How Does it Work?',
         header2: 'Those who cannot remember the past are condemned to repeat it.',
@@ -112,6 +118,7 @@ export const LANGUAGE = {
     next: 'Next',
     noArtifacts: 'No Artifacts',
     noContributions: 'No Contributions',
+    ofArtifactsCreated: 'of new Artifacts created',
     pageNotFound: 'Page Not Found',
     paths: {
         about: 'About',
@@ -119,6 +126,7 @@ export const LANGUAGE = {
     },
     previous: 'Previous',
     readMore: 'Read More',
+    recentlyMintedArtifacts: 'Recently Minted Artitacts',
     receiving: 'Receiving',
     setBookmarks: 'Update Bookmarks',
     share: 'Share',
@@ -141,11 +149,12 @@ export const LANGUAGE = {
         ]
     },
     submit: 'Submit',
+    total: 'Total',
     totalContributed: 'Total Contributed',
     urlCopied: 'URL Copied!',
     view: 'View',
     viewAccount: 'My Library',
     viewCollection: 'View Collection',
-    walletSignMessage: 'You will be prompted to sign the transaction via your wallet.',
-    walletNotConnected: 'You must connect a wallet to continue.'
+    walletNotConnected: 'You must connect a wallet to continue.',
+    willBeReceiving: 'You will be receiving',
 }

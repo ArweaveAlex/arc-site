@@ -8,6 +8,7 @@ declare module "styled-components" {
                 primary: string
                 secondary: string
                 tertiary: string
+                quarternary: string
             }
             button: {
                 primary: {
@@ -149,6 +150,7 @@ declare module "styled-components" {
             shadow: {
                 primary: string
                 secondary: string
+                tertiary: string
             }
             tabs: {
                 active: string

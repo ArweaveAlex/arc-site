@@ -20,6 +20,27 @@ export interface ArtifactType {
   rawData: string;
 }
 
+export type ArtifactQueryType = {
+  cursor: string;
+  node: {
+    id: string,
+    tags: KeyValueType[]
+  }
+}
+
+export type ArtifactArgsType = {
+  poolIds: string[],
+  cursor: string | null,
+  owner: string | null
+}
+
+export type ArtifactResponseType = {
+  nextCursor: string | null,
+  previousCursor: string | null,
+  contracts: ArtifactQueryType[],
+  count: number | null
+}
+
 export interface CollectionType {
   id: string;
   state: CollectionStateType;
@@ -85,27 +106,6 @@ export type ArtifactTableRowType = {
   dateCreated?: string,
   bookmark?: React.ReactNode
 };
-
-export type ArtifactQueryType = {
-  cursor: string;
-  node: {
-    id: string,
-    tags: KeyValueType[]
-  }
-}
-
-export type ArtifactArgsType = {
-  poolIds: string[],
-  cursor: string | null,
-  owner: string | null
-}
-
-export type ArtifactResponseType = {
-  nextCursor: string | null,
-  previousCursor: string | null,
-  contracts: ArtifactQueryType[],
-  count: number | null
-}
 
 export type ReduxActionType = {
   type: string;

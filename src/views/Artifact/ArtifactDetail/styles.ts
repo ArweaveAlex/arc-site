@@ -15,11 +15,11 @@ export const IconWrapper = styled.div`
     height 375px;
     width: 375px;
     background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.secondary};
     position: relative;
     p {
         text-overflow: ellipsis;
         overflow: hidden;
-        white-space: wrap;
         font-size: ${(props) => props.theme.typography.size.xSmall};
         font-weight: ${(props) => props.theme.typography.weight.medium};
         color: ${(props) => props.theme.colors.font.primary.base};
@@ -50,7 +50,7 @@ export const Icon = styled.div`
     }
     @media(max-width: ${STYLING.cutoffs.initial}) {
         svg {
-            width: 27.5%;
+            width: 37.5%;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -143,7 +143,6 @@ export const RawDataCopied = styled.div`
     right: 35px;
     z-index: 3;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
     padding: 6.5px 15px 5px 15px;
     p {
         font-size: 12px;

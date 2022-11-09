@@ -6,6 +6,7 @@ import { useARProvder } from "providers/ARProvider";
 import { Loader } from "components/atoms/Loader";
 
 import { CollectionHeader } from "./CollectionHeader";
+import { CollectionStatistics } from "./CollectionStatistics";
 import { CollectionDetail } from "./CollectionDetail";
 
 import { CollectionType, ArtifactResponseType } from "types";
@@ -56,6 +57,10 @@ export default function Collection() {
                 dateCreated={formatDate(headerData!.state.timestamp, "epoch")}
                 count={detailData.count!}
                 totalContributions={arProvider.getARAmount(headerData!.state.totalContributions)}
+            />
+            <CollectionStatistics
+                headerData={headerData!}
+                detailData={detailData}
             />
             <CollectionDetail
                 data={detailData}

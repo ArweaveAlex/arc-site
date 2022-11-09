@@ -116,13 +116,18 @@ export const SubmitWrapper = styled.div`
     }
 `;
 
-export const SignMessage = styled.div`
-    width: 100%;
-    margin: 12.5px auto 0 auto;
-    text-align: center;
+export const RPWrapper = styled.div`
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    span, p {
+        font-size: ${(props) => props.theme.typography.size.xSmall};
+    }
+    span {
+        color: ${(props) => props.theme.colors.font.primary.alt7};
+    }
     p {
-        font-size: 12px;
-        line-height: 1.25;
-        color: ${(props) => props.theme.colors.font.primary.alt1};
+        font-weight: ${(props) => props.theme.typography.weight.medium};
     }
 `;

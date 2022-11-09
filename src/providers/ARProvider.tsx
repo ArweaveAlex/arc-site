@@ -12,7 +12,7 @@ import {
 import { 
     getBalanceEndpoint, 
     getTxEndpoint, 
-    getRedstoneEndpoint 
+    getRedstoneSrcTxEndpoint 
 } from "endpoints";
 import { getTagValue } from "utils";
 import { LANGUAGE } from "language";
@@ -285,7 +285,7 @@ export function ARProvider(props: ARProviderProps) {
         let count = 0;
         if (aggregatedArtifacts.length > 0) {
             let nftContractSrc = getTagValue(aggregatedArtifacts[0].node.tags, TAGS.keys.contractSrc);
-            let redstoneContracts = await fetch(getRedstoneEndpoint(nftContractSrc));
+            let redstoneContracts = await fetch(getRedstoneSrcTxEndpoint(nftContractSrc));
             let j = await redstoneContracts.json();
             count = parseInt(j.paging.total);
         }

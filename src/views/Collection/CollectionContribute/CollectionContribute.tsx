@@ -21,6 +21,7 @@ export default function CollectionContribute(props: IProps) {
     const [showModal, setShowModal] = React.useState(false);
     const [amount, setAmount] = React.useState<number>(0);
     const [loading, setLoading] = React.useState<boolean>(false);
+    const [receivingPercent, setReceivingPercent] = React.useState<string | null>(null);
 
     const [contributionResult, setContributionResult] = React.useState<ContributionResultType | null>(null);
 
@@ -76,9 +77,35 @@ export default function CollectionContribute(props: IProps) {
         }
     }
 
+    function getReceivingPercent() {
+        if (receivingPercent) {
+            return (
+                <S.RPWrapper>
+                    <span>
+                        {LANGUAGE.willBeReceiving}:
+                    </span>
+                    <p>&nbsp;~&nbsp;{receivingPercent}% {LANGUAGE.ofArtifactsCreated}.</p>
+                </S.RPWrapper>
+            )
+        }
+        else {
+            return <p>Fetching ...</p>
+        }
+    }
+
     function getDisabledSubmit() {
         return getInvalidForm().status || loading || !arProvider.walletAddress || isNaN(amount) || amount <= 0;
     }
+
+    React.useEffect(() => {
+        (async function () {
+            if (arProvider.walletAddress) {
+                setReceivingPercent(
+                    (await arProvider.getUserContributions(arProvider.walletAddress)
+                    ).find((pool: any) => pool.id === props.poolId).receivingPercent);
+            }
+        })()
+    }, [arProvider, arProvider.walletAddress])
 
     return (
         <>
@@ -105,28 +132,30 @@ export default function CollectionContribute(props: IProps) {
                             </S.BalanceWrapper>
                         </S.Header>
                         <S.Form onSubmit={(e) => handlePoolContribute(e)}>
-                            <S.FormField>
-                                <FormField
-                                    type={"number"}
-                                    value={amount}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
-                                    disabled={loading || !arProvider.walletAddress}
-                                    invalid={getInvalidForm()}
-                                    endText={LANGUAGE.arTokens}
-                                />
-                            </S.FormField>
+                            <div>
+                                <S.FormField>
+                                    <FormField
+                                        type={"number"}
+                                        value={amount}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
+                                        disabled={loading || !arProvider.walletAddress}
+                                        invalid={getInvalidForm()}
+                                        endText={LANGUAGE.arTokens}
+                                    />
+                                </S.FormField>
+                                <S.RPWrapper>
+                                    {getReceivingPercent()}
+                                </S.RPWrapper>
+                            </div>
                             <S.SubmitWrapper>
                                 <Button
-                                    label={LANGUAGE.submit}
+                                    label={loading ? LANGUAGE.loading : LANGUAGE.submit}
                                     type={"secondary"}
                                     handlePress={(e) => handlePoolContribute(e)}
                                     disabled={getDisabledSubmit()}
-                                    loading={loading}
+                                    loading={false}
                                     formSubmit
                                 />
-                                {/* <S.SignMessage>
-                                    <p>{LANGUAGE.walletSignMessage}</p>
-                                </S.SignMessage> */}
                             </S.SubmitWrapper>
                         </S.Form>
                     </S.ModalWrapper>

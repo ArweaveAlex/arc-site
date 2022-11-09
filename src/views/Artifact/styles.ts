@@ -29,7 +29,12 @@ export const ArtifactWrapper = styled.div`
 `;
 
 export const MessageContainer = styled.div`
-    position: absolute;
-    top: calc(${STYLING.dimensions.navHeight} + 20px);
-    left: 20px;
+    max-width: ${STYLING.cutoffs.max};
+    margin: 0 auto;
+    position: relative;
+    p {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
 `;

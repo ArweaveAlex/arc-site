@@ -153,7 +153,7 @@ export const TContainer = styled.div`
 
 export const LongDescription = styled.div`
     width: 100%;
-    margin: 30px 0 40px 0;
+    margin: 30px 0;
 `;
 
 export const LDHeader = styled.div`
