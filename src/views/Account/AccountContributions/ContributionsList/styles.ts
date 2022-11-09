@@ -40,14 +40,16 @@ export const List = styled.ol`
     flex-direction: column;
 `;
 
-export const Link = styled.a`
-    &:hover {
-        text-decoration: none;
-    }
-    &:focus {
-        text-decoration: none;
-    }
+export const Link = styled.div`
     margin: 0 0 20px 0;
+    a {
+        &:hover {
+            text-decoration: none;
+        }
+        &:focus {
+            text-decoration: none;
+        }
+    }
 `;
 
 export const ListItemWrapper = styled.li`

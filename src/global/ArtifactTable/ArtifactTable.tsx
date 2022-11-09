@@ -8,7 +8,7 @@ import { RootState } from "redux/store";
 import { getBookmarks, setBookmarks } from "gql/artifacts";
 
 import { Notification } from "components/atoms/Notification";
-import { Button } from "components/atoms/Button";
+// import { Button } from "components/atoms/Button";
 import { IconButton } from "components/atoms/IconButton";
 
 import { Table } from "components/organisms/Table";
@@ -60,11 +60,27 @@ export default function ArtifactTable(props: IProps) {
         message: null
     })
 
+    function getTitleWidth() {
+        if (props.showBookmarks && props.showCollectionId) {
+            return "55%";
+        }
+        else if (props.showBookmarks || props.showCollectionId) {
+            return "65%";
+        }
+        else {
+            return "75%";
+        }
+    }
+
     function getHeader() {
         const header: TableHeaderType = {
             type: { width: "5%", align: "center" as AlignType },
-            title: { width: props.showBookmarks ? "65%" : "75%", align: "left" as AlignType },
+            title: { width: getTitleWidth(), align: "left" as AlignType },
             dateCreated: { width: "20%", align: "left" as AlignType }
+        }
+
+        if (props.showCollectionId) {
+            header.collectionId = { width: "10%", align: "left" as AlignType };
         }
 
         if (props.showBookmarks) {
@@ -81,14 +97,13 @@ export default function ArtifactTable(props: IProps) {
         }
         return (
             <S.TypeContainer>
-                <ReactSVG src={artifactType.icon}/>
+                <ReactSVG src={artifactType.icon} />
             </S.TypeContainer>
         )
 
     }
 
-    function getLink(id: string, label: string) {
-        const url = `${urls.artifact}${id}`;
+    function getLink(url: string, label: string) {
         return (
             <S.Link>
                 <Link to={url} tabIndex={-1}>
@@ -99,28 +114,32 @@ export default function ArtifactTable(props: IProps) {
         )
     }
 
-    function checkEditActionDisabled() {
-        if (bookmarksReducer.ids.length === bookmarkIds.length) {
-            return true;
-        }
-        return false;
-    }
+    // function checkEditActionDisabled() {
+    //     if (bookmarksReducer.ids.length === bookmarkIds.length) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
-    function getEditAction() {
-        if (props.showBookmarks) {
-            return (
-                <Button
-                    type={"secondary"}
-                    label={LANGUAGE.setBookmarks}
-                    handlePress={handleEditBookmarks}
-                    disabled={checkEditActionDisabled()}
-                />
-            )
-        }
-        else {
-            return null;
-        }
-    }
+    // function getEditAction() {
+    //     if (props.showBookmarks) {
+    //         return (
+    //             <Button
+    //                 type={"secondary"}
+    //                 label={LANGUAGE.setBookmarks}
+    //                 handlePress={handleEditBookmarks}
+    //                 disabled={checkEditActionDisabled()}
+    //             />
+    //         )
+    //     }
+    //     else {
+    //         return null;
+    //     }
+    // }
+
+    // async function handleEditBookmarks() {
+    //     setBookmarkResponse(await setBookmarks(props.owner!, bookmarkIds));
+    // }
 
     function getBookmark(artifactId: string) {
         return (
@@ -132,11 +151,7 @@ export default function ArtifactTable(props: IProps) {
         )
     }
 
-    async function handleEditBookmarks() {
-        setBookmarkResponse(await setBookmarks(props.owner!, bookmarkIds));
-    }
-
-    function handleBookmarkStateUpdate(artifactId: string) {
+    async function handleBookmarkStateUpdate(artifactId: string) {
         const updatedBookmarks: string[] = [];
         for (let i = 0; i < bookmarkIds.length; i++) {
             updatedBookmarks.push(bookmarkIds[i]);
@@ -144,10 +159,11 @@ export default function ArtifactTable(props: IProps) {
         const index = updatedBookmarks.indexOf(artifactId);
         if (index > -1) {
             updatedBookmarks.splice(index, 1);
-        } else {
+        }
+        else {
             updatedBookmarks.push(artifactId);
         }
-        setBookmarkIds(updatedBookmarks);
+        setBookmarkResponse(await setBookmarks(props.owner!, updatedBookmarks));
     }
 
     React.useEffect(() => {
@@ -172,15 +188,16 @@ export default function ArtifactTable(props: IProps) {
         if (props.data) {
             (async function () {
                 setData(props.data.contracts.map((element: any) => {
-                    console.log(element)
-
                     const row: ArtifactTableRowType = {
                         type: getType(getTagValue(element.node.tags, TAGS.keys.artifactType)),
-                        title: getLink(element.node.id, getTagValue(element.node.tags, TAGS.keys.artifactName)),
+                        title: getLink(`${urls.artifact}${element.node.id}`, getTagValue(element.node.tags, TAGS.keys.artifactName)),
                         dateCreated: formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), "epoch")
                     }
+                    if (props.showCollectionId) {
+                        row.collectionId = getLink(`${urls.collection}${getTagValue(element.node.tags, TAGS.keys.poolId)}`, getTagValue(element.node.tags, TAGS.keys.poolId));
+                    }
                     if (props.showBookmarks) {
-                        row.bookmark = (getBookmark(element.node.id));
+                        row.bookmark = getBookmark(element.node.id);
                     }
                     if (getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none) {
                         return row;
@@ -205,7 +222,7 @@ export default function ArtifactTable(props: IProps) {
             }
             <Table
                 title={LANGUAGE.artifacts}
-                titleAction={getEditAction()}
+                titleAction={null}
                 header={getHeader()}
                 data={data}
                 recordsPerPage={PAGINATOR}

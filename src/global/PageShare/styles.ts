@@ -7,12 +7,13 @@ export const Wrapper = styled.div`
     align-items: center;
 `;
 
-export const Info = styled.div`
+export const Info = styled.div<{ secondary: boolean }>`
     display: flex;
     margin: 5.5px 15px 0 0;
+    margin: ${(props) => props.secondary ? "0px 15px 0 0" : "5.5px 15px 0 0"};
     p {
         color: ${(props) => props.theme.colors.font.primary.active.base};
-        font-size: ${(props) => props.theme.typography.size.xSmall};
+        font-size: ${(props) => props.secondary ? "12px" : props.theme.typography.size.xSmall};
     }
     svg {
         fill: ${(props) => props.theme.colors.font.primary.alt7};
@@ -29,28 +30,34 @@ export const Actions = styled.div`
     }
 `;
 
-export const Icon = styled.div`
+export const Icon = styled.div<{ secondary: boolean }>`
   height: 32.5px;
   width: 32.5px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2.5px 0 0 0;
-  background: ${(props) => props.theme.colors.button.secondary.background};
+  background: ${(props) => props.secondary ?
+        props.theme.colors.transparent : props.theme.colors.button.secondary.background};
 
   &:hover {
-    background: ${(props) => props.theme.colors.button.secondary.hover};
+    background: ${(props) => props.secondary ?
+        props.theme.colors.transparent : props.theme.colors.button.secondary.hover};
     cursor: pointer;
+    svg {
+        opacity: ${(props) => props.secondary ? "0.75" : "1"};
+    }
   }
 
   svg {
     height: 17.5px;
     width: 17.5px;
-    fill: ${(props) => props.theme.colors.button.secondary.label};
+    fill:  ${(props) => props.secondary ?
+        props.theme.colors.icon.secondary.fill : props.theme.colors.button.secondary.label};
   }
 `;
 
-export const LinkCopied = styled.div`
+export const URLCopied = styled.div`
     position: absolute;
     bottom: 100%;
     right: 90%;

@@ -40,6 +40,7 @@ export default function AccountBookmarks() {
                     <ArtifactTable 
                         data={data} 
                         showBookmarks={true}
+                        showCollectionId={true}
                         handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
                         cursors={{
                             next: data.nextCursor,

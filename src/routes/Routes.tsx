@@ -24,7 +24,7 @@ export default function _Routes() {
           <Collection />
         </View>
       } />
-      <Route path={`${urls.library}:id`} element={
+      <Route path={`${urls.library}:id/:active`} element={
         <View>
           <Library />
         </View>

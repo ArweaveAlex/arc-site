@@ -1,14 +1,28 @@
+import React from "react";
 import { useARProvder } from "providers/ARProvider";
 
+import { Button } from "components/atoms/Button";
 import { URLTabs } from "components/organisms/URLTabs";
 
-import { formatAddress } from "utils";
-import { URLS } from "config";
+import * as urls from "urls";
+import { formatAddress, getHashUrl } from "utils";
+import { ASSETS, URLS } from "config";
 import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 export default function Account() {
     const arProvider = useARProvder();
+
+    const [copied, setCopied] = React.useState<boolean>(false);
+
+    const copyUrl = React.useCallback(async () => {
+        console.log(arProvider.walletAddress)
+        if (arProvider.walletAddress) {
+            await navigator.clipboard.writeText(`${getHashUrl(window.location.origin)}${urls.libraryAll(arProvider.walletAddress)}`);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }
+    }, [arProvider.walletAddress]);
 
     return (
         <S.Wrapper>
@@ -25,6 +39,20 @@ export default function Account() {
                             </S.Header2Container>
                         </S.FlexHeader>
                     </S.HeaderContainer>
+                    <S.ShareWrapper>
+                        {copied &&
+                            <S.URLCopied>
+                                <p>{LANGUAGE.urlCopied}</p>
+                            </S.URLCopied>
+                        }
+                        <Button
+                            type={"primary"}
+                            label={LANGUAGE.shareUrlLabel}
+                            handlePress={copyUrl}
+                            icon={ASSETS.shareLink}
+                            iconLeftAlign
+                        />
+                    </S.ShareWrapper>
                 </S.HeaderContent>
             </S.HeaderWrapper>
             <S.TabsWrapper>

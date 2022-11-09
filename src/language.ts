@@ -85,9 +85,20 @@ export const LANGUAGE = {
     },
     lastContribution: 'Last Contribution',
     library: {
-        header1: 'Library'
+        header1: 'Library',
+        all: {
+            title: 'All',
+            header1: 'All Artifacts'
+        },
+        new: {
+            title: 'New',
+            header1: 'New Artifacts'
+        },
+        bookmarks: {
+            title: 'Bookmarks',
+            header1: 'Bookmarks'
+        }
     },
-    linkCopied: 'Link Copied!',
     loading: 'Loading',
     metaDescriptionContent: 'Preserving Culture',
     messaging: {
@@ -109,9 +120,11 @@ export const LANGUAGE = {
     previous: 'Previous',
     readMore: 'Read More',
     receiving: 'Receiving',
+    setBookmarks: 'Update Bookmarks',
     share: 'Share',
     shareArtifact: 'Check out this Alex. Artifact !',
     shareCollection: 'Check out this Alex. Collection !',
+    shareUrlLabel: 'Share (Copy URL)',
     social: {
         discord: 'Discord',
         twitter: 'Twitter'
@@ -129,7 +142,7 @@ export const LANGUAGE = {
     },
     submit: 'Submit',
     totalContributed: 'Total Contributed',
-    setBookmarks: 'Update Bookmarks',
+    urlCopied: 'URL Copied!',
     view: 'View',
     viewAccount: 'My Library',
     viewCollection: 'View Collection',

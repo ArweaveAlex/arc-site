@@ -34,7 +34,7 @@ export default function ArtifactDetail(props: IProps) {
                         <S.Icons>
                             <S.DataLine>
                                 <S.DataHeader>{LANGUAGE.archivist}:&nbsp;</S.DataHeader>
-                                <Link to={`${urls.library}${props.data.owner}`}>{formatAddress(props.data.owner, false)}</Link>
+                                <Link to={`${urls.libraryAll(props.data.owner)}`}>{formatAddress(props.data.owner, false)}</Link>
                             </S.DataLine>
                             <S.DataLine>
                                 <S.DataHeader>{LANGUAGE.minted}:&nbsp;</S.DataHeader>

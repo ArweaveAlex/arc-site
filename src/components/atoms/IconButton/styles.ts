@@ -65,4 +65,9 @@ export const Secondary = styled(Primary)`
   }
 `;
 
-export const Tertiary = styled(Primary)``;
+export const Tertiary = styled(Primary)`
+  svg {
+    fill: ${(props) => props.warning ?
+      props.theme.colors.warning : props.theme.colors.icon.secondary.fill};
+  }
+`;

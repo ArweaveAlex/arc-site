@@ -9,3 +9,5 @@ export const artifact = `${base}artifact/`;
 export const collection = `${base}collection/`;
 export const collections = `${base}collections/`;
 export const library = `${base}library/`;
+export const libraryAll = (id: string) => `${library}${id}/all/`;
+export const libraryBookmarks = (id: string) => `${library}${id}/bookmarks/`;

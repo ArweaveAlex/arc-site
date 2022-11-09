@@ -9,25 +9,20 @@ import {
     ArtifactResponseType,
     ContributionResultType
 } from "types";
-import { getBalanceEndpoint, getTxEndpoint, getRedstoneEndpoint } from "endpoints";
+import { 
+    getBalanceEndpoint, 
+    getTxEndpoint, 
+    getRedstoneEndpoint 
+} from "endpoints";
 import { getTagValue } from "utils";
 import { LANGUAGE } from "language";
-import { PAGINATOR, STORAGE, TAGS } from "config";
-
-const AR_WALLETS = [
-    { name: "arconnect", logo: "arconnect-wallet-logo.png" }
-]
-
-export const PERMISSIONS = [
-    "ACCESS_ADDRESS",
-    "ACCESS_ALL_ADDRESSES",
-    "ACCESS_PUBLIC_KEY",
-    "SIGN_TRANSACTION",
-    "ENCRYPT",
-    "DECRYPT",
-    "SIGNATURE",
-    "ACCESS_ARWEAVE_CONFIG"
-]
+import { 
+    AR_WALLETS, 
+    WALLET_PERMISSIONS, 
+    PAGINATOR, 
+    STORAGE, 
+    TAGS 
+} from "config";
 
 interface ARContextState {
     wallets: { name: string, logo: string }[];
@@ -148,7 +143,7 @@ export function ARProvider(props: ARProviderProps) {
     const [cursorState, setCursorState] = React.useState<any>({});
 
     async function connect() {
-        await global.window?.arweaveWallet?.connect(PERMISSIONS as any).then(() => {
+        await global.window?.arweaveWallet?.connect(WALLET_PERMISSIONS as any).then(() => {
             setWalletModalVisible(false)
         }).catch(() => {
             alert(LANGUAGE.connectionError);

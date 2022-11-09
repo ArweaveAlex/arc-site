@@ -1,12 +1,13 @@
-import { IURLView } from "./types";
+import { IURLView } from "types";
 
-import { AccountAll } from "./views/Account/AccountAll";
-// import { AccountNew } from "./views/Account/AccountNew";
-import { AccountBookmarks } from "./views/Account/AccountBookmarks";
-import { AccountContributions } from "./views/Account/AccountContributions";
+import { AccountAll } from "views/Account/AccountAll";
+import { AccountBookmarks } from "views/Account/AccountBookmarks";
+import { AccountContributions } from "views/Account/AccountContributions";
+import { LibraryAll } from "views/Library/LibraryAll";
+import { LibraryBookmarks } from "views/Library/LibraryBookmarks";
 
-import * as urls from "./urls";
-import { LANGUAGE } from "./language";
+import * as urls from "urls";
+import { LANGUAGE } from "language";
 
 export const TAGS = {
     keys: {
@@ -38,6 +39,7 @@ export const APP = {
 export const ASSET_SRC = "assets";
 
 export const ASSETS = {
+    all: `${ASSET_SRC}/all.svg`,
     artifact: `${ASSET_SRC}/artifact.svg`,
     artifactTypes: {
         default: `${ASSET_SRC}/artifact-types/webpage.svg`,
@@ -45,9 +47,11 @@ export const ASSETS = {
         webpage: `${ASSET_SRC}/artifact-types/webpage.svg`
     },
     bookmark: `${ASSET_SRC}/bookmark.svg`,
+    bookmarks: `${ASSET_SRC}/bookmarks.svg`,
     bookmarkSelected: `${ASSET_SRC}/bookmark-selected.svg`,
     close: `${ASSET_SRC}/close.svg`,
     collection: `${ASSET_SRC}/collection.svg`,
+    contributions: `${ASSET_SRC}/contributions.svg`,
     copy: `${ASSET_SRC}/copy.svg`,
     cycle: `${ASSET_SRC}/cycle.png`,
     data: `${ASSET_SRC}/data.svg`,
@@ -72,7 +76,21 @@ export const ASSETS = {
         twitter: `${ASSET_SRC}/twitter.svg`
     },
     user: `${ASSET_SRC}/user.svg`,
+    wallets: {
+        arconnect: `${ASSET_SRC}/arconnect-wallet-logo.png`
+    }
 }
+
+export const AR_WALLETS = [
+    { name: "arconnect", logo: ASSETS.wallets.arconnect }
+]
+
+export const WALLET_PERMISSIONS = [
+    "ACCESS_ADDRESS",
+    "ACCESS_ALL_ADDRESSES",
+    "ACCESS_PUBLIC_KEY",
+    "SIGN_TRANSACTION"
+]
 
 export const TAB_OPTIONS = {
     details: LANGUAGE.details,
@@ -109,29 +127,17 @@ export const DOM = {
     notification: "notification-portal"
 };
 
-// export const URLS: IURLView = {
-//     account: [
-//         { index: 0, label: LANGUAGE.account.all.title, icon: "account-all.svg", disabled: false, url: urls.accountAll, view: AccountAll },
-//         { index: 1, label: LANGUAGE.account.new.title, icon: "account-new.svg", disabled: true, url: urls.accountNew, view: AccountNew },
-//         { index: 2, label: LANGUAGE.account.bookmarks.title, icon: "account-bookmarks.svg", disabled: true, url: urls.accountBookmarks, view: AccountBookmarks },
-//         { index: 2, label: LANGUAGE.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
-//     ]
-// }
-
 export const URLS: IURLView = {
     account: [
-        { index: 0, label: LANGUAGE.account.all.title, icon: "account-all.svg", disabled: false, url: urls.accountAll, view: AccountAll },
-        { index: 2, label: LANGUAGE.account.bookmarks.title, icon: "account-bookmarks.svg", disabled: false, url: urls.accountBookmarks, view: AccountBookmarks },
-        { index: 2, label: LANGUAGE.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
+        { index: 0, label: LANGUAGE.account.all.title, icon: ASSETS.all, disabled: false, url: urls.accountAll, view: AccountAll },
+        { index: 1, label: LANGUAGE.account.bookmarks.title, icon: ASSETS.bookmarks, disabled: false, url: urls.accountBookmarks, view: AccountBookmarks },
+        { index: 2, label: LANGUAGE.account.contributions.title, icon: ASSETS.contributions, disabled: false, url: urls.accountContributions, view: AccountContributions }
+    ],
+    library: [
+        { index: 0, label: LANGUAGE.library.all.title, icon: ASSETS.all, disabled: false, url: (id: string) => urls.libraryAll(id), view: LibraryAll },
+        { index: 1, label: LANGUAGE.library.bookmarks.title, icon: ASSETS.bookmarks, disabled: false, url: (id: string) => urls.libraryBookmarks(id), view: LibraryBookmarks }
     ]
 }
-
-// export const URLS: IURLView = {
-//     account: [
-//         { index: 0, label: LANGUAGE.account.all.title, icon: "account-all.svg", disabled: false, url: urls.accountAll, view: AccountAll },
-//         { index: 2, label: LANGUAGE.account.contributions.title, icon: "account-contributions.svg", disabled: false, url: urls.accountContributions, view: AccountContributions }
-//     ]
-// }
 
 export const PAGINATOR = 100;
 

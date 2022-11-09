@@ -3,8 +3,8 @@ import React from "react";
 import { ButtonType } from "types";
 
 export interface IProps {
-  label: string | number | React.ReactNode;
   type: ButtonType;
+  label: string | number | React.ReactNode;
   handlePress: (e: React.MouseEvent) => void;
   disabled?: boolean;
   active?: boolean;

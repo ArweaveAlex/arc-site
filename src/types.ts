@@ -47,6 +47,7 @@ export type AlignType = "left" | "center" | "right";
 export type ContributionResultType = { status: boolean, message: string | null };
 export type RefType = { current: HTMLElement };
 export type DateType = "iso" | "epoch";
+export type PageShareType = "primary" | "secondary";
 export type CursorType =  {
   next: string | null,
   previous: string | null
@@ -54,18 +55,20 @@ export type CursorType =  {
 export type NStringType = string | null;
 export type NStringListType = string[] | null;
 
-export interface IURLView {
-  account: URLViewType[]
-}
-
 export type URLViewType = {
   index: number;
   label: string;
   icon: string;
   disabled: boolean;
-  url: string;
+  url: any;
   view: React.ComponentType;
 }
+
+export interface IURLView {
+  account: URLViewType[];
+  library: URLViewType[];
+}
+
 
 export type ValidationType = {
   status: boolean,
@@ -78,7 +81,8 @@ export type TableHeaderType = { [key: string]: { width: string, align: AlignType
 export type ArtifactTableRowType = {
   type: React.ReactNode,
   title: React.ReactNode,
-  dateCreated: string,
+  collectionId?: React.ReactNode,
+  dateCreated?: string,
   bookmark?: React.ReactNode
 };
 

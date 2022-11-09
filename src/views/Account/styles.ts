@@ -17,11 +17,6 @@ export const HeaderWrapper = styled.div`
     }
 `;
 
-export const TabsWrapper = styled.div`
-    height: calc(100% - 200px);
-    width: 100%;
-`;
-
 export const HeaderContent = styled.div`
     height: 100%;
     width: 100%;
@@ -38,8 +33,39 @@ export const HeaderContent = styled.div`
     }
 `;
 
-export const HeaderContainer = styled.div`
-    
+export const HeaderContainer = styled.div``;
+
+export const ShareWrapper = styled.div`
+    height: 100%;
+    width: fit-content;
+    position: relative;
+    @media(max-width: ${STYLING.cutoffs.banner}) {
+        margin: 20px 0 0 0;
+    }
+`;
+
+export const URLCopied = styled.div`
+    position: absolute;
+    top: -25px;
+    left: -100px;
+    z-index: 3;
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    padding: 6.5px 15px 5px 15px;
+    p {
+        font-size: 12px;
+        color: ${(props) => props.theme.colors.font.primary.alt4};
+        white-space: nowrap;
+    }
+    @media(max-width: ${STYLING.cutoffs.banner}) {
+        bottom: auto;
+        left: 170px;
+    }
+`;
+
+export const TabsWrapper = styled.div`
+    height: calc(100% - 200px);
+    width: 100%;
 `;
 
 export const FlexHeader = styled.div`

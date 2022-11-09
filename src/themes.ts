@@ -179,6 +179,7 @@ export const defaultTheme: DefaultTheme = {
             active: DEFAULT.primary,
             inactive: DEFAULT.transparent
         },
+        transparent: DEFAULT.transparent,
         view: {
             background: DEFAULT.neutral2
         },

@@ -2,7 +2,7 @@ import { STORAGE } from "config";
 import { DateType, KeyValueType } from "types";
 
 export function getHashUrl(url: string) {
-    return `/#${url}`;
+    return `${url}/#`;
 }
 
 export function formatArtifactType(artifactType: string) {

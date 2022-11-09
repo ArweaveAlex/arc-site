@@ -33,7 +33,8 @@ export default function CollectionHeader(props: IProps) {
             <S.Header>
                 <S.HeaderFlex>
                     <S.Header1>{props.title}</S.Header1>
-                    <PageShare 
+                    <PageShare
+                        type={"primary"}
                         href={window.location.href}
                         title={LANGUAGE.shareCollection}
                     />

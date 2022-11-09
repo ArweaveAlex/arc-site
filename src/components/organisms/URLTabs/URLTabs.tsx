@@ -6,7 +6,6 @@ import { Button } from "components/atoms/Button";
 import { NotFound } from "views/NotFound";
 
 import * as S from "./styles";
-import { ASSET_SRC } from "config";
 import { ITProps, ICProps, IUProps } from "./types";
 
 function Tab(props: ITProps) {
@@ -22,19 +21,21 @@ function Tab(props: ITProps) {
           label={props.label}
           handlePress={handlePress}
           active={props.active}
-          icon={`${ASSET_SRC}/${props.icon}`}
+          icon={props.icon}
           iconLeftAlign
           disabled={props.disabled}
+          noMinWidth
         />
       </S.Tab>
     );
 }
 
 function TabContent(props: ICProps) {
-  const { active } = useParams() as { active: string };
+  const { id, active } = useParams() as { id: string, active: string };
   let TabView: React.ComponentType = NotFound;
   for (let i = 0; i < props.tabs.length; i++) {
-    if (props.tabs[i].url.includes(active)) {
+    const url = typeof props.tabs[i].url === "function" ? props.tabs[i].url(id) : props.tabs[i].url;
+    if (url.includes(active)) {
       TabView = props.tabs[i].view;
     }
   }
@@ -46,7 +47,7 @@ function TabContent(props: ICProps) {
 }
 export default function URLTabs(props: IUProps) {
   const navigate = useNavigate();
-  const { active } = useParams() as { active: string };
+  const { id, active } = useParams() as { id: string, active: string };
 
   React.useEffect(() => {
     if (!active) {
@@ -65,15 +66,16 @@ export default function URLTabs(props: IUProps) {
       <S.ListHeader>
         <S.List>
           {props.tabs.map((elem, index) => {
+            const url = typeof elem.url === "function" ? elem.url(id) : elem.url;
             return (
               <Tab
                 key={index}
-                url={elem.url}
+                url={url}
                 label={elem.label}
                 icon={elem.icon}
                 disabled={elem.disabled}
-                active={elem.url.includes(active)}
-                handlePress={() => handleRedirect(elem.url)}
+                active={url.includes(active)}
+                handlePress={() => handleRedirect(url)}
               />
             );
           })}

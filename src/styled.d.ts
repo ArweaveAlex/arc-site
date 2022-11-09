@@ -154,6 +154,7 @@ declare module "styled-components" {
                 active: string
                 inactive: string
             }
+            transparent: string
             view: {
                 background: string
             }

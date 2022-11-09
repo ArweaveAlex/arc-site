@@ -40,7 +40,7 @@ export default function ArtifactHeader(props: IProps) {
                         <S.InfoOwner>
                             <>
                                 <ReactSVG src={ASSETS.owner} />
-                                <Link to={`${urls.library}${props.data.owner}`}>{formatAddress(props.data.owner, false)}</Link>
+                                <Link to={`${urls.libraryAll(props.data.owner)}`}>{formatAddress(props.data.owner, false)}</Link>
                             </>
                         </S.InfoOwner>
                         <S.InfoCollection>
@@ -59,6 +59,7 @@ export default function ArtifactHeader(props: IProps) {
                             })}
                         </Tabs>
                         <PageShare
+                            type={"secondary"}
                             href={window.location.href}
                             title={LANGUAGE.shareArtifact}
                         />

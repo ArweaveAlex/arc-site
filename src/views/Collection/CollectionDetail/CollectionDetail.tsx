@@ -7,6 +7,7 @@ export default function CollectionDetail(props: IProps) {
         <ArtifactTable 
             data={props.data} 
             showBookmarks={false}
+            showCollectionId={false}
             handleUpdateFetch={(cursor: string | null) => props.handleUpdateFetch(cursor)}
             cursors={props.cursors}
             owner={null}

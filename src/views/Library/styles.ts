@@ -22,8 +22,9 @@ export const HeaderContent = styled.div`
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px 30px 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     animation: ${open} ${fadeIn2};
     @media(max-width: ${STYLING.cutoffs.banner}) {
@@ -33,8 +34,39 @@ export const HeaderContent = styled.div`
     }
 `;
 
-export const HeaderContainer = styled.div`
-    
+export const HeaderContainer = styled.div``;
+
+export const ShareWrapper = styled.div`
+    height: 100%;
+    width: fit-content;
+    position: relative;
+    @media(max-width: ${STYLING.cutoffs.banner}) {
+        margin: 20px 0 0 0;
+    }
+`;
+
+export const URLCopied = styled.div`
+    position: absolute;
+    top: -25px;
+    left: -100px;
+    z-index: 3;
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    padding: 6.5px 15px 5px 15px;
+    p {
+        font-size: 12px;
+        color: ${(props) => props.theme.colors.font.primary.alt4};
+        white-space: nowrap;
+    }
+    @media(max-width: ${STYLING.cutoffs.banner}) {
+        bottom: auto;
+        left: 170px;
+    }
+`;
+
+export const TabsWrapper = styled.div`
+    height: calc(100% - 200px);
+    width: 100%;
 `;
 
 export const FlexHeader = styled.div`
@@ -79,17 +111,4 @@ export const Header2 = styled(Header1)`
     @media(max-width: ${STYLING.cutoffs.secondary}) {
         font-size: 7.5vw;
     }
-`;
-
-export const BodyWrapper = styled.div`
-    height: 100%;
-    width: 100%;
-    max-width: ${STYLING.cutoffs.max};
-    position: relative;
-    padding: 20px;
-    margin: 0 auto;
-`;
-
-export const TableWrapper = styled.div`
-    margin: 25px 0 0 0;
 `;

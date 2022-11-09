@@ -20,18 +20,20 @@ export default function PageShare(props: IProps) {
 
     return (
         <S.Wrapper>
-            <S.Info>
-                <ReactSVG src={ASSETS.shareLink} />
+            <S.Info secondary={props.type === "secondary"}>
+                {props.type === "primary" &&
+                    <ReactSVG src={ASSETS.shareLink} />
+                }
                 <p>{LANGUAGE.share.toUpperCase()}</p>
             </S.Info>
             <S.Actions>
                 {copied &&
-                    <S.LinkCopied>
-                        <p>{LANGUAGE.linkCopied}</p>
-                    </S.LinkCopied>
+                    <S.URLCopied>
+                        <p>{LANGUAGE.urlCopied}</p>
+                    </S.URLCopied>
                 }
                 <IconButton
-                    type={"secondary"}
+                    type={props.type === "primary" ? "secondary" : "tertiary"}
                     src={ASSETS.link}
                     handlePress={copyUrl}
                 />
@@ -39,7 +41,7 @@ export default function PageShare(props: IProps) {
                     title={props.title}
                     url={props.href}
                 >
-                    <S.Icon>
+                    <S.Icon secondary={props.type === "secondary"}>
                         <ReactSVG src={ASSETS.social.twitter} />
                     </S.Icon>
                 </TwitterShareButton>
