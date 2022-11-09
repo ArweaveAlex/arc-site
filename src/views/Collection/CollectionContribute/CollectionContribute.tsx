@@ -143,9 +143,11 @@ export default function CollectionContribute(props: IProps) {
                                         endText={LANGUAGE.arTokens}
                                     />
                                 </S.FormField>
+                                {arProvider.walletAddress && 
                                 <S.RPWrapper>
                                     {getReceivingPercent()}
                                 </S.RPWrapper>
+                                }
                             </div>
                             <S.SubmitWrapper>
                                 <Button

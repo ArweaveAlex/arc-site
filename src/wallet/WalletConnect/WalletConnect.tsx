@@ -22,7 +22,7 @@ function WalletList() {
         <S.WalletListContainer>
             {arProvider.wallets.map((wallet, index) => (
                 <S.WalletListItem key={index} onClick={() => arProvider.handleConnect()}>
-                    <img src={`${ASSET_SRC}/${wallet.logo}`} alt={""}/>
+                    <img src={`${wallet.logo}`} alt={""}/>
                     <span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
                 </S.WalletListItem>
             ))}
