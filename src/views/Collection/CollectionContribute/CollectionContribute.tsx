@@ -100,15 +100,11 @@ export default function CollectionContribute(props: IProps) {
     React.useEffect(() => {
         (async function () {
             if (arProvider.walletAddress) {
-                
-                const userContributions = (await arProvider.getUserContributions(arProvider.walletAddress)).
-                    find((pool: any) => pool.id === props.poolId);
-                
-
+                const userContributions = (await arProvider.getUserContributions(arProvider.walletAddress)).find((pool: any) => pool.id === props.poolId);
                 setReceivingPercent(userContributions ? userContributions.receivingPercent : "0");
             }
         })()
-    }, [arProvider, arProvider.walletAddress])
+    }, [arProvider, arProvider.walletAddress, props.poolId])
 
     return (
         <>
