@@ -89,7 +89,7 @@ export default function CollectionContribute(props: IProps) {
             )
         }
         else {
-            return <p>Fetching ...</p>
+            return <p>{LANGUAGE.fetchingBalance}&nbsp;...</p>
         }
     }
 
@@ -100,9 +100,12 @@ export default function CollectionContribute(props: IProps) {
     React.useEffect(() => {
         (async function () {
             if (arProvider.walletAddress) {
-                setReceivingPercent(
-                    (await arProvider.getUserContributions(arProvider.walletAddress)
-                    ).find((pool: any) => pool.id === props.poolId).receivingPercent);
+                
+                const userContributions = (await arProvider.getUserContributions(arProvider.walletAddress)).
+                    find((pool: any) => pool.id === props.poolId);
+                
+
+                setReceivingPercent(userContributions ? userContributions.receivingPercent : "0");
             }
         })()
     }, [arProvider, arProvider.walletAddress])
@@ -143,10 +146,10 @@ export default function CollectionContribute(props: IProps) {
                                         endText={LANGUAGE.arTokens}
                                     />
                                 </S.FormField>
-                                {arProvider.walletAddress && 
-                                <S.RPWrapper>
-                                    {getReceivingPercent()}
-                                </S.RPWrapper>
+                                {arProvider.walletAddress &&
+                                    <S.RPWrapper>
+                                        {getReceivingPercent()}
+                                    </S.RPWrapper>
                                 }
                             </div>
                             <S.SubmitWrapper>

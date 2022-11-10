@@ -28,7 +28,7 @@ export const TAGS = {
         defaultArtifactType: "Alex-Default",
         messagingArtifactType: "Alex-Messaging",
         webpageArtifactType: "Alex-Webpage",
-        poolv1: "Alex-Archiving-Pool-v1.0"
+        poolv1: "Alex-Archiving-Pool-v1.2"
     }
 }
 

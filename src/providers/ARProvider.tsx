@@ -650,9 +650,14 @@ export function ARProvider(props: ARProviderProps) {
     }
 
     function calcReceivingPercent(userWallet: string, pool: any) {
-        let calc = (pool.state.contributors[userWallet] / parseFloat(pool.state.totalContributions)) * 100;
-        let tokens = (calc).toFixed(4);
-        return tokens;
+        if (pool) {
+            let calc = (pool.state.contributors[userWallet] / parseFloat(pool.state.totalContributions)) * 100;
+            let tokens = (calc).toFixed(4);
+            return tokens;
+        }
+        else {
+            return 0;
+        }
     }
 
     async function calcLastContributions(userWallet: string, pools: any[]) {
