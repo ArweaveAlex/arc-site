@@ -61,7 +61,7 @@ export default function Header() {
                     <S.SC>
                         <S.SocialPaths>
                             {SOCIAL_PATHS.map((path, index) => (
-                                <S.SocialLink key={index} href={path.href}>
+                                <S.SocialLink key={index} target={"_blank"} href={path.href}>
                                     <ReactSVG src={`${path.svg}`} />
                                 </S.SocialLink>
                             ))}

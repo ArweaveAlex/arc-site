@@ -7,7 +7,13 @@ export function getHashUrl(url: string) {
 
 export function getReceivingPercent(userWallet: string, contributors: any, totalContributions: string, activeAmount: number): string {
     if (userWallet && contributors && totalContributions) {
-        let calc = (parseFloat(contributors[userWallet] + activeAmount) / parseFloat(totalContributions)) * 100;
+        let amount: number = activeAmount * 1e6;
+
+        if (contributors[userWallet]) {
+            amount = parseFloat(contributors[userWallet] + activeAmount);
+        }
+
+        let calc = (amount / parseFloat(totalContributions)) * 100;
         let tokens = (calc).toFixed(4);
         return calc >= 100 ? "100" : tokens;
     }
@@ -36,6 +42,10 @@ export function formatCount(count: number): string {
     return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function formatTime(time: number): string {
+    return time < 10 ? `0${time.toString()}` : time.toString();
+}
+
 export function formatDate(dateArg: string | null, dateType: DateType) {
     if (!dateArg) {
         return STORAGE.none;
@@ -55,9 +65,11 @@ export function formatDate(dateArg: string | null, dateType: DateType) {
             break;
     }
 
+    console.log(date.getUTCMinutes())
+
     return `${date.toLocaleString('default', { month: 'long' })} 
             ${date.getDate()}, ${date.getUTCFullYear()} @ 
-            ${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`;
+            ${formatTime(date.getUTCHours())}:${formatTime(date.getUTCMinutes())}:${formatTime(date.getUTCSeconds())}`;
 }
 
 export function formatTitle(string: string) {
