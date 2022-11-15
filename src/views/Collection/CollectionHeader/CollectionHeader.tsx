@@ -1,14 +1,18 @@
 import parse from "html-react-parser";
 
+import { useARProvder } from "providers/ARProvider";
+
 import { PageShare } from "global/PageShare";
 import { CollectionContribute } from "../CollectionContribute";
 
-import { formatAddress } from "utils";
+import { formatAddress, formatCount } from "utils";
 import { LANGUAGE } from "language";
 import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function CollectionHeader(props: IProps) {
+
+    const arProvider = useARProvder();
 
     function getSubheader() {
         return (
@@ -46,14 +50,14 @@ export default function CollectionHeader(props: IProps) {
                 <S.Tile>
                     <S.TileTitle><p>{LANGUAGE.collection.totalContributed}</p></S.TileTitle>
                     <S.TileData>
-                        <p>{props.totalContributions}</p>
+                        <p>{arProvider.getARAmount(props.totalContributions)}</p>
                         <S.TContainer><p>{LANGUAGE.arTokens}</p></S.TContainer>
                     </S.TileData>
                 </S.Tile>
                 <S.Tile>
                     <S.TileTitle><p>{LANGUAGE.collection.artifactsCreated}</p></S.TileTitle>
                     <S.TileData>
-                        <p>{props.count}</p>
+                        <p>{formatCount(props.count)}</p>
                     </S.TileData>
                 </S.Tile>
                 <S.ContributeTile>
@@ -61,6 +65,8 @@ export default function CollectionHeader(props: IProps) {
                         poolId={props.id}
                         header={props.title}
                         subheader={getSubheader()}
+                        totalContributions={props.totalContributions}
+                        contributors={props.contributors}
                     />
                 </S.ContributeTile>
             </S.FlexTiles>

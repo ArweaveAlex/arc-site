@@ -83,7 +83,7 @@ export const Header2 = styled.p`
 `;
 
 export const Body = styled.div`
-    height: 500px;
+    height: 640px;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -123,6 +123,11 @@ export const Description = styled.p`
     color: ${(props) => props.theme.colors.font.primary.active.base};
     font-size: ${(props) => props.theme.typography.size.base};
     line-height: 1.45;
+    b {
+        color: ${(props) => props.theme.colors.font.primary.active.base};
+        font-size: ${(props) => props.theme.typography.size.base};
+        line-height: 1.45;
+    }
 `;
 
 export const AssetContainer = styled.div`

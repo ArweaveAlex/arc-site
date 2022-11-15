@@ -112,8 +112,7 @@ export const C1Content = styled.div`
     border: 1px solid ${(props) => props.theme.colors.border.secondary};
     box-shadow: 0px -10px 10px -10px ${(props) => props.theme.colors.font.primary.alt7} inset;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
-        height: auto;
-        min-height: 300px;
+        height: 300px;
         width: 100%;
     }
 `;

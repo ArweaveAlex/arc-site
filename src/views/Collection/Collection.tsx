@@ -56,7 +56,8 @@ export default function Collection() {
                 description={headerData!.state.description}
                 dateCreated={formatDate(headerData!.state.timestamp, "epoch")}
                 count={detailData.count!}
-                totalContributions={arProvider.getARAmount(headerData!.state.totalContributions)}
+                totalContributions={headerData!.state.totalContributions}
+                contributors={headerData!.state.contributors}
             />
             <CollectionStatistics
                 headerData={headerData!}

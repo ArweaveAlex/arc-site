@@ -62,6 +62,7 @@ export const LANGUAGE = {
     connectionError: 'Connection Error',
     contribute: 'Contribute',
     contributeTo: 'Contribute to',
+    contributionMessage: 'Your contribution totals will be adjusted once your transfer has settled on the Arweave network. Artifacts will begin to accrue in your account shortly.',
     contributions: 'My Contributions',
     contributors: {
         recent: 'Recent Contributors',
@@ -82,11 +83,12 @@ export const LANGUAGE = {
     },
     fetchingBalance: 'Fetching balance',
     fetchingCount: 'Fetching count',
+    fetchingReceivingPercentage: 'Fetching receiving amount',
     info: {
         header1: 'What is Alex. & How Does it Work?',
         header2: 'Those who cannot remember the past are condemned to repeat it.',
         subheader: '<b>Alex.</b> The new fireproof Library of Alexandria',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae purus fringilla, suscipit est sed, sodales erat. Vestibulum dapibus urna elementum neque venenatis, sit amet auctor leo venenatis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed nunc enim, sagittis vel ante in, egestas lobortis nulla. Phasellus nec quam nec nisi dignissim rutrum eget ut sapien. In a fermentum urna.<br><br>Vestibulum urna turpis, vehicula vitae ex vestibulum, auctor suscipit metus.Nulla nec lectus mauris. Praesent consequat bibendum massa. Cras venenatis magna at orci bibendum, a gravida nibh accumsan. Pellentesque quis blandit lorem. Donec volutpat vulputate nisi et sollicitudin. Phasellus lacinia fringilla luctus. Mauris at accumsan augue. Mauris placerat mauris sem, at blandit felis mollis vitae. Cras tincidunt, justo eget auctor porttitor, ex enim imperdiet urna, at ornare urna tellus ut libero. In id feugiat nisl.',
+        content: 'In 48 BC, humanity lost one of the greatest troves of human knowledge to a fire. We will never know the full extent of the culture, knowledge or history lost when the Library of Alexandria was destroyed, but we can learn from the past to better prepare for the future.<br><br>We’ve come a long way from centrally storing vast amounts of information on highly combustible mediums, but we still face a lot of the same challenges from antiquity; the manipulation, corruption or deletion of important information.<br><br>Alex. is a decentralized archival platform that leverages the immutable and permanent data storage of Arweave and includes a mechanism that encourages end user participation.<br><br>Users contribute to collections and they receive “artifacts” back into their wallet as they are minted. Artifacts are NFTs of items the collection is storing. Since the artifacts are stored on Arweave, they cannot be changed or removed in any way by anyone.<br><br>This is the continuation of the dream that was the Great Library of Alexandria. In order for us to move forward and continue making better decisions we need the ability to clearly see our past.<br><br><b>Alex.</b><br><br>Always accessible. Never changing. Never deleted.',
         assetSrc: 'A 19th century illustration of the burning of the Library of Alexandria. Heritage Images/Getty Images.'
     },
     lastContribution: 'Last Contribution',
@@ -126,7 +128,7 @@ export const LANGUAGE = {
     },
     previous: 'Previous',
     readMore: 'Read More',
-    recentlyMintedArtifacts: 'Recently Minted Artitacts',
+    recentlyMintedArtifacts: 'Recently Minted Artifacts',
     receiving: 'Receiving',
     setBookmarks: 'Update Bookmarks',
     share: 'Share',
@@ -145,7 +147,7 @@ export const LANGUAGE = {
             '<b>Contibutors</b> send $AR tokens to any participating <b>Archival Institution.</b> There is no limit on how many or how few a contributor may send.',
             'These tokens are used to pay for the storage costs on <b>Arweave.</b> Using blockweave technology, Arweave is the only place where files cannot be changed or deleted once they are uploaded. <span>There are no reccuring costs.</span> Pay once, store forever.',
             'Documents, books, images, audio clips, videos, etc. within the institution&#8217;s collection are uploaded to Arweave. We refer to these files as <b>Artifacts</b>',
-            '<b>These Artifcats are randomly sent to participating contributor&#8217;s wallets.</b> Contributors will receive an equal percentage of their $AR contribution (relative to the total $AR contributed) in digital artifacts. For example: If John contributed 10 $AR tokens and the total amount contributed was 100 $AR tokens, John will receive 10% of the Artifacts into his wallet.'
+            '<b>These Artifacts are randomly sent to participating contributor&#8217;s wallets.</b> Contributors will receive an equal percentage of their $AR contribution (relative to the total $AR contributed) in digital artifacts. For example: If John contributed 10 $AR tokens and the total amount contributed was 100 $AR tokens, John will receive 10% of the Artifacts into his wallet.'
         ]
     },
     submit: 'Submit',

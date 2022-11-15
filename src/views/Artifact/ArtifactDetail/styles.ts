@@ -15,7 +15,6 @@ export const IconWrapper = styled.div`
     height 375px;
     width: 375px;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
     position: relative;
     p {
         text-overflow: ellipsis;

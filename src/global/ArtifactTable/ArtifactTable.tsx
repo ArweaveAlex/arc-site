@@ -7,7 +7,7 @@ import * as actions from "redux/artifacts/actions";
 import { RootState } from "redux/store";
 import { getBookmarks, setBookmarks } from "gql/artifacts";
 
-import { Notification } from "components/atoms/Notification";
+// import { Notification } from "components/atoms/Notification";
 // import { Button } from "components/atoms/Button";
 import { IconButton } from "components/atoms/IconButton";
 
@@ -19,8 +19,7 @@ import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from "config";
 import {
     AlignType,
     ArtifactTableRowType,
-    TableHeaderType,
-    BookmarkResponseType
+    TableHeaderType
 } from "types";
 
 import {
@@ -55,10 +54,10 @@ export default function ArtifactTable(props: IProps) {
 
     const [data, setData] = React.useState<any>(null);
     const [bookmarkIds, setBookmarkIds] = React.useState<string[]>([]);
-    const [bookmarkResponse, setBookmarkResponse] = React.useState<BookmarkResponseType>({
-        status: null,
-        message: null
-    })
+    // const [bookmarkResponse, setBookmarkResponse] = React.useState<BookmarkResponseType>({
+    //     status: null,
+    //     message: null
+    // })
 
     function getTitleWidth() {
         if (props.showBookmarks && props.showCollectionId) {
@@ -163,7 +162,8 @@ export default function ArtifactTable(props: IProps) {
         else {
             updatedBookmarks.push(artifactId);
         }
-        setBookmarkResponse(await setBookmarks(props.owner!, updatedBookmarks));
+        // setBookmarkResponse(await setBookmarks(props.owner!, updatedBookmarks));
+        await setBookmarks(props.owner!, updatedBookmarks);
     }
 
     React.useEffect(() => {
@@ -213,13 +213,13 @@ export default function ArtifactTable(props: IProps) {
 
     return data && data.length > 0 ? (
         <>
-            {bookmarkResponse.status &&
+            {/* {bookmarkResponse.status &&
                 <Notification
                     type={(bookmarkResponse.status === 200) ? "success" : "warning"}
                     message={bookmarkResponse.message!}
                     callback={() => setBookmarkResponse({ status: null, message: null })}
                 />
-            }
+            } */}
             <Table
                 title={LANGUAGE.artifacts}
                 titleAction={null}

@@ -103,13 +103,15 @@ export const Form = styled.form`
     justify-content: space-between;
 `;
 
+export const FormWrapper = styled.div``;
+
 export const FormField = styled.div`
     width: ${STYLING.dimensions.formWidth};
     margin: 50px auto 0 auto;
 `;
 
 export const SubmitWrapper = styled.div`
-    margin: 0 auto 15px auto;
+    margin: 15px auto;
     button {
         width: fit-content;
         margin: 0 auto;
@@ -129,5 +131,16 @@ export const RPWrapper = styled.div`
     }
     p {
         font-weight: ${(props) => props.theme.typography.weight.medium};
+    }
+`;
+
+export const Message = styled.div`
+    width: 100%;
+    margin: 12.5px auto 0 auto;
+    text-align: center;
+    p {
+        font-size: 12px;
+        line-height: 1.5;
+        color: ${(props) => props.theme.colors.font.primary.alt1};
     }
 `;

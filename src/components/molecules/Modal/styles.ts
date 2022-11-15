@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { open, fadeIn1 } from "animations";
+import { STYLING } from "styling-config";
 
 export const Wrapper = styled.div`
     height: 100%;
@@ -15,14 +16,17 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
     height: 600px;
-    max-height: 80vh;
+    max-height: 75vh;
     width: 555px;
-    max-width: 90vw;
+    max-width: 87.5vw;
     background: ${(props) => props.theme.colors.container.primary.background};
     position: absolute;
     top: 47.5%;
     left: 50%;
     transform: translate(-50%, -50%);
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        top: 50%;
+    }
 `;
 
 export const Header = styled.div`

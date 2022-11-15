@@ -47,10 +47,11 @@ export const WalletDropdown = styled.ul`
     background: ${(props) => props.theme.colors.container.primary.background};
 
     @media(max-width: ${STYLING.cutoffs.initial}) {
-        position: relative;
-        right: auto;
-        top: auto;
-        margin: 10px 0 0 0;
+        // position: relative;
+        // right: auto;
+        // top: auto;
+        // margin: 10px 0 0 0;
+        top: 115.5px;
     }
     li {
         text-align: center;

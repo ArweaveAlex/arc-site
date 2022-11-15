@@ -149,12 +149,13 @@ export const SocialLink = styled.a`
   }
 `;
 
-export const Connect = styled.div`
+export const Connect = styled.div<{ show: boolean }>`
   height: 100%;
   display: flex;
   align-items: center;
   padding: 0 20px 0 17.5px;
   @media (max-width: ${STYLING.cutoffs.initial}) {
+    display: ${(props) => props.show ? "block" : "none"};
     height: auto;
     margin-top: 25px;
     flex-direction: column;

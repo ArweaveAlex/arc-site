@@ -10,6 +10,7 @@ import { Modal } from "components/molecules/Modal";
 import { Notification } from "components/atoms/Notification";
 
 import { ValidationType } from "types";
+import * as utils from "utils";
 import { ASSETS } from "config";
 import { LANGUAGE } from "language";
 import { IProps } from "./types";
@@ -89,7 +90,7 @@ export default function CollectionContribute(props: IProps) {
             )
         }
         else {
-            return <p>{LANGUAGE.fetchingBalance}&nbsp;...</p>
+            return <p>{LANGUAGE.fetchingReceivingPercentage}&nbsp;...</p>
         }
     }
 
@@ -100,11 +101,16 @@ export default function CollectionContribute(props: IProps) {
     React.useEffect(() => {
         (async function () {
             if (arProvider.walletAddress) {
-                const userContributions = (await arProvider.getUserContributions(arProvider.walletAddress)).find((pool: any) => pool.id === props.poolId);
-                setReceivingPercent(userContributions ? userContributions.receivingPercent : "0");
+                setReceivingPercent(utils.getReceivingPercent(
+                    arProvider.walletAddress,
+                    props.contributors,
+                    props.totalContributions,
+                    amount
+                ))
+                
             }
         })()
-    }, [arProvider, arProvider.walletAddress, props.poolId])
+    }, [arProvider, arProvider.walletAddress, props.poolId, props.contributors, props.totalContributions, amount])
 
     return (
         <>
@@ -131,7 +137,7 @@ export default function CollectionContribute(props: IProps) {
                             </S.BalanceWrapper>
                         </S.Header>
                         <S.Form onSubmit={(e) => handlePoolContribute(e)}>
-                            <div>
+                            <S.FormWrapper>
                                 <S.FormField>
                                     <FormField
                                         type={"number"}
@@ -147,7 +153,10 @@ export default function CollectionContribute(props: IProps) {
                                         {getReceivingPercent()}
                                     </S.RPWrapper>
                                 }
-                            </div>
+                            </S.FormWrapper>
+                            <S.Message>
+                                <p>{LANGUAGE.contributionMessage}</p>
+                            </S.Message>
                             <S.SubmitWrapper>
                                 <Button
                                     label={loading ? LANGUAGE.loading : LANGUAGE.submit}

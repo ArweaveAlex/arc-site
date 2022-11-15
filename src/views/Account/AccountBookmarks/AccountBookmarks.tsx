@@ -33,8 +33,12 @@ export default function AccountBookmarks() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [arProvider.walletAddress, cursor])
 
+    function checkState() {
+        return data && (data.count !== null);
+    }
+
     function getData() {
-        if (data && data.contracts.length > 0) {
+        if (data.contracts.length > 0) {
             return (
                 <S.Wrapper>
                     <ArtifactTable 
@@ -56,5 +60,5 @@ export default function AccountBookmarks() {
         }
     }
 
-    return data ? <>{getData()}</> : <p>{LANGUAGE.loading}&nbsp;...</p>
+    return checkState() ? <>{getData()}</> : <p>{LANGUAGE.loading}&nbsp;...</p>
 }

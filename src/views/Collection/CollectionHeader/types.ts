@@ -5,5 +5,6 @@ export interface IProps {
     description: string;
     dateCreated: string;
     count: number;
-    totalContributions: number;
+    totalContributions: string;
+    contributors: any;
 }

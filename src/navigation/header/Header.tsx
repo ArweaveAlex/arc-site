@@ -44,6 +44,10 @@ export default function Header() {
         showDocumentBody();
     }
 
+    function getWalletDisplay() {
+        return !(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    }
+
     function navList() {
         return (
                 <S.NC>
@@ -62,7 +66,7 @@ export default function Header() {
                                 </S.SocialLink>
                             ))}
                         </S.SocialPaths>
-                        <S.Connect>
+                        <S.Connect show={getWalletDisplay()}>
                             <WalletConnect />
                         </S.Connect>
                     </S.SC>

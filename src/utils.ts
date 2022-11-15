@@ -5,6 +5,17 @@ export function getHashUrl(url: string) {
     return `${url}/#`;
 }
 
+export function getReceivingPercent(userWallet: string, contributors: any, totalContributions: string, activeAmount: number): string {
+    if (userWallet && contributors && totalContributions) {
+        let calc = (parseFloat(contributors[userWallet] + activeAmount) / parseFloat(totalContributions)) * 100;
+        let tokens = (calc).toFixed(4);
+        return calc >= 100 ? "100" : tokens;
+    }
+    else {
+        return "0";
+    }
+}
+
 export function formatArtifactType(artifactType: string) {
     return artifactType.substring(5);
 }
@@ -19,6 +30,10 @@ export function formatAddress(address: string | null, wrap: boolean) {
 
 export function formatDataSize(size: string) {
     return `${size} KB`;
+}
+
+export function formatCount(count: number): string {
+    return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 export function formatDate(dateArg: string | null, dateType: DateType) {
