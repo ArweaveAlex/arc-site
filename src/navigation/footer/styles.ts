@@ -3,16 +3,19 @@ import styled from "styled-components";
 import { STYLING } from "styling-config";
 
 export const Wrapper = styled.footer`
-    height: 25vh;
+    height: 20vh;
     width: 100%;
     position: relative;
     z-index: 2;
     background: ${props => props.theme.colors.navigation.footer.background};
     border-top: 1px solid ${(props) => props.theme.colors.border.secondary};
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+      height: 30vh;
+    }
 `;
 
 export const Container = styled.div`
-  height: 75%;
+  height: 60%;
   width: 100%;
   position: absolute;
   max-width: ${STYLING.cutoffs.max};

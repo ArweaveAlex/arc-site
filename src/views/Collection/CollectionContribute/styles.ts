@@ -141,6 +141,6 @@ export const Message = styled.div`
     p {
         font-size: 12px;
         line-height: 1.5;
-        color: ${(props) => props.theme.colors.font.primary.alt1};
+        color: ${(props) => props.theme.colors.font.primary.alt4};
     }
 `;
