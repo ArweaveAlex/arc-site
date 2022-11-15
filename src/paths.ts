@@ -21,7 +21,7 @@ export const SOCIAL_PATHS = [
     }, 
     {
         name: LANGUAGE.social.discord, 
-        href: "https://discord.gg/jRTnwdrxg5",
+        href: "https://discord.gg/EGBWRvx6Hu",
         svg: ASSETS.social.discord
     }
 ]

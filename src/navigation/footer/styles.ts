@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { STYLING } from "styling-config";
 
 export const Wrapper = styled.footer`
-    height: 30vh;
+    height: 25vh;
     width: 100%;
     position: relative;
     z-index: 2;
