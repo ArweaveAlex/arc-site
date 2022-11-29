@@ -104,45 +104,6 @@ export default class ArweaveClient {
         return Math.floor(+this.arweave.ar.winstonToAr(amount) * 1e6) / 1e6
     }
 
-    // async handlePoolContribute(collectionId: string, amount: number, availableBalance: number): Promise<ContributionResultType> {
-    //     if (!availableBalance) {
-    //         return { status: false, message: LANGUAGE.walletNotConnected };
-    //     }
-
-    //     if (amount > availableBalance) {
-    //         return { status: false, message: LANGUAGE.collection.contribute.notEnoughFunds };
-    //     }
-
-    //     try {
-
-    //         const { data: contractData }: { data: any; } = await this.arweave.api.get(`/${collectionId}`);
-
-    //         if (!contractData.owner) {
-    //             return { status: false, message: LANGUAGE.collection.contribute.failed };
-    //         }
-
-    //         const contract = this.smartweave.contract(collectionId).connect("use_wallet").setEvaluationOptions({
-    //             waitForConfirmation: false,
-    //         });
-
-    //         const result = await contract.writeInteraction<any>(
-    //             { function: "contribute" }, [], {
-    //             target: contractData.owner,
-    //             winstonQty: this.arweave.ar.arToWinston(amount.toString())
-    //         });
-
-    //         if (!result) {
-    //             return { status: false, message: LANGUAGE.collection.contribute.failed };
-    //         }
-
-    //         return { status: true, message: LANGUAGE.collection.contribute.success };
-
-    //     }
-    //     catch (error: any) {
-    //         return { status: false, message: error };
-    //     }
-    // }
-
     async handlePoolContribute(collectionId: string, amount: number, availableBalance: number): Promise<ContributionResultType> {
         if (!availableBalance) {
             return { status: false, message: LANGUAGE.walletNotConnected };
