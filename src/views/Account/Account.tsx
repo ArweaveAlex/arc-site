@@ -16,7 +16,6 @@ export default function Account() {
     const [copied, setCopied] = React.useState<boolean>(false);
 
     const copyUrl = React.useCallback(async () => {
-        console.log(arProvider.walletAddress)
         if (arProvider.walletAddress) {
             await navigator.clipboard.writeText(`${getHashUrl(window.location.origin)}${urls.libraryAll(arProvider.walletAddress)}`);
             setCopied(true);

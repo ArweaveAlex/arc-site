@@ -52,11 +52,6 @@ export default function ContributionsList({ data }: any) {
                                             <S.LIBodyData>{collection.receivingPercent}% {LANGUAGE.artifactsCreated}</S.LIBodyData>
                                         </S.LIBodyFlex>
                                     </S.LIBodyContainer>
-                                    {/* <S.LIDropdownContainer>
-                                <S.LIButton onClick={() => console.log('')}>
-                                    <ReactSVG src={ASSETS.dropdown} />
-                                </S.LIButton>
-                            </S.LIDropdownContainer> */}
                                 </S.ListItemWrapper>
                             </Link>
                         </S.Link>

@@ -1,4 +1,6 @@
 import * as gql from "gql-query-builder";
+import * as cursorActions from "redux/cursors/actions";
+import { store } from "redux/store";
 
 import { ArweaveClient } from "arweave-client";
 import { GQLResponseType, TagFilterType } from "types";
@@ -12,9 +14,14 @@ export async function getDataByTags(args: {
     const arClient = new ArweaveClient();
 
     const data: GQLResponseType[] = [];
-    let cursor: string | null = "";
 
-    // if (args.cursor) previousCursor = cursors[args.cursor];
+    let cursorState: any;
+    if (args.reduxCursor && store.getState().cursorsReducer[args.reduxCursor]) {
+        cursorState = store.getState().cursorsReducer[args.reduxCursor];
+        if (args.cursor) {
+            cursorState.previous = args.cursor;
+        }
+    }
 
     const query = (cursor: string) => gql.query({
         operation: "transactions",
@@ -50,19 +57,27 @@ export async function getDataByTags(args: {
         ]
     })
 
-    const response: any = await arClient.arweaveGet.api.post("/graphql", query(cursor));
+    const response: any = await arClient.arweaveGet.api.post("/graphql", query(args.cursor ? args.cursor : ""));
     if (response.data.data) {
         const responseData = response.data.data.transactions.edges;
         if (responseData.length > 0) {
-            cursor = responseData[responseData.length - 1].cursor;
+            if (cursorState) {
+                cursorState.next = responseData[responseData.length - 1].cursor;
+            }
             data.push(...responseData);
-            if (responseData.length < PAGINATOR) {
-                cursor = null;
+            if ((responseData.length < PAGINATOR) && cursorState) {
+                cursorState.next = null;
             }
         }
         else {
-            cursor = null;
+            if (cursorState) {
+                cursorState.next = null;
+            }
         }
+    }
+
+    if (args.reduxCursor && cursorState) {
+        store.dispatch(cursorActions.setCursors( {[args.reduxCursor]: cursorState }));
     }
 
     return data;

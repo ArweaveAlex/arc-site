@@ -1,5 +1,5 @@
 import { store } from "redux/store";
-import * as actions from "redux/artifacts/actions";
+import * as artifactActions from "redux/artifacts/actions";
 import { ArweaveClient } from "arweave-client";
 import {
     ArtifactType,
@@ -59,8 +59,10 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
 }
 
 export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<ArtifactResponseType> {
-    let nextCursor: string | null = null;
-    let previousCursor: string | null = null;
+    const collectionAllCursorState = store.getState().cursorsReducer[REDUX_CURSORS.collectionAll];
+
+    let nextCursor: string | null = collectionAllCursorState ? collectionAllCursorState.next : null;
+    let previousCursor: string | null = collectionAllCursorState ? collectionAllCursorState.previous : null;
 
     let tagFilters: TagFilterType[] = [{
         name: TAGS.keys.collectionId,
@@ -156,14 +158,14 @@ export async function setBookmarks(owner: string, ids: string[]): Promise<Bookma
     try {
         await arClient.arweavePost.transactions.sign(txRes, "use_wallet");
     }
-    catch (e) {
-        console.log(e)
+    catch (error: any) {
+        console.error(error)
     }
 
     const response = await arClient.arweavePost.transactions.post(txRes);
 
     if (response.status === 200) {
-        store.dispatch(actions.setBookmarks({
+        store.dispatch(artifactActions.setBookmarks({
             owner: owner,
             ids: ids
         }));
