@@ -19,7 +19,7 @@ export function cursorsReducer(
             return Object.assign({}, state, {
                 [REDUX_CURSORS.collectionAll]: {
                     previous: action.payload[REDUX_CURSORS.collectionAll].previous ?? state[REDUX_CURSORS.collectionAll].previous,
-                    next: null
+                    next: action.payload[REDUX_CURSORS.collectionAll].next ?? state[REDUX_CURSORS.collectionAll].next
                 }
             })
         default:
