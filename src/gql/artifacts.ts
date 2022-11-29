@@ -21,11 +21,7 @@ import { REDUX_CURSORS } from "redux-config";
 const arClient = new ArweaveClient();
 
 export async function getArtifactById(artifactId: string): Promise<ArtifactType | null> {
-    const artifact: GQLResponseType = (await getDataByTags({
-        tagFilters: [
-            { name: TAGS.keys.uploaderTxId, values: [artifactId] }
-        ], cursor: null, reduxCursor: null
-    }))[0];
+    const artifact: GQLResponseType = (await getDataByTxIds([artifactId]))[0];
 
     let collection: CollectionType | null = await getCollectionById(getTagValue(artifact.node.tags, TAGS.keys.collectionId));
 
@@ -83,6 +79,8 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
         cursor: args.cursor,
         reduxCursor: REDUX_CURSORS.collectionAll
     });
+
+    console.log(artifacts);
 
     return ({
         nextCursor: nextCursor,
