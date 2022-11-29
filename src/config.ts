@@ -9,6 +9,7 @@ import { LibraryBookmarks } from "views/Library/LibraryBookmarks";
 import * as urls from "urls";
 import { LANGUAGE } from "language";
 
+// Alex-Archiving-Pool-v1.2
 export const TAGS = {
     keys: {
         appType:"App-Type",
@@ -20,7 +21,7 @@ export const TAGS = {
         dateCreated: "Date-Created",
         keywords: "Keywords",
         initialOwner: "Initial-Owner",
-        poolId: "Pool-Id",
+        collectionId: "Pool-Id",
         uploaderTxId: "Uploader-Tx-Id",
         contractSrc: "Contract-Src"
     },
@@ -28,7 +29,8 @@ export const TAGS = {
         defaultArtifactType: "Alex-Default",
         messagingArtifactType: "Alex-Messaging",
         webpageArtifactType: "Alex-Webpage",
-        poolv1: "Alex-Archiving-Pool-v1.2"
+        poolv1: "Alex-Archiving-Pool-v1.2",
+        poolv2: "Alex-Archiving-Pool-v1.15-Testing-Vince"
     }
 }
 
@@ -140,6 +142,7 @@ export const URLS: IURLView = {
 }
 
 export const PAGINATOR = 100;
+export const FALLBACK_IMAGE = "8HqSqy_nNRSTPv-q-j7_iHGTp6lEA5K77TP4BPuXGyA";
 
 export const STORAGE = {
     none: "N/A",

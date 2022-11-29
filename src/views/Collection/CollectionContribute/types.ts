@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface IProps {
-    poolId: string;
+    collectionId: string;
     header: string;
     subheader: React.ReactNode;
     totalContributions: string;

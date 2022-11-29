@@ -13,12 +13,7 @@ export default function LibraryBookmarks() {
     const { id } = useParams();
 
     const [cursor, setCursor] = React.useState<string | null>(null);
-    const [data, setData] = React.useState<ArtifactResponseType>({
-        nextCursor: null,
-        previousCursor: null,
-        contracts: [],
-        count: null
-    });
+    const [data, setData] = React.useState<ArtifactResponseType | null>(null);
 
     React.useEffect(() => {
         (async function () {
@@ -33,11 +28,11 @@ export default function LibraryBookmarks() {
     }, [id, cursor])
 
     function checkState() {
-        return data && (data.count !== null);
+        return data;
     }
 
     function getData() {
-        if (data.contracts.length > 0 && id) {
+        if (data && data.contracts.length > 0 && id) {
             return (
                 <S.Wrapper>
                     <ArtifactTable 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useARProvder } from "providers/ARProvider";
+import { ArweaveClient } from "arweave-client";
 
 import { formatAddress } from "utils";
 import * as urls from "urls";
@@ -10,7 +10,7 @@ import { IProps } from "./types";
 import * as S from "./styles";
 
 // function Count(props: { id: string }) {
-//     const arProvider = useARProvder();
+//     const arProvider = useArweaveProvider();
 
 //     const [count, setCount] = React.useState<string | null>(null);
 
@@ -46,7 +46,7 @@ import * as S from "./styles";
 // }
 
 export default function CollectionContributors(props: IProps) {
-    const arProvider = useARProvder();
+    const arClient = new ArweaveClient();
 
     function getTopContributors() {
         const contributorList: React.ReactNode[] = [];
@@ -64,7 +64,7 @@ export default function CollectionContributors(props: IProps) {
                         <Link to={`${urls.libraryAll(sortedKeys[i])}`}>{formatAddress(sortedKeys[i], false)}</Link>
                     </S.Owner>
                     <S.Amount>
-                        <p>{arProvider.getARAmount(props.data.state.contributors[sortedKeys[i]])}</p>
+                        <p>{arClient.getARAmount(props.data.state.contributors[sortedKeys[i]])}</p>
                         &nbsp;
                         <span>{`${LANGUAGE.arTokens} ${LANGUAGE.total}`}</span>
                     </S.Amount>
@@ -88,7 +88,7 @@ export default function CollectionContributors(props: IProps) {
                         <Link to={`${urls.libraryAll(contributorKeys[i])}`}>{formatAddress(contributorKeys[i], false)}</Link>
                     </S.RecentOwner>
                     <S.Amount>
-                        <p>{arProvider.getARAmount(props.data.state.contributors[contributorKeys[i]])}</p>
+                        <p>{arClient.getARAmount(props.data.state.contributors[contributorKeys[i]])}</p>
                         &nbsp;
                         <span>{`${LANGUAGE.arTokens}`}</span>
                     </S.Amount>

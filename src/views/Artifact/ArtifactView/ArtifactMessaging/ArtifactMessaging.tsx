@@ -9,7 +9,9 @@ export default function ArtifactMessaging(props: IProps) {
     const [data, setData] = React.useState<any>(null);
     
     React.useEffect(() => {
-        setData(JSON.parse(props.data.rawData));
+        if (props.data.rawData) {
+            setData(JSON.parse(props.data.rawData));
+        }
     }, [props.data])
 
     return data ? (

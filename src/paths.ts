@@ -4,10 +4,6 @@ import { LANGUAGE } from "./language";
 
 export const NAV_PATHS = [
     {
-        name: LANGUAGE.paths.about, 
-        href: urls.about
-    }, 
-    {
         name: LANGUAGE.paths.collections, 
         href: urls.collections
     }

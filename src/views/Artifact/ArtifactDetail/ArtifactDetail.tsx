@@ -16,12 +16,12 @@ export default function ArtifactDetail(props: IProps) {
     const [copied, setCopied] = React.useState<boolean>(false);
 
     const copyRawData = React.useCallback(async () => {
-        await navigator.clipboard.writeText(props.data.rawData);
+        await navigator.clipboard.writeText(props.data.rawData!);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     }, [props.data.rawData]);
 
-    return props.type ? (
+    return props.type && props.data ? (
         <S.Wrapper>
             <S.IconWrapper>
                 <S.Icon>
@@ -34,7 +34,7 @@ export default function ArtifactDetail(props: IProps) {
                         <S.Icons>
                             <S.DataLine>
                                 <S.DataHeader>{LANGUAGE.archivist}:&nbsp;</S.DataHeader>
-                                <Link to={`${urls.libraryAll(props.data.owner)}`}>{formatAddress(props.data.owner, false)}</Link>
+                                <Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
                             </S.DataLine>
                             <S.DataLine>
                                 <S.DataHeader>{LANGUAGE.minted}:&nbsp;</S.DataHeader>
@@ -42,7 +42,7 @@ export default function ArtifactDetail(props: IProps) {
                             </S.DataLine>
                             <S.DataLine>
                                 <S.DataHeader>{LANGUAGE.collection.subheader1}:&nbsp;</S.DataHeader>
-                                <Link to={`${urls.collection}${props.data.poolId}`}>{props.data.poolName}</Link>
+                                <Link to={`${urls.collection}${props.data.collectionId}`}>{props.data.poolName}</Link>
                             </S.DataLine>
                         </S.Icons>
                     </S.InfoData>
@@ -87,7 +87,7 @@ export default function ArtifactDetail(props: IProps) {
                             {LANGUAGE.artifactDetail.tags}
                         </span>
                         <S.Tags>
-                            {JSON.parse(props.data.keywords).map((keyword: string, index: number) => [
+                            {JSON.parse(props.data.keywords!).map((keyword: string, index: number) => [
                                 <S.Tag key={index}>
                                     <p>{keyword}</p>
                                 </S.Tag>
@@ -112,7 +112,7 @@ export default function ArtifactDetail(props: IProps) {
                             <S.InfoData>
                                 <S.DataLine>
                                     <ReactSVG src={ASSETS.logoAlt2} />
-                                    <S.DataUrl target={"_blank"} rel={"noreferrer"} href={props.data.dataUrl}>{props.data.dataUrl}</S.DataUrl>
+                                    <S.DataUrl target={"_blank"} rel={"noreferrer"} href={props.data.dataUrl!}>{props.data.dataUrl}</S.DataUrl>
                                 </S.DataLine>
                             </S.InfoData>
                         </S.LinkWrapperAlt>
@@ -120,7 +120,7 @@ export default function ArtifactDetail(props: IProps) {
                             <S.InfoData>
                                 <S.DataLine>
                                     <ReactSVG src={ASSETS.data} />
-                                    <p>{formatDataSize(props.data.dataSize)}</p>
+                                    <p>{formatDataSize(props.data.dataSize!)}</p>
                                 </S.DataLine>
                             </S.InfoData>
                         </S.LinkWrapper>

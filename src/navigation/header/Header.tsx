@@ -15,6 +15,7 @@ import {
     hideDocumentBody, 
     showDocumentBody 
 } from "window";
+import { NAV_PATHS } from "paths";
 import * as S from "./styles";
 
 export default function Header() {
@@ -52,11 +53,13 @@ export default function Header() {
         return (
                 <S.NC>
                     <S.NavPaths>
-                        {/* {NAV_PATHS.map((path, index) => (
-                            <S.Link key={index} href={path.href}>
-                                {path.name}
+                        {NAV_PATHS.map((path, index) => (
+                            <S.Link key={index}>
+                                <Link to={path.href}>
+                                    {path.name}
+                                </Link>
                             </S.Link>
-                        ))} */}
+                        ))}
                     </S.NavPaths>
                     <S.SC>
                         <S.SocialPaths>

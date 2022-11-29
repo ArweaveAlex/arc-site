@@ -10,6 +10,7 @@ import * as urls from "urls";
 import { LANGUAGE } from "language";
 import { CollectionType } from "types";
 import * as S from "./styles";
+import { FALLBACK_IMAGE } from "config";
 
 function CollectionCard(props: CollectionType) {
 
@@ -32,7 +33,7 @@ function CollectionCard(props: CollectionType) {
                     </S.LinkContainer>
                 </Link>
             </S.C1>
-            <S.C2 image={getTxEndpoint(props.state.image)} />
+            <S.C2 image={getTxEndpoint(props.state.image.length > 0 ? props.state.image : FALLBACK_IMAGE)} />
         </S.PCWrapper>
     ) : null
 }

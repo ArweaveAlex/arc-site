@@ -1,7 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { useARProvder } from "providers/ARProvider";
+import { getCollectionById, getCollectionCount } from "gql/collections";
+import { getArtifactsByCollection } from "gql/artifacts";
 
 import { Loader } from "components/atoms/Loader";
 
@@ -11,66 +12,107 @@ import { CollectionDetail } from "./CollectionDetail";
 
 import { CollectionType, ArtifactResponseType } from "types";
 import { getTxEndpoint } from "endpoints";
-import { formatDate } from "utils";
+import { formatDate, getTagValue } from "utils";
+import { TAGS, FALLBACK_IMAGE } from "config";
+import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 export default function Collection() {
     const { id } = useParams();
 
-    const arProvider = useARProvder();
-
     const [cursor, setCursor] = React.useState<string | null>(null);
+    const [count, setCount] = React.useState<string | null>(null);
     const [headerData, setHeaderData] = React.useState<CollectionType | null>(null);
-    const [detailData, setDetailData] = React.useState<ArtifactResponseType>({
-        nextCursor: null,
-        previousCursor: null,
-        contracts: [],
-        count: null
-    });
+    const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
 
     React.useEffect(() => {
         (async function () {
-            setHeaderData(await arProvider.getPoolById(id!));
-            setDetailData((await arProvider.getAllArtifactsByPool({ 
-                poolIds: [id!], 
-                cursor: cursor, 
-                owner: null 
-            })));
+            if (id) {
+                setHeaderData(await getCollectionById(id));
+                setDetailData((await getArtifactsByCollection({
+                    collectionIds: [id],
+                    cursor: cursor,
+                    owner: null
+                })));
+            }
         })();
         /*  ESLint used to avoid warning with detailData.nextCursor not being used in dependency array
             By adding detailData.nextCursor to dependency array this effect will continue to run
-            getAllArtifactsByPool and return each subsequent query set */
+            getArtifactsByCollection and return each subsequent query set */
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [arProvider.walletAddress, id, cursor])
+    }, [id, cursor])
+
+    React.useEffect(() => {
+        (async function () {
+            if (detailData && detailData.contracts.length > 0) {
+                setCount((await getCollectionCount(getTagValue(detailData.contracts[0].node.tags, TAGS.keys.contractSrc))).toString())
+            }
+        })();
+    }, [detailData])
 
     function checkState() {
-        return headerData && (detailData && (detailData.count !== null));
+        return headerData;
+    }
+
+    function getCollectionHeader() {
+        if (headerData) {
+            return (
+                <CollectionHeader 
+                    id={headerData.id}
+                    image={getTxEndpoint(headerData.state.image.length > 0 ? headerData.state.image : FALLBACK_IMAGE)}
+                    title={headerData.state.title}
+                    description={headerData.state.description}
+                    dateCreated={formatDate(headerData.state.timestamp, "epoch")}
+                    count={count ? count : `...`}
+                    totalContributions={headerData.state.totalContributions}
+                    contributors={headerData.state.contributors}
+                />
+            )
+        }
+        else {
+            return null;
+        }
+    }
+
+    function getCollectionStatistics() {
+        if (headerData && detailData) {
+            return (
+                <CollectionStatistics
+                    headerData={headerData}
+                    detailData={detailData}
+                />
+            )
+        }
+        else {
+            return null;
+        }
+    }
+
+    function getCollectionDetail() {
+        if (detailData) {
+            return (
+                <CollectionDetail
+                    data={detailData}
+                    handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
+                    cursors={{
+                        next: detailData.nextCursor,
+                        previous: detailData.previousCursor
+                    }}
+                />
+            )
+        }
+        else {
+            return (
+                <p>{LANGUAGE.loading}&nbsp;...</p>
+            )
+        }
     }
 
     return checkState() ? (
         <S.Wrapper>
-            <CollectionHeader
-                id={headerData!.id}
-                image={getTxEndpoint(headerData!.state.image)}
-                title={headerData!.state.title}
-                description={headerData!.state.description}
-                dateCreated={formatDate(headerData!.state.timestamp, "epoch")}
-                count={detailData.count!}
-                totalContributions={headerData!.state.totalContributions}
-                contributors={headerData!.state.contributors}
-            />
-            <CollectionStatistics
-                headerData={headerData!}
-                detailData={detailData}
-            />
-            <CollectionDetail
-                data={detailData}
-                handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
-                cursors={{
-                    next: detailData.nextCursor,
-                    previous: detailData.previousCursor
-                }}
-            />
+            {getCollectionHeader()}
+            {getCollectionStatistics()}
+            {getCollectionDetail()}
         </S.Wrapper>
     ) : <Loader />
 }

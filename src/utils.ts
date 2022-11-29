@@ -5,23 +5,6 @@ export function getHashUrl(url: string) {
     return `${url}/#`;
 }
 
-export function getReceivingPercent(userWallet: string, contributors: any, totalContributions: string, activeAmount: number): string {
-    if (userWallet && contributors && totalContributions) {
-        let amount: number = activeAmount * 1e6;
-
-        if (contributors[userWallet]) {
-            amount = parseFloat(contributors[userWallet] + activeAmount);
-        }
-
-        let calc = (amount / parseFloat(totalContributions)) * 100;
-        let tokens = (calc).toFixed(4);
-        return calc >= 100 ? "100" : tokens;
-    }
-    else {
-        return "0";
-    }
-}
-
 export function formatArtifactType(artifactType: string) {
     return artifactType.substring(5);
 }
@@ -38,7 +21,7 @@ export function formatDataSize(size: string) {
     return `${size} KB`;
 }
 
-export function formatCount(count: number): string {
+export function formatCount(count: string): string {
     return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
@@ -57,15 +40,13 @@ export function formatDate(dateArg: string | null, dateType: DateType) {
         case "iso":
             date = new Date(dateArg);
             break;
-        case "epoch": 
+        case "epoch":
             date = new Date(Number(dateArg));
             break;
         default:
             date = new Date(dateArg);
             break;
     }
-
-    console.log(date.getUTCMinutes())
 
     return `${date.toLocaleString('default', { month: 'long' })} 
             ${date.getDate()}, ${date.getUTCFullYear()} @ 
@@ -95,9 +76,9 @@ export function getJSONStorage(key: string) {
 
 export function checkNullValues(obj: any) {
     for (const key in obj) {
-      if (obj[key] === null) {
-        return true;
-      }
+        if (obj[key] === null) {
+            return true;
+        }
     }
     return false;
-  }
+}

@@ -45,6 +45,7 @@ export const Body = styled.div`
     margin: 0 0 20px 0;
     display: flex;
     flex-direction: column;
+    overflow-x: auto;
 `;
 
 export const Table = styled.div`
@@ -52,6 +53,9 @@ export const Table = styled.div`
     width: 100%;
     border-right: 1px solid ${(props) => props.theme.colors.border.secondary};
     box-shadow: 1px 2px 2px ${(props) => props.theme.colors.shadow.secondary};
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        width: ${STYLING.cutoffs.max};
+    }
 `;
 
 export const TableHeader = styled.div`
@@ -99,10 +103,6 @@ export const THeader = styled(RowData)<{ even: boolean, width: string, align: Al
     p {
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
-`;
-
-export const TableBody = styled.div`
-    width: 100%;
 `;
 
 export const TData = styled(RowData)<{ even: boolean, width: string }>`

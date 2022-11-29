@@ -7,8 +7,6 @@ import * as actions from "redux/artifacts/actions";
 import { RootState } from "redux/store";
 import { getBookmarks, setBookmarks } from "gql/artifacts";
 
-// import { Notification } from "components/atoms/Notification";
-// import { Button } from "components/atoms/Button";
 import { IconButton } from "components/atoms/IconButton";
 
 import { Table } from "components/organisms/Table";
@@ -54,10 +52,6 @@ export default function ArtifactTable(props: IProps) {
 
     const [data, setData] = React.useState<any>(null);
     const [bookmarkIds, setBookmarkIds] = React.useState<string[]>([]);
-    // const [bookmarkResponse, setBookmarkResponse] = React.useState<BookmarkResponseType>({
-    //     status: null,
-    //     message: null
-    // })
 
     function getTitleWidth() {
         if (props.showBookmarks && props.showCollectionId) {
@@ -79,7 +73,7 @@ export default function ArtifactTable(props: IProps) {
         }
 
         if (props.showCollectionId) {
-            header.collectionId = { width: "10%", align: "left" as AlignType };
+            header.collection = { width: "10%", align: "left" as AlignType };
         }
 
         if (props.showBookmarks) {
@@ -113,33 +107,6 @@ export default function ArtifactTable(props: IProps) {
         )
     }
 
-    // function checkEditActionDisabled() {
-    //     if (bookmarksReducer.ids.length === bookmarkIds.length) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    // function getEditAction() {
-    //     if (props.showBookmarks) {
-    //         return (
-    //             <Button
-    //                 type={"secondary"}
-    //                 label={LANGUAGE.setBookmarks}
-    //                 handlePress={handleEditBookmarks}
-    //                 disabled={checkEditActionDisabled()}
-    //             />
-    //         )
-    //     }
-    //     else {
-    //         return null;
-    //     }
-    // }
-
-    // async function handleEditBookmarks() {
-    //     setBookmarkResponse(await setBookmarks(props.owner!, bookmarkIds));
-    // }
-
     function getBookmark(artifactId: string) {
         return (
             <BookmarkToggle
@@ -162,7 +129,6 @@ export default function ArtifactTable(props: IProps) {
         else {
             updatedBookmarks.push(artifactId);
         }
-        // setBookmarkResponse(await setBookmarks(props.owner!, updatedBookmarks));
         await setBookmarks(props.owner!, updatedBookmarks);
     }
 
@@ -194,7 +160,7 @@ export default function ArtifactTable(props: IProps) {
                         dateCreated: formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), "epoch")
                     }
                     if (props.showCollectionId) {
-                        row.collectionId = getLink(`${urls.collection}${getTagValue(element.node.tags, TAGS.keys.poolId)}`, getTagValue(element.node.tags, TAGS.keys.poolId));
+                        row.collection = getLink(`${urls.collection}${getTagValue(element.node.tags, TAGS.keys.collectionId)}`, getTagValue(element.node.tags, TAGS.keys.collectionId));
                     }
                     if (props.showBookmarks) {
                         row.bookmark = getBookmark(element.node.id);
@@ -212,24 +178,15 @@ export default function ArtifactTable(props: IProps) {
     }, [bookmarkIds, props.data, props.showBookmarks])
 
     return data && data.length > 0 ? (
-        <>
-            {/* {bookmarkResponse.status &&
-                <Notification
-                    type={(bookmarkResponse.status === 200) ? "success" : "warning"}
-                    message={bookmarkResponse.message!}
-                    callback={() => setBookmarkResponse({ status: null, message: null })}
-                />
-            } */}
-            <Table
-                title={LANGUAGE.artifacts}
-                titleAction={null}
-                header={getHeader()}
-                data={data}
-                recordsPerPage={PAGINATOR}
-                showPageNumbers={false}
-                handleUpdateFetch={props.handleUpdateFetch}
-                cursors={props.cursors}
-            />
-        </>
+        <Table
+            title={LANGUAGE.artifacts}
+            titleAction={null}
+            header={getHeader()}
+            data={data}
+            recordsPerPage={PAGINATOR}
+            showPageNumbers={false}
+            handleUpdateFetch={props.handleUpdateFetch}
+            cursors={props.cursors}
+        />
     ) : null
 }

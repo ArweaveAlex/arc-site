@@ -1,6 +1,6 @@
 import parse from "html-react-parser";
 
-import { useARProvder } from "providers/ARProvider";
+import { ArweaveClient } from "arweave-client";
 
 import { PageShare } from "global/PageShare";
 import { CollectionContribute } from "../CollectionContribute";
@@ -11,8 +11,7 @@ import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function CollectionHeader(props: IProps) {
-
-    const arProvider = useARProvder();
+    const arClient = new ArweaveClient();
 
     function getSubheader() {
         return (
@@ -50,7 +49,7 @@ export default function CollectionHeader(props: IProps) {
                 <S.Tile>
                     <S.TileTitle><p>{LANGUAGE.collection.totalContributed}</p></S.TileTitle>
                     <S.TileData>
-                        <p>{arProvider.getARAmount(props.totalContributions)}</p>
+                        <p>{arClient.getARAmount(props.totalContributions)}</p>
                         <S.TContainer><p>{LANGUAGE.arTokens}</p></S.TContainer>
                     </S.TileData>
                 </S.Tile>
@@ -62,7 +61,7 @@ export default function CollectionHeader(props: IProps) {
                 </S.Tile>
                 <S.ContributeTile>
                     <CollectionContribute
-                        poolId={props.id}
+                        collectionId={props.id}
                         header={props.title}
                         subheader={getSubheader()}
                         totalContributions={props.totalContributions}

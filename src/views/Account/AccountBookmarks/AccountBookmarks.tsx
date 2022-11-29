@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useARProvder } from "providers/ARProvider";
+import { useArweaveProvider } from "providers/ArweaveProvider";
 
 import { getArtifactsByBookmarks } from "gql/artifacts";
 
@@ -11,15 +11,10 @@ import * as S from "./styles";
 import { ArtifactResponseType } from "types";
 
 export default function AccountBookmarks() {
-    const arProvider = useARProvder();
+    const arProvider = useArweaveProvider();
 
     const [cursor, setCursor] = React.useState<string | null>(null);
-    const [data, setData] = React.useState<ArtifactResponseType>({ 
-        nextCursor: null, 
-        previousCursor: null, 
-        contracts: [], 
-        count: null 
-    });
+    const [data, setData] = React.useState<ArtifactResponseType | null>(null);
 
     React.useEffect(() => {
         (async function () {
@@ -34,11 +29,11 @@ export default function AccountBookmarks() {
     }, [arProvider.walletAddress, cursor])
 
     function checkState() {
-        return data && (data.count !== null);
+        return data;
     }
 
     function getData() {
-        if (data.contracts.length > 0) {
+        if (data && data.contracts.length > 0) {
             return (
                 <S.Wrapper>
                     <ArtifactTable 

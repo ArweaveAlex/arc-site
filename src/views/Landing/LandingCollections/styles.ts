@@ -175,11 +175,3 @@ export const C2 = styled.div<{ image: string }>`
         margin: 10px 0 0 0;
     }
 `;
-
-export const TESTCOLLECTION = styled.div`
-    height: 430px;
-    width: 100%;
-    background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
-    padding: 20px;
-`;

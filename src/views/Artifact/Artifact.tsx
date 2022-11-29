@@ -1,10 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { useARProvder } from "providers/ARProvider";
+import { getArtifactById } from "gql/artifacts";
 
 import { ArtifactHeader } from "./ArtifactHeader";
-// import { ArtifactShare } from "./ArtifactShare";
 import { ArtifactDetail } from "./ArtifactDetail";
 import { ArtifactView } from "./ArtifactView";
 
@@ -25,17 +24,17 @@ import { LANGUAGE } from "language";
 export default function Artifact() {
     const { id } = useParams();
 
-    const arProvider = useARProvder();
-
     const [data, setData] = React.useState<ArtifactType | null>(null);
     const [currentTab, setCurrentTab] = React.useState<string>(ARTIFACT_TABS[0]!.label);
 
     React.useEffect(() => {
         (async function () {
-            window.scrollTo(0, 0);
-            setData(await arProvider.getArtifactById(id!));
+            if (id) {
+                window.scrollTo(0, 0);
+                setData(await getArtifactById(id));
+            }
         })()
-    }, [arProvider, id]);
+    }, [id]);
 
     function handleTabClick(label: string) {
         setCurrentTab(label);

@@ -9,8 +9,7 @@ export const Wrapper = styled.div`
 
 export const Info = styled.div<{ secondary: boolean }>`
     display: flex;
-    margin: 5.5px 15px 0 0;
-    margin: ${(props) => props.secondary ? "0px 15px 0 0" : "5.5px 15px 0 0"};
+    margin: ${(props) => props.secondary ? "0px 5px 0 0" : "5.5px 5px 0 0"};
     p {
         color: ${(props) => props.theme.colors.font.primary.active.base};
         font-size: ${(props) => props.secondary ? "12px" : props.theme.typography.size.xSmall};
@@ -26,7 +25,7 @@ export const Actions = styled.div`
    display: flex;
    position: relative;
     > * {
-        margin: 0 10px 0 0;
+        margin: 0 0 0 10px;
     }
 `;
 

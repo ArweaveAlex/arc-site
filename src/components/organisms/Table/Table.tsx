@@ -60,16 +60,16 @@ export default function Table(props: IProps) {
                         )
                     })}
                 </S.Table>
-                <Paginator
-                    scrollRef={scrollRef}
-                    nPages={nPages}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    showPageNumbers={props.showPageNumbers}
-                    handleUpdateFetch={(cursor: string | null) => props.handleUpdateFetch(cursor)}
-                    cursors={props.cursors}
-                />
             </S.Body>
+            <Paginator
+                scrollRef={scrollRef}
+                nPages={nPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                showPageNumbers={props.showPageNumbers}
+                handleUpdateFetch={(cursor: string | null) => props.handleUpdateFetch(cursor)}
+                cursors={props.cursors}
+            />
         </S.Wrapper>
     )
 }

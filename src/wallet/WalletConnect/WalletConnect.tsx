@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ReactSVG } from "react-svg";
 
-import { useARProvder } from "providers/ARProvider";
+import { useArweaveProvider } from "providers/ArweaveProvider";
 
 import { Button } from "components/atoms/Button";
 import { Modal } from "components/molecules/Modal";
@@ -11,12 +11,12 @@ import { Modal } from "components/molecules/Modal";
 import { CloseHandler } from "components/organisms/CloseHandler";
 
 import { formatAddress } from "utils";
-import { ASSETS, ASSET_SRC, URLS } from "config";
+import { ASSETS, URLS } from "config";
 import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 function WalletList() {
-    const arProvider = useARProvder();
+    const arProvider = useArweaveProvider();
 
     return (
         <S.WalletListContainer>
@@ -33,7 +33,7 @@ function WalletList() {
 export default function WalletConnect() {
     const navigate = useNavigate();
     
-    const arProvider = useARProvder();
+    const arProvider = useArweaveProvider();
 
     const [showDropdown, setShowDropdown] = React.useState<boolean>(false);
     const [copied, setCopied] = React.useState<boolean>(false);

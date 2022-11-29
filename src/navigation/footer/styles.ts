@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { STYLING } from "styling-config";
 
 export const Wrapper = styled.footer`
-    height: 20vh;
+    height: 25vh;
     width: 100%;
     position: relative;
     z-index: 2;
@@ -52,7 +52,7 @@ export const ContainerTwo = styled.div`
   @media (max-width:  ${STYLING.cutoffs.secondary}) {
     height: auto;
     width: 100%;
-    margin-top: 20px;
+    margin: 25px 0 0 0;
   }
 `;
 
@@ -77,35 +77,6 @@ export const LogoSubHeader = styled.p`
   font-weight: ${(props) => props.theme.typography.weight.bold};
   margin: 10px 0 0 0;
 `;
-
-// export const NavContainer = styled.div`
-//   height: 100%;
-//   width: 50%;
-
-//   @media(max-width:  ${STYLING.cutoffs.secondary}) {
-//     width: 100%;
-//     display: flex;
-//     flex-direction: column;
-//   }
-// `;
-
-// export const NavContainerHeader = styled.p`
-//   font-weight: ${props => props.theme.typography.weight.medium};
-//   margin-bottom: 3.5px;
-// `;
-
-// export const NavLinkContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
-// export const NavLink = styled.a`
-//   margin-top: 10px;
-//   width: fit-content;
-//   &:hover{
-//     text-decoration: underline;
-//   }
-// `;
 
 export const SocialPaths = styled.div`
   height: 100%;

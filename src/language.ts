@@ -55,6 +55,12 @@ export const LANGUAGE = {
         },
         createdOn: `Created on`
     },
+    collections: {
+        header1: `Collections`,
+        gridTitles: {
+            all: `All Collections`
+        }
+    },
     community: `Community`,
     companyTitle: `Alex.`,
     companyDescription: `Preserving Human Culture.`,

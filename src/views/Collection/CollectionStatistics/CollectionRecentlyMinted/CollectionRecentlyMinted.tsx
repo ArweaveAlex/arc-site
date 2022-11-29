@@ -2,7 +2,7 @@ import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
 
 import { getTagValue, formatArtifactType } from "utils";
-import { ArtifactQueryType } from "types";
+import { GQLResponseType } from "types";
 import { ARTIFACT_TYPES, TAGS } from "config";
 import * as urls from "urls";
 import { IProps } from "./types"
@@ -27,7 +27,7 @@ export default function CollectionRecentlyMinted(props: IProps) {
                 <h2>{LANGUAGE.recentlyMintedArtifacts}</h2>
             </S.Header>
             <S.Body>
-                {props.data.map((element: ArtifactQueryType, index: number) => {
+                {props.data.map((element: GQLResponseType, index: number) => {
                     const type = getArtifactType(getTagValue(element.node.tags, TAGS.keys.artifactType));
                     return (
                         <S.NodeWrapper key={index}>

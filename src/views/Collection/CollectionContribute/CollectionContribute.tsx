@@ -1,7 +1,8 @@
 import React from "react"
 import { ReactSVG } from "react-svg";
 
-import { useARProvder } from "providers/ARProvider";
+import { useArweaveProvider } from "providers/ArweaveProvider";
+import { ArweaveClient } from "arweave-client";
 import { ContributionResultType } from "types";
 
 import { Button } from "components/atoms/Button";
@@ -10,14 +11,14 @@ import { Modal } from "components/molecules/Modal";
 import { Notification } from "components/atoms/Notification";
 
 import { ValidationType } from "types";
-import * as utils from "utils";
 import { ASSETS } from "config";
 import { LANGUAGE } from "language";
 import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function CollectionContribute(props: IProps) {
-    const arProvider = useARProvder();
+    const arProvider = useArweaveProvider();
+    const arClient = new ArweaveClient();
 
     const [showModal, setShowModal] = React.useState(false);
     const [amount, setAmount] = React.useState<number>(0);
@@ -27,10 +28,12 @@ export default function CollectionContribute(props: IProps) {
     const [contributionResult, setContributionResult] = React.useState<ContributionResultType | null>(null);
 
     async function handlePoolContribute(e: any) {
-        e.preventDefault();
-        setLoading(true);
-        setContributionResult(await arProvider.handlePoolContribute(props.poolId, amount));
-        setLoading(false);
+        if (arProvider.availableBalance) {
+            e.preventDefault();
+            setLoading(true);
+            setContributionResult(await arClient.handlePoolContribute(props.collectionId, amount, arProvider.availableBalance));
+            setLoading(false);
+        }
     }
 
     function getAvailableBalance() {
@@ -101,7 +104,7 @@ export default function CollectionContribute(props: IProps) {
     React.useEffect(() => {
         (async function () {
             if (arProvider.walletAddress) {
-                setReceivingPercent(utils.getReceivingPercent(
+                setReceivingPercent(arClient.getReceivingPercent(
                     arProvider.walletAddress,
                     props.contributors,
                     props.totalContributions,
@@ -110,7 +113,8 @@ export default function CollectionContribute(props: IProps) {
                 
             }
         })()
-    }, [arProvider, arProvider.walletAddress, props.poolId, props.contributors, props.totalContributions, amount])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [arProvider, arProvider.walletAddress, props.collectionId, props.contributors, props.totalContributions, amount])
 
     return (
         <>

@@ -175,29 +175,31 @@ export const Menu = styled.div`
   margin-top: 2.5px;
 `;
 
-export const Link = styled.a`
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-  &:hover {
-    text-decoration: none;
-    color: ${(props) => props.theme.colors.font.primary.active.hover};
-  }
-  &:focus {
-    text-decoration: none;
-    color: ${(props) => props.theme.colors.font.primary.active.hover};
-  }
-  @media (max-width: ${STYLING.cutoffs.initial}) {
-    height: 60px;
-    width: 100vw;
-    justify-content: left;
-    border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
+export const Link = styled.div`
+  a {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0 20px;
     &:hover {
       text-decoration: none;
-      background: ${(props) => props.theme.colors.container.primary.hover};
+      color: ${(props) => props.theme.colors.font.primary.active.hover};
+    }
+    &:focus {
+      text-decoration: none;
+      color: ${(props) => props.theme.colors.font.primary.active.hover};
+    }
+    @media (max-width: ${STYLING.cutoffs.initial}) {
+      height: 60px;
+      width: 100vw;
+      justify-content: left;
+      border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
+      padding: 0 20px;
+      &:hover {
+        text-decoration: none;
+        background: ${(props) => props.theme.colors.container.primary.hover};
+      }
     }
   }
 `;

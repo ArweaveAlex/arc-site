@@ -1,23 +1,29 @@
-import { LANGUAGE } from "language";
-import { useARProvder } from "providers/ARProvider";
 import React from "react";
+
+import { useArweaveProvider } from "providers/ArweaveProvider";
+import { ArweaveClient } from "arweave-client";
+
 import { ContributionsList } from "./ContributionsList";
 
+import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 export default function AccountContributions() {
+    const arProvider = useArweaveProvider();
+    const arClient = new ArweaveClient();
+
     const [data, setData] = React.useState<any>(null);
-    const arProvider = useARProvder();
 
     React.useEffect(() => {
         if (arProvider.walletAddress) {
             (async function () {
-                setData((await arProvider.getUserContributions(arProvider.walletAddress!)).map((element: any) => {
+                setData((await arClient.getUserContributions(arProvider.walletAddress!)).map((element: any) => {
                     return element;
                 }));
             })();
         }
-    }, [arProvider, arProvider.walletAddress])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [arProvider.walletAddress])
 
     function getData() {
         if (data && data.length > 0) {

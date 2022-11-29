@@ -1,5 +1,5 @@
 import React from "react";
-import { useARProvder } from "providers/ARProvider";
+import { useArweaveProvider } from "providers/ArweaveProvider";
 
 import { Button } from "components/atoms/Button";
 import { URLTabs } from "components/organisms/URLTabs";
@@ -11,7 +11,7 @@ import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 export default function Account() {
-    const arProvider = useARProvder();
+    const arProvider = useArweaveProvider();
 
     const [copied, setCopied] = React.useState<boolean>(false);
 

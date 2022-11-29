@@ -40,13 +40,13 @@ export default function ArtifactHeader(props: IProps) {
                         <S.InfoOwner>
                             <>
                                 <ReactSVG src={ASSETS.owner} />
-                                <Link to={`${urls.libraryAll(props.data.owner)}`}>{formatAddress(props.data.owner, false)}</Link>
+                                <Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
                             </>
                         </S.InfoOwner>
                         <S.InfoCollection>
                             <>
                                 <ReactSVG src={ASSETS.collection} />
-                                <Link to={`${urls.collection}${props.data.poolId}`}>{props.data.poolName}</Link>
+                                <Link to={`${urls.collection}${props.data.collectionId}`}>{props.data.poolName}</Link>
                             </>
                         </S.InfoCollection>
                     </S.Info>
