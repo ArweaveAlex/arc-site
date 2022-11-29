@@ -1,5 +1,4 @@
 import React from "react";
-import { BookmarksType } from "redux/artifacts/types";
 
 export enum ArtifactEnum {
   Messaging = "Alex-Messaging",
@@ -119,7 +118,7 @@ export type ArtifactTableRowType = {
 
 export type ReduxActionType = {
   type: string
-  payload: BookmarksType
+  payload: any
 }
 
 export type BookmarkResponseType = {

@@ -4,17 +4,23 @@ import { ArweaveClient } from "arweave-client";
 import { GQLResponseType, TagFilterType } from "types";
 import { PAGINATOR } from "config";
 
-export async function getDataByTags(tagFilters: TagFilterType[]): Promise<GQLResponseType[]> {
+export async function getDataByTags(args: {
+    tagFilters: TagFilterType[],
+    cursor: string | null,
+    reduxCursor: string | null
+}): Promise<GQLResponseType[]> {
     const arClient = new ArweaveClient();
 
     const data: GQLResponseType[] = [];
     let cursor: string | null = "";
 
+    // if (args.cursor) previousCursor = cursors[args.cursor];
+
     const query = (cursor: string) => gql.query({
         operation: "transactions",
         variables: {
             tags: {
-                value: tagFilters,
+                value: args.tagFilters,
                 type: "[TagFilter!]"
             },
             first: PAGINATOR,
@@ -44,7 +50,7 @@ export async function getDataByTags(tagFilters: TagFilterType[]): Promise<GQLRes
         ]
     })
 
-    const response: any = await arClient.arweave.api.post("/graphql", query(cursor));
+    const response: any = await arClient.arweaveGet.api.post("/graphql", query(cursor));
     if (response.data.data) {
         const responseData = response.data.data.transactions.edges;
         if (responseData.length > 0) {
@@ -64,7 +70,7 @@ export async function getDataByTags(tagFilters: TagFilterType[]): Promise<GQLRes
 
 export async function getDataByTxIds(txIds: string[]): Promise<GQLResponseType[]> {
     const arClient = new ArweaveClient();
-    
+
     const data: GQLResponseType[] = [];
     let cursor: string | null = null;
 
@@ -91,7 +97,7 @@ export async function getDataByTxIds(txIds: string[]): Promise<GQLResponseType[]
             `
     }
 
-    const response = await arClient.arweave.api.post("/graphql", operation);
+    const response = await arClient.arweaveGet.api.post("/graphql", operation);
 
     if (response.data.data) {
         const responseData = response.data.data.transactions.edges;

@@ -9,7 +9,6 @@ import { LibraryBookmarks } from "views/Library/LibraryBookmarks";
 import * as urls from "urls";
 import { LANGUAGE } from "language";
 
-// Alex-Archiving-Pool-v1.2
 export const TAGS = {
     keys: {
         appType:"App-Type",
@@ -29,13 +28,11 @@ export const TAGS = {
         defaultArtifactType: "Alex-Default",
         messagingArtifactType: "Alex-Messaging",
         webpageArtifactType: "Alex-Webpage",
-        poolv1: "Alex-Archiving-Pool-v1.2",
-        poolv2: "Alex-Archiving-Pool-v1.15-Testing-Vince"
+        collectionVersions: {
+            "1.2": "Alex-Archiving-Pool-v1.2",
+            "1.4": "Alex-Archiving-Pool-v1.4"
+        }
     }
-}
-
-export const APP = {
-    locale: "en"
 }
 
 export const ASSET_SRC = "assets";

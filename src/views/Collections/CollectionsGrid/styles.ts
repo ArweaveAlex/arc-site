@@ -18,6 +18,7 @@ export const SubheaderFlex = styled.div`
     padding: 0 2.5px;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         flex-direction: column;
+        margin: 7.5px 0 0 0;
     }
 `;
 
@@ -47,22 +48,12 @@ export const Body = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 10px 0 0 0;
+    margin: 0 0 20px 0;
     > * {
-        flex: 1 1 190px;
-        margin: 0 16px 16px 0px;
-    }
-    @media(max-width: ${STYLING.cutoffs.initial}) {
-        overflow-y: hidden;
-        > * {
-            margin: 16px;
-        }
-    }
-    @media(max-width: ${STYLING.cutoffs.secondary}) {
-        > * {
-            flex: none;
-            margin: 0 0 16px 0px;
-        }
+        flex: 1 1 400px;
+        margin: 0 0 25px 0px;
     }
 `;
 
@@ -79,6 +70,14 @@ export const C2 = styled.div<{ image: string }>`
     background-image: ${(props) => `url("${props.image}")`};
     background-size: cover;
     background-position: center;
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        width: 97.5%;
+        top: 43.95%;
+    }
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        width: 96.5%;
+        top: 42.95%;
+    }
 `;
 
 export const Info = styled.div`
@@ -92,7 +91,7 @@ export const Info = styled.div`
 `;
 
 export const InfoTitle = styled.div`
-    margin: 7.5px 0;
+    margin: 7.5px 0 6.5px 0;
     p {
         text-overflow: ellipsis;
         overflow: hidden;
@@ -127,7 +126,7 @@ export const DC2 = styled.div`
 export const PCWrapper = styled.div`
     height: 400px;
     min-width: 400px;
-    max-width: 90vw;
+    max-width: 400px;
     background: ${(props) => props.theme.colors.container.primary.background};
     position: relative;
     a {
@@ -140,5 +139,9 @@ export const PCWrapper = styled.div`
         &:hover ${C2} {
             opacity: 0.75;
         }
+    }
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        min-width: 100%;
+        max-width: 100%;
     }
 `;

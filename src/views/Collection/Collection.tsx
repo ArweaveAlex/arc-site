@@ -63,7 +63,7 @@ export default function Collection() {
                     title={headerData.state.title}
                     description={headerData.state.description}
                     dateCreated={formatDate(headerData.state.timestamp, "epoch")}
-                    count={count ? count : `...`}
+                    count={count ? count : `-`}
                     totalContributions={headerData.state.totalContributions}
                     contributors={headerData.state.contributors}
                 />

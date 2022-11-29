@@ -16,13 +16,16 @@ import { getCollectionById, getCollectionIds } from "./collections";
 import { getTagValue } from "utils";
 import { LANGUAGE } from "language";
 import { TAGS, STORAGE } from "config";
+import { REDUX_CURSORS } from "redux-config";
 
 const arClient = new ArweaveClient();
 
 export async function getArtifactById(artifactId: string): Promise<ArtifactType | null> {
-    const artifact: GQLResponseType = (await getDataByTags([
-        { name: TAGS.keys.uploaderTxId, values: [artifactId] }
-    ]))[0];
+    const artifact: GQLResponseType = (await getDataByTags({
+        tagFilters: [
+            { name: TAGS.keys.uploaderTxId, values: [artifactId] }
+        ], cursor: null, reduxCursor: null
+    }))[0];
 
     let collection: CollectionType | null = await getCollectionById(getTagValue(artifact.node.tags, TAGS.keys.collectionId));
 
@@ -75,7 +78,11 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
         });
     }
 
-    const artifacts: GQLResponseType[] = await getDataByTags(tagFilters);
+    const artifacts: GQLResponseType[] = await getDataByTags({
+        tagFilters: tagFilters,
+        cursor: args.cursor,
+        reduxCursor: REDUX_CURSORS.collectionAll
+    });
 
     return ({
         nextCursor: nextCursor,
@@ -113,9 +120,13 @@ export async function getArtifactsByBookmarks(owner: string, cursor: string | nu
 }
 
 export async function getBookmarks(owner: string): Promise<string[]> {
-    const bookmarks: GQLResponseType[] = await getDataByTags([
-        { name: TAGS.keys.bookmarkSearch, values: [owner] }
-    ]);
+    const bookmarks: GQLResponseType[] = await getDataByTags({
+        tagFilters: [
+            { name: TAGS.keys.bookmarkSearch, values: [owner] }
+        ],
+        cursor: null,
+        reduxCursor: null
+    });
 
     if (bookmarks.length > 0) {
         let recentDate = Number(getTagValue(bookmarks[0].node.tags, TAGS.keys.dateCreated)!)
@@ -139,19 +150,19 @@ export async function getBookmarks(owner: string): Promise<string[]> {
 }
 
 export async function setBookmarks(owner: string, ids: string[]): Promise<BookmarkResponseType> {
-    let txRes = await arClient.arweave.createTransaction({ data: JSON.stringify(ids) }, "use_wallet");
+    let txRes = await arClient.arweavePost.createTransaction({ data: JSON.stringify(ids) }, "use_wallet");
     txRes.addTag(TAGS.keys.bookmarkSearch, owner);
     txRes.addTag(TAGS.keys.dateCreated, Date.now().toString());
     txRes.addTag(TAGS.keys.bookmarkIds, JSON.stringify(ids));
 
     try {
-        await arClient.arweave.transactions.sign(txRes, "use_wallet");
+        await arClient.arweavePost.transactions.sign(txRes, "use_wallet");
     }
     catch (e) {
         console.log(e)
     }
 
-    const response = await arClient.arweave.transactions.post(txRes);
+    const response = await arClient.arweavePost.transactions.post(txRes);
 
     if (response.status === 200) {
         store.dispatch(actions.setBookmarks({

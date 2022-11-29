@@ -11,7 +11,15 @@ import { LANGUAGE } from "language";
 import { TAGS } from "config";
 
 export default class ArweaveClient {
-    arweave: any = Arweave.init({
+    arweaveGet: any = Arweave.init({
+        host: "arweave-search.goldsky.com",
+        port: 443,
+        protocol: "https",
+        timeout: 40000,
+        logging: false,
+    });
+
+    arweavePost: any = Arweave.init({
         host: "arweave.net",
         port: 443,
         protocol: "https",
@@ -19,7 +27,7 @@ export default class ArweaveClient {
         logging: false,
     });
 
-    smartweave = SmartWeaveNodeFactory.memCached(this.arweave as any);
+    smartweave = SmartWeaveNodeFactory.memCached(this.arweavePost as any);
 
     calcARDonated(userWallet: string, pool: any) {
         let calc = pool.state.contributors[userWallet] / 1000000000000;
@@ -94,7 +102,7 @@ export default class ArweaveClient {
                 calc = (amount / parseFloat(totalContributions)) * 100;
             }
             let tokens = (calc).toFixed(4);
-            return calc >= 100 ? "100" : tokens;
+            return calc >= 100 || isNaN(calc) ? "100" : tokens;
         }
         else {
             return "0";
@@ -102,7 +110,7 @@ export default class ArweaveClient {
     }
 
     getARAmount(amount: string): number {
-        return Math.floor(+this.arweave.ar.winstonToAr(amount) * 1e6) / 1e6
+        return Math.floor(+this.arweavePost.ar.winstonToAr(amount) * 1e6) / 1e6
     }
 
     async handlePoolContribute(collectionId: string, amount: number, availableBalance: number): Promise<ContributionResultType> {
@@ -115,17 +123,17 @@ export default class ArweaveClient {
         }
 
         try {
-            const arweaveContract: GQLResponseType = (await getDataByTags([
-                { name: TAGS.keys.uploaderTxId, values: [collectionId] }
-            ]))[0];
+            const arweaveContract: GQLResponseType = (await getDataByTags({
+                tagFilters: [{ name: TAGS.keys.uploaderTxId, values: [collectionId] }], cursor: null, reduxCursor: null
+            }))[0];
 
             const fetchId = arweaveContract ? arweaveContract.node.id : collectionId;
 
-            const { data: contractData }: { data: any; } = await this.arweave.api.get(`/${fetchId}`);
+            const { data: contractData }: { data: any; } = await this.arweavePost.api.get(`/${fetchId}`);
 
             let owner = contractData.owner;
 
-            if(arweaveContract) {
+            if (arweaveContract) {
                 owner = JSON.parse(Buffer.from(contractData.data, 'base64').toString("utf-8")).owner;
             }
 
@@ -140,7 +148,7 @@ export default class ArweaveClient {
             const result = await smartweaveContract.writeInteraction<any>(
                 { function: "contribute" }, [], {
                 target: owner,
-                winstonQty: this.arweave.ar.arToWinston(amount.toString())
+                winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
             });
 
             if (!result) {

@@ -50,7 +50,7 @@ export const LANGUAGE = {
         artifactsCreated: `Artifacts Created`,
         contribute: {
             notEnoughFunds: `Not enough AR to contribute to this pool.`,
-            failed: `Failed to contribute to pool. Please, try again.`,
+            failed: `Failed to contribute to pool. Please try again.`,
             success: `Thank you for your contribution.`
         },
         createdOn: `Created on`

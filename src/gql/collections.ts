@@ -9,16 +9,28 @@ import { getTagValue } from "utils";
 import { TAGS } from "config";
 
 export async function getCollectionIds() {
-    const collections: GQLResponseType[] = await getDataByTags([
-        { name: TAGS.keys.appType, values: [TAGS.values.poolv1, TAGS.values.poolv2] }
-    ]);
+    const collections: GQLResponseType[] = await getDataByTags({
+        tagFilters: [
+            {
+                name: TAGS.keys.appType, 
+                values: [
+                    TAGS.values.collectionVersions["1.2"],
+                    TAGS.values.collectionVersions["1.4"]
+                ]
+            }
+        ], 
+        cursor: null,
+        reduxCursor: null
+    });
 
     return collections.map((collection: GQLResponseType) => {
-        if (getTagValue(collection.node.tags, TAGS.keys.appType) === TAGS.values.poolv1) {
-            return collection.node.id;
-        }
-        else {
-            return getTagValue(collection.node.tags, TAGS.keys.uploaderTxId)
+        switch (getTagValue(collection.node.tags, TAGS.keys.appType)) {
+            case TAGS.values.collectionVersions["1.2"]:
+                return collection.node.id;
+            case TAGS.values.collectionVersions["1.4"]:
+                return getTagValue(collection.node.tags, TAGS.keys.uploaderTxId);
+            default:
+                return getTagValue(collection.node.tags, TAGS.keys.uploaderTxId);
         }
     });
 }
@@ -49,7 +61,7 @@ export async function getCollections() {
 
 export async function getCollectionById(collectionId: string): Promise<CollectionType | null> {
     const arClient = new ArweaveClient();
-    
+
     try {
         const contract = arClient.smartweave.contract(collectionId);
         return { id: collectionId, state: (await contract.readState() as any).state };
