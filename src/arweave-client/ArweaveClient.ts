@@ -4,6 +4,7 @@ import { SmartWeaveNodeFactory } from "redstone-smartweave";
 import { getArtifactsByUser } from "gql/artifacts";
 import { getCollections } from "gql/collections";
 import { getDataByTags } from "gql";
+import { Buffer } from 'buffer';
 
 import { ContributionResultType, GQLResponseType } from "types";
 import { LANGUAGE } from "language";
@@ -122,7 +123,13 @@ export default class ArweaveClient {
 
             const { data: contractData }: { data: any; } = await this.arweave.api.get(`/${fetchId}`);
 
-            if (!contractData.owner) {
+            let owner = contractData.owner;
+
+            if(arweaveContract) {
+                owner = JSON.parse(Buffer.from(contractData.data, 'base64').toString("utf-8")).owner;
+            }
+
+            if (!owner) {
                 return { status: false, message: LANGUAGE.collection.contribute.failed };
             }
 
@@ -132,7 +139,7 @@ export default class ArweaveClient {
 
             const result = await smartweaveContract.writeInteraction<any>(
                 { function: "contribute" }, [], {
-                target: contractData.owner,
+                target: owner,
                 winstonQty: this.arweave.ar.arToWinston(amount.toString())
             });
 
