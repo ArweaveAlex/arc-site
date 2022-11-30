@@ -54,7 +54,7 @@ export const Table = styled.div`
     border-right: 1px solid ${(props) => props.theme.colors.border.secondary};
     box-shadow: 1px 2px 2px ${(props) => props.theme.colors.shadow.secondary};
     @media(max-width: ${STYLING.cutoffs.initial}) {
-        width: ${STYLING.cutoffs.max};
+        width: ${STYLING.cutoffs.initial};
     }
 `;
 

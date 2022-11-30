@@ -10,7 +10,7 @@ export const Wrapper = styled.footer`
     background: ${props => props.theme.colors.navigation.footer.background};
     border-top: 1px solid ${(props) => props.theme.colors.border.secondary};
     @media(max-width: ${STYLING.cutoffs.secondary}) {
-      height: 30vh;
+      height: 35vh;
     }
 `;
 

@@ -82,8 +82,6 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
         reduxCursor: REDUX_CURSORS.collectionAll
     });
 
-    console.log(artifacts);
-
     return ({
         nextCursor: nextCursor,
         previousCursor: previousCursor,

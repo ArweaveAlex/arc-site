@@ -6,12 +6,12 @@ export enum ArtifactEnum {
 }
 
 export type GQLResponseType = {
-  cursor: string | null,
+  cursor: string | null
   node: {
-    id: string,
-    tags: KeyValueType[],
+    id: string
+    tags: KeyValueType[]
     data: {
-      size: string,
+      size: string
       type: string
     }
   }

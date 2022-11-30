@@ -18,8 +18,11 @@ export async function getDataByTags(args: {
     let cursorState: any;
     if (args.reduxCursor && store.getState().cursorsReducer[args.reduxCursor]) {
         cursorState = store.getState().cursorsReducer[args.reduxCursor];
+        const currentCursor = cursorState.current;
+        
         if (args.cursor) {
-            cursorState.previous = args.cursor;
+            cursorState.previous = currentCursor;
+            cursorState.current = args.cursor;
         }
     }
 

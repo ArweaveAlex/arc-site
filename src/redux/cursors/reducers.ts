@@ -6,6 +6,7 @@ import { REDUX_CURSORS } from "redux-config";
 export const initStateCursors: CursorsType = {
     "collection-all": {
         previous: null,
+        current: "page1",
         next: null
     }
 };
@@ -19,6 +20,7 @@ export function cursorsReducer(
             return Object.assign({}, state, {
                 [REDUX_CURSORS.collectionAll]: {
                     previous: action.payload[REDUX_CURSORS.collectionAll].previous ?? state[REDUX_CURSORS.collectionAll].previous,
+                    current: action.payload[REDUX_CURSORS.collectionAll].current ?? state[REDUX_CURSORS.collectionAll].current,
                     next: action.payload[REDUX_CURSORS.collectionAll].next ?? state[REDUX_CURSORS.collectionAll].next
                 }
             })
