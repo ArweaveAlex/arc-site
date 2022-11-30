@@ -30,7 +30,7 @@ function WalletList() {
     )
 }
 
-export default function WalletConnect() {
+export default function WalletConnect(props: { callback: () => void }) {
     const navigate = useNavigate();
     
     const arProvider = useArweaveProvider();

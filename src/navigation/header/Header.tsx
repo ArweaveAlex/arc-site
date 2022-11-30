@@ -55,7 +55,7 @@ export default function Header() {
                     <S.NavPaths>
                         {NAV_PATHS.map((path, index) => (
                             <S.Link key={index}>
-                                <Link to={path.href}>
+                                <Link to={path.href} onClick={() => setOpen(false)}>
                                     {path.name}
                                 </Link>
                             </S.Link>
@@ -70,7 +70,7 @@ export default function Header() {
                             ))}
                         </S.SocialPaths>
                         <S.Connect show={getWalletDisplay()}>
-                            <WalletConnect />
+                            <WalletConnect callback={() => setOpen(!open)}/>
                         </S.Connect>
                     </S.SC>
                 </S.NC>
