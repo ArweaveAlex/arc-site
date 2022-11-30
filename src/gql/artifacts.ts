@@ -76,17 +76,19 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
         });
     }
 
-    const artifacts: GQLResponseType[] = await getDataByTags({
+    const artifacts: GQLResponseType[] = (await getDataByTags({
         tagFilters: tagFilters,
         cursor: args.cursor,
         reduxCursor: REDUX_CURSORS.collectionAll
-    });
+    })).filter((element: GQLResponseType) => {
+        return getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none &&
+            !getTagValue(element.node.tags, "Title").includes("Test Asset") // TODO - TEMPORARY FIX
+    })
 
     return ({
         nextCursor: nextCursor,
         previousCursor: previousCursor,
-        contracts: artifacts.filter(
-            (element: GQLResponseType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none)
+        contracts: artifacts
     })
 }
 
