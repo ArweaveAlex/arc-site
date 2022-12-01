@@ -64,7 +64,9 @@ export default function CollectionContributors(props: IProps) {
                         <Link to={`${urls.libraryAll(sortedKeys[i])}`}>{formatAddress(sortedKeys[i], false)}</Link>
                     </S.Owner>
                     <S.Amount>
-                        <p>{arClient.getARAmount(props.data.state.contributors[sortedKeys[i]])}</p>
+                        <p>{arClient.getARAmount(
+                            arClient.calcContributions(props.data.state.contributors[sortedKeys[i]])
+                        )}</p>
                         &nbsp;
                         <span>{`${LANGUAGE.arTokens} ${LANGUAGE.total}`}</span>
                     </S.Amount>
@@ -88,7 +90,9 @@ export default function CollectionContributors(props: IProps) {
                         <Link to={`${urls.libraryAll(contributorKeys[i])}`}>{formatAddress(contributorKeys[i], false)}</Link>
                     </S.RecentOwner>
                     <S.Amount>
-                        <p>{arClient.getARAmount(props.data.state.contributors[contributorKeys[i]])}</p>
+                        <p>{arClient.getARAmount(
+                            arClient.calcContributions(props.data.state.contributors[contributorKeys[i]])
+                        )}</p>
                         &nbsp;
                         <span>{`${LANGUAGE.arTokens}`}</span>
                     </S.Amount>

@@ -18,10 +18,30 @@ export async function getDataByTags(args: {
     let cursorState: any;
     if (args.reduxCursor && store.getState().cursorsReducer[args.reduxCursor]) {
         cursorState = store.getState().cursorsReducer[args.reduxCursor];
+        const previousCursor = cursorState.previous;
         const currentCursor = cursorState.current;
         
+
         if (args.cursor) {
-            cursorState.previous = currentCursor;
+            if (previousCursor === "PAGE_ONE" && currentCursor !== "PAGE_ONE") {
+                cursorState.previous = null;
+            }
+            else {
+                cursorState.previous = currentCursor;
+            }
+
+            if (currentCursor !== "PAGE_ONE") {
+                if (cursorState.next !== null) {
+                    cursorState.previous = currentCursor;
+                }
+                else {
+                    cursorState.previous = null;
+                }
+            }
+
+            if (args.cursor === "PAGE_ONE") {
+                cursorState.previous = null;
+            }
             cursorState.current = args.cursor;
         }
     }
@@ -80,7 +100,7 @@ export async function getDataByTags(args: {
     }
 
     if (args.reduxCursor && cursorState) {
-        store.dispatch(cursorActions.setCursors( {[args.reduxCursor]: cursorState }));
+        store.dispatch(cursorActions.setCursors({ [args.reduxCursor]: cursorState }));
     }
 
     return data;

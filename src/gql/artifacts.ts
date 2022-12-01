@@ -59,11 +59,6 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
 }
 
 export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<ArtifactResponseType> {
-    const collectionAllCursorState = store.getState().cursorsReducer[REDUX_CURSORS.collectionAll];
-
-    let nextCursor: string | null = collectionAllCursorState ? collectionAllCursorState.next : null;
-    let previousCursor: string | null = collectionAllCursorState ? collectionAllCursorState.previous : null;
-
     let tagFilters: TagFilterType[] = [{
         name: TAGS.keys.collectionId,
         values: args.collectionIds
@@ -85,6 +80,14 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
             !getTagValue(element.node.tags, "Title").includes("Test Asset") // TODO - TEMPORARY FIX
     })
 
+    let cursorState;
+    if (args.reduxCursor) {
+        cursorState = store.getState().cursorsReducer[args.reduxCursor];
+    }
+
+    let nextCursor: string | null = cursorState ? cursorState.next : null;
+    let previousCursor: string | null = cursorState ? cursorState.previous : null;
+
     return ({
         nextCursor: nextCursor,
         previousCursor: previousCursor,
@@ -94,7 +97,12 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
 
 export async function getArtifactsByUser(userWallet: string, cursor: string | null) {
     const collectionIds = await getCollectionIds();
-    const artifacts = await getArtifactsByCollection({ collectionIds: collectionIds, cursor: cursor, owner: userWallet });
+    const artifacts = await getArtifactsByCollection({ 
+        collectionIds: collectionIds, 
+        owner: userWallet, 
+        cursor: cursor,
+        reduxCursor: null
+    });
     return artifacts;
 }
 

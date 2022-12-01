@@ -41,8 +41,9 @@ export type ArtifactQueryType = {
 
 export type ArtifactArgsType = {
   collectionIds: string[]
-  cursor: string | null
   owner: string | null
+  cursor: string | null
+  reduxCursor: string | null
 }
 
 export type ArtifactResponseType = {
@@ -127,3 +128,4 @@ export type BookmarkResponseType = {
 }
 
 export type TagFilterType = { name: string, values: string[] }
+export type ContributionType = { timestamp: string, qty: string }

@@ -14,6 +14,7 @@ import { CollectionType, ArtifactResponseType } from "types";
 import { getTxEndpoint } from "endpoints";
 import { formatDate, getTagValue } from "utils";
 import { TAGS, FALLBACK_IMAGE } from "config";
+import { REDUX_CURSORS } from "redux-config";
 import { LANGUAGE } from "language";
 import * as S from "./styles";
 
@@ -25,14 +26,17 @@ export default function Collection() {
     const [headerData, setHeaderData] = React.useState<CollectionType | null>(null);
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
 
+    // TODO - Clear cursors on new collection page
+
     React.useEffect(() => {
         (async function () {
             if (id) {
                 setHeaderData(await getCollectionById(id));
                 setDetailData((await getArtifactsByCollection({
                     collectionIds: [id],
+                    owner: null,
                     cursor: cursor,
-                    owner: null
+                    reduxCursor: REDUX_CURSORS.collectionAll
                 })));
             }
         })();
