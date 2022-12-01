@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { getCollectionById, getCollectionCount } from "gql/collections";
 import { getArtifactsByCollection } from "gql/artifacts";
@@ -10,6 +11,7 @@ import { CollectionHeader } from "./CollectionHeader";
 import { CollectionStatistics } from "./CollectionStatistics";
 import { CollectionDetail } from "./CollectionDetail";
 
+import { clearCursors } from "redux/cursors/actions";
 import { CollectionType, ArtifactResponseType } from "types";
 import { getTxEndpoint } from "endpoints";
 import { formatDate, getTagValue } from "utils";
@@ -20,13 +22,17 @@ import * as S from "./styles";
 
 export default function Collection() {
     const { id } = useParams();
+    const dispatch = useDispatch();
 
     const [cursor, setCursor] = React.useState<string | null>(null);
     const [count, setCount] = React.useState<string | null>(null);
     const [headerData, setHeaderData] = React.useState<CollectionType | null>(null);
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
 
-    // TODO - Clear cursors on new collection page
+    React.useEffect(() => {
+        dispatch(clearCursors());
+    }, [dispatch])
+
 
     React.useEffect(() => {
         (async function () {

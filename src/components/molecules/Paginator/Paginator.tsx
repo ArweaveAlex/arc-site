@@ -44,19 +44,11 @@ export default function Paginator(props: IProps) {
     }
 
     const handleNextPage = () => {
-        // if (props.currentPage !== props.nPages) {
-        //     props.setCurrentPage(props.currentPage + 1);
-        //     handleScroll();
-        // }
         props.handleUpdateFetch(props.cursors.next);
         handleScroll();
     }
 
     const handlePreviousPage = () => {
-        // if (props.currentPage !== 1) {
-        //     props.setCurrentPage(props.currentPage - 1);
-        //     handleScroll();
-        // }
         props.handleUpdateFetch(props.cursors.previous);
         handleScroll();
     }

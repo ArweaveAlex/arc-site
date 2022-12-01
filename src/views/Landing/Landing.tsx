@@ -9,15 +9,17 @@ import { LandingCollections } from "./LandingCollections";
 import { LandingInfo } from "./LandingInfo";
 import { LandingSteps } from "./LandingSteps";
 
+import { CollectionType } from "types";
+import { sortByMostContributed } from "collection-filters";
 import * as S from "./styles";
 
 export default function Landing() {
 
-    const [data, setData] = React.useState<any>(null);
+    const [data, setData] = React.useState<CollectionType[] | null>(null);
 
     React.useEffect(() => {
         (async function () {
-            setData(await getCollections());
+            setData(sortByMostContributed(await getCollections()));
         })()
     }, [])
 

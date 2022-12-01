@@ -35,7 +35,7 @@ export async function getCollectionIds() {
     });
 }
 
-export async function getCollections() {
+export async function getCollections(): Promise<CollectionType[]> {
     const arClient = new ArweaveClient();
 
     const collections: CollectionType[] = [];

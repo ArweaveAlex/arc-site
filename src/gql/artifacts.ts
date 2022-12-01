@@ -76,8 +76,7 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
         cursor: args.cursor,
         reduxCursor: REDUX_CURSORS.collectionAll
     })).filter((element: GQLResponseType) => {
-        return getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none &&
-            !getTagValue(element.node.tags, "Title").includes("Test Asset") // TODO - TEMPORARY FIX
+        return getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none;
     })
 
     let cursorState;

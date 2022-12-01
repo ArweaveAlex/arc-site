@@ -15,35 +15,13 @@ export async function getDataByTags(args: {
 
     const data: GQLResponseType[] = [];
 
-    let cursorState: any;
+    let nextCursor;
+    let cursorState;
+    let cursorList: (string | null)[] = [];
+
     if (args.reduxCursor && store.getState().cursorsReducer[args.reduxCursor]) {
         cursorState = store.getState().cursorsReducer[args.reduxCursor];
-        const previousCursor = cursorState.previous;
-        const currentCursor = cursorState.current;
-        
-
-        if (args.cursor) {
-            if (previousCursor === "PAGE_ONE" && currentCursor !== "PAGE_ONE") {
-                cursorState.previous = null;
-            }
-            else {
-                cursorState.previous = currentCursor;
-            }
-
-            if (currentCursor !== "PAGE_ONE") {
-                if (cursorState.next !== null) {
-                    cursorState.previous = currentCursor;
-                }
-                else {
-                    cursorState.previous = null;
-                }
-            }
-
-            if (args.cursor === "PAGE_ONE") {
-                cursorState.previous = null;
-            }
-            cursorState.current = args.cursor;
-        }
+        cursorList = [...cursorState.cursors];
     }
 
     const query = (cursor: string) => gql.query({
@@ -84,22 +62,58 @@ export async function getDataByTags(args: {
     if (response.data.data) {
         const responseData = response.data.data.transactions.edges;
         if (responseData.length > 0) {
-            if (cursorState) {
-                cursorState.next = responseData[responseData.length - 1].cursor;
+            if (args.reduxCursor && cursorState) {
+                nextCursor = responseData[responseData.length - 1].cursor;
+                cursorList.push(nextCursor);
             }
             data.push(...responseData);
-            if ((responseData.length < PAGINATOR) && cursorState) {
-                cursorState.next = null;
-            }
-        }
-        else {
-            if (cursorState) {
-                cursorState.next = null;
-            }
         }
     }
 
     if (args.reduxCursor && cursorState) {
+        let tempCursorList = [];
+
+        if (cursorList.length >= 3) {
+            cursorState.next = cursorList[cursorList.length - 1];
+            cursorState.previous = cursorList[cursorList.length - 3];
+            for (let i = 0; i < cursorList.length; i++) {
+                if (nextCursor) {
+                    tempCursorList[i] = cursorList[i];
+                    if (cursorList[i] === nextCursor) {
+                        break;
+                    }
+                }
+            }
+
+            cursorList = [...tempCursorList].slice(0, tempCursorList.length - 2);
+        }
+        
+        else {
+            if (cursorList.length === 1) {
+                cursorState.next = cursorList[0];
+                cursorState.previous = null;
+            }
+            if (cursorList.length === 2) {
+                cursorState.next = cursorList[1];
+                cursorState.previous = "PAGE_ONE";
+                tempCursorList.push(cursorState.previous);
+                for (let i = 0; i < cursorList.length; i++) {
+                    tempCursorList[i + 1] = cursorList[i];
+                }
+                cursorList = [...tempCursorList];
+            }
+        }
+
+        if (args.cursor) {
+            if (args.cursor === "PAGE_ONE") {
+                cursorState.next = nextCursor;
+                cursorState.previous = null;
+                cursorList = ["PAGE_ONE", nextCursor];
+            }
+        }
+
+        cursorState.cursors = cursorList;
+
         store.dispatch(cursorActions.setCursors({ [args.reduxCursor]: cursorState }));
     }
 
