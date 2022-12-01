@@ -140,12 +140,12 @@ export async function getBookmarks(owner: string): Promise<string[]> {
 
         for (let i = 0; i < bookmarks.length; i++) {
             const date = Number(getTagValue(bookmarks[i].node.tags, TAGS.keys.dateCreated)!);
-            recentDate = Math.max(recentDate, date)
+            recentDate = Math.max(recentDate, date);
         }
 
         for (let i = 0; i < bookmarks.length; i++) {
             if (recentDate === Number(getTagValue(bookmarks[i].node.tags, TAGS.keys.dateCreated)!)) {
-                return JSON.parse(getTagValue(bookmarks[i].node.tags, TAGS.keys.bookmarkIds)!)
+                return JSON.parse(getTagValue(bookmarks[i].node.tags, TAGS.keys.bookmarkIds)!);
             }
         }
 

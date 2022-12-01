@@ -38,6 +38,15 @@ export default function WalletConnect(props: { callback: () => void }) {
     const [showDropdown, setShowDropdown] = React.useState<boolean>(false);
     const [copied, setCopied] = React.useState<boolean>(false);
 
+    function handlePress() {
+        if (arProvider.walletAddress) {
+            setShowDropdown(true)
+        }
+        else {
+            arProvider.setWalletModalVisible(true);
+        }
+    }
+
     const copyAddress = React.useCallback(async () => {
         if (arProvider.walletAddress) {
             if (arProvider.walletAddress.length > 0) {
@@ -48,24 +57,15 @@ export default function WalletConnect(props: { callback: () => void }) {
         }
     }, [arProvider.walletAddress]);
 
-    function handlePress() {
-        if (arProvider.walletAddress) {
-            setShowDropdown(true)
-        }
-        else {
-            arProvider.setWalletModalVisible(true);
-        }
-    }
-
     function handleDisconnect() {
         arProvider.handleDisconnect();
         setShowDropdown(false);
-
     }
 
     function handleViewAccount() {
         navigate(URLS.account[0]!.url);
         setShowDropdown(false);
+        props.callback();
     }
 
     return (
