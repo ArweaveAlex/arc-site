@@ -7,6 +7,7 @@ import { ArtifactTable } from "global/ArtifactTable";
 
 import { ArtifactResponseType } from "types";
 import { LANGUAGE } from "language";
+import { REDUX_CURSORS } from "redux-config";
 import * as S from "./styles";
 
 export default function LibraryAll() {
@@ -18,7 +19,12 @@ export default function LibraryAll() {
     React.useEffect(() => {
         (async function () {
             if (id) {
-                setData(await getArtifactsByUser(id, cursor));
+                setData(await getArtifactsByUser({
+                    collectionIds: null,
+                    owner: id,
+                    cursor: cursor,
+                    reduxCursor: REDUX_CURSORS.libraryAll
+                }));
             }
         })();
         /*  ESLint used to avoid warning with data.nextCursor not being used in dependency array

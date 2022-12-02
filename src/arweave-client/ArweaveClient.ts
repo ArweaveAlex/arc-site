@@ -51,7 +51,12 @@ export default class ArweaveClient {
     }
 
     async calcLastContributions(userWallet: string, collections: any[]) {
-        let contributions = await getArtifactsByUser(userWallet, null);
+        let contributions = await getArtifactsByUser({
+            collectionIds: null,
+            owner: userWallet,
+            cursor: null,
+            reduxCursor: null
+        });
         let conMap: any = {};
 
         for (let i = 0; i < collections.length; i++) {

@@ -16,7 +16,6 @@ import { getCollectionById, getCollectionIds } from "./collections";
 import { getTagValue } from "utils";
 import { LANGUAGE } from "language";
 import { TAGS, STORAGE } from "config";
-import { REDUX_CURSORS } from "redux-config";
 
 const arClient = new ArweaveClient();
 
@@ -61,7 +60,7 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
 export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<ArtifactResponseType> {
     let tagFilters: TagFilterType[] = [{
         name: TAGS.keys.collectionId,
-        values: args.collectionIds
+        values: args.collectionIds!
     }];
 
     if (args.owner) {
@@ -74,7 +73,7 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
     const artifacts: GQLResponseType[] = (await getDataByTags({
         tagFilters: tagFilters,
         cursor: args.cursor,
-        reduxCursor: REDUX_CURSORS.collectionAll
+        reduxCursor: args.reduxCursor
     })).filter((element: GQLResponseType) => {
         return getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none;
     })
@@ -94,33 +93,38 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
     })
 }
 
-export async function getArtifactsByUser(userWallet: string, cursor: string | null) {
+export async function getArtifactsByUser(args: ArtifactArgsType) {
     const collectionIds = await getCollectionIds();
     const artifacts = await getArtifactsByCollection({ 
         collectionIds: collectionIds, 
-        owner: userWallet, 
-        cursor: cursor,
-        reduxCursor: null
+        owner: args.owner, 
+        cursor: args.cursor,
+        reduxCursor: args.reduxCursor
     });
     return artifacts;
 }
 
-export async function getArtifactsByBookmarks(owner: string, cursor: string | null): Promise<ArtifactResponseType> {
+export async function getArtifactsByBookmarks(args: ArtifactArgsType): Promise<ArtifactResponseType> {
     const bookmarksReducer = store.getState().bookmarksReducer;
     let bookmarkIds: string[];
 
-    if (bookmarksReducer.owner === owner) {
+    if (bookmarksReducer.owner === args.owner) {
         bookmarkIds = bookmarksReducer.ids;
     }
     else {
-        bookmarkIds = await getBookmarks(owner);
+        if (args.owner) {
+            bookmarkIds = await getBookmarks(args.owner);
+        }
+        else {
+            bookmarkIds = [];
+        }
     }
 
     const artifacts: GQLResponseType[] = await getDataByTxIds(bookmarkIds);
 
     return ({
-        nextCursor: cursor,
-        previousCursor: cursor,
+        nextCursor: args.cursor,
+        previousCursor: args.cursor,
         contracts: artifacts.filter(
             (element: GQLResponseType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none)
     })

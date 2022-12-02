@@ -5,9 +5,10 @@ import { getArtifactsByBookmarks } from "gql/artifacts";
 
 import { ArtifactTable } from "global/ArtifactTable";
 
-import { LANGUAGE } from "language";
-import * as S from "./styles";
 import { ArtifactResponseType } from "types";
+import { LANGUAGE } from "language";
+import { REDUX_CURSORS } from "redux-config";
+import * as S from "./styles";
 
 export default function LibraryBookmarks() {
     const { id } = useParams();
@@ -18,7 +19,12 @@ export default function LibraryBookmarks() {
     React.useEffect(() => {
         (async function () {
             if (id) {
-                setData(await getArtifactsByBookmarks(id, cursor));
+                setData(await getArtifactsByBookmarks({
+                    collectionIds: null,
+                    owner: id,
+                    cursor: cursor,
+                    reduxCursor: REDUX_CURSORS.libraryBookmarks
+                }));
             }
         })();
         /*  ESLint used to avoid warning with data.nextCursor not being used in dependency array

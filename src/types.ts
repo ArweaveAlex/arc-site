@@ -40,7 +40,7 @@ export type ArtifactQueryType = {
 }
 
 export type ArtifactArgsType = {
-  collectionIds: string[]
+  collectionIds: string[] | null
   owner: string | null
   cursor: string | null
   reduxCursor: string | null

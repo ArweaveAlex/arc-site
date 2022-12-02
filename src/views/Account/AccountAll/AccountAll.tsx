@@ -7,6 +7,7 @@ import { ArtifactTable } from "global/ArtifactTable";
 
 import { ArtifactResponseType } from "types";
 import { LANGUAGE } from "language";
+import { REDUX_CURSORS } from "redux-config";
 import * as S from "./styles";
 
 export default function AccountAll() {
@@ -18,7 +19,12 @@ export default function AccountAll() {
     React.useEffect(() => {
         (async function () {
             if (arProvider.walletAddress) {
-                setData(await getArtifactsByUser(arProvider.walletAddress, cursor));
+                setData(await getArtifactsByUser({
+                    collectionIds: null,
+                    owner: arProvider.walletAddress,
+                    cursor: cursor,
+                    reduxCursor: REDUX_CURSORS.accountAll
+                }));
             }
         })();
         /*  ESLint used to avoid warning with data.nextCursor not being used in dependency array
@@ -35,8 +41,8 @@ export default function AccountAll() {
         if (data && data.contracts.length > 0) {
             return (
                 <S.Wrapper>
-                    <ArtifactTable 
-                        data={data} 
+                    <ArtifactTable
+                        data={data}
                         showBookmarks={true}
                         showCollectionId={true}
                         handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}

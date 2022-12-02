@@ -1,3 +1,7 @@
 export const REDUX_CURSORS = {
-    collectionAll: "collectionAll"
+    accountAll: "accountAll",
+    accountBookmarks: "accountBookmarks",
+    collectionAll: "collectionAll",
+    libraryAll: "libraryAll",
+    libraryBookmarks: "libraryBookmarks",
 }

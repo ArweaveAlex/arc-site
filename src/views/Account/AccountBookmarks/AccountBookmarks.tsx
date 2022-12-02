@@ -6,9 +6,10 @@ import { getArtifactsByBookmarks } from "gql/artifacts";
 
 import { ArtifactTable } from "global/ArtifactTable";
 
-import { LANGUAGE } from "language";
-import * as S from "./styles";
 import { ArtifactResponseType } from "types";
+import { LANGUAGE } from "language";
+import { REDUX_CURSORS } from "redux-config";
+import * as S from "./styles";
 
 export default function AccountBookmarks() {
     const arProvider = useArweaveProvider();
@@ -19,7 +20,12 @@ export default function AccountBookmarks() {
     React.useEffect(() => {
         (async function () {
             if (arProvider.walletAddress) {
-                setData(await getArtifactsByBookmarks(arProvider.walletAddress, cursor));
+                setData(await getArtifactsByBookmarks({
+                    collectionIds: null,
+                    owner: arProvider.walletAddress,
+                    cursor: cursor,
+                    reduxCursor: REDUX_CURSORS.accountBookmarks
+                }));
             }
         })();
         /*  ESLint used to avoid warning with data.nextCursor not being used in dependency array
