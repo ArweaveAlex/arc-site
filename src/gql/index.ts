@@ -72,20 +72,26 @@ export async function getDataByTags(args: {
 
     if (args.reduxCursor && cursorState) {
         let tempCursorList = [];
+        let nextCount = 0;
 
         if (cursorList.length >= 3) {
-            cursorState.next = cursorList[cursorList.length - 1];
-            cursorState.previous = cursorList[cursorList.length - 3];
             for (let i = 0; i < cursorList.length; i++) {
                 if (nextCursor) {
                     tempCursorList[i] = cursorList[i];
                     if (cursorList[i] === nextCursor) {
-                        break;
+                        nextCount++;
                     }
                 }
             }
 
-            cursorList = [...tempCursorList].slice(0, tempCursorList.length - 2);
+            if (nextCount > 1) {
+                cursorList = [...tempCursorList].slice(0, tempCursorList.length - 2);
+            }
+            else {
+                cursorList = [...tempCursorList];
+            }
+            cursorState.next = cursorList[cursorList.length - 1];
+            cursorState.previous = cursorList[cursorList.length - 3];
         }
 
         else {

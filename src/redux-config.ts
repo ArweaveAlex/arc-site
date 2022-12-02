@@ -1,3 +1,3 @@
 export const REDUX_CURSORS = {
-    collectionAll: "collection-all"
+    collectionAll: "collectionAll"
 }

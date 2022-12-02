@@ -4,7 +4,7 @@ import { SET_CURSORS, CLEAR_CURSORS } from "./constants";
 import { REDUX_CURSORS } from "redux-config";
 
 export const initStateCursors: CursorsType = {
-    "collection-all": {
+    "collectionAll": {
         previous: null,
         next: null,
         cursors: []
