@@ -6,6 +6,7 @@ import { AccountContributions } from "views/Account/AccountContributions";
 import { LibraryAll } from "views/Library/LibraryAll";
 import { LibraryBookmarks } from "views/Library/LibraryBookmarks";
 
+import * as filters from "collection-filters";
 import * as urls from "urls";
 import { LANGUAGE } from "language";
 
@@ -22,7 +23,8 @@ export const TAGS = {
         initialOwner: "Initial-Owner",
         collectionId: "Pool-Id",
         uploaderTxId: "Uploader-Tx-Id",
-        contractSrc: "Contract-Src"
+        contractSrc: "Contract-Src",
+        mediaIds: "Media-Ids"
     },
     values: {
         defaultArtifactType: "Alex-Default",
@@ -146,3 +148,17 @@ export const STORAGE = {
     pending: "pending",
     txUpdate: "txUpdate"
 }
+
+export const MEDIA_TYPES = {
+    mp4: "mp4",
+    jpg: "jpg",
+    jpeg: "jpeg",
+    png: "png"
+}
+
+export const collectionFilters = [
+    {
+        title: LANGUAGE.collections.gridTitles.mostContributed,
+        fn: (data: any) => filters.sortByMostContributed(data, null)
+    }
+]

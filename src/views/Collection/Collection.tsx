@@ -28,6 +28,7 @@ export default function Collection() {
     const [count, setCount] = React.useState<string | null>(null);
     const [headerData, setHeaderData] = React.useState<CollectionType | null>(null);
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
+    const [imageUrl, setImageUrl] = React.useState<string | null>(null);
 
     React.useEffect(() => {
         dispatch(clearCursors());
@@ -60,16 +61,25 @@ export default function Collection() {
         })();
     }, [detailData])
 
+    React.useEffect(() => {
+        (async function () {
+            if (headerData) {
+                const imageResponse = (await fetch(getTxEndpoint(headerData.state.image.length > 0 ? headerData.state.image : FALLBACK_IMAGE)));
+                setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
+            }
+        })()
+    }, [headerData])
+
     function checkState() {
         return headerData;
     }
 
     function getCollectionHeader() {
-        if (headerData) {
+        if (headerData && imageUrl) {
             return (
                 <CollectionHeader 
                     id={headerData.id}
-                    image={getTxEndpoint(headerData.state.image.length > 0 ? headerData.state.image : FALLBACK_IMAGE)}
+                    image={imageUrl}
                     title={headerData.state.title}
                     description={headerData.state.description}
                     dateCreated={formatDate(headerData.state.timestamp, "epoch")}

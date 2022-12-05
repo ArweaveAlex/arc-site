@@ -4,6 +4,7 @@ import { STYLING } from "styling-config";
 
 export const Wrapper = styled.footer`
     height: 25vh;
+    min-height: 205px;
     width: 100%;
     position: relative;
     z-index: 2;
@@ -56,13 +57,9 @@ export const ContainerTwo = styled.div`
   }
 `;
 
-export const LogoContainer = styled.div`
-  
-`;
+export const LogoContainer = styled.div``;
 
-export const LogoContent = styled.div`
-  
-`;
+export const LogoContent = styled.div``;
 
 export const LogoHeader = styled.h2`
   color: ${(props) => props.theme.colors.font.primary.base};

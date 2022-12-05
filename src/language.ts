@@ -58,7 +58,8 @@ export const LANGUAGE = {
     collections: {
         header1: `Collections`,
         gridTitles: {
-            all: `All Collections`
+            all: `All Collections`,
+            mostContributed: `Most Active`
         }
     },
     community: `Community`,
@@ -114,6 +115,7 @@ export const LANGUAGE = {
         }
     },
     loading: `Loading`,
+    media: `Media`,
     metaDescriptionContent: `Preserving Culture`,
     messaging: {
         handle: `Handle`,
@@ -141,6 +143,7 @@ export const LANGUAGE = {
     shareArtifact: `Check out this Alex. Artifact !`,
     shareCollection: `Check out this Alex. Collection !`,
     shareUrlLabel: `Share (Copy URL)`,
+    showing: `Showing`,
     social: {
         discord: `Discord`,
         twitter: `Twitter`

@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 
-import { Carousel } from "react-responsive-carousel";
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from "components/molecules/Carousel";
 
 import { getTxEndpoint } from "endpoints";
 import * as urls from "urls";
@@ -15,12 +14,20 @@ import { FALLBACK_IMAGE } from "config";
 function CollectionCard(props: CollectionType) {
 
     const [collectionUrl, setCollectionUrl] = React.useState<string | null>(null);
+    const [imageUrl, setImageUrl] = React.useState<string | null>(null);
 
     React.useEffect(() => {
         setCollectionUrl(`${urls.collection}${props.id}`);
     }, [props.id])
 
-    return collectionUrl ? (
+    React.useEffect(() => {
+        (async function () {
+            const imageResponse = (await fetch(getTxEndpoint(props.state.image.length > 0 ? props.state.image : FALLBACK_IMAGE)));
+            setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
+        })()
+    })
+
+    return collectionUrl && imageUrl ? (
         <S.PCWrapper>
             <S.C1>
                 <S.C1Content>
@@ -49,39 +56,7 @@ export default function LandingCollections(props: { data: CollectionType[] }) {
 
     return (
         <S.Wrapper>
-            <S.Content>
-                <S.Header>
-                    <S.Header1>{LANGUAGE.activeCollections}</S.Header1>
-                </S.Header>
-                <S.Body>
-                    <Carousel
-                        autoPlay={false}
-                        interval={0}
-                        showArrows={false}
-                        showStatus={false}
-                        showThumbs={false}
-                        infiniteLoop={false}
-                        stopOnHover={false}
-                        useKeyboardArrows={false}
-                        swipeScrollTolerance={100}
-                        swipeable={true}
-                        emulateTouch={true}
-                        renderIndicator={(onClickHandler, isSelected, index) => {
-                            return (
-                                <S.Indicator
-                                    onClick={onClickHandler}
-                                    onKeyDown={onClickHandler}
-                                    selected={isSelected}
-                                    value={index}
-                                    key={index}
-                                />
-                            )
-                        }}
-                    >
-                        {getCollections()}
-                    </Carousel>
-                </S.Body>
-            </S.Content>
+            <Carousel title={LANGUAGE.activeCollections} data={getCollections()} />
         </S.Wrapper>
     )
 }

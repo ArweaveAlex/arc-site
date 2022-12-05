@@ -35,6 +35,7 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
                     ansTitle: artifact ? getTagValue(artifact.node.tags, TAGS.keys.ansTitle) : null,
                     minted: artifact ? getTagValue(artifact.node.tags, TAGS.keys.dateCreated) : null,
                     keywords: artifact ? getTagValue(artifact.node.tags, TAGS.keys.keywords) : null,
+                    mediaIds: artifact ? getTagValue(artifact.node.tags, TAGS.keys.mediaIds) : null,
                     poolName: collection ? collection.state.title : null,
                     collectionId: collection ? collection.id : null,
                     dataUrl: response.url,

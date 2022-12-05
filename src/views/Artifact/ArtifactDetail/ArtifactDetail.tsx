@@ -31,20 +31,26 @@ export default function ArtifactDetail(props: IProps) {
             <S.Content>
                 <S.ContentLine>
                     <S.InfoData>
-                        <S.Icons>
+                        <S.DataWrapper>
                             <S.DataLine>
                                 <S.DataHeader>{LANGUAGE.archivist}:&nbsp;</S.DataHeader>
                                 <Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
                             </S.DataLine>
+                        </S.DataWrapper>
+                    </S.InfoData>
+                </S.ContentLine>
+                <S.ContentLine>
+                    <S.InfoData>
+                        <S.DataWrapper>
                             <S.DataLine>
                                 <S.DataHeader>{LANGUAGE.minted}:&nbsp;</S.DataHeader>
                                 <p>{formatDate(props.data.minted, "epoch")}</p>
                             </S.DataLine>
-                            <S.DataLine>
+                            <S.WrapElement>
                                 <S.DataHeader>{LANGUAGE.collection.subheader1}:&nbsp;</S.DataHeader>
                                 <Link to={`${urls.collection}${props.data.collectionId}`}>{props.data.poolName}</Link>
-                            </S.DataLine>
-                        </S.Icons>
+                            </S.WrapElement>
+                        </S.DataWrapper>
                     </S.InfoData>
                 </S.ContentLine>
                 <S.ContentLine>

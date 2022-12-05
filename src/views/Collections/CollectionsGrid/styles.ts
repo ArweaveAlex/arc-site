@@ -16,6 +16,9 @@ export const SubheaderFlex = styled.div`
     display: flex;
     margin: 7.5px 0 20px 0;
     padding: 0 2.5px;
+    margin: 20px 0;
+    justify-content: space-between;
+    // border: 1px solid red;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         flex-direction: column;
         margin: 7.5px 0 0 0;
@@ -24,7 +27,6 @@ export const SubheaderFlex = styled.div`
 
 export const SubheaderContainer = styled.div`
     display: flex;
-    margin: 10px 0 0 0;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         margin: 0 0 7.5px 0;
     }

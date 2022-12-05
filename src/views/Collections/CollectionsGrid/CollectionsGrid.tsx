@@ -13,26 +13,23 @@ import * as S from "./styles";
 function CollectionTile(props: CollectionType) {
 
     const [collectionUrl, setCollectionUrl] = React.useState<string | null>(null);
+    const [imageUrl, setImageUrl] = React.useState<string | null>(null);
 
     React.useEffect(() => {
         setCollectionUrl(`${urls.collection}${props.id}`);
     }, [props.id])
 
+    React.useEffect(() => {
+        (async function () {
+            const imageResponse = (await fetch(getTxEndpoint(props.state.image.length > 0 ? props.state.image : FALLBACK_IMAGE)));
+            setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
+        })()
+    })
+
     return collectionUrl ? (
         <S.PCWrapper>
             <Link to={collectionUrl}>
-                {/* <S.C1>
-                <S.C1Content>
-                    <S.Title>{props.state.title}</S.Title>
-                    <S.Description>{parse(props.state.briefDescription)}</S.Description>
-                </S.C1Content>
-                <Link to={collectionUrl}>
-                    <S.LinkContainer>
-                        <span>{LANGUAGE.viewCollection}</span>
-                    </S.LinkContainer>
-                </Link>
-            </S.C1> */}
-                <S.C2 image={getTxEndpoint(props.state.image.length > 0 ? props.state.image : FALLBACK_IMAGE)} />
+                {imageUrl && <S.C2 image={imageUrl} />}
                 <S.Info>
                     <S.InfoTitle>
                         <p>{props.state.title}</p>
@@ -48,7 +45,7 @@ function CollectionTile(props: CollectionType) {
     ) : null
 }
 
-export default function CollectionsGrid(props: { data: CollectionType[], title: string }) {
+export default function CollectionsGrid(props: { data: CollectionType[], title: string, setCurrentFilter: (filter: any) => void }) {
     function getCollections() {
         return props.data.map((collection: CollectionType) => {
             return (
@@ -61,15 +58,17 @@ export default function CollectionsGrid(props: { data: CollectionType[], title: 
         <S.Wrapper>
             <S.SubheaderFlex>
                 <S.SubheaderContainer>
-                    <S.Subheader1><p>{"Showing:"}</p></S.Subheader1>
+                    <S.Subheader1><p>{`${LANGUAGE.showing}:`}</p></S.Subheader1>
                     &nbsp;
                     <S.Subheader2><p>{props.title}</p></S.Subheader2>
                 </S.SubheaderContainer>
-                &nbsp;
+                {/* <button onClick={() => console.log("update filter")}>
+                    Sort by
+                </button> */}
             </S.SubheaderFlex>
             <S.Body>
                 {getCollections()}
             </S.Body>
         </S.Wrapper>
-    )
+    );
 }

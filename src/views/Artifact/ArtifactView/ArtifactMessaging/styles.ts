@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     position: relative;
 `;
 
-export const Content = styled.div`
+export const PostContent = styled.div`
     height: fit-content;
     width: 650px;
     max-width: 90vw;
@@ -79,3 +79,35 @@ export const Message = styled(InfoData)`
         white-space: normal;
     }
 `;
+
+export const MediaWrapper = styled.div`
+    width: 650px;
+    max-width: 90vw;
+    margin: 0 auto;
+`;
+
+export const MediaElement = styled.div``;
+
+export const MediaContent = styled.div`
+    height: 650px;
+    width: 100%;
+    margin: 5px auto;
+    overflow: hidden;
+    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    background: ${(props) => props.theme.colors.overlay.secondary};
+    border-radius: ${STYLING.dimensions.borderRadius};
+`;
+
+export const ImageContent = styled(MediaContent)<{ image: string }>`
+    background-image: ${(props) => `url("${props.image}")`};
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+`;
+
+export const VideoContent = styled.video`
+    height: 100%;
+    width: 100%;
+`;
+
+export const VideoSource = styled.source``;

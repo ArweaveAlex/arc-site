@@ -149,21 +149,27 @@ export const RawDataCopied = styled.div`
         color: ${(props) => props.theme.colors.font.primary.alt4};
         white-space: nowrap;
     }
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        
-    }
 `;
 
-export const Icons = styled.div`
+export const DataWrapper = styled.div`
     height: 100%;
     width: 100%;
     display: flex;
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        flex-direction: column;
+    }
 `;
 
 export const DataLine = styled.div`
     display: flex;
     align-items: center;
     margin: 0 20px 0 0;
+`;
+
+export const WrapElement = styled(DataLine)`
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        margin: 10px 0 0 0;            
+    }
 `;
 
 export const DataHeader = styled.p`

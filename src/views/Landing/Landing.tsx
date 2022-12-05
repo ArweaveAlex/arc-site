@@ -19,7 +19,7 @@ export default function Landing() {
 
     React.useEffect(() => {
         (async function () {
-            setData(sortByMostContributed(await getCollections()));
+            setData(sortByMostContributed(await getCollections(), 5));
         })()
     }, [])
 

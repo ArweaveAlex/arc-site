@@ -7,11 +7,13 @@ import { CollectionsGrid } from "./CollectionsGrid";
 
 import { Loader } from "components/atoms/Loader";
 
-import { LANGUAGE } from "language";
+import { CollectionType } from "types";
+import { collectionFilters } from "config";
 import * as S from "./styles";
 
 export default function Collections() {
-    const [data, setData] = React.useState<any>(null);
+    const [data, setData] = React.useState<CollectionType[] | null>(null);
+    const [currentFilter, setCurrentFilter] = React.useState(collectionFilters[0]);
 
     React.useEffect(() => {
         (async function () {
@@ -20,14 +22,14 @@ export default function Collections() {
         })()
     }, [])
 
-    function getTitle() {
-        return LANGUAGE.collections.gridTitles.all
-    }
-
     return data ? (
         <S.Wrapper>
             <CollectionsHeader />
-            <CollectionsGrid data={data} title={getTitle()}/>
+            <CollectionsGrid 
+                data={currentFilter.fn(data!)} 
+                title={currentFilter.title}
+                setCurrentFilter={(filter) => setCurrentFilter(filter)}
+            />
         </S.Wrapper>
     ) : <Loader />
 }

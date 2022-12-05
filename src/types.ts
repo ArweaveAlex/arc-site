@@ -25,6 +25,7 @@ export interface ArtifactType {
   minted: NStringType
   keywords: NStringType
   poolName: NStringType
+  mediaIds: NStringType
   collectionId: NStringType
   dataUrl: NStringType
   dataSize: NStringType
