@@ -1,32 +1,32 @@
 import React from "react";
 
-import { getCollections } from "gql/collections";
+import { getPools } from "gql/pools";
 
 import { Loader } from "components/atoms/Loader";
 
 import { LandingHeader } from "./LandingHeader";
-import { LandingCollections } from "./LandingCollections";
+import { LandingPools } from "./LandingPools";
 import { LandingInfo } from "./LandingInfo";
 import { LandingSteps } from "./LandingSteps";
 
-import { CollectionType } from "types";
-import { sortByMostContributed } from "collection-filters";
+import { PoolType } from "types";
+import { sortByMostContributed } from "filters/pools";
 import * as S from "./styles";
 
 export default function Landing() {
 
-    const [data, setData] = React.useState<CollectionType[] | null>(null);
+    const [data, setData] = React.useState<PoolType[] | null>(null);
 
     React.useEffect(() => {
         (async function () {
-            setData(sortByMostContributed(await getCollections(), 5));
+            setData(sortByMostContributed(await getPools(), 5));
         })()
     }, [])
 
     return data ? (
         <S.Wrapper>
             <LandingHeader />
-            <LandingCollections data={data} />
+            <LandingPools data={data} />
             <LandingInfo />
             <LandingSteps />
         </S.Wrapper>

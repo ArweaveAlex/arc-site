@@ -26,7 +26,7 @@ export interface ArtifactType {
   keywords: NStringType
   poolName: NStringType
   mediaIds: NStringType
-  collectionId: NStringType
+  poolId: NStringType
   dataUrl: NStringType
   dataSize: NStringType
   rawData: NStringType
@@ -41,7 +41,7 @@ export type ArtifactQueryType = {
 }
 
 export type ArtifactArgsType = {
-  collectionIds: string[] | null
+  poolIds: string[] | null
   owner: string | null
   cursor: string | null
   reduxCursor: string | null
@@ -53,12 +53,12 @@ export type ArtifactResponseType = {
   contracts: GQLResponseType[]
 }
 
-export interface CollectionType {
+export interface PoolType {
   id: string
-  state: CollectionStateType
+  state: PoolStateType
 }
 
-export interface CollectionStateType {
+export interface PoolStateType {
   title: string
   image: string
   briefDescription: string
@@ -113,7 +113,7 @@ export type TableHeaderType = { [key: string]: { width: string, align: AlignType
 export type ArtifactTableRowType = {
   type: React.ReactNode
   title: React.ReactNode
-  collection?: React.ReactNode
+  pool?: React.ReactNode
   dateCreated?: string
   bookmark?: React.ReactNode
 }
@@ -130,3 +130,4 @@ export type BookmarkResponseType = {
 
 export type TagFilterType = { name: string, values: string[] }
 export type ContributionType = { timestamp: string, qty: string }
+export type PoolFilterType = { title: string, fn: (data: any) => any }

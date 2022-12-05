@@ -1,1 +1,0 @@
-export { default as CollectionContributors } from "./CollectionContributors";

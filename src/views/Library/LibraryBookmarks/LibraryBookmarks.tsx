@@ -20,7 +20,7 @@ export default function LibraryBookmarks() {
         (async function () {
             if (id) {
                 setData(await getArtifactsByBookmarks({
-                    collectionIds: null,
+                    poolIds: null,
                     owner: id,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.libraryBookmarks
@@ -44,7 +44,7 @@ export default function LibraryBookmarks() {
                     <ArtifactTable 
                         data={data} 
                         showBookmarks={false}
-                        showCollectionId={true}
+                        showPoolsId={true}
                         handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
                         cursors={{
                             next: data.nextCursor,

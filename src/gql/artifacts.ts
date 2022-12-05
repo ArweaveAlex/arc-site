@@ -6,13 +6,13 @@ import {
     ArtifactArgsType,
     ArtifactResponseType,
     BookmarkResponseType,
-    CollectionType,
+    PoolType,
     GQLResponseType,
     TagFilterType
 } from "types";
 import { getDataByTags, getDataByTxIds } from "gql";
 import { getTxEndpoint } from "endpoints";
-import { getCollectionById, getCollectionIds } from "./collections";
+import { getPoolsById, getPoolsIds } from "./pools";
 import { getTagValue } from "utils";
 import { LANGUAGE } from "language";
 import { TAGS, STORAGE } from "config";
@@ -22,7 +22,7 @@ const arClient = new ArweaveClient();
 export async function getArtifactById(artifactId: string): Promise<ArtifactType | null> {
     const artifact: GQLResponseType = (await getDataByTxIds([artifactId]))[0];
 
-    let collection: CollectionType | null = await getCollectionById(getTagValue(artifact.node.tags, TAGS.keys.collectionId));
+    let pool: PoolType | null = await getPoolsById(getTagValue(artifact.node.tags, TAGS.keys.poolId));
 
     try {
         const response = await fetch(getTxEndpoint(artifactId));
@@ -36,8 +36,8 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
                     minted: artifact ? getTagValue(artifact.node.tags, TAGS.keys.dateCreated) : null,
                     keywords: artifact ? getTagValue(artifact.node.tags, TAGS.keys.keywords) : null,
                     mediaIds: artifact ? getTagValue(artifact.node.tags, TAGS.keys.mediaIds) : null,
-                    poolName: collection ? collection.state.title : null,
-                    collectionId: collection ? collection.id : null,
+                    poolName: pool ? pool.state.title : null,
+                    poolId: pool ? pool.id : null,
                     dataUrl: response.url,
                     dataSize: artifact ? artifact.node.data.size : null,
                     rawData: await response.text(),
@@ -58,10 +58,10 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
     }
 }
 
-export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<ArtifactResponseType> {
+export async function getArtifactsByPools(args: ArtifactArgsType): Promise<ArtifactResponseType> {
     let tagFilters: TagFilterType[] = [{
-        name: TAGS.keys.collectionId,
-        values: args.collectionIds!
+        name: TAGS.keys.poolId,
+        values: args.poolIds!
     }];
 
     if (args.owner) {
@@ -95,9 +95,9 @@ export async function getArtifactsByCollection(args: ArtifactArgsType): Promise<
 }
 
 export async function getArtifactsByUser(args: ArtifactArgsType) {
-    const collectionIds = await getCollectionIds();
-    const artifacts = await getArtifactsByCollection({ 
-        collectionIds: collectionIds, 
+    const poolIds = await getPoolsIds();
+    const artifacts = await getArtifactsByPools({ 
+        poolIds: poolIds, 
         owner: args.owner, 
         cursor: args.cursor,
         reduxCursor: args.reduxCursor

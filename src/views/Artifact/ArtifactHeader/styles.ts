@@ -116,7 +116,7 @@ export const InfoOwner = styled(InfoStyled)`
     width: 15%;
 `;
 
-export const InfoCollection = styled(InfoStyled)`
+export const InfoPools = styled(InfoStyled)`
     width: 20%;
 `;
 

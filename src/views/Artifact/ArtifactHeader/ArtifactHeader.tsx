@@ -43,12 +43,12 @@ export default function ArtifactHeader(props: IProps) {
                                 <Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
                             </>
                         </S.InfoOwner>
-                        <S.InfoCollection>
+                        <S.InfoPools>
                             <>
-                                <ReactSVG src={ASSETS.collection} />
-                                <Link to={`${urls.collection}${props.data.collectionId}`}>{props.data.poolName}</Link>
+                                <ReactSVG src={ASSETS.pool} />
+                                <Link to={`${urls.pool}${props.data.poolId}`}>{props.data.poolName}</Link>
                             </>
-                        </S.InfoCollection>
+                        </S.InfoPools>
                     </S.Info>
                     <S.Body>
                         <Tabs onTabPropClick={(label: string) => props.onTabPropClick(label)}>

@@ -6,7 +6,7 @@ import { AccountContributions } from "views/Account/AccountContributions";
 import { LibraryAll } from "views/Library/LibraryAll";
 import { LibraryBookmarks } from "views/Library/LibraryBookmarks";
 
-import * as filters from "collection-filters";
+import * as filters from "filters/pools";
 import * as urls from "urls";
 import { LANGUAGE } from "language";
 
@@ -21,7 +21,7 @@ export const TAGS = {
         dateCreated: "Date-Created",
         keywords: "Keywords",
         initialOwner: "Initial-Owner",
-        collectionId: "Pool-Id",
+        poolId: "Pool-Id",
         uploaderTxId: "Uploader-Tx-Id",
         contractSrc: "Contract-Src",
         mediaIds: "Media-Ids"
@@ -30,7 +30,7 @@ export const TAGS = {
         defaultArtifactType: "Alex-Default",
         messagingArtifactType: "Alex-Messaging",
         webpageArtifactType: "Alex-Webpage",
-        collectionVersions: {
+        poolVersions: {
             "1.2": "Alex-Archiving-Pool-v1.2",
             "1.4": "Alex-Archiving-Pool-v1.4"
         }
@@ -51,7 +51,6 @@ export const ASSETS = {
     bookmarks: `${ASSET_SRC}/bookmarks.svg`,
     bookmarkSelected: `${ASSET_SRC}/bookmark-selected.svg`,
     close: `${ASSET_SRC}/close.svg`,
-    collection: `${ASSET_SRC}/collection.svg`,
     contributions: `${ASSET_SRC}/contributions.svg`,
     copy: `${ASSET_SRC}/copy.svg`,
     cycle: `${ASSET_SRC}/cycle.png`,
@@ -70,6 +69,7 @@ export const ASSETS = {
     menu: `${ASSET_SRC}/menu.svg`,
     mint: `${ASSET_SRC}/mint.svg`,
     owner: `${ASSET_SRC}/owner.svg`,
+    pool: `${ASSET_SRC}/pool.svg`,
     share: `${ASSET_SRC}/share.svg`,
     shareLink: `${ASSET_SRC}/share-link.svg`,
     social: {
@@ -156,9 +156,17 @@ export const MEDIA_TYPES = {
     png: "png"
 }
 
-export const collectionFilters = [
+export const POOL_FILTERS = [
     {
-        title: LANGUAGE.collections.gridTitles.mostContributed,
-        fn: (data: any) => filters.sortByMostContributed(data, null)
+        title: LANGUAGE.pools.gridTitles.mostContributed,
+        fn: (data: any) => filters.sortByMostContributed(data, 5)
+    },
+    {
+        title: LANGUAGE.pools.gridTitles.new,
+        fn: (data: any) => filters.sortByNew(data, 5)
+    },
+    {
+        title: LANGUAGE.pools.gridTitles.all,
+        fn: (data: any) => filters.sortByAll(data, null)
     }
 ]

@@ -20,7 +20,7 @@ export default function LibraryAll() {
         (async function () {
             if (id) {
                 setData(await getArtifactsByUser({
-                    collectionIds: null,
+                    poolIds: null,
                     owner: id,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.libraryAll
@@ -44,7 +44,7 @@ export default function LibraryAll() {
                     <ArtifactTable 
                         data={data} 
                         showBookmarks={false}
-                        showCollectionId={true}
+                        showPoolsId={true}
                         handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
                         cursors={{
                             next: data.nextCursor,

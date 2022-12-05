@@ -14,7 +14,7 @@ export const initStateCursors: CursorsType = {
         next: null,
         cursors: []
     },
-    [REDUX_CURSORS.collectionAll]: {
+    [REDUX_CURSORS.poolAll]: {
         previous: null,
         next: null,
         cursors: []
@@ -48,10 +48,10 @@ export function cursorsReducer(
                     next: action.payload[REDUX_CURSORS.accountBookmarks]?.next ?? state[REDUX_CURSORS.accountBookmarks].next,
                     cursors: action.payload[REDUX_CURSORS.accountBookmarks]?.cursors ?? state[REDUX_CURSORS.accountBookmarks].cursors
                 },
-                [REDUX_CURSORS.collectionAll]: {
-                    previous: action.payload[REDUX_CURSORS.collectionAll]?.previous ?? state[REDUX_CURSORS.collectionAll].previous,
-                    next: action.payload[REDUX_CURSORS.collectionAll]?.next ?? state[REDUX_CURSORS.collectionAll].next,
-                    cursors: action.payload[REDUX_CURSORS.collectionAll]?.cursors ?? state[REDUX_CURSORS.collectionAll].cursors
+                [REDUX_CURSORS.poolAll]: {
+                    previous: action.payload[REDUX_CURSORS.poolAll]?.previous ?? state[REDUX_CURSORS.poolAll].previous,
+                    next: action.payload[REDUX_CURSORS.poolAll]?.next ?? state[REDUX_CURSORS.poolAll].next,
+                    cursors: action.payload[REDUX_CURSORS.poolAll]?.cursors ?? state[REDUX_CURSORS.poolAll].cursors
                 },
                 [REDUX_CURSORS.libraryAll]: {
                     previous: action.payload[REDUX_CURSORS.libraryAll]?.previous ?? state[REDUX_CURSORS.libraryAll].previous,
@@ -66,7 +66,7 @@ export function cursorsReducer(
             })
         case CLEAR_CURSORS:
             return Object.assign({}, state, {
-                [REDUX_CURSORS.collectionAll]: {
+                [REDUX_CURSORS.poolAll]: {
                     previous: null,
                     next: null,
                     cursors: []

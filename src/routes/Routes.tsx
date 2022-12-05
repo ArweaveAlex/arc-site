@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { View } from "wrappers/View";
 
 import { Landing } from "views/Landing";
-import { Collection } from "views/Collection";
-import { Collections } from "views/Collections";
+import { Pool } from "views/Pool";
+import { Pools } from "views/Pools";
 import { Artifact } from "views/Artifact";
 import { Account } from "views/Account";
 import { Library } from "views/Library";
@@ -20,14 +20,14 @@ export default function _Routes() {
           <Landing />
         </View>
       } />
-      <Route path={`${urls.collection}:id`} element={
+      <Route path={`${urls.pool}:id`} element={
         <View>
-          <Collection />
+          <Pool />
         </View>
       } />
-      <Route path={urls.collections} element={
+      <Route path={urls.pools} element={
         <View>
-          <Collections />
+          <Pools />
         </View>
       } />
       <Route path={`${urls.library}:id/:active`} element={

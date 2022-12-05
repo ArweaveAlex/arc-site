@@ -2,7 +2,7 @@ import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
 import { getArtifactsByUser } from "gql/artifacts";
-import { getCollections } from "gql/collections";
+import { getPools } from "gql/pools";
 import { getDataByTags } from "gql";
 import { Buffer } from 'buffer';
 
@@ -50,16 +50,16 @@ export default class ArweaveClient {
         }
     }
 
-    async calcLastContributions(userWallet: string, collections: any[]) {
+    async calcLastContributions(userWallet: string, pools: any[]) {
         let contributions = await getArtifactsByUser({
-            collectionIds: null,
+            poolIds: null,
             owner: userWallet,
             cursor: null,
             reduxCursor: null
         });
         let conMap: any = {};
 
-        for (let i = 0; i < collections.length; i++) {
+        for (let i = 0; i < pools.length; i++) {
             let lastDate = 0;
             for (let j = 0; j < contributions.contracts.length; j++) {
                 for (let k = 0; k < contributions.contracts[j].node.tags.length; k++) {
@@ -68,7 +68,7 @@ export default class ArweaveClient {
                         let v = parseInt(tag.value);
                         if (v > lastDate) {
                             lastDate = v;
-                            conMap[collections[i].id] = v;
+                            conMap[pools[i].id] = v;
                         }
                     }
                 }
@@ -79,19 +79,19 @@ export default class ArweaveClient {
     }
 
     async getUserContributions(userWallet: string) {
-        let collections = await getCollections();
-        let lastContributions: any = await this.calcLastContributions(userWallet, collections);
-        return collections.filter((collection: any) => {
-            if (collection.state.contributors.hasOwnProperty(userWallet)) {
+        let pools = await getPools();
+        let lastContributions: any = await this.calcLastContributions(userWallet, pools);
+        return pools.filter((pool: any) => {
+            if (pool.state.contributors.hasOwnProperty(userWallet)) {
                 return true;
             }
             return false;
-        }).map((collection: any) => {
-            let collectionElement = collection;
-            collectionElement.totalContributed = this.calcARDonated(userWallet, collection);
-            collectionElement.lastContribution = lastContributions[collection.id];
-            collectionElement.receivingPercent = this.calcReceivingPercent(userWallet, collection);
-            return collectionElement;
+        }).map((pool: any) => {
+            let poolElement = pool;
+            poolElement.totalContributed = this.calcARDonated(userWallet, pool);
+            poolElement.lastContribution = lastContributions[pool.id];
+            poolElement.receivingPercent = this.calcReceivingPercent(userWallet, pool);
+            return poolElement;
         });
     }
 
@@ -135,18 +135,18 @@ export default class ArweaveClient {
         return Math.floor(+this.arweavePost.ar.winstonToAr(amount) * 1e6) / 1e6
     }
 
-    async handlePoolContribute(collectionId: string, amount: number, availableBalance: number): Promise<ContributionResultType> {
+    async handlePoolContribute(poolId: string, amount: number, availableBalance: number): Promise<ContributionResultType> {
         if (!availableBalance) {
             return { status: false, message: LANGUAGE.walletNotConnected };
         }
         if (amount > availableBalance) {
-            return { status: false, message: LANGUAGE.collection.contribute.notEnoughFunds };
+            return { status: false, message: LANGUAGE.pool.contribute.notEnoughFunds };
         }
         try {
             const arweaveContract: GQLResponseType = (await getDataByTags({
-                tagFilters: [{ name: TAGS.keys.uploaderTxId, values: [collectionId] }], cursor: null, reduxCursor: null
+                tagFilters: [{ name: TAGS.keys.uploaderTxId, values: [poolId] }], cursor: null, reduxCursor: null
             }))[0];
-            const fetchId = arweaveContract ? arweaveContract.node.id : collectionId;
+            const fetchId = arweaveContract ? arweaveContract.node.id : poolId;
             const { data: contractData }: { data: any; } = await this.arweavePost.api.get(`/${fetchId}`);
             
             let owner = contractData.owner;
@@ -154,9 +154,9 @@ export default class ArweaveClient {
                 owner = JSON.parse(Buffer.from(contractData.data, 'base64').toString("utf-8")).owner;
             }
             if (!owner) {
-                return { status: false, message: LANGUAGE.collection.contribute.failed };
+                return { status: false, message: LANGUAGE.pool.contribute.failed };
             }
-            const smartweaveContract = this.smartweave.contract(collectionId).connect("use_wallet").setEvaluationOptions({
+            const smartweaveContract = this.smartweave.contract(poolId).connect("use_wallet").setEvaluationOptions({
                 waitForConfirmation: false,
             });
             const result = await smartweaveContract.writeInteraction<any>(
@@ -165,15 +165,15 @@ export default class ArweaveClient {
                 winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
             });
             if (!result) {
-                return { status: false, message: LANGUAGE.collection.contribute.failed };
+                return { status: false, message: LANGUAGE.pool.contribute.failed };
             }
 
-            return { status: true, message: LANGUAGE.collection.contribute.success };
+            return { status: true, message: LANGUAGE.pool.contribute.success };
 
         }
         catch (error: any) {
             console.error(error)
-            return { status: false, message: LANGUAGE.collection.contribute.failed };
+            return { status: false, message: LANGUAGE.pool.contribute.failed };
         }
     }
 }

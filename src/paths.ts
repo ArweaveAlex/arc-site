@@ -4,8 +4,8 @@ import { LANGUAGE } from "./language";
 
 export const NAV_PATHS = [
     {
-        name: LANGUAGE.paths.collections, 
-        href: urls.collections
+        name: LANGUAGE.paths.pools, 
+        href: urls.pools
     }
 ]
 

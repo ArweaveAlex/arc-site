@@ -14,24 +14,24 @@ export default function ContributionsList({ data }: any) {
                 </S.HeaderFlex>
             </S.Header>
             <S.List>
-                {data.map((collection: any, index: number) => {
+                {data.map((pool: any, index: number) => {
                     return (
                         <S.Link  key={index}>
-                            <Link to={getHashUrl(`${urls.collection}${collection.id}`)}>
+                            <Link to={getHashUrl(`${urls.pool}${pool.id}`)}>
                                 <S.ListItemWrapper>
                                     <S.LIHeaderContainer>
-                                        <S.LIHeader1>{collection.state.title}</S.LIHeader1>
+                                        <S.LIHeader1>{pool.state.title}</S.LIHeader1>
                                         <S.SubheaderFlex>
                                             <S.SubheaderContainer>
-                                                <S.Subheader1><p>{LANGUAGE.collection.subheader1}</p></S.Subheader1>
+                                                <S.Subheader1><p>{LANGUAGE.pool.subheader1}</p></S.Subheader1>
                                                 &nbsp;
-                                                <S.ID><p>{formatAddress(collection.id, false)}</p></S.ID>
+                                                <S.ID><p>{formatAddress(pool.id, false)}</p></S.ID>
                                             </S.SubheaderContainer>
                                             &nbsp;
                                             <S.SubheaderContainer>
-                                                <S.Subheader1><p>{LANGUAGE.collection.createdOn}</p></S.Subheader1>
+                                                <S.Subheader1><p>{LANGUAGE.pool.createdOn}</p></S.Subheader1>
                                                 &nbsp;
-                                                <S.Date><p>{formatDate(collection.state.timestamp, "epoch")}</p></S.Date>
+                                                <S.Date><p>{formatDate(pool.state.timestamp, "epoch")}</p></S.Date>
                                             </S.SubheaderContainer>
                                         </S.SubheaderFlex>
                                     </S.LIHeaderContainer>
@@ -39,17 +39,17 @@ export default function ContributionsList({ data }: any) {
                                         <S.LIBodyFlex>
                                             <S.LIBodyHeader>{LANGUAGE.totalContributed}:</S.LIBodyHeader>
                                             &nbsp;
-                                            <S.LIBodyData>{`${collection.totalContributed} ${LANGUAGE.arTokens}`}</S.LIBodyData>
+                                            <S.LIBodyData>{`${pool.totalContributed} ${LANGUAGE.arTokens}`}</S.LIBodyData>
                                         </S.LIBodyFlex>
                                         <S.LIBodyFlex>
                                             <S.LIBodyHeader>{LANGUAGE.lastContribution}:</S.LIBodyHeader>
                                             &nbsp;
-                                            <S.LIBodyData>{formatDate(collection.lastContribution, "epoch")}</S.LIBodyData>
+                                            <S.LIBodyData>{formatDate(pool.lastContribution, "epoch")}</S.LIBodyData>
                                         </S.LIBodyFlex>
                                         <S.LIBodyFlex>
                                             <S.LIBodyHeader>{LANGUAGE.receiving}:</S.LIBodyHeader>
                                             &nbsp;
-                                            <S.LIBodyData>{collection.receivingPercent}% {LANGUAGE.artifactsCreated}</S.LIBodyData>
+                                            <S.LIBodyData>{pool.receivingPercent}% {LANGUAGE.artifactsCreated}</S.LIBodyData>
                                         </S.LIBodyFlex>
                                     </S.LIBodyContainer>
                                 </S.ListItemWrapper>

@@ -20,7 +20,7 @@ export default function AccountAll() {
         (async function () {
             if (arProvider.walletAddress) {
                 setData(await getArtifactsByUser({
-                    collectionIds: null,
+                    poolIds: null,
                     owner: arProvider.walletAddress,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.accountAll
@@ -44,7 +44,7 @@ export default function AccountAll() {
                     <ArtifactTable
                         data={data}
                         showBookmarks={true}
-                        showCollectionId={true}
+                        showPoolsId={true}
                         handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
                         cursors={{
                             next: data.nextCursor,

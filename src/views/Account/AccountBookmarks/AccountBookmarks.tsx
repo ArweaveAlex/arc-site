@@ -21,7 +21,7 @@ export default function AccountBookmarks() {
         (async function () {
             if (arProvider.walletAddress) {
                 setData(await getArtifactsByBookmarks({
-                    collectionIds: null,
+                    poolIds: null,
                     owner: arProvider.walletAddress,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.accountBookmarks
@@ -45,7 +45,7 @@ export default function AccountBookmarks() {
                     <ArtifactTable 
                         data={data} 
                         showBookmarks={true}
-                        showCollectionId={true}
+                        showPoolsId={true}
                         handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
                         cursors={{
                             next: data.nextCursor,
