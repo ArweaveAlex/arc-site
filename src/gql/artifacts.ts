@@ -10,7 +10,7 @@ import {
     GQLResponseType,
     TagFilterType
 } from "types";
-import { getDataByTags, getDataByTxIds } from "gql";
+import { getGQLData } from "gql";
 import { getTxEndpoint } from "endpoints";
 import { getPoolById, getPoolIds } from "./pools";
 import { getTagValue } from "utils";
@@ -20,7 +20,13 @@ import { TAGS, STORAGE } from "config";
 const arClient = new ArweaveClient();
 
 export async function getArtifactById(artifactId: string): Promise<ArtifactType | null> {
-    const artifact: GQLResponseType = (await getDataByTxIds([artifactId]))[0];
+    const artifact: GQLResponseType = (await getGQLData({
+        ids: [artifactId],
+        tagFilters: null,
+        uploader: null,
+        cursor: null,
+        reduxCursor: null
+    }))[0];
 
     let pool: PoolType | null = await getPoolById(getTagValue(artifact.node.tags, TAGS.keys.poolId));
 
@@ -58,7 +64,7 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
     }
 }
 
-export async function getArtifactsByPools(args: ArtifactArgsType): Promise<ArtifactResponseType> {
+export async function getArtifactsByPool(args: ArtifactArgsType): Promise<ArtifactResponseType> {
     let tagFilters: TagFilterType[] = [{
         name: TAGS.keys.poolId,
         values: args.poolIds!
@@ -71,8 +77,10 @@ export async function getArtifactsByPools(args: ArtifactArgsType): Promise<Artif
         });
     }
 
-    const artifacts: GQLResponseType[] = (await getDataByTags({
+    const artifacts: GQLResponseType[] = (await getGQLData({
+        ids: null,
         tagFilters: tagFilters,
+        uploader: args.uploader,
         cursor: args.cursor,
         reduxCursor: args.reduxCursor
     })).filter((element: GQLResponseType) => {
@@ -96,9 +104,11 @@ export async function getArtifactsByPools(args: ArtifactArgsType): Promise<Artif
 
 export async function getArtifactsByUser(args: ArtifactArgsType) {
     const poolIds = await getPoolIds();
-    const artifacts = await getArtifactsByPools({ 
-        poolIds: poolIds, 
-        owner: args.owner, 
+
+    const artifacts = await getArtifactsByPool({
+        poolIds: poolIds,
+        owner: args.owner,
+        uploader: null,
         cursor: args.cursor,
         reduxCursor: args.reduxCursor
     });
@@ -120,8 +130,14 @@ export async function getArtifactsByBookmarks(args: ArtifactArgsType): Promise<A
             bookmarkIds = [];
         }
     }
-
-    const artifacts: GQLResponseType[] = await getDataByTxIds(bookmarkIds);
+    
+    const artifacts: GQLResponseType[] = await getGQLData({
+        ids: bookmarkIds,
+        tagFilters: null,
+        uploader: null,
+        cursor: null,
+        reduxCursor: null
+    });
 
     return ({
         nextCursor: args.cursor,
@@ -132,10 +148,12 @@ export async function getArtifactsByBookmarks(args: ArtifactArgsType): Promise<A
 }
 
 export async function getBookmarks(owner: string): Promise<string[]> {
-    const bookmarks: GQLResponseType[] = await getDataByTags({
+    const bookmarks: GQLResponseType[] = await getGQLData({
+        ids: null,
         tagFilters: [
             { name: TAGS.keys.bookmarkSearch, values: [owner] }
         ],
+        uploader: null,
         cursor: null,
         reduxCursor: null
     });
@@ -167,16 +185,11 @@ export async function setBookmarks(owner: string, ids: string[]): Promise<Bookma
     txRes.addTag(TAGS.keys.dateCreated, Date.now().toString());
     txRes.addTag(TAGS.keys.bookmarkIds, JSON.stringify(ids));
 
-    try {
-        await arClient.arweavePost.transactions.sign(txRes, "use_wallet");
-    }
-    catch (error: any) {
-        console.error(error)
-    }
+    console.log(txRes)
 
-    const response = await arClient.arweavePost.transactions.post(txRes);
+    const response = await global.window.arweaveWallet.dispatch(txRes);
 
-    if (response.status === 200) {
+    if (response.id) {
         store.dispatch(artifactActions.setBookmarks({
             owner: owner,
             ids: ids
@@ -184,7 +197,7 @@ export async function setBookmarks(owner: string, ids: string[]): Promise<Bookma
     }
 
     return ({
-        status: response.status,
-        message: response.status === 200 ? LANGUAGE.bookmarksUpdated : LANGUAGE.errorOccurred
+        status: response.id ? 200 : 500,
+        message: response.id ? LANGUAGE.bookmarksUpdated : LANGUAGE.errorOccurred
     })
 }

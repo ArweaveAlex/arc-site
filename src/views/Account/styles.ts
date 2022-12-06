@@ -4,7 +4,9 @@ import { open, fadeIn2 } from "animations";
 import { STYLING } from "styling-config";
 
 export const Message = styled.div`
-    margin: calc(20px + ${STYLING.dimensions.navHeight}) 0 0 20px;
+    margin: calc(20px + ${STYLING.dimensions.navHeight}) auto 0 auto;
+    padding: 0 20px;
+    max-width: ${STYLING.cutoffs.max};
 `;
 
 export const Wrapper = styled.div`

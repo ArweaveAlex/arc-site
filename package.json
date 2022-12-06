@@ -14,7 +14,6 @@
     "arweave": "^1.11.6",
     "constants-browserify": "^1.0.0",
     "crypto-browserify": "^3.12.0",
-    "gql-query-builder": "^3.7.2",
     "html-react-parser": "^3.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

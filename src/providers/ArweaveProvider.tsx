@@ -30,7 +30,7 @@ const DEFAULT_CONTEXT = {
     },
     walletModalVisible: false,
     setWalletModalVisible(_open: boolean) {
-        console.error('Make sure to render ArweaveProvider as an ancestor of the component that uses ARContext.Provider');
+        console.error("Make sure to render ArweaveProvider as an ancestor of the component that uses ARContext.Provider");
     },
 }
 

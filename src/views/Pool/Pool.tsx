@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { getPoolById, getPoolCount } from "gql/pools";
-import { getArtifactsByPools } from "gql/artifacts";
+import { getArtifactsByPool } from "gql/artifacts";
 
 import { Loader } from "components/atoms/Loader";
 
@@ -38,9 +38,17 @@ export default function Pool() {
         (async function () {
             if (id) {
                 setHeaderData(await getPoolById(id));
-                setDetailData((await getArtifactsByPools({
+            }
+        })();
+    }, [id, cursor])
+
+    React.useEffect(() => {
+        (async function () {
+            if (id && headerData) {
+                setDetailData((await getArtifactsByPool({
                     poolIds: [id],
                     owner: null,
+                    uploader: headerData.state.owner,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.poolAll
                 })));
@@ -48,9 +56,9 @@ export default function Pool() {
         })();
         /*  ESLint used to avoid warning with detailData.nextCursor not being used in dependency array
             By adding detailData.nextCursor to dependency array this effect will continue to run
-            getArtifactsByPools and return each subsequent query set */
+            getArtifactsByPool and return each subsequent query set */
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id, cursor])
+    }, [headerData, cursor])
 
     React.useEffect(() => {
         (async function () {

@@ -10,7 +10,7 @@ export default function ArtifactWebpage(props: IProps) {
 
     React.useEffect(() => {
         if (props.data && props.data.rawData) {
-            setData((new DOMParser()).parseFromString(props.data.rawData, 'text/html').body.innerHTML)
+            setData((new DOMParser()).parseFromString(props.data.rawData, "text/html").body.innerHTML)
         }
     }, [props.data])
 

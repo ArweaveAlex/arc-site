@@ -5,10 +5,10 @@ import { STYLING } from "styling-config";
 
 export const Wrapper = styled.div`
     width: 100%;
-    animation: ${open} ${fadeIn2};
     padding: 0 20px 20px 20px;
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
+    animation: ${open} ${fadeIn2};
     margin: 0 auto;
     overflow: hidden;
 `;
@@ -126,6 +126,7 @@ export const DC2 = styled.div`
 export const PCWrapper = styled.div`
     height: 400px;
     width: calc(33.3% - 50px);
+    animation: ${open} ${fadeIn2};
     margin: 25px;
     background: ${(props) => props.theme.colors.container.primary.background};
     position: relative;

@@ -4,12 +4,13 @@ import {
     PoolType
 } from "types";
 import { getRedstoneSrcTxEndpoint } from "endpoints";
-import { getDataByTags } from "gql";
+import { getGQLData } from "gql";
 import { getTagValue } from "utils";
 import { TAGS } from "config";
 
 export async function getPoolIds() {
-    const pools: GQLResponseType[] = await getDataByTags({
+    const pools: GQLResponseType[] = await getGQLData({
+        ids: null,
         tagFilters: [
             {
                 name: TAGS.keys.appType, 
@@ -18,7 +19,8 @@ export async function getPoolIds() {
                     TAGS.values.poolVersions["1.4"]
                 ]
             }
-        ], 
+        ],
+        uploader: null,
         cursor: null,
         reduxCursor: null
     });

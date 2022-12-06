@@ -29,6 +29,7 @@ export default function AccountAll() {
                 setData(await getArtifactsByUser({
                     poolIds: null,
                     owner: arProvider.walletAddress,
+                    uploader: null,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.accountAll
                 }));

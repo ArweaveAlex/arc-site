@@ -29,6 +29,7 @@ export default function LibraryAll() {
                 setData(await getArtifactsByUser({
                     poolIds: null,
                     owner: id,
+                    uploader: null,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.libraryAll
                 }));

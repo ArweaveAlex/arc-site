@@ -48,7 +48,7 @@ export function formatDate(dateArg: string | null, dateType: DateType) {
             break;
     }
 
-    return `${date.toLocaleString('default', { month: 'long' })} 
+    return `${date.toLocaleString("default", { month: "long" })} 
             ${date.getDate()}, ${date.getUTCFullYear()} @ 
             ${formatTime(date.getUTCHours())}:${formatTime(date.getUTCMinutes())}:${formatTime(date.getUTCSeconds())}`;
 }
@@ -81,4 +81,8 @@ export function checkNullValues(obj: any) {
         }
     }
     return false;
+}
+
+export function unquoteJsonKeys(json: Object): string {
+    return JSON.stringify(json).replace(/"([^"]+)":/g, '$1:')
 }

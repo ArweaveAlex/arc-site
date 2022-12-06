@@ -60,7 +60,7 @@ export default function Account() {
         </S.Wrapper>
     ) : (
             <S.Message>
-                <p>Please connect your wallet to continue</p>
+                <p>{LANGUAGE.connectWalletToContinue}</p>
             </S.Message>
         )
 }

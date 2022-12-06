@@ -29,6 +29,7 @@ export default function LibraryBookmarks() {
                 setData(await getArtifactsByBookmarks({
                     poolIds: null,
                     owner: id,
+                    uploader: null,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.libraryBookmarks
                 }));

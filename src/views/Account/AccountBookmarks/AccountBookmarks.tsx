@@ -30,6 +30,7 @@ export default function AccountBookmarks() {
                 setData(await getArtifactsByBookmarks({
                     poolIds: null,
                     owner: arProvider.walletAddress,
+                    uploader: null,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.accountBookmarks
                 }));

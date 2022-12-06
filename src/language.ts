@@ -48,6 +48,7 @@ export const LANGUAGE = {
     companyTitle: `Alex.`,
     companyDescription: `Preserving Human Culture.`,
     connectWallet: `Connect Wallet`,
+    connectWalletToContinue: `Please connect your wallet to continue`,
     connectionError: `Connection Error`,
     contribute: `Contribute`,
     contributeTo: `Contribute to`,

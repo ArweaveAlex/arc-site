@@ -1,5 +1,5 @@
 import { Carousel } from "react-responsive-carousel";
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { IProps } from "./types";
 import * as S from "./styles";

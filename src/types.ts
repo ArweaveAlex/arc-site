@@ -43,6 +43,7 @@ export type ArtifactQueryType = {
 export type ArtifactArgsType = {
   poolIds: string[] | null
   owner: string | null
+  uploader: string | null
   cursor: string | null
   reduxCursor: string | null
 }
@@ -64,6 +65,7 @@ export interface PoolStateType {
   briefDescription: string
   description: string
   link: string
+  owner: string
   ownerInfo: string
   timestamp: string
   contributors: { [key: string]: string }

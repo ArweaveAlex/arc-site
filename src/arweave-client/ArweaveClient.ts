@@ -3,8 +3,8 @@ import { SmartWeaveNodeFactory } from "redstone-smartweave";
 
 import { getArtifactsByUser } from "gql/artifacts";
 import { getPools } from "gql/pools";
-import { getDataByTags } from "gql";
-import { Buffer } from 'buffer';
+import { getGQLData } from "gql";
+import { Buffer } from "buffer";
 
 import {
     ContributionType,
@@ -54,6 +54,7 @@ export default class ArweaveClient {
         let contributions = await getArtifactsByUser({
             poolIds: null,
             owner: userWallet,
+            uploader: null,
             cursor: null,
             reduxCursor: null
         });
@@ -144,15 +145,19 @@ export default class ArweaveClient {
             return { status: false, message: LANGUAGE.pool.contribute.notEnoughFunds };
         }
         try {
-            const arweaveContract: GQLResponseType = (await getDataByTags({
-                tagFilters: [{ name: TAGS.keys.uploaderTxId, values: [poolId] }], cursor: null, reduxCursor: null
+            const arweaveContract: GQLResponseType = (await getGQLData({
+                ids: null,
+                tagFilters: [{ name: TAGS.keys.uploaderTxId, values: [poolId] }],
+                uploader: null,
+                cursor: null, 
+                reduxCursor: null
             }))[0];
             const fetchId = arweaveContract ? arweaveContract.node.id : poolId;
             const { data: contractData }: { data: any; } = await this.arweavePost.api.get(`/${fetchId}`);
             
             let owner = contractData.owner;
             if (arweaveContract) {
-                owner = JSON.parse(Buffer.from(contractData.data, 'base64').toString("utf-8")).owner;
+                owner = JSON.parse(Buffer.from(contractData.data, "base64").toString("utf-8")).owner;
             }
             if (!owner) {
                 return { status: false, message: LANGUAGE.pool.contribute.failed };
