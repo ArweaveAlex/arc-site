@@ -14,8 +14,6 @@ export default function ArtifactMessaging(props: IProps) {
     const [data, setData] = React.useState<any>(null);
     const [contentApproved, setContentApproved] = React.useState<boolean>(false);
 
-    // Caution: Media may contain inappropriate content.
-
     React.useEffect(() => {
         if (props.data.rawData) {
             setData(JSON.parse(props.data.rawData));
