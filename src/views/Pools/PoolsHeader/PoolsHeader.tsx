@@ -1,4 +1,4 @@
-import { PageShare } from "global/PageShare";
+import { SocialShare } from "global/SocialShare";
 
 import { LANGUAGE } from "language";
 import * as S from "./styles";
@@ -9,7 +9,7 @@ export default function PoolsHeader() {
             <S.Header>
                 <S.HeaderFlex>
                     <S.Header1>{LANGUAGE.pools.header1}</S.Header1>
-                    <PageShare
+                    <SocialShare
                         type={"primary"}
                         href={window.location.href}
                         title={LANGUAGE.sharePools}

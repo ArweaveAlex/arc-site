@@ -54,10 +54,10 @@ export default function ArtifactTable(props: IProps) {
     const [bookmarkIds, setBookmarkIds] = React.useState<string[]>([]);
 
     function getTitleWidth() {
-        if (props.showBookmarks && props.showPoolsId) {
+        if (props.showBookmarks && props.showPoolIds) {
             return "55%";
         }
-        else if (props.showBookmarks || props.showPoolsId) {
+        else if (props.showBookmarks || props.showPoolIds) {
             return "65%";
         }
         else {
@@ -72,7 +72,7 @@ export default function ArtifactTable(props: IProps) {
             dateCreated: { width: "20%", align: "left" as AlignType }
         }
 
-        if (props.showPoolsId) {
+        if (props.showPoolIds) {
             header.pool = { width: "10%", align: "left" as AlignType };
         }
 
@@ -159,7 +159,7 @@ export default function ArtifactTable(props: IProps) {
                         title: getLink(`${urls.artifact}${element.node.id}`, getTagValue(element.node.tags, TAGS.keys.artifactName)),
                         dateCreated: formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), "epoch")
                     }
-                    if (props.showPoolsId) {
+                    if (props.showPoolIds) {
                         row.pool = getLink(`${urls.pool}${getTagValue(element.node.tags, TAGS.keys.poolId)}`, getTagValue(element.node.tags, TAGS.keys.poolId));
                     }
                     if (props.showBookmarks) {

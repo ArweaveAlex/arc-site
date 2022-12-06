@@ -26,6 +26,8 @@ export async function getGQLData(args: {
     const tags = args.tagFilters ? unquoteJsonKeys(args.tagFilters) : null;
     const owners = args.uploader ? JSON.stringify([args.uploader]) : null;
 
+    const cursor = args.cursor ? `"${args.cursor}"` : null;
+
     const operation = {
         query: `
             query {
@@ -34,7 +36,7 @@ export async function getGQLData(args: {
                         tags: ${tags},
                         owners: ${owners},
                         first: ${PAGINATOR}, 
-                        after: ${args.cursor}
+                        after: ${cursor}
                     ){
                     edges {
                         cursor
@@ -59,8 +61,13 @@ export async function getGQLData(args: {
     if (response.data.data) {
         const responseData = response.data.data.transactions.edges;
         if (responseData.length > 0) {
-            nextCursor = responseData[responseData.length - 1].cursor;
             data.push(...responseData);
+            if (responseData.length < PAGINATOR) {
+                nextCursor = "END";
+            }
+            else {
+                nextCursor = responseData[responseData.length - 1].cursor;
+            }
         }
     }
 
@@ -131,5 +138,4 @@ function handleCursors(cursor: string | null, nextCursor: string | null, reduxCu
         cursorState.cursors = cursorList;
         store.dispatch(cursorActions.setCursors({ [reduxCursor]: cursorState }));
     }
-
 }

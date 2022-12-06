@@ -10,6 +10,7 @@ import { cursorsReducer } from "./cursors/reducers";
 const persistConfig = {
     key: "root",
     storage,
+    blacklist: ['cursorsReducer']
 };
 
 const rootReducer = combineReducers({

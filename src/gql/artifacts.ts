@@ -135,13 +135,21 @@ export async function getArtifactsByBookmarks(args: ArtifactArgsType): Promise<A
         ids: bookmarkIds,
         tagFilters: null,
         uploader: null,
-        cursor: null,
-        reduxCursor: null
+        cursor: args.cursor,
+        reduxCursor: args.reduxCursor
     });
 
+    let cursorState;
+    if (args.reduxCursor) {
+        cursorState = store.getState().cursorsReducer[args.reduxCursor];
+    }
+
+    let nextCursor: string | null = cursorState ? cursorState.next : null;
+    let previousCursor: string | null = cursorState ? cursorState.previous : null;
+
     return ({
-        nextCursor: args.cursor,
-        previousCursor: args.cursor,
+        nextCursor: nextCursor,
+        previousCursor: previousCursor,
         contracts: artifacts.filter(
             (element: GQLResponseType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none)
     })
@@ -184,8 +192,6 @@ export async function setBookmarks(owner: string, ids: string[]): Promise<Bookma
     txRes.addTag(TAGS.keys.bookmarkSearch, owner);
     txRes.addTag(TAGS.keys.dateCreated, Date.now().toString());
     txRes.addTag(TAGS.keys.bookmarkIds, JSON.stringify(ids));
-
-    console.log(txRes)
 
     const response = await global.window.arweaveWallet.dispatch(txRes);
 

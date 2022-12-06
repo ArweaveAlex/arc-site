@@ -7,7 +7,7 @@ export default function PoolDetail(props: IProps) {
         <ArtifactTable 
             data={props.data} 
             showBookmarks={false}
-            showPoolsId={false}
+            showPoolIds={false}
             handleUpdateFetch={(cursor: string | null) => props.handleUpdateFetch(cursor)}
             cursors={props.cursors}
             owner={null}

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 
-import { PageShare } from "global/PageShare";
+import { SocialShare } from "global/SocialShare";
 
 import { Tabs } from "components/organisms/Tabs";
 
@@ -58,7 +58,7 @@ export default function ArtifactHeader(props: IProps) {
                                 )
                             })}
                         </Tabs>
-                        <PageShare
+                        <SocialShare
                             type={"secondary"}
                             href={window.location.href}
                             title={LANGUAGE.shareArtifact}

@@ -9,7 +9,7 @@ import { LANGUAGE } from "language";
 import { IProps } from "./types";
 import * as S from "./styles";
 
-export default function PageShare(props: IProps) {
+export default function SocialShare(props: IProps) {
     const [copied, setCopied] = React.useState<boolean>(false);
 
     const copyUrl = React.useCallback(async () => {

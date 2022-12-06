@@ -2,7 +2,7 @@ import parse from "html-react-parser";
 
 import { ArweaveClient } from "arweave-client";
 
-import { PageShare } from "global/PageShare";
+import { SocialShare } from "global/SocialShare";
 import { PoolContribute } from "../PoolContribute";
 
 import { formatAddress, formatCount } from "utils";
@@ -36,7 +36,7 @@ export default function PoolsHeader(props: IProps) {
             <S.Header>
                 <S.HeaderFlex>
                     <S.Header1>{props.title}</S.Header1>
-                    <PageShare
+                    <SocialShare
                         type={"primary"}
                         href={window.location.href}
                         title={LANGUAGE.sharePools}
