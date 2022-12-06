@@ -2,6 +2,7 @@ export const LANGUAGE = {
     about: `About`,
     archivist: `Archivist`,
     artifactsCreated: `of Artifacts Created`,
+    accept: `Accept`,
     account: {
         header1: `Your Library`,
         all: {
@@ -99,6 +100,7 @@ export const LANGUAGE = {
     },
     loading: `Loading`,
     media: `Media`,
+    mediaCaution: `Caution: Media may contain inappropriate content.`,
     metaDescriptionContent: `Preserving Culture`,
     messaging: {
         handle: `Handle`,

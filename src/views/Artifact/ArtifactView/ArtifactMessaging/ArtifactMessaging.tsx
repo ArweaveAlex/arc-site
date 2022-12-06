@@ -1,6 +1,7 @@
 import React from "react";
 import parse from "html-react-parser";
 
+import { Button } from "components/atoms/Button";
 import { Carousel } from "components/molecules/Carousel";
 
 import { MEDIA_TYPES } from "config";
@@ -11,6 +12,9 @@ import * as S from "./styles";
 
 export default function ArtifactMessaging(props: IProps) {
     const [data, setData] = React.useState<any>(null);
+    const [contentApproved, setContentApproved] = React.useState<boolean>(false);
+
+    // Caution: Media may contain inappropriate content.
 
     React.useEffect(() => {
         if (props.data.rawData) {
@@ -99,6 +103,18 @@ export default function ArtifactMessaging(props: IProps) {
             if (mediaComponents.length > 0) {
                 return (
                     <S.MediaWrapper>
+                        {!contentApproved && (
+                            <S.ContentApproveWrapper>
+                                <S.ContentApprove>
+                                    <p>{LANGUAGE.mediaCaution}</p>
+                                    <Button 
+                                        type={"secondary"}
+                                        label={LANGUAGE.accept}
+                                        handlePress={() => setContentApproved(true)}
+                                    />
+                                </S.ContentApprove>
+                            </S.ContentApproveWrapper>
+                        )}
                         <Carousel title={LANGUAGE.media} data={mediaComponents} />
                     </S.MediaWrapper>
                 );

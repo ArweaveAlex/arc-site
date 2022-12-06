@@ -20,6 +20,7 @@ const DEFAULT = {
     tertiary: "#FFD877",
     overlay1: "rgba(59, 70, 78, 0.75)",
     overlay2: "rgb(181, 181, 181, 0.75)",
+    overlay3: "rgb(193, 193, 193, 0.85)",
     warning: "#EE3C3C",
     warningShadow: "#F27979",
     success: "#32C422",
@@ -172,7 +173,8 @@ export const defaultTheme: DefaultTheme = {
         },
         overlay: {
             primary: DEFAULT.overlay1,
-            secondary: DEFAULT.overlay2
+            alt1: DEFAULT.overlay2,
+            alt2: DEFAULT.overlay3,
         },
         shadow: {
             primary: DEFAULT.neutral11,

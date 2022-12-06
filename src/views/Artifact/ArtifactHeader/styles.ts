@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
     width: calc(100% - 40px);
     position: fixed;
     max-width: calc(${STYLING.cutoffs.max} - 40px);
-    z-index: 2;
+    z-index: 3;
     position: fixed;
     height: 140px;
     top: ${STYLING.dimensions.navHeight};
