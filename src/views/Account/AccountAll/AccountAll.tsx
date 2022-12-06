@@ -1,20 +1,27 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import { useArweaveProvider } from "providers/ArweaveProvider";
 import { getArtifactsByUser } from "gql/artifacts";
 
 import { ArtifactTable } from "global/ArtifactTable";
 
+import { clearCursors } from "redux/cursors/actions";
 import { ArtifactResponseType } from "types";
 import { LANGUAGE } from "language";
 import { REDUX_CURSORS } from "redux-config";
 import * as S from "./styles";
 
 export default function AccountAll() {
+    const dispatch = useDispatch();
     const arProvider = useArweaveProvider();
 
     const [cursor, setCursor] = React.useState<string | null>(null);
     const [data, setData] = React.useState<ArtifactResponseType | null>(null);
+    
+    React.useEffect(() => {
+        dispatch(clearCursors());
+    }, [dispatch])
 
     React.useEffect(() => {
         (async function () {

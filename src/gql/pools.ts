@@ -8,7 +8,7 @@ import { getDataByTags } from "gql";
 import { getTagValue } from "utils";
 import { TAGS } from "config";
 
-export async function getPoolsIds() {
+export async function getPoolIds() {
     const pools: GQLResponseType[] = await getDataByTags({
         tagFilters: [
             {
@@ -39,7 +39,7 @@ export async function getPools(): Promise<PoolType[]> {
     const arClient = new ArweaveClient();
 
     const pools: PoolType[] = [];
-    const poolIds = await getPoolsIds();
+    const poolIds = await getPoolIds();
 
     for (let i = 0; i < poolIds.length; i++) {
         try {
@@ -59,7 +59,7 @@ export async function getPools(): Promise<PoolType[]> {
     return pools;
 }
 
-export async function getPoolsById(poolId: string): Promise<PoolType | null> {
+export async function getPoolById(poolId: string): Promise<PoolType | null> {
     const arClient = new ArweaveClient();
 
     try {

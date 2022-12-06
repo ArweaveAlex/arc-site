@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { getPoolsById, getPoolCount } from "gql/pools";
+import { getPoolById, getPoolCount } from "gql/pools";
 import { getArtifactsByPools } from "gql/artifacts";
 
 import { Loader } from "components/atoms/Loader";
@@ -37,7 +37,7 @@ export default function Pool() {
     React.useEffect(() => {
         (async function () {
             if (id) {
-                setHeaderData(await getPoolsById(id));
+                setHeaderData(await getPoolById(id));
                 setDetailData((await getArtifactsByPools({
                     poolIds: [id],
                     owner: null,

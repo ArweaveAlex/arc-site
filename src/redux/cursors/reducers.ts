@@ -66,11 +66,31 @@ export function cursorsReducer(
             })
         case CLEAR_CURSORS:
             return Object.assign({}, state, {
+                [REDUX_CURSORS.accountAll]: {
+                    previous: null,
+                    next: null,
+                    cursors: []
+                },
+                [REDUX_CURSORS.accountBookmarks]: {
+                    previous: null,
+                    next: null,
+                    cursors: []
+                },
                 [REDUX_CURSORS.poolAll]: {
                     previous: null,
                     next: null,
                     cursors: []
-                }
+                },
+                [REDUX_CURSORS.libraryAll]: {
+                    previous: null,
+                    next: null,
+                    cursors: []
+                },
+                [REDUX_CURSORS.libraryBookmarks]: {
+                    previous: null,
+                    next: null,
+                    cursors: []
+                },
             })
         default:
             return state;

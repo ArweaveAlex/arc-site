@@ -32,7 +32,7 @@ export default class ArweaveClient {
     });
 
     smartweave = SmartWeaveNodeFactory.memCached(this.arweavePost as any);
-
+    
     calcARDonated(userWallet: string, pool: any) {
         let calc = parseFloat(this.calcContributions(pool.state.contributors[userWallet])) / 1000000000000;
         let tokens = (calc).toFixed(calc.toString().length);
@@ -111,7 +111,8 @@ export default class ArweaveClient {
                 calc = (amount / parseFloat(totalContributions)) * 100;
             }
             let tokens = (calc).toFixed(4);
-            return calc >= 100 || isNaN(calc) ? "100" : tokens; // TODO - isNaN() Fix
+            if (isNaN(calc)) return "0";
+            return calc >= 100 ? "100" : tokens;
         }
         else {
             return "0";
@@ -163,7 +164,7 @@ export default class ArweaveClient {
                 { function: "contribute" }, [], {
                 target: owner,
                 winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
-            });
+            } as any);
             if (!result) {
                 return { status: false, message: LANGUAGE.pool.contribute.failed };
             }

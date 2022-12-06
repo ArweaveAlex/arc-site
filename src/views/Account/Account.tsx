@@ -23,7 +23,7 @@ export default function Account() {
         }
     }, [arProvider.walletAddress]);
 
-    return (
+    return arProvider.walletAddress ? (
         <S.Wrapper>
             <S.HeaderWrapper>
                 <S.HeaderContent>
@@ -58,5 +58,9 @@ export default function Account() {
                 <URLTabs tabs={URLS.account} activeUrl={URLS.account[0]!.url} />
             </S.TabsWrapper>
         </S.Wrapper>
-    )
+    ) : (
+            <S.Message>
+                <p>Please connect your wallet to continue</p>
+            </S.Message>
+        )
 }

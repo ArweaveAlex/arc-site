@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { open, fadeIn2 } from "animations";
 import { STYLING } from "styling-config";
 
+export const Message = styled.div`
+    margin: calc(20px + ${STYLING.dimensions.navHeight}) 0 0 20px;
+`;
+
 export const Wrapper = styled.div`
     height: 100%;
     width: 100%;

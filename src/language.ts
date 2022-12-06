@@ -132,7 +132,7 @@ export const LANGUAGE = {
         gridTitles: {
             all: `All`,
             mostContributed: `Most Active`,
-            new: `New`
+            newest: `Newest`
         }
     },
     previous: `Previous`,

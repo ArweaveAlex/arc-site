@@ -9,11 +9,10 @@ export function sortByAll(pools: PoolType[], amount: number | null): PoolType[] 
     }
 }
 
-export function sortByNew(pools: PoolType[], amount: number | null): PoolType[] {
+export function sortByNewest(pools: PoolType[], amount: number | null): PoolType[] {
     const sortedPools: any = pools.sort(function (a, b) {
         return parseFloat(a.state.timestamp) - parseFloat(b.state.timestamp)
     }).reverse();
-    console.log(sortedPools)
     if (amount) {
         return sortedPools.length <= amount ? sortedPools : sortedPools.slice(0, amount);
     }

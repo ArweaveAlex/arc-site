@@ -6,6 +6,7 @@ import { AccountContributions } from "views/Account/AccountContributions";
 import { LibraryAll } from "views/Library/LibraryAll";
 import { LibraryBookmarks } from "views/Library/LibraryBookmarks";
 
+import { PoolType } from "types";
 import * as filters from "filters/pools";
 import * as urls from "urls";
 import { LANGUAGE } from "language";
@@ -159,11 +160,11 @@ export const MEDIA_TYPES = {
 export const POOL_FILTERS = [
     {
         title: LANGUAGE.pools.gridTitles.mostContributed,
-        fn: (data: any) => filters.sortByMostContributed(data, 5)
+        fn: (data: PoolType[]) => filters.sortByMostContributed(data, 5)
     },
     {
-        title: LANGUAGE.pools.gridTitles.new,
-        fn: (data: any) => filters.sortByNew(data, 5)
+        title: LANGUAGE.pools.gridTitles.newest,
+        fn: (data: any) => filters.sortByNewest(data, 5)
     },
     {
         title: LANGUAGE.pools.gridTitles.all,

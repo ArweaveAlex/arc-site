@@ -12,7 +12,7 @@ import {
 } from "types";
 import { getDataByTags, getDataByTxIds } from "gql";
 import { getTxEndpoint } from "endpoints";
-import { getPoolsById, getPoolsIds } from "./pools";
+import { getPoolById, getPoolIds } from "./pools";
 import { getTagValue } from "utils";
 import { LANGUAGE } from "language";
 import { TAGS, STORAGE } from "config";
@@ -22,7 +22,7 @@ const arClient = new ArweaveClient();
 export async function getArtifactById(artifactId: string): Promise<ArtifactType | null> {
     const artifact: GQLResponseType = (await getDataByTxIds([artifactId]))[0];
 
-    let pool: PoolType | null = await getPoolsById(getTagValue(artifact.node.tags, TAGS.keys.poolId));
+    let pool: PoolType | null = await getPoolById(getTagValue(artifact.node.tags, TAGS.keys.poolId));
 
     try {
         const response = await fetch(getTxEndpoint(artifactId));
@@ -95,7 +95,7 @@ export async function getArtifactsByPools(args: ArtifactArgsType): Promise<Artif
 }
 
 export async function getArtifactsByUser(args: ArtifactArgsType) {
-    const poolIds = await getPoolsIds();
+    const poolIds = await getPoolIds();
     const artifacts = await getArtifactsByPools({ 
         poolIds: poolIds, 
         owner: args.owner, 
