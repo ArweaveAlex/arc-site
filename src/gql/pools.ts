@@ -16,7 +16,7 @@ export async function getPoolIds() {
                 name: TAGS.keys.appType, 
                 values: [
                     TAGS.values.poolVersions["1.2"],
-                    TAGS.values.poolVersions["1.4"] // TODO - Quiet Update
+                    TAGS.values.poolVersions["1.4"]
                 ]
             }
         ],
@@ -65,7 +65,7 @@ export async function getPoolById(poolId: string): Promise<PoolType | null> {
     const arClient = new ArweaveClient();
 
     try {
-        const contract = arClient.smartweave.contract(poolId);
+        const contract = arClient.smartweave.contract(poolId)
         return { id: poolId, state: (await contract.readState() as any).state };
     }
     catch (error: any) {

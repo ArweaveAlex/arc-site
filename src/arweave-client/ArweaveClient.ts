@@ -30,9 +30,9 @@ export default class ArweaveClient {
         timeout: 40000,
         logging: false,
     });
-
-    smartweave = SmartWeaveNodeFactory.memCached(this.arweavePost as any);
     
+    smartweave = SmartWeaveNodeFactory.memCached(this.arweavePost as any);
+
     calcARDonated(userWallet: string, pool: any) {
         let calc = parseFloat(this.calcContributions(pool.state.contributors[userWallet])) / 1000000000000;
         let tokens = (calc).toFixed(calc.toString().length);
@@ -149,12 +149,12 @@ export default class ArweaveClient {
                 ids: null,
                 tagFilters: [{ name: TAGS.keys.uploaderTxId, values: [poolId] }],
                 uploader: null,
-                cursor: null, 
+                cursor: null,
                 reduxCursor: null
             }))[0];
             const fetchId = arweaveContract ? arweaveContract.node.id : poolId;
             const { data: contractData }: { data: any; } = await this.arweavePost.api.get(`/${fetchId}`);
-            
+
             let owner = contractData.owner;
             if (arweaveContract) {
                 owner = JSON.parse(Buffer.from(contractData.data, "base64").toString("utf-8")).owner;
@@ -167,9 +167,9 @@ export default class ArweaveClient {
             });
             const result = await smartweaveContract.writeInteraction<any>(
                 { function: "contribute" }, [], {
-                target: owner,
-                winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
-            } as any);
+                    target: owner,
+                    winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
+                } as any);
             if (!result) {
                 return { status: false, message: LANGUAGE.pool.contribute.failed };
             }
