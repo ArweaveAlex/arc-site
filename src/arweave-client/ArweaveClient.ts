@@ -1,6 +1,7 @@
-import Arweave from "arweave";
-import { SmartWeaveNodeFactory } from "redstone-smartweave";
 import { Buffer } from "buffer";
+import Arweave from "arweave";
+//@ts-ignore
+import { WarpFactory, defaultCacheOptions } from "warp-contracts/web";
 
 import { getArtifactsByUser } from "gql/artifacts";
 import { getPools } from "gql/pools";
@@ -31,7 +32,7 @@ export default class ArweaveClient {
         logging: false,
     });
     
-    smartweave = SmartWeaveNodeFactory.memCached(this.arweavePost as any);
+    warp = WarpFactory.forMainnet({ ...defaultCacheOptions, inMemory: true });
 
     calcARDonated(userWallet: string, pool: any) {
         let calc = parseFloat(this.calcContributions(pool.state.contributors[userWallet])) / 1000000000000;
@@ -162,10 +163,10 @@ export default class ArweaveClient {
             if (!owner) {
                 return { status: false, message: LANGUAGE.pool.contribute.failed };
             }
-            const smartweaveContract = this.smartweave.contract(poolId).connect("use_wallet").setEvaluationOptions({
+            const warpContract = this.warp.contract(poolId).connect("use_wallet").setEvaluationOptions({
                 waitForConfirmation: false,
             });
-            const result = await smartweaveContract.writeInteraction<any>(
+            const result = await warpContract.writeInteraction<any>(
                 { function: "contribute" }, [], {
                     target: owner,
                     winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
