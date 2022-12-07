@@ -16,7 +16,7 @@ export async function getPoolIds() {
                 name: TAGS.keys.appType, 
                 values: [
                     TAGS.values.poolVersions["1.2"],
-                    TAGS.values.poolVersions["1.4"]
+                    TAGS.values.poolVersions["1.4"] // TODO - Quiet Update
                 ]
             }
         ],

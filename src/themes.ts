@@ -124,7 +124,7 @@ export const defaultTheme: DefaultTheme = {
         },
         form: {
             background: DEFAULT.neutral1,
-            border: DEFAULT.neutral8,
+            border: DEFAULT.neutral6,
             invalid: {
                 outline: DEFAULT.warning,
                 shadow: DEFAULT.warningShadow

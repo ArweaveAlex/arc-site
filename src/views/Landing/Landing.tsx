@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-import { getPools } from "gql/pools";
+import { RootState } from "redux/store";
+import { PoolUpdate } from "redux/pools/PoolUpdate";
 
 import { Loader } from "components/atoms/Loader";
 
@@ -14,21 +16,37 @@ import { sortByMostContributed } from "filters/pools";
 import * as S from "./styles";
 
 export default function Landing() {
+    const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 
     const [data, setData] = React.useState<PoolType[] | null>(null);
 
     React.useEffect(() => {
-        (async function () {
-            setData(sortByMostContributed(await getPools(), 5));
-        })()
-    }, [])
+        if (poolsReducer.data) {
+            setData(sortByMostContributed(poolsReducer.data, 5));
+        }
+    }, [poolsReducer.data])
 
-    return data ? (
-        <S.Wrapper>
-            <LandingHeader />
-            <LandingPools data={data} />
-            <LandingInfo />
-            <LandingSteps />
-        </S.Wrapper>
-    ) : <Loader />
+    function getData() {
+        if (data) {
+            return (
+                <S.Wrapper>
+                    <LandingHeader />
+                    <LandingPools data={data} />
+                    <LandingInfo />
+                    <LandingSteps />
+                </S.Wrapper>
+            )
+        }
+        else {
+            return (
+                <Loader />
+            )
+        }
+    }
+
+    return (
+        <PoolUpdate>
+            {getData()}
+        </PoolUpdate>
+    )
 }

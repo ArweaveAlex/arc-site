@@ -17,7 +17,6 @@ import { getTxEndpoint } from "endpoints";
 import { formatDate, getTagValue } from "utils";
 import { TAGS, FALLBACK_IMAGE } from "config";
 import { REDUX_CURSORS } from "redux-config";
-import { LANGUAGE } from "language";
 import * as S from "./styles";
 
 export default function Pool() {
@@ -54,11 +53,7 @@ export default function Pool() {
                 })));
             }
         })();
-        /*  ESLint used to avoid warning with detailData.nextCursor not being used in dependency array
-            By adding detailData.nextCursor to dependency array this effect will continue to run
-            getArtifactsByPool and return each subsequent query set */
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [headerData, cursor])
+    }, [id, headerData, cursor])
 
     React.useEffect(() => {
         (async function () {
@@ -90,7 +85,7 @@ export default function Pool() {
                     title={headerData.state.title}
                     description={headerData.state.description}
                     dateCreated={formatDate(headerData.state.timestamp, "epoch")}
-                    count={count ? count : `-`}
+                    count={count}
                     totalContributions={headerData.state.totalContributions}
                     contributors={headerData.state.contributors}
                 />
@@ -130,7 +125,7 @@ export default function Pool() {
         }
         else {
             return (
-                <p>{LANGUAGE.loading}&nbsp;...</p>
+                null
             )
         }
     }

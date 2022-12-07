@@ -6,6 +6,7 @@ import { persistStore, persistReducer } from "redux-persist";
 
 import { bookmarksReducer } from "./artifacts/reducers";
 import { cursorsReducer } from "./cursors/reducers";
+import { poolsReducer } from "./pools/reducers";
 
 const persistConfig = {
     key: "root",
@@ -15,7 +16,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     bookmarksReducer,
-    cursorsReducer
+    cursorsReducer,
+    poolsReducer
 });
 
 export type RootState = ReturnType<typeof store.getState>;

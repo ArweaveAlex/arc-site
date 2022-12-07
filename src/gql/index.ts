@@ -63,7 +63,7 @@ export async function getGQLData(args: {
         if (responseData.length > 0) {
             data.push(...responseData);
             if (responseData.length < PAGINATOR) {
-                nextCursor = "END";
+                nextCursor = null;
             }
             else {
                 nextCursor = responseData[responseData.length - 1].cursor;

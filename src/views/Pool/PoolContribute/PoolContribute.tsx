@@ -163,11 +163,11 @@ export default function PoolContribute(props: IProps) {
                             </S.Message>
                             <S.SubmitWrapper>
                                 <Button
-                                    label={loading ? LANGUAGE.loading : LANGUAGE.submit}
+                                    label={LANGUAGE.submit}
                                     type={"secondary"}
                                     handlePress={(e) => handlePoolContribute(e)}
                                     disabled={getDisabledSubmit()}
-                                    loading={false}
+                                    loading={loading}
                                     formSubmit
                                 />
                             </S.SubmitWrapper>

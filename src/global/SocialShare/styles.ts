@@ -60,7 +60,7 @@ export const URLCopied = styled.div`
     position: absolute;
     bottom: 100%;
     right: 90%;
-    z-index: 3;
+    z-index: 5;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.secondary};
     padding: 6.5px 15px 5px 15px;

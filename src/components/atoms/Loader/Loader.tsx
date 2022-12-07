@@ -18,33 +18,37 @@ export default function Loader(props: IProps) {
     };
   }, [props.alt]);
 
+  function getLoader(size: number, height: number, width: number) {
+    return (
+      <S.Container>
+        <S.Spinner size={size} height={height} width={width}>
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+          <S.Blade />
+        </S.Spinner>
+      </S.Container>
+    )
+  }
+
   if (props.alt) {
     return (
-      <S.AltContainer>
-        <S.AltLoader disabled={props.disabled} />
-      </S.AltContainer>
+      <>{getLoader(20.75, 6.25, 1.75)}</>
     );
   }
 
   return (
     <Portal node={DOM.loader}>
       <S.Wrapper>
-        <S.Container>
-          <S.Spinner>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-            <S.Blade></S.Blade>
-          </S.Spinner>
-        </S.Container>
+        {getLoader(27.5, 7.5, 2.25)}
       </S.Wrapper>
     </Portal>
   );

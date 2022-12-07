@@ -1,10 +1,10 @@
 import Arweave from "arweave";
 import { SmartWeaveNodeFactory } from "redstone-smartweave";
+import { Buffer } from "buffer";
 
 import { getArtifactsByUser } from "gql/artifacts";
 import { getPools } from "gql/pools";
 import { getGQLData } from "gql";
-import { Buffer } from "buffer";
 
 import {
     ContributionType,

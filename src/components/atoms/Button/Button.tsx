@@ -1,7 +1,6 @@
 import { ReactSVG } from "react-svg";
 
-import { Loader } from "../Loader";
-
+import { LANGUAGE } from "language";
 import { IProps } from "./types";
 import * as S from "./styles";
 
@@ -66,7 +65,7 @@ export default function Button(props: IProps) {
       useMaxWidth={props.useMaxWidth}
       noMinWidth={props.noMinWidth}
     >
-      {props.loading ? <Loader alt disabled/> : getLabel()}
+      {props.loading ? `${LANGUAGE.loading}...` : getLabel()}
     </StyledButton>
   );
 }

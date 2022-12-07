@@ -32,14 +32,6 @@ export interface ArtifactType {
   rawData: NStringType
 }
 
-export type ArtifactQueryType = {
-  cursor: string
-  node: {
-    id: string
-    tags: KeyValueType[]
-  }
-}
-
 export type ArtifactArgsType = {
   poolIds: string[] | null
   owner: string | null

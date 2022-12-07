@@ -152,5 +152,4 @@ export const GlobalStyle = createGlobalStyle`
     resize: none;
     height: 170px;
   }
-
 `;

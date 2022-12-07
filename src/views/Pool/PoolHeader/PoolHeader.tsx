@@ -4,6 +4,7 @@ import { ArweaveClient } from "arweave-client";
 
 import { SocialShare } from "global/SocialShare";
 import { PoolContribute } from "../PoolContribute";
+import { Loader } from "components/atoms/Loader";
 
 import { formatAddress, formatCount } from "utils";
 import { LANGUAGE } from "language";
@@ -31,6 +32,17 @@ export default function PoolsHeader(props: IProps) {
         )
     }
 
+    function getCount() {
+        if (props.count) {
+            return (
+                <p>{formatCount(props.count!)}</p>
+            )
+        }
+        else {
+            return <Loader alt />
+        }
+    }
+
     return (
         <S.Wrapper>
             <S.Header>
@@ -56,7 +68,7 @@ export default function PoolsHeader(props: IProps) {
                 <S.Tile>
                     <S.TileTitle><p>{LANGUAGE.pool.artifactsCreated}</p></S.TileTitle>
                     <S.TileData>
-                        <p>{formatCount(props.count)}</p>
+                        {getCount()}
                     </S.TileData>
                 </S.Tile>
                 <S.ContributeTile>
