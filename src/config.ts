@@ -89,7 +89,6 @@ export const AR_WALLETS = [
 
 export const WALLET_PERMISSIONS = [
     "ACCESS_ADDRESS",
-    "ACCESS_ALL_ADDRESSES",
     "ACCESS_PUBLIC_KEY",
     "SIGN_TRANSACTION",
     "DISPATCH"
@@ -142,13 +141,17 @@ export const URLS: IURLView = {
     ]
 }
 
-export const PAGINATOR = 100;
-export const FALLBACK_IMAGE = "8HqSqy_nNRSTPv-q-j7_iHGTp6lEA5K77TP4BPuXGyA";
-
 export const STORAGE = {
     none: "N/A",
     pending: "pending",
     txUpdate: "txUpdate"
+}
+
+export const PAGINATOR = 100;
+
+export const CURSORS = {
+    p1: "P1",
+    end: "END"
 }
 
 export const MEDIA_TYPES = {
@@ -165,10 +168,12 @@ export const POOL_FILTERS = [
     },
     {
         title: LANGUAGE.pools.gridTitles.newest,
-        fn: (data: any) => filters.sortByNewest(data, 5)
+        fn: (data: PoolType[]) => filters.sortByNewest(data, 5)
     },
     {
         title: LANGUAGE.pools.gridTitles.all,
-        fn: (data: any) => filters.sortByAll(data, null)
+        fn: (data: PoolType[]) => filters.sortByAll(data, null)
     }
 ]
+
+export const FALLBACK_IMAGE = "8HqSqy_nNRSTPv-q-j7_iHGTp6lEA5K77TP4BPuXGyA";

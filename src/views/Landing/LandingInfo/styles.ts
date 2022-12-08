@@ -98,7 +98,7 @@ export const InfoContainer = styled.div`
     height: 100%;
     width: 51.5%;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     padding: 20px;
     overflow-y: auto;
     @media(max-width: ${STYLING.cutoffs.tablet}) {

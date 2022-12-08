@@ -30,8 +30,8 @@ export const Select = styled.select`
   margin: 5px auto;
   box-sizing: border-box;
   background-color: ${(props) => props.theme.colors.form.background};
-  border: 1px solid
-    ${(props) => props.theme.colors.form.border};
+  border: 1px solid ${(props) => props.theme.colors.form.border};
+  border-radius: ${STYLING.dimensions.borderRadiusInput};
 
   color: ${(props) =>
     props.disabled
@@ -60,5 +60,4 @@ export const Select = styled.select`
   background-position: 100%;
   background-repeat: no-repeat;
   padding: 10px;
-  border-radius: 0;
 `;

@@ -1,4 +1,4 @@
 export interface IProps {
-  alt?: boolean;
+  sm?: boolean;
   disabled?: boolean;
 }

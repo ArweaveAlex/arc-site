@@ -14,7 +14,7 @@ export const PostContent = styled.div`
     max-width: 90vw;
     margin: 42.5px auto;
     overflow: hidden;
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     background: ${(props) => props.theme.colors.container.primary.background};
     border-radius: ${STYLING.dimensions.borderRadius};
     box-shadow: 0px 0px 7px 1px ${(props) => props.theme.colors.shadow.secondary};
@@ -95,7 +95,7 @@ export const ContentApproveWrapper = styled.div`
     z-index: 2;
     bottom: -5px;
     background: ${(props) => props.theme.colors.overlay.alt2};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-radius: ${STYLING.dimensions.borderRadius};
     backdrop-filter: blur(15px);
 `;
@@ -126,7 +126,7 @@ export const MediaContent = styled.div`
     margin: 5px auto;
     overflow: hidden;
     position: absolute;
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     background: ${(props) => props.theme.colors.overlay.alt1};
     border-radius: ${STYLING.dimensions.borderRadius};
 `;

@@ -9,14 +9,14 @@ import * as window from "window";
 
 export default function Loader(props: IProps) {
   React.useEffect(() => {
-    if (!props.alt) {
+    if (!props.sm) {
       window.scrollTo(0, 0);
       window.hideDocumentBody();
     }
     return () => {
       window.showDocumentBody();
     };
-  }, [props.alt]);
+  }, [props.sm]);
 
   function getLoader(size: number, height: number, width: number) {
     return (
@@ -39,7 +39,7 @@ export default function Loader(props: IProps) {
     )
   }
 
-  if (props.alt) {
+  if (props.sm) {
     return (
       <>{getLoader(20.75, 6.25, 1.75)}</>
     );

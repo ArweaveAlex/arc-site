@@ -4,6 +4,7 @@ import { useArweaveProvider } from "providers/ArweaveProvider";
 import { ArweaveClient } from "arweave-client";
 
 import { ContributionsList } from "./ContributionsList";
+import { Loader } from "components/atoms/Loader";
 
 import { LANGUAGE } from "language";
 import * as S from "./styles";
@@ -38,5 +39,11 @@ export default function AccountContributions() {
         }
     }
 
-    return data ? <>{getData()}</> : <p>{LANGUAGE.loading}&nbsp;...</p>
+    return data ? (
+        <>{getData()}</>
+    ) : (
+        <S.LoadingContainer>
+            <Loader sm />
+        </S.LoadingContainer>
+    )
 }

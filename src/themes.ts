@@ -33,9 +33,10 @@ export const defaultTheme: DefaultTheme = {
     colors: {
         border: {
             primary: DEFAULT.neutral3,
-            secondary: DEFAULT.neutral6,
-            tertiary: DEFAULT.primary3,
-            quarternary: DEFAULT.primary4
+            alt1: DEFAULT.neutral6,
+            alt2: DEFAULT.primary3,
+            alt3: DEFAULT.primary4,
+            alt4: DEFAULT.primary
         },
         button: {
             primary: {

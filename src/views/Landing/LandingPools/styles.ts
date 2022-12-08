@@ -43,7 +43,7 @@ export const C1Content = styled.div`
     text-align: left;
     overflow-y: auto;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     box-shadow: 0px -10px 10px -10px ${(props) => props.theme.colors.font.primary.alt7} inset;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: 300px;
@@ -78,7 +78,7 @@ export const LinkContainer = styled.div`
     height: 80px;
     width: calc(100% - 10px);
     margin: 10px 0 0 0;
-    border: 1px solid ${(props) => props.theme.colors.border.tertiary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt2};
     display: flex;
     justify-content: center;
     align-items: center;

@@ -101,7 +101,7 @@ export const Tile = styled.div`
     height: 100px;
     width: 33%;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     padding: 15px;
     position: relative;
     @media(max-width: ${STYLING.cutoffs.tablet}) {

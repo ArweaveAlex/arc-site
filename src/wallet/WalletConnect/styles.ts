@@ -43,7 +43,7 @@ export const WalletDropdown = styled.ul`
     position: absolute;
     top: 55.5px;
     right: 18.5px;
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     background: ${(props) => props.theme.colors.container.primary.background};
 
     @media(max-width: ${STYLING.cutoffs.initial}) {

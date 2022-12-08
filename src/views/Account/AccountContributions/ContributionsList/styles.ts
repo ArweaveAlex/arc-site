@@ -59,7 +59,7 @@ export const ListItemWrapper = styled.li`
     display: flex;
     position: relative;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     &:hover {
         background: ${(props) => props.theme.colors.container.primary.hover};
     }

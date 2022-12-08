@@ -1,6 +1,5 @@
 import { ReactSVG } from "react-svg";
 
-// import * as urls from "urls";
 import { ASSETS } from "config";
 import { LANGUAGE } from "language";
 import * as S from "./styles";
@@ -37,7 +36,7 @@ export default function LandingHeader() {
                         <p>{LANGUAGE.banner.subheader2}</p>
                     </S.Subheader2>
                     <S.Link >
-                        <a href={urls.readMore}>{LANGUAGE.readMore}</a>
+                        <a target={"_blank"} href={"#"}>{LANGUAGE.readMore}</a>
                     </S.Link> */}
                 </S.SubheaderContainer>
             </S.Content>

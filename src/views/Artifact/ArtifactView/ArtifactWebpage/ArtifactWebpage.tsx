@@ -1,7 +1,8 @@
 import React from "react";
 import parse from "html-react-parser";
 
-import { LANGUAGE } from "language";
+import { Loader } from "components/atoms/Loader";
+
 import { IProps } from "../../types";
 import * as S from "./styles";
 
@@ -19,8 +20,8 @@ export default function ArtifactWebpage(props: IProps) {
             {parse(data)}
         </S.Wrapper>
     ) : (
-        <S.LoadingWrapper>
-            <p>{LANGUAGE.loading}&nbsp;...</p>
-        </S.LoadingWrapper>
+        <S.LoadingContainer>
+            <Loader sm />
+        </S.LoadingContainer>
     );
 }

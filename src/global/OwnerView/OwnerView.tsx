@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { ArtifactTable } from "global/ArtifactTable";
+import { Loader } from "components/atoms/Loader";
 
 import { clearCursors } from "redux/cursors/actions";
 import { ArtifactResponseType } from "types";
@@ -32,12 +33,8 @@ export default function OwnerView(props: IProps) {
                 }));
             }
         })();
-        
-    }, [props, cursor])
 
-    function checkState() {
-        return data;
-    }
+    }, [props, cursor])
 
     function getData() {
         if (data && data.contracts.length > 0) {
@@ -62,5 +59,11 @@ export default function OwnerView(props: IProps) {
         }
     }
 
-    return checkState() ? <>{getData()}</> : <p>{LANGUAGE.loading}&nbsp;...</p>
+    return data ? (
+        <>{getData()}</>
+    ) : (
+        <S.LoadingContainer>
+            <Loader sm />
+        </S.LoadingContainer>
+    )
 }

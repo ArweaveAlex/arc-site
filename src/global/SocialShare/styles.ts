@@ -38,7 +38,7 @@ export const Icon = styled.div<{ secondary: boolean }>`
   padding: 2.5px 0 0 0;
   background: ${(props) => props.secondary ?
         props.theme.colors.transparent : props.theme.colors.button.secondary.background};
-
+  border-radius: ${STYLING.dimensions.borderRadiusInput};
   &:hover {
     background: ${(props) => props.secondary ?
         props.theme.colors.transparent : props.theme.colors.button.secondary.hover};
@@ -62,7 +62,7 @@ export const URLCopied = styled.div`
     right: 90%;
     z-index: 5;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     padding: 6.5px 15px 5px 15px;
     p {
         font-size: 12px;

@@ -3,6 +3,7 @@ import { store } from "redux/store";
 
 import { ArweaveClient } from "arweave-client";
 import { unquoteJsonKeys } from "utils";
+import { CURSORS } from "config";
 import { GQLResponseType, TagFilterType } from "types";
 import { PAGINATOR } from "config";
 
@@ -14,7 +15,7 @@ export async function getGQLData(args: {
     reduxCursor: string | null
 }): Promise<GQLResponseType[]> {
 
-    let nextCursor;
+    let nextCursor: string | null;
     const arClient = new ArweaveClient();
     const data: GQLResponseType[] = [];
 
@@ -63,7 +64,7 @@ export async function getGQLData(args: {
         if (responseData.length > 0) {
             data.push(...responseData);
             if (responseData.length < PAGINATOR) {
-                nextCursor = null;
+                nextCursor = CURSORS.end;
             }
             else {
                 nextCursor = responseData[responseData.length - 1].cursor;
@@ -71,13 +72,13 @@ export async function getGQLData(args: {
         }
     }
 
-    handleCursors(args.cursor, nextCursor, args.reduxCursor);
+    handleCursors(args.cursor, args.reduxCursor, nextCursor);
 
     return data;
 }
 
-function handleCursors(cursor: string | null, nextCursor: string | null, reduxCursor: string | null) {
-    let cursorState;
+function handleCursors(cursor: string | null, reduxCursor: string | null, nextCursor: string | null) {
+    let cursorState: any;
     let cursorList: (string | null)[] = [];
 
     if (reduxCursor && store.getState().cursorsReducer[reduxCursor]) {
@@ -118,7 +119,7 @@ function handleCursors(cursor: string | null, nextCursor: string | null, reduxCu
             }
             if (cursorList.length === 2) {
                 cursorState.next = cursorList[1];
-                cursorState.previous = "PAGE_ONE";
+                cursorState.previous = CURSORS.p1;
                 tempCursorList.push(cursorState.previous);
                 for (let i = 0; i < cursorList.length; i++) {
                     tempCursorList[i + 1] = cursorList[i];
@@ -128,7 +129,7 @@ function handleCursors(cursor: string | null, nextCursor: string | null, reduxCu
         }
 
         if (cursor) {
-            if (cursor === "PAGE_ONE") {
+            if (cursor === CURSORS.p1) {
                 cursorState.next = nextCursor;
                 cursorState.previous = null;
                 cursorList = [nextCursor];

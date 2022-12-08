@@ -39,7 +39,7 @@ export default function PoolsHeader(props: IProps) {
             )
         }
         else {
-            return <Loader alt />
+            return <Loader sm />
         }
     }
 

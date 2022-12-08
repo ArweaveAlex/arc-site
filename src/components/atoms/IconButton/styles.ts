@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { STYLING } from "styling-config";
+
 export const Primary = styled.button<{
   sm: boolean | undefined,
   warning: boolean | undefined,
@@ -40,6 +42,7 @@ export const Secondary = styled(Primary)`
   align-items: center;
   padding: 2.5px 0 0 0;
   background: ${(props) => props.theme.colors.button.secondary.background};
+  border-radius: ${STYLING.dimensions.borderRadiusInput};
 
   &:hover {
     background: ${(props) => props.theme.colors.button.secondary.hover};

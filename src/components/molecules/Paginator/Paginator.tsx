@@ -1,6 +1,7 @@
 import { Button } from "components/atoms/Button";
 
 import { LANGUAGE } from "language";
+import { CURSORS } from "config";
 import { IProps } from "./types"
 import * as S from "./styles";
 
@@ -106,7 +107,7 @@ export default function Paginator(props: IProps) {
                 label={LANGUAGE.next}
                 type={"secondary"}
                 handlePress={handleNextPage}
-                disabled={!props.cursors.next}
+                disabled={!props.cursors.next || props.cursors.next === CURSORS.end}
                 noMinWidth
             />
         </S.Wrapper>

@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
   width: 555px;
   max-width: 90vw;
   background: ${(props) => props.theme.colors.container.primary.background};
-  border: 1px solid ${(props) => props.theme.colors.border.secondary};
+  border: 1px solid ${(props) => props.theme.colors.border.alt1};
   position: fixed;
   left: 50%;
   bottom: 20px;

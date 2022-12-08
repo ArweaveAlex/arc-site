@@ -21,6 +21,7 @@ export const Input = styled.input<{ disabled: boolean; invalid: boolean }>`
   border: 1px solid ${(props) => props.invalid 
     ? props.theme.colors.form.invalid.outline
     : props.theme.colors.form.border};
+  border-radius: ${STYLING.dimensions.borderRadiusInput};
   &:focus {
     outline: 0;
     border: 1px solid

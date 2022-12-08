@@ -3,11 +3,13 @@ import Arweave from "arweave";
 //@ts-ignore
 import { WarpFactory, defaultCacheOptions } from "warp-contracts/web";
 
-import { getArtifactsByUser } from "gql/artifacts";
-import { getPools } from "gql/pools";
+import { store } from "redux/store";
 import { getGQLData } from "gql";
+import { getPools } from "gql/pools";
+import { getArtifactsByUser } from "gql/artifacts";
 
 import {
+    PoolType,
     ContributionType,
     ContributionResultType,
     GQLResponseType
@@ -15,32 +17,72 @@ import {
 import { LANGUAGE } from "language";
 import { TAGS } from "config";
 
+const GET_ENDPOINT = "arweave-search.goldsky.com";
+const POST_ENDPOINT = "arweave.net";
+
+const PORT = 443;
+const PROTOCOL = "https";
+const TIMEOUT = 40000;
+const LOGGING = false;
+
 export default class ArweaveClient {
     arweaveGet: any = Arweave.init({
-        host: "arweave-search.goldsky.com",
-        port: 443,
-        protocol: "https",
-        timeout: 40000,
-        logging: false,
+        host: GET_ENDPOINT,
+        port: PORT,
+        protocol: PROTOCOL,
+        timeout: TIMEOUT,
+        logging: LOGGING
     });
 
     arweavePost: any = Arweave.init({
-        host: "arweave.net",
-        port: 443,
-        protocol: "https",
-        timeout: 40000,
-        logging: false,
+        host: POST_ENDPOINT,
+        port: PORT,
+        protocol: PROTOCOL,
+        timeout: TIMEOUT,
+        logging: LOGGING
     });
     
     warp = WarpFactory.forMainnet({ ...defaultCacheOptions, inMemory: true });
 
-    calcARDonated(userWallet: string, pool: any) {
+    async getUserContributions(userWallet: string) {
+        const poolsReducer = store.getState().poolsReducer;
+        let pools: PoolType[] = [];
+
+        if (poolsReducer.data) {
+            pools = poolsReducer.data;
+        }
+        else {
+            pools = await getPools();
+        }
+        
+        if (pools.length > 0) {
+            const lastContributions: any = await this.calcLastContributions(userWallet, pools);
+
+            return pools.filter((pool: any) => {
+                if (pool.state.contributors.hasOwnProperty(userWallet)) {
+                    return true;
+                }
+                return false;
+            }).map((pool: any) => {
+                let poolElement = pool;
+                poolElement.totalContributed = this.calcARDonated(userWallet, pool);
+                poolElement.lastContribution = lastContributions[pool.id];
+                poolElement.receivingPercent = this.calcReceivingPercent(userWallet, pool);
+                return poolElement;
+            });
+        }
+        else {
+            return pools;
+        }
+    }
+
+    calcARDonated(userWallet: string, pool: PoolType) {
         let calc = parseFloat(this.calcContributions(pool.state.contributors[userWallet])) / 1000000000000;
         let tokens = (calc).toFixed(calc.toString().length);
         return tokens;
     }
 
-    calcReceivingPercent(userWallet: string, pool: any) {
+    calcReceivingPercent(userWallet: string, pool: PoolType) {
         if (pool) {
             let calc = (parseFloat(this.calcContributions(pool.state.contributors[userWallet])) / parseFloat(pool.state.totalContributions)) * 100;
             let tokens = (calc).toFixed(4);
@@ -51,7 +93,7 @@ export default class ArweaveClient {
         }
     }
 
-    async calcLastContributions(userWallet: string, pools: any[]) {
+    async calcLastContributions(userWallet: string, pools: PoolType[]) {
         let contributions = await getArtifactsByUser({
             poolIds: null,
             owner: userWallet,
@@ -78,23 +120,6 @@ export default class ArweaveClient {
         }
 
         return conMap;
-    }
-
-    async getUserContributions(userWallet: string) {
-        let pools = await getPools();
-        let lastContributions: any = await this.calcLastContributions(userWallet, pools);
-        return pools.filter((pool: any) => {
-            if (pool.state.contributors.hasOwnProperty(userWallet)) {
-                return true;
-            }
-            return false;
-        }).map((pool: any) => {
-            let poolElement = pool;
-            poolElement.totalContributed = this.calcARDonated(userWallet, pool);
-            poolElement.lastContribution = lastContributions[pool.id];
-            poolElement.receivingPercent = this.calcReceivingPercent(userWallet, pool);
-            return poolElement;
-        });
     }
 
     getReceivingPercent(userWallet: string, contributors: any, totalContributions: string, activeAmount: number): string {

@@ -11,6 +11,10 @@ export const Wrapper = styled.div`
     height: 140px;
     top: ${STYLING.dimensions.navHeight};
     background: ${(props) => props.theme.colors.view.background};
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        width: 100%;
+        margin: 0 0 0 -20px;
+    }
 `;
 
 export const ContentWrapper = styled.div`
@@ -28,8 +32,7 @@ export const Content = styled.div`
     max-width: ${STYLING.cutoffs.max};
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border-radius: ${STYLING.dimensions.borderRadius};
-    box-shadow: 0px 3px 5px ${(props) => props.theme.colors.shadow.primary};
+    box-shadow: 0 1px 1px 0 ${(props) => props.theme.colors.shadow.primary};
 `;
 
 export const Info = styled.div`
@@ -38,8 +41,9 @@ export const Info = styled.div`
     display: flex;
     position: relative;
     background: ${(props) => props.theme.colors.container.alt1.background};
-    border-top-left-radius: ${STYLING.dimensions.borderRadius};
-    border-top-right-radius: ${STYLING.dimensions.borderRadius};
+    border-top: 1px solid ${(props) => props.theme.colors.border.alt4};
+    border-left: 1px solid ${(props) => props.theme.colors.border.alt4};
+    border-right: 1px solid ${(props) => props.theme.colors.border.alt4};
 `;
 
 export const InfoLogo = styled.div`
@@ -96,7 +100,7 @@ export const InfoStyled = styled(InfoData)`
         margin: 0 10px 0 0;
         fill: ${(props) => props.theme.colors.font.primary.alt5};
     }
-    border-left: 1px solid ${(props) => props.theme.colors.border.tertiary};
+    border-left: 1px solid ${(props) => props.theme.colors.border.alt2};
     @media(max-width: ${STYLING.cutoffs.initial}) {
         svg {
             display: none;
@@ -124,8 +128,6 @@ export const Body = styled.div`
     height: 50%;
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border-bottom-left-radius: ${STYLING.dimensions.borderRadius};
-    border-bottom-right-radius: ${STYLING.dimensions.borderRadius};
     display: flex;
     justify-content: space-between;
     align-items: center;

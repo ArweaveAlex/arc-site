@@ -6,9 +6,10 @@ declare module "styled-components" {
         colors: {
             border: {
                 primary: string
-                secondary: string
-                tertiary: string
-                quarternary: string
+                alt1: string
+                alt2: string
+                alt3: string
+                alt4: string
             }
             button: {
                 primary: {

@@ -6,7 +6,7 @@ export const Wrapper = styled.button`
     height: 100%;
     width: 100%;
     background: ${(props) => props.theme.colors.button.secondary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.tertiary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt2};
     display: flex;
     align-items: center;
     justify-content: center;

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
     width: 100%;
     position: relative;
     padding: 20px;
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     background: ${(props) => props.theme.colors.container.primary.background};
 
     p, span, button, a, b, li, input {
@@ -5925,6 +5925,8 @@ export const Wrapper = styled.div`
     }
 `;
 
-export const LoadingWrapper = styled.div`
-    margin: 20px;
+export const LoadingContainer = styled.div`
+    height: 50px;
+    width: 50px;
+    position: relative;
 `;

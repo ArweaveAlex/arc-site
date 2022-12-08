@@ -9,7 +9,7 @@ export const Wrapper = styled.footer`
     position: relative;
     z-index: 2;
     background: ${props => props.theme.colors.navigation.footer.background};
-    border-top: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border-top: 1px solid ${(props) => props.theme.colors.border.alt1};
     @media(max-width: ${STYLING.cutoffs.secondary}) {
       height: 35vh;
     }
@@ -108,7 +108,7 @@ export const YearContainer = styled.div`
   align-items: center;
   position: absolute;
   bottom: 0;
-  border-top: 1px solid ${(props) => props.theme.colors.border.tertiary};
+  border-top: 1px solid ${(props) => props.theme.colors.border.alt2};
   @media(max-width:  ${STYLING.cutoffs.secondary}) {
     
   }

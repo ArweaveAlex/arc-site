@@ -34,7 +34,7 @@ export const Body = styled.div`
     height: calc(100% - 50px);
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.secondary};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     padding: 0 15px;
 `;
 
@@ -43,7 +43,7 @@ export const Row = styled.div<{ showBorder: boolean }>`
     display: flex;
     align-items: center;
     border-bottom: 1px solid ${(props) => props.showBorder ? 
-        props.theme.colors.border.quarternary : props.theme.colors.transparent};
+        props.theme.colors.border.alt3 : props.theme.colors.transparent};
 `;
 
 export const InfoData = styled.div`
