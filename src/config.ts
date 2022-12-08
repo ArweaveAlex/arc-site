@@ -142,9 +142,7 @@ export const URLS: IURLView = {
 }
 
 export const STORAGE = {
-    none: "N/A",
-    pending: "pending",
-    txUpdate: "txUpdate"
+    none: "N/A"
 }
 
 export const PAGINATOR = 100;

@@ -40,7 +40,7 @@ function PoolsCard(props: PoolType) {
                     </S.LinkContainer>
                 </Link>
             </S.C1>
-            <S.C2 image={getTxEndpoint(props.state.image.length > 0 ? props.state.image : FALLBACK_IMAGE)} />
+            <S.C2 image={imageUrl} />
         </S.PCWrapper>
     ) : null
 }

@@ -3,9 +3,8 @@ import { store } from "redux/store";
 
 import { ArweaveClient } from "arweave-client";
 import { unquoteJsonKeys } from "utils";
-import { CURSORS } from "config";
+import { CURSORS, PAGINATOR } from "config";
 import { GQLResponseType, TagFilterType } from "types";
-import { PAGINATOR } from "config";
 
 export async function getGQLData(args: {
     ids: string[] | null;
