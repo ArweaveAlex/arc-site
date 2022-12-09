@@ -5,7 +5,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import { IconButton } from "components/atoms/IconButton";
 
-// import { ASSETS } from "config";
 import { defaultTheme } from "themes";
 import { wrapWithProviders } from "tests/provider";
 
