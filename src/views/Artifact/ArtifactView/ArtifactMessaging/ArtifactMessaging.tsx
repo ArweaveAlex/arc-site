@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 import { Button } from "components/atoms/Button";
 import { Carousel } from "components/molecules/Carousel";
 
-import { MEDIA_TYPES } from "config";
+import { MEDIA_TYPES, STORAGE } from "config";
 import { getTxEndpoint } from "endpoints";
 import { LANGUAGE } from "language";
 import { IProps } from "../../types";
@@ -19,6 +19,8 @@ export default function ArtifactMessaging(props: IProps) {
             setData(JSON.parse(props.data.rawData));
         }
     }, [props.data])
+
+    console.log(data.source)
 
     function getMessage() {
         return (
@@ -53,7 +55,7 @@ export default function ArtifactMessaging(props: IProps) {
                     <S.Section>
                         <S.InfoData>
                             <span>{LANGUAGE.messaging.source}</span>
-                            <p>{parse(data.source)}</p>
+                            <p>{data.source ? parse(data.source) : STORAGE.none}</p>
                         </S.InfoData>
                     </S.Section>
                 </S.Footer>
