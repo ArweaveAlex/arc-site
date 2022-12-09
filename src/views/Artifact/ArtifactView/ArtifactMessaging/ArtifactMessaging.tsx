@@ -11,6 +11,7 @@ import { IProps } from "../../types";
 import * as S from "./styles";
 
 export default function ArtifactMessaging(props: IProps) {
+
     const [data, setData] = React.useState<any>(null);
     const [contentApproved, setContentApproved] = React.useState<boolean>(false);
 
@@ -20,6 +21,32 @@ export default function ArtifactMessaging(props: IProps) {
         }
     }, [props.data])
 
+    function getMessageText() {
+        if (data) {
+            if (data.includes && data.includes.tweets && data.includes.tweets.length > 0) {
+                for (let i = 0; i < data.includes.tweets.length; i++) {
+                    if (!data.includes.tweets[i].referenced_tweets) {
+                        return data.includes.tweets[i].text;
+                    }
+                }
+                return data.includes.tweets[0].text
+            }
+            else {
+                if (data.extended_tweet && data.extended_tweet.full_text) {
+                    return data.extended_tweet.full_text;
+                }
+                if (data.full_text) {
+                    return data.full_text;
+                }
+                else {
+                    return data.text;
+                }
+            }
+        }
+        else {
+            return STORAGE.none;
+        }
+    }
 
     function getMessage() {
         return (
@@ -28,27 +55,27 @@ export default function ArtifactMessaging(props: IProps) {
                     <S.BorderSection>
                         <S.InfoData>
                             <span>{LANGUAGE.messaging.name}</span>
-                            <p>{data.user.name}</p>
+                            <p>{data.user && data.user.name ? data.user.name : STORAGE.none}</p>
                         </S.InfoData>
                     </S.BorderSection>
                     <S.Section>
                         <S.InfoData>
                             <span>{LANGUAGE.messaging.handle}</span>
-                            <p>{`@${data.user.screen_name}`}</p>
+                            <p>{data.user && data.user.screen_name ? `@${data.user.screen_name}` : STORAGE.none}</p>
                         </S.InfoData>
                     </S.Section>
                 </S.Header>
                 <S.Body>
                     <S.Message>
                         <span>{LANGUAGE.messaging.message}</span>
-                        <p>{data.full_text ? data.full_text : data.text}</p>
+                        <p>{getMessageText()}</p>
                     </S.Message>
                 </S.Body>
                 <S.Footer>
                     <S.BorderSection>
                         <S.InfoData>
                             <span>{LANGUAGE.messaging.originalPostDate}</span>
-                            <p>{data.created_at}</p>
+                            <p>{data.created_at ? data.created_at : STORAGE.none}</p>
                         </S.InfoData>
                     </S.BorderSection>
                     <S.Section>
@@ -77,7 +104,13 @@ export default function ArtifactMessaging(props: IProps) {
             case MEDIA_TYPES.png:
                 return <S.ImageContent image={url} />
             default:
-                return null;
+                return (
+                    <S.ArweaveLinkWrapper>
+                        <S.ArweaveLink>
+                            <a target={"_blank"} rel={"noreferrer"} href={url}>{LANGUAGE.viewOnArweave}</a>
+                        </S.ArweaveLink>
+                    </S.ArweaveLinkWrapper>
+                )
         }
     }
 
@@ -90,12 +123,14 @@ export default function ArtifactMessaging(props: IProps) {
 
             for (let i = 0; i < mediaIdsJsonKeys.length; i++) {
                 if (mediaIdsJsonKeys[i].length > 0) {
-                    const mediaId = (mediaIdsJson[mediaIdsJsonKeys[i]]).id
-                    mediaComponents.push(
-                        <S.MediaElement key={mediaId}>
-                            {getMediaType(mediaIdsJsonKeys[i].slice(-3), getTxEndpoint(mediaId))}
-                        </S.MediaElement>
-                    )
+                    const mediaId = (mediaIdsJson[mediaIdsJsonKeys[i]]).id;
+                    if (mediaIdsJsonKeys[i].indexOf(".")) {
+                        mediaComponents.push(
+                            <S.MediaElement key={mediaId}>
+                                {getMediaType(mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf(".") + 1), getTxEndpoint(mediaId))}
+                            </S.MediaElement>
+                        )
+                    }
                 }
             }
 
@@ -106,7 +141,7 @@ export default function ArtifactMessaging(props: IProps) {
                             <S.ContentApproveWrapper>
                                 <S.ContentApprove>
                                     <p>{LANGUAGE.mediaCaution}</p>
-                                    <Button 
+                                    <Button
                                         type={"secondary"}
                                         label={LANGUAGE.accept}
                                         handlePress={() => setContentApproved(true)}

@@ -28,6 +28,7 @@ export const InfoData = styled.div`
     }
     p, a {
         font-size: ${(props) => props.theme.typography.size.small};
+        line-height: 18px;
         color: ${(props) => props.theme.colors.font.primary.active.base};
         margin: 10px 0 0 0;
     }
@@ -100,6 +101,11 @@ export const ContentApproveWrapper = styled.div`
     backdrop-filter: blur(15px);
 `;
 
+export const ArweaveLinkWrapper = styled(ContentApproveWrapper)`
+    background: ${(props) => props.theme.colors.container.primary.background};
+    backdrop-filter: none;
+`;
+
 export const ContentApprove = styled.div`
     width: 100%;
     position: absolute;
@@ -110,11 +116,17 @@ export const ContentApprove = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    p {
+    p, a {
         line-height: 18px;
         margin: 0 0 30px 0;
         color: ${(props) => props.theme.colors.font.primary.alt1};
         text-align: center;
+    }
+`;
+
+export const ArweaveLink = styled(ContentApprove)`
+    a {
+        color: ${(props) => props.theme.colors.font.primary.active.base};
     }
 `;
 

@@ -171,6 +171,7 @@ export const LANGUAGE = {
     urlCopied: `URL Copied!`,
     view: `View`,
     viewAccount: `My Library`,
+    viewOnArweave: `View on Arweave`,
     viewPools: `View Pool`,
     walletNotConnected: `You must connect a wallet to continue.`,
     willBeReceiving: `You will be receiving`,
