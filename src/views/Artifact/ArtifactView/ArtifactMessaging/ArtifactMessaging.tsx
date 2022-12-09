@@ -20,7 +20,6 @@ export default function ArtifactMessaging(props: IProps) {
         }
     }, [props.data])
 
-    console.log(data.source)
 
     function getMessage() {
         return (
