@@ -15,4 +15,5 @@ export interface IProps {
   noFocus?: boolean;
   useMaxWidth?: boolean;
   noMinWidth?: boolean;
+  testingCtx?: string;
 }

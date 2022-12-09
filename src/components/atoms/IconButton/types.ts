@@ -7,4 +7,5 @@ export interface IProps {
   sm?: boolean;
   warning?: boolean;
   disabled?: boolean;
+  testingCtx?: string;
 }

@@ -22,6 +22,7 @@ export default function FormField(props: IProps) {
         disabled={props.disabled}
         invalid={props.invalid.status}
         placeholder={props.placeholder ? props.placeholder : ""}
+        data-testid={props.testingCtx}
       />
       <S.EndTextContainer disabled={props.disabled}>
         {
