@@ -156,7 +156,6 @@ export default function ArtifactMessaging(props: IProps) {
             else {
                 return null;
             }
-
         }
         else {
             return null
