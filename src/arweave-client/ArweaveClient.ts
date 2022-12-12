@@ -191,11 +191,14 @@ export default class ArweaveClient {
             const warpContract = this.warp.contract(poolId).connect("use_wallet").setEvaluationOptions({
                 waitForConfirmation: false,
             });
-            const result = await warpContract.writeInteraction<any>(
-                { function: "contribute" }, [], {
-                    target: owner,
-                    winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
-                } as any);
+            const result = await warpContract.writeInteraction(
+                { function: "contribute" }, {
+                    disableBundling: true, 
+                    transfer: {
+                        target: owner,
+                        winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
+                    }
+                });
             if (!result) {
                 return { status: false, message: LANGUAGE.pool.contribute.failed };
             }

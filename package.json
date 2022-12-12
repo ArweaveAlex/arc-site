@@ -31,7 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:verbose": "npm test -- --verbose",
-    "test:coverage": "CI=true npm test -- --env=jsdom --coverage"
+    "test:coverage": "CI=true npm test -- --env=jsdom --coverage",
+    "start:windows": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
