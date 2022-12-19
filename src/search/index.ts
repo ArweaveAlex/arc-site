@@ -1,6 +1,9 @@
 
 
 import axios from "axios";
+import { GQLResponseType } from "types";
+
+import { getGQLData } from '../gql';
 
 let ID_TERM = "`*"
 
@@ -20,30 +23,52 @@ var timer = function(name: any) {
     }
 };
 
+let results: SearchResult[] = [];
+
 export async function searchTerm(poolId: string, searchTerm: string) {
-    let results: SearchResult[] = [];
-
-    
-    
-
-    const searchIndex = (await axios.get(
-        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc'
-    )).data;
 
     var t = timer('Search benchmark');
+
+    let poolIndeces = [
+        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
+        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
+        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
+        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
+        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
+        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc'
+    ];
+
+    results = [];
+
+    for(let k = 0; k < poolIndeces.length; k++){
+        let poolIndex = poolIndeces[k];
+        searchIndex(
+            searchTerm, 
+            poolIndex, 
+            k, 
+            t
+        );
+    }
+
+    t.stop();
+}
+
+async function searchIndex(
+    searchTerm: string, 
+    index: string,
+    i: number,
+    t: any
+) {
+    const searchIndex = (await axios.get(
+        index
+    )).data;
     
-    // find length of search term
-    // loop through array of chars
-    // reach length of search term start checking back to term length
-    // find match loop from end index until find an int push that int into results
     let text = searchIndex;
     searchTerm = searchTerm.toLowerCase();
 
     let indeces = [
         ...text.matchAll(new RegExp(searchTerm, 'gi'))
     ].map(a => a.index);
-
-    console.log(indeces);
     
     let ids: string[] = [];
     for(let i = 0; i< indeces.length; i++){
@@ -53,9 +78,21 @@ export async function searchTerm(poolId: string, searchTerm: string) {
 
     console.log(ids);
 
-    t.stop();
+    let artifacts: GQLResponseType[] = await getGQLData({
+        ids: ids,
+        tagFilters: null,
+        uploader: null,
+        cursor: null,
+        reduxCursor: null
+    });
 
-    return results;
+    console.log(artifacts);
+
+    if(i == 5) {
+        t.stop();
+    }
+
+    // results.push(artifacts);
 }
 
 function pullId(index: number, text: string) {
@@ -63,8 +100,6 @@ function pullId(index: number, text: string) {
         let backTrack = j - (ID_TERM.length - 1);
         let subTerm = text.substring(backTrack, j + 1);
         if(subTerm === ID_TERM){
-            console.log(subTerm);
-
             for(let k = j + 1; k < text.length; k++) {
                 let backTrack2 = k - (ID_TERM.length - 1);
                 let subTerm2 = text.substring(backTrack2, k + 1);
@@ -73,7 +108,5 @@ function pullId(index: number, text: string) {
                 }
             }
         }
-        
     }
-
 }

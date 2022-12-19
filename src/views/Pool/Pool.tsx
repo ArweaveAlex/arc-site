@@ -33,7 +33,7 @@ export default function Pool() {
 
     React.useEffect(() => {
         (async function () {
-                let searchResults = await searchTerm(id, "TOIAlerts");
+                let searchResults = await searchTerm(id, "December");
         })();
     }, []);
 
