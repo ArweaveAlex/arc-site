@@ -58,7 +58,12 @@ export default function Pool() {
     React.useEffect(() => {
         (async function () {
             if (detailData && detailData.contracts.length > 0) {
-                setCount((await getPoolCount(getTagValue(detailData.contracts[0].node.tags, TAGS.keys.contractSrc))).toString())
+                setCount((await getPoolCount(getTagValue(detailData.contracts[0].node.tags, TAGS.keys.contractSrc))).toString());
+            }
+            else {
+                if (detailData && detailData.contracts.length <= 0) {
+                    setCount("0");
+                }
             }
         })();
     }, [detailData])
