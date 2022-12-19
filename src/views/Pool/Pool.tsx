@@ -19,6 +19,8 @@ import { TAGS, FALLBACK_IMAGE } from "config";
 import { REDUX_CURSORS } from "redux-config";
 import * as S from "./styles";
 
+import { searchTerm } from "../../search";
+
 export default function Pool() {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -28,6 +30,12 @@ export default function Pool() {
     const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
     const [imageUrl, setImageUrl] = React.useState<string | null>(null);
+
+    React.useEffect(() => {
+        (async function () {
+                let searchResults = await searchTerm(id, "TOIAlerts");
+        })();
+    }, []);
 
     React.useEffect(() => {
         dispatch(clearCursors());
