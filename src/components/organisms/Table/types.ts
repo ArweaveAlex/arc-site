@@ -4,11 +4,11 @@ import { KeyValueType, TableHeaderType, CursorType } from "types"
 
 export interface IProps {
     title: string;
-    titleAction?: React.ReactNode | null;
+    action?: React.ReactNode | null;
     header: TableHeaderType;
     data: KeyValueType[];
     recordsPerPage: number;
     showPageNumbers: boolean;
-    handleUpdateFetch: (cursor: string | null) => void;
+    handleCursorFetch: (cursor: string | null) => void;
     cursors: CursorType;
 }

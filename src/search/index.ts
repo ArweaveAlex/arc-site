@@ -1,11 +1,9 @@
-
-
 import axios from "axios";
 import { GQLResponseType } from "types";
 
 import { getGQLData } from '../gql';
 
-let ID_TERM = "`*"
+const ID_TERM = "`*"
 
 export type SearchResult = {
     id: string;
@@ -25,7 +23,7 @@ var timer = function(name: any) {
 
 let results: SearchResult[] = [];
 
-export async function searchTerm(poolId: string, searchTerm: string) {
+export async function search(poolId: string, searchTerm: string) {
 
     var t = timer('Search benchmark');
 
@@ -88,7 +86,7 @@ async function searchIndex(
 
     console.log(artifacts);
 
-    if(i == 5) {
+    if(i === 5) {
         t.stop();
     }
 

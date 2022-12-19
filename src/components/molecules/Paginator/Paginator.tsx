@@ -45,12 +45,12 @@ export default function Paginator(props: IProps) {
     }
 
     const handleNextPage = () => {
-        props.handleUpdateFetch(props.cursors.next);
+        props.handleCursorFetch(props.cursors.next);
         handleScroll();
     }
 
     const handlePreviousPage = () => {
-        props.handleUpdateFetch(props.cursors.previous);
+        props.handleCursorFetch(props.cursors.previous);
         handleScroll();
     }
 

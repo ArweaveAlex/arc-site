@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Input = styled.input<{ disabled: boolean; invalid: boolean }>`
+  height: ${STYLING.dimensions.formHeightMax};
   color: ${(props) => props.theme.colors.font.primary.active.base};
   font-size: 19px;
   font-weight: ${(props) => props.theme.typography.weight.medium};
@@ -43,7 +44,7 @@ export const Input = styled.input<{ disabled: boolean; invalid: boolean }>`
 `;
 
 export const EndTextContainer = styled.div<{ disabled: boolean }>`
-  height: calc(${STYLING.dimensions.formHeight} - 7.5px);
+  height: calc(${STYLING.dimensions.formHeightMax} - 7.5px);
   max-width: 100px;
   position: absolute;
   right: 47.5px;
@@ -67,7 +68,6 @@ export const EndText = styled.span`
 `;
 
 export const ErrorContainer = styled.div`
-  height: 20px;
   margin: 7.5px 0 0 0;
   height: 25px;
   overflow-x: hidden;

@@ -4,7 +4,8 @@ export interface IProps {
     data: ArtifactResponseType;
     showBookmarks: boolean;
     showPoolIds: boolean;
-    handleUpdateFetch: (cursor: string | null) => void;
+    handleCursorFetch: (cursor: string | null) => void;
+    handleSearchFetch: (term: string | null) => void;
     cursors: CursorType;
     owner: string | null
 }

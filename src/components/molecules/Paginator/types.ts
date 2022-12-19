@@ -8,6 +8,6 @@ export interface IProps {
     setCurrentPage: Dispatch<SetStateAction<number>>;
     scrollRef: any;
     showPageNumbers: boolean;
-    handleUpdateFetch: (cursor: string | null) => void;
+    handleCursorFetch: (cursor: string | null) => void;
     cursors: CursorType
 }

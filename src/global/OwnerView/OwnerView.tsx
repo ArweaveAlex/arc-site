@@ -14,8 +14,9 @@ import * as S from "./styles";
 export default function OwnerView(props: IProps) {
     const dispatch = useDispatch();
 
-    const [cursor, setCursor] = React.useState<string | null>(null);
     const [data, setData] = React.useState<ArtifactResponseType | null>(null);
+    const [cursor, setCursor] = React.useState<string | null>(null);
+    const [searchTerm, setSearchTerm] = React.useState<string | null>(null);
 
     React.useEffect(() => {
         dispatch(clearCursors());
@@ -44,7 +45,8 @@ export default function OwnerView(props: IProps) {
                         data={data}
                         showBookmarks={props.showBookmarks}
                         showPoolIds={props.showPoolIds}
-                        handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
+                        handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
+                        handleSearchFetch={(term: string | null) => setSearchTerm(term)}
                         cursors={{
                             next: data.nextCursor,
                             previous: data.previousCursor

@@ -25,8 +25,8 @@ export default function Table(props: IProps) {
                 <S.HeaderFlex>
                     <S.H2>{props.title}</S.H2>
                     {
-                        props.titleAction &&
-                        <>{props.titleAction}</>
+                        props.action &&
+                        <>{props.action}</>
                     }
                 </S.HeaderFlex>
             </S.Header>
@@ -67,7 +67,7 @@ export default function Table(props: IProps) {
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 showPageNumbers={props.showPageNumbers}
-                handleUpdateFetch={(cursor: string | null) => props.handleUpdateFetch(cursor)}
+                handleCursorFetch={(cursor: string | null) => props.handleCursorFetch(cursor)}
                 cursors={props.cursors}
             />
         </S.Wrapper>

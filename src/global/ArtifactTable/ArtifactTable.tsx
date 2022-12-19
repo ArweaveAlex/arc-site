@@ -43,7 +43,32 @@ function BookmarkToggle(props: {
 
             />
         </S.BookmarkToggle>
-    );
+    )
+}
+
+function SearchAction(props: {
+    handleSearchFetch: (term: string | null) => void;
+}) {
+    const [searchTerm, setSearchTerm] = React.useState<string | null>("");
+
+    function handleSearch(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (e.key === "Enter") {
+            props.handleSearchFetch(searchTerm)
+        }
+    }
+
+    return (
+        <S.SearchWrapper>
+            <ReactSVG src={ASSETS.search} />
+            <S.SearchInput
+                type={"text"}
+                value={searchTerm}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+                onKeyDown={handleSearch}
+                placeholder={"Search"}
+            />
+        </S.SearchWrapper>
+    )
 }
 
 export default function ArtifactTable(props: IProps) {
@@ -117,6 +142,12 @@ export default function ArtifactTable(props: IProps) {
         )
     }
 
+    function getSearchAction() {
+        return (
+            <SearchAction handleSearchFetch={props.handleSearchFetch} />
+        )
+    }
+
     async function handleBookmarkStateUpdate(artifactId: string) {
         const updatedBookmarks: string[] = [];
         for (let i = 0; i < bookmarkIds.length; i++) {
@@ -180,12 +211,12 @@ export default function ArtifactTable(props: IProps) {
     return data && data.length > 0 ? (
         <Table
             title={LANGUAGE.artifacts}
-            titleAction={null}
+            action={getSearchAction()}
             header={getHeader()}
             data={data}
             recordsPerPage={PAGINATOR}
             showPageNumbers={false}
-            handleUpdateFetch={props.handleUpdateFetch}
+            handleCursorFetch={props.handleCursorFetch}
             cursors={props.cursors}
         />
     ) : null

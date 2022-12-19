@@ -116,6 +116,9 @@ declare module "styled-components" {
                 primary: {
                     fill: string
                     hover: string
+                    alt1: {
+                        fill: string
+                    }
                 }
                 secondary: {
                     fill: string

@@ -1,7 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-import { STYLING } from "styling-config";
-
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -129,7 +127,6 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${(props) => props.theme.colors.form.background};
     border: 1px solid ${(props) => props.theme.colors.form.border};
     color: ${(props) => props.theme.colors.font.primary.alt1};
-    height: ${STYLING.dimensions.formHeight};
     margin: 0;
     padding: 10px;
     &:disabled {

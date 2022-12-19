@@ -105,8 +105,8 @@ export const Form = styled.form`
 
 export const FormWrapper = styled.div``;
 
-export const FormField = styled.div`
-    width: ${STYLING.dimensions.formWidth};
+export const FormContainer = styled.div`
+    width: ${STYLING.dimensions.formWidthMin};
     margin: 50px auto 0 auto;
 `;
 

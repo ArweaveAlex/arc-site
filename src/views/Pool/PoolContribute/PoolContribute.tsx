@@ -142,7 +142,7 @@ export default function PoolContribute(props: IProps) {
                         </S.Header>
                         <S.Form onSubmit={(e) => handlePoolContribute(e)}>
                             <S.FormWrapper>
-                                <S.FormField>
+                                <S.FormContainer>
                                     <FormField
                                         type={"number"}
                                         value={amount}
@@ -151,7 +151,7 @@ export default function PoolContribute(props: IProps) {
                                         invalid={getInvalidForm()}
                                         endText={LANGUAGE.arTokens}
                                     />
-                                </S.FormField>
+                                </S.FormContainer>
                                 {arProvider.walletAddress &&
                                     <S.RPWrapper>
                                         {getReceivingPercent()}

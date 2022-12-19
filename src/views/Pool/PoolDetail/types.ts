@@ -2,6 +2,7 @@ import { ArtifactResponseType, CursorType } from "types";
 
 export interface IProps {
     data: ArtifactResponseType;
-    handleUpdateFetch: (cursor: string | null) => void;
-    cursors: CursorType
+    handleCursorFetch: (cursor: string | null) => void;
+    handleSearchFetch: (term: string | null) => void;
+    cursors: CursorType;
 }

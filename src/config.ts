@@ -71,6 +71,7 @@ export const ASSETS = {
     mint: `${ASSET_SRC}/mint.svg`,
     owner: `${ASSET_SRC}/owner.svg`,
     pool: `${ASSET_SRC}/pool.svg`,
+    search: `${ASSET_SRC}/search.svg`,
     share: `${ASSET_SRC}/share.svg`,
     shareLink: `${ASSET_SRC}/share-link.svg`,
     social: {

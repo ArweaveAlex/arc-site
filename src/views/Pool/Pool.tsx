@@ -19,23 +19,28 @@ import { TAGS, FALLBACK_IMAGE } from "config";
 import { REDUX_CURSORS } from "redux-config";
 import * as S from "./styles";
 
-import { searchTerm } from "../../search";
+import { search } from "../../search";
 
 export default function Pool() {
     const { id } = useParams();
     const dispatch = useDispatch();
-
-    const [cursor, setCursor] = React.useState<string | null>(null);
-    const [count, setCount] = React.useState<string | null>(null);
+    
     const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
+    const [cursor, setCursor] = React.useState<string | null>(null);
+    const [count, setCount] = React.useState<string | null>(null);
     const [imageUrl, setImageUrl] = React.useState<string | null>(null);
+
+    const [searchTerm, setSearchTerm] = React.useState<string | null>(null);
+    const [searchResults, setSearchResults] = React.useState<any>(null);
 
     React.useEffect(() => {
         (async function () {
-                let searchResults = await searchTerm(id, "December");
+            if (searchTerm) {
+                setSearchResults(await search(id, searchTerm));
+            }
         })();
-    }, []);
+    }, [id, searchTerm]);
 
     React.useEffect(() => {
         dispatch(clearCursors());
@@ -79,11 +84,7 @@ export default function Pool() {
             }
         })()
     }, [headerData])
-
-    function checkState() {
-        return headerData;
-    }
-
+    
     function getPoolsHeader() {
         if (headerData && imageUrl) {
             return (
@@ -123,7 +124,8 @@ export default function Pool() {
             return (
                 <PoolDetail
                     data={detailData}
-                    handleUpdateFetch={(cursor: string | null) => setCursor(cursor)}
+                    handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
+                    handleSearchFetch={(term: string | null) => setSearchTerm(term)}
                     cursors={{
                         next: detailData.nextCursor,
                         previous: detailData.previousCursor
@@ -138,7 +140,9 @@ export default function Pool() {
         }
     }
 
-    return checkState() ? (
+    console.log(searchResults)
+
+    return headerData ? (
         <S.Wrapper>
             {getPoolsHeader()}
             {getPoolStatistics()}

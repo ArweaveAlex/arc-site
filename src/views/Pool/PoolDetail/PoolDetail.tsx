@@ -8,7 +8,8 @@ export default function PoolDetail(props: IProps) {
             data={props.data} 
             showBookmarks={false}
             showPoolIds={false}
-            handleUpdateFetch={(cursor: string | null) => props.handleUpdateFetch(cursor)}
+            handleCursorFetch={(cursor: string | null) => props.handleCursorFetch(cursor)}
+            handleSearchFetch={(term: string | null) => props.handleSearchFetch(term)}
             cursors={props.cursors}
             owner={null}
         />
