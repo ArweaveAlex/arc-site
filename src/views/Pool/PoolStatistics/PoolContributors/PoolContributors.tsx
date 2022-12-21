@@ -52,7 +52,9 @@ export default function PoolContributors(props: IProps) {
         const contributorList: React.ReactNode[] = [];
         const contributors: any = props.data.state.contributors;
 
-        const sortedKeys: any = Object.keys(contributors).sort(function (a, b) { return contributors[a] - contributors[b] }).reverse();
+        const sortedKeys: any = Object.keys(contributors).sort(function (a, b) {
+            return Number(arClient.calcContributions(contributors[a])) - Number(arClient.calcContributions(contributors[b]));
+        }).reverse();
 
         for (let i = 0; i < sortedKeys.length; i++) {
             contributorList.push(
