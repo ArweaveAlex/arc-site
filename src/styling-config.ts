@@ -8,7 +8,7 @@ export const STYLING = {
     },
     dimensions: {
         borderRadius: "10px",
-        borderRadiusInput: "2px",
+        borderRadiusInput: "2.25px",
         buttonHeight: "33.5px",
         buttonWidth: "150px",
         navHeight: "70px",
