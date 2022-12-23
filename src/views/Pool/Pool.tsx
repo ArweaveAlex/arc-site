@@ -33,8 +33,9 @@ export default function Pool() {
 
     const [searchTerm, setSearchTerm] = React.useState<string | null>(null);
     const [searchResults, setSearchResults] = React.useState<any>(null);
+    const [searchResultsIds, setSearchResultsIds] = React.useState<any>([]);
     const [searchIndeces, setSearchIndeces] = React.useState<any>(null);
-
+    console.log(searchResultsIds);
     React.useEffect(() => {
         (async function () {
             if (searchTerm && searchIndeces) {
@@ -42,8 +43,7 @@ export default function Pool() {
                     searchTerm, 
                     searchIndeces,
                     (r: any) => {
-                        // console.log(r); 
-                        setSearchResults(r);
+                        setSearchResultsIds((prevArray: any) => [...prevArray, ...r]);
                     }
                 );
             }

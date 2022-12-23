@@ -11,18 +11,6 @@ const ID_TERM = "`*";
 const OWNER_TERM = "`*";
 const BASE_SEARCH_INDEX_URL = "https://arweave.net/";
 
-var timer = function(name: any) {
-    var start = new Date();
-    return {
-        stop: function() {
-            var end  = new Date();
-            var time = end.getTime() - start.getTime();
-            console.log('Timer:', name, 'finished in', time, 'ms');
-        }
-    }
-};
-
-
 
 export async function initSearch(poolId: string) {
     let poolIndeces: string[] = [];
@@ -38,25 +26,16 @@ export async function initSearch(poolId: string) {
     return poolIndeces;
 }
 
-let results: GQLResponseType[] = [];
-
 export async function search(
     searchTerm: string,
     poolIndeces: string[],
     searchCallback: any
 ) {
-    var t = timer('Search benchmark');
-
-    results = [];
-
     for(let k = 0; k < poolIndeces.length; k++){
         let poolIndex = poolIndeces[k];
         searchIndex(
             searchTerm, 
             poolIndex, 
-            k, 
-            t,
-            poolIndeces,
             searchCallback
         );
     }
@@ -65,9 +44,6 @@ export async function search(
 async function searchIndex(
     searchTerm: string, 
     index: string,
-    k: number,
-    t: any,
-    poolIndeces: string[],
     searchCallback: any
 ) {
     const searchIndex = (await axios.get(
@@ -87,6 +63,11 @@ async function searchIndex(
         ids.push(idString);
     }
 
+    searchCallback(ids);
+}
+
+export async function fetchArtifacts(ids: string[], cursor: number) {
+    // use number cursor to split up ids
     let artifacts: GQLResponseType[] = await getGQLData({
         ids: ids,
         tagFilters: null,
@@ -95,12 +76,7 @@ async function searchIndex(
         reduxCursor: null
     });
 
-    results = results.concat(artifacts);
-
-    if(k === poolIndeces.length - 1) {
-        t.stop();
-        searchCallback(results);
-    }
+    return artifacts;
 }
 
 function pullId(index: number, text: string) {
