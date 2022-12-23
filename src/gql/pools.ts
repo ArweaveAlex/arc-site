@@ -1,6 +1,8 @@
 import { ArweaveClient } from "arweave-client";
 import {
     GQLResponseType,
+    PoolSearchIndexStateType,
+    PoolSearchIndexType,
     PoolType
 } from "types";
 import { getRedstoneSrcTxEndpoint } from "endpoints";
@@ -69,6 +71,61 @@ export async function getPoolById(poolId: string): Promise<PoolType | null> {
     try {
         const contract = arClient.warp.contract(poolId).setEvaluationOptions({ allowBigInt: true });
         return { id: poolId, state: (await contract.readState() as any).cachedValue.state };
+    }
+    catch (error: any) {
+        console.error(error)
+        return null
+    }
+}
+
+export async function getLatestPoolSearchIndexTxId(poolId: string) {
+    const poolSearchIndexes: GQLResponseType[] = await getGQLData({
+        ids: null,
+        tagFilters: [
+            {
+                name: TAGS.keys.appType,
+                values: [
+                    TAGS.values.searchIndex
+                ]
+            },
+            {
+                name: TAGS.keys.alexPoolId,
+                values: [
+                    poolId
+                ]
+            }
+        ],
+        uploader: null,
+        cursor: null,
+        reduxCursor: null
+    });
+
+    if(poolSearchIndexes.length == 0) return null;
+
+    if(poolSearchIndexes.length == 1) return poolSearchIndexes[0];
+
+    let latestIndex = poolSearchIndexes[0];
+
+    for(let i = 1; i < poolSearchIndexes.length; i++) {
+        let thisIndex = poolSearchIndexes[i];
+        let thisIndexDateTag = getTagValue(thisIndex.node.tags, TAGS.keys.timestamp);
+        let latestIndexDateTag = getTagValue(latestIndex.node.tags, TAGS.keys.timestamp);
+        let thisIndexDate = thisIndexDateTag ? parseInt(thisIndexDateTag) : 0;
+        let latestIndexDate = latestIndexDateTag ? parseInt(thisIndexDateTag) : 0;
+        if(thisIndexDate > latestIndexDate) {
+            latestIndex = thisIndex;
+        }
+    }
+
+    return latestIndex;
+}
+
+export async function getPoolSearchIndexById(poolSearchIndexId: string): Promise<PoolSearchIndexType | null> {
+    const arClient = new ArweaveClient();
+
+    try {
+        const contract = arClient.warp.contract(poolSearchIndexId).setEvaluationOptions({ allowBigInt: true });
+        return { id: poolSearchIndexId, state: (await contract.readState() as any).cachedValue.state };
     }
     catch (error: any) {
         console.error(error)

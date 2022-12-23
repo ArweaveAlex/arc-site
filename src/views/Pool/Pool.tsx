@@ -19,7 +19,7 @@ import { TAGS, FALLBACK_IMAGE } from "config";
 import { REDUX_CURSORS } from "redux-config";
 import * as S from "./styles";
 
-import { search } from "../../search";
+import { search, initSearch } from "../../search";
 
 export default function Pool() {
     const { id } = useParams();
@@ -33,14 +33,28 @@ export default function Pool() {
 
     const [searchTerm, setSearchTerm] = React.useState<string | null>(null);
     const [searchResults, setSearchResults] = React.useState<any>(null);
+    const [searchIndeces, setSearchIndeces] = React.useState<any>(null);
 
     React.useEffect(() => {
         (async function () {
-            if (searchTerm) {
-                setSearchResults(await search(id, searchTerm));
+            if (searchTerm && searchIndeces) {
+                await search(
+                    searchTerm, 
+                    searchIndeces,
+                    (r: any) => {
+                        // console.log(r); 
+                        setSearchResults(r);
+                    }
+                );
             }
         })();
     }, [id, searchTerm]);
+
+    React.useEffect(() => {
+        (async function () {
+                setSearchIndeces(await initSearch(id));
+        })();
+    }, []);
 
     React.useEffect(() => {
         dispatch(clearCursors());
@@ -139,8 +153,6 @@ export default function Pool() {
             )
         }
     }
-
-    console.log(searchResults)
 
     return headerData ? (
         <S.Wrapper>

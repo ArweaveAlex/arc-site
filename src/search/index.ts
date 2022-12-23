@@ -1,14 +1,15 @@
 import axios from "axios";
 import { GQLResponseType } from "types";
 
-import { getGQLData } from '../gql';
+import { getGQLData} from '../gql';
+import { getLatestPoolSearchIndexTxId, getPoolSearchIndexById } from "gql/pools";
+import { getTagValue } from "utils";
+import { TAGS } from "config";
+import { convertTypeAcquisitionFromJson } from "typescript";
 
-const ID_TERM = "`*"
-
-export type SearchResult = {
-    id: string;
-    description: string;
-}
+const ID_TERM = "`*";
+const OWNER_TERM = "`*";
+const BASE_SEARCH_INDEX_URL = "https://arweave.net/";
 
 var timer = function(name: any) {
     var start = new Date();
@@ -21,20 +22,30 @@ var timer = function(name: any) {
     }
 };
 
-let results: SearchResult[] = [];
 
-export async function search(poolId: string, searchTerm: string) {
 
+export async function initSearch(poolId: string) {
+    let poolIndeces: string[] = [];
+    let latestIndexTransaction = await getLatestPoolSearchIndexTxId(poolId);
+    let latestIndexTransactionId = getTagValue(latestIndexTransaction.node.tags, TAGS.keys.uploaderTxId);
+    let poolSearchState = (await getPoolSearchIndexById(latestIndexTransactionId)).state;
+    if(!poolSearchState || !poolSearchState.searchIndeces) {
+        return null;
+    }
+    poolIndeces = poolSearchState.searchIndeces.map((index: string) => {
+        return BASE_SEARCH_INDEX_URL + index;
+    });
+    return poolIndeces;
+}
+
+let results: GQLResponseType[] = [];
+
+export async function search(
+    searchTerm: string,
+    poolIndeces: string[],
+    searchCallback: any
+) {
     var t = timer('Search benchmark');
-
-    let poolIndeces = [
-        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
-        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
-        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
-        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
-        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc',
-        'https://a3uhfh2vqnkier2z4yf2fcdbjvml7obqx64zblay25mzkze53flq.arweave.net/Buhyn1WDVIJHWeYLoohhTVi_uDC_uZCsGNdZlWSd2Vc'
-    ];
 
     results = [];
 
@@ -44,25 +55,27 @@ export async function search(poolId: string, searchTerm: string) {
             searchTerm, 
             poolIndex, 
             k, 
-            t
+            t,
+            poolIndeces,
+            searchCallback
         );
     }
-
-    t.stop();
 }
 
 async function searchIndex(
     searchTerm: string, 
     index: string,
-    i: number,
-    t: any
+    k: number,
+    t: any,
+    poolIndeces: string[],
+    searchCallback: any
 ) {
     const searchIndex = (await axios.get(
         index
     )).data;
     
     let text = searchIndex;
-    searchTerm = searchTerm.toLowerCase();
+    searchTerm = strip(searchTerm);
 
     let indeces = [
         ...text.matchAll(new RegExp(searchTerm, 'gi'))
@@ -74,8 +87,6 @@ async function searchIndex(
         ids.push(idString);
     }
 
-    console.log(ids);
-
     let artifacts: GQLResponseType[] = await getGQLData({
         ids: ids,
         tagFilters: null,
@@ -84,13 +95,12 @@ async function searchIndex(
         reduxCursor: null
     });
 
-    console.log(artifacts);
+    results = results.concat(artifacts);
 
-    if(i === 5) {
+    if(k === poolIndeces.length - 1) {
         t.stop();
+        searchCallback(results);
     }
-
-    // results.push(artifacts);
 }
 
 function pullId(index: number, text: string) {
@@ -107,4 +117,14 @@ function pullId(index: number, text: string) {
             }
         }
     }
+}
+
+function strip(s: any) {
+    return s.replaceAll(' ','')
+        .replaceAll('\t','')
+        .replaceAll('\r','')
+        .replaceAll('\n','')
+        .replaceAll(ID_TERM,'')
+        .replaceAll(OWNER_TERM,'')
+        .toLowerCase();
 }

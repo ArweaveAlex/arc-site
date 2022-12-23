@@ -67,6 +67,17 @@ export interface PoolStateType {
   balance: string
 }
 
+export interface PoolSearchIndexType {
+  id: string
+  state: PoolSearchIndexStateType
+}
+
+export interface PoolSearchIndexStateType {
+  canEvolve: boolean
+  owner: string
+  searchIndeces: string[]
+}
+
 export type ButtonType = "primary" | "secondary" | "tertiary"
 export type FormFieldType = "number" | "password"
 export type NotificationType = "success" | "warning" | "neutral"

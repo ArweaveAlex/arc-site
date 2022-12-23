@@ -25,7 +25,9 @@ export const TAGS = {
         poolId: "Pool-Id",
         uploaderTxId: "Uploader-Tx-Id",
         contractSrc: "Contract-Src",
-        mediaIds: "Media-Ids"
+        mediaIds: "Media-Ids",
+        alexPoolId: "Alex-Pool-Id",
+        timestamp: "Timestamp"
     },
     values: {
         defaultArtifactType: "Alex-Default",
@@ -34,7 +36,8 @@ export const TAGS = {
         poolVersions: {
             "1.2": "Alex-Archiving-Pool-v1.2",
             "1.4": "Alex-Archiving-Pool-v1.4"
-        }
+        },
+        searchIndex: "Alex-Search-Index-v0"
     }
 }
 
