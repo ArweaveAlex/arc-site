@@ -1,4 +1,4 @@
-import { PoolType, PoolSearchIndexType } from "types";
+import { PoolType, PoolSearchIndexType } from "config/types";
 
 export type PoolsType = {
     data: PoolType[] | null

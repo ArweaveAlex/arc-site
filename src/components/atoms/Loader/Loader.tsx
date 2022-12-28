@@ -5,7 +5,7 @@ import * as S from "./styles";
 import { DOM } from "config";
 import { IProps } from "./types";
 
-import * as window from "window";
+import * as window from "config/window";
 
 export default function Loader(props: IProps) {
   React.useEffect(() => {

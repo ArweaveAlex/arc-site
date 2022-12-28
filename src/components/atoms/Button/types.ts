@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ButtonType } from "types";
+import { ButtonType } from "config/types";
 
 export interface IProps {
   type: ButtonType;

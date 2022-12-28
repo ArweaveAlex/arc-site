@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IProps } from "./types";
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 import * as S from "./styles";
 
 export default function Select(props: IProps) {

@@ -2,9 +2,9 @@ import * as cursorActions from "redux/cursors/actions";
 import { store } from "redux/store";
 
 import { ArweaveClient } from "arweave-client";
-import { unquoteJsonKeys } from "utils";
+import { unquoteJsonKeys } from "config/utils";
 import { CURSORS, PAGINATOR } from "config";
-import { GQLResponseType, TagFilterType, CursorObjectKeyType } from "types";
+import { GQLResponseType, TagFilterType, CursorObjectKeyType } from "config/types";
 
 export async function getGQLData(args: {
     ids: string[] | null;

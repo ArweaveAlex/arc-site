@@ -12,11 +12,11 @@ import { PoolStatistics } from "./PoolStatistics";
 import { PoolDetail } from "./PoolDetail";
 
 import { clearCursors } from "redux/cursors/actions";
-import { PoolType, ArtifactResponseType } from "types";
-import { getTxEndpoint } from "endpoints";
-import { formatDate, getTagValue } from "utils";
+import { PoolType, ArtifactResponseType } from "config/types";
+import { getTxEndpoint } from "config/endpoints";
+import { formatDate, getTagValue } from "config/utils";
 import { TAGS, FALLBACK_IMAGE } from "config";
-import { REDUX_CURSORS } from "redux-config";
+import { REDUX_CURSORS } from "config/redux";
 import * as S from "./styles";
 
 export default function Pool() {

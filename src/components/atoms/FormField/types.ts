@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FormFieldType, ValidationType } from "types";
+import { FormFieldType, ValidationType } from "config/types";
 
 export interface IProps {
   label?: string;

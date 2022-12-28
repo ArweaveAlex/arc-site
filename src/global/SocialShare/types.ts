@@ -1,4 +1,4 @@
-import { PageShareType } from "types";
+import { PageShareType } from "config/types";
 
 export interface IProps {
     href: string;

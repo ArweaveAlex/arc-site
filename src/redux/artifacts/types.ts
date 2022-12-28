@@ -1,4 +1,4 @@
-import { NStringType, NStringListType } from "types";
+import { NStringType, NStringListType } from "config/types";
 
 export type BookmarksType = {
     owner: NStringType,

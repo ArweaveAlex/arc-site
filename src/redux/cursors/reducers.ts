@@ -1,7 +1,7 @@
-import { CursorObjectKeyType, ReduxActionType } from "types";
+import { CursorObjectKeyType, ReduxActionType } from "config/types";
 import { CursorsType } from "./types";
 import { SET_CURSORS, CLEAR_CURSORS } from "./constants";
-import { REDUX_CURSORS } from "redux-config";
+import { REDUX_CURSORS } from "config/redux";
 
 export const initStateCursors: CursorsType = {
     gql: {

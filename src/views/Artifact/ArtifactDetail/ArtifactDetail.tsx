@@ -4,9 +4,9 @@ import { ReactSVG } from "react-svg";
 
 import { IconButton } from "components/atoms/IconButton";
 
-import { formatAddress, formatDataSize, formatDate } from "utils";
-import * as urls from "urls";
-import { LANGUAGE } from "language";
+import { formatAddress, formatDataSize, formatDate } from "config/utils";
+import * as urls from "config/urls";
+import { LANGUAGE } from "config/language";
 import { ASSETS } from "config";
 import { IProps } from "./types";
 import * as S from "./styles";

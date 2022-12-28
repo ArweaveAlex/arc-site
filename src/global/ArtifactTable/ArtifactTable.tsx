@@ -12,21 +12,21 @@ import { ArtifactSearch } from "./ArtifactSearch";
 import { IconButton } from "components/atoms/IconButton";
 import { Table } from "components/organisms/Table";
 
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from "config";
 
 import {
     AlignType,
     ArtifactTableRowType,
     TableHeaderType
-} from "types";
+} from "config/types";
 
 import {
     formatDate,
     getTagValue
-} from "utils";
+} from "config/utils";
 
-import * as urls from "urls";
+import * as urls from "config/urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 

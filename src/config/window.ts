@@ -1,4 +1,4 @@
-import { STYLING } from "./styling-config";
+import { STYLING } from "config/styling";
 
 export function checkDesktop(): boolean {
   return window.innerWidth > parseInt(STYLING.cutoffs.initial);

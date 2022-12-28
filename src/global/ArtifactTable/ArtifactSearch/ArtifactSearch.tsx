@@ -5,9 +5,9 @@ import { Search } from "components/molecules/Search";
 
 import { runSearch, initSearch } from "search";
 
-import { splitArray } from "utils";
+import { splitArray } from "config/utils";
 import { PAGINATOR, SEARCH } from "config";
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 import { IProps } from "./types";
 
 export default function ArtifactSearch(props: IProps) {
@@ -51,9 +51,8 @@ export default function ArtifactSearch(props: IProps) {
                 searchReducerList.push({ [`${SEARCH.cursorPrefix}-${i}`]: splitIds[i] })
             }
             const searchReducerObject = { [props.cursorObject.key]: { [props.cursorObject.value]: searchReducerList } };
-            console.log(searchReducerObject)
         }
-    }, [searchResultsIds])
+    }, [searchResultsIds, props.cursorObject])
 
     return (
         <Search

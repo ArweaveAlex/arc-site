@@ -6,16 +6,16 @@ import { IconButton } from "components/atoms/IconButton";
 import { WalletConnect } from "wallet/WalletConnect";
 
 import { ASSETS } from "config";
-import { SOCIAL_PATHS } from "paths";
-import { LANGUAGE } from "language";
-import * as urls from "urls";
+import { SOCIAL_PATHS } from "config/paths";
+import { LANGUAGE } from "config/language";
+import * as urls from "config/urls";
 import { 
     checkDesktop, 
     checkWindowResize, 
     hideDocumentBody, 
     showDocumentBody 
-} from "window";
-import { NAV_PATHS } from "paths";
+} from "config/window";
+import { NAV_PATHS } from "config/paths";
 import * as S from "./styles";
 
 export default function Header() {

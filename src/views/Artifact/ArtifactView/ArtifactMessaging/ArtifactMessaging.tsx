@@ -5,8 +5,8 @@ import { Button } from "components/atoms/Button";
 import { Carousel } from "components/molecules/Carousel";
 
 import { MEDIA_TYPES, STORAGE } from "config";
-import { getTxEndpoint } from "endpoints";
-import { LANGUAGE } from "language";
+import { getTxEndpoint } from "config/endpoints";
+import { LANGUAGE } from "config/language";
 import { IProps } from "../../types";
 import * as S from "./styles";
 

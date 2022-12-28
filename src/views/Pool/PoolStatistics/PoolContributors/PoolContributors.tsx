@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 import { ArweaveClient } from "arweave-client";
 
-import { formatAddress } from "utils";
-import * as urls from "urls";
-import { LANGUAGE } from "language";
+import { formatAddress } from "config/utils";
+import * as urls from "config/urls";
+import { LANGUAGE } from "config/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

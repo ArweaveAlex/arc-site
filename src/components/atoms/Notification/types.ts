@@ -1,4 +1,4 @@
-import { NotificationType } from "types";
+import { NotificationType } from "config/types";
 
 export interface IProps {
   message: string;

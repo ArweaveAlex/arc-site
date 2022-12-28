@@ -3,9 +3,9 @@ import React from "react";
 import { Paginator } from "components/molecules/Paginator";
 import { Loader } from "components/atoms/Loader";
 
-import { KeyValueType } from "types";
+import { KeyValueType } from "config/types";
 
-import { formatTitle } from "utils";
+import { formatTitle } from "config/utils";
 import { IProps } from "./types";
 import * as S from "./styles";
 

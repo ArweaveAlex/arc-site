@@ -9,17 +9,17 @@ import { ArtifactView } from "./ArtifactView";
 
 import { Loader } from "components/atoms/Loader";
 
-import * as window from "window";
+import * as window from "config/window";
 import {
     ARTIFACT_TABS,
     ARTIFACT_TYPES,
     TAB_OPTIONS,
     TAGS
 } from "config";
-import { checkNullValues } from "utils";
-import { ArtifactType } from "types";
+import { checkNullValues } from "config/utils";
+import { ArtifactType } from "config/types";
 import * as S from "./styles";
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 
 export default function Artifact() {
     const { id } = useParams();

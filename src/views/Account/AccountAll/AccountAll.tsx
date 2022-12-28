@@ -2,7 +2,7 @@ import { OwnerView } from "global/OwnerView";
 
 import { useArweaveProvider } from "providers/ArweaveProvider";
 import { getArtifactsByUser } from "gql/artifacts";
-import { REDUX_CURSORS } from "redux-config";
+import { REDUX_CURSORS } from "config/redux";
 
 export default function AccountAll() {
     const arProvider = useArweaveProvider();

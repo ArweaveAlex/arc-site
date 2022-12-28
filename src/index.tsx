@@ -8,7 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { App } from "app";
 
 import { GlobalStyle } from "app/styles";
-import { defaultTheme } from "themes";
+import { defaultTheme } from "config/themes";
 
 import { store, persistor } from "redux/store";
 

@@ -9,7 +9,7 @@ import { PoolsGrid } from "./PoolsGrid";
 
 import { Loader } from "components/atoms/Loader";
 
-import { PoolType } from "types";
+import { PoolType } from "config/types";
 import { POOL_FILTERS } from "config";
 import * as S from "./styles";
 

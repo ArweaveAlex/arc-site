@@ -1,15 +1,13 @@
-import { IURLView } from "types";
-
 import { AccountAll } from "views/Account/AccountAll";
 import { AccountBookmarks } from "views/Account/AccountBookmarks";
 import { AccountContributions } from "views/Account/AccountContributions";
 import { LibraryAll } from "views/Library/LibraryAll";
 import { LibraryBookmarks } from "views/Library/LibraryBookmarks";
 
-import { PoolType } from "types";
+import { IURLView, PoolType } from "config/types";
 import * as filters from "filters/pools";
-import * as urls from "urls";
-import { LANGUAGE } from "language";
+import * as urls from "config/urls";
+import { LANGUAGE } from "config/language";
 
 export const TAGS = {
     keys: {

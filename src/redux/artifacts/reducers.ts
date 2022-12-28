@@ -1,4 +1,4 @@
-import { ReduxActionType } from "types";
+import { ReduxActionType } from "config/types";
 import { BookmarksType } from "./types";
 import { SET_BOOKMARKS } from "./constants";
 

@@ -5,9 +5,9 @@ import { ArtifactTable } from "global/ArtifactTable";
 import { Loader } from "components/atoms/Loader";
 
 import { clearCursors } from "redux/cursors/actions";
-import { ArtifactResponseType } from "types";
+import { ArtifactResponseType } from "config/types";
 
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

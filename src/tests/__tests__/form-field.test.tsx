@@ -3,7 +3,7 @@ import "jest-styled-components";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
-import { defaultTheme } from "themes";
+import { defaultTheme } from "config/themes";
 import { wrapWithProviders } from "tests/provider";
 import { FormField } from "components/atoms/FormField";
 

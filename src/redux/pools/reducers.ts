@@ -1,4 +1,4 @@
-import { ReduxActionType } from "types";
+import { ReduxActionType } from "config/types";
 import { PoolsType, PoolsSearchIndexType } from "./types";
 import { SET_POOLS, SET_POOLS_INDEX_SEARCH } from "./constants";
 

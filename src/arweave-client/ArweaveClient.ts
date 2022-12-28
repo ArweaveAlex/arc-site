@@ -13,8 +13,8 @@ import {
     ContributionType,
     ContributionResultType,
     GQLResponseType
-} from "types";
-import { LANGUAGE } from "language";
+} from "config/types";
+import { LANGUAGE } from "config/language";
 import { TAGS } from "config";
 
 const GET_ENDPOINT = "arweave-search.goldsky.com";

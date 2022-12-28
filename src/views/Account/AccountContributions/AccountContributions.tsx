@@ -6,7 +6,7 @@ import { ArweaveClient } from "arweave-client";
 import { ContributionsList } from "./ContributionsList";
 import { Loader } from "components/atoms/Loader";
 
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 import * as S from "./styles";
 
 export default function AccountContributions() {

@@ -3,10 +3,10 @@ import {
     GQLResponseType,
     PoolSearchIndexType,
     PoolType
-} from "types";
-import { getRedstoneSrcTxEndpoint } from "endpoints";
+} from "config/types";
+import { getRedstoneSrcTxEndpoint } from "config/endpoints";
 import { getGQLData } from "gql";
-import { getTagValue } from "utils";
+import { getTagValue } from "config/utils";
 import { TAGS } from "config";
 
 export async function getPoolIds() {
@@ -101,9 +101,9 @@ export async function getLatestPoolSearchIndexTxId(poolId: string) {
         cursorObject: null
     });
 
-    if(poolSearchIndexes.length == 0) return null;
+    if(poolSearchIndexes.length === 0) return null;
 
-    if(poolSearchIndexes.length == 1) return poolSearchIndexes[0];
+    if(poolSearchIndexes.length === 1) return poolSearchIndexes[0];
 
     let latestIndex = poolSearchIndexes[0];
 

@@ -5,7 +5,7 @@ import { TwitterShareButton } from "react-share";
 import { IconButton } from "components/atoms/IconButton";
 
 import { ASSETS } from "config";
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

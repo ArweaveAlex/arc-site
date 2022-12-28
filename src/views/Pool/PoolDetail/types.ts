@@ -1,4 +1,4 @@
-import { ArtifactResponseType, CursorType, CursorObjectType, TableIdType } from "types";
+import { ArtifactResponseType, CursorType, CursorObjectType, TableIdType } from "config/types";
 
 export interface IProps {
     id: TableIdType;

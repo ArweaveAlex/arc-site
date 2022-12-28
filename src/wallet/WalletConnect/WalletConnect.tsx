@@ -10,9 +10,9 @@ import { Modal } from "components/molecules/Modal";
 
 import { CloseHandler } from "components/organisms/CloseHandler";
 
-import { formatAddress } from "utils";
+import { formatAddress } from "config/utils";
 import { ASSETS, URLS } from "config";
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 import * as S from "./styles";
 
 function WalletList() {

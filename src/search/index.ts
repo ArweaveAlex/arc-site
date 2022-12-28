@@ -4,8 +4,8 @@ import {
     getLatestPoolSearchIndexTxId, 
     getPoolSearchIndexById 
 } from "gql/pools";
-import { getTxEndpoint } from "endpoints";
-import { getTagValue, stripSearch } from "utils";
+import { getTxEndpoint } from "config/endpoints";
+import { getTagValue, stripSearch } from "config/utils";
 import { TAGS, SEARCH } from "config";
 
 export async function initSearch(poolId: string) {

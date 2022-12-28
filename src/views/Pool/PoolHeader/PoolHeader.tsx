@@ -6,8 +6,8 @@ import { SocialShare } from "global/SocialShare";
 import { PoolContribute } from "../PoolContribute";
 import { Loader } from "components/atoms/Loader";
 
-import { formatAddress, formatCount } from "utils";
-import { LANGUAGE } from "language";
+import { formatAddress, formatCount } from "config/utils";
+import { LANGUAGE } from "config/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

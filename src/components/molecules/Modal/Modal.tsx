@@ -5,7 +5,7 @@ import { IconButton } from "components/atoms/IconButton";
 import { Portal } from "components/atoms/Portal";
 
 import { ASSETS, DOM } from "config";
-import * as window from "window";
+import * as window from "config/window";
 import * as S from "./styles";
 import { IProps } from "./types";
 

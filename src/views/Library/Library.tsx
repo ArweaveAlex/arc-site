@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { Button } from "components/atoms/Button";
 import { URLTabs } from "components/organisms/URLTabs";
 
-import { formatAddress } from "utils";
-import { LANGUAGE } from "language";
+import { formatAddress } from "config/utils";
+import { LANGUAGE } from "config/language";
 import { ASSETS, URLS } from "config";
 import * as S from "./styles";
 

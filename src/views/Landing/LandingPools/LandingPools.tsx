@@ -4,10 +4,10 @@ import parse from "html-react-parser";
 
 import { Carousel } from "components/molecules/Carousel";
 
-import { getTxEndpoint } from "endpoints";
-import * as urls from "urls";
-import { LANGUAGE } from "language";
-import { PoolType } from "types";
+import { getTxEndpoint } from "config/endpoints";
+import * as urls from "config/urls";
+import { LANGUAGE } from "config/language";
+import { PoolType } from "config/types";
 import * as S from "./styles";
 import { FALLBACK_IMAGE } from "config";
 

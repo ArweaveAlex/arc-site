@@ -1,6 +1,6 @@
 import * as S from "./styles";
 
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 
 export default function NotFound() {
     return (

@@ -1,4 +1,4 @@
-import { PoolType } from "types";
+import { PoolType } from "config/types";
 
 export function sortByAll(pools: PoolType[], amount: number | null): PoolType[] {
     if (amount) {

@@ -1,13 +1,13 @@
 import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
 
-import { getTagValue, formatArtifactType } from "utils";
-import { GQLResponseType } from "types";
+import { getTagValue, formatArtifactType } from "config/utils";
+import { GQLResponseType } from "config/types";
 import { ARTIFACT_TYPES, TAGS } from "config";
-import * as urls from "urls";
+import * as urls from "config/urls";
 import { IProps } from "./types"
 import * as S from "./styles";
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 
 export default function PoolRecentlyMinted(props: IProps) {
 

@@ -9,12 +9,12 @@ import {
     PoolType,
     GQLResponseType,
     TagFilterType
-} from "types";
+} from "config/types";
 import { getGQLData } from "gql";
-import { getTxEndpoint } from "endpoints";
+import { getTxEndpoint } from "config/endpoints";
 import { getPoolById, getPoolIds } from "./pools";
-import { getTagValue } from "utils";
-import { LANGUAGE } from "language";
+import { getTagValue } from "config/utils";
+import { LANGUAGE } from "config/language";
 import { TAGS, STORAGE } from "config";
 
 const arClient = new ArweaveClient();

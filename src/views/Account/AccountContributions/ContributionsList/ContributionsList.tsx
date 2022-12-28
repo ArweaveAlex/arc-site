@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { formatAddress, formatDate, getHashUrl } from "utils";
-import * as urls from "urls";
-import { LANGUAGE } from "language";
+import { formatAddress, formatDate, getHashUrl } from "config/utils";
+import * as urls from "config/urls";
+import { LANGUAGE } from "config/language";
 import * as S from "./styles";
 
 export default function ContributionsList({ data }: any) {

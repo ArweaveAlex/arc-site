@@ -1,6 +1,6 @@
 import { Button } from "components/atoms/Button";
 
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 import { CURSORS } from "config";
 import { IProps } from "./types"
 import * as S from "./styles";

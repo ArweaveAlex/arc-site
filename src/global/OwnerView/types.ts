@@ -1,4 +1,4 @@
-import { ArtifactArgsType, ArtifactResponseType, CursorObjectType } from "types";
+import { ArtifactArgsType, ArtifactResponseType, CursorObjectType } from "config/types";
 
 export interface IProps {
     owner: string | null;

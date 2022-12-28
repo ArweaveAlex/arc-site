@@ -11,7 +11,7 @@ import { LandingPools } from "./LandingPools";
 import { LandingInfo } from "./LandingInfo";
 import { LandingSteps } from "./LandingSteps";
 
-import { PoolType } from "types";
+import { PoolType } from "config/types";
 import { sortByMostContributed } from "filters/pools";
 import * as S from "./styles";
 

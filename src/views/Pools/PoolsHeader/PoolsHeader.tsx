@@ -1,6 +1,6 @@
 import { SocialShare } from "global/SocialShare";
 
-import { LANGUAGE } from "language";
+import { LANGUAGE } from "config/language";
 import * as S from "./styles";
 
 export default function PoolsHeader() {

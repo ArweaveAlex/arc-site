@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { STYLING } from "styling-config";
+import { STYLING } from "config/styling";
 
 export const Wrapper = styled.div`
   height: 100%;

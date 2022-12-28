@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { OwnerView } from "global/OwnerView";
 
 import { getArtifactsByUser } from "gql/artifacts";
-import { REDUX_CURSORS } from "redux-config";
+import { REDUX_CURSORS } from "config/redux";
 
 export default function AccountAll() {
     const { id } = useParams();

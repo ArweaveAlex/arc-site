@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-import { CursorType } from "types";
+import { CursorType } from "config/types";
 
 export interface IProps {
     nPages: number;

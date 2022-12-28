@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { open, fadeIn2 } from "animations";
-import { STYLING } from "styling-config";
+import { open, fadeIn2 } from "config/animations";
+import { STYLING } from "config/styling";
 
 export const Message = styled.div`
     margin: calc(20px + ${STYLING.dimensions.navHeight}) auto 0 auto;
