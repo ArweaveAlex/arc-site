@@ -4,7 +4,7 @@ export interface IProps {
     title: string;
     description: string;
     dateCreated: string;
-    count: string | null;
+    count: number | null;
     totalContributions: string;
     contributors: any;
 }

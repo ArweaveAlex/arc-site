@@ -25,7 +25,8 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
         tagFilters: null,
         uploader: null,
         cursor: null,
-        reduxCursor: null
+        reduxCursor: null,
+        cursorObject: null
     }))[0];
 
     let pool: PoolType | null = await getPoolById(getTagValue(artifact.node.tags, TAGS.keys.poolId));
@@ -82,14 +83,15 @@ export async function getArtifactsByPool(args: ArtifactArgsType): Promise<Artifa
         tagFilters: tagFilters,
         uploader: args.uploader,
         cursor: args.cursor,
-        reduxCursor: args.reduxCursor
+        reduxCursor: args.reduxCursor,
+        cursorObject: "gql"
     })).filter((element: GQLResponseType) => {
         return getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none;
     })
 
-    let cursorState;
+    let cursorState: any;
     if (args.reduxCursor) {
-        cursorState = store.getState().cursorsReducer[args.reduxCursor];
+        cursorState = store.getState().cursorsReducer.gql[args.reduxCursor];
     }
 
     let nextCursor: string | null = cursorState ? cursorState.next : null;
@@ -101,6 +103,10 @@ export async function getArtifactsByPool(args: ArtifactArgsType): Promise<Artifa
         contracts: artifacts
     })
 }
+
+// export async function getArtifactsByIds(args: ArtifactArgsType): Promise<ArtifactResponseType> {
+    
+// }
 
 export async function getArtifactsByUser(args: ArtifactArgsType) {
     const poolIds = await getPoolIds();
@@ -136,10 +142,11 @@ export async function getArtifactsByBookmarks(args: ArtifactArgsType): Promise<A
         tagFilters: null,
         uploader: null,
         cursor: args.cursor,
-        reduxCursor: args.reduxCursor
+        reduxCursor: args.reduxCursor,
+        cursorObject: "gql"
     });
 
-    let cursorState;
+    let cursorState: any;
     if (args.reduxCursor) {
         cursorState = store.getState().cursorsReducer[args.reduxCursor];
     }
@@ -163,7 +170,8 @@ export async function getBookmarks(owner: string): Promise<string[]> {
         ],
         uploader: null,
         cursor: null,
-        reduxCursor: null
+        reduxCursor: null,
+        cursorObject: null
     });
 
     if (bookmarks.length > 0) {

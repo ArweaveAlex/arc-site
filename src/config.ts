@@ -13,6 +13,7 @@ import { LANGUAGE } from "language";
 
 export const TAGS = {
     keys: {
+        alexPoolId: "Alex-Pool-Id",
         appType:"App-Type",
         artifactName: "Artifact-Name",
         artifactType: "Artifact-Type",
@@ -26,7 +27,6 @@ export const TAGS = {
         uploaderTxId: "Uploader-Tx-Id",
         contractSrc: "Contract-Src",
         mediaIds: "Media-Ids",
-        alexPoolId: "Alex-Pool-Id",
         timestamp: "Timestamp"
     },
     values: {
@@ -179,3 +179,9 @@ export const POOL_FILTERS = [
 ]
 
 export const FALLBACK_IMAGE = "8HqSqy_nNRSTPv-q-j7_iHGTp6lEA5K77TP4BPuXGyA";
+
+export const SEARCH = {
+    cursorPrefix: "searchCursor",
+    idTerm: "`*",
+    ownerTerm: "`*"
+}

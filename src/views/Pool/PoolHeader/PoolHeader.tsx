@@ -33,9 +33,9 @@ export default function PoolsHeader(props: IProps) {
     }
 
     function getCount() {
-        if (props.count) {
+        if (props.count || props.count === 0) {
             return (
-                <p>{formatCount(props.count!)}</p>
+                <p>{formatCount(props.count!.toString())}</p>
             )
         }
         else {

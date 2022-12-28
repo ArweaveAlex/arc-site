@@ -4,14 +4,15 @@ import { store } from "redux/store";
 import { ArweaveClient } from "arweave-client";
 import { unquoteJsonKeys } from "utils";
 import { CURSORS, PAGINATOR } from "config";
-import { GQLResponseType, TagFilterType } from "types";
+import { GQLResponseType, TagFilterType, CursorObjectKeyType } from "types";
 
 export async function getGQLData(args: {
     ids: string[] | null;
     tagFilters: TagFilterType[] | null,
     uploader: string | null,
     cursor: string | null,
-    reduxCursor: string | null
+    reduxCursor: string | null,
+    cursorObject: CursorObjectKeyType
 }): Promise<GQLResponseType[]> {
 
     let nextCursor: string | null;
@@ -71,17 +72,17 @@ export async function getGQLData(args: {
         }
     }
 
-    handleCursors(args.cursor, args.reduxCursor, nextCursor);
+    handleCursors(args.cursor, args.reduxCursor, args.cursorObject, nextCursor);
 
     return data;
 }
 
-function handleCursors(cursor: string | null, reduxCursor: string | null, nextCursor: string | null) {
+function handleCursors(cursor: string | null, reduxCursor: string | null, cursorObject: CursorObjectKeyType, nextCursor: string | null) {
     let cursorState: any;
     let cursorList: (string | null)[] = [];
 
-    if (reduxCursor && store.getState().cursorsReducer[reduxCursor]) {
-        cursorState = store.getState().cursorsReducer[reduxCursor];
+    if (reduxCursor && cursorObject && store.getState().cursorsReducer[cursorObject][reduxCursor]) {
+        cursorState = store.getState().cursorsReducer[cursorObject][reduxCursor];
         cursorList = [...cursorState.cursors];
     }
 
@@ -135,7 +136,9 @@ function handleCursors(cursor: string | null, reduxCursor: string | null, nextCu
             }
         }
 
-        cursorState.cursors = cursorList;
-        store.dispatch(cursorActions.setCursors({ [reduxCursor]: cursorState }));
+        if (cursorObject) {
+            cursorState.cursors = cursorList;
+            store.dispatch(cursorActions.setCursors({ [cursorObject]: { [reduxCursor]: cursorState } }));
+        }
     }
 }

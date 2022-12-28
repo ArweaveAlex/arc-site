@@ -16,7 +16,6 @@ export default function OwnerView(props: IProps) {
 
     const [data, setData] = React.useState<ArtifactResponseType | null>(null);
     const [cursor, setCursor] = React.useState<string | null>(null);
-    const [searchTerm, setSearchTerm] = React.useState<string | null>(null);
 
     React.useEffect(() => {
         dispatch(clearCursors());
@@ -42,16 +41,20 @@ export default function OwnerView(props: IProps) {
             return (
                 <S.Wrapper>
                     <ArtifactTable
+                        id={{
+                            value: props.owner,
+                            type: "ownerId"
+                        }}
                         data={data}
                         showBookmarks={props.showBookmarks}
                         showPoolIds={props.showPoolIds}
                         handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
-                        handleSearchFetch={(term: string | null) => setSearchTerm(term)}
                         cursors={{
                             next: data.nextCursor,
                             previous: data.previousCursor
                         }}
                         owner={props.owner}
+                        cursorObject={props.cursorObject}
                     />
                 </S.Wrapper>
             )

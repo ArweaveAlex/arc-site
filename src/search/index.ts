@@ -1,16 +1,12 @@
 import axios from "axios";
-import { GQLResponseType } from "types";
 
-import { getGQLData} from '../gql';
-import { getLatestPoolSearchIndexTxId, getPoolSearchIndexById } from "gql/pools";
-import { getTagValue } from "utils";
-import { TAGS } from "config";
-import { convertTypeAcquisitionFromJson } from "typescript";
-
-const ID_TERM = "`*";
-const OWNER_TERM = "`*";
-const BASE_SEARCH_INDEX_URL = "https://arweave.net/";
-
+import { 
+    getLatestPoolSearchIndexTxId, 
+    getPoolSearchIndexById 
+} from "gql/pools";
+import { getTxEndpoint } from "endpoints";
+import { getTagValue, stripSearch } from "utils";
+import { TAGS, SEARCH } from "config";
 
 export async function initSearch(poolId: string) {
     let poolIndeces: string[] = [];
@@ -21,12 +17,12 @@ export async function initSearch(poolId: string) {
         return null;
     }
     poolIndeces = poolSearchState.searchIndeces.map((index: string) => {
-        return BASE_SEARCH_INDEX_URL + index;
+        return getTxEndpoint(index);
     });
     return poolIndeces;
 }
 
-export async function search(
+export async function runSearch(
     searchTerm: string,
     poolIndeces: string[],
     searchCallback: any
@@ -44,14 +40,14 @@ export async function search(
 async function searchIndex(
     searchTerm: string, 
     index: string,
-    searchCallback: any
+    searchCallback: (ids: string[]) => void
 ) {
     const searchIndex = (await axios.get(
         index
     )).data;
     
     let text = searchIndex;
-    searchTerm = strip(searchTerm);
+    searchTerm = stripSearch(searchTerm);
 
     let indeces = [
         ...text.matchAll(new RegExp(searchTerm, 'gi'))
@@ -66,41 +62,31 @@ async function searchIndex(
     searchCallback(ids);
 }
 
-export async function fetchArtifacts(ids: string[], cursor: number) {
-    // use number cursor to split up ids
-    let artifacts: GQLResponseType[] = await getGQLData({
-        ids: ids,
-        tagFilters: null,
-        uploader: null,
-        cursor: null,
-        reduxCursor: null
-    });
+// export async function fetchArtifacts(ids: string[], cursor: number) {
+//     // Use number cursor to split up ids
+//     let artifacts: GQLResponseType[] = await getGQLData({
+//         ids: ids,
+//         tagFilters: null,
+//         uploader: null,
+//         cursor: null,
+//         reduxCursor: null
+//     });
 
-    return artifacts;
-}
+//     return artifacts;
+// }
 
 function pullId(index: number, text: string) {
     for(let j = index; j < text.length; j++) {
-        let backTrack = j - (ID_TERM.length - 1);
+        let backTrack = j - (SEARCH.idTerm.length - 1);
         let subTerm = text.substring(backTrack, j + 1);
-        if(subTerm === ID_TERM){
+        if(subTerm === SEARCH.idTerm){
             for(let k = j + 1; k < text.length; k++) {
-                let backTrack2 = k - (ID_TERM.length - 1);
+                let backTrack2 = k - (SEARCH.idTerm.length - 1);
                 let subTerm2 = text.substring(backTrack2, k + 1);
-                if(subTerm2 === ID_TERM){
+                if(subTerm2 === SEARCH.idTerm){
                     return text.substring(j + 1, k - 1);
                 }
             }
         }
     }
-}
-
-function strip(s: any) {
-    return s.replaceAll(' ','')
-        .replaceAll('\t','')
-        .replaceAll('\r','')
-        .replaceAll('\n','')
-        .replaceAll(ID_TERM,'')
-        .replaceAll(OWNER_TERM,'')
-        .toLowerCase();
 }

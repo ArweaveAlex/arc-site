@@ -1,35 +1,78 @@
-import { ReduxActionType } from "types";
+import { CursorObjectKeyType, ReduxActionType } from "types";
 import { CursorsType } from "./types";
 import { SET_CURSORS, CLEAR_CURSORS } from "./constants";
 import { REDUX_CURSORS } from "redux-config";
 
 export const initStateCursors: CursorsType = {
-    [REDUX_CURSORS.accountAll]: {
-        previous: null,
-        next: null,
-        cursors: []
+    gql: {
+        [REDUX_CURSORS.accountAll]: {
+            previous: null,
+            next: null,
+            cursors: []
+        },
+        [REDUX_CURSORS.accountBookmarks]: {
+            previous: null,
+            next: null,
+            cursors: []
+        },
+        [REDUX_CURSORS.poolAll]: {
+            previous: null,
+            next: null,
+            cursors: []
+        },
+        [REDUX_CURSORS.libraryAll]: {
+            previous: null,
+            next: null,
+            cursors: []
+        },
+        [REDUX_CURSORS.libraryBookmarks]: {
+            previous: null,
+            next: null,
+            cursors: []
+        }
     },
-    [REDUX_CURSORS.accountBookmarks]: {
-        previous: null,
-        next: null,
-        cursors: []
-    },
-    [REDUX_CURSORS.poolAll]: {
-        previous: null,
-        next: null,
-        cursors: []
-    },
-    [REDUX_CURSORS.libraryAll]: {
-        previous: null,
-        next: null,
-        cursors: []
-    },
-    [REDUX_CURSORS.libraryBookmarks]: {
-        previous: null,
-        next: null,
-        cursors: []
-    },
+    search: {
+        [REDUX_CURSORS.accountAll]: {
+            previous: null,
+            next: null,
+            cursors: []
+        },
+        [REDUX_CURSORS.accountBookmarks]: {
+            previous: null,
+            next: null,
+            cursors: []
+        },
+        [REDUX_CURSORS.poolAll]: {
+            previous: null,
+            next: null,
+            cursors: []
+        },
+        [REDUX_CURSORS.libraryAll]: {
+            previous: null,
+            next: null,
+            cursors: []
+        },
+        [REDUX_CURSORS.libraryBookmarks]: {
+            previous: null,
+            next: null,
+            cursors: []
+        }
+    }
 };
+
+function checkPayload(payload: any, objectKey: CursorObjectKeyType, reduxCursor: string) {
+    if (!payload[objectKey]) {
+        return false;
+    }
+    else {
+        if (payload[objectKey][reduxCursor]) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
 
 export function cursorsReducer(
     state: CursorsType = initStateCursors,
@@ -38,60 +81,33 @@ export function cursorsReducer(
     switch (action.type) {
         case SET_CURSORS:
             return Object.assign({}, state, {
-                [REDUX_CURSORS.accountAll]: {
-                    previous: action.payload[REDUX_CURSORS.accountAll]?.previous ?? state[REDUX_CURSORS.accountAll].previous,
-                    next: action.payload[REDUX_CURSORS.accountAll]?.next ?? state[REDUX_CURSORS.accountAll].next,
-                    cursors: action.payload[REDUX_CURSORS.accountAll]?.cursors ?? state[REDUX_CURSORS.accountAll].cursors
+                gql: {
+                    [REDUX_CURSORS.accountAll]: checkPayload(action.payload, "gql", REDUX_CURSORS.accountAll) ?
+                        action.payload.gql[REDUX_CURSORS.accountAll] : state.gql[REDUX_CURSORS.accountAll],
+                    [REDUX_CURSORS.accountBookmarks]: checkPayload(action.payload, "gql", REDUX_CURSORS.accountBookmarks) ?
+                        action.payload.gql[REDUX_CURSORS.accountBookmarks] : state.gql[REDUX_CURSORS.accountBookmarks],
+                    [REDUX_CURSORS.poolAll]: checkPayload(action.payload, "gql", REDUX_CURSORS.poolAll) ?
+                        action.payload.gql[REDUX_CURSORS.poolAll] : state.gql[REDUX_CURSORS.poolAll],
+                    [REDUX_CURSORS.libraryAll]: checkPayload(action.payload, "gql", REDUX_CURSORS.libraryAll) ?
+                        action.payload.gql[REDUX_CURSORS.libraryAll] : state.gql[REDUX_CURSORS.libraryAll],
+                    [REDUX_CURSORS.libraryBookmarks]: checkPayload(action.payload, "gql", REDUX_CURSORS.libraryBookmarks) ?
+                        action.payload.gql[REDUX_CURSORS.libraryBookmarks] : state.gql[REDUX_CURSORS.libraryBookmarks]
                 },
-                [REDUX_CURSORS.accountBookmarks]: {
-                    previous: action.payload[REDUX_CURSORS.accountBookmarks]?.previous ?? state[REDUX_CURSORS.accountBookmarks].previous,
-                    next: action.payload[REDUX_CURSORS.accountBookmarks]?.next ?? state[REDUX_CURSORS.accountBookmarks].next,
-                    cursors: action.payload[REDUX_CURSORS.accountBookmarks]?.cursors ?? state[REDUX_CURSORS.accountBookmarks].cursors
-                },
-                [REDUX_CURSORS.poolAll]: {
-                    previous: action.payload[REDUX_CURSORS.poolAll]?.previous ?? state[REDUX_CURSORS.poolAll].previous,
-                    next: action.payload[REDUX_CURSORS.poolAll]?.next ?? state[REDUX_CURSORS.poolAll].next,
-                    cursors: action.payload[REDUX_CURSORS.poolAll]?.cursors ?? state[REDUX_CURSORS.poolAll].cursors
-                },
-                [REDUX_CURSORS.libraryAll]: {
-                    previous: action.payload[REDUX_CURSORS.libraryAll]?.previous ?? state[REDUX_CURSORS.libraryAll].previous,
-                    next: action.payload[REDUX_CURSORS.libraryAll]?.next ?? state[REDUX_CURSORS.libraryAll].next,
-                    cursors: action.payload[REDUX_CURSORS.libraryAll]?.cursors ?? state[REDUX_CURSORS.libraryAll].cursors
-                },
-                [REDUX_CURSORS.libraryBookmarks]: {
-                    previous: action.payload[REDUX_CURSORS.libraryBookmarks]?.previous ?? state[REDUX_CURSORS.libraryBookmarks].previous,
-                    next: action.payload[REDUX_CURSORS.libraryBookmarks]?.next ?? state[REDUX_CURSORS.libraryBookmarks].next,
-                    cursors: action.payload[REDUX_CURSORS.libraryBookmarks]?.cursors ?? state[REDUX_CURSORS.libraryBookmarks].cursors
-                },
+                search: {
+                    [REDUX_CURSORS.accountAll]: checkPayload(action.payload, "search", REDUX_CURSORS.accountAll) ?
+                        action.payload.search[REDUX_CURSORS.accountAll] : state.search[REDUX_CURSORS.accountAll],
+                    [REDUX_CURSORS.accountBookmarks]: checkPayload(action.payload, "search", REDUX_CURSORS.accountBookmarks) ?
+                        action.payload.search[REDUX_CURSORS.accountBookmarks] : state.search[REDUX_CURSORS.accountBookmarks],
+                    [REDUX_CURSORS.poolAll]: checkPayload(action.payload, "search", REDUX_CURSORS.poolAll) ?
+                        action.payload.search[REDUX_CURSORS.poolAll] : state.search[REDUX_CURSORS.poolAll],
+                    [REDUX_CURSORS.libraryAll]: checkPayload(action.payload, "search", REDUX_CURSORS.libraryAll) ?
+                        action.payload.search[REDUX_CURSORS.libraryAll] : state.search[REDUX_CURSORS.libraryAll],
+                    [REDUX_CURSORS.libraryBookmarks]: checkPayload(action.payload, "search", REDUX_CURSORS.libraryBookmarks) ?
+                        action.payload.search[REDUX_CURSORS.libraryBookmarks] : state.search[REDUX_CURSORS.libraryBookmarks]
+                }
             })
         case CLEAR_CURSORS:
-            return Object.assign({}, state, {
-                [REDUX_CURSORS.accountAll]: {
-                    previous: null,
-                    next: null,
-                    cursors: []
-                },
-                [REDUX_CURSORS.accountBookmarks]: {
-                    previous: null,
-                    next: null,
-                    cursors: []
-                },
-                [REDUX_CURSORS.poolAll]: {
-                    previous: null,
-                    next: null,
-                    cursors: []
-                },
-                [REDUX_CURSORS.libraryAll]: {
-                    previous: null,
-                    next: null,
-                    cursors: []
-                },
-                [REDUX_CURSORS.libraryBookmarks]: {
-                    previous: null,
-                    next: null,
-                    cursors: []
-                },
-            })
+            return Object.assign({}, state, initStateCursors)
         default:
             return state;
     }

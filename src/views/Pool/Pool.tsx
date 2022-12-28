@@ -19,42 +19,15 @@ import { TAGS, FALLBACK_IMAGE } from "config";
 import { REDUX_CURSORS } from "redux-config";
 import * as S from "./styles";
 
-import { search, initSearch } from "../../search";
-
 export default function Pool() {
     const { id } = useParams();
     const dispatch = useDispatch();
-    
+
     const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
     const [cursor, setCursor] = React.useState<string | null>(null);
-    const [count, setCount] = React.useState<string | null>(null);
+    const [count, setCount] = React.useState<number | null>(null);
     const [imageUrl, setImageUrl] = React.useState<string | null>(null);
-
-    const [searchTerm, setSearchTerm] = React.useState<string | null>(null);
-    const [searchResults, setSearchResults] = React.useState<any>(null);
-    const [searchResultsIds, setSearchResultsIds] = React.useState<any>([]);
-    const [searchIndeces, setSearchIndeces] = React.useState<any>(null);
-    console.log(searchResultsIds);
-    React.useEffect(() => {
-        (async function () {
-            if (searchTerm && searchIndeces) {
-                await search(
-                    searchTerm, 
-                    searchIndeces,
-                    (r: any) => {
-                        setSearchResultsIds((prevArray: any) => [...prevArray, ...r]);
-                    }
-                );
-            }
-        })();
-    }, [id, searchTerm]);
-
-    React.useEffect(() => {
-        (async function () {
-                setSearchIndeces(await initSearch(id));
-        })();
-    }, []);
 
     React.useEffect(() => {
         dispatch(clearCursors());
@@ -85,7 +58,12 @@ export default function Pool() {
     React.useEffect(() => {
         (async function () {
             if (detailData && detailData.contracts.length > 0) {
-                setCount((await getPoolCount(getTagValue(detailData.contracts[0].node.tags, TAGS.keys.contractSrc))).toString())
+                setCount((await getPoolCount(getTagValue(detailData.contracts[0].node.tags, TAGS.keys.contractSrc))))
+            }
+            else {
+                if (detailData && detailData.contracts.length <= 0) {
+                    setCount(0);
+                }
             }
         })();
     }, [detailData])
@@ -98,8 +76,8 @@ export default function Pool() {
             }
         })()
     }, [headerData])
-    
-    function getPoolsHeader() {
+
+    function getPoolHeader() {
         if (headerData && imageUrl) {
             return (
                 <PoolHeader
@@ -134,30 +112,31 @@ export default function Pool() {
     }
 
     function getPoolDetail() {
-        if (detailData) {
-            return (
-                <PoolDetail
-                    data={detailData}
-                    handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
-                    handleSearchFetch={(term: string | null) => setSearchTerm(term)}
-                    cursors={{
-                        next: detailData.nextCursor,
-                        previous: detailData.previousCursor
-                    }}
-                />
-            )
-        }
-        else {
-            return (
-                null
-            )
-        }
+        return (
+            <PoolDetail
+                id={{
+                    value: id,
+                    type: "poolId"
+                }}
+                data={detailData}
+                handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
+                cursors={{
+                    next: detailData?.nextCursor ?? null,
+                    previous: detailData?.previousCursor ?? null
+                }}
+                cursorObject={{
+                    key: "search",
+                    value: REDUX_CURSORS.poolAll
+                }}
+            />
+
+        )
     }
 
     return headerData ? (
         <S.Wrapper>
-            {getPoolsHeader()}
-            {getPoolStatistics()}
+            {/* {getPoolHeader()}
+            {getPoolStatistics()} */}
             {getPoolDetail()}
         </S.Wrapper>
     ) : <Loader />

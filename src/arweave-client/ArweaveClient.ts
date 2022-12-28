@@ -176,7 +176,8 @@ export default class ArweaveClient {
                 tagFilters: [{ name: TAGS.keys.uploaderTxId, values: [poolId] }],
                 uploader: null,
                 cursor: null,
-                reduxCursor: null
+                reduxCursor: null,
+                cursorObject: null
             }))[0];
             const fetchId = arweaveContract ? arweaveContract.node.id : poolId;
             const { data: contractData }: { data: any; } = await this.arweavePost.api.get(`/${fetchId}`);

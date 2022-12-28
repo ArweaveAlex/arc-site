@@ -14,6 +14,10 @@ export default function AccountAll() {
             fetch={getArtifactsByBookmarks}
             showBookmarks={true}
             showPoolIds={true}
+            cursorObject={{
+                key: "search",
+                value: REDUX_CURSORS.accountBookmarks
+            }}
         />
     ) : null;
 }

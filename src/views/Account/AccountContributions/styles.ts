@@ -6,6 +6,6 @@ export const Wrapper = styled.div`
 
 export const LoadingContainer = styled.div`
     height: 50px;
-    width: 50px;
+    width: 22.5px;
     position: relative;
 `;

@@ -1,7 +1,6 @@
 import { ArweaveClient } from "arweave-client";
 import {
     GQLResponseType,
-    PoolSearchIndexStateType,
     PoolSearchIndexType,
     PoolType
 } from "types";
@@ -24,7 +23,8 @@ export async function getPoolIds() {
         ],
         uploader: null,
         cursor: null,
-        reduxCursor: null
+        reduxCursor: null,
+        cursorObject: null
     });
 
     return pools.map((pool: GQLResponseType) => {
@@ -97,7 +97,8 @@ export async function getLatestPoolSearchIndexTxId(poolId: string) {
         ],
         uploader: null,
         cursor: null,
-        reduxCursor: null
+        reduxCursor: null,
+        cursorObject: null
     });
 
     if(poolSearchIndexes.length == 0) return null;

@@ -4,14 +4,15 @@ import { IProps } from "./types";
 
 export default function PoolDetail(props: IProps) {
     return (
-        <ArtifactTable 
+        <ArtifactTable
+            id={props.id}
             data={props.data} 
             showBookmarks={false}
             showPoolIds={false}
             handleCursorFetch={(cursor: string | null) => props.handleCursorFetch(cursor)}
-            handleSearchFetch={(term: string | null) => props.handleSearchFetch(term)}
             cursors={props.cursors}
             owner={null}
+            cursorObject={props.cursorObject}
         />
     )
 }

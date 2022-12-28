@@ -30,7 +30,6 @@ export const HeaderFlex = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    flex-wrap: wrap;
     gap: 20px;
 `;
 
@@ -118,4 +117,10 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
         font-weight: ${(props) => props.theme.typography.weight.regular};
         font-size: ${(props) => props.theme.typography.size.small};
     }
+`;
+
+export const LoadingWrapper = styled.div`
+    height: 50px;
+    width: 22.5px;
+    position: relative;
 `;

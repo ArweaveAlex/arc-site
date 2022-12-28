@@ -133,6 +133,16 @@ export type BookmarkResponseType = {
   message: string | null
 }
 
+export type TableIdType = {
+  value: string,
+  type: "poolId" | "ownerId"
+}
+
 export type TagFilterType = { name: string, values: string[] }
 export type ContributionType = { timestamp: string, qty: string }
 export type PoolFilterType = { title: string, fn: (data: any) => any }
+export type CursorObjectKeyType = "gql" | "search" | null
+export type CursorObjectType = {
+  key: CursorObjectKeyType,
+  value: string
+}

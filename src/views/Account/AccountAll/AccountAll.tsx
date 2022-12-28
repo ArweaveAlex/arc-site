@@ -8,12 +8,16 @@ export default function AccountAll() {
     const arProvider = useArweaveProvider();
 
     return arProvider.walletAddress ? (
-        <OwnerView 
+        <OwnerView
             owner={arProvider.walletAddress}
             reduxCursor={REDUX_CURSORS.accountAll}
             fetch={getArtifactsByUser}
             showBookmarks={true}
             showPoolIds={true}
+            cursorObject={{
+                key: "search",
+                value: REDUX_CURSORS.accountAll
+            }}
         />
     ) : null;
 }

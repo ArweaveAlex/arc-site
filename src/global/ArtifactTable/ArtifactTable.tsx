@@ -7,8 +7,9 @@ import * as actions from "redux/artifacts/actions";
 import { RootState } from "redux/store";
 import { getBookmarks, setBookmarks } from "gql/artifacts";
 
-import { IconButton } from "components/atoms/IconButton";
+import { ArtifactSearch } from "./ArtifactSearch";
 
+import { IconButton } from "components/atoms/IconButton";
 import { Table } from "components/organisms/Table";
 
 import { LANGUAGE } from "language";
@@ -43,31 +44,6 @@ function BookmarkToggle(props: {
 
             />
         </S.BookmarkToggle>
-    )
-}
-
-function SearchAction(props: {
-    handleSearchFetch: (term: string | null) => void;
-}) {
-    const [searchTerm, setSearchTerm] = React.useState<string | null>("");
-
-    function handleSearch(e: React.KeyboardEvent<HTMLInputElement>) {
-        if (e.key === "Enter") {
-            props.handleSearchFetch(searchTerm)
-        }
-    }
-
-    return (
-        <S.SearchWrapper>
-            <ReactSVG src={ASSETS.search} />
-            <S.SearchInput
-                type={"text"}
-                value={searchTerm}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
-                onKeyDown={handleSearch}
-                placeholder={"Search"}
-            />
-        </S.SearchWrapper>
     )
 }
 
@@ -142,12 +118,6 @@ export default function ArtifactTable(props: IProps) {
         )
     }
 
-    function getSearchAction() {
-        return (
-            <SearchAction handleSearchFetch={props.handleSearchFetch} />
-        )
-    }
-
     async function handleBookmarkStateUpdate(artifactId: string) {
         const updatedBookmarks: string[] = [];
         for (let i = 0; i < bookmarkIds.length; i++) {
@@ -208,10 +178,15 @@ export default function ArtifactTable(props: IProps) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [bookmarkIds, props.data, props.showBookmarks])
 
-    return data && data.length > 0 ? (
+    return (
         <Table
             title={LANGUAGE.artifacts}
-            action={getSearchAction()}
+            action={
+                <ArtifactSearch 
+                    id={props.id}
+                    cursorObject={props.cursorObject}
+                />
+            }
             header={getHeader()}
             data={data}
             recordsPerPage={PAGINATOR}
@@ -219,5 +194,5 @@ export default function ArtifactTable(props: IProps) {
             handleCursorFetch={props.handleCursorFetch}
             cursors={props.cursors}
         />
-    ) : null
+    );
 }

@@ -1,4 +1,4 @@
-import { STORAGE } from "config";
+import { STORAGE, SEARCH } from "config";
 import { DateType, KeyValueType } from "types";
 
 export function getHashUrl(url: string) {
@@ -85,4 +85,23 @@ export function checkNullValues(obj: any) {
 
 export function unquoteJsonKeys(json: Object): string {
     return JSON.stringify(json).replace(/"([^"]+)":/g, '$1:')
+}
+
+export function stripSearch(s: string) {
+    return s.replaceAll(' ','')
+        .replaceAll('\t','')
+        .replaceAll('\r','')
+        .replaceAll('\n','')
+        .replaceAll(SEARCH.idTerm,'')
+        .replaceAll(SEARCH.ownerTerm,'')
+        .toLowerCase();
+}
+
+export function splitArray(array: any[], size: number) {
+    const res = [];
+    for (let i = 0; i < array.length; i += size) {
+        const chunk = array.slice(i, i + size);
+        res.push(chunk);
+    }
+    return res;
 }
