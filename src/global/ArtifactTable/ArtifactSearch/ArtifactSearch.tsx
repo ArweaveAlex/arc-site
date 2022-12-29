@@ -5,6 +5,7 @@ import { Search } from "components/molecules/Search";
 
 import { runSearch, initSearch } from "search";
 
+import * as searchActions from "redux/search/actions"
 import { splitArray } from "config/utils";
 import { PAGINATOR, SEARCH } from "config";
 import { LANGUAGE } from "config/language";
@@ -15,7 +16,17 @@ export default function ArtifactSearch(props: IProps) {
 
     const [searchIndeces, setSearchIndeces] = React.useState<string[] | null>(null);
     const [searchTerm, setSearchTerm] = React.useState<string | null>(null);
-    const [searchResultsIds, setSearchResultsIds] = React.useState<string[]>([]);
+    const [searchResultIds, setSearchResultIds] = React.useState<string[]>([]);
+
+    const handleIdUpdate = React.useCallback((searchResultIds: any[], cursorValue: string) => {
+        const splitIds = splitArray(searchResultIds, PAGINATOR);
+        const searchReducerList = [];
+        for (let i = 0; i < splitIds.length; i++) {
+            searchReducerList.push({ [`${SEARCH.cursorPrefix}-${i}`]: splitIds[i] })
+        }
+        const searchReducerObject = { [cursorValue]: searchReducerList };
+        dispatch(searchActions.setSearchIds(searchReducerObject));
+    }, [dispatch])
 
     React.useEffect(() => {
         (async function () {
@@ -25,39 +36,39 @@ export default function ArtifactSearch(props: IProps) {
 
     React.useEffect(() => {
         (async function () {
-            if (searchTerm && searchIndeces) {
-                setSearchResultsIds([]);
+            if (searchTerm) {
+                handleClear();
+            }
+            if (searchTerm && searchIndeces && searchResultIds.length <= 0) {
                 await runSearch(
                     searchTerm,
                     searchIndeces,
                     (resultIds: string[]) => {
-                        setSearchResultsIds((prevArray: string[]) => [...prevArray, ...resultIds]);
+                        setSearchResultIds((prevArray: string[]) => [...prevArray, ...resultIds]);
                     }
                 );
             }
-            else {
-                if (searchTerm === "") {
-                    setSearchResultsIds([]);
-                }
-            }
         })();
-    }, [searchTerm, searchIndeces]);
-    
+    }, [searchTerm, searchIndeces, searchResultIds.length]);
+
     React.useEffect(() => {
-        if (searchResultsIds) {
-            const splitIds = splitArray(searchResultsIds, PAGINATOR);
-            const searchReducerList = [];
-            for (let i = 0; i < splitIds.length; i++) {
-                searchReducerList.push({ [`${SEARCH.cursorPrefix}-${i}`]: splitIds[i] })
-            }
-            const searchReducerObject = { [props.cursorObject.key]: { [props.cursorObject.value]: searchReducerList } };
+        if (searchResultIds && searchResultIds.length > 0) {
+            handleIdUpdate(searchResultIds, props.cursorObject.value);
         }
-    }, [searchResultsIds, props.cursorObject])
+    }, [searchResultIds, props.cursorObject.value, handleIdUpdate])
+
+    function handleClear() {
+        setSearchTerm(null);
+        setSearchResultIds([]);
+        dispatch(searchActions.clearSearchIds());
+    }
 
     return (
         <Search
-            placeholder={searchIndeces ? LANGUAGE.searchArtifacts : `${LANGUAGE.searchInitializing}...`}
+            placeholder={searchIndeces ?
+                LANGUAGE.searchArtifacts : `${LANGUAGE.searchInitializing}...`}
             handleSearchFetch={(term: string) => setSearchTerm(term)}
+            handleClear={handleClear}
             disabled={!searchIndeces}
         />
     )

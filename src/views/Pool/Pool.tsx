@@ -1,9 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
+import { RootState } from "redux/store";
 import { getPoolById, getPoolCount } from "gql/pools";
-import { getArtifactsByPool } from "gql/artifacts";
+import { getArtifactsByPool, getArtifactsByIds } from "gql/artifacts";
 
 import { Loader } from "components/atoms/Loader";
 
@@ -15,13 +16,14 @@ import { clearCursors } from "redux/cursors/actions";
 import { PoolType, ArtifactResponseType } from "config/types";
 import { getTxEndpoint } from "config/endpoints";
 import { formatDate, getTagValue } from "config/utils";
-import { TAGS, FALLBACK_IMAGE } from "config";
+import { TAGS, FALLBACK_IMAGE, SEARCH } from "config";
 import { REDUX_CURSORS } from "config/redux";
 import * as S from "./styles";
 
 export default function Pool() {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const searchIdsReducer = useSelector((state: RootState) => state.searchIdsReducer);
 
     const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
@@ -44,16 +46,25 @@ export default function Pool() {
     React.useEffect(() => {
         (async function () {
             if (id && headerData) {
-                setDetailData((await getArtifactsByPool({
-                    poolIds: [id],
-                    owner: null,
-                    uploader: headerData.state.owner,
-                    cursor: cursor,
-                    reduxCursor: REDUX_CURSORS.poolAll
-                })));
+                setDetailData(null);
+                if (searchIdsReducer[REDUX_CURSORS.poolAll] && searchIdsReducer[REDUX_CURSORS.poolAll].length > 0) {
+                    setDetailData((await getArtifactsByIds(
+                        searchIdsReducer[REDUX_CURSORS.poolAll][0][`${SEARCH.cursorPrefix}-0`],
+                        REDUX_CURSORS.poolAll
+                    )))
+                }
+                else {
+                    setDetailData((await getArtifactsByPool({
+                        poolIds: [id],
+                        owner: null,
+                        uploader: headerData.state.owner,
+                        cursor: cursor,
+                        reduxCursor: REDUX_CURSORS.poolAll
+                    })));
+                }
             }
         })();
-    }, [id, headerData, cursor])
+    }, [id, headerData, cursor, searchIdsReducer])
 
     React.useEffect(() => {
         (async function () {
@@ -135,8 +146,8 @@ export default function Pool() {
 
     return headerData ? (
         <S.Wrapper>
-            {/* {getPoolHeader()}
-            {getPoolStatistics()} */}
+            {getPoolHeader()}
+            {getPoolStatistics()}
             {getPoolDetail()}
         </S.Wrapper>
     ) : <Loader />

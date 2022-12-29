@@ -46,7 +46,7 @@ export default function OwnerView(props: IProps) {
                             type: "ownerId"
                         }}
                         data={data}
-                        showBookmarks={props.showBookmarks}
+                        showCollections={props.showCollections}
                         showPoolIds={props.showPoolIds}
                         handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
                         cursors={{

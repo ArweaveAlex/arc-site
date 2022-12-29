@@ -14,7 +14,7 @@ export const TypeContainer = styled.div`
 
 export const Link = styled.div``;
 
-export const BookmarkToggle = styled.div`
+export const CollectionToggle = styled.div`
     height: 100%;
     width: 100%;
     display: flex;

@@ -12,7 +12,7 @@ export default function AccountAll() {
             owner={arProvider.walletAddress}
             reduxCursor={REDUX_CURSORS.accountAll}
             fetch={getArtifactsByUser}
-            showBookmarks={true}
+            showCollections={true}
             showPoolIds={true}
             cursorObject={{
                 key: "search",

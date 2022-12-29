@@ -10,7 +10,7 @@ export const initStateCursors: CursorsType = {
             next: null,
             cursors: []
         },
-        [REDUX_CURSORS.accountBookmarks]: {
+        [REDUX_CURSORS.accountCollections]: {
             previous: null,
             next: null,
             cursors: []
@@ -25,7 +25,7 @@ export const initStateCursors: CursorsType = {
             next: null,
             cursors: []
         },
-        [REDUX_CURSORS.libraryBookmarks]: {
+        [REDUX_CURSORS.libraryCollections]: {
             previous: null,
             next: null,
             cursors: []
@@ -37,7 +37,7 @@ export const initStateCursors: CursorsType = {
             next: null,
             cursors: []
         },
-        [REDUX_CURSORS.accountBookmarks]: {
+        [REDUX_CURSORS.accountCollections]: {
             previous: null,
             next: null,
             cursors: []
@@ -52,7 +52,7 @@ export const initStateCursors: CursorsType = {
             next: null,
             cursors: []
         },
-        [REDUX_CURSORS.libraryBookmarks]: {
+        [REDUX_CURSORS.libraryCollections]: {
             previous: null,
             next: null,
             cursors: []
@@ -84,26 +84,26 @@ export function cursorsReducer(
                 gql: {
                     [REDUX_CURSORS.accountAll]: checkPayload(action.payload, "gql", REDUX_CURSORS.accountAll) ?
                         action.payload.gql[REDUX_CURSORS.accountAll] : state.gql[REDUX_CURSORS.accountAll],
-                    [REDUX_CURSORS.accountBookmarks]: checkPayload(action.payload, "gql", REDUX_CURSORS.accountBookmarks) ?
-                        action.payload.gql[REDUX_CURSORS.accountBookmarks] : state.gql[REDUX_CURSORS.accountBookmarks],
+                    [REDUX_CURSORS.accountCollections]: checkPayload(action.payload, "gql", REDUX_CURSORS.accountCollections) ?
+                        action.payload.gql[REDUX_CURSORS.accountCollections] : state.gql[REDUX_CURSORS.accountCollections],
                     [REDUX_CURSORS.poolAll]: checkPayload(action.payload, "gql", REDUX_CURSORS.poolAll) ?
                         action.payload.gql[REDUX_CURSORS.poolAll] : state.gql[REDUX_CURSORS.poolAll],
                     [REDUX_CURSORS.libraryAll]: checkPayload(action.payload, "gql", REDUX_CURSORS.libraryAll) ?
                         action.payload.gql[REDUX_CURSORS.libraryAll] : state.gql[REDUX_CURSORS.libraryAll],
-                    [REDUX_CURSORS.libraryBookmarks]: checkPayload(action.payload, "gql", REDUX_CURSORS.libraryBookmarks) ?
-                        action.payload.gql[REDUX_CURSORS.libraryBookmarks] : state.gql[REDUX_CURSORS.libraryBookmarks]
+                    [REDUX_CURSORS.libraryCollections]: checkPayload(action.payload, "gql", REDUX_CURSORS.libraryCollections) ?
+                        action.payload.gql[REDUX_CURSORS.libraryCollections] : state.gql[REDUX_CURSORS.libraryCollections]
                 },
                 search: {
                     [REDUX_CURSORS.accountAll]: checkPayload(action.payload, "search", REDUX_CURSORS.accountAll) ?
                         action.payload.search[REDUX_CURSORS.accountAll] : state.search[REDUX_CURSORS.accountAll],
-                    [REDUX_CURSORS.accountBookmarks]: checkPayload(action.payload, "search", REDUX_CURSORS.accountBookmarks) ?
-                        action.payload.search[REDUX_CURSORS.accountBookmarks] : state.search[REDUX_CURSORS.accountBookmarks],
+                    [REDUX_CURSORS.accountCollections]: checkPayload(action.payload, "search", REDUX_CURSORS.accountCollections) ?
+                        action.payload.search[REDUX_CURSORS.accountCollections] : state.search[REDUX_CURSORS.accountCollections],
                     [REDUX_CURSORS.poolAll]: checkPayload(action.payload, "search", REDUX_CURSORS.poolAll) ?
                         action.payload.search[REDUX_CURSORS.poolAll] : state.search[REDUX_CURSORS.poolAll],
                     [REDUX_CURSORS.libraryAll]: checkPayload(action.payload, "search", REDUX_CURSORS.libraryAll) ?
                         action.payload.search[REDUX_CURSORS.libraryAll] : state.search[REDUX_CURSORS.libraryAll],
-                    [REDUX_CURSORS.libraryBookmarks]: checkPayload(action.payload, "search", REDUX_CURSORS.libraryBookmarks) ?
-                        action.payload.search[REDUX_CURSORS.libraryBookmarks] : state.search[REDUX_CURSORS.libraryBookmarks]
+                    [REDUX_CURSORS.libraryCollections]: checkPayload(action.payload, "search", REDUX_CURSORS.libraryCollections) ?
+                        action.payload.search[REDUX_CURSORS.libraryCollections] : state.search[REDUX_CURSORS.libraryCollections]
                 }
             })
         case CLEAR_CURSORS:

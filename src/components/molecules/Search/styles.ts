@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 import { STYLING } from "config/styling";
 
+export const Wrapper = styled.div`
+    display: flex;
+`;
+
 export const SearchWrapper = styled.div`
     height: ${STYLING.dimensions.formHeightMin};
     width: ${STYLING.dimensions.formWidthMax};

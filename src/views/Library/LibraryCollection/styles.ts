@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
     margin: 25px 0 0 0;
 `;
 
-export const BookmarkToggle = styled.div`
+export const CollectionToggle = styled.div`
     height: 100%;
     width: 100%;
     display: flex;

@@ -1,1 +1,1 @@
-export const SET_BOOKMARKS = "SET_BOOKMARKS";
+export const SET_COLLECTION = "SET_COLLECTION";

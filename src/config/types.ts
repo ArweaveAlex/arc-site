@@ -120,7 +120,7 @@ export type ArtifactTableRowType = {
   title: React.ReactNode
   pool?: React.ReactNode
   dateCreated?: string
-  bookmark?: React.ReactNode
+  collection?: React.ReactNode
 }
 
 export type ReduxActionType = {
@@ -128,7 +128,7 @@ export type ReduxActionType = {
   payload: any
 }
 
-export type BookmarkResponseType = {
+export type CollectionResponseType = {
   status: number | null
   message: string | null
 }

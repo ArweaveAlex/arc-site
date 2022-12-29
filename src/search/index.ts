@@ -62,19 +62,6 @@ async function searchIndex(
     searchCallback(ids);
 }
 
-// export async function fetchArtifacts(ids: string[], cursor: number) {
-//     // Use number cursor to split up ids
-//     let artifacts: GQLResponseType[] = await getGQLData({
-//         ids: ids,
-//         tagFilters: null,
-//         uploader: null,
-//         cursor: null,
-//         reduxCursor: null
-//     });
-
-//     return artifacts;
-// }
-
 function pullId(index: number, text: string) {
     for(let j = index; j < text.length; j++) {
         let backTrack = j - (SEARCH.idTerm.length - 1);

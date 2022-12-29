@@ -5,7 +5,7 @@ import { OwnerView } from "global/OwnerView";
 import { getArtifactsByUser } from "gql/artifacts";
 import { REDUX_CURSORS } from "config/redux";
 
-export default function AccountAll() {
+export default function LibraryAll() {
     const { id } = useParams();
 
     return id ? (
@@ -13,7 +13,7 @@ export default function AccountAll() {
             owner={id}
             reduxCursor={REDUX_CURSORS.libraryAll}
             fetch={getArtifactsByUser}
-            showBookmarks={false}
+            showCollections={false}
             showPoolIds={true}
             cursorObject={{
                 key: "search",

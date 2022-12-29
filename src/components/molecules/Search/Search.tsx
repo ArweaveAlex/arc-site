@@ -11,40 +11,46 @@ export default function Search(props: IProps) {
     const [searchTerm, setSearchTerm] = React.useState<string>("");
 
     function handleSearch(e: React.KeyboardEvent<HTMLInputElement> | null) {
-        if (!e) {
-            setSearchTerm("");
-            props.handleSearchFetch("");
-        }
-        else {
-            if (e.key === "Enter") {
+        if (e.key === "Enter") {
+            if (searchTerm === "") {
+                props.handleClear();
+            }
+            else {
                 props.handleSearchFetch(searchTerm)
             }
         }
     }
 
+    function handleClear() {
+        setSearchTerm("");
+        props.handleClear();
+    }
+
     return (
-        <S.SearchWrapper>
-            <S.SearchIcon>
-                <ReactSVG src={ASSETS.search} />
-            </S.SearchIcon>
-            <S.SearchInput
-                type={"text"}
-                value={searchTerm}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
-                onKeyDown={handleSearch}
-                placeholder={props.placeholder}
-                disabled={props.disabled}
-            />
-            <S.CloseWrapper>
-                <IconButton 
-                    src={ASSETS.close}
-                    type={"primary"}
-                    handlePress={() => handleSearch(null)}
-                    disabled={props.disabled || !searchTerm}
-                    warning
-                    sm
+        <S.Wrapper>
+            <S.SearchWrapper>
+                <S.SearchIcon>
+                    <ReactSVG src={ASSETS.search} />
+                </S.SearchIcon>
+                <S.SearchInput
+                    type={"text"}
+                    value={searchTerm}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+                    onKeyDown={handleSearch}
+                    placeholder={props.placeholder}
+                    disabled={props.disabled}
                 />
-            </S.CloseWrapper>
-        </S.SearchWrapper>
+                <S.CloseWrapper>
+                    <IconButton
+                        src={ASSETS.close}
+                        type={"primary"}
+                        handlePress={handleClear}
+                        disabled={props.disabled || !searchTerm}
+                        warning
+                        sm
+                    />
+                </S.CloseWrapper>
+            </S.SearchWrapper>
+        </S.Wrapper>
     )
 }

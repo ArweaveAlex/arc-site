@@ -5,7 +5,7 @@ import {
     ArtifactType,
     ArtifactArgsType,
     ArtifactResponseType,
-    BookmarkResponseType,
+    CollectionResponseType,
     PoolType,
     GQLResponseType,
     TagFilterType
@@ -104,9 +104,24 @@ export async function getArtifactsByPool(args: ArtifactArgsType): Promise<Artifa
     })
 }
 
-// export async function getArtifactsByIds(args: ArtifactArgsType): Promise<ArtifactResponseType> {
-    
-// }
+export async function getArtifactsByIds(ids: string[], reduxCursor: string | null): Promise<ArtifactResponseType> {
+    const artifacts: GQLResponseType[] = (await getGQLData({
+        ids: ids,
+        tagFilters: null,
+        uploader: null,
+        cursor: null,
+        reduxCursor: reduxCursor,
+        cursorObject: "search"
+    })).filter((element: GQLResponseType) => {
+        return getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none;
+    })
+
+    return ({
+        nextCursor: null,
+        previousCursor: null,
+        contracts: artifacts
+    })
+}
 
 export async function getArtifactsByUser(args: ArtifactArgsType) {
     const poolIds = await getPoolIds();
@@ -121,24 +136,24 @@ export async function getArtifactsByUser(args: ArtifactArgsType) {
     return artifacts;
 }
 
-export async function getArtifactsByBookmarks(args: ArtifactArgsType): Promise<ArtifactResponseType> {
-    const bookmarksReducer = store.getState().bookmarksReducer;
-    let bookmarkIds: string[];
+export async function getArtifactsByCollections(args: ArtifactArgsType): Promise<ArtifactResponseType> {
+    const collectionsReducer = store.getState().collectionsReducer;
+    let collectionIds: string[];
 
-    if (bookmarksReducer.owner === args.owner) {
-        bookmarkIds = bookmarksReducer.ids;
+    if (collectionsReducer.owner === args.owner) {
+        collectionIds = collectionsReducer.ids;
     }
     else {
         if (args.owner) {
-            bookmarkIds = await getBookmarks(args.owner);
+            collectionIds = await getCollectionIds(args.owner);
         }
         else {
-            bookmarkIds = [];
+            collectionIds = [];
         }
     }
-    
+
     const artifacts: GQLResponseType[] = await getGQLData({
-        ids: bookmarkIds,
+        ids: collectionIds,
         tagFilters: null,
         uploader: null,
         cursor: args.cursor,
@@ -162,11 +177,11 @@ export async function getArtifactsByBookmarks(args: ArtifactArgsType): Promise<A
     })
 }
 
-export async function getBookmarks(owner: string): Promise<string[]> {
-    const bookmarks: GQLResponseType[] = await getGQLData({
+export async function getCollectionIds(owner: string): Promise<string[]> {
+    const collections: GQLResponseType[] = await getGQLData({
         ids: null,
         tagFilters: [
-            { name: TAGS.keys.bookmarkSearch, values: [owner] }
+            { name: TAGS.keys.collectionSearch, values: [owner] }
         ],
         uploader: null,
         cursor: null,
@@ -174,17 +189,17 @@ export async function getBookmarks(owner: string): Promise<string[]> {
         cursorObject: null
     });
 
-    if (bookmarks.length > 0) {
-        let recentDate = Number(getTagValue(bookmarks[0].node.tags, TAGS.keys.dateCreated)!)
+    if (collections.length > 0) {
+        let recentDate = Number(getTagValue(collections[0].node.tags, TAGS.keys.dateCreated)!)
 
-        for (let i = 0; i < bookmarks.length; i++) {
-            const date = Number(getTagValue(bookmarks[i].node.tags, TAGS.keys.dateCreated)!);
+        for (let i = 0; i < collections.length; i++) {
+            const date = Number(getTagValue(collections[i].node.tags, TAGS.keys.dateCreated)!);
             recentDate = Math.max(recentDate, date);
         }
 
-        for (let i = 0; i < bookmarks.length; i++) {
-            if (recentDate === Number(getTagValue(bookmarks[i].node.tags, TAGS.keys.dateCreated)!)) {
-                return JSON.parse(getTagValue(bookmarks[i].node.tags, TAGS.keys.bookmarkIds)!);
+        for (let i = 0; i < collections.length; i++) {
+            if (recentDate === Number(getTagValue(collections[i].node.tags, TAGS.keys.dateCreated)!)) {
+                return JSON.parse(getTagValue(collections[i].node.tags, TAGS.keys.collectionIds)!);
             }
         }
 
@@ -195,16 +210,16 @@ export async function getBookmarks(owner: string): Promise<string[]> {
     }
 }
 
-export async function setBookmarks(owner: string, ids: string[]): Promise<BookmarkResponseType> {
+export async function setCollectionIds(owner: string, ids: string[]): Promise<CollectionResponseType> {
     let txRes = await arClient.arweavePost.createTransaction({ data: JSON.stringify(ids) }, "use_wallet");
-    txRes.addTag(TAGS.keys.bookmarkSearch, owner);
+    txRes.addTag(TAGS.keys.collectionSearch, owner);
     txRes.addTag(TAGS.keys.dateCreated, Date.now().toString());
-    txRes.addTag(TAGS.keys.bookmarkIds, JSON.stringify(ids));
+    txRes.addTag(TAGS.keys.collectionIds, JSON.stringify(ids));
 
     const response = await global.window.arweaveWallet.dispatch(txRes);
 
     if (response.id) {
-        store.dispatch(artifactActions.setBookmarks({
+        store.dispatch(artifactActions.setCollection({
             owner: owner,
             ids: ids
         }));

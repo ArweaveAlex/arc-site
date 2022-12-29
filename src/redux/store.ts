@@ -4,20 +4,25 @@ import { createLogger } from "redux-logger";
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
 
-import { bookmarksReducer } from "./artifacts/reducers";
+import { collectionsReducer } from "./artifacts/reducers";
 import { cursorsReducer } from "./cursors/reducers";
 import { poolsReducer } from "./pools/reducers";
+import { searchIdsReducer } from "./search/reducers";
 
 const persistConfig = {
     key: "root",
     storage,
-    blacklist: ['cursorsReducer']
+    blacklist: [
+        "cursorsReducer", 
+        "searchIdsReducer"
+    ]
 };
 
 const rootReducer = combineReducers({
-    bookmarksReducer,
+    collectionsReducer,
     cursorsReducer,
-    poolsReducer
+    poolsReducer,
+    searchIdsReducer
 });
 
 export type RootState = ReturnType<typeof store.getState>;

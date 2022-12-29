@@ -3,7 +3,7 @@ import { ArtifactResponseType, CursorType, CursorObjectType, TableIdType } from 
 export interface IProps {
     id: TableIdType;
     data: ArtifactResponseType;
-    showBookmarks: boolean;
+    showCollections: boolean;
     showPoolIds: boolean;
     handleCursorFetch: (cursor: string | null) => void;
     cursors: CursorType;

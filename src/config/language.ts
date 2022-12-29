@@ -13,9 +13,9 @@ export const LANGUAGE = {
             title: `New`,
             header1: `New Artifacts`
         },
-        bookmarks: {
-            title: `Bookmarks`,
-            header1: `Bookmarks`
+        collections: {
+            title: `Collections`,
+            header1: `Collections`
         },
         contributions: {
             title: `My Contributions`,
@@ -44,7 +44,7 @@ export const LANGUAGE = {
         subheader1: `Archives are permanently stored on`,
         subheader2: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed justo bibendum ipsum commodo aliquet.`
     },
-    bookmarksUpdated: `Bookmarks Updated`,
+    bookmarksUpdated: `Collections Updated`,
     community: `Community`,
     companyTitle: `Alex.`,
     companyDescription: `Preserving Human Culture.`,
@@ -93,9 +93,9 @@ export const LANGUAGE = {
             title: `New`,
             header1: `New Artifacts`
         },
-        bookmarks: {
-            title: `Bookmarks`,
-            header1: `Bookmarks`
+        collections: {
+            title: `Collections`,
+            header1: `Collections`
         }
     },
     loading: `Loading`,
@@ -145,7 +145,7 @@ export const LANGUAGE = {
     searchArtifacts: `Search Artifacts`,
     searchInitializing: `Initializing Search`,
     select: `Select`,
-    setBookmarks: `Update Bookmarks`,
+    setCollection: `Update Collections`,
     share: `Share`,
     shareArtifact: `Check out this Alex. Artifact !`,
     sharePools: `Check out this Alex. Pool !`,

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as actions from "redux/artifacts/actions";
 import { RootState } from "redux/store";
-import { getBookmarks, setBookmarks } from "gql/artifacts";
+import { getCollectionIds, setCollectionIds } from "gql/artifacts";
 
 import { ArtifactSearch } from "./ArtifactSearch";
 
@@ -30,35 +30,35 @@ import * as urls from "config/urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 
-function BookmarkToggle(props: {
+function CollectionToggle(props: {
     artifactId: string,
     selected: boolean,
-    handleBookmarkUpdate: (artifactId: string) => void
+    handleCollectionUpdate: (artifactId: string) => void
 }) {
     return (
-        <S.BookmarkToggle>
+        <S.CollectionToggle>
             <IconButton
                 type={"primary"}
-                src={props.selected ? ASSETS.bookmarkSelected : ASSETS.bookmark}
-                handlePress={() => props.handleBookmarkUpdate(props.artifactId)}
+                src={props.selected ? ASSETS.bookmarkSelected : ASSETS.collection}
+                handlePress={() => props.handleCollectionUpdate(props.artifactId)}
 
             />
-        </S.BookmarkToggle>
+        </S.CollectionToggle>
     )
 }
 
 export default function ArtifactTable(props: IProps) {
     const dispatch = useDispatch();
-    const bookmarksReducer = useSelector((state: RootState) => state.bookmarksReducer);
+    const collectionsReducer = useSelector((state: RootState) => state.collectionsReducer);
 
     const [data, setData] = React.useState<any>(null);
-    const [bookmarkIds, setBookmarkIds] = React.useState<string[]>([]);
+    const [collectionIdsState, setCollectionIdsState] = React.useState<string[]>([]);
 
     function getTitleWidth() {
-        if (props.showBookmarks && props.showPoolIds) {
+        if (props.showCollections && props.showPoolIds) {
             return "55%";
         }
-        else if (props.showBookmarks || props.showPoolIds) {
+        else if (props.showCollections || props.showPoolIds) {
             return "65%";
         }
         else {
@@ -77,8 +77,8 @@ export default function ArtifactTable(props: IProps) {
             header.pool = { width: "10%", align: "left" as AlignType };
         }
 
-        if (props.showBookmarks) {
-            header.bookmark = { width: "10%", align: "center" as AlignType };
+        if (props.showCollections) {
+            header.collection = { width: "10%", align: "center" as AlignType };
         }
 
         return header;
@@ -108,48 +108,49 @@ export default function ArtifactTable(props: IProps) {
         )
     }
 
-    function getBookmark(artifactId: string) {
+    function getCollection(artifactId: string) {
         return (
-            <BookmarkToggle
+            <CollectionToggle
                 artifactId={artifactId}
-                selected={bookmarkIds.includes(artifactId)}
-                handleBookmarkUpdate={(artifactId: string) => handleBookmarkStateUpdate(artifactId)}
+                selected={collectionIdsState.includes(artifactId)}
+                handleCollectionUpdate={(artifactId: string) => handleCollectionStateUpdate(artifactId)}
             />
         )
     }
 
-    async function handleBookmarkStateUpdate(artifactId: string) {
-        const updatedBookmarks: string[] = [];
-        for (let i = 0; i < bookmarkIds.length; i++) {
-            updatedBookmarks.push(bookmarkIds[i]);
+    async function handleCollectionStateUpdate(artifactId: string) {
+        const updatedCollections: string[] = [];
+        for (let i = 0; i < collectionIdsState.length; i++) {
+            updatedCollections.push(collectionIdsState[i]);
         }
-        const index = updatedBookmarks.indexOf(artifactId);
+        const index = updatedCollections.indexOf(artifactId);
         if (index > -1) {
-            updatedBookmarks.splice(index, 1);
+            updatedCollections.splice(index, 1);
         }
         else {
-            updatedBookmarks.push(artifactId);
+            updatedCollections.push(artifactId);
         }
-        await setBookmarks(props.owner!, updatedBookmarks);
+        await setCollectionIds(props.owner!, updatedCollections);
     }
 
     React.useEffect(() => {
         (async function () {
             if (props.owner) {
-                if (bookmarksReducer.owner === props.owner) {
-                    setBookmarkIds(bookmarksReducer.ids);
+                if (collectionsReducer.owner === props.owner) {
+                    setCollectionIdsState(collectionsReducer.ids);
                 }
                 else {
-                    const bookmarkIds = await getBookmarks(props.owner);
-                    dispatch(actions.setBookmarks({
+                    const collectionIdsState = await getCollectionIds(props.owner);
+
+                    dispatch(actions.setCollection({
                         owner: props.owner,
-                        ids: bookmarkIds
+                        ids: collectionIdsState
                     }))
-                    setBookmarkIds(bookmarkIds);
+                    setCollectionIdsState(collectionIdsState);
                 }
             }
         })();
-    }, [props.owner, dispatch, bookmarksReducer.owner, bookmarksReducer.ids])
+    }, [props.owner, dispatch, collectionsReducer.owner, collectionsReducer.ids])
 
     React.useEffect(() => {
         if (props.data) {
@@ -163,8 +164,8 @@ export default function ArtifactTable(props: IProps) {
                     if (props.showPoolIds) {
                         row.pool = getLink(`${urls.pool}${getTagValue(element.node.tags, TAGS.keys.poolId)}`, getTagValue(element.node.tags, TAGS.keys.poolId));
                     }
-                    if (props.showBookmarks) {
-                        row.bookmark = getBookmark(element.node.id);
+                    if (props.showCollections) {
+                        row.collection = getCollection(element.node.id);
                     }
                     if (getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none) {
                         return row;
@@ -175,8 +176,11 @@ export default function ArtifactTable(props: IProps) {
                 }).filter((element: any) => element !== null));
             })();
         }
+        else {
+            setData(null);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [bookmarkIds, props.data, props.showBookmarks])
+    }, [collectionIdsState, props.data, props.showCollections])
 
     return (
         <Table

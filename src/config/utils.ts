@@ -98,10 +98,11 @@ export function stripSearch(s: string) {
 }
 
 export function splitArray(array: any[], size: number) {
-    const res = [];
-    for (let i = 0; i < array.length; i += size) {
-        const chunk = array.slice(i, i + size);
-        res.push(chunk);
+    const splitResult = [];
+    const arrayCopy = [...array];
+    for (let i = 0; i < arrayCopy.length; i += size) {
+        const chunk = arrayCopy.slice(i, i + size);
+        splitResult.push(chunk);
     }
-    return res;
+    return splitResult;
 }

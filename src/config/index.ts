@@ -1,8 +1,8 @@
 import { AccountAll } from "views/Account/AccountAll";
-import { AccountBookmarks } from "views/Account/AccountBookmarks";
+import { AccountCollection } from "views/Account/AccountCollection";
 import { AccountContributions } from "views/Account/AccountContributions";
 import { LibraryAll } from "views/Library/LibraryAll";
-import { LibraryBookmarks } from "views/Library/LibraryBookmarks";
+import { LibraryCollection } from "views/Library/LibraryCollection";
 
 import { IURLView, PoolType } from "config/types";
 import * as filters from "filters/pools";
@@ -16,8 +16,8 @@ export const TAGS = {
         artifactName: "Artifact-Name",
         artifactType: "Artifact-Type",
         ansTitle: "Title",
-        bookmarkIds: "Bookmark-Ids-Tag",
-        bookmarkSearch: "Alex-Bookmark-Search",
+        collectionIds: "Bookmark-Ids-Tag",
+        collectionSearch: "Alex-Bookmark-Search",
         dateCreated: "Date-Created",
         keywords: "Keywords",
         initialOwner: "Initial-Owner",
@@ -49,9 +49,9 @@ export const ASSETS = {
         messaging: `${ASSET_SRC}/artifact-types/messaging.svg`,
         webpage: `${ASSET_SRC}/artifact-types/webpage.svg`
     },
-    bookmark: `${ASSET_SRC}/bookmark.svg`,
-    bookmarks: `${ASSET_SRC}/bookmarks.svg`,
-    bookmarkSelected: `${ASSET_SRC}/bookmark-selected.svg`,
+    collection: `${ASSET_SRC}/collection.svg`,
+    collections: `${ASSET_SRC}/collections.svg`,
+    bookmarkSelected: `${ASSET_SRC}/collection-selected.svg`,
     close: `${ASSET_SRC}/close.svg`,
     contributions: `${ASSET_SRC}/contributions.svg`,
     copy: `${ASSET_SRC}/copy.svg`,
@@ -134,12 +134,12 @@ export const DOM = {
 export const URLS: IURLView = {
     account: [
         { index: 0, label: LANGUAGE.account.all.title, icon: ASSETS.all, disabled: false, url: urls.accountAll, view: AccountAll },
-        { index: 1, label: LANGUAGE.account.bookmarks.title, icon: ASSETS.bookmarks, disabled: false, url: urls.accountBookmarks, view: AccountBookmarks },
+        { index: 1, label: LANGUAGE.account.collections.title, icon: ASSETS.collections, disabled: false, url: urls.accountCollections, view: AccountCollection },
         { index: 2, label: LANGUAGE.account.contributions.title, icon: ASSETS.contributions, disabled: false, url: urls.accountContributions, view: AccountContributions }
     ],
     library: [
         { index: 0, label: LANGUAGE.library.all.title, icon: ASSETS.all, disabled: false, url: (id: string) => urls.libraryAll(id), view: LibraryAll },
-        { index: 1, label: LANGUAGE.library.bookmarks.title, icon: ASSETS.bookmarks, disabled: false, url: (id: string) => urls.libraryBookmarks(id), view: LibraryBookmarks }
+        { index: 1, label: LANGUAGE.library.collections.title, icon: ASSETS.collections, disabled: false, url: (id: string) => urls.libraryCollections(id), view: LibraryCollection }
     ]
 }
 
