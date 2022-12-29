@@ -3,8 +3,13 @@ import { store } from "redux/store";
 
 import { ArweaveClient } from "arweave-client";
 import { unquoteJsonKeys } from "config/utils";
-import { CURSORS, PAGINATOR } from "config";
-import { GQLResponseType, TagFilterType, CursorObjectKeyType } from "config/types";
+import { CURSORS, PAGINATOR, SEARCH } from "config";
+import {
+    GQLResponseType,
+    TagFilterType,
+    CursorObjectKeyType,
+    CursorEnum
+} from "config/types";
 
 export async function getGQLData(args: {
     ids: string[] | null;
@@ -23,11 +28,28 @@ export async function getGQLData(args: {
         return data;
     }
 
-    const ids = args.ids ? JSON.stringify(args.ids) : null;
-    const tags = args.tagFilters ? unquoteJsonKeys(args.tagFilters) : null;
-    const owners = args.uploader ? JSON.stringify([args.uploader]) : null;
+    let ids = args.ids ? JSON.stringify(args.ids) : null;
+    let tags = args.tagFilters ? unquoteJsonKeys(args.tagFilters) : null;
+    let owners = args.uploader ? JSON.stringify([args.uploader]) : null;
 
-    const cursor = args.cursor ? `"${args.cursor}"` : null;
+    let cursor = args.cursor ? `"${args.cursor}"` : null;
+
+    if (args.reduxCursor && args.cursorObject && args.cursorObject === CursorEnum.Search) {
+        let i: number;
+        let cursor: string;
+
+        if (args.cursor && args.cursor !== CURSORS.p1) {
+            i = Number(args.cursor.slice(-1));
+            cursor = args.cursor;
+        }
+        else {
+            i = 0;
+            cursor = `${SEARCH.cursorPrefix}-${i}`;
+        }
+
+        ids = JSON.stringify(store.getState().searchIdsReducer[args.reduxCursor][i][cursor]);
+        nextCursor = JSON.parse(ids).length < PAGINATOR ? CURSORS.end : `${SEARCH.cursorPrefix}-${++i}`;
+    }
 
     const operation = {
         query: `
@@ -63,11 +85,13 @@ export async function getGQLData(args: {
         const responseData = response.data.data.transactions.edges;
         if (responseData.length > 0) {
             data.push(...responseData);
-            if (responseData.length < PAGINATOR) {
-                nextCursor = CURSORS.end;
-            }
-            else {
-                nextCursor = responseData[responseData.length - 1].cursor;
+            if (args.cursorObject && args.cursorObject === CursorEnum.GQL) {
+                if (responseData.length < PAGINATOR) {
+                    nextCursor = CURSORS.end;
+                }
+                else {
+                    nextCursor = responseData[responseData.length - 1].cursor;
+                }
             }
         }
     }
@@ -77,7 +101,12 @@ export async function getGQLData(args: {
     return data;
 }
 
-function handleCursors(cursor: string | null, reduxCursor: string | null, cursorObject: CursorObjectKeyType, nextCursor: string | null) {
+function handleCursors(
+    cursor: string | null,
+    reduxCursor: string | null,
+    cursorObject: CursorObjectKeyType,
+    nextCursor: string | null
+) {
     let cursorState: any;
     let cursorList: (string | null)[] = [];
 
@@ -108,8 +137,14 @@ function handleCursors(cursor: string | null, reduxCursor: string | null, cursor
             else {
                 cursorList = [...tempCursorList];
             }
+
+            let previousCount = 3;
+            if (cursorObject && cursorObject === CursorEnum.Search) {
+                previousCount = 2;
+            }
+
             cursorState.next = cursorList[cursorList.length - 1];
-            cursorState.previous = cursorList[cursorList.length - 3];
+            cursorState.previous = cursorList[cursorList.length - previousCount];
         }
 
         else {

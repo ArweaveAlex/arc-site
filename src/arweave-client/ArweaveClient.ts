@@ -95,7 +95,7 @@ export default class ArweaveClient {
 
     async calcLastContributions(userWallet: string, pools: PoolType[]) {
         let contributions = await getArtifactsByUser({
-            poolIds: null,
+            ids: null,
             owner: userWallet,
             uploader: null,
             cursor: null,

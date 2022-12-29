@@ -4,6 +4,7 @@ import { OwnerView } from "global/OwnerView";
 
 import { getArtifactsByUser } from "gql/artifacts";
 import { REDUX_CURSORS } from "config/redux";
+import { CursorEnum } from "config/types";
 
 export default function LibraryAll() {
     const { id } = useParams();
@@ -16,7 +17,7 @@ export default function LibraryAll() {
             showCollections={false}
             showPoolIds={true}
             cursorObject={{
-                key: "search",
+                key: CursorEnum.Search,
                 value: REDUX_CURSORS.libraryAll
             }}
         />

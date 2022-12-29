@@ -8,7 +8,8 @@ import {
     CollectionResponseType,
     PoolType,
     GQLResponseType,
-    TagFilterType
+    TagFilterType,
+    CursorEnum
 } from "config/types";
 import { getGQLData } from "gql";
 import { getTxEndpoint } from "config/endpoints";
@@ -68,7 +69,7 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
 export async function getArtifactsByPool(args: ArtifactArgsType): Promise<ArtifactResponseType> {
     let tagFilters: TagFilterType[] = [{
         name: TAGS.keys.poolId,
-        values: args.poolIds!
+        values: args.ids!
     }];
 
     if (args.owner) {
@@ -84,7 +85,7 @@ export async function getArtifactsByPool(args: ArtifactArgsType): Promise<Artifa
         uploader: args.uploader,
         cursor: args.cursor,
         reduxCursor: args.reduxCursor,
-        cursorObject: "gql"
+        cursorObject: CursorEnum.GQL
     })).filter((element: GQLResponseType) => {
         return getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none;
     })
@@ -104,21 +105,29 @@ export async function getArtifactsByPool(args: ArtifactArgsType): Promise<Artifa
     })
 }
 
-export async function getArtifactsByIds(ids: string[], reduxCursor: string | null): Promise<ArtifactResponseType> {
+export async function getArtifactsByIds(args: ArtifactArgsType): Promise<ArtifactResponseType> {
     const artifacts: GQLResponseType[] = (await getGQLData({
-        ids: ids,
+        ids: args.ids,
         tagFilters: null,
-        uploader: null,
-        cursor: null,
-        reduxCursor: reduxCursor,
-        cursorObject: "search"
+        uploader: args.uploader,
+        cursor: args.cursor,
+        reduxCursor: args.reduxCursor,
+        cursorObject: CursorEnum.Search
     })).filter((element: GQLResponseType) => {
         return getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none;
     })
 
+    let cursorState: any;
+    if (args.reduxCursor) {
+        cursorState = store.getState().cursorsReducer.search[args.reduxCursor];
+    }
+
+    let nextCursor: string | null = cursorState ? cursorState.next : null;
+    let previousCursor: string | null = cursorState ? cursorState.previous : null;
+
     return ({
-        nextCursor: null,
-        previousCursor: null,
+        nextCursor: nextCursor,
+        previousCursor: previousCursor,
         contracts: artifacts
     })
 }
@@ -127,7 +136,7 @@ export async function getArtifactsByUser(args: ArtifactArgsType) {
     const poolIds = await getPoolIds();
 
     const artifacts = await getArtifactsByPool({
-        poolIds: poolIds,
+        ids: poolIds,
         owner: args.owner,
         uploader: null,
         cursor: args.cursor,
@@ -158,7 +167,7 @@ export async function getArtifactsByCollections(args: ArtifactArgsType): Promise
         uploader: null,
         cursor: args.cursor,
         reduxCursor: args.reduxCursor,
-        cursorObject: "gql"
+        cursorObject: CursorEnum.GQL
     });
 
     let cursorState: any;

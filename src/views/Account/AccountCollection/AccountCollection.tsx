@@ -3,6 +3,7 @@ import { OwnerView } from "global/OwnerView";
 import { useArweaveProvider } from "providers/ArweaveProvider";
 import { getArtifactsByCollections } from "gql/artifacts";
 import { REDUX_CURSORS } from "config/redux";
+import { CursorEnum } from "config/types";
 
 export default function AccountCollection() {
     const arProvider = useArweaveProvider();
@@ -15,7 +16,7 @@ export default function AccountCollection() {
             showCollections={true}
             showPoolIds={true}
             cursorObject={{
-                key: "search",
+                key: CursorEnum.Search,
                 value: REDUX_CURSORS.accountCollections
             }}
         />

@@ -5,6 +5,11 @@ export enum ArtifactEnum {
   Webpage = "Alex-Webpage"
 }
 
+export enum CursorEnum {
+  GQL = "gql",
+  Search = "search"
+}
+
 export type GQLResponseType = {
   cursor: string | null
   node: {
@@ -33,7 +38,7 @@ export interface ArtifactType {
 }
 
 export type ArtifactArgsType = {
-  poolIds: string[] | null
+  ids: string[] | null
   owner: string | null
   uploader: string | null
   cursor: string | null
@@ -141,7 +146,7 @@ export type TableIdType = {
 export type TagFilterType = { name: string, values: string[] }
 export type ContributionType = { timestamp: string, qty: string }
 export type PoolFilterType = { title: string, fn: (data: any) => any }
-export type CursorObjectKeyType = "gql" | "search" | null
+export type CursorObjectKeyType = CursorEnum.GQL | CursorEnum.Search | null
 export type CursorObjectType = {
   key: CursorObjectKeyType,
   value: string

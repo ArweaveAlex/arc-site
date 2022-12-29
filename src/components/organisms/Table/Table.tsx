@@ -15,13 +15,13 @@ export default function Table(props: IProps) {
     const [currentPage, setCurrentPage] = React.useState(1);
     const [recordsPerPage] = React.useState(props.recordsPerPage);
 
+    const lastRecordIndex = currentPage * recordsPerPage;
+    const firstRecordIndex = lastRecordIndex - recordsPerPage;
+    const currentRecords = props.data ? props.data.slice(firstRecordIndex, lastRecordIndex) : null;
+    const nPages = props.data ? Math.ceil(props.data.length / recordsPerPage) : null;
+
     function getTable() {
         if (props.data) {
-            const lastRecordIndex = currentPage * recordsPerPage;
-            const firstRecordIndex = lastRecordIndex - recordsPerPage;
-            const currentRecords = props.data.slice(firstRecordIndex, lastRecordIndex);
-            const nPages = Math.ceil(props.data.length / recordsPerPage);
-
             return (
                 <>
                     <S.Body>
@@ -55,24 +55,15 @@ export default function Table(props: IProps) {
                             })}
                         </S.Table>
                     </S.Body>
-                    <Paginator
-                        scrollRef={scrollRef}
-                        nPages={nPages}
-                        currentPage={currentPage}
-                        setCurrentPage={setCurrentPage}
-                        showPageNumbers={props.showPageNumbers}
-                        handleCursorFetch={(cursor: string | null) => props.handleCursorFetch(cursor)}
-                        cursors={props.cursors}
-                    />
                 </>
             )
         }
         else {
+            // TODO - Loading Table 100 Rows
             return (
                 <S.LoadingWrapper>
                     <Loader sm />
                 </S.LoadingWrapper>
-                
             )
         }
     }
@@ -89,6 +80,15 @@ export default function Table(props: IProps) {
                 </S.HeaderFlex>
             </S.Header>
             {getTable()}
+            <Paginator
+                scrollRef={scrollRef}
+                nPages={nPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                showPageNumbers={props.showPageNumbers}
+                handleCursorFetch={(cursor: string | null) => props.handleCursorFetch(cursor)}
+                cursors={props.cursors}
+            />
         </S.Wrapper>
     )
 }

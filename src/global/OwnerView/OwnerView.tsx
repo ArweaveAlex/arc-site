@@ -25,7 +25,7 @@ export default function OwnerView(props: IProps) {
         (async function () {
             if (props.owner) {
                 setData(await props.fetch({
-                    poolIds: null,
+                    ids: null,
                     owner: props.owner,
                     uploader: null,
                     cursor: cursor,
