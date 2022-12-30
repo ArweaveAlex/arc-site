@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 export const SearchWrapper = styled.div`
     height: ${STYLING.dimensions.formHeightMin};
     width: ${STYLING.dimensions.formWidthMax};
-    max-width: 87.5vw;
+    max-width: 88.25vw;
     display: flex;
     position: relative;
 `;

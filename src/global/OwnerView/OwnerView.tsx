@@ -16,6 +16,7 @@ export default function OwnerView(props: IProps) {
 
     const [data, setData] = React.useState<ArtifactResponseType | null>(null);
     const [cursor, setCursor] = React.useState<string | null>(null);
+    const [searchRequested, setSearchRequested] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         dispatch(clearCursors());
@@ -55,6 +56,7 @@ export default function OwnerView(props: IProps) {
                         }}
                         owner={props.owner}
                         cursorObject={props.cursorObject}
+                        setSearchRequested={(searchRequested: boolean) => setSearchRequested(searchRequested)}
                     />
                 </S.Wrapper>
             )

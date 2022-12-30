@@ -28,6 +28,12 @@ export default function ArtifactSearch(props: IProps) {
         dispatch(searchActions.setSearchIds(searchReducerObject));
     }, [dispatch])
 
+    const handleClear = React.useCallback(() => {
+        props.setSearchRequested(searchTerm && searchTerm.length > 0 ? true : false);
+        setSearchResultIds([]);
+        dispatch(searchActions.clearSearchIds());
+    }, [dispatch, props, searchTerm])
+
     React.useEffect(() => {
         (async function () {
             setSearchIndeces(await initSearch(props.id.value));
@@ -35,11 +41,14 @@ export default function ArtifactSearch(props: IProps) {
     }, [props.id]);
 
     React.useEffect(() => {
+        handleClear();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchTerm])
+
+    React.useEffect(() => {
         (async function () {
-            if (searchTerm) {
-                handleClear();
-            }
             if (searchTerm && searchIndeces && searchResultIds.length <= 0) {
+                props.setSearchRequested(true);
                 await runSearch(
                     searchTerm,
                     searchIndeces,
@@ -49,19 +58,13 @@ export default function ArtifactSearch(props: IProps) {
                 );
             }
         })();
-    }, [searchTerm, searchIndeces, searchResultIds.length]);
+    }, [searchTerm, searchIndeces, searchResultIds.length, props]);
 
     React.useEffect(() => {
         if (searchResultIds && searchResultIds.length > 0) {
             handleIdUpdate(searchResultIds, props.cursorObject.value);
         }
     }, [searchResultIds, props.cursorObject.value, handleIdUpdate])
-
-    function handleClear() {
-        setSearchTerm(null);
-        setSearchResultIds([]);
-        dispatch(searchActions.clearSearchIds());
-    }
 
     return (
         <Search

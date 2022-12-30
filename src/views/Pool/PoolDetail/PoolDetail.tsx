@@ -13,6 +13,7 @@ export default function PoolDetail(props: IProps) {
             cursors={props.cursors}
             owner={null}
             cursorObject={props.cursorObject}
+            setSearchRequested={(searchRequested: boolean) => props.setSearchRequested(searchRequested)}
         />
     )
 }

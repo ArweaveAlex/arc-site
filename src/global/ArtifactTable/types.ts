@@ -7,6 +7,7 @@ export interface IProps {
     showPoolIds: boolean;
     handleCursorFetch: (cursor: string | null) => void;
     cursors: CursorType;
-    owner: string | null,
-    cursorObject: CursorObjectType
+    owner: string | null;
+    cursorObject: CursorObjectType;
+    setSearchRequested: (searchRequested: boolean) => void;
 }

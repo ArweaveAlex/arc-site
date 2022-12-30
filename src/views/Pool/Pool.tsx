@@ -30,6 +30,7 @@ export default function Pool() {
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
 
     const [cursor, setCursor] = React.useState<string | null>(null);
+    const [searchRequested, setSearchRequested] = React.useState<boolean>(false);
 
     const [count, setCount] = React.useState<number | null>(null);
     const [imageUrl, setImageUrl] = React.useState<string | null>(null);
@@ -48,7 +49,23 @@ export default function Pool() {
 
     React.useEffect(() => {
         (async function () {
-            if (id && headerData) {
+            if (searchRequested && searchIdsReducer[REDUX_CURSORS.poolAll] && searchIdsReducer[REDUX_CURSORS.poolAll].length > 0) {
+                setDetailData(null);
+                setDetailData((await getArtifactsByIds({
+                    ids: null,
+                    owner: null,
+                    uploader: null,
+                    cursor: cursor,
+                    reduxCursor: REDUX_CURSORS.poolAll
+                })));
+            }
+        })()
+    }, [searchRequested, searchIdsReducer, cursor])
+
+    React.useEffect(() => {
+        (async function () {
+            if (id && headerData && !searchRequested) {
+                // TODO - Handle Clear / Cache Search Term / Search from second page - non-search request
                 setDetailData(null);
                 setDetailData((await getArtifactsByPool({
                     ids: [id],
@@ -56,28 +73,10 @@ export default function Pool() {
                     uploader: headerData.state.owner,
                     cursor: cursor,
                     reduxCursor: REDUX_CURSORS.poolAll
-                })));
+                })))
             }
         })();
-    }, [id, headerData, cursor])
-
-    React.useEffect(() => {
-        (async function () {
-            if (id && headerData) {
-                // TODO - Handle Clear / Cache Search Term
-                setDetailData(null);
-                if (searchIdsReducer[REDUX_CURSORS.poolAll] && searchIdsReducer[REDUX_CURSORS.poolAll].length > 0) {
-                    setDetailData((await getArtifactsByIds({
-                        ids: null,
-                        owner: null,
-                        uploader: null,
-                        cursor: cursor,
-                        reduxCursor: REDUX_CURSORS.poolAll
-                    })))
-                }
-            }
-        })();
-    }, [id, headerData, cursor, searchIdsReducer])
+    }, [id, headerData, cursor, searchRequested])
 
     React.useEffect(() => {
         (async function () {
@@ -95,7 +94,8 @@ export default function Pool() {
     React.useEffect(() => {
         (async function () {
             if (headerData) {
-                const imageResponse = (await fetch(getTxEndpoint(headerData.state.image.length > 0 ? headerData.state.image : FALLBACK_IMAGE)));
+                const imageResponse = (await fetch(getTxEndpoint(headerData.state.image.length > 0 ?
+                    headerData.state.image : FALLBACK_IMAGE)));
                 setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
             }
         })()
@@ -152,6 +152,7 @@ export default function Pool() {
                     key: CursorEnum.Search,
                     value: REDUX_CURSORS.poolAll
                 }}
+                setSearchRequested={(searchRequested: boolean) => setSearchRequested(searchRequested)}
             />
 
         )
@@ -159,8 +160,8 @@ export default function Pool() {
 
     return headerData ? (
         <S.Wrapper>
-            {/* {getPoolHeader()}
-            {getPoolStatistics()} */}
+            {getPoolHeader()}
+            {getPoolStatistics()}
             {getPoolDetail()}
         </S.Wrapper>
     ) : <Loader />

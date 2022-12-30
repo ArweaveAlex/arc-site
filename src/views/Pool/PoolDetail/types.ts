@@ -6,4 +6,5 @@ export interface IProps {
     handleCursorFetch: (cursor: string | null) => void;
     cursors: CursorType;
     cursorObject: CursorObjectType;
+    setSearchRequested: (searchRequested: boolean) => void;
 }

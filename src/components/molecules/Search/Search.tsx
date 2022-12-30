@@ -12,18 +12,13 @@ export default function Search(props: IProps) {
 
     function handleSearch(e: React.KeyboardEvent<HTMLInputElement> | null) {
         if (e.key === "Enter") {
-            if (searchTerm === "") {
-                props.handleClear();
-            }
-            else {
-                props.handleSearchFetch(searchTerm)
-            }
+            props.handleSearchFetch(searchTerm);
         }
     }
 
     function handleClear() {
         setSearchTerm("");
-        props.handleClear();
+        props.handleSearchFetch("");
     }
 
     return (
@@ -44,7 +39,7 @@ export default function Search(props: IProps) {
                     <IconButton
                         src={ASSETS.close}
                         type={"primary"}
-                        handlePress={handleClear}
+                        handlePress={() => handleClear()}
                         disabled={props.disabled || !searchTerm}
                         warning
                         sm

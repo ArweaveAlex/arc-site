@@ -189,6 +189,7 @@ export default function ArtifactTable(props: IProps) {
                 <ArtifactSearch 
                     id={props.id}
                     cursorObject={props.cursorObject}
+                    setSearchRequested={(searchRequested: boolean) => props.setSearchRequested(searchRequested)}
                 />
             }
             header={getHeader()}
