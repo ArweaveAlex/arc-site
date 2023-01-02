@@ -22,7 +22,7 @@ export const Input = styled.input<{ disabled: boolean; invalid: boolean }>`
   border: 1px solid ${(props) => props.invalid 
     ? props.theme.colors.form.invalid.outline
     : props.theme.colors.form.border};
-  border-radius: ${STYLING.dimensions.borderRadiusInput};
+  border-radius: ${STYLING.dimensions.borderRadiusField};
   &:focus {
     outline: 0;
     border: 1px solid
@@ -40,6 +40,8 @@ export const Input = styled.input<{ disabled: boolean; invalid: boolean }>`
   &:disabled {
     background: ${(props) => props.theme.colors.form.disabled.background};
     color: ${(props) => props.theme.colors.form.disabled.label};
+    box-shadow: none;
+    border: 1px solid ${(props) => props.theme.colors.form.border};
   }
 `;
 

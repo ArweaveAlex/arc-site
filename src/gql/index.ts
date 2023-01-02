@@ -2,7 +2,7 @@ import * as cursorActions from "redux/cursors/actions";
 import { store } from "redux/store";
 
 import { ArweaveClient } from "arweave-client";
-import { unquoteJsonKeys } from "config/utils";
+import { unquoteJsonKeys, checkGqlCursor } from "config/utils";
 import { CURSORS, PAGINATOR, SEARCH } from "config";
 import {
     GQLResponseType,
@@ -37,8 +37,8 @@ export async function getGQLData(args: {
     if (args.reduxCursor && args.cursorObject && args.cursorObject === CursorEnum.Search) {
         let i: number;
         let cursor: string;
-
-        if (args.cursor && args.cursor !== CURSORS.p1) {
+        
+        if (args.cursor && (args.cursor !== CURSORS.p1 && args.cursor !== CURSORS.end && !checkGqlCursor(args.cursor))) {
             i = Number(args.cursor.slice(-1));
             cursor = args.cursor;
         }
@@ -47,13 +47,15 @@ export async function getGQLData(args: {
             cursor = `${SEARCH.cursorPrefix}-${i}`;
         }
 
-        ids = JSON.stringify(store.getState().searchIdsReducer[args.reduxCursor][i][cursor]);
-        nextCursor = JSON.parse(ids).length < PAGINATOR ? CURSORS.end : `${SEARCH.cursorPrefix}-${++i}`;
+        if (store.getState().searchIdsReducer[args.reduxCursor][i]) {
+            ids = JSON.stringify(store.getState().searchIdsReducer[args.reduxCursor][i][cursor]);
+            nextCursor = JSON.parse(ids).length < PAGINATOR ? CURSORS.end : `${SEARCH.cursorPrefix}-${++i}`;
+        }
     }
 
     const operation = {
         query: `
-            query {
+                query {
                     transactions(
                         ids: ${ids},
                         tags: ${tags},
@@ -77,7 +79,7 @@ export async function getGQLData(args: {
                     }
                 }
             }
-            `
+        `
     }
 
     const response = await arClient.arweaveGet.api.post("/graphql", operation);

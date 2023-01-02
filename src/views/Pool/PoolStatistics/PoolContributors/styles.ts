@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { open, fadeIn2 } from "config/animations";
 import { STYLING } from "config/styling";
 
 export const Wrapper = styled.div`
@@ -36,6 +37,7 @@ export const Body = styled.div`
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     padding: 0 15px;
+    animation: ${open} ${fadeIn2};
 `;
 
 export const Row = styled.div<{ showBorder: boolean }>`
@@ -86,6 +88,4 @@ export const Amount = styled(InfoData)`
     }
 `;
 
-export const Count = styled(Amount)`
-
-`;
+export const Count = styled(Amount)``;

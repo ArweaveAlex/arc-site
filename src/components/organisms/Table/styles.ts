@@ -8,7 +8,7 @@ import { STYLING } from "config/styling";
 export const Wrapper = styled.div`
     width: 100%;
     animation: ${open} ${fadeIn2};
-    scroll-margin-top: 25px;
+    scroll-margin-top: 100px;
     @media(max-width: ${STYLING.cutoffs.secondary}) {
         height: auto;
         scroll-margin-top: 20px;
@@ -45,6 +45,7 @@ export const Body = styled.div`
     display: flex;
     flex-direction: column;
     overflow-x: auto;
+    animation: ${open} ${fadeIn2};
 `;
 
 export const Table = styled.div`
@@ -117,10 +118,4 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
         font-weight: ${(props) => props.theme.typography.weight.regular};
         font-size: ${(props) => props.theme.typography.size.small};
     }
-`;
-
-export const LoadingWrapper = styled.div`
-    height: 50px;
-    width: 22.5px;
-    position: relative;
 `;

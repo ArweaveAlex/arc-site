@@ -30,7 +30,7 @@ export const SearchInput = styled.input`
     font-size: 14px;
     font-weight: ${(props) => props.theme.typography.weight.medium};
     border: 1px solid ${(props) => props.theme.colors.form.border};
-    border-radius: ${STYLING.dimensions.borderRadiusInput};
+    border-radius: ${STYLING.dimensions.borderRadiusField};
     padding: 10px 15px 10px 40px;
     &:focus {
         outline: 0;
@@ -43,6 +43,8 @@ export const SearchInput = styled.input`
     &:disabled {
         background: ${(props) => props.theme.colors.form.disabled.background};
         color: ${(props) => props.theme.colors.form.disabled.label};
+        box-shadow: none;
+        border: 1px solid ${(props) => props.theme.colors.form.border};
     }
 `;
 

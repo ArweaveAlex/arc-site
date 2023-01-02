@@ -22,7 +22,7 @@ export const Primary = styled.button<{
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: ${STYLING.dimensions.borderRadiusInput};
+  border-radius: ${STYLING.dimensions.borderRadiusField};
   &:hover {
     border: 1.5px solid ${(props) => props.active ? 
       "transparent" : props.theme.colors.button.primary.border};

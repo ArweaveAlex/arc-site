@@ -72,7 +72,7 @@ export default function ArtifactSearch(props: IProps) {
                 LANGUAGE.searchArtifacts : `${LANGUAGE.searchInitializing}...`}
             handleSearchFetch={(term: string) => setSearchTerm(term)}
             handleClear={handleClear}
-            disabled={!searchIndeces}
+            disabled={!searchIndeces || props.disabled}
         />
     )
 }

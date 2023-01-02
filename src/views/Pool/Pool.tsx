@@ -65,7 +65,7 @@ export default function Pool() {
     React.useEffect(() => {
         (async function () {
             if (id && headerData && !searchRequested) {
-                // TODO - Handle Clear / Cache Search Term / Search from second page - non-search request
+                // TODO - Cache Search Term
                 setDetailData(null);
                 setDetailData((await getArtifactsByPool({
                     ids: [id],
@@ -102,7 +102,19 @@ export default function Pool() {
     }, [headerData])
 
     function getPoolHeader() {
-        if (headerData && imageUrl) {
+        // if (headerData && imageUrl) {
+            // return (
+            //     <PoolHeader
+            //         id={null}
+            //         image={null}
+            //         title={null}
+            //         description={null}
+            //         dateCreated={null}
+            //         count={null}
+            //         totalContributions={null}
+            //         contributors={null}
+            //     />
+            // )
             return (
                 <PoolHeader
                     id={headerData.id}
@@ -115,24 +127,19 @@ export default function Pool() {
                     contributors={headerData.state.contributors}
                 />
             )
-        }
-        else {
-            return null;
-        }
+        // }
+        // else {
+        //     return null;
+        // }
     }
 
     function getPoolStatistics() {
-        if (headerData && detailData) {
-            return (
-                <PoolStatistics
-                    headerData={headerData}
-                    detailData={detailData}
-                />
-            )
-        }
-        else {
-            return null;
-        }
+        return (
+            <PoolStatistics
+                headerData={headerData}
+                detailData={detailData}
+            />
+        )
     }
 
     function getPoolDetail() {
@@ -154,7 +161,6 @@ export default function Pool() {
                 }}
                 setSearchRequested={(searchRequested: boolean) => setSearchRequested(searchRequested)}
             />
-
         )
     }
 

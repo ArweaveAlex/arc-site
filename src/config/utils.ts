@@ -106,3 +106,13 @@ export function splitArray(array: any[], size: number) {
     }
     return splitResult;
 }
+
+export function checkGqlCursor(string: string): boolean {
+    const re = new RegExp("=");
+    if (re.test(string)) {
+        return true;
+    } 
+    else {
+        return false;
+    }
+}

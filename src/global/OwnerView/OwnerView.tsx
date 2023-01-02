@@ -37,6 +37,8 @@ export default function OwnerView(props: IProps) {
 
     }, [props, cursor])
 
+    // TODO - Table Loader / Catch no artifacts
+
     function getData() {
         if (data && data.contracts.length > 0) {
             return (

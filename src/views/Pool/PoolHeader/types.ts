@@ -1,10 +1,10 @@
 export interface IProps {
-    id: string;
-    image: string;
-    title: string;
-    description: string;
-    dateCreated: string;
+    id: string | null;
+    image: string | null;
+    title: string | null;
+    description: string | null;
+    dateCreated: string | null;
     count: number | null;
-    totalContributions: string;
-    contributors: any;
+    totalContributions: string | null;
+    contributors: any | null;
 }

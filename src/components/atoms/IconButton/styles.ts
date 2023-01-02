@@ -43,7 +43,7 @@ export const Secondary = styled(Primary)`
   align-items: center;
   padding: 2.5px 0 0 0;
   background: ${(props) => props.theme.colors.button.secondary.background};
-  border-radius: ${STYLING.dimensions.borderRadiusInput};
+  border-radius: ${STYLING.dimensions.borderRadiusField};
 
   &:hover {
     background: ${(props) => props.theme.colors.button.secondary.hover};

@@ -86,6 +86,17 @@ export const Image = styled.div<{ image: string }>`
     background-size: cover;
     background-position: center;
     margin: 0 0 20px 0;
+    animation: ${open} ${fadeIn2};
+`;
+
+export const ImageLoading = styled.div`
+    height: 425px;
+    width: 100%;
+    margin: 0 0 20px 0;
+    position: relative;
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    animation: ${open} ${fadeIn2};
 `;
 
 export const FlexTiles = styled.div`

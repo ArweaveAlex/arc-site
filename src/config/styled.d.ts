@@ -158,6 +158,14 @@ declare module "styled-components" {
                 secondary: string
                 tertiary: string
             }
+            table: {
+                placeholder: {
+                    background: string
+                    backgroundStart: string
+                    backgroundSlide: string
+                    backgroundEnd: string
+                }
+            }
             tabs: {
                 active: string
                 inactive: string

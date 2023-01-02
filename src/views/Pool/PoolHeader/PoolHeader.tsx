@@ -43,6 +43,21 @@ export default function PoolsHeader(props: IProps) {
         }
     }
 
+    function getImage() {
+        if (props.image) {
+            return (
+                <S.Image image={props.image} />
+            )
+        }
+        else {
+            return (
+                <S.ImageLoading>
+                    <Loader sm />
+                </S.ImageLoading>
+            )
+        }
+    }
+
     return (
         <S.Wrapper>
             <S.Header>
@@ -56,7 +71,7 @@ export default function PoolsHeader(props: IProps) {
                 </S.HeaderFlex>
                 {getSubheader()}
             </S.Header>
-            <S.Image image={props.image} />
+            {getImage()}
             <S.FlexTiles>
                 <S.Tile>
                     <S.TileTitle><p>{LANGUAGE.pool.totalContributed}</p></S.TileTitle>
@@ -83,7 +98,7 @@ export default function PoolsHeader(props: IProps) {
             </S.FlexTiles>
             <S.LongDescription>
                 <S.LDHeader><h2>{LANGUAGE.about}</h2></S.LDHeader>
-                <S.LDBody>{parse(props.description)}</S.LDBody>
+                <S.LDBody>{props.description ? parse(props.description) : null}</S.LDBody>
             </S.LongDescription>
         </S.Wrapper>
     )

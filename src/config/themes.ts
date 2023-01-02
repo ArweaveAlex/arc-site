@@ -25,7 +25,8 @@ const DEFAULT = {
     warningShadow: "#F27979",
     success: "#32C422",
     neutral: "#FFB600",
-    transparent: "rgba(255, 255, 255, 0)"
+    transparent: "rgba(255, 255, 255, 0)",
+    semiTransparent: "rgba(255, 255, 255, 0.5)",
 }
 
 export const defaultTheme: DefaultTheme = {
@@ -180,10 +181,18 @@ export const defaultTheme: DefaultTheme = {
             alt1: DEFAULT.overlay2,
             alt2: DEFAULT.overlay3,
         },
-        shadow: {
+        shadow: { 
             primary: DEFAULT.neutral11,
             secondary: DEFAULT.neutral6,
             tertiary: DEFAULT.neutral7,
+        },
+        table: {
+            placeholder: {
+                background: DEFAULT.neutral10,
+                backgroundStart: DEFAULT.transparent,
+                backgroundSlide: DEFAULT.semiTransparent,
+                backgroundEnd: DEFAULT.transparent,
+            }
         },
         tabs: {
             active: DEFAULT.primary,

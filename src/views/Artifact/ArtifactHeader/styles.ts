@@ -33,6 +33,8 @@ export const Content = styled.div`
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
     box-shadow: 0 1px 1px 0 ${(props) => props.theme.colors.shadow.primary};
+    border-bottom-left-radius: ${STYLING.dimensions.borderRadiusField};
+    border-bottom-right-radius: ${STYLING.dimensions.borderRadiusField};
 `;
 
 export const Info = styled.div`
@@ -44,18 +46,8 @@ export const Info = styled.div`
     border-top: 1px solid ${(props) => props.theme.colors.border.alt4};
     border-left: 1px solid ${(props) => props.theme.colors.border.alt4};
     border-right: 1px solid ${(props) => props.theme.colors.border.alt4};
-`;
-
-export const InfoLogo = styled.div`
-    height: 100%;
-    width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    svg {
-        width: 30px;
-        fill: ${(props) => props.theme.colors.icon.primary.fill};
-    }
+    border-top-left-radius: ${STYLING.dimensions.borderRadiusField};
+    border-top-right-radius: ${STYLING.dimensions.borderRadiusField};
 `;
 
 export const InfoData = styled.div`
@@ -131,7 +123,6 @@ export const Body = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 0 60px;
 `;
 

@@ -14,9 +14,9 @@ import {
 import { getGQLData } from "gql";
 import { getTxEndpoint } from "config/endpoints";
 import { getPoolById, getPoolIds } from "./pools";
-import { getTagValue } from "config/utils";
+import { checkGqlCursor, getTagValue } from "config/utils";
 import { LANGUAGE } from "config/language";
-import { TAGS, STORAGE } from "config";
+import { TAGS, STORAGE, CURSORS } from "config";
 
 const arClient = new ArweaveClient();
 
@@ -106,11 +106,17 @@ export async function getArtifactsByPool(args: ArtifactArgsType): Promise<Artifa
 }
 
 export async function getArtifactsByIds(args: ArtifactArgsType): Promise<ArtifactResponseType> {
+
+    let cursor: string | null = null;
+    if (args.cursor !== CURSORS.p1 && args.cursor !== CURSORS.end && !checkGqlCursor(args.cursor)) {
+        cursor = args.cursor;
+    }
+
     const artifacts: GQLResponseType[] = (await getGQLData({
         ids: args.ids,
         tagFilters: null,
         uploader: args.uploader,
-        cursor: args.cursor,
+        cursor: cursor,
         reduxCursor: args.reduxCursor,
         cursorObject: CursorEnum.Search
     })).filter((element: GQLResponseType) => {

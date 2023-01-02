@@ -38,7 +38,7 @@ export const Icon = styled.div<{ secondary: boolean }>`
   padding: 2.5px 0 0 0;
   background: ${(props) => props.secondary ?
         props.theme.colors.transparent : props.theme.colors.button.secondary.background};
-  border-radius: ${STYLING.dimensions.borderRadiusInput};
+  border-radius: ${STYLING.dimensions.borderRadiusField};
   &:hover {
     background: ${(props) => props.secondary ?
         props.theme.colors.transparent : props.theme.colors.button.secondary.hover};
