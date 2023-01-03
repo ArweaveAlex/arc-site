@@ -62,14 +62,14 @@ export const LogoContainer = styled.div``;
 export const LogoContent = styled.div``;
 
 export const LogoHeader = styled.h2`
-  color: ${(props) => props.theme.colors.font.primary.base};
+  color: ${(props) => props.theme.colors.font.primary.active.base};
   font-size: ${(props) => props.theme.typography.size.h2};
   font-family: ${(props) => props.theme.typography.family.secondary};
   font-weight: ${(props) => props.theme.typography.weight.bold};
 `;
 
 export const LogoSubHeader = styled.p`
-  color: ${(props) => props.theme.colors.font.primary.alt3};
+  color: ${(props) => props.theme.colors.font.primary.alt2};
   font-family: ${(props) => props.theme.typography.family.secondary};
   font-weight: ${(props) => props.theme.typography.weight.bold};
   margin: 10px 0 0 0;
@@ -90,9 +90,9 @@ export const SocialLink = styled.a`
   height: fit-content;
   svg {
     width: 25px;
-    fill: ${(props) => props.theme.colors.icon.primary.fill};
+    fill: ${(props) => props.theme.colors.font.primary.active.base};
     &:hover {
-      fill: ${(props) => props.theme.colors.icon.primary.hover};
+      fill: ${(props) => props.theme.colors.font.primary.active.hover};
     }
   }
   @media(max-width:  ${STYLING.cutoffs.secondary}) {
@@ -108,12 +108,9 @@ export const YearContainer = styled.div`
   align-items: center;
   position: absolute;
   bottom: 0;
-  border-top: 1px solid ${(props) => props.theme.colors.border.alt2};
-  @media(max-width:  ${STYLING.cutoffs.secondary}) {
-    
-  }
+  border-top: 1px solid ${(props) => props.theme.colors.border.alt1};
 `;
 
 export const Year = styled.p`
-  color: ${(props) => props.theme.colors.font.primary.alt4};
+  color: ${(props) => props.theme.colors.font.primary.alt6};
 `;

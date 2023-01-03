@@ -106,7 +106,6 @@ export async function getArtifactsByPool(args: ArtifactArgsType): Promise<Artifa
 }
 
 export async function getArtifactsByIds(args: ArtifactArgsType): Promise<ArtifactResponseType> {
-
     let cursor: string | null = null;
     if (args.cursor !== CURSORS.p1 && args.cursor !== CURSORS.end && !checkGqlCursor(args.cursor)) {
         cursor = args.cursor;

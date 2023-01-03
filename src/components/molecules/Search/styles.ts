@@ -30,8 +30,7 @@ export const SearchInput = styled.input`
     font-size: 14px;
     font-weight: ${(props) => props.theme.typography.weight.medium};
     border: 1px solid ${(props) => props.theme.colors.form.border};
-    border-radius: ${STYLING.dimensions.borderRadiusField};
-    border-radius: 18.5px;
+    border-radius: 36px;
     padding: 10px 15px 10px 40px;
     &:focus {
         outline: 0;
@@ -69,4 +68,8 @@ export const SearchButtonWrapper = styled.div`
     margin: 0 0 0 20px;
     display: flex;
     align-items: center;
+    
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        display: none;
+    }
 `;

@@ -3,7 +3,7 @@ import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import * as actions from "redux/artifacts/actions";
+import * as artifactActions from "redux/artifacts/actions";
 import { RootState } from "redux/store";
 import { getCollectionIds, setCollectionIds } from "gql/artifacts";
 
@@ -142,7 +142,7 @@ export default function ArtifactTable(props: IProps) {
                 else {
                     const collectionIdsState = await getCollectionIds(props.owner);
 
-                    dispatch(actions.setCollection({
+                    dispatch(artifactActions.setCollection({
                         owner: props.owner,
                         ids: collectionIdsState
                     }))

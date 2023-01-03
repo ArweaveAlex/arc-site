@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "redux/store";
-import { PoolUpdate } from "redux/pools/PoolUpdate";
+import { ReduxPoolsUpdate } from "redux/pools/ReduxPoolsUpdate";
 
 import { PoolsHeader } from "./PoolsHeader";
 import { PoolsGrid } from "./PoolsGrid";
@@ -54,8 +54,8 @@ export default function Pools() {
     }
 
     return (
-        <PoolUpdate>
+        <ReduxPoolsUpdate>
             {getData()}
-        </PoolUpdate>
+        </ReduxPoolsUpdate>
     )
 }

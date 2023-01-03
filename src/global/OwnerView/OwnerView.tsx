@@ -38,6 +38,7 @@ export default function OwnerView(props: IProps) {
     }, [props, cursor])
 
     // TODO - Table Loader / Catch no artifacts
+    // TODO - initSearch all contributed pools
 
     function getData() {
         if (data && data.contracts.length > 0) {

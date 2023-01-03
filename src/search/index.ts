@@ -8,18 +8,23 @@ import { getTxEndpoint } from "config/endpoints";
 import { getTagValue, stripSearch } from "config/utils";
 import { TAGS, SEARCH } from "config";
 
-export async function initSearch(poolId: string) {
-    let poolIndeces: string[] = [];
-    let latestIndexTransaction = await getLatestPoolSearchIndexTxId(poolId);
-    let latestIndexTransactionId = getTagValue(latestIndexTransaction.node.tags, TAGS.keys.uploaderTxId);
-    let poolSearchState = (await getPoolSearchIndexById(latestIndexTransactionId)).state;
-    if(!poolSearchState || !poolSearchState.searchIndeces) {
-        return null;
+export async function initSearch(poolIds: string[]) {
+    try {
+        let poolIndeces: string[] = [];
+        let latestIndexTransaction = await getLatestPoolSearchIndexTxId(poolIds[0]); // TODO - Multiple Pools
+        let latestIndexTransactionId = getTagValue(latestIndexTransaction.node.tags, TAGS.keys.uploaderTxId);
+        let poolSearchState = (await getPoolSearchIndexById(latestIndexTransactionId)).state;
+        if(!poolSearchState || !poolSearchState.searchIndeces) {
+            return null;
+        }
+        poolIndeces = poolSearchState.searchIndeces.map((index: string) => {
+            return getTxEndpoint(index);
+        });
+        return poolIndeces;
     }
-    poolIndeces = poolSearchState.searchIndeces.map((index: string) => {
-        return getTxEndpoint(index);
-    });
-    return poolIndeces;
+    catch {
+        return null
+    }
 }
 
 export async function runSearch(

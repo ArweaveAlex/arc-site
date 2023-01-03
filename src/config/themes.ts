@@ -165,7 +165,7 @@ export const defaultTheme: DefaultTheme = {
         },
         navigation: {
             footer: {
-                background: DEFAULT.primary
+                background: DEFAULT.neutral1
             },
             header: {
                 background: DEFAULT.neutral1

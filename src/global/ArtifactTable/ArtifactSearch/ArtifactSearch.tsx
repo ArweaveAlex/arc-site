@@ -2,25 +2,39 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "redux/store";
-import { initSearch, runSearch } from "search";
+import { ReduxSearchIndexUpdate } from "redux/search/ReduxSearchIndexUpdate";
+import { runSearch } from "search";
 
 import { Search } from "components/molecules/Search";
 
 import * as searchActions from "redux/search/actions"
 import { splitArray } from "config/utils";
 import { PAGINATOR, SEARCH } from "config";
-import { LANGUAGE } from "config/language";
 import { IProps } from "./types";
 import { REDUX_TABLES } from "config/redux";
 
 export default function ArtifactSearch(props: IProps) {
     const dispatch = useDispatch();
     const searchTermReducer = useSelector((state: RootState) => state.searchTermReducer);
+    const searchIndecesReducer = useSelector((state: RootState) => state.searchIndecesReducer);
 
-    const [searchIndeces, setSearchIndeces] = React.useState<string[] | null>(null);
-    const [searchTerm, setSearchTerm] = React.useState<string>(searchTermReducer[REDUX_TABLES.poolAll] || "");
-    const [searchResultIds, setSearchResultIds] = React.useState<string[]>([]);
+    const [searchIndeces, setSearchIndeces] = React.useState<string[] | null>(
+        props.cursorObject.value && 
+        searchIndecesReducer[props.cursorObject.value] &&
+        searchIndecesReducer[props.cursorObject.value].id.value === props.id.value ?
+        searchIndecesReducer[props.cursorObject.value].value : null
+    );
+    
+    const [searchTerm, setSearchTerm] = React.useState<string>(
+        searchTermReducer[REDUX_TABLES.poolAll].id.value === props.id.value ?
+        (searchTermReducer[REDUX_TABLES.poolAll].value || "") : "");
+    
+        const [searchResultIds, setSearchResultIds] = React.useState<string[]>([]);
     const [searchRequested, setSearchRequested] = React.useState<boolean>(false);
+
+    function getSearchIndexIds() {
+        return [props.id.value];
+    }
 
     const handleIdUpdate = React.useCallback((searchResultIds: any[], cursorValue: string) => {
         const splitIds = splitArray(searchResultIds, PAGINATOR);
@@ -41,7 +55,12 @@ export default function ArtifactSearch(props: IProps) {
     }, [dispatch, props])
 
     function handleChange(term: string) {
-        dispatch(searchActions.setSearchTerm({ [REDUX_TABLES.poolAll]: term }));
+        dispatch(searchActions.setSearchTerm({
+            [REDUX_TABLES.poolAll]: {
+                value: term,
+                id: props.id
+            }
+        }));
     }
 
     function handleSearch(e: any) {
@@ -53,9 +72,20 @@ export default function ArtifactSearch(props: IProps) {
     }
 
     React.useEffect(() => {
-        if (searchTermReducer[REDUX_TABLES.poolAll] || searchTermReducer[REDUX_TABLES.poolAll] === "") {
-            setSearchTerm(searchTermReducer[REDUX_TABLES.poolAll]);
-            if (searchTermReducer[REDUX_TABLES.poolAll] === "") {
+        if (props.cursorObject.value && 
+            searchIndecesReducer[props.cursorObject.value] &&
+            searchIndecesReducer[props.cursorObject.value].id.value === props.id.value
+            ) {
+            setSearchIndeces(searchIndecesReducer[props.cursorObject.value].value);
+        }
+    }, [searchIndecesReducer, props.cursorObject.value, props.id.value])
+
+    React.useEffect(() => {
+        if ((searchTermReducer[REDUX_TABLES.poolAll].value ||
+            searchTermReducer[REDUX_TABLES.poolAll].value === "") &&
+            searchTermReducer[REDUX_TABLES.poolAll].id.value === props.id.value) {
+            setSearchTerm(searchTermReducer[REDUX_TABLES.poolAll].value);
+            if (searchTermReducer[REDUX_TABLES.poolAll].value === "") {
                 setSearchRequested(false);
                 props.setSearchRequested(false);
             }
@@ -63,17 +93,13 @@ export default function ArtifactSearch(props: IProps) {
     }, [searchTermReducer, props])
 
     React.useEffect(() => {
-        if (searchTermReducer[REDUX_TABLES.poolAll]) {
-            setSearchRequested(true)
+        if (searchTermReducer[REDUX_TABLES.poolAll].value &&
+            searchTermReducer[REDUX_TABLES.poolAll].id.value === props.id.value) {
+            setSearchRequested(true);
+            setSearchTerm(searchTermReducer[REDUX_TABLES.poolAll].value);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    React.useEffect(() => {
-        (async function () {
-            setSearchIndeces(await initSearch(props.id.value));
-        })();
-    }, [props.id]);
 
     React.useEffect(() => {
         if (searchResultIds && searchResultIds.length > 0) {
@@ -98,14 +124,14 @@ export default function ArtifactSearch(props: IProps) {
     }, [searchRequested, searchIndeces, searchResultIds.length, props]);
 
     return (
-        <Search
-            value={searchTerm}
-            placeholder={searchIndeces ?
-                LANGUAGE.searchArtifacts : `${LANGUAGE.searchInitializing}...`}
-            handleChange={(term: string) => handleChange(term)}
-            handleSearch={(e: React.KeyboardEvent<HTMLInputElement>) => handleSearch(e)}
-            handleClear={handleClear}
-            disabled={!searchIndeces || props.disabled}
-        />
+        <ReduxSearchIndexUpdate id={props.id} indexIds={getSearchIndexIds()} reduxCursor={REDUX_TABLES.poolAll}>
+            <Search
+                value={searchTerm}
+                handleChange={(term: string) => handleChange(term)}
+                handleSearch={(e: React.KeyboardEvent<HTMLInputElement>) => handleSearch(e)}
+                handleClear={handleClear}
+                disabled={!searchIndeces || props.disabled}
+            />
+        </ReduxSearchIndexUpdate>
     )
 }

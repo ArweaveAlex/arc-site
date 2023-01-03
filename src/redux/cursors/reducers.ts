@@ -60,7 +60,7 @@ export const initStateCursors: CursorsType = {
     }
 };
 
-function checkCursorPayload(payload: any, objectKey: CursorObjectKeyType, reduxCursor: string) {
+function checkPayload(payload: any, objectKey: CursorObjectKeyType, reduxCursor: string) {
     if (!payload[objectKey]) {
         return false;
     }
@@ -82,27 +82,27 @@ export function cursorsReducer(
         case SET_CURSORS:
             return Object.assign({}, state, {
                 gql: {
-                    [REDUX_TABLES.accountAll]: checkCursorPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.accountAll) ?
+                    [REDUX_TABLES.accountAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.accountAll) ?
                         action.payload.gql[REDUX_TABLES.accountAll] : state.gql[REDUX_TABLES.accountAll],
-                    [REDUX_TABLES.accountCollections]: checkCursorPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.accountCollections) ?
+                    [REDUX_TABLES.accountCollections]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.accountCollections) ?
                         action.payload.gql[REDUX_TABLES.accountCollections] : state.gql[REDUX_TABLES.accountCollections],
-                    [REDUX_TABLES.poolAll]: checkCursorPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.poolAll) ?
+                    [REDUX_TABLES.poolAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.poolAll) ?
                         action.payload.gql[REDUX_TABLES.poolAll] : state.gql[REDUX_TABLES.poolAll],
-                    [REDUX_TABLES.libraryAll]: checkCursorPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.libraryAll) ?
+                    [REDUX_TABLES.libraryAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.libraryAll) ?
                         action.payload.gql[REDUX_TABLES.libraryAll] : state.gql[REDUX_TABLES.libraryAll],
-                    [REDUX_TABLES.libraryCollections]: checkCursorPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.libraryCollections) ?
+                    [REDUX_TABLES.libraryCollections]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.libraryCollections) ?
                         action.payload.gql[REDUX_TABLES.libraryCollections] : state.gql[REDUX_TABLES.libraryCollections]
                 },
                 search: {
-                    [REDUX_TABLES.accountAll]: checkCursorPayload(action.payload, CursorEnum.Search, REDUX_TABLES.accountAll) ?
+                    [REDUX_TABLES.accountAll]: checkPayload(action.payload, CursorEnum.Search, REDUX_TABLES.accountAll) ?
                         action.payload.search[REDUX_TABLES.accountAll] : state.search[REDUX_TABLES.accountAll],
-                    [REDUX_TABLES.accountCollections]: checkCursorPayload(action.payload, CursorEnum.Search, REDUX_TABLES.accountCollections) ?
+                    [REDUX_TABLES.accountCollections]: checkPayload(action.payload, CursorEnum.Search, REDUX_TABLES.accountCollections) ?
                         action.payload.search[REDUX_TABLES.accountCollections] : state.search[REDUX_TABLES.accountCollections],
-                    [REDUX_TABLES.poolAll]: checkCursorPayload(action.payload, CursorEnum.Search, REDUX_TABLES.poolAll) ?
+                    [REDUX_TABLES.poolAll]: checkPayload(action.payload, CursorEnum.Search, REDUX_TABLES.poolAll) ?
                         action.payload.search[REDUX_TABLES.poolAll] : state.search[REDUX_TABLES.poolAll],
-                    [REDUX_TABLES.libraryAll]: checkCursorPayload(action.payload, CursorEnum.Search, REDUX_TABLES.libraryAll) ?
+                    [REDUX_TABLES.libraryAll]: checkPayload(action.payload, CursorEnum.Search, REDUX_TABLES.libraryAll) ?
                         action.payload.search[REDUX_TABLES.libraryAll] : state.search[REDUX_TABLES.libraryAll],
-                    [REDUX_TABLES.libraryCollections]: checkCursorPayload(action.payload, CursorEnum.Search, REDUX_TABLES.libraryCollections) ?
+                    [REDUX_TABLES.libraryCollections]: checkPayload(action.payload, CursorEnum.Search, REDUX_TABLES.libraryCollections) ?
                         action.payload.search[REDUX_TABLES.libraryCollections] : state.search[REDUX_TABLES.libraryCollections]
                 }
             })

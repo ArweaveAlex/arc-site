@@ -21,19 +21,19 @@ import { REDUX_TABLES } from "config/redux";
 import * as S from "./styles";
 
 export default function Pool() {
-    // TODO - Check subsequent gql page with search cursor - previous being set to END
-    // TODO - Dynamic redux objects [id]
-    const dispatch = useDispatch();
-    const searchTermReducer = useSelector((state: RootState) => state.searchTermReducer);
-
     const { id } = useParams();
+    const dispatch = useDispatch();
     const searchIdsReducer = useSelector((state: RootState) => state.searchIdsReducer);
+    const searchTermReducer = useSelector((state: RootState) => state.searchTermReducer);
 
     const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
 
     const [cursor, setCursor] = React.useState<string | null>(null);
-    const [searchRequested, setSearchRequested] = React.useState<boolean>(searchTermReducer[REDUX_TABLES.poolAll] !== "");
+    const [searchRequested, setSearchRequested] = React.useState<boolean>(
+        searchTermReducer[REDUX_TABLES.poolAll].value !== "" &&
+        searchTermReducer[REDUX_TABLES.poolAll].id.value === id
+    );
 
     const [count, setCount] = React.useState<number | null>(null);
     const [imageUrl, setImageUrl] = React.useState<string | null>(null);
@@ -52,7 +52,8 @@ export default function Pool() {
 
     React.useEffect(() => {
         (async function () {
-            if (searchRequested && searchIdsReducer[REDUX_TABLES.poolAll] && searchIdsReducer[REDUX_TABLES.poolAll].length > 0) {
+            if (searchRequested && searchIdsReducer[REDUX_TABLES.poolAll] &&
+                searchIdsReducer[REDUX_TABLES.poolAll].length > 0) {
                 setDetailData(null);
                 setDetailData((await getArtifactsByIds({
                     ids: null,
@@ -61,6 +62,16 @@ export default function Pool() {
                     cursor: cursor,
                     reduxCursor: REDUX_TABLES.poolAll
                 })));
+            }
+            else {
+                if (searchRequested && searchIdsReducer[REDUX_TABLES.poolAll] &&
+                    searchIdsReducer[REDUX_TABLES.poolAll].length <= 0) {
+                    setDetailData({
+                        nextCursor: null,
+                        previousCursor: null,
+                        contracts: []
+                    })
+                }
             }
         })()
     }, [searchRequested, searchIdsReducer, cursor])

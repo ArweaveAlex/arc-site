@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "redux/store";
-import { PoolUpdate } from "redux/pools/PoolUpdate";
+import { ReduxPoolsUpdate } from "redux/pools/ReduxPoolsUpdate";
 
 import { Loader } from "components/atoms/Loader";
 
@@ -45,8 +45,8 @@ export default function Landing() {
     }
 
     return (
-        <PoolUpdate>
+        <ReduxPoolsUpdate>
             {getData()}
-        </PoolUpdate>
+        </ReduxPoolsUpdate>
     )
 }

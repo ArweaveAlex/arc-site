@@ -143,7 +143,6 @@ export const LANGUAGE = {
     recentlyMintedArtifacts: `Recently Minted Artifacts`,
     receiving: `Receiving`,
     searchArtifacts: `Search Artifacts`,
-    searchInitializing: `Initializing Search`,
     select: `Select`,
     setCollection: `Update Collections`,
     share: `Share`,
