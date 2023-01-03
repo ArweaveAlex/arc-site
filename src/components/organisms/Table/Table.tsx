@@ -61,7 +61,7 @@ export default function Table(props: IProps) {
         }
         else {
             return (
-                <TableLoader rowCount={PAGINATOR}/>
+                <TableLoader rowCount={PAGINATOR} />
             )
         }
     }

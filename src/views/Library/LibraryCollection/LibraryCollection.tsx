@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { OwnerView } from "global/OwnerView";
 
 import { getArtifactsByCollections } from "gql/artifacts";
-import { REDUX_CURSORS } from "config/redux";
+import { REDUX_TABLES } from "config/redux";
 import { CursorEnum } from "config/types";
 
 export default function LibraryCollection() {
@@ -12,13 +12,13 @@ export default function LibraryCollection() {
     return id ? (
         <OwnerView 
             owner={id}
-            reduxCursor={REDUX_CURSORS.libraryCollections}
+            reduxCursor={REDUX_TABLES.libraryCollections}
             fetch={getArtifactsByCollections}
             showCollections={false}
             showPoolIds={true}
             cursorObject={{
                 key: CursorEnum.Search,
-                value: REDUX_CURSORS.libraryCollections
+                value: REDUX_TABLES.libraryCollections
             }}
         />
     ) : null;

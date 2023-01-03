@@ -7,7 +7,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import { collectionsReducer } from "./artifacts/reducers";
 import { cursorsReducer } from "./cursors/reducers";
 import { poolsReducer } from "./pools/reducers";
-import { searchIdsReducer } from "./search/reducers";
+import { searchIdsReducer, searchTermReducer } from "./search/reducers";
 
 const persistConfig = {
     key: "root",
@@ -22,7 +22,8 @@ const rootReducer = combineReducers({
     collectionsReducer,
     cursorsReducer,
     poolsReducer,
-    searchIdsReducer
+    searchIdsReducer,
+    searchTermReducer
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -20,13 +20,13 @@ export default function PoolsHeader(props: IProps) {
                 <S.SubheaderContainer>
                     <S.Subheader1><p>{LANGUAGE.pool.subheader1}</p></S.Subheader1>
                     &nbsp;
-                    <S.ID><p>{formatAddress(props.id, false)}</p></S.ID>
+                    <S.ID><p>{props.id ? formatAddress(props.id, false) : null}</p></S.ID>
                 </S.SubheaderContainer>
                 &nbsp;
                 <S.SubheaderContainer>
                     <S.Subheader1><p>{LANGUAGE.pool.createdOn}</p></S.Subheader1>
                     &nbsp;
-                    <S.Subheader2><p>{props.dateCreated}</p></S.Subheader2>
+                    <S.Subheader2><p>{props.dateCreated ? props.dateCreated : null}</p></S.Subheader2>
                 </S.SubheaderContainer>
             </S.SubheaderFlex>
         )
@@ -62,7 +62,7 @@ export default function PoolsHeader(props: IProps) {
         <S.Wrapper>
             <S.Header>
                 <S.HeaderFlex>
-                    <S.Header1>{props.title}</S.Header1>
+                    <S.Header1>{props.title ? props.title : null}</S.Header1>
                     <SocialShare
                         type={"primary"}
                         href={window.location.href}
@@ -76,7 +76,7 @@ export default function PoolsHeader(props: IProps) {
                 <S.Tile>
                     <S.TileTitle><p>{LANGUAGE.pool.totalContributed}</p></S.TileTitle>
                     <S.TileData>
-                        <p>{arClient.getARAmount(props.totalContributions)}</p>
+                        <p>{props.totalContributions ? arClient.getARAmount(props.totalContributions) : null}</p>
                         <S.TContainer><p>{LANGUAGE.arTokens}</p></S.TContainer>
                     </S.TileData>
                 </S.Tile>
@@ -88,11 +88,11 @@ export default function PoolsHeader(props: IProps) {
                 </S.Tile>
                 <S.ContributeTile>
                     <PoolContribute
-                        poolId={props.id}
-                        header={props.title}
+                        poolId={props.id ? props.id : null}
+                        header={props.title ? props.title : null}
                         subheader={getSubheader()}
-                        totalContributions={props.totalContributions}
-                        contributors={props.contributors}
+                        totalContributions={props.totalContributions ? props.totalContributions : null}
+                        contributors={props.contributors ? props.contributors : null}
                     />
                 </S.ContributeTile>
             </S.FlexTiles>

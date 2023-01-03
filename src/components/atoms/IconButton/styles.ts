@@ -26,7 +26,7 @@ export const Primary = styled.button<{
     width: 100%;
     fill: ${(props) => props.warning ? 
       (props.disabled ? 
-      props.theme.colors.icon.inactive : props.theme.colors.warning) : props.theme.colors.icon.inactive};
+        props.theme.colors.icon.primary.alt1.fill : props.theme.colors.warning) : props.theme.colors.icon.primary.alt1.fill};
     
     &:hover {
       cursor: ${(props) => props.disabled ? "not-allowed" : "pointer"};

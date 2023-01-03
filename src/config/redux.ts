@@ -1,4 +1,4 @@
-export const REDUX_CURSORS = {
+export const REDUX_TABLES = {
     accountAll: "accountAll",
     accountCollections: "accountCollections",
     poolAll: "poolAll",

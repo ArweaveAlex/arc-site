@@ -12,7 +12,7 @@ export const STYLING = {
         buttonHeight: "33.5px",
         buttonWidth: "150px",
         navHeight: "70px",
-        formHeightMin: "43.5px",
+        formHeightMin: "37.5px",
         formHeightMax: "55px",
         formWidthMin: "300px",
         formWidthMax: "500px"

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import { loadingSlide } from "config/animations";
-import { STYLING } from "config/styling";
 
 export const PlaceholderWrapper = styled.div``;
 
@@ -23,5 +22,5 @@ export const Placeholder = styled.div`
     background-size: 50px 500px;
     background-position: 0 0;
     animation: ${loadingSlide} 1.25s infinite;
-    border-radius: ${STYLING.dimensions.borderRadiusField};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
 `;

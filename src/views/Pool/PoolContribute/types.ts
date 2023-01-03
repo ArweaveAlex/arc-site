@@ -1,9 +1,9 @@
 import React from "react";
 
 export interface IProps {
-    poolId: string;
-    header: string;
+    poolId: string | null;
+    header: string | null;
     subheader: React.ReactNode;
-    totalContributions: string;
-    contributors: any;
+    totalContributions: string | null;
+    contributors: any | null;
 }

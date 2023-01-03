@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
 
+import { Button } from "components/atoms/Button";
 import { IconButton } from "components/atoms/IconButton";
 
 import { ASSETS } from "config";
@@ -8,19 +9,6 @@ import { IProps } from "./types";
 import * as S from "./styles";
 
 export default function Search(props: IProps) {
-    const [searchTerm, setSearchTerm] = React.useState<string>("");
-
-    function handleSearch(e: React.KeyboardEvent<HTMLInputElement> | null) {
-        if (e.key === "Enter") {
-            props.handleSearchFetch(searchTerm);
-        }
-    }
-
-    function handleClear() {
-        setSearchTerm("");
-        props.handleSearchFetch("");
-    }
-
     return (
         <S.Wrapper>
             <S.SearchWrapper>
@@ -29,23 +17,31 @@ export default function Search(props: IProps) {
                 </S.SearchIcon>
                 <S.SearchInput
                     type={"text"}
-                    value={searchTerm}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
-                    onKeyDown={handleSearch}
-                    placeholder={props.placeholder}
+                    value={props.value}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.handleChange(e.target.value)}
+                    onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => props.handleSearch(e)}
                     disabled={props.disabled}
                 />
                 <S.CloseWrapper>
                     <IconButton
                         src={ASSETS.close}
                         type={"primary"}
-                        handlePress={() => handleClear()}
-                        disabled={props.disabled || !searchTerm}
+                        handlePress={() => props.handleClear()}
+                        disabled={props.disabled || !props.value}
                         warning
                         sm
                     />
                 </S.CloseWrapper>
             </S.SearchWrapper>
+            <S.SearchButtonWrapper>
+                <Button 
+                    type={"secondary"}
+                    label={"Search"}
+                    handlePress={(e: React.MouseEvent<HTMLInputElement>) => props.handleSearch(e)}
+                    disabled={props.disabled || !props.value}
+                    noMinWidth
+                />
+            </S.SearchButtonWrapper>
         </S.Wrapper>
     )
 }

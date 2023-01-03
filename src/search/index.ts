@@ -24,16 +24,18 @@ export async function initSearch(poolId: string) {
 
 export async function runSearch(
     searchTerm: string,
-    poolIndeces: string[],
+    poolIndeces: string[] | null,
     searchCallback: any
 ) {
-    for(let k = 0; k < poolIndeces.length; k++){
-        let poolIndex = poolIndeces[k];
-        searchIndex(
-            searchTerm, 
-            poolIndex, 
-            searchCallback
-        );
+    if (poolIndeces) {
+        for(let k = 0; k < poolIndeces.length; k++){
+            let poolIndex = poolIndeces[k];
+            searchIndex(
+                searchTerm, 
+                poolIndex, 
+                searchCallback
+            );
+        }
     }
 }
 

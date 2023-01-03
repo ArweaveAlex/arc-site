@@ -1,2 +1,4 @@
 export const SET_SEARCH_IDS = "SET_SEARCH_IDS";
 export const CLEAR_SEARCH_IDS = "CLEAR_SEARCH_IDS";
+export const SET_SEARCH_TERM = "SET_SEARCH_TERM";
+export const CLEAR_SEARCH_TERM = "CLEAR_SEARCH_TERM";

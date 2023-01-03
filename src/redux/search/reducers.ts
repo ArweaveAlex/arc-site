@@ -1,21 +1,24 @@
 import { ReduxActionType } from "config/types";
-import { SearchIdsType } from "./types";
-import { SET_SEARCH_IDS, CLEAR_SEARCH_IDS } from "./constants";
-import { REDUX_CURSORS } from "config/redux";
+import { SearchIdsType, SearchTermType } from "./types";
+import { SET_SEARCH_IDS, CLEAR_SEARCH_IDS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM } from "./constants";
+import { REDUX_TABLES } from "config/redux";
 
 export const initStateSearchIds: SearchIdsType = {
-    [REDUX_CURSORS.accountAll]: [],
-    [REDUX_CURSORS.accountCollections]: [],
-    [REDUX_CURSORS.poolAll]: [],
-    [REDUX_CURSORS.libraryAll]: [],
-    [REDUX_CURSORS.libraryCollections]: []
+    [REDUX_TABLES.accountAll]: [],
+    [REDUX_TABLES.accountCollections]: [],
+    [REDUX_TABLES.poolAll]: [],
+    [REDUX_TABLES.libraryAll]: [],
+    [REDUX_TABLES.libraryCollections]: []
 };
 
-function checkPayload(payload: any, reduxCursor: string) {
-    if (!payload) {
+function checkIdPayload(payload: any, reduxCursor: string) {
+    if (payload === null || payload === undefined) {
         return false;
     }
     else {
+        if (payload[reduxCursor] === "") {
+            return true;
+        }
         if (payload[reduxCursor]) {
             return true;
         }
@@ -32,19 +35,52 @@ export function searchIdsReducer(
     switch (action.type) {
         case SET_SEARCH_IDS:
             return Object.assign({}, state, {
-                [REDUX_CURSORS.accountAll]: checkPayload(action.payload, REDUX_CURSORS.accountAll) ?
-                    action.payload[REDUX_CURSORS.accountAll] : state[REDUX_CURSORS.accountAll],
-                [REDUX_CURSORS.accountCollections]: checkPayload(action.payload, REDUX_CURSORS.accountCollections) ?
-                    action.payload[REDUX_CURSORS.accountCollections] : state[REDUX_CURSORS.accountCollections],
-                [REDUX_CURSORS.poolAll]: checkPayload(action.payload, REDUX_CURSORS.poolAll) ?
-                    action.payload[REDUX_CURSORS.poolAll] : state[REDUX_CURSORS.poolAll],
-                [REDUX_CURSORS.libraryAll]: checkPayload(action.payload, REDUX_CURSORS.libraryAll) ?
-                    action.payload[REDUX_CURSORS.libraryAll] : state[REDUX_CURSORS.libraryAll],
-                [REDUX_CURSORS.libraryCollections]: checkPayload(action.payload, REDUX_CURSORS.libraryCollections) ?
-                    action.payload[REDUX_CURSORS.libraryCollections] : state[REDUX_CURSORS.libraryCollections]
+                [REDUX_TABLES.accountAll]: checkIdPayload(action.payload, REDUX_TABLES.accountAll) ?
+                    action.payload[REDUX_TABLES.accountAll] : state[REDUX_TABLES.accountAll],
+                [REDUX_TABLES.accountCollections]: checkIdPayload(action.payload, REDUX_TABLES.accountCollections) ?
+                    action.payload[REDUX_TABLES.accountCollections] : state[REDUX_TABLES.accountCollections],
+                [REDUX_TABLES.poolAll]: checkIdPayload(action.payload, REDUX_TABLES.poolAll) ?
+                    action.payload[REDUX_TABLES.poolAll] : state[REDUX_TABLES.poolAll],
+                [REDUX_TABLES.libraryAll]: checkIdPayload(action.payload, REDUX_TABLES.libraryAll) ?
+                    action.payload[REDUX_TABLES.libraryAll] : state[REDUX_TABLES.libraryAll],
+                [REDUX_TABLES.libraryCollections]: checkIdPayload(action.payload, REDUX_TABLES.libraryCollections) ?
+                    action.payload[REDUX_TABLES.libraryCollections] : state[REDUX_TABLES.libraryCollections]
             })
         case CLEAR_SEARCH_IDS:
             return Object.assign({}, state, initStateSearchIds)
+        default:
+            return state;
+    }
+}
+
+export const initStateSearchTerm: SearchTermType = {
+    [REDUX_TABLES.accountAll]: "",
+    [REDUX_TABLES.accountCollections]: "",
+    [REDUX_TABLES.poolAll]: "",
+    [REDUX_TABLES.libraryAll]: "",
+    [REDUX_TABLES.libraryCollections]: ""
+}
+
+export function searchTermReducer(
+    state: SearchTermType = initStateSearchTerm,
+    action: ReduxActionType
+) {
+    switch (action.type) {
+        case SET_SEARCH_TERM:
+            return Object.assign({}, state, {
+                [REDUX_TABLES.accountAll]: checkIdPayload(action.payload, REDUX_TABLES.accountAll) ?
+                    action.payload[REDUX_TABLES.accountAll] : state[REDUX_TABLES.accountAll],
+                [REDUX_TABLES.accountCollections]: checkIdPayload(action.payload, REDUX_TABLES.accountCollections) ?
+                    action.payload[REDUX_TABLES.accountCollections] : state[REDUX_TABLES.accountCollections],
+                [REDUX_TABLES.poolAll]: checkIdPayload(action.payload, REDUX_TABLES.poolAll) ?
+                    action.payload[REDUX_TABLES.poolAll] : state[REDUX_TABLES.poolAll],
+                [REDUX_TABLES.libraryAll]: checkIdPayload(action.payload, REDUX_TABLES.libraryAll) ?
+                    action.payload[REDUX_TABLES.libraryAll] : state[REDUX_TABLES.libraryAll],
+                [REDUX_TABLES.libraryCollections]: checkIdPayload(action.payload, REDUX_TABLES.libraryCollections) ?
+                    action.payload[REDUX_TABLES.libraryCollections] : state[REDUX_TABLES.libraryCollections]
+            })
+        case CLEAR_SEARCH_TERM:
+            return Object.assign({}, state, initStateSearchTerm)
         default:
             return state;
     }

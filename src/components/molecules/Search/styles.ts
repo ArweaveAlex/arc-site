@@ -17,8 +17,8 @@ export const SearchWrapper = styled.div`
 export const SearchIcon = styled.div`
     svg {
         position: absolute;
-        top: 10px;
-        left: 14.5px;
+        top: 7.15px;
+        left: 13.5px;
         width: 15px;
         fill ${(props) => props.theme.colors.icon.primary.alt1.fill};
     }
@@ -31,6 +31,7 @@ export const SearchInput = styled.input`
     font-weight: ${(props) => props.theme.typography.weight.medium};
     border: 1px solid ${(props) => props.theme.colors.form.border};
     border-radius: ${STYLING.dimensions.borderRadiusField};
+    border-radius: 16.5px;
     padding: 10px 15px 10px 40px;
     &:focus {
         outline: 0;
@@ -53,6 +54,8 @@ export const CloseWrapper = styled.div`
         width: auto;
     }
     svg {
+        height: auto;
+        width: auto;
         position: absolute;
         right: 14.5px;
         width: 12.5px;
@@ -60,4 +63,10 @@ export const CloseWrapper = styled.div`
         top: 50.5%;
         transform: translate(0, -50%);
     }
+`;
+
+export const SearchButtonWrapper = styled.div`
+    margin: 0 0 0 20px;
+    display: flex;
+    align-items: center;
 `;

@@ -17,11 +17,14 @@ import { PoolType, ArtifactResponseType, CursorEnum } from "config/types";
 import { getTxEndpoint } from "config/endpoints";
 import { formatDate, getTagValue } from "config/utils";
 import { TAGS, FALLBACK_IMAGE } from "config";
-import { REDUX_CURSORS } from "config/redux";
+import { REDUX_TABLES } from "config/redux";
 import * as S from "./styles";
 
 export default function Pool() {
+    // TODO - Check subsequent gql page with search cursor - previous being set to END
+    // TODO - Dynamic redux objects [id]
     const dispatch = useDispatch();
+    const searchTermReducer = useSelector((state: RootState) => state.searchTermReducer);
 
     const { id } = useParams();
     const searchIdsReducer = useSelector((state: RootState) => state.searchIdsReducer);
@@ -30,7 +33,7 @@ export default function Pool() {
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
 
     const [cursor, setCursor] = React.useState<string | null>(null);
-    const [searchRequested, setSearchRequested] = React.useState<boolean>(false);
+    const [searchRequested, setSearchRequested] = React.useState<boolean>(searchTermReducer[REDUX_TABLES.poolAll] !== "");
 
     const [count, setCount] = React.useState<number | null>(null);
     const [imageUrl, setImageUrl] = React.useState<string | null>(null);
@@ -49,14 +52,14 @@ export default function Pool() {
 
     React.useEffect(() => {
         (async function () {
-            if (searchRequested && searchIdsReducer[REDUX_CURSORS.poolAll] && searchIdsReducer[REDUX_CURSORS.poolAll].length > 0) {
+            if (searchRequested && searchIdsReducer[REDUX_TABLES.poolAll] && searchIdsReducer[REDUX_TABLES.poolAll].length > 0) {
                 setDetailData(null);
                 setDetailData((await getArtifactsByIds({
                     ids: null,
                     owner: null,
                     uploader: null,
                     cursor: cursor,
-                    reduxCursor: REDUX_CURSORS.poolAll
+                    reduxCursor: REDUX_TABLES.poolAll
                 })));
             }
         })()
@@ -65,14 +68,13 @@ export default function Pool() {
     React.useEffect(() => {
         (async function () {
             if (id && headerData && !searchRequested) {
-                // TODO - Cache Search Term
                 setDetailData(null);
                 setDetailData((await getArtifactsByPool({
                     ids: [id],
                     owner: null,
                     uploader: headerData.state.owner,
                     cursor: cursor,
-                    reduxCursor: REDUX_CURSORS.poolAll
+                    reduxCursor: REDUX_TABLES.poolAll
                 })))
             }
         })();
@@ -102,35 +104,18 @@ export default function Pool() {
     }, [headerData])
 
     function getPoolHeader() {
-        // if (headerData && imageUrl) {
-            // return (
-            //     <PoolHeader
-            //         id={null}
-            //         image={null}
-            //         title={null}
-            //         description={null}
-            //         dateCreated={null}
-            //         count={null}
-            //         totalContributions={null}
-            //         contributors={null}
-            //     />
-            // )
-            return (
-                <PoolHeader
-                    id={headerData.id}
-                    image={imageUrl}
-                    title={headerData.state.title}
-                    description={headerData.state.description}
-                    dateCreated={formatDate(headerData.state.timestamp, "epoch")}
-                    count={count}
-                    totalContributions={headerData.state.totalContributions}
-                    contributors={headerData.state.contributors}
-                />
-            )
-        // }
-        // else {
-        //     return null;
-        // }
+        return (
+            <PoolHeader
+                id={headerData.id}
+                image={imageUrl}
+                title={headerData.state.title}
+                description={headerData.state.description}
+                dateCreated={formatDate(headerData.state.timestamp, "epoch")}
+                count={count}
+                totalContributions={headerData.state.totalContributions}
+                contributors={headerData.state.contributors}
+            />
+        )
     }
 
     function getPoolStatistics() {
@@ -157,7 +142,7 @@ export default function Pool() {
                 }}
                 cursorObject={{
                     key: CursorEnum.Search,
-                    value: REDUX_CURSORS.poolAll
+                    value: REDUX_TABLES.poolAll
                 }}
                 setSearchRequested={(searchRequested: boolean) => setSearchRequested(searchRequested)}
             />

@@ -2,7 +2,7 @@ import { OwnerView } from "global/OwnerView";
 
 import { useArweaveProvider } from "providers/ArweaveProvider";
 import { getArtifactsByCollections } from "gql/artifacts";
-import { REDUX_CURSORS } from "config/redux";
+import { REDUX_TABLES } from "config/redux";
 import { CursorEnum } from "config/types";
 
 export default function AccountCollection() {
@@ -11,13 +11,13 @@ export default function AccountCollection() {
     return arProvider.walletAddress ? (
         <OwnerView 
             owner={arProvider.walletAddress}
-            reduxCursor={REDUX_CURSORS.accountCollections}
+            reduxCursor={REDUX_TABLES.accountCollections}
             fetch={getArtifactsByCollections}
             showCollections={true}
             showPoolIds={true}
             cursorObject={{
                 key: CursorEnum.Search,
-                value: REDUX_CURSORS.accountCollections
+                value: REDUX_TABLES.accountCollections
             }}
         />
     ) : null;
