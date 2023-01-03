@@ -9,7 +9,6 @@ import { formatTitle } from "config/utils";
 import { IProps } from "./types";
 import * as S from "./styles";
 import { PAGINATOR } from "config";
-import { LANGUAGE } from "config/language";
 
 export default function Table(props: IProps) {
     const scrollRef = React.useRef(null);
@@ -25,9 +24,7 @@ export default function Table(props: IProps) {
     function getTable() {
         if (currentRecords) {
             if (currentRecords.length <= 0) {
-                return (
-                    <p>{LANGUAGE.noArtifacts}</p>
-                )
+                return null
             }
             else {
                 return (

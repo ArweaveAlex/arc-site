@@ -79,7 +79,7 @@ export async function getPoolById(poolId: string): Promise<PoolType | null> {
 }
 
 export async function getLatestPoolSearchIndexTxId(poolId: string) {
-    const poolSearchIndexes: GQLResponseType[] = await getGQLData({
+    const poolSearchIndeces: GQLResponseType[] = await getGQLData({
         ids: null,
         tagFilters: [
             {
@@ -101,14 +101,14 @@ export async function getLatestPoolSearchIndexTxId(poolId: string) {
         cursorObject: null
     });
 
-    if(poolSearchIndexes.length === 0) return null;
+    if(poolSearchIndeces.length === 0) return null;
 
-    if(poolSearchIndexes.length === 1) return poolSearchIndexes[0];
+    if(poolSearchIndeces.length === 1) return poolSearchIndeces[0];
 
-    let latestIndex = poolSearchIndexes[0];
+    let latestIndex = poolSearchIndeces[0];
 
-    for(let i = 1; i < poolSearchIndexes.length; i++) {
-        let thisIndex = poolSearchIndexes[i];
+    for(let i = 1; i < poolSearchIndeces.length; i++) {
+        let thisIndex = poolSearchIndeces[i];
         let thisIndexDateTag = getTagValue(thisIndex.node.tags, TAGS.keys.timestamp);
         let latestIndexDateTag = getTagValue(latestIndex.node.tags, TAGS.keys.timestamp);
         let thisIndexDate = thisIndexDateTag ? parseInt(thisIndexDateTag) : 0;

@@ -29,6 +29,8 @@ export default function Pool() {
     const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
     const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
 
+    const [detailDataUpdated, setDetailDataUpdated] = React.useState<boolean>(false);
+
     const [cursor, setCursor] = React.useState<string | null>(null);
     const [searchRequested, setSearchRequested] = React.useState<boolean>(
         searchTermReducer[REDUX_TABLES.poolAll].value !== "" &&
@@ -52,6 +54,7 @@ export default function Pool() {
 
     React.useEffect(() => {
         (async function () {
+            setDetailDataUpdated(!detailDataUpdated);
             if (searchRequested && searchIdsReducer[REDUX_TABLES.poolAll] &&
                 searchIdsReducer[REDUX_TABLES.poolAll].length > 0) {
                 setDetailData(null);
@@ -63,21 +66,13 @@ export default function Pool() {
                     reduxCursor: REDUX_TABLES.poolAll
                 })));
             }
-            else {
-                if (searchRequested && searchIdsReducer[REDUX_TABLES.poolAll] &&
-                    searchIdsReducer[REDUX_TABLES.poolAll].length <= 0) {
-                    setDetailData({
-                        nextCursor: null,
-                        previousCursor: null,
-                        contracts: []
-                    })
-                }
-            }
         })()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchRequested, searchIdsReducer, cursor])
 
     React.useEffect(() => {
         (async function () {
+            setDetailDataUpdated(!detailDataUpdated);
             if (id && headerData && !searchRequested) {
                 setDetailData(null);
                 setDetailData((await getArtifactsByPool({
@@ -88,8 +83,9 @@ export default function Pool() {
                     reduxCursor: REDUX_TABLES.poolAll
                 })))
             }
-        })();
-    }, [id, headerData, cursor, searchRequested])
+        })()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id, headerData, cursor])
 
     React.useEffect(() => {
         (async function () {
@@ -113,6 +109,18 @@ export default function Pool() {
             }
         })()
     }, [headerData])
+
+    React.useEffect(() => {
+        if (searchRequested && searchIdsReducer[REDUX_TABLES.poolAll] && 
+            searchIdsReducer[REDUX_TABLES.poolAll].length <= 0) {
+            setDetailData({
+                nextCursor: null,
+                previousCursor: null,
+                contracts: []
+            })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [detailDataUpdated])
 
     function getPoolHeader() {
         return (
@@ -161,10 +169,12 @@ export default function Pool() {
     }
 
     return headerData ? (
-        <S.Wrapper>
-            {getPoolHeader()}
-            {getPoolStatistics()}
-            {getPoolDetail()}
-        </S.Wrapper>
+        <>
+            <S.Wrapper>
+                {getPoolHeader()}
+                {getPoolStatistics()}
+                {getPoolDetail()}
+            </S.Wrapper>
+        </>
     ) : <Loader />
 }
