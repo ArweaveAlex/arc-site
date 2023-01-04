@@ -2,6 +2,7 @@ import { ArtifactResponseType, CursorType, CursorObjectType, TableIdType } from 
 
 export interface IProps {
     id: TableIdType;
+    indexIds: string [] | null;
     data: ArtifactResponseType;
     showCollections: boolean;
     showPoolIds: boolean;

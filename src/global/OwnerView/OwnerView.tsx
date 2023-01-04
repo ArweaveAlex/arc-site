@@ -1,79 +1,24 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import { ArtifactsDetail } from "global/ArtifactsDetail";
 
-import { ArtifactTable } from "global/ArtifactTable";
-import { Loader } from "components/atoms/Loader";
-
-import { clearCursors } from "redux/cursors/actions";
-import { ArtifactResponseType } from "config/types";
-
-import { LANGUAGE } from "config/language";
 import { IProps } from "./types";
-import * as S from "./styles";
 
 export default function OwnerView(props: IProps) {
-    const dispatch = useDispatch();
 
-    const [data, setData] = React.useState<ArtifactResponseType | null>(null);
-    const [cursor, setCursor] = React.useState<string | null>(null);
-    const [searchRequested, setSearchRequested] = React.useState<boolean>(false);
-
-    React.useEffect(() => {
-        dispatch(clearCursors());
-    }, [dispatch])
-
-    React.useEffect(() => {
-        (async function () {
-            if (props.owner) {
-                setData(await props.fetch({
-                    ids: null,
-                    owner: props.owner,
-                    uploader: null,
-                    cursor: cursor,
-                    reduxCursor: props.reduxCursor
-                }));
-            }
-        })();
-
-    }, [props, cursor])
-
-    // TODO - Table Loader / Catch no artifacts
     // TODO - initSearch all contributed pools
 
-    function getData() {
-        if (data && data.contracts.length > 0) {
-            return (
-                <S.Wrapper>
-                    <ArtifactTable
-                        id={{
-                            value: props.owner,
-                            type: "ownerId"
-                        }}
-                        data={data}
-                        showCollections={props.showCollections}
-                        showPoolIds={props.showPoolIds}
-                        handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
-                        cursors={{
-                            next: data.nextCursor,
-                            previous: data.previousCursor
-                        }}
-                        owner={props.owner}
-                        cursorObject={props.cursorObject}
-                        setSearchRequested={(searchRequested: boolean) => setSearchRequested(searchRequested)}
-                    />
-                </S.Wrapper>
-            )
-        }
-        else {
-            return <p>{LANGUAGE.noArtifacts}</p>
-        }
-    }
-
-    return data ? (
-        <>{getData()}</>
-    ) : (
-        <S.LoadingContainer>
-            <Loader sm />
-        </S.LoadingContainer>
+    return (
+        <ArtifactsDetail
+            id={{ value: props.owner, type: "ownerId" }}
+            indexIds={null}
+            cursorObject={props.cursorObject}
+            defaultFetch={{
+                fn: props.fetch,
+                ids: null
+            }}
+            showCollections={props.showCollections}
+            showPoolIds={props.showPoolIds}
+            owner={props.owner}
+            uploader={null}
+        />
     )
 }

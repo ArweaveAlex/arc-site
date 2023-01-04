@@ -3,12 +3,6 @@ import styled from "styled-components";
 import { open, fadeIn2 } from "config/animations";
 import { STYLING } from "config/styling";
 
-export const Message = styled.div`
-    margin: calc(20px + ${STYLING.dimensions.navHeight}) auto 0 auto;
-    padding: 0 20px;
-    max-width: ${STYLING.cutoffs.max};
-`;
-
 export const Wrapper = styled.div`
     height: 100%;
     width: 100%;
@@ -117,4 +111,13 @@ export const Header2 = styled(Header1)`
     @media(max-width: ${STYLING.cutoffs.secondary}) {
         font-size: 7.5vw;
     }
+`;
+
+export const Message = styled.div`
+    margin: calc(20px + ${STYLING.dimensions.navHeight}) auto 0 auto;
+    padding: 0 20px;
+    max-width: ${STYLING.cutoffs.max};
+    p {
+        font-size: ${(props) => props.theme.typography.size.xSmall};
+     }
 `;

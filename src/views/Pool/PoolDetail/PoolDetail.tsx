@@ -1,19 +1,23 @@
-import { ArtifactTable } from "global/ArtifactTable";
+import { ArtifactsDetail } from "global/ArtifactsDetail";
+
+import { getArtifactsByPool } from "gql/artifacts";
 
 import { IProps } from "./types";
 
 export default function PoolDetail(props: IProps) {
     return (
-        <ArtifactTable
+        <ArtifactsDetail
             id={props.id}
-            data={props.data} 
+            indexIds={[props.id.value]}
+            cursorObject={props.cursorObject}
+            defaultFetch={{
+                ids: [props.id.value],
+                fn: getArtifactsByPool
+            }}
             showCollections={false}
             showPoolIds={false}
-            handleCursorFetch={(cursor: string | null) => props.handleCursorFetch(cursor)}
-            cursors={props.cursors}
             owner={null}
-            cursorObject={props.cursorObject}
-            setSearchRequested={(searchRequested: boolean) => props.setSearchRequested(searchRequested)}
+            uploader={props.uploader}
         />
     )
 }

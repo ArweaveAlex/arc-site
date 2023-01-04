@@ -7,7 +7,7 @@ import * as artifactActions from "redux/artifacts/actions";
 import { RootState } from "redux/store";
 import { getCollectionIds, setCollectionIds } from "gql/artifacts";
 
-import { ArtifactSearch } from "./ArtifactSearch";
+import { ArtifactsSearch } from "../ArtifactsSearch";
 
 import { IconButton } from "components/atoms/IconButton";
 import { Table } from "components/organisms/Table";
@@ -47,7 +47,7 @@ function CollectionToggle(props: {
     )
 }
 
-export default function ArtifactTable(props: IProps) {
+export default function ArtifactsTable(props: IProps) {
     const dispatch = useDispatch();
     const collectionsReducer = useSelector((state: RootState) => state.collectionsReducer);
 
@@ -186,8 +186,9 @@ export default function ArtifactTable(props: IProps) {
         <Table
             title={LANGUAGE.artifacts}
             action={
-                <ArtifactSearch 
+                <ArtifactsSearch 
                     id={props.id}
+                    indexIds={props.indexIds}
                     cursorObject={props.cursorObject}
                     setSearchRequested={(searchRequested: boolean) => props.setSearchRequested(searchRequested)}
                     disabled={!props.data}

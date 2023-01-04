@@ -7,7 +7,11 @@ import { initSearch } from "search";
 
 import { TableIdType } from "config/types";
 
-export default function ReduxSearchIndexUpdate(props: { id: TableIdType, indexIds: string[], reduxCursor: string, children: React.ReactNode }) {
+export default function ReduxSearchIndexUpdate(props: { 
+    id: TableIdType, 
+    indexIds: string[] | null, 
+    reduxCursor: string, children: React.ReactNode 
+}) {
     const dispatch = useDispatch();
     const searchIndecesReducer = useSelector((state: RootState) => state.searchIndecesReducer);
 
@@ -15,7 +19,7 @@ export default function ReduxSearchIndexUpdate(props: { id: TableIdType, indexId
 
     React.useEffect(() => {
         (async function () {
-            if (!searchIndecesReducer[props.reduxCursor] || !sessionUpdated) {
+            if ((!searchIndecesReducer[props.reduxCursor] || !sessionUpdated) && props.indexIds) {
                 dispatch(searchActions.setSearchIndeces({ [props.reduxCursor]: { 
                     value: await initSearch(props.indexIds),
                     id: props.id

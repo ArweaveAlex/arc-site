@@ -2,9 +2,6 @@ import { ArtifactResponseType, CursorType, CursorObjectType, TableIdType } from 
 
 export interface IProps {
     id: TableIdType;
-    data: ArtifactResponseType;
-    handleCursorFetch: (cursor: string | null) => void;
-    cursors: CursorType;
     cursorObject: CursorObjectType;
-    setSearchRequested: (searchRequested: boolean) => void;
+    uploader: string | null;
 }

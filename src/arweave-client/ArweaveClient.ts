@@ -52,7 +52,7 @@ export default class ArweaveClient {
             pools = poolsReducer.data;
         }
         else {
-            pools = await getPools();
+            pools = await getPools(); // TODO - Dispatch quiet update
         }
         
         if (pools.length > 0) {

@@ -1,6 +1,5 @@
-import { PoolType, ArtifactResponseType } from "config/types";
+import { PoolType } from "config/types";
 
 export interface IProps {
     headerData: PoolType;
-    detailData: ArtifactResponseType;
 }
