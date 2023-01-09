@@ -11,15 +11,19 @@ import { TAGS, SEARCH } from "config";
 export async function initSearch(poolIds: string[]) {
     try {
         let poolIndeces: string[] = [];
-        let latestIndexTransaction = await getLatestPoolSearchIndexTxId(poolIds[0]); // TODO - Multiple Pools
-        let latestIndexTransactionId = getTagValue(latestIndexTransaction.node.tags, TAGS.keys.uploaderTxId);
-        let poolSearchState = (await getPoolSearchIndexById(latestIndexTransactionId)).state;
-        if(!poolSearchState || !poolSearchState.searchIndeces) {
-            return null;
+        for(let i = 0; i < poolIds.length; i++) {
+            let latestIndexTransaction = await getLatestPoolSearchIndexTxId(poolIds[i]); // TODO - Multiple Pools
+            let latestIndexTransactionId = getTagValue(latestIndexTransaction.node.tags, TAGS.keys.uploaderTxId);
+            let poolSearchState = (await getPoolSearchIndexById(latestIndexTransactionId)).state;
+            if(!poolSearchState || !poolSearchState.searchIndeces) {
+                return null;
+            }
+            let thisPoolIndeces = poolSearchState.searchIndeces.map((index: string) => {
+                return getTxEndpoint(index);
+            });
+            poolIndeces = poolIndeces.concat(thisPoolIndeces);
         }
-        poolIndeces = poolSearchState.searchIndeces.map((index: string) => {
-            return getTxEndpoint(index);
-        });
+
         return poolIndeces;
     }
     catch {
@@ -30,6 +34,7 @@ export async function initSearch(poolIds: string[]) {
 export async function runSearch(
     searchTerm: string,
     poolIndeces: string[] | null,
+    owner: string | null,
     callback: (ids: string[]) => void
 ) {
     if (poolIndeces) {
@@ -38,6 +43,7 @@ export async function runSearch(
             searchIndex(
                 searchTerm, 
                 poolIndex, 
+                owner,
                 callback
             );
         }
@@ -47,6 +53,7 @@ export async function runSearch(
 async function searchIndex(
     searchTerm: string, 
     index: string,
+    owner: string | null,
     callback: (ids: string[]) => void
 ) {
     const searchIndex = (await axios.get(
@@ -62,22 +69,29 @@ async function searchIndex(
     
     let ids: string[] = [];
     for(let i = 0; i< indeces.length; i++){
-        let idString = pullId(indeces[i], text);
-        ids.push(idString);
+        let idString = pullId(indeces[i], text, SEARCH.idTerm);
+        if(owner) {
+            let ownerIdString = pullId(indeces[i], text, SEARCH.ownerTerm);
+            if(ownerIdString === owner) {
+                ids.push(idString);
+            }
+        } else {
+            ids.push(idString);
+        }
     }
 
     callback(ids);
 }
 
-function pullId(index: number, text: string) {
+function pullId(index: number, text: string, splitTerm: string) {
     for(let j = index; j < text.length; j++) {
-        let backTrack = j - (SEARCH.idTerm.length - 1);
+        let backTrack = j - (splitTerm.length - 1);
         let subTerm = text.substring(backTrack, j + 1);
-        if(subTerm === SEARCH.idTerm){
+        if(subTerm === splitTerm){
             for(let k = j + 1; k < text.length; k++) {
-                let backTrack2 = k - (SEARCH.idTerm.length - 1);
+                let backTrack2 = k - (splitTerm.length - 1);
                 let subTerm2 = text.substring(backTrack2, k + 1);
-                if(subTerm2 === SEARCH.idTerm){
+                if(subTerm2 === splitTerm){
                     return text.substring(j + 1, k - 1);
                 }
             }

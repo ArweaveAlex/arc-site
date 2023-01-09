@@ -35,7 +35,7 @@ export const TAGS = {
         webpageArtifactType: "Alex-Webpage",
         poolVersions: {
             "1.2": "Alex-Archiving-Pool-v1.2",
-            "1.4": "Alex-Archiving-Pool-Thread-Testing-v1.0" // Alex-Archiving-Pool-v1.4
+            "1.4": "Alex-Archiving-Pool-v1.4" // Alex-Archiving-Pool-v1.4
         },
         searchIndex: "Alex-Search-Index-v0"
     }
@@ -183,5 +183,5 @@ export const FALLBACK_IMAGE = "8HqSqy_nNRSTPv-q-j7_iHGTp6lEA5K77TP4BPuXGyA";
 export const SEARCH = {
     cursorPrefix: "searchCursor",
     idTerm: "`*",
-    ownerTerm: "`*"
+    ownerTerm: "`%"
 }

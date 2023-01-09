@@ -109,6 +109,7 @@ export default function ArtifactsSearch(props: IProps) {
                 await runSearch(
                     searchTerm,
                     searchIndeces,
+                    props.owner,
                     (resultIds: string[]) => {
                         setSearchResultIds((prevArray: string[]) => [...prevArray, ...resultIds]);
                     }

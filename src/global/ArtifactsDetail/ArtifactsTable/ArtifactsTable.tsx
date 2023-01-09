@@ -192,6 +192,7 @@ export default function ArtifactsTable(props: IProps) {
                     cursorObject={props.cursorObject}
                     setSearchRequested={(searchRequested: boolean) => props.setSearchRequested(searchRequested)}
                     disabled={!props.data}
+                    owner={props.owner}
                 />
             }
             header={getHeader()}
