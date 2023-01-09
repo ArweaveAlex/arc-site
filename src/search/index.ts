@@ -9,26 +9,28 @@ import { getTagValue, stripSearch } from "config/utils";
 import { TAGS, SEARCH } from "config";
 
 export async function initSearch(poolIds: string[]) {
-    try {
-        let poolIndeces: string[] = [];
-        for(let i = 0; i < poolIds.length; i++) {
-            let latestIndexTransaction = await getLatestPoolSearchIndexTxId(poolIds[i]); // TODO - Multiple Pools
-            let latestIndexTransactionId = getTagValue(latestIndexTransaction.node.tags, TAGS.keys.uploaderTxId);
-            let poolSearchState = (await getPoolSearchIndexById(latestIndexTransactionId)).state;
-            if(!poolSearchState || !poolSearchState.searchIndeces) {
-                return null;
-            }
-            let thisPoolIndeces = poolSearchState.searchIndeces.map((index: string) => {
-                return getTxEndpoint(index);
-            });
-            poolIndeces = poolIndeces.concat(thisPoolIndeces);
-        }
+        try{
+            let poolIndeces: string[] = [];
 
-        return poolIndeces;
-    }
-    catch {
-        return null
-    }
+            for(let i = 0; i < poolIds.length; i++) {
+                let latestIndexTransaction = await getLatestPoolSearchIndexTxId(poolIds[i]);
+                if(!latestIndexTransaction) continue;
+                let latestIndexTransactionId = getTagValue(latestIndexTransaction.node.tags, TAGS.keys.uploaderTxId);
+                let poolSearchState = (await getPoolSearchIndexById(latestIndexTransactionId)).state;
+                if(!poolSearchState || !poolSearchState.searchIndeces) {
+                    continue;
+                }
+                let thisPoolIndeces = poolSearchState.searchIndeces.map((index: string) => {
+                    return getTxEndpoint(index);
+                });
+                poolIndeces = poolIndeces.concat(thisPoolIndeces);
+            }
+            return poolIndeces;
+        } catch(e: any) {
+            console.log(e);
+            return null;
+        }
+    
 }
 
 export async function runSearch(

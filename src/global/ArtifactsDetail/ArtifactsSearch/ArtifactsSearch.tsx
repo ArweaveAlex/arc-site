@@ -26,8 +26,8 @@ export default function ArtifactsSearch(props: IProps) {
     );
 
     const [searchTerm, setSearchTerm] = React.useState<string>(
-        searchTermReducer[REDUX_TABLES.poolAll].id.value === props.id.value ?
-            (searchTermReducer[REDUX_TABLES.poolAll].value || "") : "");
+        searchTermReducer[props.cursorObject.value].id.value === props.id.value ?
+            (searchTermReducer[props.cursorObject.value].value || "") : "");
 
     const [searchResultIds, setSearchResultIds] = React.useState<string[]>([]);
     const [searchRequested, setSearchRequested] = React.useState<boolean>(false);
@@ -52,7 +52,7 @@ export default function ArtifactsSearch(props: IProps) {
 
     function handleChange(term: string) {
         dispatch(searchActions.setSearchTerm({
-            [REDUX_TABLES.poolAll]: {
+            [props.cursorObject.value]: {
                 value: term,
                 id: props.id
             }
@@ -77,10 +77,10 @@ export default function ArtifactsSearch(props: IProps) {
     }, [searchIndecesReducer, props.cursorObject.value, props.id.value])
 
     React.useEffect(() => {
-        if ((searchTermReducer[REDUX_TABLES.poolAll].value || searchTermReducer[REDUX_TABLES.poolAll].value === "") &&
-            searchTermReducer[REDUX_TABLES.poolAll].id.value === props.id.value) {
-            setSearchTerm(searchTermReducer[REDUX_TABLES.poolAll].value);
-            if (searchTermReducer[REDUX_TABLES.poolAll].value === "") {
+        if ((searchTermReducer[props.cursorObject.value].value || searchTermReducer[props.cursorObject.value].value === "") &&
+            searchTermReducer[props.cursorObject.value].id.value === props.id.value) {
+            setSearchTerm(searchTermReducer[props.cursorObject.value].value);
+            if (searchTermReducer[props.cursorObject.value].value === "") {
                 setSearchRequested(false);
                 props.setSearchRequested(false);
             }
@@ -88,10 +88,10 @@ export default function ArtifactsSearch(props: IProps) {
     }, [searchTermReducer, props])
 
     React.useEffect(() => {
-        if (searchTermReducer[REDUX_TABLES.poolAll].value &&
-            searchTermReducer[REDUX_TABLES.poolAll].id.value === props.id.value) {
+        if (searchTermReducer[props.cursorObject.value].value &&
+            searchTermReducer[props.cursorObject.value].id.value === props.id.value) {
             setSearchRequested(true);
-            setSearchTerm(searchTermReducer[REDUX_TABLES.poolAll].value);
+            setSearchTerm(searchTermReducer[props.cursorObject.value].value);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -120,7 +120,7 @@ export default function ArtifactsSearch(props: IProps) {
     }, [searchRequested, searchIndeces, searchResultIds.length, props]);
 
     return (
-        <ReduxSearchIndexUpdate id={props.id} indexIds={props.indexIds} reduxCursor={REDUX_TABLES.poolAll}>
+        <ReduxSearchIndexUpdate id={props.id} indexIds={props.indexIds} reduxCursor={props.cursorObject.value}>
             <Search
                 value={searchTerm}
                 handleChange={(term: string) => handleChange(term)}

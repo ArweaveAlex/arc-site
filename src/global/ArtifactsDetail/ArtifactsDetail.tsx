@@ -75,7 +75,7 @@ export default function ArtifactsDetail(props: IProps) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [detailDataUpdated])
-
+    
     return (
         <ArtifactsTable
             id={props.id}
