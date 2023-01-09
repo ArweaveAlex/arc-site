@@ -1,8 +1,8 @@
 import { store } from "redux/store";
 import * as artifactActions from "redux/artifacts/actions";
-import { ArweaveClient } from "arweave-client";
+import { ArweaveClient } from "clients/arweave";
 import {
-    ArtifactType,
+    ArtifactDetailType,
     ArtifactArgsType,
     ArtifactResponseType,
     CollectionResponseType,
@@ -20,7 +20,9 @@ import { TAGS, STORAGE, CURSORS } from "config";
 
 const arClient = new ArweaveClient();
 
-export async function getArtifactById(artifactId: string): Promise<ArtifactType | null> {
+export async function getArtifactsByAssociation(artifactId: string, callback: (artifacts: ArtifactDetailType[]) => void): Promise<void> {
+    const artifacts: ArtifactDetailType[] = [];
+
     const artifact: GQLResponseType = (await getGQLData({
         ids: [artifactId],
         tagFilters: null,
@@ -30,20 +32,52 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactType 
         cursorObject: null
     }))[0];
 
+    if (artifact) {
+        const associationId = getTagValue(artifact.node.tags, TAGS.keys.associationId);
+        if (associationId && (associationId !== STORAGE.none)) {
+            const gqlArtifacts: GQLResponseType[] = await getGQLData({
+                ids: null,
+                tagFilters: [
+                    {
+                        name: TAGS.keys.associationId,
+                        values: [associationId]
+                    }
+                ],
+                uploader: null,
+                cursor: null,
+                reduxCursor: null,
+                cursorObject: null
+            });
+
+            for (let i = 0; i < gqlArtifacts.length; i++) {
+                artifacts.push(await getArtifact(gqlArtifacts[i]));
+                callback(artifacts);
+            }
+        }
+        else {
+            return callback([await getArtifact(artifact)]);
+        }
+    }
+}
+
+export async function getArtifact(artifact: GQLResponseType): Promise<ArtifactDetailType | null> {
     let pool: PoolType | null = await getPoolById(getTagValue(artifact.node.tags, TAGS.keys.poolId));
 
     try {
-        const response = await fetch(getTxEndpoint(artifactId));
+        const response = await fetch(getTxEndpoint(artifact.node.id));
         if (response.status === 200 && artifact) {
             try {
                 return ({
-                    artifactName: artifact ? getTagValue(artifact.node.tags, TAGS.keys.artifactName) : null,
-                    artifactType: artifact ? getTagValue(artifact.node.tags, TAGS.keys.artifactType) as any : null,
-                    owner: artifact ? getTagValue(artifact.node.tags, TAGS.keys.initialOwner) : null,
-                    ansTitle: artifact ? getTagValue(artifact.node.tags, TAGS.keys.ansTitle) : null,
-                    minted: artifact ? getTagValue(artifact.node.tags, TAGS.keys.dateCreated) : null,
-                    keywords: artifact ? getTagValue(artifact.node.tags, TAGS.keys.keywords) : null,
-                    mediaIds: artifact ? getTagValue(artifact.node.tags, TAGS.keys.mediaIds) : null,
+                    artifactId: artifact.node.id,
+                    artifactName: getTagValue(artifact.node.tags, TAGS.keys.artifactName),
+                    artifactType: getTagValue(artifact.node.tags, TAGS.keys.artifactType) as any,
+                    associationId: getTagValue(artifact.node.tags, TAGS.keys.associationId),
+                    associationSequence: getTagValue(artifact.node.tags, TAGS.keys.associationSequence),
+                    owner: getTagValue(artifact.node.tags, TAGS.keys.initialOwner),
+                    ansTitle: getTagValue(artifact.node.tags, TAGS.keys.ansTitle),
+                    minted: getTagValue(artifact.node.tags, TAGS.keys.dateCreated),
+                    keywords: getTagValue(artifact.node.tags, TAGS.keys.keywords),
+                    mediaIds: getTagValue(artifact.node.tags, TAGS.keys.mediaIds),
                     poolName: pool ? pool.state.title : null,
                     poolId: pool ? pool.id : null,
                     dataUrl: response.url,
@@ -102,7 +136,7 @@ export async function getArtifactsByPool(args: ArtifactArgsType): Promise<Artifa
         nextCursor: nextCursor,
         previousCursor: previousCursor,
         contracts: artifacts
-    })
+    });
 }
 
 export async function getArtifactsByIds(args: ArtifactArgsType): Promise<ArtifactResponseType> {
@@ -134,7 +168,7 @@ export async function getArtifactsByIds(args: ArtifactArgsType): Promise<Artifac
         nextCursor: nextCursor,
         previousCursor: previousCursor,
         contracts: artifacts
-    })
+    });
 }
 
 export async function getArtifactsByUser(args: ArtifactArgsType) {
@@ -188,7 +222,7 @@ export async function getArtifactsByCollections(args: ArtifactArgsType): Promise
         previousCursor: previousCursor,
         contracts: artifacts.filter(
             (element: GQLResponseType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none)
-    })
+    });
 }
 
 export async function getCollectionIds(owner: string): Promise<string[]> {

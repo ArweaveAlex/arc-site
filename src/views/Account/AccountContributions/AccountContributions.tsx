@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useArweaveProvider } from "providers/ArweaveProvider";
-import { ArweaveClient } from "arweave-client";
+import { ArweaveClient } from "clients/arweave";
 
 import { ContributionsList } from "./ContributionsList";
 import { Loader } from "components/atoms/Loader";

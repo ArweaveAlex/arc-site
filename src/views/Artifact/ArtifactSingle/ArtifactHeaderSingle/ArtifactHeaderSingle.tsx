@@ -16,7 +16,7 @@ import * as urls from "config/urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 
-export default function ArtifactHeader(props: IProps) {
+export default function ArtifactHeaderSingle(props: IProps) {
     return (props.data && props.type) ? (
         <S.Wrapper>
             <S.ContentWrapper>

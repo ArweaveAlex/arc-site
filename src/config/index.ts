@@ -12,10 +12,12 @@ import { LANGUAGE } from "config/language";
 export const TAGS = {
     keys: {
         alexPoolId: "Alex-Pool-Id",
+        ansTitle: "Title",
         appType:"App-Type",
         artifactName: "Artifact-Name",
         artifactType: "Artifact-Type",
-        ansTitle: "Title",
+        associationId: "Association-Id",
+        associationSequence: "Association-Sequence",
         collectionIds: "Bookmark-Ids-Tag",
         collectionSearch: "Alex-Bookmark-Search",
         dateCreated: "Date-Created",
@@ -33,7 +35,7 @@ export const TAGS = {
         webpageArtifactType: "Alex-Webpage",
         poolVersions: {
             "1.2": "Alex-Archiving-Pool-v1.2",
-            "1.4": "Alex-Archiving-Pool-v1.4"
+            "1.4": "Alex-Archiving-Pool-Thread-Testing-v1.0" // Alex-Archiving-Pool-v1.4
         },
         searchIndex: "Alex-Search-Index-v0"
     }

@@ -1,1 +1,0 @@
-export { default as ArtifactDetail } from "./ArtifactDetail";

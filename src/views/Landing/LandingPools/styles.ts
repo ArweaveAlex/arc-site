@@ -83,6 +83,7 @@ export const LinkContainer = styled.div`
     justify-content: center;
     align-items: center;
     background: ${(props) => props.theme.colors.font.primary.active.base};
+    border-radius: ${STYLING.dimensions.borderRadiusField};
     &:hover {
         background: ${(props) => props.theme.colors.font.primary.active.hover};
     }

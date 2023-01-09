@@ -11,7 +11,7 @@ import { ASSETS } from "config";
 import { IProps } from "./types";
 import * as S from "./styles";
 
-export default function ArtifactDetail(props: IProps) {
+export default function ArtifactDetailSingle(props: IProps) {
     const [viewRaw, setViewRaw] = React.useState<boolean>(false);
     const [copied, setCopied] = React.useState<boolean>(false);
 

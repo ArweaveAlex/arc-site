@@ -10,7 +10,7 @@ export function sortByAll(pools: PoolType[], amount: number | null): PoolType[] 
 }
 
 export function sortByNewest(pools: PoolType[], amount: number | null): PoolType[] {
-    const sortedPools: any = pools.sort(function (a, b) {
+    const sortedPools: PoolType[] = pools.sort(function (a, b) {
         return parseFloat(a.state.timestamp) - parseFloat(b.state.timestamp)
     }).reverse();
     if (amount) {
@@ -22,7 +22,7 @@ export function sortByNewest(pools: PoolType[], amount: number | null): PoolType
 }
 
 export function sortByMostContributed(pools: PoolType[], amount: number | null): PoolType[] {
-    const sortedPools: any = pools.sort(function (a, b) {
+    const sortedPools: PoolType[] = pools.sort(function (a, b) {
         return parseFloat(a.state.totalContributions) - parseFloat(b.state.totalContributions)
     }).reverse();
     if (amount) {

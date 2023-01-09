@@ -1,7 +1,7 @@
 import * as cursorActions from "redux/cursors/actions";
 import { store } from "redux/store";
 
-import { ArweaveClient } from "arweave-client";
+import { ArweaveClient } from "clients/arweave";
 import { unquoteJsonKeys, checkGqlCursor } from "config/utils";
 import { CURSORS, PAGINATOR, SEARCH } from "config";
 import {

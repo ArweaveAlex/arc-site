@@ -14,13 +14,16 @@ export const SearchWrapper = styled.div`
     position: relative;
 `;
 
-export const SearchIcon = styled.div`
+export const SearchIcon = styled.div<{ disabled: boolean | undefined }>`
     svg {
         position: absolute;
         top: 7.15px;
         left: 13.5px;
         width: 15px;
         fill ${(props) => props.theme.colors.icon.primary.alt1.fill};
+        &:hover {
+            cursor: ${(props) => props.disabled ? "not-allowed" : "default"};
+        }
     }
 `;
 

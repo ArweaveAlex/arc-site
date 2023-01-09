@@ -6,7 +6,7 @@ import { Loader } from "components/atoms/Loader";
 import { IProps } from "../../types";
 import * as S from "./styles";
 
-export default function ArtifactWebpage(props: IProps) {
+export default function ArtifactWebpageSingle(props: IProps) {
     const [data, setData] = React.useState<any>(null);
 
     React.useEffect(() => {

@@ -12,7 +12,7 @@ export default function Search(props: IProps) {
     return (
         <S.Wrapper>
             <S.SearchWrapper>
-                <S.SearchIcon>
+                <S.SearchIcon disabled={props.disabled || !props.value}>
                     <ReactSVG src={ASSETS.search} />
                 </S.SearchIcon>
                 <S.SearchInput

@@ -1,6 +1,6 @@
 import parse from "html-react-parser";
 
-import { ArweaveClient } from "arweave-client";
+import { ArweaveClient } from "clients/arweave";
 
 import { SocialShare } from "global/SocialShare";
 import { PoolContribute } from "../PoolContribute";
