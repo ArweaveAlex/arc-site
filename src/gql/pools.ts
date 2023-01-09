@@ -111,8 +111,8 @@ export async function getLatestPoolSearchIndexTxId(poolId: string) {
         let thisIndex = poolSearchIndeces[i];
         let thisIndexDateTag = getTagValue(thisIndex.node.tags, TAGS.keys.timestamp);
         let latestIndexDateTag = getTagValue(latestIndex.node.tags, TAGS.keys.timestamp);
-        let thisIndexDate = thisIndexDateTag ? parseInt(thisIndexDateTag) : 0;
-        let latestIndexDate = latestIndexDateTag ? parseInt(thisIndexDateTag) : 0;
+        let thisIndexDate = thisIndexDateTag && thisIndexDateTag !== 'N/A' ? parseInt(thisIndexDateTag) : 0;
+        let latestIndexDate = latestIndexDateTag && latestIndexDateTag !== 'N/A' ? parseInt(latestIndexDateTag) : 0;
         if(thisIndexDate > latestIndexDate) {
             latestIndex = thisIndex;
         }
