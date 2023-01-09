@@ -23,11 +23,11 @@ export const PostContent = styled.div`
 
 export const InfoData = styled.div`
     span {
-        font-size: 12px;
+        font-size: 13px;
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
     p, a {
-        font-size: ${(props) => props.theme.typography.size.small};
+        font-size: ${(props) => props.theme.typography.size.base};
         line-height: 18px;
         color: ${(props) => props.theme.colors.font.primary.active.base};
         margin: 10px 0 0 0;

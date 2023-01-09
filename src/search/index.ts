@@ -30,7 +30,7 @@ export async function initSearch(poolIds: string[]) {
 export async function runSearch(
     searchTerm: string,
     poolIndeces: string[] | null,
-    searchCallback: any
+    callback: (ids: string[]) => void
 ) {
     if (poolIndeces) {
         for(let k = 0; k < poolIndeces.length; k++){
@@ -38,7 +38,7 @@ export async function runSearch(
             searchIndex(
                 searchTerm, 
                 poolIndex, 
-                searchCallback
+                callback
             );
         }
     }
@@ -47,7 +47,7 @@ export async function runSearch(
 async function searchIndex(
     searchTerm: string, 
     index: string,
-    searchCallback: (ids: string[]) => void
+    callback: (ids: string[]) => void
 ) {
     const searchIndex = (await axios.get(
         index
@@ -66,7 +66,7 @@ async function searchIndex(
         ids.push(idString);
     }
 
-    searchCallback(ids);
+    callback(ids);
 }
 
 function pullId(index: number, text: string) {

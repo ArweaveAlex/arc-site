@@ -22,9 +22,12 @@ export type GQLResponseType = {
   }
 }
 
-export interface ArtifactType {
+export interface ArtifactDetailType {
+  artifactId: NStringType
   artifactName: NStringType
   artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage
+  associationId: NStringType
+  associationSequence: NStringType
   owner: NStringType
   ansTitle: NStringType
   minted: NStringType

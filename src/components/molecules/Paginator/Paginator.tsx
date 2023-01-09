@@ -54,6 +54,7 @@ export default function Paginator(props: IProps) {
         handleScroll();
     }
 
+    // TODO - Browser scroll issues
     const handleCurrentPage = (number: number) => {
         props.setCurrentPage(number);
         handleScroll();

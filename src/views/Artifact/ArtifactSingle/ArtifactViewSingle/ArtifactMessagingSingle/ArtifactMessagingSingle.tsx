@@ -6,12 +6,12 @@ import { Carousel } from "components/molecules/Carousel";
 
 import { MEDIA_TYPES, STORAGE } from "config";
 import { getTxEndpoint } from "config/endpoints";
+import { getMessageText, getUsername } from "config/utils";
 import { LANGUAGE } from "config/language";
 import { IProps } from "../../types";
 import * as S from "./styles";
 
-export default function ArtifactMessaging(props: IProps) {
-
+export default function ArtifactMessagingSingle(props: IProps) {
     const [data, setData] = React.useState<any>(null);
     const [contentApproved, setContentApproved] = React.useState<boolean>(false);
 
@@ -20,33 +20,6 @@ export default function ArtifactMessaging(props: IProps) {
             setData(JSON.parse(props.data.rawData));
         }
     }, [props.data])
-
-    function getMessageText() {
-        if (data) {
-            if (data.includes && data.includes.tweets && data.includes.tweets.length > 0) {
-                for (let i = 0; i < data.includes.tweets.length; i++) {
-                    if (!data.includes.tweets[i].referenced_tweets) {
-                        return data.includes.tweets[i].text;
-                    }
-                }
-                return data.includes.tweets[0].text
-            }
-            else {
-                if (data.extended_tweet && data.extended_tweet.full_text) {
-                    return data.extended_tweet.full_text;
-                }
-                if (data.full_text) {
-                    return data.full_text;
-                }
-                else {
-                    return data.text;
-                }
-            }
-        }
-        else {
-            return STORAGE.none;
-        }
-    }
 
     function getMessage() {
         return (
@@ -61,14 +34,14 @@ export default function ArtifactMessaging(props: IProps) {
                     <S.Section>
                         <S.InfoData>
                             <span>{LANGUAGE.messaging.handle}</span>
-                            <p>{data.user && data.user.screen_name ? `@${data.user.screen_name}` : STORAGE.none}</p>
+                            <p>{getUsername(data)}</p>
                         </S.InfoData>
                     </S.Section>
                 </S.Header>
                 <S.Body>
                     <S.Message>
                         <span>{LANGUAGE.messaging.message}</span>
-                        <p>{getMessageText()}</p>
+                        <p>{getMessageText(data)}</p>
                     </S.Message>
                 </S.Body>
                 <S.Footer>

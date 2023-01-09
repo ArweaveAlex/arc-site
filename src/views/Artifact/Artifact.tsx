@@ -1,108 +1,47 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { getArtifactById } from "gql/artifacts";
+import { getArtifactsByAssociation } from "gql/artifacts";
 
-import { ArtifactHeader } from "./ArtifactHeader";
-import { ArtifactDetail } from "./ArtifactDetail";
-import { ArtifactView } from "./ArtifactView";
+import { ArtifactList } from "./ArtifactList";
+import { ArtifactSingle } from "./ArtifactSingle";
 
 import { Loader } from "components/atoms/Loader";
 
 import * as window from "config/window";
-import {
-    ARTIFACT_TABS,
-    ARTIFACT_TYPES,
-    TAB_OPTIONS,
-    TAGS
-} from "config";
-import { checkNullValues } from "config/utils";
-import { ArtifactType } from "config/types";
-import * as S from "./styles";
-import { LANGUAGE } from "config/language";
+import { ArtifactDetailType } from "config/types";
 
 export default function Artifact() {
     const { id } = useParams();
 
-    const [data, setData] = React.useState<ArtifactType | null>(null);
-    const [currentTab, setCurrentTab] = React.useState<string>(ARTIFACT_TABS[0]!.label);
+    const [data, setData] = React.useState<ArtifactDetailType | ArtifactDetailType[] | null>(null);
+    const [loading, setLoading] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         (async function () {
             if (id) {
                 window.scrollTo(0, 0);
-                setData(await getArtifactById(id));
+                setLoading(true);
+                await getArtifactsByAssociation(id,
+                    (data: ArtifactDetailType[]) => { setData([...data]) })
+                setLoading(false);
             }
         })()
     }, [id]);
 
-    function handleTabClick(label: string) {
-        setCurrentTab(label);
-    }
-
-    function getArtifactType() {
-        if (data) {
-            let artifactType = ARTIFACT_TYPES[data.artifactType];
-            if (artifactType) {
-                return artifactType;
-            }
-            else {
-                return ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
-            }
-        }
-        else {
-            return null;
-        }
-    }
-
-    function getArtifact() {
-        if (data) {
-            switch (currentTab) {
-                case TAB_OPTIONS.view:
-                    return <ArtifactView data={data} />
-                case TAB_OPTIONS.details:
-                    return <ArtifactDetail data={data} type={getArtifactType()} />
-                default:
-                    return <ArtifactDetail data={data} type={getArtifactType()} />
-            }
-        }
-        else {
-            return <Loader />;
-        }
-    }
-
-    function validateData() {
-        if (data) {
-            return !checkNullValues(data);
-        }
-        else {
-            return false;
-        }
-    }
-
     function getData() {
-        if (validateData()) {
+        if ((data instanceof Array) && data.length > 1) { // TODO return non-array if no association
             return (
-                <S.Wrapper>
-                    <S.Content>
-                        <ArtifactHeader data={data} type={getArtifactType()} onTabPropClick={(label: string) => handleTabClick(label)} />
-                        <S.FlexWrapper>
-                            <S.ArtifactWrapper>
-                                {getArtifact()}
-                            </S.ArtifactWrapper>
-                        </S.FlexWrapper>
-                    </S.Content>
-                </S.Wrapper>
+                <ArtifactList 
+                    data={data}
+                    loading={loading}
+                />
             )
         }
         else {
-            return (
-                <S.MessageContainer>
-                    <p>{LANGUAGE.errorFetchingArtifact}</p>
-                </S.MessageContainer>
-            )
+            return <ArtifactSingle data={data[0]} />
         }
     }
 
-    return data ? <>{getData()}</> : <Loader /> ;
+    return data ? <>{getData()}</> : <Loader />;
 }

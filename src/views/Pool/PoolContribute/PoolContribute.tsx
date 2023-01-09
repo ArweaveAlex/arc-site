@@ -2,7 +2,7 @@ import React from "react"
 import { ReactSVG } from "react-svg";
 
 import { useArweaveProvider } from "providers/ArweaveProvider";
-import { ArweaveClient } from "arweave-client";
+import { ArweaveClient } from "clients/arweave";
 import { ContributionResultType } from "config/types";
 
 import { Button } from "components/atoms/Button";

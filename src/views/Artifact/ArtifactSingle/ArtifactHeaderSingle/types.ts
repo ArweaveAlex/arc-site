@@ -1,7 +1,7 @@
-import { ArtifactType } from "config/types";
+import { ArtifactDetailType } from "config/types";
 
 export interface IProps {
-    data: ArtifactType | null;
+    data: ArtifactDetailType | null;
     type: { label: string, icon: string } | null;
     onTabPropClick: (label: string) => void
 }

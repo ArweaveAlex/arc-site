@@ -117,3 +117,41 @@ export function checkGqlCursor(string: string): boolean {
         return false;
     }
 }
+
+export function getMessageText(data: any) {
+    if (data) {
+        if (data.includes && data.includes.tweets && data.includes.tweets.length > 0) {
+            for (let i = 0; i < data.includes.tweets.length; i++) {
+                if (!data.includes.tweets[i].referenced_tweets) {
+                    return data.includes.tweets[i].text;
+                }
+            }
+            return data.includes.tweets[0].text
+        }
+        else {
+            if (data.extended_tweet && data.extended_tweet.full_text) {
+                return data.extended_tweet.full_text;
+            }
+            if (data.full_text) {
+                return data.full_text;
+            }
+            else {
+                return data.text;
+            }
+        }
+    }
+    else {
+        return STORAGE.none;
+    }
+}
+
+export function getUsername(data: any) {
+    if (data && data.user) {
+        if (data.user.username) return `@${data.user.username}`;
+        else if (data.user.screen_name) return `@${data.user.screen_name}`;
+        else return STORAGE.none;
+    }
+    else {
+        return STORAGE.none;
+    }
+}

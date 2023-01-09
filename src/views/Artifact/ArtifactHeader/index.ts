@@ -1,1 +1,0 @@
-export { default as ArtifactHeader } from "./ArtifactHeader";
