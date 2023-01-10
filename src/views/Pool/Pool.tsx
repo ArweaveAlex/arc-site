@@ -15,6 +15,7 @@ import { formatDate, getTagValue } from "config/utils";
 import { TAGS, FALLBACK_IMAGE } from "config";
 import { REDUX_TABLES } from "config/redux";
 import * as S from "./styles";
+import { getArtifactsByPool } from "gql/artifacts";
 
 export default function Pool() {
     const { id } = useParams();
@@ -32,18 +33,25 @@ export default function Pool() {
         })();
     }, [id])
 
-    // React.useEffect(() => {
-    //     (async function () {
-    //         if (detailData && detailData.contracts.length > 0) {
-    //             setCount((await getPoolCount(getTagValue(detailData.contracts[0].node.tags, TAGS.keys.contractSrc))))
-    //         }
-    //         else {
-    //             if (detailData && detailData.contracts.length <= 0) {
-    //                 setCount(0);
-    //             }
-    //         }
-    //     })();
-    // }, [detailData])
+    React.useEffect(() => {
+        (async function () {
+            if (id && headerData) {
+                let detailData = await getArtifactsByPool({
+                    ids: [id],
+                    owner: null,
+                    uploader: headerData.state.owner,
+                    cursor: null,
+                    reduxCursor: REDUX_TABLES.poolAll
+                });
+
+                if (detailData && detailData.contracts.length > 0) {
+                    setCount((await getPoolCount(getTagValue(detailData.contracts[0].node.tags, TAGS.keys.contractSrc))));
+                } else {
+                    setCount(0);
+                }
+            }
+        })();
+    }, [id, headerData])
 
     React.useEffect(() => {
         (async function () {
@@ -51,6 +59,7 @@ export default function Pool() {
                 const imageResponse = (await fetch(getTxEndpoint(headerData.state.image.length > 0 ?
                     headerData.state.image : FALLBACK_IMAGE)));
                 setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
+
             }
         })()
     }, [headerData])
@@ -92,7 +101,7 @@ export default function Pool() {
     return headerData ? (
         <>
             <S.Wrapper>
-                {/* {getPoolHeader()} */}
+                {getPoolHeader()}
                 {getPoolStatistics()}
                 {getPoolDetail()}
             </S.Wrapper>

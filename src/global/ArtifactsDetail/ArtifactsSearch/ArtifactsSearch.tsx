@@ -114,7 +114,6 @@ export default function ArtifactsSearch(props: IProps) {
                     searchIndeces,
                     props.owner,
                     (resultIds: string[], allIndecesProcessed: boolean) => {
-                        console.log(allIndecesProcessed)
                         props.setSearchRequested(allIndecesProcessed);
                         setSearchResultIds((prevArray: string[]) => [...prevArray, ...resultIds]);
                     }
