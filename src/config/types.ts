@@ -28,6 +28,7 @@ export interface ArtifactDetailType {
   artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage
   associationId: NStringType
   associationSequence: NStringType
+  profileImagePath: NStringType
   owner: NStringType
   ansTitle: NStringType
   minted: NStringType

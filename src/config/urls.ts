@@ -5,6 +5,7 @@ export const accountNew = `${account}new/`;
 export const accountCollections = `${account}collections/`;
 export const accountContributions = `${account}contributions/`;
 export const artifact = `${base}artifact/`;
+export const thread = `${artifact}thread/`;
 export const pool = `${base}pool/`;
 export const pools = `${base}pools/`;
 export const library = `${base}library/`;

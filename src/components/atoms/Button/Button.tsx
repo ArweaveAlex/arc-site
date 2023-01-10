@@ -54,12 +54,17 @@ export default function Button(props: IProps) {
     )
   }
 
+  function handlePress(e: React.MouseEvent) {
+    e.stopPropagation();
+    props.handlePress(e);
+  }
+
   return (
     <StyledButton
       tabIndex={props.noFocus ? -1 : 0}
       type={props.formSubmit ? "submit" : "button"}
       onClick={props.handlePress}
-      onKeyPress={props.handlePress}
+      onKeyPress={handlePress}
       disabled={props.disabled}
       active={props.active}
       useMaxWidth={props.useMaxWidth}

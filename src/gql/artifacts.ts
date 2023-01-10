@@ -20,7 +20,7 @@ import { TAGS, STORAGE, CURSORS } from "config";
 
 const arClient = new ArweaveClient();
 
-export async function getArtifactsByAssociation(artifactId: string, callback: (artifacts: ArtifactDetailType[]) => void): Promise<void> {
+export async function getArtifactsByAssociation(artifactId: string, callback: (artifacts: ArtifactDetailType | ArtifactDetailType[]) => void): Promise<void> {
     const artifacts: ArtifactDetailType[] = [];
 
     const artifact: GQLResponseType = (await getGQLData({
@@ -55,8 +55,26 @@ export async function getArtifactsByAssociation(artifactId: string, callback: (a
             }
         }
         else {
-            return callback([await getArtifact(artifact)]);
+            return callback(await getArtifact(artifact));
         }
+    }
+}
+
+export async function getArtifactById(artifactId: string): Promise<ArtifactDetailType | null> {
+    const artifact: GQLResponseType = (await getGQLData({
+        ids: [artifactId],
+        tagFilters: null,
+        uploader: null,
+        cursor: null,
+        reduxCursor: null,
+        cursorObject: null
+    }))[0];
+
+    if (artifact) {
+        return await getArtifact(artifact)
+    }
+    else {
+        return null
     }
 }
 
@@ -73,6 +91,7 @@ export async function getArtifact(artifact: GQLResponseType): Promise<ArtifactDe
                     artifactType: getTagValue(artifact.node.tags, TAGS.keys.artifactType) as any,
                     associationId: getTagValue(artifact.node.tags, TAGS.keys.associationId),
                     associationSequence: getTagValue(artifact.node.tags, TAGS.keys.associationSequence),
+                    profileImagePath: getTagValue(artifact.node.tags, TAGS.keys.profileImage),
                     owner: getTagValue(artifact.node.tags, TAGS.keys.initialOwner),
                     ansTitle: getTagValue(artifact.node.tags, TAGS.keys.ansTitle),
                     minted: getTagValue(artifact.node.tags, TAGS.keys.dateCreated),

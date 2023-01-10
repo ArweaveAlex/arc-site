@@ -22,15 +22,14 @@ export default function Artifact() {
             if (id) {
                 window.scrollTo(0, 0);
                 setLoading(true);
-                await getArtifactsByAssociation(id,
-                    (data: ArtifactDetailType[]) => { setData([...data]) })
+                await getArtifactsByAssociation(id, (data: ArtifactDetailType | ArtifactDetailType[]) => { setData(data) })
                 setLoading(false);
             }
         })()
     }, [id]);
 
     function getData() {
-        if ((data instanceof Array) && data.length > 1) { // TODO return non-array if no association
+        if ((data instanceof Array) && data.length > 0) {
             return (
                 <ArtifactList 
                     data={data}
@@ -39,7 +38,7 @@ export default function Artifact() {
             )
         }
         else {
-            return <ArtifactSingle data={data[0]} />
+            return <ArtifactSingle data={data as ArtifactDetailType} />
         }
     }
 

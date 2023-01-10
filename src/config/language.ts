@@ -26,6 +26,7 @@ export const LANGUAGE = {
     allArtifacts: `All Artifacts`,
     amountExceedsBalance: `Amount exceeds available balance`,
     appVersion: `Alpha`,
+    artifact: `Artifact`,
     artifacts: `Artifacts`,
     artifactsMinted: `Artifacts Minted`,
     artifactDetail: {
