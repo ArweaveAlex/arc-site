@@ -8,7 +8,8 @@ import { getTxEndpoint } from "config/endpoints";
 import { getTagValue, stripSearch } from "config/utils";
 import { TAGS, SEARCH } from "config";
 
-let processedIndeces = [];
+let processedIndeces = 0;
+let poolIndecesLength = 0;
 
 export async function initSearch(poolIds: string[]) {
         try{
@@ -27,6 +28,7 @@ export async function initSearch(poolIds: string[]) {
                 });
                 poolIndeces = poolIndeces.concat(thisPoolIndeces);
             }
+            
             return poolIndeces;
         } catch(e: any) {
             console.log(e);
@@ -41,7 +43,8 @@ export async function runSearch(
     owner: string | null,
     callback: (ids: string[], checkProcessed: any) => void
 ) {
-    processedIndeces = [];
+    processedIndeces = 0;
+    poolIndecesLength = poolIndeces.length;
     if (poolIndeces) {
         for(let k = 0; k < poolIndeces.length; k++){
             let poolIndex = poolIndeces[k];
@@ -85,13 +88,13 @@ async function searchIndex(
         }
     }
     
-    processedIndeces.push(1);
+    processedIndeces++;
 
     callback(ids, allIndecesProcessed());
 }
 
 function allIndecesProcessed(){
-    if(processedIndeces.length == 5) return true;
+    if(processedIndeces == poolIndecesLength) return true;
     return false;
 }
 
