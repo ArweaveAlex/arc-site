@@ -31,6 +31,7 @@ export default function ArtifactsSearch(props: IProps) {
 
     const [searchResultIds, setSearchResultIds] = React.useState<string[]>([]);
     const [searchRequested, setSearchRequested] = React.useState<boolean>(false);
+    const [searchToggle, setSearchToggle] = React.useState<boolean>(false);
 
     const handleIdUpdate = React.useCallback((searchResultIds: any[], cursorValue: string) => {
         const splitIds = splitArray(searchResultIds, PAGINATOR);
@@ -45,7 +46,7 @@ export default function ArtifactsSearch(props: IProps) {
     const handleClear = React.useCallback(() => {
         setSearchTerm("");
         setSearchResultIds([]);
-        props.setSearchRequested(false);
+        props.setSearchRequested(null);
         dispatch(searchActions.clearSearchIds());
         dispatch(searchActions.clearSearchTerm());
     }, [dispatch, props])
@@ -64,6 +65,7 @@ export default function ArtifactsSearch(props: IProps) {
             setSearchResultIds([]);
             dispatch(searchActions.clearSearchIds());
             setSearchRequested(true);
+            setSearchToggle(!searchToggle);
         }
     }
 
@@ -92,6 +94,7 @@ export default function ArtifactsSearch(props: IProps) {
             searchTermReducer[props.cursorObject.value].id.value === props.id.value) {
             setSearchRequested(true);
             setSearchTerm(searchTermReducer[props.cursorObject.value].value);
+            setSearchToggle(!searchToggle);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -105,19 +108,21 @@ export default function ArtifactsSearch(props: IProps) {
     React.useEffect(() => {
         (async function () {
             if (searchRequested && searchTerm && searchIndeces && searchResultIds.length <= 0) {
-                props.setSearchRequested(searchRequested);
+                
                 await runSearch(
                     searchTerm,
                     searchIndeces,
                     props.owner,
-                    (resultIds: string[]) => {
+                    (resultIds: string[], allIndecesProcessed: boolean) => {
+                        console.log(allIndecesProcessed)
+                        props.setSearchRequested(allIndecesProcessed);
                         setSearchResultIds((prevArray: string[]) => [...prevArray, ...resultIds]);
                     }
                 );
             }
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchRequested, searchIndeces, searchResultIds.length, props]);
+    }, [searchToggle]);
 
     return (
         <ReduxSearchIndexUpdate id={props.id} indexIds={props.indexIds} reduxCursor={props.cursorObject.value}>

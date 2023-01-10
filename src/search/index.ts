@@ -8,6 +8,8 @@ import { getTxEndpoint } from "config/endpoints";
 import { getTagValue, stripSearch } from "config/utils";
 import { TAGS, SEARCH } from "config";
 
+let processedIndeces = [];
+
 export async function initSearch(poolIds: string[]) {
         try{
             let poolIndeces: string[] = [];
@@ -37,8 +39,9 @@ export async function runSearch(
     searchTerm: string,
     poolIndeces: string[] | null,
     owner: string | null,
-    callback: (ids: string[]) => void
+    callback: (ids: string[], checkProcessed: any) => void
 ) {
+    processedIndeces = [];
     if (poolIndeces) {
         for(let k = 0; k < poolIndeces.length; k++){
             let poolIndex = poolIndeces[k];
@@ -56,7 +59,7 @@ async function searchIndex(
     searchTerm: string, 
     index: string,
     owner: string | null,
-    callback: (ids: string[]) => void
+    callback: (ids: string[], checkProcessed: any) => void
 ) {
     const searchIndex = (await axios.get(
         index
@@ -81,8 +84,15 @@ async function searchIndex(
             ids.push(idString);
         }
     }
+    
+    processedIndeces.push(1);
 
-    callback(ids);
+    callback(ids, allIndecesProcessed());
+}
+
+function allIndecesProcessed(){
+    if(processedIndeces.length == 5) return true;
+    return false;
 }
 
 function pullId(index: number, text: string, splitTerm: string) {

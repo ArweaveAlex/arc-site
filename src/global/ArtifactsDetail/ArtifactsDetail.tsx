@@ -20,9 +20,9 @@ export default function ArtifactsDetail(props: IProps) {
     const [detailDataUpdated, setDetailDataUpdated] = React.useState<boolean>(false);
 
     const [cursor, setCursor] = React.useState<string | null>(null);
-    const [searchRequested, setSearchRequested] = React.useState<boolean>(
-        searchTermReducer[props.cursorObject.value].value !== "" &&
-        searchTermReducer[props.cursorObject.value].id.value === props.id.value
+    const [searchRequested, setSearchRequested] = React.useState<boolean | null>(
+        (searchTermReducer[props.cursorObject.value].value !== "" &&
+        searchTermReducer[props.cursorObject.value].id.value === props.id.value) ? true : null
     );
 
     React.useEffect(() => {
@@ -32,9 +32,9 @@ export default function ArtifactsDetail(props: IProps) {
     React.useEffect(() => {
         (async function () {
             setDetailDataUpdated(!detailDataUpdated);
+            setDetailData(null);
             if (searchRequested && searchIdsReducer[props.cursorObject.value] &&
                 searchIdsReducer[props.cursorObject.value].length > 0) {
-                setDetailData(null);
                 setDetailData((await getArtifactsByIds({
                     ids: null,
                     owner: null,
@@ -50,7 +50,7 @@ export default function ArtifactsDetail(props: IProps) {
     React.useEffect(() => {
         (async function () {
             setDetailDataUpdated(!detailDataUpdated);
-            if (props.id.value && !searchRequested) {
+            if (props.id.value && (searchRequested === null)) {
                 setDetailData(null);
                 setDetailData((await props.defaultFetch.fn({
                     ids: props.defaultFetch.ids,
