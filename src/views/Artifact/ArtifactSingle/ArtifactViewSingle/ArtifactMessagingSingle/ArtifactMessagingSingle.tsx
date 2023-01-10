@@ -1,23 +1,20 @@
 import React from "react";
 import parse from "html-react-parser";
 
-import { Button } from "components/atoms/Button";
-import { Carousel } from "components/molecules/Carousel";
+import { MessagingMedia } from "global/MessagingMedia";
 
-import { MEDIA_TYPES, STORAGE } from "config";
-import { getTxEndpoint } from "config/endpoints";
+import { STORAGE } from "config";
 import { getMessageText, getUsername } from "config/utils";
 import { LANGUAGE } from "config/language";
 import { IProps } from "../../types";
 import * as S from "./styles";
 
 export default function ArtifactMessagingSingle(props: IProps) {
-    const [data, setData] = React.useState<any>(null);
-    const [contentApproved, setContentApproved] = React.useState<boolean>(false);
+    const [messageData, setMessageData] = React.useState<any>(null);
 
     React.useEffect(() => {
         if (props.data.rawData) {
-            setData(JSON.parse(props.data.rawData));
+            setMessageData(JSON.parse(props.data.rawData));
         }
     }, [props.data])
 
@@ -28,33 +25,27 @@ export default function ArtifactMessagingSingle(props: IProps) {
                     <S.BorderSection>
                         <S.InfoData>
                             <span>{LANGUAGE.messaging.name}</span>
-                            <p>{data.user && data.user.name ? data.user.name : STORAGE.none}</p>
+                            <p>{messageData.user && messageData.user.name ? messageData.user.name : STORAGE.none}</p>
                         </S.InfoData>
                     </S.BorderSection>
                     <S.Section>
                         <S.InfoData>
                             <span>{LANGUAGE.messaging.handle}</span>
-                            <p>{getUsername(data)}</p>
+                            <p>{getUsername(messageData)}</p>
                         </S.InfoData>
                     </S.Section>
                 </S.Header>
                 <S.Body>
                     <S.Message>
                         <span>{LANGUAGE.messaging.message}</span>
-                        <p>{getMessageText(data)}</p>
+                        <p>{parse(getMessageText(messageData))}</p>
                     </S.Message>
                 </S.Body>
                 <S.Footer>
-                    <S.BorderSection>
-                        <S.InfoData>
-                            <span>{LANGUAGE.messaging.originalPostDate}</span>
-                            <p>{data.created_at ? data.created_at : STORAGE.none}</p>
-                        </S.InfoData>
-                    </S.BorderSection>
                     <S.Section>
                         <S.InfoData>
-                            <span>{LANGUAGE.messaging.source}</span>
-                            <p>{data.source ? parse(data.source) : STORAGE.none}</p>
+                            <span>{LANGUAGE.messaging.originalPostDate}</span>
+                            <p>{messageData.created_at ? messageData.created_at : STORAGE.none}</p>
                         </S.InfoData>
                     </S.Section>
                 </S.Footer>
@@ -62,83 +53,10 @@ export default function ArtifactMessagingSingle(props: IProps) {
         )
     }
 
-    function getMediaType(type: string, url: string) {
-        switch (type) {
-            case MEDIA_TYPES.mp4:
-                return (
-                    <S.MediaContent>
-                        <S.VideoContent controls>
-                            <S.VideoSource type={"video/mp4"} src={url} />
-                        </S.VideoContent>
-                    </S.MediaContent>
-                )
-            case MEDIA_TYPES.jpg:
-            case MEDIA_TYPES.jpeg:
-            case MEDIA_TYPES.png:
-                return <S.ImageContent image={url} />
-            default:
-                return (
-                    <S.ArweaveLinkWrapper>
-                        <S.ArweaveLink>
-                            <a target={"_blank"} rel={"noreferrer"} href={url}>{LANGUAGE.viewOnArweave}</a>
-                        </S.ArweaveLink>
-                    </S.ArweaveLinkWrapper>
-                )
-        }
-    }
-
-    function getMedia() {
-        const mediaComponents: React.ReactElement[] = [];
-
-        if (props.data.mediaIds) {
-            const mediaIdsJson = JSON.parse(props.data.mediaIds);
-            const mediaIdsJsonKeys = Object.keys(mediaIdsJson);
-
-            for (let i = 0; i < mediaIdsJsonKeys.length; i++) {
-                if (mediaIdsJsonKeys[i].length > 0) {
-                    const mediaId = (mediaIdsJson[mediaIdsJsonKeys[i]]).id;
-                    if (mediaIdsJsonKeys[i].indexOf(".")) {
-                        mediaComponents.push(
-                            <S.MediaElement key={mediaId}>
-                                {getMediaType(mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf(".") + 1), getTxEndpoint(mediaId))}
-                            </S.MediaElement>
-                        )
-                    }
-                }
-            }
-
-            if (mediaComponents.length > 0) {
-                return (
-                    <S.MediaWrapper>
-                        {!contentApproved && (
-                            <S.ContentApproveWrapper>
-                                <S.ContentApprove>
-                                    <p>{LANGUAGE.mediaCaution}</p>
-                                    <Button
-                                        type={"secondary"}
-                                        label={LANGUAGE.accept}
-                                        handlePress={() => setContentApproved(true)}
-                                    />
-                                </S.ContentApprove>
-                            </S.ContentApproveWrapper>
-                        )}
-                        <Carousel title={LANGUAGE.media} data={mediaComponents} />
-                    </S.MediaWrapper>
-                );
-            }
-            else {
-                return null;
-            }
-        }
-        else {
-            return null
-        }
-    }
-
-    return data ? (
+    return messageData ? (
         <S.Wrapper>
             {getMessage()}
-            {getMedia()}
+            <MessagingMedia mediaIds={props.data.mediaIds} />
         </S.Wrapper>
     ) : null;
 }

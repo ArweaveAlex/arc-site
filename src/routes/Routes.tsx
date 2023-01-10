@@ -6,6 +6,7 @@ import { Landing } from "views/Landing";
 import { Pool } from "views/Pool";
 import { Pools } from "views/Pools";
 import { Artifact } from "views/Artifact";
+import { ArtifactThread } from "views/Artifact/ArtifactThread";
 import { Account } from "views/Account";
 import { Library } from "views/Library";
 import { NotFound } from "views/NotFound";
@@ -38,6 +39,11 @@ export default function _Routes() {
       <Route path={`${urls.artifact}:id`} element={
         <View>
           <Artifact />
+        </View>
+      } />
+      <Route path={`${urls.thread}:id`} element={
+        <View>
+          <ArtifactThread />
         </View>
       } />
       <Route path={`${urls.account}:active`} element={

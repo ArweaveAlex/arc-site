@@ -1,4 +1,5 @@
 import React from "react";
+import parse from "html-react-parser";
 import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -94,9 +95,8 @@ export default function ArtifactsTable(props: IProps) {
                 <ReactSVG src={artifactType.icon} />
             </S.TypeContainer>
         )
-
     }
-
+    
     function getLink(url: string, label: string) {
         return (
             <S.Link>
@@ -158,7 +158,7 @@ export default function ArtifactsTable(props: IProps) {
                 setData(props.data.contracts.map((element: any) => {
                     const row: ArtifactTableRowType = {
                         type: getType(getTagValue(element.node.tags, TAGS.keys.artifactType)),
-                        title: getLink(`${urls.artifact}${element.node.id}`, getTagValue(element.node.tags, TAGS.keys.artifactName)),
+                        title: getLink(`${urls.artifact}${element.node.id}`, parse(getTagValue(element.node.tags, TAGS.keys.artifactName)) as any),
                         dateCreated: formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), "epoch")
                     }
                     if (props.showPoolIds) {

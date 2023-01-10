@@ -120,24 +120,11 @@ export function checkGqlCursor(string: string): boolean {
 
 export function getMessageText(data: any) {
     if (data) {
-        if (data.includes && data.includes.tweets && data.includes.tweets.length > 0) {
-            for (let i = 0; i < data.includes.tweets.length; i++) {
-                if (!data.includes.tweets[i].referenced_tweets) {
-                    return data.includes.tweets[i].text;
-                }
-            }
-            return data.includes.tweets[0].text
+        if (data.full_text) {
+            return data.full_text;
         }
         else {
-            if (data.extended_tweet && data.extended_tweet.full_text) {
-                return data.extended_tweet.full_text;
-            }
-            if (data.full_text) {
-                return data.full_text;
-            }
-            else {
-                return data.text;
-            }
+            return data.text;
         }
     }
     else {

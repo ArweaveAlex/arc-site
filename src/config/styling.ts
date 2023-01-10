@@ -15,6 +15,7 @@ export const STYLING = {
         formHeightMin: "37.5px",
         formHeightMax: "55px",
         formWidthMin: "300px",
-        formWidthMax: "500px"
+        formWidthMax: "500px",
+        messagingContent: "650px"
     }
 }

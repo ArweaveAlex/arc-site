@@ -10,14 +10,13 @@ export const Wrapper = styled.div`
 
 export const PostContent = styled.div`
     height: fit-content;
-    width: 650px;
+    width: ${STYLING.dimensions.messagingContent};
     max-width: 90vw;
     margin: 42.5px auto;
     overflow: hidden;
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     background: ${(props) => props.theme.colors.container.primary.background};
     border-radius: ${STYLING.dimensions.borderRadius};
-    box-shadow: 0px 0px 7px 1px ${(props) => props.theme.colors.shadow.secondary};
     padding: 10px;
 `;
 
@@ -77,82 +76,6 @@ export const Message = styled(InfoData)`
      }
      span, p, a {
         overflow: visible;
-        white-space: normal;
+        white-space: pre-wrap;
     }
 `;
-
-export const MediaWrapper = styled.div`
-    height: 700px;
-    width: 650px;
-    max-width: 90vw;
-    margin: 0 auto;
-    position: relative;
-`;
-
-export const ContentApproveWrapper = styled.div`
-    height: 650px;
-    width: 100%;
-    position: absolute;
-    z-index: 2;
-    bottom: -5px;
-    background: ${(props) => props.theme.colors.overlay.alt2};
-    border: 1px solid ${(props) => props.theme.colors.border.alt1};
-    border-radius: ${STYLING.dimensions.borderRadius};
-    backdrop-filter: blur(15px);
-`;
-
-export const ArweaveLinkWrapper = styled(ContentApproveWrapper)`
-    background: ${(props) => props.theme.colors.container.primary.background};
-    backdrop-filter: none;
-`;
-
-export const ContentApprove = styled.div`
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    p, a {
-        line-height: 18px;
-        margin: 0 0 30px 0;
-        color: ${(props) => props.theme.colors.font.primary.alt1};
-        text-align: center;
-    }
-`;
-
-export const ArweaveLink = styled(ContentApprove)`
-    a {
-        color: ${(props) => props.theme.colors.font.primary.active.base};
-    }
-`;
-
-export const MediaElement = styled.div``;
-
-export const MediaContent = styled.div`
-    height: 650px;
-    width: 100%;
-    margin: 5px auto;
-    overflow: hidden;
-    position: absolute;
-    border: 1px solid ${(props) => props.theme.colors.border.alt1};
-    background: ${(props) => props.theme.colors.overlay.alt1};
-    border-radius: ${STYLING.dimensions.borderRadius};
-`;
-
-export const ImageContent = styled(MediaContent)<{ image: string }>`
-    background-image: ${(props) => `url("${props.image}")`};
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-`;
-
-export const VideoContent = styled.video`
-    height: 100%;
-    width: 100%;
-`;
-
-export const VideoSource = styled.source``;

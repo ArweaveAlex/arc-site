@@ -19,6 +19,7 @@ export const Header = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    padding 0 0 0 2.5px;
 `;
 
 export const Header1 = styled.h2`
@@ -60,7 +61,7 @@ export const Body = styled.div`
 export const Indicator = styled.button<{ selected: boolean }>`
     height: 15px;
     width: 15px;
-    margin: 0 0 0 7.5px;
+    margin: 0 2.5px;
     border-radius: 50%;
     background ${(props) => props.selected ?
         props.theme.colors.indicator.active.base : props.theme.colors.indicator.inactive.base};
