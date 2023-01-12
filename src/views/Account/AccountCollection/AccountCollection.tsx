@@ -2,8 +2,8 @@ import { OwnerView } from "global/OwnerView";
 
 import { useArweaveProvider } from "providers/ArweaveProvider";
 import { getArtifactsByCollections } from "gql/artifacts";
-import { REDUX_TABLES } from "config/redux";
-import { CursorEnum } from "config/types";
+import { REDUX_TABLES } from "helpers/redux";
+import { CursorEnum } from "helpers/types";
 
 export default function AccountCollection() {
     const arProvider = useArweaveProvider();

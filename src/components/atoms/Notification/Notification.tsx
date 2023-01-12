@@ -4,7 +4,7 @@ import { IconButton } from "../IconButton";
 import { Portal } from "../Portal";
 
 import { IProps } from "./types";
-import { ASSETS, DOM } from "config";
+import { ASSETS, DOM } from "helpers/config";
 import * as S from "./styles";
 
 export default function Notification(props: IProps) {

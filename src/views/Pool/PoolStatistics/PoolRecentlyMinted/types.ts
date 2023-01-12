@@ -1,5 +1,5 @@
-import { GQLResponseType } from "config/types";
+import { ArtifactResponseType } from "helpers/types";
 
 export interface IProps {
-    data: GQLResponseType[];
+    data: ArtifactResponseType;
 }

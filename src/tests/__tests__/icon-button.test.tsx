@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import { IconButton } from "components/atoms/IconButton";
 
-import { defaultTheme } from "config/themes";
+import { defaultTheme } from "helpers/themes";
 import { wrapWithProviders } from "tests/provider";
 
 describe("<IconButton />", () => {

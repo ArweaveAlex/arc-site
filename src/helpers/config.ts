@@ -4,10 +4,10 @@ import { AccountContributions } from "views/Account/AccountContributions";
 import { LibraryAll } from "views/Library/LibraryAll";
 import { LibraryCollection } from "views/Library/LibraryCollection";
 
-import { IURLView, PoolType } from "config/types";
+import { IURLView, PoolType } from "helpers/types";
 import * as filters from "filters/pools";
-import * as urls from "config/urls";
-import { LANGUAGE } from "config/language";
+import * as urls from "helpers/urls";
+import { LANGUAGE } from "helpers/language";
 
 export const TAGS = {
     keys: {
@@ -36,7 +36,7 @@ export const TAGS = {
         webpageArtifactType: "Alex-Webpage",
         poolVersions: {
             "1.2": "Alex-Archiving-Pool-v1.2",
-            "1.4": "Alex-Archiving-Pool-v1.4" // Alex-Archiving-Pool-v1.4
+            "1.4": "Alex-Archiving-Pool-v1.4" // Alex-Archiving-Pool-Thread-Testing-v1.0
         },
         searchIndex: "Alex-Search-Index-v0"
     }

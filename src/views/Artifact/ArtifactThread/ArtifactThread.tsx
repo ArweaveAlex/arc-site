@@ -7,8 +7,8 @@ import { ArtifactSingle } from "../ArtifactSingle";
 
 import { Loader } from "components/atoms/Loader";
 
-import * as window from "config/window";
-import { ArtifactDetailType } from "config/types";
+import * as window from "helpers/window";
+import { ArtifactDetailType } from "helpers/types";
 
 export default function ArtifactThread() {
     const { id } = useParams();

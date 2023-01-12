@@ -1,4 +1,4 @@
-import { CursorObjectType, TableIdType } from "config/types";
+import { CursorObjectType, TableIdType } from "helpers/types";
 
 export interface IProps {
     id: TableIdType;

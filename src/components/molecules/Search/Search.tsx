@@ -4,7 +4,7 @@ import { ReactSVG } from "react-svg";
 import { Button } from "components/atoms/Button";
 import { IconButton } from "components/atoms/IconButton";
 
-import { ASSETS } from "config";
+import { ASSETS } from "helpers/config";
 import { IProps } from "./types";
 import * as S from "./styles";
 

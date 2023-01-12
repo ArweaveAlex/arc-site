@@ -5,9 +5,9 @@ import { ArweaveClient } from "clients/arweave";
 
 import { TableLoader } from "components/atoms/TableLoader";
 
-import { formatAddress } from "config/utils";
-import * as urls from "config/urls";
-import { LANGUAGE } from "config/language";
+import { formatAddress } from "helpers/utils";
+import * as urls from "helpers/urls";
+import { LANGUAGE } from "helpers/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

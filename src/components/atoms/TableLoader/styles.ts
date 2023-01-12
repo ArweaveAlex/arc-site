@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { loadingSlide } from "config/animations";
+import { loadingSlide } from "helpers/animations";
 
 export const PlaceholderWrapper = styled.div``;
 

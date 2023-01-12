@@ -1,4 +1,4 @@
-import { NStringType, NStringListType } from "config/types";
+import { NStringType, NStringListType } from "helpers/types";
 
 export type CollectionsType = {
     owner: NStringType,

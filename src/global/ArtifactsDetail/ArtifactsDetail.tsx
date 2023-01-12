@@ -7,7 +7,7 @@ import { getArtifactsByIds } from "gql/artifacts";
 import { ArtifactsTable } from "global/ArtifactsDetail/ArtifactsTable";
 
 import { clearCursors } from "redux/cursors/actions";
-import { ArtifactResponseType } from "config/types";
+import { ArtifactResponseType } from "helpers/types";
 import { IProps } from "./types";
 
 export default function ArtifactsDetail(props: IProps) {

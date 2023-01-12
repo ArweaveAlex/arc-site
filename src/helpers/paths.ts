@@ -1,5 +1,5 @@
 import * as urls from "./urls";
-import { ASSETS } from "config";
+import { ASSETS } from "helpers/config";
 import { LANGUAGE } from "./language";
 
 export const NAV_PATHS = [

@@ -3,16 +3,16 @@ import { ReactSVG } from "react-svg";
 
 import { useArweaveProvider } from "providers/ArweaveProvider";
 import { ArweaveClient } from "clients/arweave";
-import { ContributionResultType } from "config/types";
+import { ContributionResultType } from "helpers/types";
 
 import { Button } from "components/atoms/Button";
 import { FormField } from "components/atoms/FormField";
 import { Modal } from "components/molecules/Modal";
 import { Notification } from "components/atoms/Notification";
 
-import { ValidationType } from "config/types";
-import { ASSETS } from "config";
-import { LANGUAGE } from "config/language";
+import { ValidationType } from "helpers/types";
+import { ASSETS } from "helpers/config";
+import { LANGUAGE } from "helpers/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { open, fadeIn2 } from "config/animations";
-import { STYLING } from "config/styling";
+import { open, fadeIn2 } from "helpers/animations";
+import { STYLING } from "helpers/styling";
 
 export const Content = styled.div`
     height: 100%;

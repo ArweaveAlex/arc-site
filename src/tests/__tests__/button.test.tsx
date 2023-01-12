@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Button } from "components/atoms/Button";
 
-import { defaultTheme } from "config/themes";
+import { defaultTheme } from "helpers/themes";
 import { wrapWithProviders } from "tests/provider";
 
 describe("<Button />", () => {

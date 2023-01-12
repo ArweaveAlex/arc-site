@@ -3,11 +3,11 @@ import {
     GQLResponseType,
     PoolSearchIndexType,
     PoolType
-} from "config/types";
-import { getRedstoneSrcTxEndpoint } from "config/endpoints";
+} from "helpers/types";
+import { getRedstoneSrcTxEndpoint } from "helpers/endpoints";
 import { getGQLData } from "gql";
-import { getTagValue } from "config/utils";
-import { TAGS } from "config";
+import { getTagValue } from "helpers/utils";
+import { TAGS } from "helpers/config";
 
 export async function getPoolIds() {
     const pools: GQLResponseType[] = await getGQLData({
@@ -135,7 +135,7 @@ export async function getPoolSearchIndexById(poolSearchIndexId: string): Promise
 }
 
 export async function getPoolCount(nftContractSrc: string): Promise<number> {
-    let redstoneContracts = await fetch(getRedstoneSrcTxEndpoint(nftContractSrc));
+    let redstoneContracts = await fetch(getRedstoneSrcTxEndpoint(nftContractSrc, 1));
     let redstoneJson = await redstoneContracts.json();
     return parseInt(redstoneJson.paging.total);
 }

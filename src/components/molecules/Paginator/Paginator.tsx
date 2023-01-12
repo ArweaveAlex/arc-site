@@ -1,7 +1,7 @@
 import { Button } from "components/atoms/Button";
 
-import { LANGUAGE } from "config/language";
-import { CURSORS } from "config";
+import { LANGUAGE } from "helpers/language";
+import { CURSORS } from "helpers/config";
 import { IProps } from "./types"
 import * as S from "./styles";
 
@@ -40,7 +40,7 @@ export default function Paginator(props: IProps) {
 
     function handleScroll() {
         if (props.scrollRef.current) {
-            props.scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+            setTimeout(function () { props.scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" }) }, 1);
         }
     }
 
@@ -54,7 +54,6 @@ export default function Paginator(props: IProps) {
         handleScroll();
     }
 
-    // TODO - Browser scroll issues
     const handleCurrentPage = (number: number) => {
         props.setCurrentPage(number);
         handleScroll();

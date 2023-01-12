@@ -7,16 +7,17 @@ import { Loader } from "components/atoms/Loader";
 import { MessagingMedia } from "global/MessagingMedia";
 
 import { sortByAssociationSequence } from "filters/artifacts";
-import { ArtifactDetailType } from "config/types";
-import { STORAGE } from "config";
-import { getTxEndpoint } from "config/endpoints";
-import { ASSETS } from "config";
-import { formatAddress, getMessageText, getUsername, formatDate } from "config/utils";
-import { LANGUAGE } from "config/language";
-import * as urls from "config/urls";
+import { ArtifactDetailType } from "helpers/types";
+import { STORAGE } from "helpers/config";
+import { getTxEndpoint } from "helpers/endpoints";
+import { ASSETS } from "helpers/config";
+import { formatAddress, getMessageText, getUsername, formatDate } from "helpers/utils";
+import { LANGUAGE } from "helpers/language";
+import * as urls from "helpers/urls";
 import { IProps } from "../../types";
 import * as S from "./styles";
 
+// TODO - Thread loader (Need different sort)
 function ListItem(props: { data: ArtifactDetailType }) {
     const [messageData, setMessageData] = React.useState<any>(null);
 
@@ -43,10 +44,6 @@ function ListItem(props: { data: ArtifactDetailType }) {
         }
     }
 
-    if (messageData) {
-        console.log(messageData.public_metrics)
-    }
-
     return (props.data && messageData) ? (
         <S.LIWrapper>
             <S.LIContent>
@@ -71,7 +68,7 @@ function ListItem(props: { data: ArtifactDetailType }) {
                     </S.Message>
                     <MessagingMedia mediaIds={props.data.mediaIds} />
                     {messageData.created_at && 
-                        <S.PostDate>{formatDate(messageData.created_at, "iso")}</S.PostDate> // TODO - format date
+                        <S.PostDate>{formatDate(messageData.created_at, "iso")}</S.PostDate>
                     }
                     {messageData.public_metrics && 
                         <S.PublicMetrics>

@@ -11,7 +11,7 @@ import { Account } from "views/Account";
 import { Library } from "views/Library";
 import { NotFound } from "views/NotFound";
 
-import * as urls from "config/urls";
+import * as urls from "helpers/urls";
 
 export default function _Routes() {
   return (

@@ -5,7 +5,7 @@ import { Footer } from "navigation/footer";
 
 import { Routes } from "routes";
 
-import { DOM } from "config";
+import { DOM } from "helpers/config";
 
 export default function Root() {
   return (

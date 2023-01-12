@@ -3,9 +3,9 @@ import parse from "html-react-parser";
 
 import { MessagingMedia } from "global/MessagingMedia";
 
-import { STORAGE } from "config";
-import { getMessageText, getUsername } from "config/utils";
-import { LANGUAGE } from "config/language";
+import { STORAGE } from "helpers/config";
+import { getMessageText, getUsername } from "helpers/utils";
+import { LANGUAGE } from "helpers/language";
 import { IProps } from "../../types";
 import * as S from "./styles";
 

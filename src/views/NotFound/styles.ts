@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { STYLING } from "config/styling";
+import { STYLING } from "helpers/styling";
 
 export const Wrapper = styled.div`
     height: calc(100vh - ${STYLING.dimensions.navHeight});

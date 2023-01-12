@@ -4,10 +4,10 @@ import { useArweaveProvider } from "providers/ArweaveProvider";
 import { Button } from "components/atoms/Button";
 import { URLTabs } from "components/organisms/URLTabs";
 
-import * as urls from "config/urls";
-import { formatAddress, getHashUrl } from "config/utils";
-import { ASSETS, URLS } from "config";
-import { LANGUAGE } from "config/language";
+import * as urls from "helpers/urls";
+import { formatAddress, getHashUrl } from "helpers/utils";
+import { ASSETS, URLS } from "helpers/config";
+import { LANGUAGE } from "helpers/language";
 import * as S from "./styles";
 
 export default function Account() {

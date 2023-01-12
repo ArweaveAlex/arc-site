@@ -1,4 +1,4 @@
-import { STYLING } from "config/styling";
+import { STYLING } from "helpers/styling";
 
 export function checkDesktop(): boolean {
   return window.innerWidth > parseInt(STYLING.cutoffs.initial);
@@ -17,8 +17,5 @@ export function checkWindowResize(fn: () => void): void {
 }
 
 export function scrollTo(x: number, y: number) {
-  window.scrollTo({
-    left: x,
-    top: y
-  });
+  setTimeout(function () { window.scrollTo({ left: x, top: y }); }, 1);
 }

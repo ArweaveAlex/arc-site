@@ -3,12 +3,12 @@ import React from "react";
 import { TableLoader } from "components/atoms/TableLoader";
 import { Paginator } from "components/molecules/Paginator";
 
-import { KeyValueType } from "config/types";
+import { KeyValueType } from "helpers/types";
 
-import { formatTitle } from "config/utils";
+import { formatTitle } from "helpers/utils";
 import { IProps } from "./types";
 import * as S from "./styles";
-import { PAGINATOR } from "config";
+import { PAGINATOR } from "helpers/config";
 
 export default function Table(props: IProps) {
     const scrollRef = React.useRef(null);

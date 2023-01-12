@@ -5,7 +5,7 @@ import * as searchActions from "redux/search/actions";
 import { RootState } from "redux/store";
 import { initSearch } from "search";
 
-import { TableIdType } from "config/types";
+import { TableIdType } from "helpers/types";
 
 export default function ReduxSearchIndexUpdate(props: { 
     id: TableIdType, 

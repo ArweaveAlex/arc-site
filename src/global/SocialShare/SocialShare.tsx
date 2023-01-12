@@ -4,8 +4,8 @@ import { TwitterShareButton } from "react-share";
 
 import { IconButton } from "components/atoms/IconButton";
 
-import { ASSETS } from "config";
-import { LANGUAGE } from "config/language";
+import { ASSETS } from "helpers/config";
+import { LANGUAGE } from "helpers/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

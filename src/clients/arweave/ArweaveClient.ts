@@ -13,9 +13,9 @@ import {
     ContributionType,
     ContributionResultType,
     GQLResponseType
-} from "config/types";
-import { LANGUAGE } from "config/language";
-import { TAGS } from "config";
+} from "helpers/types";
+import { LANGUAGE } from "helpers/language";
+import { TAGS } from "helpers/config";
 
 const GET_ENDPOINT = "arweave-search.goldsky.com";
 const POST_ENDPOINT = "arweave.net";

@@ -1,4 +1,4 @@
-import { ArtifactDetailType } from "config/types";
+import { ArtifactDetailType } from "helpers/types";
 
 export function sortByAssociationSequence(data: ArtifactDetailType[]) {
     const sortedData: ArtifactDetailType[] = data.sort(function (a, b) {

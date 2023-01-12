@@ -9,11 +9,11 @@ import { PoolHeader } from "./PoolHeader";
 import { PoolStatistics } from "./PoolStatistics";
 import { PoolDetail } from "./PoolDetail";
 
-import { PoolType, CursorEnum } from "config/types";
-import { getTxEndpoint } from "config/endpoints";
-import { formatDate, getTagValue } from "config/utils";
-import { TAGS, FALLBACK_IMAGE } from "config";
-import { REDUX_TABLES } from "config/redux";
+import { PoolType, CursorEnum } from "helpers/types";
+import { getTxEndpoint } from "helpers/endpoints";
+import { formatDate, getTagValue } from "helpers/utils";
+import { TAGS, FALLBACK_IMAGE } from "helpers/config";
+import { REDUX_TABLES } from "helpers/redux";
 import * as S from "./styles";
 import { getArtifactsByPool } from "gql/artifacts";
 

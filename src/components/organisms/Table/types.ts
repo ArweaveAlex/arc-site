@@ -1,6 +1,6 @@
 import React from "react";
 
-import { KeyValueType, TableHeaderType, CursorType } from "config/types"
+import { KeyValueType, TableHeaderType, CursorType } from "helpers/types"
 
 export interface IProps {
     title: string;

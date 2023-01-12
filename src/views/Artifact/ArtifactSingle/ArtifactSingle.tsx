@@ -11,10 +11,10 @@ import {
     ARTIFACT_TYPES,
     TAB_OPTIONS,
     TAGS
-} from "config";
-import { checkNullValues } from "config/utils";
-import { ArtifactDetailType } from "config/types";
-import { LANGUAGE } from "config/language";
+} from "helpers/config";
+import { checkNullValues } from "helpers/utils";
+import { ArtifactDetailType } from "helpers/types";
+import { LANGUAGE } from "helpers/language";
 import * as S from "./styles";
 import { IProps } from "./types"
 

@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 
 import { ArweaveProvider } from "providers/ArweaveProvider";
 
-import { defaultTheme } from "config/themes";
+import { defaultTheme } from "helpers/themes";
 
 export function wrapWithProviders(children: React.ReactNode) {
     return (

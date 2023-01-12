@@ -1,5 +1,5 @@
-import { LANGUAGE } from "config/language";
-import * as urls from "config/urls";
+import { LANGUAGE } from "helpers/language";
+import * as urls from "helpers/urls";
 import * as S from "./styles";
 
 export default function LandingFAQLink() {

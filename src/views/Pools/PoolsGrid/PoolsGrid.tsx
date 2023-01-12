@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 import { Select } from "components/atoms/Select";
 
-import { PoolType, PoolFilterType } from "config/types";
-import { getTxEndpoint } from "config/endpoints";
-import * as urls from "config/urls";
-import { formatDate } from "config/utils";
-import { FALLBACK_IMAGE, POOL_FILTERS } from "config";
-import { LANGUAGE } from "config/language";
+import { PoolType, PoolFilterType } from "helpers/types";
+import { getTxEndpoint } from "helpers/endpoints";
+import * as urls from "helpers/urls";
+import { formatDate } from "helpers/utils";
+import { FALLBACK_IMAGE, POOL_FILTERS } from "helpers/config";
+import { LANGUAGE } from "helpers/language";
 import * as S from "./styles";
 
 function PoolTile(props: PoolType) {

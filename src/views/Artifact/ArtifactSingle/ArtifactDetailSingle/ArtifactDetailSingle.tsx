@@ -4,10 +4,10 @@ import { ReactSVG } from "react-svg";
 
 import { IconButton } from "components/atoms/IconButton";
 
-import { formatAddress, formatDataSize, formatDate } from "config/utils";
-import * as urls from "config/urls";
-import { LANGUAGE } from "config/language";
-import { ASSETS } from "config";
+import { formatAddress, formatDataSize, formatDate } from "helpers/utils";
+import * as urls from "helpers/urls";
+import { LANGUAGE } from "helpers/language";
+import { ASSETS } from "helpers/config";
 import { IProps } from "./types";
 import * as S from "./styles";
 

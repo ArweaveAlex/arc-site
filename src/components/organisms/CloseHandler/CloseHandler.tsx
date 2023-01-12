@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IProps } from "./types";
-import { RefType } from "config/types";
+import { RefType } from "helpers/types";
 
 import * as S from "./styles";
 

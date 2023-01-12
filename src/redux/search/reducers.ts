@@ -1,4 +1,4 @@
-import { ReduxActionType } from "config/types";
+import { ReduxActionType } from "helpers/types";
 import { SearchIdsType, SearchTermType, SearchIndecesType } from "./types";
 import { 
     SET_SEARCH_IDS, 
@@ -8,7 +8,7 @@ import {
     SET_SEARCH_INDECES,
     CLEAR_SEARCH_INDECES
 } from "./constants";
-import { REDUX_TABLES } from "config/redux";
+import { REDUX_TABLES } from "helpers/redux";
 
 export const initStateSearchIds: SearchIdsType = {
     [REDUX_TABLES.accountAll]: [],

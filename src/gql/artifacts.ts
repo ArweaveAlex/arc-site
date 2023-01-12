@@ -10,13 +10,13 @@ import {
     GQLResponseType,
     TagFilterType,
     CursorEnum
-} from "config/types";
+} from "helpers/types";
 import { getGQLData } from "gql";
-import { getTxEndpoint } from "config/endpoints";
+import { getTxEndpoint } from "helpers/endpoints";
 import { getPoolById, getPoolIds } from "./pools";
-import { checkGqlCursor, getTagValue } from "config/utils";
-import { LANGUAGE } from "config/language";
-import { TAGS, STORAGE, CURSORS } from "config";
+import { checkGqlCursor, getTagValue } from "helpers/utils";
+import { LANGUAGE } from "helpers/language";
+import { TAGS, STORAGE, CURSORS } from "helpers/config";
 
 const arClient = new ArweaveClient();
 

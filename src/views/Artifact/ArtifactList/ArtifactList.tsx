@@ -4,7 +4,7 @@ import { ArtifactViewList } from "./ArtifactViewList";
 
 import { Loader } from "components/atoms/Loader";
 
-import { ArtifactDetailType } from "config/types";
+import { ArtifactDetailType } from "helpers/types";
 import { IProps } from "./types";
 
 export default function ArtifactList(props: IProps) {

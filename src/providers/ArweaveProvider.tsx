@@ -1,8 +1,8 @@
 import React from "react";
 
-import { getBalanceEndpoint } from "config/endpoints";
-import { LANGUAGE } from "config/language";
-import { AR_WALLETS, WALLET_PERMISSIONS } from "config";
+import { getBalanceEndpoint } from "helpers/endpoints";
+import { LANGUAGE } from "helpers/language";
+import { AR_WALLETS, WALLET_PERMISSIONS } from "helpers/config";
 
 interface ArweaveContextState {
     wallets: { name: string, logo: string }[];

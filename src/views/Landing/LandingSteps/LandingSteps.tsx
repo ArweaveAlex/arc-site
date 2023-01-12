@@ -1,7 +1,7 @@
 import parse from "html-react-parser";
 
-import { ASSETS } from "config";
-import { LANGUAGE } from "config/language";
+import { ASSETS } from "helpers/config";
+import { LANGUAGE } from "helpers/language";
 import * as S from "./styles";
 
 export default function LandingSteps() {

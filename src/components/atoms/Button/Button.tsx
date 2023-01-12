@@ -1,6 +1,6 @@
 import { ReactSVG } from "react-svg";
 
-import { LANGUAGE } from "config/language";
+import { LANGUAGE } from "helpers/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 

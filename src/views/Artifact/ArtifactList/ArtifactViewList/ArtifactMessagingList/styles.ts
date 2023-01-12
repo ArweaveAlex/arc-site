@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { open, fadeIn2 } from "config/animations";
+import { open, fadeIn2 } from "helpers/animations";
 
 export const Wrapper = styled.div`
     animation: ${open} ${fadeIn2};

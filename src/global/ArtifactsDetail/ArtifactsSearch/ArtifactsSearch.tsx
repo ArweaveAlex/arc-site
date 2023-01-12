@@ -8,10 +8,9 @@ import { runSearch } from "search";
 import { Search } from "components/molecules/Search";
 
 import * as searchActions from "redux/search/actions"
-import { splitArray } from "config/utils";
-import { PAGINATOR, SEARCH } from "config";
+import { splitArray } from "helpers/utils";
+import { PAGINATOR, SEARCH } from "helpers/config";
 import { IProps } from "./types";
-import { REDUX_TABLES } from "config/redux";
 
 export default function ArtifactsSearch(props: IProps) {
     const dispatch = useDispatch();
@@ -130,7 +129,7 @@ export default function ArtifactsSearch(props: IProps) {
                 handleChange={(term: string) => handleChange(term)}
                 handleSearch={(e: React.KeyboardEvent<HTMLInputElement>) => handleSearch(e)}
                 handleClear={handleClear}
-                disabled={!searchIndeces || props.disabled}
+                disabled={(!searchIndeces || (searchIndeces && searchIndeces.length <= 0)) || props.disabled}
             />
         </ReduxSearchIndexUpdate>
     )

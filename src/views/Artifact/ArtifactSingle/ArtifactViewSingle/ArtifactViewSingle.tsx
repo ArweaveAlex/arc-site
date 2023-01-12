@@ -1,7 +1,7 @@
 import { ArtifactMessagingSingle } from "./ArtifactMessagingSingle";
 import { ArtifactWebpageSingle } from "./ArtifactWebpageSingle";
 
-import { ArtifactEnum } from "config/types";
+import { ArtifactEnum } from "helpers/types";
 import { IProps } from "../types";
 import * as S from "./styles";
 

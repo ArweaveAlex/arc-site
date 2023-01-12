@@ -1,4 +1,4 @@
-import { ButtonType } from "config/types";
+import { ButtonType } from "helpers/types";
 
 export interface IProps {
   src: string;

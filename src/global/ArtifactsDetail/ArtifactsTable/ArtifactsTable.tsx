@@ -13,21 +13,21 @@ import { ArtifactsSearch } from "../ArtifactsSearch";
 import { IconButton } from "components/atoms/IconButton";
 import { Table } from "components/organisms/Table";
 
-import { LANGUAGE } from "config/language";
-import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from "config";
+import { LANGUAGE } from "helpers/language";
+import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from "helpers/config";
 
 import {
     AlignType,
     ArtifactTableRowType,
     TableHeaderType
-} from "config/types";
+} from "helpers/types";
 
 import {
     formatDate,
     getTagValue
-} from "config/utils";
+} from "helpers/utils";
 
-import * as urls from "config/urls";
+import * as urls from "helpers/urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 

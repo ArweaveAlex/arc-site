@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { open, fadeIn1 } from "config/animations";
-import { STYLING } from "config/styling";
+import { open, fadeIn1 } from "helpers/animations";
+import { STYLING } from "helpers/styling";
 
 export const Wrapper = styled.header`
     height: ${STYLING.dimensions.navHeight};

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-import { STYLING } from "config/styling";
+import { STYLING } from "helpers/styling";
+import { loadingSlide } from "helpers/animations";
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -109,4 +110,24 @@ export const NodeWrapper = styled.div`
         width: 100%;
         display: block;
     }
+`;
+
+export const Placeholder = styled.div`
+    height: 310px;
+    min-width: 250px;
+    width: 290px;
+    max-width: 250px;
+    position: relative;
+    background: linear-gradient(
+        to right,
+        ${(props) => props.theme.colors.table.placeholder.backgroundStart},
+        ${(props) => props.theme.colors.table.placeholder.backgroundSlide} 50%,
+        ${(props) => props.theme.colors.table.placeholder.backgroundEnd} 80%
+    ),
+    ${(props) => props.theme.colors.table.placeholder.background};
+    background-repeat: repeat-y;
+    background-size: 50px 500px;
+    background-position: 0 0;
+    animation: ${loadingSlide} 1.25s infinite;
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
 `;

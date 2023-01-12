@@ -3,9 +3,9 @@ import React from "react";
 // import { Button } from "components/atoms/Button";
 import { Carousel } from "components/molecules/Carousel";
 
-import { MEDIA_TYPES } from "config";
-import { LANGUAGE } from "config/language";
-import { getTxEndpoint } from "config/endpoints";
+import { MEDIA_TYPES } from "helpers/config";
+import { LANGUAGE } from "helpers/language";
+import { getTxEndpoint } from "helpers/endpoints";
 
 import { IProps } from "./types";
 import * as S from "./styles";

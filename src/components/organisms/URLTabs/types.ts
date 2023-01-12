@@ -1,4 +1,4 @@
-import { URLViewType } from "config/types";
+import { URLViewType } from "helpers/types";
 
 export interface ITProps {
     label: string;

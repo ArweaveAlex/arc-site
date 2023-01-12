@@ -5,17 +5,17 @@ import { ReactSVG } from "react-svg";
 import { IconButton } from "components/atoms/IconButton";
 import { WalletConnect } from "wallet/WalletConnect";
 
-import { ASSETS } from "config";
-import { SOCIAL_PATHS } from "config/paths";
-import { LANGUAGE } from "config/language";
-import * as urls from "config/urls";
+import { ASSETS } from "helpers/config";
+import { SOCIAL_PATHS } from "helpers/paths";
+import { LANGUAGE } from "helpers/language";
+import * as urls from "helpers/urls";
 import { 
     checkDesktop, 
     checkWindowResize, 
     hideDocumentBody, 
     showDocumentBody 
-} from "config/window";
-import { NAV_PATHS } from "config/paths";
+} from "helpers/window";
+import { NAV_PATHS } from "helpers/paths";
 import * as S from "./styles";
 
 export default function Header() {

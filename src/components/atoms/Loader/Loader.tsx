@@ -2,10 +2,10 @@ import React from "react";
 import { Portal } from "../Portal";
 
 import * as S from "./styles";
-import { DOM } from "config";
+import { DOM } from "helpers/config";
 import { IProps } from "./types";
 
-import * as window from "config/window";
+import * as window from "helpers/window";
 
 export default function Loader(props: IProps) {
   React.useEffect(() => {

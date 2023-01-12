@@ -1,4 +1,4 @@
-import { ReduxActionType } from "config/types";
+import { ReduxActionType } from "helpers/types";
 import { CollectionsType } from "./types";
 import { SET_COLLECTION } from "./constants";
 

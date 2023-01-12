@@ -4,8 +4,8 @@ import { ReactSVG } from "react-svg";
 import { IconButton } from "components/atoms/IconButton";
 import { Portal } from "components/atoms/Portal";
 
-import { ASSETS, DOM } from "config";
-import * as window from "config/window";
+import { ASSETS, DOM } from "helpers/config";
+import * as window from "helpers/window";
 import * as S from "./styles";
 import { IProps } from "./types";
 

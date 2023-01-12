@@ -9,10 +9,10 @@ import {
     formatAddress,
     formatDate,
     formatArtifactType
-} from "config/utils";
-import { LANGUAGE } from "config/language";
-import { ARTIFACT_TABS, ASSETS } from "config";
-import * as urls from "config/urls";
+} from "helpers/utils";
+import { LANGUAGE } from "helpers/language";
+import { ARTIFACT_TABS, ASSETS } from "helpers/config";
+import * as urls from "helpers/urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 

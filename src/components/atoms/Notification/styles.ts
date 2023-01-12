@@ -1,8 +1,8 @@
 import styled, { DefaultTheme } from "styled-components";
 
-import { NotificationType } from "config/types";
+import { NotificationType } from "helpers/types";
 
-import { open, fadeIn1 } from "config/animations";
+import { open, fadeIn1 } from "helpers/animations";
 
 type NotificationProps = {
   type: NotificationType;

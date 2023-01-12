@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import { Button } from "components/atoms/Button";
 import { URLTabs } from "components/organisms/URLTabs";
 
-import { formatAddress } from "config/utils";
-import { LANGUAGE } from "config/language";
-import { ASSETS, URLS } from "config";
+import { formatAddress } from "helpers/utils";
+import { LANGUAGE } from "helpers/language";
+import { ASSETS, URLS } from "helpers/config";
 import * as S from "./styles";
 
 export default function Library() {

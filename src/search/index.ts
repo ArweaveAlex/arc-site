@@ -4,9 +4,9 @@ import {
     getLatestPoolSearchIndexTxId, 
     getPoolSearchIndexById 
 } from "gql/pools";
-import { getTxEndpoint } from "config/endpoints";
-import { getTagValue, stripSearch } from "config/utils";
-import { TAGS, SEARCH } from "config";
+import { getTxEndpoint } from "helpers/endpoints";
+import { getTagValue, stripSearch } from "helpers/utils";
+import { TAGS, SEARCH } from "helpers/config";
 
 let processedIndeces = 0;
 let poolIndecesLength = 0;
@@ -31,7 +31,7 @@ export async function initSearch(poolIds: string[]) {
             
             return poolIndeces;
         } catch(e: any) {
-            console.log(e);
+            console.error(e);
             return null;
         }
     
@@ -94,7 +94,7 @@ async function searchIndex(
 }
 
 function allIndecesProcessed(){
-    if(processedIndeces == poolIndecesLength) return true;
+    if(processedIndeces === poolIndecesLength) return true;
     return false;
 }
 

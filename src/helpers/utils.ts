@@ -1,5 +1,5 @@
-import { STORAGE, SEARCH } from "config";
-import { DateType, KeyValueType } from "config/types";
+import { STORAGE, SEARCH } from "helpers/config";
+import { DateType, KeyValueType } from "helpers/types";
 
 export function getHashUrl(url: string) {
     return `${url}/#`;
