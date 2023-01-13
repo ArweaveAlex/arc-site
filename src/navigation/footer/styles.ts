@@ -113,4 +113,5 @@ export const YearContainer = styled.div`
 
 export const Year = styled.p`
   color: ${(props) => props.theme.colors.font.primary.alt6};
+  font-size: 13px;
 `;

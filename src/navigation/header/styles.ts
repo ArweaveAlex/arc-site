@@ -28,8 +28,6 @@ export const LogoContainer = styled.div`
   margin: 0 0 0 20px;
   display: flex;
   align-items: center;
-  width: 17.5%;
-  min-width: 200px;
   a {
     &:hover {
       text-decoration: none;
@@ -57,6 +55,9 @@ export const LogoContent = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   padding: 5px 0;
+  svg {
+    fill: ${(props) => props.theme.colors.navigation.header.logoFill};
+  }
 `;
 
 export const LogoHeaderContent = styled.div`
@@ -92,7 +93,7 @@ export const LogoSubHeader = styled.p`
 
 export const NC = styled.div`
   height: 100%;
-  width: calc(82.5% - 20px);
+  width: 395px;
   max-width: 77.5vw;
   right: 0;
   position: absolute;
@@ -141,7 +142,7 @@ export const SocialLink = styled.a`
   margin: 0 20px;
 
   svg {
-    width: 25px;
+    width: 20px;
     fill: ${(props) => props.theme.colors.font.primary.active.base};
     &:hover {
       fill: ${(props) => props.theme.colors.font.primary.active.hover};

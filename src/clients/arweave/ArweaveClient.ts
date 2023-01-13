@@ -27,7 +27,7 @@ const LOGGING = false;
 
 export default class ArweaveClient {
     arweaveGet: any = Arweave.init({
-        host: GET_ENDPOINT,
+        host: POST_ENDPOINT,
         port: PORT,
         protocol: PROTOCOL,
         timeout: TIMEOUT,

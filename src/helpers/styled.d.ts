@@ -144,6 +144,7 @@ declare module "styled-components" {
                 }
                 header: {
                     background: string
+                    logoFill: string
                 }
             }
             notification: {

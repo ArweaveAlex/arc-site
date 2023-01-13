@@ -23,13 +23,14 @@ export const PostContent = styled.div`
 export const InfoData = styled.div`
     span {
         font-size: 13px;
+        line-height: 18px;
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
     p, a {
-        font-size: ${(props) => props.theme.typography.size.base};
+        font-size: ${(props) => props.theme.typography.size.small};
         line-height: 18px;
         color: ${(props) => props.theme.colors.font.primary.active.base};
-        margin: 10px 0 0 0;
+        margin: 5px 0 0 0;
     }
     span, p, a {
         text-overflow: ellipsis;
@@ -71,11 +72,14 @@ export const Footer = styled.div`
 `;
 
 export const Message = styled(InfoData)`
-     p {
-        line-height: 22px;
-     }
-     span, p, a {
+    margin: 0 0 15px 0;
+    span, p, a, b {
+        font-size: ${(props) => props.theme.typography.size.base};
+        line-height: 24px;
         overflow: visible;
         white-space: pre-wrap;
+    }
+    span {
+        color: ${(props) => props.theme.colors.font.primary.alt4};
     }
 `;

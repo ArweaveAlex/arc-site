@@ -43,7 +43,7 @@ export const LANGUAGE = {
         header2: `Preserving`,
         header3: `Human History is`,
         subheader1: `Archives are permanently stored on`,
-        subheader2: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed justo bibendum ipsum commodo aliquet.`
+        subheader2: `Pools are created with the`
     },
     bookmarksUpdated: `Collections Updated`,
     community: `Community`,
@@ -54,7 +54,7 @@ export const LANGUAGE = {
     connectionError: `Connection Error`,
     contribute: `Contribute`,
     contributeTo: `Contribute to`,
-    contributionMessage: `Your contribution totals will be adjusted once your transfer has settled on the Arweave network. Artifacts will begin to accrue in your account shortly.`,
+    contributionMessage: `Your contribution totals will be adjusted once your transfer has settled on the Arweave network.`,
     contributions: `My Contributions`,
     contributors: {
         recent: `Recent Contributors`,
@@ -131,6 +131,7 @@ export const LANGUAGE = {
         },
         createdOn: `Created on`
     },
+    poolOperator: `Alex. Pool Operator`,
     pools: {
         header1: `Pools`,
         gridTitles: {

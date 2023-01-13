@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     padding: 20px;
     display: flex;
     flex-direction: column;

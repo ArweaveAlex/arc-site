@@ -29,7 +29,10 @@ export default function Artifact() {
     }, [id]);
 
     function getData() {
-        if ((data instanceof Array) && data.length > 0) {
+        if ((data instanceof Array) && data.length > 0 && data[0] === null) {
+            return null;
+        }
+        else if ((data instanceof Array) && data.length > 0) {
             return (
                 <ArtifactList 
                     data={data}

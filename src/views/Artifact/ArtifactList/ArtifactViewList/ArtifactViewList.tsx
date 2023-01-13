@@ -6,7 +6,7 @@ import * as S from "./styles";
 
 export default function ArtifactViewList(props: IProps) {
     function getArtifact() {
-        if (props.data && props.data.length > 0) {
+        if (props.data && props.data.length > 1) {
             switch (props.data[0].artifactType) {
                 case ArtifactEnum.Messaging:
                     return (

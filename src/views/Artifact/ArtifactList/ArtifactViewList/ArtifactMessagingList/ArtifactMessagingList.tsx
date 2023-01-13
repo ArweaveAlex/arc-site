@@ -67,10 +67,10 @@ function ListItem(props: { data: ArtifactDetailType }) {
                         <p>{parse(getMessageText(messageData))}</p>
                     </S.Message>
                     <MessagingMedia mediaIds={props.data.mediaIds} />
-                    {messageData.created_at && 
+                    {messageData.created_at &&
                         <S.PostDate>{formatDate(messageData.created_at, "iso")}</S.PostDate>
                     }
-                    {messageData.public_metrics && 
+                    {messageData.public_metrics &&
                         <S.PublicMetrics>
                             <S.Metric>
                                 <ReactSVG src={ASSETS.impressions} />
@@ -105,20 +105,32 @@ export default function ArtifactMessagingList(props: IProps) {
         }
     }, [props.data])
 
-    return data ? (
-        <S.Wrapper>
-            <S.ListWrapper>
-                {data.map((artifact: ArtifactDetailType, index: number) => {
-                    return (
-                        <ListItem key={index} data={artifact} />
-                    )
-                })}
-            </S.ListWrapper>
-            {props.loading && (
+    function getData() {
+        if (!props.loading) {
+            return (
+                <>
+                    {data.map((artifact: ArtifactDetailType, index: number) => {
+                        return (
+                            <ListItem key={index} data={artifact} />
+                        )
+                    })}
+                </>
+            )
+        }
+        else {
+            return (
                 <S.LoadingContainer>
                     <Loader sm />
                 </S.LoadingContainer>
-            )}
+            )
+        }
+    }
+
+    return data ? (
+        <S.Wrapper>
+            <S.ListWrapper>
+                {getData()}
+            </S.ListWrapper>
         </S.Wrapper>
     ) : null;
 }

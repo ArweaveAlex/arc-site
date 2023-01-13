@@ -7,7 +7,6 @@ import { WalletConnect } from "wallet/WalletConnect";
 
 import { ASSETS } from "helpers/config";
 import { SOCIAL_PATHS } from "helpers/paths";
-import { LANGUAGE } from "helpers/language";
 import * as urls from "helpers/urls";
 import { 
     checkDesktop, 
@@ -105,15 +104,16 @@ export default function Header() {
         <S.Wrapper>
             <S.NavContainer>
                 <S.LogoContainer>
-                    <Link to={urls.base}>
+                    <Link to={urls.base} onClick={() => setOpen(false)}>
                         <S.LogoContent>
-                            <S.LogoHeaderContent>
+                            <ReactSVG src={ASSETS.siteLogo} />
+                            {/* <S.LogoHeaderContent>
                                 <S.LogoHeader>{LANGUAGE.companyTitle}</S.LogoHeader>
                                 <S.Version>
                                     <span>{LANGUAGE.appVersion.toUpperCase()}</span>
                                 </S.Version>
                             </S.LogoHeaderContent>
-                            <S.LogoSubHeader>{LANGUAGE.companyDescription}</S.LogoSubHeader>
+                            <S.LogoSubHeader>{LANGUAGE.companyDescription}</S.LogoSubHeader> */}
                         </S.LogoContent>
                     </Link>
                 </S.LogoContainer>

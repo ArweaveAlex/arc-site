@@ -172,7 +172,8 @@ export const defaultTheme: DefaultTheme = {
                 background: DEFAULT.neutral1
             },
             header: {
-                background: DEFAULT.neutral1
+                background: DEFAULT.neutral1,
+                logoFill: DEFAULT.primary
             }
         },
         notification: {

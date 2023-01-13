@@ -120,11 +120,14 @@ export const InfoData = styled.div`
 
 export const Message = styled(InfoData)`
      margin: 0 0 15px 0;
-     span, p, a {
-        font-size: 18px;
-        line-height: 26px;
+     span, p, a, b {
+        font-size: ${(props) => props.theme.typography.size.base};
+        line-height: 24px;
         overflow: visible;
         white-space: pre-wrap;
+    }
+    span {
+        color: ${(props) => props.theme.colors.font.primary.alt4};
     }
 `;
 
@@ -159,7 +162,7 @@ export const Metric = styled.div`
 `;
 
 export const LoadingContainer = styled.div`
-    height: 50px;
+    height: 100px;
     width: 100%;
     position: relative;
     margin: 20px 0 0 0;

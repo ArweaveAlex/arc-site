@@ -125,10 +125,11 @@ export const Logo = styled.div`
 `;
 
 export const Subheader2 = styled.div`
-    width: 95%;
-    max-width: 460px;
-    margin: 0 0 0 auto;
+    margin: 10px 0 0 auto;
     text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: end;
     p {
         font-size: 17px;
         line-height: 1.5;
@@ -138,6 +139,7 @@ export const Subheader2 = styled.div`
     @media(max-width: ${STYLING.cutoffs.banner}) {
         margin: 0;
         text-align: left;
+        justify-content: start;
     }
     @media(max-width: ${STYLING.cutoffs.secondary}) {
         p {
@@ -148,12 +150,19 @@ export const Subheader2 = styled.div`
 
 export const Link = styled.div`
     width: fit-content;
-    margin: 12.5px 0 0 auto;
     a {
+        font-size: 17px;
+        line-height: 1.5;
         color: ${(props) => props.theme.colors.font.primary.alt3};
         font-weight: ${(props) => props.theme.typography.weight.medium};
     }
     @media(max-width: ${STYLING.cutoffs.banner}) {
-        margin: 12.5px 0 0 0;
+        margin: 0;
+        text-align: left;
+    }
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        a {
+            font-size: ${(props) => props.theme.typography.size.xSmall};
+        }
     }
 `;
