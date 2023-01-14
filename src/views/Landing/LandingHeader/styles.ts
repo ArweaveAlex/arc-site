@@ -103,6 +103,7 @@ export const FlexSubheader = styled.div`
     justify-content: end;
     @media(max-width: ${STYLING.cutoffs.banner}) {
         justify-content: start;
+        margin: 10px 0;
     }
 `;
 
