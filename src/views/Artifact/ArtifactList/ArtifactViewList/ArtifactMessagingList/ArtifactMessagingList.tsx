@@ -115,27 +115,6 @@ export default function ArtifactMessagingList(props: IProps) {
         })();
     }, [props.data])
 
-    function getData() {
-        if (props.loading || !data) {
-            return (
-                <S.LoadingContainer>
-                    <Loader sm />
-                </S.LoadingContainer>
-            )
-        }
-        else {
-            return (
-                <>
-                    {data.map((artifact: ArtifactDetailType, index: number) => {
-                        return (
-                            <ListItem key={index} data={artifact} />
-                        )
-                    })}
-                </>
-            )
-        }
-    }
-
     function getSubheader() {
         return (
             <S.SubheaderFlex>
@@ -162,6 +141,27 @@ export default function ArtifactMessagingList(props: IProps) {
                 <>
                     <Link to={`${urls.pool}${headerData.id}`}>{headerData.state.title}</Link>
                     {getSubheader()}
+                </>
+            )
+        }
+    }
+
+    function getData() {
+        if (props.loading || !data) {
+            return (
+                <S.LoadingContainer>
+                    <Loader sm />
+                </S.LoadingContainer>
+            )
+        }
+        else {
+            return (
+                <>
+                    {data.map((artifact: ArtifactDetailType, index: number) => {
+                        return (
+                            <ListItem key={index} data={artifact} />
+                        )
+                    })}
                 </>
             )
         }

@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     height: 150px;
     width: 100%;
     border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         height: auto;
     }
 `;
@@ -21,7 +21,7 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     animation: ${open} ${fadeIn2};
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         flex-direction: column;
         align-items: start;
         padding: 35px 20px;
@@ -33,7 +33,7 @@ export const HeaderContainer = styled.div`
     width: 700px;
     display: flex;
     align-items: center;
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         width: auto;
     }
 `;
@@ -91,7 +91,7 @@ export const SubheaderContainer = styled.div`
     width: calc(100% - 700px);
     min-width: 460px;
     padding: 10px 0;
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         width: auto;
         min-width: 0;
     }
@@ -101,7 +101,7 @@ export const FlexSubheader = styled.div`
     display: flex;
     align-items: center;
     justify-content: end;
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         justify-content: start;
         margin: 10px 0;
     }
@@ -141,7 +141,7 @@ export const Subheader2 = styled.div`
         color: ${(props) => props.theme.colors.font.primary.alt1};
         font-weight: ${(props) => props.theme.typography.weight.medium};
     }
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         margin: 0;
         text-align: left;
         justify-content: start;
@@ -161,7 +161,7 @@ export const Link = styled.div`
         color: ${(props) => props.theme.colors.font.primary.alt4};
         font-weight: ${(props) => props.theme.typography.weight.medium};
     }
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         margin: 0;
         text-align: left;
     }

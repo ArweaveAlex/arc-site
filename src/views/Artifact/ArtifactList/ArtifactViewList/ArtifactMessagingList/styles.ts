@@ -11,6 +11,10 @@ export const Wrapper = styled.div`
     max-width: 90vw;
     margin: 0 auto;
     position: relative;
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
+        display: flex;
+        flex-direction: column-reverse;
+    }
 `;
 
 export const ListWrapper = styled.div`
@@ -22,6 +26,10 @@ export const ListWrapper = styled.div`
     border-right: 1px solid ${(props) => props.theme.colors.border.primary};
     animation: ${open} ${fadeIn2};
     padding: 0 0 300px 0;
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
+        border-top: 1px solid ${(props) => props.theme.colors.border.primary};
+        margin: 0 auto;
+    }
 `;
 
 export const LIWrapper = styled.div`
@@ -174,6 +182,14 @@ export const HeaderWrapper = styled.div`
     position: absolute;
     top: 50px;
     right: 0;
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
+        width: 675px;
+        max-width: 100%;
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 20px auto;
+    }
 `;
 
 export const HeaderContent = styled.div`
@@ -192,23 +208,22 @@ export const HeaderContent = styled.div`
             text-decoration-thickness: 1.5px;
         }
     }
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
+        width: 675px;
+        max-width: 100%;
+        position: relative;
+    }
 `;
 
 export const SubheaderFlex = styled.div`
     display: flex;
     flex-direction: column;
     margin: 15px 0 0 0;
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        flex-direction: column;
-    }
 `;
 
 export const SubheaderContainer = styled.div`
     display: flex;
     margin: 7.5px 0;
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        margin: 0 0 7.5px 0;
-    }
 `;
 
 export const Subheader1 = styled.div`
