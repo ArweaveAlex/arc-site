@@ -1,16 +1,22 @@
 import styled from "styled-components";
 
+import { STYLING } from "helpers/styling";
 import { open, fadeIn2 } from "helpers/animations";
 
 export const Wrapper = styled.div`
     animation: ${open} ${fadeIn2};
+    display: flex;
+    width: ${STYLING.cutoffs.max};
+    width: 1125px;
+    max-width: 90vw;
+    margin: 0 auto;
+    position: relative;
 `;
 
 export const ListWrapper = styled.div`
     min-height: 100vh;
-    width: 700px;
+    width: 675px;
     max-width: 100%;
-    margin: 0 auto;
     background: ${(props) => props.theme.colors.container.primary.background};
     border-left: 1px solid ${(props) => props.theme.colors.border.primary};
     border-right: 1px solid ${(props) => props.theme.colors.border.primary};
@@ -161,6 +167,65 @@ export const Metric = styled.div`
         margin: 0 0 3.5px 10px;
     }
 `;
+
+export const HeaderWrapper = styled.div`
+    min-height: 100px;
+    width: 400px;
+    position: absolute;
+    top: 50px;
+    right: 0;
+`;
+
+export const HeaderContent = styled.div`
+    min-height: 100px;
+    width: 400px;
+    position: fixed;
+    animation: ${open} ${fadeIn2};
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    padding: 20px;
+    a {
+        font-size: 22px;
+        font-weight: 500;
+        &:hover {
+            text-decoration-thickness: 1.5px;
+        }
+    }
+`;
+
+export const SubheaderFlex = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 0 0;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        flex-direction: column;
+    }
+`;
+
+export const SubheaderContainer = styled.div`
+    display: flex;
+    margin: 7.5px 0;
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        margin: 0 0 7.5px 0;
+    }
+`;
+
+export const Subheader1 = styled.div`
+    p {
+        font-size: ${(props) => props.theme.typography.size.base};
+        color: ${(props) => props.theme.colors.font.primary.alt6};
+    }
+`;
+
+export const Subheader2 = styled.div`
+    p {
+        font-size: ${(props) => props.theme.typography.size.base};
+        color: ${(props) => props.theme.colors.font.primary.alt4};
+    }
+`;
+
+export const ID = styled(Subheader2)``;
 
 export const LoadingContainer = styled.div`
     height: 100px;

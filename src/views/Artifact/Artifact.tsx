@@ -34,7 +34,7 @@ export default function Artifact() {
         }
         else if ((data instanceof Array) && data.length > 0) {
             return (
-                <ArtifactList 
+                <ArtifactList
                     data={data}
                     loading={loading}
                 />

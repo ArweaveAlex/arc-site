@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { Loader } from "components/atoms/Loader";
 import { MessagingMedia } from "global/MessagingMedia";
 
+import { getPoolById } from "gql/pools";
 import { sortByAssociationSequence } from "filters/artifacts";
-import { ArtifactDetailType } from "helpers/types";
+import { ArtifactDetailType, PoolType } from "helpers/types";
 import { STORAGE } from "helpers/config";
 import { getTxEndpoint } from "helpers/endpoints";
 import { ASSETS } from "helpers/config";
@@ -98,6 +99,7 @@ function ListItem(props: { data: ArtifactDetailType }) {
 
 export default function ArtifactMessagingList(props: IProps) {
     const [data, setData] = React.useState<any>(null);
+    const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
 
     React.useEffect(() => {
         if (props.data) {
@@ -105,8 +107,23 @@ export default function ArtifactMessagingList(props: IProps) {
         }
     }, [props.data])
 
+    React.useEffect(() => {
+        (async function () {
+            if (props.data && props.data.length) {
+                setHeaderData(await getPoolById(props.data[0].poolId));
+            }
+        })();
+    }, [props.data])
+
     function getData() {
-        if (!props.loading) {
+        if (props.loading || !data) {
+            return (
+                <S.LoadingContainer>
+                    <Loader sm />
+                </S.LoadingContainer>
+            )
+        }
+        else {
             return (
                 <>
                     {data.map((artifact: ArtifactDetailType, index: number) => {
@@ -117,20 +134,49 @@ export default function ArtifactMessagingList(props: IProps) {
                 </>
             )
         }
+    }
+
+    function getSubheader() {
+        return (
+            <S.SubheaderFlex>
+                <S.SubheaderContainer>
+                    <S.Subheader1><p>{LANGUAGE.pool.subheader1}</p></S.Subheader1>
+                    &nbsp;
+                    <S.ID><p>{headerData.id ? formatAddress(headerData.id, false) : null}</p></S.ID>
+                </S.SubheaderContainer>
+                <S.SubheaderContainer>
+                    <S.Subheader1><p>{LANGUAGE.pool.createdOn}</p></S.Subheader1>
+                    &nbsp;
+                    <S.Subheader2><p>{headerData.state.timestamp ? formatDate(headerData.state.timestamp, "epoch") : null}</p></S.Subheader2>
+                </S.SubheaderContainer>
+            </S.SubheaderFlex>
+        )
+    }
+
+    function getHeaderData() {
+        if (!headerData) {
+            return <Loader sm />
+        }
         else {
             return (
-                <S.LoadingContainer>
-                    <Loader sm />
-                </S.LoadingContainer>
+                <>
+                    <Link to={`${urls.pool}${headerData.id}`}>{headerData.state.title}</Link>
+                    {getSubheader()}
+                </>
             )
         }
     }
 
-    return data ? (
+    return (
         <S.Wrapper>
             <S.ListWrapper>
                 {getData()}
             </S.ListWrapper>
+            <S.HeaderWrapper>
+                <S.HeaderContent>
+                    {getHeaderData()}
+                </S.HeaderContent>
+            </S.HeaderWrapper>
         </S.Wrapper>
-    ) : null;
+    );
 }

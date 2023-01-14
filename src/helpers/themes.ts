@@ -34,8 +34,8 @@ export const defaultTheme: DefaultTheme = {
     scheme: "light",
     colors: {
         border: {
-            primary: DEFAULT.neutral3,
-            alt1: DEFAULT.neutral3,
+            primary: DEFAULT.neutral5,
+            alt1: DEFAULT.neutral5,
             alt2: DEFAULT.primary3,
             alt3: DEFAULT.primary4,
             alt4: DEFAULT.primary,
