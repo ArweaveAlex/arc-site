@@ -36,6 +36,7 @@ export const Body = styled.div`
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     padding: 0 15px;
     animation: ${open} ${fadeIn2};
 `;

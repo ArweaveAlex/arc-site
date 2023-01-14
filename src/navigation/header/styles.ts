@@ -183,6 +183,7 @@ export const Link = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0 20px;
+    font-weight: ${(props) => props.theme.typography.weight.medium};
     &:hover {
       text-decoration: none;
       color: ${(props) => props.theme.colors.font.primary.active.hover};

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { STYLING } from "helpers/styling";
+
 export const Wrapper = styled.div`
     height: 100%;
     width: 100%;
@@ -7,6 +9,7 @@ export const Wrapper = styled.div`
     padding: 20px;
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     background: ${(props) => props.theme.colors.container.primary.background};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 
     p, span, button, a, b, li, input {
         font-family: sans-serif;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { STYLING } from "helpers/styling";
 
 export const Wrapper = styled.div`
-    height: 500px;
+    height: 540px;
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
     margin: 0px auto;
@@ -44,7 +44,7 @@ export const C1Content = styled.div`
     overflow-y: auto;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
-    box-shadow: 0px -10px 10px -10px ${(props) => props.theme.colors.font.primary.alt7} inset;
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: 300px;
         width: 100%;
@@ -83,7 +83,7 @@ export const LinkContainer = styled.div`
     justify-content: center;
     align-items: center;
     background: ${(props) => props.theme.colors.font.primary.active.base};
-    border-radius: ${STYLING.dimensions.borderRadiusField};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     &:hover {
         background: ${(props) => props.theme.colors.font.primary.active.hover};
     }
@@ -104,6 +104,7 @@ export const C2 = styled.div<{ image: string }>`
     background-image: ${(props) => `url("${props.image}")`};
     background-size: cover;
     background-position: center;
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: 200px;
         width: 100%;

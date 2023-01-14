@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 export const HeaderWrapper = styled.div`
     width: 100%;
     padding 20px 0;
-    background: ${(props) => props.theme.colors.container.alt1.background};
+    background: ${(props) => props.theme.colors.container.primary.background};
     @media(max-width: ${STYLING.cutoffs.banner}) {
         height: auto;
     }
@@ -89,7 +89,7 @@ export const H1 = styled.h1`
 `;
 
 export const Header1 = styled(H1)`
-    color: ${(props) => props.theme.colors.font.primary.base};
+    color: ${(props) => props.theme.colors.font.primary.active.base};
 `;
 
 export const Header2Container = styled.div`

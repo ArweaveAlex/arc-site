@@ -10,19 +10,16 @@ export default function LandingHeader() {
             <S.Content>
                 <S.HeaderContainer>
                     <S.FlexHeader>
-                        <S.Header1>{LANGUAGE.banner.header1}</S.Header1>
+                        <S.Header3>{LANGUAGE.companyTitle}</S.Header3>
                         &nbsp;
                         &nbsp;
                         <S.Header2Container>
-                            <S.Header2>{LANGUAGE.banner.header2}</S.Header2>
+                            <S.Header2>{LANGUAGE.banner.header1}</S.Header2>
                             <S.Highlight />
                         </S.Header2Container>
-                    </S.FlexHeader>
-                    <S.FlexHeader>
-                        <S.Header1>{LANGUAGE.banner.header3}</S.Header1>
                         &nbsp;
                         &nbsp;
-                        <S.Header3>{LANGUAGE.companyTitle}</S.Header3>
+                        <S.Header1>{LANGUAGE.banner.header2}</S.Header1>
                     </S.FlexHeader>
                 </S.HeaderContainer>
                 <S.SubheaderContainer>

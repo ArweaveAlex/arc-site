@@ -4,9 +4,9 @@ import { open, fadeIn2 } from "helpers/animations";
 import { STYLING } from "helpers/styling";
 
 export const Wrapper = styled.div`
-    height: 200px;
+    height: 150px;
     width: 100%;
-    background: ${(props) => props.theme.colors.container.alt1.background};
+    border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
     @media(max-width: ${STYLING.cutoffs.banner}) {
         height: auto;
     }
@@ -17,7 +17,7 @@ export const Content = styled.div`
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px 30px 20px;
     display: flex;
     align-items: center;
     animation: ${open} ${fadeIn2};
@@ -29,8 +29,10 @@ export const Content = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
-    height: 90%;
+    height: 100%;
     width: 700px;
+    display: flex;
+    align-items: center;
     @media(max-width: ${STYLING.cutoffs.banner}) {
         width: auto;
     }
@@ -44,7 +46,7 @@ export const FlexHeader = styled.div`
 `;
 
 export const H1 = styled.h1`
-    font-size: 56px;
+    font-size: 48px;
     line-height: 1.25;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         font-size: 40px;
@@ -55,7 +57,7 @@ export const H1 = styled.h1`
 `;
 
 export const Header1 = styled(H1)`
-    color: ${(props) => props.theme.colors.font.primary.base};
+    color: ${(props) => props.theme.colors.font.primary.active.base};
 `;
 
 export const Header2Container = styled.div`
@@ -69,13 +71,14 @@ export const Header2 = styled(Header1)`
 `;
 
 export const Header3 = styled(H1)`
-    color: ${(props) => props.theme.colors.font.primary.alt3};
+    color: ${(props) => props.theme.colors.font.primary.alt2};
 `;
 
 export const Highlight = styled.div`
-    height: 32.5px;
+    height: 24.5px;
     width: 100%;
     background: ${(props) => props.theme.colors.container.alt2.background};
+    background: transparent;
     position: absolute;
     bottom: 0;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
@@ -84,7 +87,7 @@ export const Highlight = styled.div`
 `;
 
 export const SubheaderContainer = styled.div`
-    height: 90%;
+    height: 100%;
     width: calc(100% - 700px);
     min-width: 460px;
     padding: 10px 0;
@@ -105,7 +108,7 @@ export const FlexSubheader = styled.div`
 
 export const Subheader1 = styled.p`
     font-size: 18px;
-    color: ${(props) => props.theme.colors.font.primary.alt5};
+    color: ${(props) => props.theme.colors.font.primary.alt1};
     font-weight: ${(props) => props.theme.typography.weight.medium};
     @media(max-width: ${STYLING.cutoffs.secondary}) {
         font-size: ${(props) => props.theme.typography.size.small};
@@ -115,6 +118,7 @@ export const Subheader1 = styled.p`
 export const Logo = styled.div`
     margin: 0 0 0 10px;
     svg {
+        
         width: 100px;
     }
     @media(max-width: ${STYLING.cutoffs.secondary}) {
@@ -133,7 +137,7 @@ export const Subheader2 = styled.div`
     p {
         font-size: 17px;
         line-height: 1.5;
-        color: ${(props) => props.theme.colors.font.primary.base};
+        color: ${(props) => props.theme.colors.font.primary.alt1};
         font-weight: ${(props) => props.theme.typography.weight.medium};
     }
     @media(max-width: ${STYLING.cutoffs.banner}) {
@@ -153,7 +157,7 @@ export const Link = styled.div`
     a {
         font-size: 17px;
         line-height: 1.5;
-        color: ${(props) => props.theme.colors.font.primary.alt3};
+        color: ${(props) => props.theme.colors.font.primary.alt4};
         font-weight: ${(props) => props.theme.typography.weight.medium};
     }
     @media(max-width: ${STYLING.cutoffs.banner}) {

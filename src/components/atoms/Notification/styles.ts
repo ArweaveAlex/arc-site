@@ -2,6 +2,7 @@ import styled, { DefaultTheme } from "styled-components";
 
 import { NotificationType } from "helpers/types";
 
+import { STYLING } from "helpers/styling";
 import { open, fadeIn1 } from "helpers/animations";
 
 type NotificationProps = {
@@ -28,6 +29,7 @@ export const Wrapper = styled.div`
   max-width: 90vw;
   background: ${(props) => props.theme.colors.container.primary.background};
   border: 1px solid ${(props) => props.theme.colors.border.alt1};
+  border-radius: ${STYLING.dimensions.borderRadiusWrapper};
   position: fixed;
   left: 50%;
   bottom: 20px;

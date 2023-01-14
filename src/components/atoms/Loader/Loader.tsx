@@ -12,10 +12,10 @@ export default function Loader(props: IProps) {
     if (!props.sm) {
       window.scrollTo(0, 0);
       window.hideDocumentBody();
+      return () => {
+        window.showDocumentBody();
+      };
     }
-    return () => {
-      window.showDocumentBody();
-    };
   }, [props.sm]);
 
   function getLoader(size: number, height: number, width: number) {

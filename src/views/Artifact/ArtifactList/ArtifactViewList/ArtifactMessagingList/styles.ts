@@ -126,8 +126,9 @@ export const Message = styled(InfoData)`
         overflow: visible;
         white-space: pre-wrap;
     }
-    span {
+    span, b {
         color: ${(props) => props.theme.colors.font.primary.alt4};
+        font-weight: ${(props) => props.theme.typography.weight.medium};
     }
 `;
 

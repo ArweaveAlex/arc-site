@@ -60,6 +60,7 @@ export const ListItemWrapper = styled.li`
     position: relative;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     &:hover {
         background: ${(props) => props.theme.colors.container.primary.hover};
     }

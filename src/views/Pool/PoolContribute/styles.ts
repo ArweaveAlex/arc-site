@@ -7,6 +7,7 @@ export const Wrapper = styled.button`
     width: 100%;
     background: ${(props) => props.theme.colors.button.secondary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt2};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     display: flex;
     align-items: center;
     justify-content: center;

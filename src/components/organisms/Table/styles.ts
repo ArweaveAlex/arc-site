@@ -45,13 +45,14 @@ export const Body = styled.div`
     display: flex;
     flex-direction: column;
     overflow-x: auto;
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     animation: ${open} ${fadeIn2};
 `;
 
 export const Table = styled.div`
     height: 100%;
     width: 100%;
-    border-right: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-right: 1px solid ${(props) => props.theme.colors.border.alt5};
     box-shadow: 1px 2px 2px ${(props) => props.theme.colors.shadow.secondary};
     @media(max-width: ${STYLING.cutoffs.initial}) {
         width: ${STYLING.cutoffs.initial};
@@ -62,7 +63,7 @@ export const TableHeader = styled.div`
     height: 40px;
     display: flex;
     align-items: center;
-    border-top 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-top 1px solid ${(props) => props.theme.colors.border.alt5};
 `;
 
 export const Row = styled.div<{ even: boolean }>`
@@ -78,9 +79,9 @@ export const RowData = styled.div`
     display: flex;
     padding: 0 10px;
     background: ${(props) => props.theme.colors.container.alt3.background}; 
-    border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
-    border-right: 1px solid ${(props) => props.theme.colors.border.alt1};
-    border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-left: 1px solid ${(props) => props.theme.colors.border.alt5};
+    border-right: 1px solid ${(props) => props.theme.colors.border.alt5};
+    border-bottom: 1px solid ${(props) => props.theme.colors.border.alt5};
     align-items: center;
     p {
         font-family: ${(props) => props.theme.typography.family.primary};
@@ -96,8 +97,8 @@ export const RowData = styled.div`
 
 export const THeader = styled(RowData)<{ even: boolean, width: string, align: AlignType }>`
     width: ${(props) => props.width};
-    border-left: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.alt1};
-    border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.alt1};
+    border-left: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.alt5};
+    border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.alt5};
     display: flex;
     justify-content: ${(props) => props.align};
     p {
@@ -107,8 +108,8 @@ export const THeader = styled(RowData)<{ even: boolean, width: string, align: Al
 
 export const TData = styled(RowData)<{ even: boolean, width: string }>`
     width: ${(props) => props.width};
-    border-left: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.alt1};
-    border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.alt1};
+    border-left: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.alt5};
+    border-right: 1px solid ${(props) => props.even ? "transparent" : props.theme.colors.border.alt5};
     background: none;
     div {
         overflow: hidden;
