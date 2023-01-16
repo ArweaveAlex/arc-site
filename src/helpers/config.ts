@@ -9,6 +9,11 @@ import * as filters from "filters/pools";
 import * as urls from "helpers/urls";
 import { LANGUAGE } from "helpers/language";
 
+export const APP = {
+    key: "appVersion",
+    version: "1.0.0"
+}
+
 export const TAGS = {
     keys: {
         alexPoolId: "Alex-Pool-Id",

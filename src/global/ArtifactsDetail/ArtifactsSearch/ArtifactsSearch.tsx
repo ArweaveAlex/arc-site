@@ -107,7 +107,6 @@ export default function ArtifactsSearch(props: IProps) {
     React.useEffect(() => {
         (async function () {
             if (searchRequested && searchTerm && searchIndeces && searchResultIds.length <= 0) {
-                
                 await runSearch(
                     searchTerm,
                     searchIndeces,

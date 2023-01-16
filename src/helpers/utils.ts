@@ -55,7 +55,7 @@ export function formatDate(dateArg: string | null, dateType: DateType) {
 
     return `${date.toLocaleString("default", { month: "long" })} 
             ${date.getDate()}, ${date.getUTCFullYear()} @ 
-            ${formatTime(getHours(date.getHours()))}:${formatTime(date.getMinutes())}:${formatTime(date.getSeconds())}`;
+            ${getHours(date.getHours())}:${formatTime(date.getMinutes())}:${formatTime(date.getSeconds())}`;
 }
 
 export function formatTitle(string: string) {
@@ -115,11 +115,14 @@ export function splitArray(array: any[], size: number) {
 export function checkGqlCursor(string: string): boolean {
     /* All Search Cursors contain '-'
         GQL Cursors contain letters, numbers or '=' */
-    if (/[A-Za-z0-9]/.test(string) || /[=]/.test(string)) {
+    if (/[-]/.test(string)) {
+        return false;
+    }
+    else if (/[A-Za-z0-9]/.test(string) || /[=]/.test(string)) {
         return true;
     } 
     else {
-        return false;
+        return true;
     }
 }
 

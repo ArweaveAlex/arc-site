@@ -93,7 +93,7 @@ export default class ArweaveClient {
         }
     }
 
-    // TODO - Get Last Contributino from aggregated results
+    // TODO - Get Last Contribution from aggregated results
     async calcLastContributions(userWallet: string, pools: PoolType[]) {
         const artifacts = await getArtifactsByUser({
             ids: null,
@@ -108,7 +108,6 @@ export default class ArweaveClient {
             let lastDate: number = 0;
             for (let j = 0; j < artifacts.contracts.length; j++) {
                 const date = parseInt(getTagValue(artifacts.contracts[j].node.tags, TAGS.keys.dateCreated));
-                console.log(date.toString() === "1673827768347")
                 if (date > lastDate) {
                     lastDate = date;
                     contributionMap[pools[i].id] = date;

@@ -61,8 +61,6 @@ export default function PoolContributors(props: IProps) {
                 return Number(arClient.calcContributions(contributors[a])) - Number(arClient.calcContributions(contributors[b]))
             }).reverse();
 
-            console.log(sortedKeys)
-
             for (let i = 0; i < sortedKeys.length; i++) {
                 contributorList.push(
                     <S.Row key={i} showBorder={i !== 2}>

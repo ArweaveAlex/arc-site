@@ -18,6 +18,7 @@ export default function OwnerView(props: IProps) {
                 setPoolIds(ids);
             }
         })();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.owner])
 
     return (

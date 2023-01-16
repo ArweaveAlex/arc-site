@@ -20,6 +20,7 @@
     "react-scripts": "5.0.1",
     "react-share": "^4.4.1",
     "react-svg": "^15.1.11",
+    "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
     "styled-components": "^5.3.6",
