@@ -9,7 +9,9 @@ import {
     PoolType,
     GQLResponseType,
     TagFilterType,
-    CursorEnum
+    CursorEnum,
+    AssociationDetailType,
+    SequenceType
 } from "helpers/types";
 import { getGQLData } from "gql";
 import { getTxEndpoint } from "helpers/endpoints";
@@ -20,45 +22,52 @@ import { TAGS, STORAGE, CURSORS } from "helpers/config";
 
 const arClient = new ArweaveClient();
 
-export async function getArtifactsByAssociation(artifactId: string, callback: (artifacts: ArtifactDetailType | ArtifactDetailType[]) => void): Promise<void> {
+export async function getArtifactsByAssociation(associationId: string, sequence: SequenceType): Promise<AssociationDetailType | null> {
     const artifacts: ArtifactDetailType[] = [];
+    const range = Array.from({ length: (sequence.end - sequence.start) + 1 },
+        (_, i) => (i + sequence.start).toString());
 
-    const artifact: GQLResponseType = (await getGQLData({
-        ids: [artifactId],
-        tagFilters: null,
-        uploader: null,
-        cursor: null,
-        reduxCursor: null,
-        cursorObject: null
-    }))[0];
+    if (associationId) {
+        const gqlArtifacts: GQLResponseType[] = (await getGQLData({
+            ids: null,
+            tagFilters: [
+                {
+                    name: TAGS.keys.associationId,
+                    values: [associationId]
+                },
+                {
+                    name: TAGS.keys.associationSequence,
+                    values: range
+                }
+            ],
+            uploader: null,
+            cursor: null,
+            reduxCursor: null,
+            cursorObject: null
+        }))
 
-    if (artifact) {
-        const associationId = getTagValue(artifact.node.tags, TAGS.keys.associationId);
-        if (associationId && (associationId !== STORAGE.none)) {
-            const gqlArtifacts: GQLResponseType[] = await getGQLData({
-                ids: null,
-                tagFilters: [
-                    {
-                        name: TAGS.keys.associationId,
-                        values: [associationId]
-                    }
-                ],
-                uploader: null,
-                cursor: null,
-                reduxCursor: null,
-                cursorObject: null
-            });
-            
-            const fetchLength = gqlArtifacts.length >= 5 ? 5 : gqlArtifacts.length;
-
-            for (let i = 0; i < fetchLength; i++) {
-                artifacts.push(await getArtifact(gqlArtifacts[i]));
-                callback(artifacts);
+        const filteredArtifacts = [];
+        for (let i = 0; i < gqlArtifacts.length; i++) {
+            const associationSequence = getTagValue(gqlArtifacts[i].node.tags, TAGS.keys.associationSequence);
+            if (!filteredArtifacts.includes(associationSequence)) {
+                filteredArtifacts.push(gqlArtifacts[i]);
+            }
+            if (filteredArtifacts.length === range.length) {
+                break;
             }
         }
-        else {
-            return callback(await getArtifact(artifact));
+
+        for (let i = 0; i < filteredArtifacts.length; i++) {
+            artifacts.push(await getArtifact(gqlArtifacts[i]));
         }
+
+        return ({
+            artifacts: artifacts,
+            length: 100 // TODO - get count
+        });
+    }
+    else {
+        return null
     }
 }
 

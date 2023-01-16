@@ -5,6 +5,8 @@ import { CURSORS } from "helpers/config";
 import { IProps } from "./types"
 import * as S from "./styles";
 
+
+// TODO - Fix cursors
 export default function Paginator(props: IProps) {
     let pageNumbers: number[] = [];
     for (let i = 0; i < props.nPages + 1; i++) {

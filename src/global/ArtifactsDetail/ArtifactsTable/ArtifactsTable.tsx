@@ -19,6 +19,7 @@ import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from "helpers/config
 import {
     AlignType,
     ArtifactTableRowType,
+    KeyValueType,
     TableHeaderType
 } from "helpers/types";
 
@@ -97,7 +98,26 @@ export default function ArtifactsTable(props: IProps) {
         )
     }
     
-    function getLink(url: string, label: string) {
+    function getArtifactLink(id: string, tags: KeyValueType[]) {
+        let redirect: string;
+        const associationId = getTagValue(tags, TAGS.keys.associationId);
+        if (associationId && (associationId !== STORAGE.none)) {
+            redirect = `${urls.thread}${associationId}/${id}`
+        }
+        else {
+            redirect = `${urls.artifact}${id}`;
+        }
+        return (
+            <S.Link>
+                <Link to={redirect} tabIndex={-1}>
+                    <p>{parse(getTagValue(tags, TAGS.keys.artifactName))}</p>
+                </Link>
+            </S.Link>
+
+        )
+    }
+
+    function getPoolLink(url: string, label: string) {
         return (
             <S.Link>
                 <Link to={url} tabIndex={-1}>
@@ -158,11 +178,11 @@ export default function ArtifactsTable(props: IProps) {
                 setData(props.data.contracts.map((element: any) => {
                     const row: ArtifactTableRowType = {
                         type: getType(getTagValue(element.node.tags, TAGS.keys.artifactType)),
-                        title: getLink(`${urls.artifact}${element.node.id}`, parse(getTagValue(element.node.tags, TAGS.keys.artifactName)) as any),
+                        title: getArtifactLink(element.node.id, element.node.tags),
                         dateCreated: formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), "epoch")
                     }
                     if (props.showPoolIds) {
-                        row.pool = getLink(`${urls.pool}${getTagValue(element.node.tags, TAGS.keys.poolId)}`, getTagValue(element.node.tags, TAGS.keys.poolId));
+                        row.pool = getPoolLink(`${urls.pool}${getTagValue(element.node.tags, TAGS.keys.poolId)}`, getTagValue(element.node.tags, TAGS.keys.poolId));
                     }
                     if (props.showCollections) {
                         row.collection = getCollection(element.node.id);

@@ -6,6 +6,7 @@ import { MessagingMedia } from "global/MessagingMedia";
 import { STORAGE } from "helpers/config";
 import { getMessageText, getUsername } from "helpers/utils";
 import { LANGUAGE } from "helpers/language";
+import { formatDate } from "helpers/utils";
 import { IProps } from "../../types";
 import * as S from "./styles";
 
@@ -47,7 +48,9 @@ export default function ArtifactMessagingSingle(props: IProps) {
                     <S.Section>
                         <S.InfoData>
                             <span>{LANGUAGE.messaging.originalPostDate}</span>
-                            <p>{messageData.created_at ? messageData.created_at : STORAGE.none}</p>
+                            {messageData.created_at &&
+                                <p>{formatDate(messageData.created_at, "iso")}</p>
+                            }
                         </S.InfoData>
                     </S.Section>
                 </S.Footer>

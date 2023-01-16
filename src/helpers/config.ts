@@ -36,7 +36,7 @@ export const TAGS = {
         webpageArtifactType: "Alex-Webpage",
         poolVersions: {
             "1.2": "Alex-Archiving-Pool-v1.2",
-            "1.4": "Alex-Archiving-Pool-Thread-Testing-v1.0" // Alex-Archiving-Pool-v1.4
+            "1.4": "Alex-Archiving-Pool-v1.4"
         },
         searchIndex: "Alex-Search-Index-v0"
     }
@@ -172,11 +172,11 @@ export const MEDIA_TYPES = {
 export const POOL_FILTERS = [
     {
         title: LANGUAGE.pools.gridTitles.mostContributed,
-        fn: (data: PoolType[]) => filters.sortByMostContributed(data, 5)
+        fn: (data: PoolType[]) => filters.sortByMostContributed(data, null)
     },
     {
         title: LANGUAGE.pools.gridTitles.newest,
-        fn: (data: PoolType[]) => filters.sortByNewest(data, 5)
+        fn: (data: PoolType[]) => filters.sortByNewest(data, null)
     },
     {
         title: LANGUAGE.pools.gridTitles.all,

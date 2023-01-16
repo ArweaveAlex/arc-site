@@ -139,6 +139,9 @@ export function getMessageText(data: any) {
                 count = i;
             }
         }
+        if (count < tweetText.length) {
+            finalStr += tweetText.substring(count, tweetText.length);
+        }
         return finalStr;
     }
     else {

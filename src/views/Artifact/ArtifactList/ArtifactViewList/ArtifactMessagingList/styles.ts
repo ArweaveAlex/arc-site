@@ -3,38 +3,45 @@ import styled from "styled-components";
 import { STYLING } from "helpers/styling";
 import { open, fadeIn2 } from "helpers/animations";
 
+const THREAD_WIDTH = "600px";
+const DETAIL_WIDTH = "500px";
+const WRAP_WIDTH = "675px";
+
 export const Wrapper = styled.div`
-    animation: ${open} ${fadeIn2};
     display: flex;
-    width: ${STYLING.cutoffs.max};
     width: 1125px;
     max-width: 90vw;
     margin: 0 auto;
     position: relative;
-    @media(max-width: ${STYLING.cutoffs.desktop}) {
+    display flex;
+    justify-content: space-between;
+    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
         display: flex;
         flex-direction: column-reverse;
     }
+
 `;
 
 export const ListWrapper = styled.div`
     min-height: 100vh;
-    width: 675px;
+    width: ${THREAD_WIDTH};
     max-width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
     border-left: 1px solid ${(props) => props.theme.colors.border.primary};
     border-right: 1px solid ${(props) => props.theme.colors.border.primary};
-    animation: ${open} ${fadeIn2};
     padding: 0 0 300px 0;
-    @media(max-width: ${STYLING.cutoffs.desktop}) {
+    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
+        width: ${WRAP_WIDTH};
         border-top: 1px solid ${(props) => props.theme.colors.border.primary};
+        border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
+        border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
         margin: 0 auto;
     }
 `;
 
-export const LIWrapper = styled.div`
+export const LIWrapper = styled.div<{ showBorder: boolean }>`
     width: 100%;
-    border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
+    border-bottom: ${(props) => props.showBorder ? `1px solid ${props.theme.colors.border.primary}` : 'none'};
     background: ${(props) => props.theme.colors.container.primary.background};
     animation: ${open} ${fadeIn2};
 `;
@@ -176,31 +183,42 @@ export const Metric = styled.div`
     }
 `;
 
-export const HeaderWrapper = styled.div`
-    min-height: 100px;
-    width: 400px;
+export const SingleWrapper = styled.div`
+    width: ${DETAIL_WIDTH};
     position: absolute;
-    top: 50px;
     right: 0;
-    @media(max-width: ${STYLING.cutoffs.desktop}) {
-        width: 675px;
+    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
+        width: ${WRAP_WIDTH};
         max-width: 100%;
         position: relative;
-        top: auto;
         right: auto;
-        margin: 20px auto;
+        margin: 0 auto 20px auto;
     }
 `;
 
-export const HeaderContent = styled.div`
-    min-height: 100px;
-    width: 400px;
+export const SingleContent = styled.div`
+    height: 580px;
+    width: ${DETAIL_WIDTH};
     position: fixed;
-    animation: ${open} ${fadeIn2};
+    overflow-y: auto;
+    overflow-x: hidden;
+    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
+        height: auto;
+        width: ${WRAP_WIDTH};
+        max-width: 100%;
+        position: relative;
+    }
+`;
+
+export const HeaderWrapper = styled.div`
+    min-height: 141.5px;
+    width: 100%;
+    position: relative;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     padding: 20px;
+    margin: 20px 0;
     a {
         font-size: 22px;
         font-weight: 500;
@@ -208,11 +226,12 @@ export const HeaderContent = styled.div`
             text-decoration-thickness: 1.5px;
         }
     }
-    @media(max-width: ${STYLING.cutoffs.desktop}) {
-        width: 675px;
-        max-width: 100%;
-        position: relative;
-    }
+`;
+
+export const HeaderContent = styled.div`
+    height: 100%;
+    width: 100%;
+    animation: ${open} ${fadeIn2};
 `;
 
 export const SubheaderFlex = styled.div`
@@ -234,17 +253,44 @@ export const Subheader1 = styled.div`
 `;
 
 export const Subheader2 = styled.div`
-    p {
+    p, a {
         font-size: ${(props) => props.theme.typography.size.base};
+        font-weight: ${(props) => props.theme.typography.weight.regular};
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
 `;
 
 export const ID = styled(Subheader2)``;
 
-export const LoadingContainer = styled.div`
+export const DetailWrapper = styled.div`
+    min-height: 141.5px;
+    width: 100%;
+    position: relative;
+    animation: ${open} ${fadeIn2};
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    z-index: 3;
+`;
+
+export const LoadingContainerInit = styled.div`
     height: 100px;
     width: 100%;
     position: relative;
     margin: 20px 0 0 0;
+`;
+
+export const ActionContainer = styled.div`
+    height: 42.5px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
+    button {
+        height: 100% !important;
+        width: 100% !important;
+        border: none !important;
+    }
 `;

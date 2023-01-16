@@ -77,7 +77,7 @@ export const InfoStyled = styled(InfoData)`
     div, p, a {
         color: ${(props) => props.theme.colors.font.primary.active.base};
     }
-    div, a {
+    a {
         text-decoration: underline;
         &:hover {
             cursor: pointer;
@@ -89,7 +89,7 @@ export const InfoStyled = styled(InfoData)`
         margin: 0 10px 0 0;
         fill: ${(props) => props.theme.colors.font.primary.active.base};
     }
-    // border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
     @media(max-width: ${STYLING.cutoffs.initial}) {
         svg {
             display: none;

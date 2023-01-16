@@ -41,6 +41,11 @@ export interface ArtifactDetailType {
   rawData: NStringType
 }
 
+export interface AssociationDetailType {
+  artifacts: ArtifactDetailType[]
+  length: number
+}
+
 export type ArtifactArgsType = {
   ids: string[] | null
   owner: string | null
@@ -155,3 +160,5 @@ export type CursorObjectType = {
   key: CursorObjectKeyType,
   value: string
 }
+
+export type SequenceType = { start: number, end: number };

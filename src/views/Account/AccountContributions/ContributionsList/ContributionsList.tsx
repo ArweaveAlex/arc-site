@@ -41,11 +41,11 @@ export default function ContributionsList({ data }: any) {
                                             &nbsp;
                                             <S.LIBodyData>{`${pool.totalContributed} ${LANGUAGE.arTokens}`}</S.LIBodyData>
                                         </S.LIBodyFlex>
-                                        <S.LIBodyFlex>
+                                        {/* <S.LIBodyFlex>
                                             <S.LIBodyHeader>{LANGUAGE.lastContribution}:</S.LIBodyHeader>
                                             &nbsp;
                                             <S.LIBodyData>{formatDate(pool.lastContribution, "epoch")}</S.LIBodyData>
-                                        </S.LIBodyFlex>
+                                        </S.LIBodyFlex> */}
                                         <S.LIBodyFlex>
                                             <S.LIBodyHeader>{LANGUAGE.receiving}:</S.LIBodyHeader>
                                             &nbsp;

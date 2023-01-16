@@ -41,7 +41,7 @@ export default function Loader(props: IProps) {
 
   if (props.sm) {
     return (
-      <>{getLoader(20.75, 6.25, 1.75)}</>
+      <>{getLoader(19.75, 6, 2)}</>
     );
   }
 

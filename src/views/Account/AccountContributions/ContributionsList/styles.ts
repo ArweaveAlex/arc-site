@@ -136,6 +136,7 @@ export const LIBodyContainer = styled.div`
     width: 45%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     @media(max-width: ${STYLING.cutoffs.initial}) {
         width: calc(100% - 20px);
         margin: 20px 0 0 0;
@@ -144,7 +145,6 @@ export const LIBodyContainer = styled.div`
 
 export const LIBodyFlex = styled.div`
     display: flex;
-    margin: 0 0 10px 0;
     width: 100%;
 `;
 

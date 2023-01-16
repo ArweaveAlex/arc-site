@@ -41,7 +41,7 @@ export default function _Routes() {
           <Artifact />
         </View>
       } />
-      <Route path={`${urls.thread}:id`} element={
+      <Route path={`${urls.thread}:associationId/:id`} element={
         <View>
           <ArtifactThread />
         </View>

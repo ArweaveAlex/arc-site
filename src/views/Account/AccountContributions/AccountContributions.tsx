@@ -9,7 +9,6 @@ import { Loader } from "components/atoms/Loader";
 import { LANGUAGE } from "helpers/language";
 import * as S from "./styles";
 
-// TODO - Check dates
 export default function AccountContributions() {
     const arProvider = useArweaveProvider();
     const arClient = new ArweaveClient();

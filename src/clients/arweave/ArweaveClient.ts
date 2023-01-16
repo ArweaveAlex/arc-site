@@ -16,6 +16,7 @@ import {
 } from "helpers/types";
 import { LANGUAGE } from "helpers/language";
 import { TAGS } from "helpers/config";
+import { getTagValue } from "helpers/utils";
 
 const GET_ENDPOINT = "arweave-search.goldsky.com";
 const POST_ENDPOINT = "arweave.net";
@@ -57,7 +58,6 @@ export default class ArweaveClient {
         
         if (pools.length > 0) {
             const lastContributions: any = await this.calcLastContributions(userWallet, pools);
-
             return pools.filter((pool: any) => {
                 if (pool.state.contributors.hasOwnProperty(userWallet)) {
                     return true;
@@ -93,33 +93,30 @@ export default class ArweaveClient {
         }
     }
 
+    // TODO - Get Last Contributino from aggregated results
     async calcLastContributions(userWallet: string, pools: PoolType[]) {
-        let contributions = await getArtifactsByUser({
+        const artifacts = await getArtifactsByUser({
             ids: null,
             owner: userWallet,
             uploader: null,
             cursor: null,
             reduxCursor: null
         });
-        let conMap: any = {};
+        let contributionMap: any = {};
 
         for (let i = 0; i < pools.length; i++) {
-            let lastDate = 0;
-            for (let j = 0; j < contributions.contracts.length; j++) {
-                for (let k = 0; k < contributions.contracts[j].node.tags.length; k++) {
-                    const tag: any = contributions.contracts[j].node.tags[k];
-                    if (tag.name === TAGS.keys.dateCreated) {
-                        let v = parseInt(tag.value);
-                        if (v > lastDate) {
-                            lastDate = v;
-                            conMap[pools[i].id] = v;
-                        }
-                    }
+            let lastDate: number = 0;
+            for (let j = 0; j < artifacts.contracts.length; j++) {
+                const date = parseInt(getTagValue(artifacts.contracts[j].node.tags, TAGS.keys.dateCreated));
+                console.log(date.toString() === "1673827768347")
+                if (date > lastDate) {
+                    lastDate = date;
+                    contributionMap[pools[i].id] = date;
                 }
             }
         }
 
-        return conMap;
+        return contributionMap;
     }
 
     getReceivingPercent(userWallet: string, contributors: any, totalContributions: string, activeAmount: number): string {

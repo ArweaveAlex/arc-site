@@ -2,11 +2,14 @@ import React from "react";
 import { ReactSVG } from "react-svg";
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
+import { Button } from "components/atoms/Button";
 import { Loader } from "components/atoms/Loader";
 import { MessagingMedia } from "global/MessagingMedia";
 
 import { getPoolById } from "gql/pools";
+import { getArtifactById } from "gql/artifacts";
 import { sortByAssociationSequence } from "filters/artifacts";
 import { ArtifactDetailType, PoolType } from "helpers/types";
 import { STORAGE } from "helpers/config";
@@ -18,8 +21,7 @@ import * as urls from "helpers/urls";
 import { IProps } from "../../types";
 import * as S from "./styles";
 
-// TODO - Thread loader (Need different sort)
-function ListItem(props: { data: ArtifactDetailType }) {
+function ListItem(props: { data: ArtifactDetailType, showBorder: boolean }) {
     const [messageData, setMessageData] = React.useState<any>(null);
 
     React.useEffect(() => {
@@ -46,7 +48,7 @@ function ListItem(props: { data: ArtifactDetailType }) {
     }
 
     return (props.data && messageData) ? (
-        <S.LIWrapper>
+        <S.LIWrapper showBorder={props.showBorder}>
             <S.LIContent>
                 <S.LIHeader>
                     <S.ProfileWrapper>
@@ -58,7 +60,7 @@ function ListItem(props: { data: ArtifactDetailType }) {
                     </S.ProfileWrapper>
                     <S.ArtifactLinkWrapper>
                         <span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
-                        <Link to={`${urls.thread}${props.data.artifactId}`}>
+                        <Link to={`${urls.artifact}${props.data.artifactId}`}>
                             {props.data ? formatAddress(props.data.artifactId, false) : null}
                         </Link>
                     </S.ArtifactLinkWrapper>
@@ -98,12 +100,20 @@ function ListItem(props: { data: ArtifactDetailType }) {
 }
 
 export default function ArtifactMessagingList(props: IProps) {
-    const [data, setData] = React.useState<any>(null);
+    const { id } = useParams();
+
+    const [threadData, setThreadData] = React.useState<ArtifactDetailType[]>(null);
     const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
+    const [detailData, setDetailData] = React.useState<ArtifactDetailType | null>(null);
+
+    const [showAction, setShowAction] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         if (props.data) {
-            setData(sortByAssociationSequence(props.data));
+            setThreadData(sortByAssociationSequence(props.data));
+            setTimeout(() => {
+                setShowAction(true);
+            }, 100);
         }
     }, [props.data])
 
@@ -115,21 +125,59 @@ export default function ArtifactMessagingList(props: IProps) {
         })();
     }, [props.data])
 
-    function getSubheader() {
-        return (
-            <S.SubheaderFlex>
-                <S.SubheaderContainer>
-                    <S.Subheader1><p>{LANGUAGE.pool.subheader1}</p></S.Subheader1>
-                    &nbsp;
-                    <S.ID><p>{headerData.id ? formatAddress(headerData.id, false) : null}</p></S.ID>
-                </S.SubheaderContainer>
-                <S.SubheaderContainer>
-                    <S.Subheader1><p>{LANGUAGE.pool.createdOn}</p></S.Subheader1>
-                    &nbsp;
-                    <S.Subheader2><p>{headerData.state.timestamp ? formatDate(headerData.state.timestamp, "epoch") : null}</p></S.Subheader2>
-                </S.SubheaderContainer>
-            </S.SubheaderFlex>
-        )
+    React.useEffect(() => {
+        (async function () {
+            if (id) {
+                setDetailData(await getArtifactById(id));
+            }
+        })()
+    }, [id]);
+
+    function updateSequence() {
+        setShowAction(false);
+        props.updateSequence();
+    }
+
+    function getAction() {
+        if (props.loading) {
+            return (
+                <Loader sm />
+            )
+        }
+        if (showAction) {
+            return (
+                <Button
+                    type={"tertiary"}
+                    label={LANGUAGE.showMoreReplies}
+                    handlePress={() => updateSequence()}
+                />
+            )
+        }
+        return null;
+    }
+
+    function getThreadData() {
+        if (!threadData) {
+            return (
+                <S.LoadingContainerInit>
+                    <Loader sm />
+                </S.LoadingContainerInit>
+            )
+        }
+        else {
+            return (
+                <>
+                    {threadData.map((artifact: ArtifactDetailType, index: number) => {
+                        return (
+                            <ListItem key={index} data={artifact} showBorder={true} />
+                        )
+                    })}
+                    <S.ActionContainer>
+                        {getAction()}
+                    </S.ActionContainer>
+                </>
+            )
+        }
     }
 
     function getHeaderData() {
@@ -138,31 +186,32 @@ export default function ArtifactMessagingList(props: IProps) {
         }
         else {
             return (
-                <>
+                <S.HeaderContent>
                     <Link to={`${urls.pool}${headerData.id}`}>{headerData.state.title}</Link>
-                    {getSubheader()}
-                </>
+                    <S.SubheaderFlex>
+                        <S.SubheaderContainer>
+                            <S.Subheader1><p>{LANGUAGE.pool.subheader1}</p></S.Subheader1>
+                            &nbsp;
+                            <S.ID><Link to={`${urls.pool}${headerData.id}`}>{headerData.id ? formatAddress(headerData.id, false) : null}</Link></S.ID>
+                        </S.SubheaderContainer>
+                        <S.SubheaderContainer>
+                            <S.Subheader1><p>{LANGUAGE.pool.createdOn}</p></S.Subheader1>
+                            &nbsp;
+                            <S.Subheader2><p>{headerData.state.timestamp ? formatDate(headerData.state.timestamp, "epoch") : null}</p></S.Subheader2>
+                        </S.SubheaderContainer>
+                    </S.SubheaderFlex>
+                </S.HeaderContent>
             )
         }
     }
 
-    function getData() {
-        if (props.loading || !data) {
-            return (
-                <S.LoadingContainer>
-                    <Loader sm />
-                </S.LoadingContainer>
-            )
+    function getDetailData() {
+        if (!detailData) {
+            return <Loader sm />
         }
         else {
             return (
-                <>
-                    {data.map((artifact: ArtifactDetailType, index: number) => {
-                        return (
-                            <ListItem key={index} data={artifact} />
-                        )
-                    })}
-                </>
+                <ListItem data={detailData} showBorder={false} />
             )
         }
     }
@@ -170,13 +219,18 @@ export default function ArtifactMessagingList(props: IProps) {
     return (
         <S.Wrapper>
             <S.ListWrapper>
-                {getData()}
+                {getThreadData()}
             </S.ListWrapper>
-            <S.HeaderWrapper>
-                <S.HeaderContent>
-                    {getHeaderData()}
-                </S.HeaderContent>
-            </S.HeaderWrapper>
+            <S.SingleWrapper>
+                <S.SingleContent>
+                    <S.HeaderWrapper>
+                        {getHeaderData()}
+                    </S.HeaderWrapper>
+                    <S.DetailWrapper>
+                        {getDetailData()}
+                    </S.DetailWrapper>
+                </S.SingleContent>
+            </S.SingleWrapper>
         </S.Wrapper>
     );
 }

@@ -1,3 +1,4 @@
+// TODO - clean
 export const LANGUAGE = {
     about: `About`,
     archivist: `Archivist`,
@@ -151,6 +152,7 @@ export const LANGUAGE = {
     sharePools: `Check out this Alex. Pool !`,
     shareUrlLabel: `Share (Copy URL)`,
     showing: `Showing`,
+    showMoreReplies: `Show more replies`,
     social: {
         discord: `Discord`,
         twitter: `Twitter`

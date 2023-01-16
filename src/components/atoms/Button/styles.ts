@@ -110,16 +110,16 @@ export const IconSecondary = styled(IconPrimary)`
 export const Tertiary = styled(Primary)`
   background: ${(props) => props.active ? 
     props.theme.colors.button.tertiary.active.background : props.theme.colors.button.tertiary.background};
-  border: 1.5px solid ${(props) => props.active ? 
+  border: 1.25px solid ${(props) => props.active ? 
     props.theme.colors.button.tertiary.active.background : props.theme.colors.button.tertiary.border};
   &:hover {
-    border: 1.5px solid ${(props) => props.active ? 
+    border: 1.25px solid ${(props) => props.active ? 
       props.theme.colors.button.tertiary.active.hover : props.theme.colors.button.tertiary.border};
     background: ${(props) => props.active ? 
       props.theme.colors.button.tertiary.active.hover : props.theme.colors.button.tertiary.hover};
   }
   &:focus {
-    border: 1.5px solid ${(props) => props.active ? 
+    border: 1.25px solid ${(props) => props.active ? 
       props.theme.colors.button.tertiary.active.hover : props.theme.colors.button.tertiary.border};
     background: ${(props) => props.active ? 
       props.theme.colors.button.tertiary.active.hover : props.theme.colors.button.tertiary.hover};
@@ -127,7 +127,7 @@ export const Tertiary = styled(Primary)`
   &:disabled {
     background: ${(props) => props.theme.colors.button.tertiary.disabled.background};
     color: ${(props) => props.theme.colors.button.tertiary.disabled.label};
-    border: 1.5px solid ${(props) => props.theme.colors.button.tertiary.disabled.border};
+    border: 1.25px solid ${(props) => props.theme.colors.button.tertiary.disabled.border};
     span {
       color: ${(props) => props.theme.colors.button.tertiary.disabled.label};
     }
