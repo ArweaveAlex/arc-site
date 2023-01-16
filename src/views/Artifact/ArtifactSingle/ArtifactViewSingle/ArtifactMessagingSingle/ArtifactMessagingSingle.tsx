@@ -36,8 +36,10 @@ export default function ArtifactMessagingSingle(props: IProps) {
                     </S.Section>
                 </S.Header>
                 <S.Body>
-                    <S.Message>
+                    <S.InfoData>
                         <span>{LANGUAGE.messaging.message}</span>
+                    </S.InfoData>
+                    <S.Message>
                         <p>{parse(getMessageText(messageData))}</p>
                     </S.Message>
                 </S.Body>

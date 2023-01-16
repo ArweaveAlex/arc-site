@@ -107,28 +107,22 @@ export default function ArtifactDetailSingle(props: IProps) {
                             {LANGUAGE.artifactDetail.fileInformation}
                         </span>
                         <S.LinkWrapper>
-                            <S.InfoData>
-                                <S.DataLine>
-                                    <ReactSVG src={ASSETS.artifact} />
-                                    <p>{props.data.artifactName}</p>
-                                </S.DataLine>
-                            </S.InfoData>
+                            <S.DataLine>
+                                <ReactSVG src={ASSETS.artifact} />
+                                <p>{props.data.artifactName}</p>
+                            </S.DataLine>
                         </S.LinkWrapper>
                         <S.LinkWrapperAlt>
-                            <S.InfoData>
-                                <S.DataLine>
-                                    <ReactSVG src={ASSETS.logoAlt2} />
-                                    <S.DataUrl target={"_blank"} rel={"noreferrer"} href={props.data.dataUrl!}>{props.data.dataUrl}</S.DataUrl>
-                                </S.DataLine>
-                            </S.InfoData>
+                            <S.DataLine>
+                                <ReactSVG src={ASSETS.logoAlt2} />
+                                <S.DataUrl target={"_blank"} rel={"noreferrer"} href={props.data.dataUrl!}>{props.data.dataUrl}</S.DataUrl>
+                            </S.DataLine>
                         </S.LinkWrapperAlt>
                         <S.LinkWrapper>
-                            <S.InfoData>
-                                <S.DataLine>
-                                    <ReactSVG src={ASSETS.data} />
-                                    <p>{formatDataSize(props.data.dataSize!)}</p>
-                                </S.DataLine>
-                            </S.InfoData>
+                            <S.DataLine>
+                                <ReactSVG src={ASSETS.data} />
+                                <p>{formatDataSize(props.data.dataSize!)}</p>
+                            </S.DataLine>
                         </S.LinkWrapper>
                     </S.InfoData>
                 </S.ContentLine>

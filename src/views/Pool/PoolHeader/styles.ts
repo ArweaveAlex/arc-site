@@ -86,6 +86,7 @@ export const Image = styled.div<{ image: string }>`
     background-size: cover;
     background-position: center;
     margin: 0 0 20px 0;
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     animation: ${open} ${fadeIn2};
 `;
 
@@ -96,6 +97,7 @@ export const ImageLoading = styled.div`
     position: relative;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     animation: ${open} ${fadeIn2};
 `;
 
@@ -113,6 +115,7 @@ export const Tile = styled.div`
     width: 33%;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     padding: 15px;
     position: relative;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
@@ -164,7 +167,7 @@ export const TContainer = styled.div`
 
 export const LongDescription = styled.div`
     width: 100%;
-    margin: 30px 0;
+    margin: 30px 0 35px 0;
 `;
 
 export const LDHeader = styled.div`
@@ -177,7 +180,9 @@ export const LDHeader = styled.div`
 
 export const LDBody = styled.div`
     margin: 20px 0;
-    padding: 0 10px 0 0;
+    padding: 15px;
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     color: ${(props) => props.theme.colors.font.primary.active.base};
     font-size: ${(props) => props.theme.typography.size.base};
     line-height: 1.5;

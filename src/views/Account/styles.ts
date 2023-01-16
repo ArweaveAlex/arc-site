@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
 export const HeaderWrapper = styled.div`
     width: 100%;
     padding 20px 0 0 0;
-    background: ${(props) => props.theme.colors.container.alt1.background};
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    background: ${(props) => props.theme.colors.container.primary.background};
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         height: auto;
     }
 `;
@@ -27,7 +27,7 @@ export const HeaderContent = styled.div`
     align-items: center;
     justify-content: space-between;
     animation: ${open} ${fadeIn2};
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         flex-direction: column;
         align-items: start;
         padding: 35px 20px;
@@ -40,7 +40,7 @@ export const ShareWrapper = styled.div`
     height: 100%;
     width: fit-content;
     position: relative;
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         margin: 20px 0 0 0;
     }
 `;
@@ -58,7 +58,7 @@ export const URLCopied = styled.div`
         color: ${(props) => props.theme.colors.font.primary.alt4};
         white-space: nowrap;
     }
-    @media(max-width: ${STYLING.cutoffs.banner}) {
+    @media(max-width: ${STYLING.cutoffs.desktop}) {
         bottom: auto;
         left: 170px;
     }
@@ -89,7 +89,7 @@ export const H1 = styled.h1`
 `;
 
 export const Header1 = styled(H1)`
-    color: ${(props) => props.theme.colors.font.primary.base};
+    color: ${(props) => props.theme.colors.font.primary.active.base};
 `;
 
 export const Header2Container = styled.div`

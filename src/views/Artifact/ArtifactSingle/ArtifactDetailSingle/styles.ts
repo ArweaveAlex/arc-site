@@ -15,6 +15,8 @@ export const IconWrapper = styled.div`
     height 375px;
     width: 375px;
     background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     position: relative;
     p {
         text-overflow: ellipsis;
@@ -74,6 +76,8 @@ export const ContentLine = styled.div`
     margin: 0 0 15px 0;
     padding: 17.5px;
     background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     position: relative;
 `;
 
@@ -178,7 +182,7 @@ export const DataHeader = styled.p`
 
 export const LinkWrapper = styled.div`
     width: 100%;
-    padding: 17.5px;
+    padding: 17.5px 0 0 0;
     background: ${(props) => props.theme.colors.container.primary.background};
     svg {
         width: 25px;
@@ -206,8 +210,10 @@ export const Tags = styled.div`
 export const Tag = styled.div`
     padding: 8px 14.5px;
     width: fit-content;
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     margin: 0 10px 10px 0;
-    background: ${(props) => props.theme.colors.view.background};
+    background: ${(props) => props.theme.colors.container.alt4.background};
     p {
         color: ${(props) => props.theme.colors.font.primary.alt1};
     }

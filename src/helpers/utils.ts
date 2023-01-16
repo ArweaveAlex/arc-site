@@ -29,6 +29,11 @@ function formatTime(time: number): string {
     return time < 10 ? `0${time.toString()}` : time.toString();
 }
 
+function getHours(hours: number) {
+    if (hours > 12) return hours - 12;
+    else return hours;
+}
+
 export function formatDate(dateArg: string | null, dateType: DateType) {
     if (!dateArg) {
         return STORAGE.none;
@@ -50,7 +55,7 @@ export function formatDate(dateArg: string | null, dateType: DateType) {
 
     return `${date.toLocaleString("default", { month: "long" })} 
             ${date.getDate()}, ${date.getUTCFullYear()} @ 
-            ${formatTime(date.getUTCHours())}:${formatTime(date.getUTCMinutes())}:${formatTime(date.getUTCSeconds())}`;
+            ${formatTime(getHours(date.getHours()))}:${formatTime(date.getMinutes())}:${formatTime(date.getSeconds())}`;
 }
 
 export function formatTitle(string: string) {
@@ -119,13 +124,22 @@ export function checkGqlCursor(string: string): boolean {
 }
 
 export function getMessageText(data: any) {
-    if (data) {
-        if (data.full_text) {
-            return data.full_text;
+    if (data && (data.text || data.full_text)) {
+        let finalStr = "";
+        const tweetText = data.text ? data.text : data.full_text;
+        let count = 0;
+        for (let i = 0; i < tweetText.length; i++) {
+            if (tweetText[i] === " ") {
+                if (tweetText.substring(count, i).includes("@")) {
+                    finalStr += `<span>${tweetText.substring(count, i)}</span>`;
+                }
+                else {
+                    finalStr += tweetText.substring(count, i);
+                }
+                count = i;
+            }
         }
-        else {
-            return data.text;
-        }
+        return finalStr;
     }
     else {
         return STORAGE.none;

@@ -110,16 +110,17 @@ export const IconSecondary = styled(IconPrimary)`
 export const Tertiary = styled(Primary)`
   background: ${(props) => props.active ? 
     props.theme.colors.button.tertiary.active.background : props.theme.colors.button.tertiary.background};
-  border: 1.5px solid ${(props) => props.theme.colors.button.tertiary.border};
+  border: 1.5px solid ${(props) => props.active ? 
+    props.theme.colors.button.tertiary.active.background : props.theme.colors.button.tertiary.border};
   &:hover {
     border: 1.5px solid ${(props) => props.active ? 
-      "transparent" : props.theme.colors.button.tertiary.border};
+      props.theme.colors.button.tertiary.active.hover : props.theme.colors.button.tertiary.border};
     background: ${(props) => props.active ? 
       props.theme.colors.button.tertiary.active.hover : props.theme.colors.button.tertiary.hover};
   }
   &:focus {
     border: 1.5px solid ${(props) => props.active ? 
-      "transparent" : props.theme.colors.button.tertiary.border};
+      props.theme.colors.button.tertiary.active.hover : props.theme.colors.button.tertiary.border};
     background: ${(props) => props.active ? 
       props.theme.colors.button.tertiary.active.hover : props.theme.colors.button.tertiary.hover};
   }

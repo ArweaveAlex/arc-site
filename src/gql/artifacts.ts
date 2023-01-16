@@ -48,8 +48,10 @@ export async function getArtifactsByAssociation(artifactId: string, callback: (a
                 reduxCursor: null,
                 cursorObject: null
             });
+            
+            const fetchLength = gqlArtifacts.length >= 5 ? 5 : gqlArtifacts.length;
 
-            for (let i = 0; i < gqlArtifacts.length; i++) {
+            for (let i = 0; i < fetchLength; i++) {
                 artifacts.push(await getArtifact(gqlArtifacts[i]));
                 callback(artifacts);
             }

@@ -20,6 +20,7 @@ export const Container = styled.div`
     width: 555px;
     max-width: 87.5vw;
     background: ${(props) => props.theme.colors.container.primary.background};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     position: absolute;
     top: 47.5%;
     left: 50%;
@@ -33,6 +34,8 @@ export const Header = styled.div`
     height: 65px;
     width: 100%;
     background: ${(props) => props.theme.colors.container.alt1.background};
+    border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
     display: flex;
     justify-content: space-between;
     align-items: center;

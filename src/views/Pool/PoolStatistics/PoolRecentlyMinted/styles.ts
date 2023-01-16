@@ -99,6 +99,8 @@ export const NodeWrapper = styled.div`
     width: 290px;
     max-width: 250px;
     background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     position: relative;
     &:hover {
         &:hover ${Icon} {
@@ -130,4 +132,5 @@ export const Placeholder = styled.div`
     background-position: 0 0;
     animation: ${loadingSlide} 1.25s infinite;
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;

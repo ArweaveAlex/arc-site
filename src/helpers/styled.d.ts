@@ -10,6 +10,7 @@ declare module "styled-components" {
                 alt2: string
                 alt3: string
                 alt4: string
+                alt5: string
             }
             button: {
                 primary: {
@@ -144,6 +145,7 @@ declare module "styled-components" {
                 }
                 header: {
                     background: string
+                    logoFill: string
                 }
             }
             notification: {

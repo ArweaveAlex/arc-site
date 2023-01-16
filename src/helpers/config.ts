@@ -36,7 +36,7 @@ export const TAGS = {
         webpageArtifactType: "Alex-Webpage",
         poolVersions: {
             "1.2": "Alex-Archiving-Pool-v1.2",
-            "1.4": "Alex-Archiving-Pool-v1.4" // Alex-Archiving-Pool-Thread-Testing-v1.0
+            "1.4": "Alex-Archiving-Pool-Thread-Testing-v1.0" // Alex-Archiving-Pool-v1.4
         },
         searchIndex: "Alex-Search-Index-v0"
     }
@@ -82,6 +82,7 @@ export const ASSETS = {
     search: `${ASSET_SRC}/search.svg`,
     share: `${ASSET_SRC}/share.svg`,
     shareLink: `${ASSET_SRC}/share-link.svg`,
+    siteLogo: `${ASSET_SRC}/site-logo.svg`,
     social: {
         discord: `${ASSET_SRC}/discord.svg`,
         twitter: `${ASSET_SRC}/twitter.svg`
@@ -190,3 +191,5 @@ export const SEARCH = {
     idTerm: "`*",
     ownerTerm: "`%"
 }
+
+export const OPERATOR_LINK = "https://alex-operator-guide.arweave.dev/";

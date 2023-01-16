@@ -5,7 +5,7 @@ const DEFAULT = {
     neutral2: "#F2F3F4",
     neutral3: "#EEEEEE",
     neutral4: "#3A3A3A",
-    neutral5: "#DDDDDD",
+    neutral5: "#EAEAEA",
     neutral6: "#D9D9D9",
     neutral7: "#959595",
     neutral8: "#ACACAC",
@@ -34,11 +34,12 @@ export const defaultTheme: DefaultTheme = {
     scheme: "light",
     colors: {
         border: {
-            primary: DEFAULT.neutral3,
-            alt1: DEFAULT.neutral6,
+            primary: DEFAULT.neutral5,
+            alt1: DEFAULT.neutral5,
             alt2: DEFAULT.primary3,
             alt3: DEFAULT.primary4,
-            alt4: DEFAULT.primary
+            alt4: DEFAULT.primary,
+            alt5: DEFAULT.neutral5
         },
         button: {
             primary: {
@@ -75,7 +76,7 @@ export const defaultTheme: DefaultTheme = {
             },
             tertiary: {
                 background: DEFAULT.neutral1,
-                border: DEFAULT.transparent,
+                border: DEFAULT.neutral2,
                 hover: DEFAULT.neutral2,
                 label: DEFAULT.primary,
                 active: {
@@ -105,7 +106,7 @@ export const defaultTheme: DefaultTheme = {
                 background: DEFAULT.neutral9
             },
             alt4: {
-                background: DEFAULT.neutral10
+                background: DEFAULT.neutral2
             },
             alt5: {
                 background: DEFAULT.neutral12
@@ -140,7 +141,7 @@ export const defaultTheme: DefaultTheme = {
                 shadow: DEFAULT.primary4
             },
             disabled: {
-                background: DEFAULT.neutral3,
+                background: DEFAULT.neutral2,
                 label: DEFAULT.neutral7
             }
         },
@@ -172,7 +173,8 @@ export const defaultTheme: DefaultTheme = {
                 background: DEFAULT.neutral1
             },
             header: {
-                background: DEFAULT.neutral1
+                background: DEFAULT.neutral1,
+                logoFill: DEFAULT.primary
             }
         },
         notification: {
@@ -192,7 +194,7 @@ export const defaultTheme: DefaultTheme = {
         },
         table: {
             placeholder: {
-                background: DEFAULT.neutral10,
+                background: DEFAULT.neutral2,
                 backgroundStart: DEFAULT.transparent,
                 backgroundSlide: DEFAULT.semiTransparent,
                 backgroundEnd: DEFAULT.transparent,
@@ -204,7 +206,7 @@ export const defaultTheme: DefaultTheme = {
         },
         transparent: DEFAULT.transparent,
         view: {
-            background: DEFAULT.neutral2
+            background: DEFAULT.neutral1
         },
         warning: DEFAULT.warning
     },

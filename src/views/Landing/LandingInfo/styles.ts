@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -101,6 +101,7 @@ export const InfoContainer = styled.div`
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     padding: 20px;
     overflow-y: auto;
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         width: 100%;
     }
@@ -144,6 +145,7 @@ export const Asset = styled.div<{ image: string }>`
     background-image: ${(props) => `url("${props.image}")`};
     background-size: cover;
     border: 1px solid ${(props) => props.theme.colors.border.primary};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: 400px;
     }

@@ -32,9 +32,6 @@ export const Content = styled.div`
     max-width: ${STYLING.cutoffs.max};
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
-    box-shadow: 0 1px 1px 0 ${(props) => props.theme.colors.shadow.primary};
-    border-bottom-left-radius: ${STYLING.dimensions.borderRadiusField};
-    border-bottom-right-radius: ${STYLING.dimensions.borderRadiusField};
 `;
 
 export const Info = styled.div`
@@ -42,12 +39,12 @@ export const Info = styled.div`
     width: 100%;
     display: flex;
     position: relative;
-    background: ${(props) => props.theme.colors.container.alt1.background};
-    border-top: 1px solid ${(props) => props.theme.colors.border.alt4};
-    border-left: 1px solid ${(props) => props.theme.colors.border.alt4};
-    border-right: 1px solid ${(props) => props.theme.colors.border.alt4};
-    border-top-left-radius: ${STYLING.dimensions.borderRadiusField};
-    border-top-right-radius: ${STYLING.dimensions.borderRadiusField};
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border-top: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-right: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;
 
 export const InfoData = styled.div`
@@ -65,7 +62,7 @@ export const InfoData = styled.div`
         white-space: nowrap;
         font-size: ${(props) => props.theme.typography.size.xSmall};
         font-weight: ${(props) => props.theme.typography.weight.medium};
-        color: ${(props) => props.theme.colors.font.primary.base};
+        color: ${(props) => props.theme.colors.font.primary.active.base};
     }
     p {
         line-height: 16px;
@@ -78,21 +75,21 @@ export const InfoTitle = styled(InfoData)`
 
 export const InfoStyled = styled(InfoData)`
     div, p, a {
-        color: ${(props) => props.theme.colors.font.primary.base};
+        color: ${(props) => props.theme.colors.font.primary.active.base};
     }
     div, a {
         text-decoration: underline;
         &:hover {
             cursor: pointer;
-            color: ${(props) => props.theme.colors.font.primary.alt5};
+            color: ${(props) => props.theme.colors.font.primary.active.hover};
         }
     }
     svg {
         width: 25px;
         margin: 0 10px 0 0;
-        fill: ${(props) => props.theme.colors.font.primary.alt5};
+        fill: ${(props) => props.theme.colors.font.primary.active.base};
     }
-    border-left: 1px solid ${(props) => props.theme.colors.border.alt2};
+    // border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
     @media(max-width: ${STYLING.cutoffs.initial}) {
         svg {
             display: none;
@@ -117,13 +114,18 @@ export const InfoPools = styled(InfoStyled)`
 `;
 
 export const Body = styled.div`
-    height: 50%;
+    height: 46.5%;
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 60px;
+    border-bottom-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    border-bottom-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-right: 1px solid ${(props) => props.theme.colors.border.alt1};
 `;
 
 export const TabWrapper = styled.div<{ label: string }>``;

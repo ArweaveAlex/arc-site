@@ -110,7 +110,7 @@ export default function PoolContribute(props: IProps) {
                     props.totalContributions,
                     amount
                 ))
-                
+
             }
         })()
         // eslint-disable-next-line react-hooks/exhaustive-deps

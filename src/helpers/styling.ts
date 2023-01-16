@@ -3,12 +3,13 @@ export const STYLING = {
         initial: "1024px",
         tablet: "840px",
         secondary: "540px",
-        banner: "1200px",
+        desktop: "1200px",
         max: "1400px"
     },
     dimensions: {
         borderRadius: "10px",
         borderRadiusField: "2.25px",
+        borderRadiusWrapper: "5px",
         buttonHeight: "33.5px",
         buttonWidth: "150px",
         navHeight: "70px",

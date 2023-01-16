@@ -11,7 +11,7 @@ import { PoolType } from "helpers/types";
 import * as S from "./styles";
 import { FALLBACK_IMAGE } from "helpers/config";
 
-function PoolsCard(props: PoolType) {
+function PoolCard(props: PoolType) {
 
     const [poolUrl, setPoolsUrl] = React.useState<string | null>(null);
     const [imageUrl, setImageUrl] = React.useState<string | null>(null);
@@ -49,7 +49,7 @@ export default function LandingPools(props: { data: PoolType[] }) {
     function getPools() {
         return props.data.map((pool: PoolType) => {
             return (
-                <PoolsCard {...pool} key={pool.id} />
+                <PoolCard {...pool} key={pool.id} />
             )
         })
     }
