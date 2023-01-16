@@ -63,7 +63,7 @@ export async function getArtifactsByAssociation(associationId: string, sequence:
 
         return ({
             artifacts: artifacts,
-            length: 100 // TODO - get count
+            length: 100 // TODO - Get count
         });
     }
     else {

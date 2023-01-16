@@ -92,8 +92,7 @@ export default class ArweaveClient {
             return 0;
         }
     }
-
-    // TODO - Get Last Contribution from aggregated results
+    
     async calcLastContributions(userWallet: string, pools: PoolType[]) {
         const artifacts = await getArtifactsByUser({
             ids: null,

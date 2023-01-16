@@ -1,7 +1,6 @@
 import { DefaultTheme } from "styled-components"
 
-
-// TODO - clean
+// TODO - Clean
 const DEFAULT = {
     neutral1: "#FFFFFF",
     neutral2: "#F2F3F4",

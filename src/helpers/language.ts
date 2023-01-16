@@ -1,4 +1,4 @@
-// TODO - clean
+// TODO - Clean
 export const LANGUAGE = {
     about: `About`,
     archivist: `Archivist`,
