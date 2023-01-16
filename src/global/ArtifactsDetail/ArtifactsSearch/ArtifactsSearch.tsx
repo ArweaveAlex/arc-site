@@ -82,8 +82,8 @@ export default function ArtifactsSearch(props: IProps) {
             searchTermReducer[props.cursorObject.value].id.value === props.id.value) {
             setSearchTerm(searchTermReducer[props.cursorObject.value].value);
             if (searchTermReducer[props.cursorObject.value].value === "") {
-                setSearchRequested(false);
-                props.setSearchRequested(false);
+                setSearchRequested(null);
+                props.setSearchRequested(null);
             }
         }
     }, [searchTermReducer, props])

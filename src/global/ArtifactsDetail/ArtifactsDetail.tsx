@@ -35,6 +35,8 @@ export default function ArtifactsDetail(props: IProps) {
             setDetailData(null);
             if (searchRequested && searchIdsReducer[props.cursorObject.value] &&
                 searchIdsReducer[props.cursorObject.value].length > 0) {
+                    console.log(props.cursorObject)
+                    console.log(cursor)
                 setDetailData((await getArtifactsByIds({
                     ids: null,
                     owner: null,
@@ -52,13 +54,14 @@ export default function ArtifactsDetail(props: IProps) {
             setDetailDataUpdated(!detailDataUpdated);
             if (props.id.value && (searchRequested === null)) {
                 setDetailData(null);
+                console.log(cursor)
                 setDetailData((await props.defaultFetch.fn({
                     ids: props.defaultFetch.ids,
                     owner: props.owner,
                     uploader: props.uploader,
                     cursor: cursor,
                     reduxCursor: props.cursorObject.value
-                })))
+                })));
             }
         })()
         // eslint-disable-next-line react-hooks/exhaustive-deps
