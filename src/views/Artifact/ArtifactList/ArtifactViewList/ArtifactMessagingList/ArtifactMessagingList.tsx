@@ -65,10 +65,10 @@ function ListItem(props: { data: ArtifactDetailType, showBorder: boolean, active
                                 {props.data ? formatAddress(props.data.artifactId, false) : null}
                             </Link>
                             {props.active &&
-                        <S.ActiveContainer>
-                            <ReactSVG src={ASSETS.star} />
-                        </S.ActiveContainer>
-                    }
+                                <S.ActiveContainer>
+                                    <ReactSVG src={ASSETS.star} />
+                                </S.ActiveContainer>
+                            }
                         </S.ArtifactLinkWrapper>
                         <S.ArtifactLinkWrapper>
                             <span>{`${LANGUAGE.owner}:`}&nbsp;</span>

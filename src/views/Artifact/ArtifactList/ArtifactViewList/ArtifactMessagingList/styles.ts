@@ -116,6 +116,7 @@ export const ArtifactLinkWrapper = styled.div`
     }
     a {
         font-weight: ${(props) => props.theme.typography.weight.medium};
+        white-space: nowrap;
         &:hover {
             text-decoration-thickness: 1.5px;
         }
@@ -186,6 +187,7 @@ export const Metric = styled.div`
         color: ${(props) => props.theme.colors.font.primary.alt1};
         font-weight: ${(props) => props.theme.typography.weight.medium};
         margin: 0 0 3.5px 10px;
+        white-space: nowrap;
     }
 `;
 
@@ -230,6 +232,7 @@ export const HeaderWrapper = styled.div`
     a {
         font-size: 22px;
         font-weight: 500;
+        white-space: nowrap;
         &:hover {
             text-decoration-thickness: 1.5px;
         }
