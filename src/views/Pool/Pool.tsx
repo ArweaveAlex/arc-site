@@ -43,7 +43,6 @@ export default function Pool() {
                     cursor: null,
                     reduxCursor: REDUX_TABLES.poolAll
                 });
-
                 if (detailData && detailData.contracts.length > 0) {
                     setCount((await getPoolCount(getTagValue(detailData.contracts[0].node.tags, TAGS.keys.contractSrc))));
                 } else {
