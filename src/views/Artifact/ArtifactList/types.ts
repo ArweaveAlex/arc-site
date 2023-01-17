@@ -4,4 +4,5 @@ export interface IProps {
     data: ArtifactDetailType[];
     loading: boolean;
     updateSequence: () => void;
+    hideUpdate: boolean;
 }

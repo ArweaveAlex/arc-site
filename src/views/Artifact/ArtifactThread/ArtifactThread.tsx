@@ -8,45 +8,62 @@ import { ArtifactList } from "../ArtifactList";
 import * as window from "helpers/window";
 import { AssociationDetailType } from "helpers/types";
 
+const SEQUENCE_ITERATION = 5;
+
 export default function Artifact() {
     const { associationId } = useParams();
 
     const [data, setData] = React.useState<AssociationDetailType | null>(null);
     const [loading, setLoading] = React.useState<boolean>(false);
-    const [sequence, setSequence] = React.useState<SequenceType>({ start: 0, end: 9 });
+    const [sequence, setSequence] = React.useState<SequenceType>({ 
+        start: SEQUENCE_ITERATION - (SEQUENCE_ITERATION - 1) - 1,
+        end: SEQUENCE_ITERATION - 1
+    });
 
     function updateSequence() {
-        setSequence({ start: sequence.start + 10, end: sequence.end + 10 });
+        setSequence({ 
+            start: sequence.start + SEQUENCE_ITERATION,
+            end: sequence.end + SEQUENCE_ITERATION
+        });
     }
 
     React.useEffect(() => {
         (async function () {
             if (associationId) {
+                setLoading(true);
                 if (!data) {
                     window.scrollTo(0, 0);
-                    setLoading(true);
                     setData((await getArtifactsByAssociation(associationId, sequence)));
-                    setLoading(false);
                 }
                 else {
-                    setLoading(true);
                     const associationDetail = await getArtifactsByAssociation(associationId, sequence);
                     setData({
                         artifacts: [...data.artifacts, ...associationDetail.artifacts],
                         length: associationDetail.length
                     });
-                    setLoading(false);
                 }
+                setLoading(false);
             }
         })()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [associationId, sequence]);
 
     return (
+        <>
+        {/* <button onClick={() => updateSequence()}>Test</button> */}
         <ArtifactList
             data={data ? data.artifacts : null}
             loading={loading}
             updateSequence={updateSequence}
+            hideUpdate={false}
         />
+        </>
     )
 }
+
+// 20
+// 0 1 2 3 4
+// 5 6 7 8 9
+// 10 11 12 13 14
+// 15 16 17 18 19
+// 20 21 22 23 24 25

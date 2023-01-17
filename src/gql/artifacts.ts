@@ -28,6 +28,20 @@ export async function getArtifactsByAssociation(associationId: string, sequence:
         (_, i) => (i + sequence.start).toString());
 
     if (associationId) {
+        const fullThread: GQLResponseType[] = (await getGQLData({
+            ids: null,
+            tagFilters: [
+                {
+                    name: TAGS.keys.associationId,
+                    values: [associationId]
+                }
+            ],
+            uploader: null,
+            cursor: null,
+            reduxCursor: null,
+            cursorObject: null
+        }));
+
         const gqlArtifacts: GQLResponseType[] = (await getGQLData({
             ids: null,
             tagFilters: [
@@ -63,7 +77,7 @@ export async function getArtifactsByAssociation(associationId: string, sequence:
 
         return ({
             artifacts: artifacts,
-            length: 100 // TODO - Get count
+            length: fullThread.length
         });
     }
     else {

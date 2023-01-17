@@ -31,6 +31,7 @@ export default function ArtifactViewList(props: IProps) {
                 data={props.data}
                 loading={props.loading}
                 updateSequence={props.updateSequence}
+                hideUpdate={props.hideUpdate}
             />
         </S.Wrapper>
     );
