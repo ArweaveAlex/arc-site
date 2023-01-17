@@ -26,6 +26,7 @@ export default function ArtifactsDetail(props: IProps) {
     );
 
     React.useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(clearCursors());
     }, [dispatch])
 

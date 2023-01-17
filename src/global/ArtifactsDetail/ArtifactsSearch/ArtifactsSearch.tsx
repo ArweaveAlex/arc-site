@@ -7,7 +7,8 @@ import { runSearch } from "search";
 
 import { Search } from "components/molecules/Search";
 
-import * as searchActions from "redux/search/actions"
+import * as searchActions from "redux/search/actions";
+import * as cursorActions from "redux/cursors/actions";
 import { splitArray } from "helpers/utils";
 import { PAGINATOR, SEARCH } from "helpers/config";
 import { IProps } from "./types";
@@ -63,6 +64,7 @@ export default function ArtifactsSearch(props: IProps) {
         if ((e.type === "keydown" && e.key === "Enter") || e.type === "click") {
             setSearchResultIds([]);
             dispatch(searchActions.clearSearchIds());
+            dispatch(cursorActions.clearCursors());
             setSearchRequested(true);
             setSearchToggle(!searchToggle);
         }
