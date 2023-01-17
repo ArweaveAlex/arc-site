@@ -150,7 +150,7 @@ export default function ArtifactMessagingList(props: IProps) {
                     type={"tertiary"}
                     label={LANGUAGE.showMoreReplies}
                     handlePress={() => updateSequence()}
-                    disabled={props.hideUpdate}
+                    disabled={props.updateDisabled}
                 />
             )
         }
@@ -173,11 +173,9 @@ export default function ArtifactMessagingList(props: IProps) {
                             <ListItem key={index} data={artifact} showBorder={true} />
                         )
                     })}
-                    {!props.hideUpdate && 
-                        <S.ActionContainer>
-                            {getAction()}
-                        </S.ActionContainer>
-                    }
+                    <S.ActionContainer>
+                        {getAction()}
+                    </S.ActionContainer>
                 </>
             )
         }

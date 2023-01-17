@@ -4,6 +4,7 @@ import Arweave from "arweave";
 import { WarpFactory, defaultCacheOptions } from "warp-contracts/web";
 
 import { store } from "redux/store";
+import * as poolActions from "redux/pools/actions";
 import { getGQLData } from "gql";
 import { getPools } from "gql/pools";
 import { getArtifactsByUser } from "gql/artifacts";
@@ -42,7 +43,7 @@ export default class ArweaveClient {
         timeout: TIMEOUT,
         logging: LOGGING
     });
-    
+
     warp = WarpFactory.forMainnet({ ...defaultCacheOptions, inMemory: true });
 
     async getUserContributions(userWallet: string) {
@@ -53,9 +54,11 @@ export default class ArweaveClient {
             pools = poolsReducer.data;
         }
         else {
-            pools = await getPools(); // TODO - Dispatch quiet update
+            const fetchedPools = await getPools();
+            pools = fetchedPools;
+            store.dispatch(poolActions.setPools({ data: fetchedPools }));
         }
-        
+
         if (pools.length > 0) {
             const lastContributions: any = await this.calcLastContributions(userWallet, pools);
             return pools.filter((pool: any) => {
@@ -92,7 +95,7 @@ export default class ArweaveClient {
             return 0;
         }
     }
-    
+
     async calcLastContributions(userWallet: string, pools: PoolType[]) {
         const artifacts = await getArtifactsByUser({
             ids: null,
@@ -189,12 +192,12 @@ export default class ArweaveClient {
             });
             const result = await warpContract.writeInteraction(
                 { function: "contribute" }, {
-                    disableBundling: true, 
-                    transfer: {
-                        target: owner,
-                        winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
-                    }
-                });
+                disableBundling: true,
+                transfer: {
+                    target: owner,
+                    winstonQty: this.arweavePost.ar.arToWinston(amount.toString())
+                }
+            });
             if (!result) {
                 return { status: false, message: LANGUAGE.pool.contribute.failed };
             }

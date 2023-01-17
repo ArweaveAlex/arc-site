@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
 export const ListHeader = styled.div`
   width: 100%;
   background: ${(props) => props.theme.colors.container.primary.background};
-  border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
 `;
 
 export const List = styled.ol`

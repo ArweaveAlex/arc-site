@@ -6,7 +6,6 @@ import { STYLING } from "helpers/styling";
 export const Wrapper = styled.div`
     height: 150px;
     width: 100%;
-    border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
     @media(max-width: ${STYLING.cutoffs.desktop}) {
         height: auto;
     }
@@ -17,14 +16,13 @@ export const Content = styled.div`
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
     margin: 0 auto;
-    padding: 20px 20px 30px 20px;
+    padding: 20px 0 30px 0;
     display: flex;
     align-items: center;
     animation: ${open} ${fadeIn2};
     @media(max-width: ${STYLING.cutoffs.desktop}) {
         flex-direction: column;
         align-items: start;
-        padding: 35px 20px;
     }
 `;
 
@@ -46,7 +44,7 @@ export const FlexHeader = styled.div`
 `;
 
 export const H1 = styled.h1`
-    font-size: 48px;
+    font-size: 44px;
     line-height: 1.25;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         font-size: 40px;
