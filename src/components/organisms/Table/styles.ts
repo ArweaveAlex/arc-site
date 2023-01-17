@@ -47,6 +47,7 @@ export const Body = styled.div`
     overflow-x: auto;
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     animation: ${open} ${fadeIn2};
+    min-height: 66.5vh;
 `;
 
 export const Table = styled.div`

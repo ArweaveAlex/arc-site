@@ -130,6 +130,8 @@ export const PCWrapper = styled.div`
     margin: 25px;
     background: ${(props) => props.theme.colors.container.primary.background};
     position: relative;
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     a {
         height: 100%;
         width: 100%;

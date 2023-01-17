@@ -54,7 +54,7 @@ export function searchIdsReducer(
                     action.payload[REDUX_TABLES.libraryCollections] : state[REDUX_TABLES.libraryCollections]
             })
         case CLEAR_SEARCH_IDS:
-            return Object.assign({}, state, initStateSearchIds)
+            return Object.assign({}, initStateSearchIds)
         default:
             return state;
     }
@@ -102,7 +102,7 @@ export function searchTermReducer(
                     action.payload[REDUX_TABLES.libraryCollections] : state[REDUX_TABLES.libraryCollections]
             })
         case CLEAR_SEARCH_TERM:
-            return Object.assign({}, state, {
+            return Object.assign({}, {
                 [REDUX_TABLES.accountAll]: {
                     value: "",
                     id: state[REDUX_TABLES.accountAll].id
@@ -171,7 +171,7 @@ export function searchIndecesReducer(
                     action.payload[REDUX_TABLES.libraryCollections] : state[REDUX_TABLES.libraryCollections]
             })
         case CLEAR_SEARCH_INDECES:
-            return Object.assign({}, state, {
+            return Object.assign({}, {
                 [REDUX_TABLES.accountAll]: {
                     value: [],
                     id: state[REDUX_TABLES.accountAll].id

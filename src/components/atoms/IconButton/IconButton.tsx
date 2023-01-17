@@ -37,6 +37,7 @@ export default function IconButton(props: IProps) {
       sm={props.sm} 
       warning={props.warning} 
       data-testid={props.testingCtx}
+      dimensions={props.dimensions}
     >
       <ReactSVG src={props.src} />
     </StyledButton>

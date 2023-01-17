@@ -24,9 +24,9 @@ export const Primary = styled.button<{
   svg {
     height: 100%;
     width: 100%;
-    fill: ${(props) => props.warning ? 
-      (props.disabled ? 
-        props.theme.colors.icon.inactive : props.theme.colors.warning) : props.theme.colors.icon.inactive};
+    fill: ${(props) => props.warning ?
+    (props.disabled ?
+      props.theme.colors.icon.inactive : props.theme.colors.warning) : props.theme.colors.icon.inactive};
     
     &:hover {
       cursor: ${(props) => props.disabled ? "not-allowed" : "pointer"};
@@ -35,9 +35,9 @@ export const Primary = styled.button<{
   }
 `;
 
-export const Secondary = styled(Primary)`
-  height: 32.5px;
-  width: 32.5px;
+export const Secondary = styled(Primary) <{ dimensions: { wrapper: number, icon: number } | undefined }>`
+  height: ${(props) => props.dimensions ? `${props.dimensions.wrapper.toString()}px` : `32.5px`};
+  width: ${(props) => props.dimensions ? `${props.dimensions.wrapper.toString()}px` : `32.5px`};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,8 +50,8 @@ export const Secondary = styled(Primary)`
   }
 
   svg {
-    height: 17.5px;
-    width: 17.5px;
+    height: ${(props) => props.dimensions ? `${props.dimensions.icon.toString()}px` : `17.5px`};
+    width: ${(props) => props.dimensions ? `${props.dimensions.icon.toString()}px` : `17.5px`};
     fill: ${(props) => props.theme.colors.button.secondary.label};
     
     &:hover {
@@ -72,6 +72,6 @@ export const Secondary = styled(Primary)`
 export const Tertiary = styled(Primary)`
   svg {
     fill: ${(props) => props.warning ?
-      props.theme.colors.warning : props.theme.colors.icon.secondary.fill};
+    props.theme.colors.warning : props.theme.colors.icon.secondary.fill};
   }
 `;

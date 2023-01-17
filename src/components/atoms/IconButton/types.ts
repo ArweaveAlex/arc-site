@@ -8,4 +8,8 @@ export interface IProps {
   warning?: boolean;
   disabled?: boolean;
   testingCtx?: string;
+  dimensions?: {
+    wrapper: number,
+    icon: number
+  }
 }

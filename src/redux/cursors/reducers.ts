@@ -107,7 +107,62 @@ export function cursorsReducer(
                 }
             })
         case CLEAR_CURSORS:
-            return Object.assign({}, state, initStateCursors)
+            return Object.assign({}, {
+                gql: {
+                    [REDUX_TABLES.accountAll]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    },
+                    [REDUX_TABLES.accountCollections]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    },
+                    [REDUX_TABLES.poolAll]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    },
+                    [REDUX_TABLES.libraryAll]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    },
+                    [REDUX_TABLES.libraryCollections]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    }
+                },
+                search: {
+                    [REDUX_TABLES.accountAll]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    },
+                    [REDUX_TABLES.accountCollections]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    },
+                    [REDUX_TABLES.poolAll]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    },
+                    [REDUX_TABLES.libraryAll]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    },
+                    [REDUX_TABLES.libraryCollections]: {
+                        previous: null,
+                        next: null,
+                        cursors: []
+                    }
+                }
+            });
         default:
             return state;
     }

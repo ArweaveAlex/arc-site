@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { STYLING } from "helpers/styling";
 
 export const Wrapper = styled.div`
-    height: 540px;
+    height: 550px;
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
     margin: 0px auto;

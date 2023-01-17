@@ -51,6 +51,8 @@ export const ASSET_SRC = "assets";
 
 export const ASSETS = {
     all: `${ASSET_SRC}/all.svg`,
+    arrowNext: `${ASSET_SRC}/arrow-next.svg`,
+    arrowPrevious: `${ASSET_SRC}/arrow-previous.svg`,
     artifact: `${ASSET_SRC}/artifact.svg`,
     artifactTypes: {
         default: `${ASSET_SRC}/artifact-types/webpage.svg`,

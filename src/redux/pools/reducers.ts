@@ -30,7 +30,7 @@ export function poolsSearchReducer(
 ) {
     switch (action.type) {
         case SET_POOLS_INDEX_SEARCH:
-            return Object.assign({}, state, {
+            return Object.assign({}, {
                 data: action.payload.data ?? state.data
             })
         default:

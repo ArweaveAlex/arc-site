@@ -71,7 +71,7 @@ export default function Table(props: IProps) {
         }
     }
 
-    function getPaginator() {
+    function getPaginator(useIcons: boolean) {
         if (currentRecords) {
             if (currentRecords.length <= 0) {
                 return null;
@@ -86,6 +86,7 @@ export default function Table(props: IProps) {
                         showPageNumbers={props.showPageNumbers}
                         handleCursorFetch={(cursor: string | null) => props.handleCursorFetch(cursor)}
                         cursors={props.cursors}
+                        useIcons={useIcons}
                     />
                 )
             }
@@ -103,8 +104,9 @@ export default function Table(props: IProps) {
                     }
                 </S.HeaderFlex>
             </S.Header>
+            {getPaginator(true)}
             {getTable()}
-            {getPaginator()}
+            {getPaginator(false)}
         </S.Wrapper>
     )
 }

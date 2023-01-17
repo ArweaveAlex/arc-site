@@ -141,9 +141,6 @@ function handleCursors(
             }
 
             let previousCount = 3;
-            if (cursorObject && cursorObject === CursorEnum.Search) {
-                previousCount = 2;
-            }
 
             cursorState.next = cursorList[cursorList.length - 1];
             cursorState.previous = cursorList[cursorList.length - previousCount];

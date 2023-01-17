@@ -1,6 +1,5 @@
 import { DefaultTheme } from "styled-components"
 
-// TODO - Clean
 const DEFAULT = {
     neutral1: "#FFFFFF",
     neutral2: "#F2F3F4",
@@ -125,7 +124,7 @@ export const defaultTheme: DefaultTheme = {
                 alt7: DEFAULT.neutral8,
                 active: {
                     base: DEFAULT.primary,
-                    hover: DEFAULT.primary2
+                    hover: DEFAULT.primary3
                 },
                 invalid: DEFAULT.warning
             }

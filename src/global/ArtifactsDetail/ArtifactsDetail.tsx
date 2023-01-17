@@ -22,7 +22,7 @@ export default function ArtifactsDetail(props: IProps) {
     const [cursor, setCursor] = React.useState<string | null>(null);
     const [searchRequested, setSearchRequested] = React.useState<boolean | null>(
         (searchTermReducer[props.cursorObject.value].value !== "" &&
-        searchTermReducer[props.cursorObject.value].id.value === props.id.value) ? true : null
+            searchTermReducer[props.cursorObject.value].id.value === props.id.value) ? true : null
     );
 
     React.useEffect(() => {
@@ -65,7 +65,7 @@ export default function ArtifactsDetail(props: IProps) {
     }, [searchRequested, props.id.value, props.uploader, props.cursorObject.value, cursor])
 
     React.useEffect(() => {
-        if (searchRequested && searchIdsReducer[props.cursorObject.value] && 
+        if (searchRequested && searchIdsReducer[props.cursorObject.value] &&
             searchIdsReducer[props.cursorObject.value].length <= 0) {
             setDetailData({
                 nextCursor: null,
@@ -75,12 +75,12 @@ export default function ArtifactsDetail(props: IProps) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [detailDataUpdated])
-    
+
     return (
         <ArtifactsTable
             id={props.id}
             indexIds={props.indexIds}
-            data={detailData} 
+            data={detailData}
             showCollections={props.showCollections}
             showPoolIds={props.showPoolIds}
             handleCursorFetch={(cursor: string | null) => setCursor(cursor)}

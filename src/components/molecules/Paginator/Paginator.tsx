@@ -1,12 +1,11 @@
 import { Button } from "components/atoms/Button";
+import { IconButton } from "components/atoms/IconButton";
 
 import { LANGUAGE } from "helpers/language";
-import { CURSORS } from "helpers/config";
+import { ASSETS, CURSORS } from "helpers/config";
 import { IProps } from "./types"
 import * as S from "./styles";
 
-
-// TODO - Fix cursors
 export default function Paginator(props: IProps) {
     let pageNumbers: number[] = [];
     for (let i = 0; i < props.nPages + 1; i++) {
@@ -61,15 +60,59 @@ export default function Paginator(props: IProps) {
         handleScroll();
     }
 
+    function getPreviousAction() {
+        if (props.useIcons) {
+            return (
+                <IconButton
+                    src={ASSETS.arrowPrevious}
+                    type={"secondary"}
+                    handlePress={handlePreviousPage}
+                    disabled={!props.cursors.previous}
+                    dimensions={{ wrapper: 25, icon: 11 }}
+                />
+            )
+        }
+        else {
+            return (
+                <Button
+                    label={LANGUAGE.previous}
+                    type={"secondary"}
+                    handlePress={handlePreviousPage}
+                    disabled={!props.cursors.previous}
+                    noMinWidth
+                />
+            )
+        }
+    }
+
+    function getNextAction() {
+        if (props.useIcons) {
+            return (
+                <IconButton
+                    src={ASSETS.arrowNext}
+                    type={"secondary"}
+                    handlePress={handleNextPage}
+                    disabled={!props.cursors.next || props.cursors.next === CURSORS.end}
+                    dimensions={{ wrapper: 25, icon: 11 }}
+                />
+            )
+        }
+        else {
+            return (
+                <Button
+                    label={LANGUAGE.next}
+                    type={"secondary"}
+                    handlePress={handleNextPage}
+                    disabled={!props.cursors.next || props.cursors.next === CURSORS.end}
+                    noMinWidth
+                />
+            )
+        }
+    }
+
     return (
         <S.Wrapper>
-            <Button
-                label={LANGUAGE.previous}
-                type={"secondary"}
-                handlePress={handlePreviousPage}
-                disabled={!props.cursors.previous}
-                noMinWidth
-            />
+            {getPreviousAction()}
             {props.showPageNumbers &&
                 <S.NumberContainer>
                     {pageNumbers.slice(sliceStart, sliceEnd).map((number: number, index: number) => {
@@ -105,13 +148,7 @@ export default function Paginator(props: IProps) {
                     }
                 </S.NumberContainer>
             }
-            <Button
-                label={LANGUAGE.next}
-                type={"secondary"}
-                handlePress={handleNextPage}
-                disabled={!props.cursors.next || props.cursors.next === CURSORS.end}
-                noMinWidth
-            />
+            {getNextAction()}
         </S.Wrapper>
     )
 }

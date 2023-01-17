@@ -9,5 +9,6 @@ export interface IProps {
     scrollRef: any;
     showPageNumbers: boolean;
     handleCursorFetch: (cursor: string | null) => void;
-    cursors: CursorType
+    cursors: CursorType;
+    useIcons: boolean;
 }
