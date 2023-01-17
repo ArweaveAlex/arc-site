@@ -121,3 +121,11 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
         font-size: ${(props) => props.theme.typography.size.small};
     }
 `;
+
+export const NoResultsContainer = styled.div`
+    height: 100%;
+    width: 100%;
+    p {
+        color: ${(props) => props.theme.colors.warning};
+    }
+`;

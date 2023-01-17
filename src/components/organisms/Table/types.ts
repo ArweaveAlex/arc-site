@@ -11,4 +11,5 @@ export interface IProps {
     showPageNumbers: boolean;
     handleCursorFetch: (cursor: string | null) => void;
     cursors: CursorType;
+    showNoResults: boolean;
 }

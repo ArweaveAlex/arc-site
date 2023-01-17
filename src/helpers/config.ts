@@ -94,6 +94,7 @@ export const ASSETS = {
         discord: `${ASSET_SRC}/discord.svg`,
         twitter: `${ASSET_SRC}/twitter.svg`
     },
+    star: `${ASSET_SRC}/star.svg`,
     user: `${ASSET_SRC}/user.svg`,
     wallets: {
         arconnect: `${ASSET_SRC}/arconnect-wallet-logo.png`

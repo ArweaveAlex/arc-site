@@ -9,6 +9,7 @@ import { formatTitle } from "helpers/utils";
 import { IProps } from "./types";
 import * as S from "./styles";
 import { PAGINATOR } from "helpers/config";
+import { LANGUAGE } from "helpers/language";
 
 export default function Table(props: IProps) {
     const scrollRef = React.useRef(null);
@@ -22,13 +23,22 @@ export default function Table(props: IProps) {
     const nPages = props.data ? Math.ceil(props.data.length / recordsPerPage) : null;
 
     function getTable() {
-        if (currentRecords) {
-            if (currentRecords.length <= 0) {
-                return null
-            }
-            else {
-                return (
-                    <>
+        if (props.showNoResults) {
+            return (
+                <S.Body>
+                    <S.NoResultsContainer>
+                        <p>{LANGUAGE.noResults}</p>
+                    </S.NoResultsContainer>
+                </S.Body>
+            )
+        }
+        else {
+            if (currentRecords) {
+                if (currentRecords.length <= 0) {
+                    return null
+                }
+                else {
+                    return (
                         <S.Body>
                             <S.Table>
                                 <S.TableHeader>
@@ -60,14 +70,14 @@ export default function Table(props: IProps) {
                                 })}
                             </S.Table>
                         </S.Body>
-                    </>
+                    )
+                }
+            }
+            else {
+                return (
+                    <TableLoader rowCount={PAGINATOR} />
                 )
             }
-        }
-        else {
-            return (
-                <TableLoader rowCount={PAGINATOR} />
-            )
         }
     }
 

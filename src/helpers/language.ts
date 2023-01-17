@@ -113,7 +113,9 @@ export const LANGUAGE = {
     next: `Next`,
     noArtifacts: `No Artifacts`,
     noContributions: `No Contributions`,
+    noResults: `No Results`,
     ofArtifactsCreated: `of new Artifacts created`,
+    owner: `Owner`,
     pageNotFound: `Page Not Found`,
     paths: {
         about: `About`,

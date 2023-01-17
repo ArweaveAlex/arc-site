@@ -13,6 +13,7 @@ const DEFAULT = {
     neutral10: "#EAEAEA",
     neutral11: "#BABABA",
     neutral12: "#000000",
+    neutral13: "#FAFAFA",
     primary: "#003153",
     primary2: "#265F85",
     primary3: "#4C8CB8",
@@ -20,8 +21,8 @@ const DEFAULT = {
     secondary: "#DAA520",
     tertiary: "#FFD877",
     overlay1: "rgba(59, 70, 78, 0.75)",
-    overlay2: "rgb(193, 193, 193, 0.75)",
-    overlay3: "rgb(193, 193, 193, 0.85)",
+    overlay2: "rgba(193, 193, 193, 0.75)",
+    overlay3: "rgba(193, 193, 193, 0.85)",
     warning: "#EE3C3C",
     warningShadow: "#F27979",
     success: "#32C422",
@@ -110,6 +111,9 @@ export const defaultTheme: DefaultTheme = {
             },
             alt5: {
                 background: DEFAULT.neutral12
+            },
+            alt6: {
+                background: DEFAULT.neutral13
             }
         },
         font: {

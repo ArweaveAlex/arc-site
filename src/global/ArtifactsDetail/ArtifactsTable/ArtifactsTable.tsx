@@ -221,6 +221,7 @@ export default function ArtifactsTable(props: IProps) {
             showPageNumbers={false}
             handleCursorFetch={props.handleCursorFetch}
             cursors={props.cursors}
+            showNoResults={props.showNoResults}
         />
     );
 }

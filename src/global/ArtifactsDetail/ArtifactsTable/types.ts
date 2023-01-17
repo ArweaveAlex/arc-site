@@ -11,4 +11,5 @@ export interface IProps {
     owner: string | null;
     cursorObject: CursorObjectType;
     setSearchRequested: (searchRequested: boolean) => void;
+    showNoResults: boolean;
 }

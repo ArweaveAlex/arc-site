@@ -54,7 +54,6 @@ export const Body = styled.div`
         height: 100%;
     }
     &:hover {
-        cursor: grab;
     }
 `;
 

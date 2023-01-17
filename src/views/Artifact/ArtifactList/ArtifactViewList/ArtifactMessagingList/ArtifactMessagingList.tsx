@@ -21,7 +21,7 @@ import * as urls from "helpers/urls";
 import { IProps } from "../../types";
 import * as S from "./styles";
 
-function ListItem(props: { data: ArtifactDetailType, showBorder: boolean }) {
+function ListItem(props: { data: ArtifactDetailType, showBorder: boolean, active: boolean }) {
     const [messageData, setMessageData] = React.useState<any>(null);
 
     React.useEffect(() => {
@@ -48,7 +48,7 @@ function ListItem(props: { data: ArtifactDetailType, showBorder: boolean }) {
     }
 
     return (props.data && messageData) ? (
-        <S.LIWrapper showBorder={props.showBorder}>
+        <S.LIWrapper showBorder={props.showBorder} active={props.active}>
             <S.LIContent>
                 <S.LIHeader>
                     <S.ProfileWrapper>
@@ -58,12 +58,25 @@ function ListItem(props: { data: ArtifactDetailType, showBorder: boolean }) {
                             <S.Username>{getUsername(messageData)}</S.Username>
                         </S.NUContainer>
                     </S.ProfileWrapper>
-                    <S.ArtifactLinkWrapper>
-                        <span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
-                        <Link to={`${urls.artifact}${props.data.artifactId}`}>
-                            {props.data ? formatAddress(props.data.artifactId, false) : null}
-                        </Link>
-                    </S.ArtifactLinkWrapper>
+                    <S.ArtifactInfoWrapper>
+                        <S.ArtifactLinkWrapper>
+                            <span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
+                            <Link to={`${urls.artifact}${props.data.artifactId}`}>
+                                {props.data ? formatAddress(props.data.artifactId, false) : null}
+                            </Link>
+                            {props.active &&
+                        <S.ActiveContainer>
+                            <ReactSVG src={ASSETS.star} />
+                        </S.ActiveContainer>
+                    }
+                        </S.ArtifactLinkWrapper>
+                        <S.ArtifactLinkWrapper>
+                            <span>{`${LANGUAGE.owner}:`}&nbsp;</span>
+                            <Link to={`${urls.libraryAll(props.data.owner)}`}>
+                                {props.data ? formatAddress(props.data.owner, false) : null}
+                            </Link>
+                        </S.ArtifactLinkWrapper>
+                    </S.ArtifactInfoWrapper>
                 </S.LIHeader>
                 <S.LIBody>
                     <S.Message>
@@ -170,7 +183,12 @@ export default function ArtifactMessagingList(props: IProps) {
                 <>
                     {threadData.map((artifact: ArtifactDetailType, index: number) => {
                         return (
-                            <ListItem key={index} data={artifact} showBorder={true} />
+                            <ListItem
+                                key={index}
+                                data={artifact}
+                                showBorder={true}
+                                active={detailData ? detailData.artifactId === artifact.artifactId : false}
+                            />
                         )
                     })}
                     <S.ActionContainer>
@@ -212,7 +230,11 @@ export default function ArtifactMessagingList(props: IProps) {
         }
         else {
             return (
-                <ListItem data={detailData} showBorder={false} />
+                <ListItem
+                    data={detailData}
+                    showBorder={true}
+                    active={true}
+                />
             )
         }
     }

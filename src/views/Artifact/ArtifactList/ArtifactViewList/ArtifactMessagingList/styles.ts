@@ -39,10 +39,11 @@ export const ListWrapper = styled.div`
     }
 `;
 
-export const LIWrapper = styled.div<{ showBorder: boolean }>`
+export const LIWrapper = styled.div<{ showBorder: boolean, active: boolean }>`
     width: 100%;
     border-bottom: ${(props) => props.showBorder ? `1px solid ${props.theme.colors.border.primary}` : 'none'};
-    background: ${(props) => props.theme.colors.container.primary.background};
+    background: ${(props) => props.active ? 
+        props.theme.colors.container.primary.background : props.theme.colors.container.primary.background};
     animation: ${open} ${fadeIn2};
 `;
 
@@ -96,11 +97,16 @@ export const Username = styled(P)`
     margin: 5px 0;
 `;
 
-export const ArtifactLinkWrapper = styled.div`
+export const ArtifactInfoWrapper = styled.div`
     height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+`;
+
+export const ArtifactLinkWrapper = styled.div`
+    display: flex;
     span, a {
         font-size: ${(props) => props.theme.typography.size.xSmall};
         line-height: 18px;
@@ -202,11 +208,13 @@ export const SingleContent = styled.div`
     position: fixed;
     overflow-y: auto;
     overflow-x: hidden;
+    top: 95px;
     @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
         height: auto;
         width: ${WRAP_WIDTH};
         max-width: 100%;
         position: relative;
+        top: auto;
     }
 `;
 
@@ -218,13 +226,16 @@ export const HeaderWrapper = styled.div`
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     padding: 20px;
-    margin: 20px 0;
+    margin: 0 0 20px 0;
     a {
         font-size: 22px;
         font-weight: 500;
         &:hover {
             text-decoration-thickness: 1.5px;
         }
+    }
+    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
+        margin: 20px 0;
     }
 `;
 
@@ -292,5 +303,18 @@ export const ActionContainer = styled.div`
         height: 100% !important;
         width: 100% !important;
         border: none !important;
+    }
+`;
+
+export const ActiveContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 0 0 0 7.5px;
+    svg {
+        height: 15px;
+        width: 15px;
+        fill: ${(props) => props.theme.colors.icon.secondary.fill};
     }
 `;

@@ -82,6 +82,9 @@ declare module "styled-components" {
                 alt5: {
                     background: string
                 }
+                alt6: {
+                    background: string
+                }
             }
             font: {
                 primary: {

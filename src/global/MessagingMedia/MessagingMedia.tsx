@@ -32,8 +32,8 @@ export default function MessagingMedia(props: IProps) {
             default:
                 return (
                     <S.ArweaveLinkWrapper>
-                        <S.ArweaveLink>
-                            <a target={"_blank"} rel={"noreferrer"} href={url}>{LANGUAGE.viewOnArweave}</a>
+                        <S.ArweaveLink target={"_blank"} rel={"noreferrer"} href={url}>
+                            {LANGUAGE.viewOnArweave}
                         </S.ArweaveLink>
                     </S.ArweaveLinkWrapper>
                 )

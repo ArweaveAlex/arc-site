@@ -24,6 +24,13 @@ export default function ArtifactsDetail(props: IProps) {
         (searchTermReducer[props.cursorObject.value].value !== "" &&
             searchTermReducer[props.cursorObject.value].id.value === props.id.value) ? true : null
     );
+    const [showNoResults, setShowNoResults] = React.useState<boolean>(false);
+
+    function handleShowNoResults() {
+        setTimeout(() => {
+            setShowNoResults(true);
+        }, 100);
+    }
 
     React.useEffect(() => {
         window.scrollTo(0, 0);
@@ -32,6 +39,7 @@ export default function ArtifactsDetail(props: IProps) {
 
     React.useEffect(() => {
         (async function () {
+            setShowNoResults(false);
             setDetailDataUpdated(!detailDataUpdated);
             setDetailData(null);
             if (searchRequested && searchIdsReducer[props.cursorObject.value] &&
@@ -50,6 +58,7 @@ export default function ArtifactsDetail(props: IProps) {
 
     React.useEffect(() => {
         (async function () {
+            setShowNoResults(false);
             setDetailDataUpdated(!detailDataUpdated);
             if (props.id.value && (searchRequested === null)) {
                 setDetailData(null);
@@ -68,6 +77,7 @@ export default function ArtifactsDetail(props: IProps) {
     React.useEffect(() => {
         if (searchRequested && searchIdsReducer[props.cursorObject.value] &&
             searchIdsReducer[props.cursorObject.value].length <= 0) {
+            handleShowNoResults();
             setDetailData({
                 nextCursor: null,
                 previousCursor: null,
@@ -92,6 +102,7 @@ export default function ArtifactsDetail(props: IProps) {
             owner={props.owner}
             cursorObject={props.cursorObject}
             setSearchRequested={(searchRequested: boolean) => setSearchRequested(searchRequested)}
+            showNoResults={showNoResults}
         />
     )
 }
