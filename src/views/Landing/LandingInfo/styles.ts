@@ -11,7 +11,7 @@ export const Content = styled.div`
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
     margin: 40px auto;
-    padding: 20px;
+    padding: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;

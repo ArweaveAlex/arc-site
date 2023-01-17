@@ -93,7 +93,7 @@ export const LogoSubHeader = styled.p`
 
 export const NC = styled.div`
   height: 100%;
-  width: 395px;
+  width: 260px;
   max-width: 77.5vw;
   right: 0;
   position: absolute;

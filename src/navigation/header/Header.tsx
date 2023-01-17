@@ -6,7 +6,6 @@ import { IconButton } from "components/atoms/IconButton";
 import { WalletConnect } from "wallet/WalletConnect";
 
 import { ASSETS } from "helpers/config";
-import { SOCIAL_PATHS } from "helpers/paths";
 import * as urls from "helpers/urls";
 import { 
     checkDesktop, 
@@ -61,13 +60,13 @@ export default function Header() {
                         ))}
                     </S.NavPaths>
                     <S.SC>
-                        <S.SocialPaths>
+                        {/* <S.SocialPaths>
                             {SOCIAL_PATHS.map((path, index) => (
                                 <S.SocialLink key={index} target={"_blank"} href={path.href}>
                                     <ReactSVG src={`${path.svg}`} />
                                 </S.SocialLink>
                             ))}
-                        </S.SocialPaths>
+                        </S.SocialPaths> */}
                         <S.Connect show={getWalletDisplay()}>
                             <WalletConnect callback={() => setOpen(!open)}/>
                         </S.Connect>

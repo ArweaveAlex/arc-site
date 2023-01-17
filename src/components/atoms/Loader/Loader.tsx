@@ -48,7 +48,7 @@ export default function Loader(props: IProps) {
   return (
     <Portal node={DOM.loader}>
       <S.Wrapper>
-        {getLoader(27.5, 7.5, 2.25)}
+        {getLoader(27.5, 7.5, 2.65)}
       </S.Wrapper>
     </Portal>
   );
