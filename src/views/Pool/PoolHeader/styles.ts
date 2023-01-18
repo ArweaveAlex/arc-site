@@ -196,7 +196,4 @@ export const LDBody = styled.div`
         font-size: ${(props) => props.theme.typography.size.base};
         text-decoration: underline;
     }
-    @media(max-width: ${STYLING.cutoffs.tablet}) {
-        padding: 0;
-    }
 `;

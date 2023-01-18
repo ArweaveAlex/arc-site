@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
     position: relative;
     display flex;
     justify-content: space-between;
-    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
+    @media((max-width: 1225px) or (max-height: 600px)) {
         display: flex;
         flex-direction: column-reverse;
     }
@@ -30,7 +30,7 @@ export const ListWrapper = styled.div`
     border-left: 1px solid ${(props) => props.theme.colors.border.primary};
     border-right: 1px solid ${(props) => props.theme.colors.border.primary};
     padding: 0 0 300px 0;
-    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
+    @media((max-width: 1225px) or (max-height: 600px)) {
         width: ${WRAP_WIDTH};
         border-top: 1px solid ${(props) => props.theme.colors.border.primary};
         border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
@@ -195,7 +195,7 @@ export const SingleWrapper = styled.div`
     width: ${DETAIL_WIDTH};
     position: absolute;
     right: 0;
-    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
+    @media((max-width: 1225px) or (max-height: 600px)) {
         width: ${WRAP_WIDTH};
         max-width: 100%;
         position: relative;
@@ -211,7 +211,7 @@ export const SingleContent = styled.div`
     overflow-y: auto;
     overflow-x: hidden;
     top: 95px;
-    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
+    @media((max-width: 1225px) or (max-height: 600px)) {
         height: auto;
         width: ${WRAP_WIDTH};
         max-width: 100%;
@@ -237,7 +237,7 @@ export const HeaderWrapper = styled.div`
             text-decoration-thickness: 1.5px;
         }
     }
-    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) or (max-height: 600px) {
+    @media((max-width: 1225px) or (max-height: 600px)) {
         margin: 20px 0;
     }
 `;
