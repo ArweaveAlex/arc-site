@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { STYLING } from "helpers/styling";
 import { loadingSlide } from "helpers/animations";
