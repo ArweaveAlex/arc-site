@@ -67,6 +67,10 @@ export const LIHeader = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        height: fit-content;
+        flex-direction: column;
+    }
 `;
 
 export const ProfileWrapper = styled.div`
@@ -112,6 +116,10 @@ export const ArtifactInfoWrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: end;
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        margin: 20px 0 0 0;
+        align-items: start;
+    }
 `;
 
 export const ArtifactLinkWrapper = styled.div`
@@ -177,6 +185,7 @@ export const PostDate = styled(P)`
 export const PublicMetrics = styled.div`
     height: 25px;
     width: 50%;
+    min-width: 180px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -283,6 +292,8 @@ export const SubheaderFlex = styled.div`
 export const SubheaderContainer = styled.div`
     display: flex;
     margin: 7.5px 0;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const Subheader1 = styled.div`

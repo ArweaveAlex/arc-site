@@ -88,7 +88,7 @@ export default function PoolContribute(props: IProps) {
                     <span>
                         {LANGUAGE.willBeReceiving}:
                     </span>
-                    <p>&nbsp;~&nbsp;{receivingPercent}% {LANGUAGE.ofArtifactsCreated}.</p>
+                    <p>~&nbsp;{receivingPercent}% {LANGUAGE.ofArtifactsCreated}.</p>
                 </S.RPWrapper>
             )
         }

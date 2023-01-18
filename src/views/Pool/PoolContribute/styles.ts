@@ -83,6 +83,8 @@ export const BalanceWrapper = styled.div`
 export const AvailableBalance = styled.p`
     color: ${(props) => props.theme.colors.font.primary.alt1};
     line-height: 18px;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const BalanceAmount = styled.p`
@@ -122,10 +124,14 @@ export const SubmitWrapper = styled.div`
 export const RPWrapper = styled.div`
     width: fit-content;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    gap: 3.5px;
     margin: 0 auto;
     span, p {
         font-size: ${(props) => props.theme.typography.size.xSmall};
+        line-height: 18px;
     }
     span {
         color: ${(props) => props.theme.colors.font.primary.alt7};
@@ -133,6 +139,8 @@ export const RPWrapper = styled.div`
     p {
         font-weight: ${(props) => props.theme.typography.weight.medium};
     }
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const Message = styled.div`
