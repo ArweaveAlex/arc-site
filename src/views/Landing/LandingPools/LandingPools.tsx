@@ -36,7 +36,7 @@ function PoolCard(props: PoolType) {
                 </S.C1Content>
                 <Link to={poolUrl}>
                     <S.LinkContainer>
-                        <span>{LANGUAGE.viewPools}</span>
+                        <span>{LANGUAGE.viewPool}</span>
                     </S.LinkContainer>
                 </Link>
             </S.C1>

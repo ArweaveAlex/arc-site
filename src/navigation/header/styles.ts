@@ -60,37 +60,6 @@ export const LogoContent = styled.div`
   }
 `;
 
-export const LogoHeaderContent = styled.div`
-  display: flex;
-`;
-
-export const LogoHeader = styled.h2`
-  color: ${(props) => props.theme.colors.font.primary.active.base};
-  font-size: ${(props) => props.theme.typography.size.h2};
-  font-family: ${(props) => props.theme.typography.family.secondary};
-  font-weight: ${(props) => props.theme.typography.weight.bold};
-`;
-
-export const Version = styled.div`
-  height: 20.5px;
-  width: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: -5.5px 0px 0 5.5px;
-  background: ${(props) => props.theme.colors.container.alt1.background};
-  span {
-    color: ${(props) => props.theme.colors.font.primary.base};
-    font-size: 12px;
-  }
-`;
-
-export const LogoSubHeader = styled.p`
-  color: ${(props) => props.theme.colors.font.primary.alt2};
-  font-family: ${(props) => props.theme.typography.family.secondary};
-  font-weight: ${(props) => props.theme.typography.weight.bold};
-`;
-
 export const NC = styled.div`
   height: 100%;
   width: 260px;

@@ -106,13 +106,6 @@ export default function Header() {
                     <Link to={urls.base} onClick={() => setOpen(false)}>
                         <S.LogoContent>
                             <ReactSVG src={ASSETS.siteLogo} />
-                            {/* <S.LogoHeaderContent>
-                                <S.LogoHeader>{LANGUAGE.companyTitle}</S.LogoHeader>
-                                <S.Version>
-                                    <span>{LANGUAGE.appVersion.toUpperCase()}</span>
-                                </S.Version>
-                            </S.LogoHeaderContent>
-                            <S.LogoSubHeader>{LANGUAGE.companyDescription}</S.LogoSubHeader> */}
                         </S.LogoContent>
                     </Link>
                 </S.LogoContainer>

@@ -74,7 +74,7 @@ export default function PoolsHeader(props: IProps) {
             {getImage()}
             <S.FlexTiles>
                 <S.Tile>
-                    <S.TileTitle><p>{LANGUAGE.pool.totalContributed}</p></S.TileTitle>
+                    <S.TileTitle><p>{LANGUAGE.totalContributed}</p></S.TileTitle>
                     <S.TileData>
                         <p>{props.totalContributions ? arClient.getARAmount(props.totalContributions) : null}</p>
                         <S.TContainer><p>{LANGUAGE.arTokens}</p></S.TContainer>
