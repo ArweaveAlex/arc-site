@@ -319,6 +319,6 @@ export async function setCollectionIds(owner: string, ids: string[]): Promise<Co
 
     return ({
         status: response.id ? 200 : 500,
-        message: response.id ? LANGUAGE.bookmarksUpdated : LANGUAGE.errorOccurred
+        message: response.id ? LANGUAGE.collectionsUpdated : LANGUAGE.errorOccurred
     })
 }

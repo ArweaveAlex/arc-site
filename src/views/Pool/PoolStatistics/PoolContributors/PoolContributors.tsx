@@ -11,42 +11,6 @@ import { LANGUAGE } from "helpers/language";
 import { IProps } from "./types";
 import * as S from "./styles";
 
-// function Count(props: { id: string }) {
-//     const arProvider = useArweaveProvider();
-
-//     const [count, setCount] = React.useState<string | null>(null);
-
-//     React.useEffect(() => {
-//         (async function () {
-//             setCount((await arProvider.getUserArtifacts(props.id, null)).count)
-//         })();
-//     }, [props.id, arProvider])
-
-//     function getCount() {
-//         if (count) {
-//             return (
-//                 <>
-//                     <p>{count}</p>
-//                     &nbsp;
-//                     <span>{`${LANGUAGE.artifactsMinted}`}</span>
-//                 </>
-//             )
-//         }
-//         else {
-//             return (
-//                 <p>{LANGUAGE.fetchingCount}&nbsp;...</p>
-//             )
-//         }
-//     }
-
-//     return (
-//         <S.Count>
-//             {getCount()}
-//         </S.Count>
-
-//     )
-// }
-
 const ROW_COUNT = 3;
 
 export default function PoolContributors(props: IProps) {

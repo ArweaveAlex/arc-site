@@ -5,32 +5,16 @@ export const LANGUAGE = {
     accept: `Accept`,
     account: {
         header1: `Your Library`,
-        all: {
-            title: `All`,
-            header1: `All Artifacts`
-        },
-        new: {
-            title: `New`,
-            header1: `New Artifacts`
-        },
-        collections: {
-            title: `Collections`,
-            header1: `Collections`
-        },
-        contributions: {
-            title: `My Contributions`,
-            header1: `My Contributions`
-        }
+        all: { title: `All` },
+        new: { title: `New` },
+        collections: { title: `Collections` },
+        contributions: { title: `My Contributions` }
     },
     activePools: `Active Pools`,
-    allArtifacts: `All Artifacts`,
     amountExceedsBalance: `Amount exceeds available balance`,
-    appVersion: `Alpha`,
     artifact: `Artifact`,
     artifacts: `Artifacts`,
-    artifactsMinted: `Artifacts Minted`,
     artifactDetail: {
-        description: `Description`,
         fileInformation: `File Information`,
         viewRaw: `View Raw`,
         tags: `Tags`,
@@ -44,12 +28,9 @@ export const LANGUAGE = {
         subheader1: `Archives are permanently stored on`,
         subheader2: `Pools are created with the`
     },
-    bookmarksUpdated: `Collections Updated`,
-    community: `Community`,
+    collectionsUpdated: `Collections Updated`,
     companyTitle: `Alex.`,
-    companyDescription: `Preserving Human History`,
     connectWallet: `Connect Wallet`,
-    connectWalletToContinue: `Please connect your wallet to continue`,
     connectionError: `Connection Error`,
     contribute: `Contribute`,
     contributeTo: `Contribute to`,
@@ -66,12 +47,6 @@ export const LANGUAGE = {
     disconnect: `Disconnect`,
     errorFetchingArtifact: `Error Fetching Artifact`,
     errorOccurred: `Error Occurred`,
-    faq: {
-        display: `Frequently Asked Questions`,
-        header1: `Still have some questions?`,
-        header2: `Great!`,
-        header3: `Check out our`
-    },
     fetchingBalance: `Fetching balance`,
     fetchingCount: `Fetching count`,
     fetchingReceivingPercentage: `Fetching receiving amount`,
@@ -85,45 +60,30 @@ export const LANGUAGE = {
     lastContribution: `Last Contribution`,
     library: {
         header1: `Library`,
-        all: {
-            title: `All`,
-            header1: `All Artifacts`
-        },
-        new: {
-            title: `New`,
-            header1: `New Artifacts`
-        },
-        collections: {
-            title: `Collections`,
-            header1: `Collections`
-        }
+        all: { title: `All` },
+        new: { title: `New` },
+        collections: { title: `Collections` }
     },
     loading: `Loading`,
-    media: `Media`,
     mediaCaution: `Caution: Media may contain inappropriate content.`,
-    metaDescriptionContent: `Preserving Culture`,
     messaging: {
         handle: `Handle`,
         message: `Message`,
         name: `Name`,
-        originalPostDate: `Original Post Date`,
-        source: `Source`
+        originalPostDate: `Original Post Date`
     },
     minted: `Minted`,
     next: `Next`,
     noArtifacts: `No Artifacts`,
     noContributions: `No Contributions`,
-    noResults: `No Results`,
     ofArtifactsCreated: `of new Artifacts created`,
     owner: `Owner`,
     pageNotFound: `Page Not Found`,
     paths: {
-        about: `About`,
         pools: `Pools`
     },
     pool: {
         subheader1: `Pool`,
-        totalContributed: `Total Contributed`,
         artifactsCreated: `Artifacts Created`,
         contribute: {
             notEnoughFunds: `Not enough AR to contribute to this pool.`,
@@ -142,12 +102,9 @@ export const LANGUAGE = {
         }
     },
     previous: `Previous`,
-    readMore: `Read More`,
     recentlyMintedArtifacts: `Recently Minted Artifacts`,
     receiving: `Receiving`,
-    searchArtifacts: `Search Artifacts`,
     select: `Select`,
-    setCollection: `Update Collections`,
     share: `Share`,
     shareArtifact: `Check out this Alex. Artifact !`,
     sharePools: `Check out this Alex. Pool !`,
@@ -177,7 +134,7 @@ export const LANGUAGE = {
     view: `View`,
     viewAccount: `My Library`,
     viewOnArweave: `View on Arweave`,
-    viewPools: `View Pool`,
-    walletNotConnected: `You must connect a wallet to continue.`,
+    viewPool: `View Pool`,
+    walletNotConnected: `Please connect your wallet to continue`,
     willBeReceiving: `You will be receiving`,
 }

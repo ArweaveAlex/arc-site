@@ -43,36 +43,6 @@ export const VideoContent = styled.video`
 
 export const VideoSource = styled.source``;
 
-export const ContentApproveWrapper = styled.div`
-    height: ${STYLING.dimensions.messagingContent};
-    width: 100%;
-    position: absolute;
-    z-index: 2;
-    bottom: -5px;
-    background: ${(props) => props.theme.colors.overlay.alt2};
-    border: 1px solid ${(props) => props.theme.colors.border.alt1};
-    border-radius: ${STYLING.dimensions.borderRadius};
-    backdrop-filter: blur(15px);
-`;
-
-export const ContentApprove = styled.div`
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    p, a {
-        line-height: 18px;
-        margin: 0 0 30px 0;
-        color: ${(props) => props.theme.colors.font.primary.alt1};
-        text-align: center;
-    }
-`;
-
 export const ArweaveLinkWrapper = styled.div`
     background: ${(props) => props.theme.colors.container.primary.background};
     height: 100px;

@@ -91,7 +91,8 @@ export default function ArtifactsDetail(props: IProps) {
         if (detailData && detailData.contracts.length <= 0) {
             handleShowNoResults()
         }
-    })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [detailDataUpdated])
 
     return (
         <ArtifactsTable
