@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { open, fadeIn1 } from "helpers/animations";
 import { STYLING } from "helpers/styling";

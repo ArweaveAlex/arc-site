@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const TypeContainer = styled.div`
     height: 100%;
