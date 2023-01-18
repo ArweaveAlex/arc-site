@@ -44,6 +44,7 @@ export const Secondary = styled(Primary) <{ dimensions: { wrapper: number, icon:
   padding: 2.5px 0 0 0;
   background: ${(props) => props.theme.colors.button.secondary.background};
   border-radius: ${STYLING.dimensions.borderRadiusField};
+  position: relative;
 
   &:hover {
     background: ${(props) => props.theme.colors.button.secondary.hover};
@@ -53,6 +54,10 @@ export const Secondary = styled(Primary) <{ dimensions: { wrapper: number, icon:
     height: ${(props) => props.dimensions ? `${props.dimensions.icon.toString()}px` : `17.5px`};
     width: ${(props) => props.dimensions ? `${props.dimensions.icon.toString()}px` : `17.5px`};
     fill: ${(props) => props.theme.colors.button.secondary.label};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     
     &:hover {
       cursor: ${(props) => props.disabled ? "not-allowed" : "pointer"};
