@@ -39,6 +39,15 @@ export default function PoolStatistics(props: IProps) {
                     });
                     setDetailData(detailDataFinal);
                 }
+                else {
+                    if (dataForTags && (dataForTags.contracts.length <= 0)) {
+                        setDetailData({
+                            nextCursor: null,
+                            previousCursor: null,
+                            contracts: []
+                        })
+                    }
+                }
             }
         })();
     }, [props.headerData])

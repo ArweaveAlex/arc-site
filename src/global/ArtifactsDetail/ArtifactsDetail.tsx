@@ -87,6 +87,12 @@ export default function ArtifactsDetail(props: IProps) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [detailDataUpdated])
 
+    React.useEffect(() => {
+        if (detailData && detailData.contracts.length <= 0) {
+            handleShowNoResults()
+        }
+    })
+
     return (
         <ArtifactsTable
             id={props.id}

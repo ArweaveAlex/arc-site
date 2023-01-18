@@ -35,7 +35,11 @@ export default function AccountContributions() {
             )
         }
         else {
-            return <p>{LANGUAGE.noContributions}</p>
+            return (
+                <S.NoContributionsContainer>
+                    <p>{LANGUAGE.noContributions}</p>
+                </S.NoContributionsContainer>
+            )
         }
     }
 
