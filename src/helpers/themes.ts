@@ -10,16 +10,15 @@ const DEFAULT = {
     neutral7: "#959595",
     neutral8: "#ACACAC",
     neutral9: "#F4F5F6",
-    neutral10: "#EAEAEA",
-    neutral11: "#BABABA",
-    neutral12: "#000000",
-    neutral13: "#FAFAFA",
+    neutral10: "#BABABA",
+    neutral11: "#000000",
+    neutral12: "#FAFAFA",
     primary: "#003153",
     primary2: "#265F85",
     primary3: "#4C8CB8",
     primary4: "#A4CCE9",
-    secondary: "#DAA520",
-    tertiary: "#FFD877",
+    alt1: "#DAA520",
+    alt2: "#FFD877",
     overlay1: "rgba(59, 70, 78, 0.75)",
     overlay2: "rgba(193, 193, 193, 0.75)",
     overlay3: "rgba(193, 193, 193, 0.85)",
@@ -28,7 +27,7 @@ const DEFAULT = {
     success: "#32C422",
     neutral: "#FFB600",
     transparent: "rgba(255, 255, 255, 0)",
-    semiTransparent: "rgba(255, 255, 255, 0.5)",
+    semiTransparent: "rgba(255, 255, 255, 0.5)"
 }
 
 export const defaultTheme: DefaultTheme = {
@@ -59,7 +58,7 @@ export const defaultTheme: DefaultTheme = {
                     label: DEFAULT.neutral7
                 }
             },
-            secondary: {
+            alt1: {
                 background: DEFAULT.primary,
                 border: DEFAULT.transparent,
                 hover: DEFAULT.primary2,
@@ -75,9 +74,9 @@ export const defaultTheme: DefaultTheme = {
                     label: DEFAULT.neutral7
                 }
             },
-            tertiary: {
+            alt2: {
                 background: DEFAULT.neutral1,
-                border: DEFAULT.neutral10,
+                border: DEFAULT.neutral5,
                 hover: DEFAULT.neutral2,
                 label: DEFAULT.primary,
                 active: {
@@ -110,18 +109,18 @@ export const defaultTheme: DefaultTheme = {
                 background: DEFAULT.neutral2
             },
             alt5: {
-                background: DEFAULT.neutral12
+                background: DEFAULT.neutral11
             },
             alt6: {
-                background: DEFAULT.neutral13
+                background: DEFAULT.neutral12
             }
         },
         font: {
             primary: {
                 base: DEFAULT.neutral1,
                 alt1: DEFAULT.neutral4,
-                alt2: DEFAULT.secondary,
-                alt3: DEFAULT.tertiary,
+                alt2: DEFAULT.alt1,
+                alt3: DEFAULT.alt2,
                 alt4: DEFAULT.primary3,
                 alt5: DEFAULT.primary4,
                 alt6: DEFAULT.neutral7,
@@ -157,8 +156,8 @@ export const defaultTheme: DefaultTheme = {
                     fill: DEFAULT.neutral7
                 }
             },
-            secondary: {
-                fill: DEFAULT.secondary
+            alt1: {
+                fill: DEFAULT.alt1
             },
             inactive: DEFAULT.neutral4
         },
@@ -191,11 +190,6 @@ export const defaultTheme: DefaultTheme = {
             alt1: DEFAULT.overlay2,
             alt2: DEFAULT.overlay3,
         },
-        shadow: { 
-            primary: DEFAULT.neutral11,
-            secondary: DEFAULT.neutral6,
-            tertiary: DEFAULT.neutral7,
-        },
         table: {
             placeholder: {
                 background: DEFAULT.neutral2,
@@ -217,7 +211,7 @@ export const defaultTheme: DefaultTheme = {
     typography: {
         family: {
             primary: "'Fira Sans', sans-serif",
-            secondary: "'PT Serif', serif"
+            alt1: "'PT Serif', serif"
         },
         size: {
             h1: "48px",

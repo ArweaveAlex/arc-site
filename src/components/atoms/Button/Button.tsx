@@ -15,15 +15,15 @@ export default function Button(props: IProps) {
       icon: any;
     };
     switch (props.type) {
-      case "secondary":
+      case "alt1":
         buttonObj = {
-          wrapper: S.Secondary,
+          wrapper: S.Alt1,
           icon: S.IconSecondary
         };
         return buttonObj;
-      case "tertiary":
+      case "alt2":
         buttonObj = {
-          wrapper: S.Tertiary,
+          wrapper: S.Alt2,
           icon: S.IconTertiary
         };
         return buttonObj;

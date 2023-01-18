@@ -68,7 +68,7 @@ export default function MessagingMedia(props: IProps) {
                                 <S.ContentApprove>
                                     <p>{LANGUAGE.mediaCaution}</p>
                                     <Button
-                                        type={"secondary"}
+                                        type={"alt1"}
                                         label={LANGUAGE.accept}
                                         handlePress={() => setContentApproved(true)}
                                     />

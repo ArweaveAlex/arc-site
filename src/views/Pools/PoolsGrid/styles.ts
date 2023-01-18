@@ -98,7 +98,7 @@ export const InfoTitle = styled.div`
         font-size: ${(props) => props.theme.typography.size.base};
         line-height: 20px;
         color: ${(props) => props.theme.colors.font.primary.active.base};
-        font-family: ${(props) => props.theme.typography.family.secondary};
+        font-family: ${(props) => props.theme.typography.family.alt1};
     }
 `;
 

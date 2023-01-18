@@ -11,6 +11,6 @@ export const CollectionToggle = styled.div`
     justify-content: center;
     align-items: center;
     svg {
-        fill: ${(props) => props.theme.colors.icon.secondary.fill};
+        fill: ${(props) => props.theme.colors.icon.alt1.fill};
     }
 `;

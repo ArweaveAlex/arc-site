@@ -35,7 +35,7 @@ export const HeaderFlex = styled.div`
 
 export const H2 = styled.h2`
     font-size: 32px;
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
     color: ${(props) => props.theme.colors.font.primary.alt4};
 `;
 
@@ -54,7 +54,6 @@ export const Table = styled.div`
     height: 100%;
     width: 100%;
     border-right: 1px solid ${(props) => props.theme.colors.border.alt5};
-    box-shadow: 1px 2px 2px ${(props) => props.theme.colors.shadow.secondary};
     @media(max-width: ${STYLING.cutoffs.initial}) {
         width: ${STYLING.cutoffs.initial};
     }

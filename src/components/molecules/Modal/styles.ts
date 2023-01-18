@@ -56,7 +56,7 @@ export const Logo = styled.div`
 
 export const Title = styled.h2`
     color: ${(props) => props.theme.colors.font.primary.base};
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
 `
 
 export const Close = styled.div`

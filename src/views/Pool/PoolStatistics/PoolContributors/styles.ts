@@ -26,7 +26,7 @@ export const Header = styled.div`
     height: 50px;
     h2 {
         font-size: 32px;
-        font-family: ${(props) => props.theme.typography.family.secondary};
+        font-family: ${(props) => props.theme.typography.family.alt1};
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
 `;
