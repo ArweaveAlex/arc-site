@@ -67,7 +67,7 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-size: ${(props) => props.theme.typography.size.h1};
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
   }
 
   h2 {

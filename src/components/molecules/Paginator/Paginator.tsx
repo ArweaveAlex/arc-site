@@ -65,7 +65,7 @@ export default function Paginator(props: IProps) {
             return (
                 <IconButton
                     src={ASSETS.arrowPrevious}
-                    type={"secondary"}
+                    type={"alt1"}
                     handlePress={handlePreviousPage}
                     disabled={!props.cursors.previous}
                     dimensions={{ wrapper: 25, icon: 11 }}
@@ -76,7 +76,7 @@ export default function Paginator(props: IProps) {
             return (
                 <Button
                     label={LANGUAGE.previous}
-                    type={"secondary"}
+                    type={"alt1"}
                     handlePress={handlePreviousPage}
                     disabled={!props.cursors.previous}
                     noMinWidth
@@ -90,7 +90,7 @@ export default function Paginator(props: IProps) {
             return (
                 <IconButton
                     src={ASSETS.arrowNext}
-                    type={"secondary"}
+                    type={"alt1"}
                     handlePress={handleNextPage}
                     disabled={!props.cursors.next || props.cursors.next === CURSORS.end}
                     dimensions={{ wrapper: 25, icon: 11 }}
@@ -101,7 +101,7 @@ export default function Paginator(props: IProps) {
             return (
                 <Button
                     label={LANGUAGE.next}
-                    type={"secondary"}
+                    type={"alt1"}
                     handlePress={handleNextPage}
                     disabled={!props.cursors.next || props.cursors.next === CURSORS.end}
                     noMinWidth

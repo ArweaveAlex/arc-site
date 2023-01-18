@@ -12,14 +12,14 @@ export default function IconButton(props: IProps) {
       wrapper: any;
     };
     switch (props.type) {
-      case "secondary":
+      case "alt1":
         buttonObj = {
-          wrapper: S.Secondary
+          wrapper: S.Alt1
         };
         return buttonObj;
-      case "tertiary":
+      case "alt2":
         buttonObj = {
-          wrapper: S.Tertiary
+          wrapper: S.Alt2
         };
         return buttonObj;
       default:

@@ -71,7 +71,7 @@ test("Simulates style", () => {
     const onButtonClick = jest.fn();
     render(wrapWithProviders(
         <IconButton
-            type={"secondary"}
+            type={"alt1"}
             sm
             src={"ASSET"}
             handlePress={onButtonClick}
@@ -81,6 +81,6 @@ test("Simulates style", () => {
     const button = screen.getByTestId("test-icon-button-styles");
     expect(button).toHaveStyleRule(
         "background",
-        defaultTheme.colors.button.secondary.background
+        defaultTheme.colors.button.alt1.background
     );
 });

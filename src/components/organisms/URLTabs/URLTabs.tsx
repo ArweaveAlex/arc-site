@@ -17,7 +17,7 @@ function Tab(props: ITProps) {
     return (
       <S.Tab>
         <Button
-          type={"tertiary"}
+          type={"alt2"}
           label={props.label}
           handlePress={handlePress}
           active={props.active}

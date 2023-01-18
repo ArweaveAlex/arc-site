@@ -47,7 +47,7 @@ export const H2 = styled.h2`
 
 export const Header1 = styled(H2)`
     color: ${(props) => props.theme.colors.font.primary.active.base};
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
 `;
 
 export const HeaderFlex = styled.div`
@@ -110,10 +110,10 @@ export const InfoContainer = styled.div`
 export const Title = styled.h2`
     line-height: 1.55;
     color: ${(props) => props.theme.colors.font.primary.alt2};
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
     margin: 0 0 20px 0;
     b {
-        font-family: ${(props) => props.theme.typography.family.secondary};
+        font-family: ${(props) => props.theme.typography.family.alt1};
         color: ${(props) => props.theme.colors.font.primary.alt2};
         font-size: ${(props) => props.theme.typography.size.h2};
         font-weight: ${(props) => props.theme.typography.weight.bold};

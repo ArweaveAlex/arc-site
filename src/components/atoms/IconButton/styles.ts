@@ -35,25 +35,25 @@ export const Primary = styled.button<{
   }
 `;
 
-export const Secondary = styled(Primary) <{ dimensions: { wrapper: number, icon: number } | undefined }>`
+export const Alt1 = styled(Primary) <{ dimensions: { wrapper: number, icon: number } | undefined }>`
   height: ${(props) => props.dimensions ? `${props.dimensions.wrapper.toString()}px` : `32.5px`};
   width: ${(props) => props.dimensions ? `${props.dimensions.wrapper.toString()}px` : `32.5px`};
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2.5px 0 0 0;
-  background: ${(props) => props.theme.colors.button.secondary.background};
+  background: ${(props) => props.theme.colors.button.alt1.background};
   border-radius: ${STYLING.dimensions.borderRadiusField};
   position: relative;
 
   &:hover {
-    background: ${(props) => props.theme.colors.button.secondary.hover};
+    background: ${(props) => props.theme.colors.button.alt1.hover};
   }
 
   svg {
     height: ${(props) => props.dimensions ? `${props.dimensions.icon.toString()}px` : `17.5px`};
     width: ${(props) => props.dimensions ? `${props.dimensions.icon.toString()}px` : `17.5px`};
-    fill: ${(props) => props.theme.colors.button.secondary.label};
+    fill: ${(props) => props.theme.colors.button.alt1.label};
     position: absolute;
     top: 50%;
     left: 50%;
@@ -66,17 +66,17 @@ export const Secondary = styled(Primary) <{ dimensions: { wrapper: number, icon:
   }
 
   &:disabled {
-    background: ${(props) => props.theme.colors.button.secondary.disabled.background};
-    color: ${(props) => props.theme.colors.button.secondary.disabled.label};
+    background: ${(props) => props.theme.colors.button.alt1.disabled.background};
+    color: ${(props) => props.theme.colors.button.alt1.disabled.label};
     svg {
-      fill: ${(props) => props.theme.colors.button.secondary.disabled.label};
+      fill: ${(props) => props.theme.colors.button.alt1.disabled.label};
     }
   }
 `;
 
-export const Tertiary = styled(Primary)`
+export const Alt2 = styled(Primary)`
   svg {
     fill: ${(props) => props.warning ?
-    props.theme.colors.warning : props.theme.colors.icon.secondary.fill};
+    props.theme.colors.warning : props.theme.colors.icon.alt1.fill};
   }
 `;

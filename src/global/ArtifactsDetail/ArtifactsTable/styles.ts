@@ -22,7 +22,7 @@ export const CollectionToggle = styled.div`
     align-items: center;
     position: relative;
     svg {
-        fill: ${(props) => props.theme.colors.icon.secondary.fill} !important;
+        fill: ${(props) => props.theme.colors.icon.alt1.fill} !important;
         margin: 0 0 5px 0;
     }
     button {

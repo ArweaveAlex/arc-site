@@ -20,7 +20,7 @@ export default function SocialShare(props: IProps) {
 
     return (
         <S.Wrapper>
-            <S.Info secondary={props.type === "secondary"}>
+            <S.Info alt1={props.type === "alt1"}>
                 {props.type === "primary" &&
                     <ReactSVG src={ASSETS.shareLink} />
                 }
@@ -33,7 +33,7 @@ export default function SocialShare(props: IProps) {
                     </S.URLCopied>
                 }
                 <IconButton
-                    type={props.type === "primary" ? "secondary" : "tertiary"}
+                    type={props.type === "primary" ? "alt1" : "alt2"}
                     src={ASSETS.link}
                     handlePress={copyUrl}
                 />
@@ -41,7 +41,7 @@ export default function SocialShare(props: IProps) {
                     title={props.title}
                     url={props.href}
                 >
-                    <S.Icon secondary={props.type === "secondary"}>
+                    <S.Icon alt1={props.type === "alt1"}>
                         <ReactSVG src={ASSETS.social.twitter} />
                     </S.Icon>
                 </TwitterShareButton>

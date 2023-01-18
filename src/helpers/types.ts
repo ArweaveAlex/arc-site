@@ -92,14 +92,14 @@ export interface PoolSearchIndexStateType {
   searchIndeces: string[]
 }
 
-export type ButtonType = "primary" | "secondary" | "tertiary"
+export type ButtonType = "primary" | "alt1" | "alt2"
 export type FormFieldType = "number" | "password"
 export type NotificationType = "success" | "warning" | "neutral"
 export type AlignType = "left" | "center" | "right"
 export type ContributionResultType = { status: boolean, message: string | null }
 export type RefType = { current: HTMLElement }
 export type DateType = "iso" | "epoch"
-export type PageShareType = "primary" | "secondary"
+export type PageShareType = "primary" | "alt1"
 export type CursorType = {
   next: string | null,
   previous: string | null

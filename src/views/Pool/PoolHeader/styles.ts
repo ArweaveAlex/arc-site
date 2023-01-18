@@ -42,7 +42,7 @@ export const H2 = styled.h2`
 
 export const Header1 = styled(H2)`
     color: ${(props) => props.theme.colors.font.primary.active.base};
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         margin: 0 0 20px 0;
     }
@@ -147,7 +147,7 @@ export const TileData = styled.div`
     p {
         font-size: 24px;
         color: ${(props) => props.theme.colors.font.primary.active.base};
-        font-family: ${(props) => props.theme.typography.family.secondary};   
+        font-family: ${(props) => props.theme.typography.family.alt1};   
         font-weight: ${(props) => props.theme.typography.weight.bold};
         text-align: center;
     }
@@ -175,7 +175,7 @@ export const LongDescription = styled.div`
 export const LDHeader = styled.div`
     h2 {
         font-size: 32px;
-        font-family: ${(props) => props.theme.typography.family.secondary};
+        font-family: ${(props) => props.theme.typography.family.alt1};
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
 `;

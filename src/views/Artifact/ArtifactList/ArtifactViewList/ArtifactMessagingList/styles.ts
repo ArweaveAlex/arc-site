@@ -355,6 +355,6 @@ export const ActiveContainer = styled.div`
     svg {
         height: 15px;
         width: 15px;
-        fill: ${(props) => props.theme.colors.icon.secondary.fill};
+        fill: ${(props) => props.theme.colors.icon.alt1.fill};
     }
 `;

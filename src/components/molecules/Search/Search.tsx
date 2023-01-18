@@ -35,7 +35,7 @@ export default function Search(props: IProps) {
             </S.SearchWrapper>
             <S.SearchButtonWrapper>
                 <Button 
-                    type={"secondary"}
+                    type={"alt1"}
                     label={"Search"}
                     handlePress={(e: React.MouseEvent<HTMLInputElement>) => props.handleSearch(e)}
                     disabled={props.disabled || !props.value}

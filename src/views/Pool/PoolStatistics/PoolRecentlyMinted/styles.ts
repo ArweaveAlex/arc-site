@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const Header = styled.div`
     h2 {
         font-size: 32px;
-        font-family: ${(props) => props.theme.typography.family.secondary};
+        font-family: ${(props) => props.theme.typography.family.alt1};
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
 `;
@@ -68,7 +68,6 @@ export const TypeLabel = styled.div`
         font-size: 12px;
         color: ${(props) => props.theme.colors.font.primary.base};
         font-weight: ${(props) => props.theme.typography.weight.medium};
-        text-shadow: 0px 0px 5px ${(props) => props.theme.colors.shadow.tertiary};
     }
 `;
 

@@ -5,17 +5,17 @@ import { STYLING } from "helpers/styling";
 export const Wrapper = styled.button`
     height: 100%;
     width: 100%;
-    background: ${(props) => props.theme.colors.button.secondary.background};
+    background: ${(props) => props.theme.colors.button.alt1.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt2};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     display: flex;
     align-items: center;
     justify-content: center;
     &:hover {
-      background: ${(props) => props.theme.colors.button.secondary.hover};
+      background: ${(props) => props.theme.colors.button.alt1.hover};
     }
     &:focus {
-      background: ${(props) => props.theme.colors.button.secondary.hover};
+      background: ${(props) => props.theme.colors.button.alt1.hover};
     }
 `;
 
@@ -30,7 +30,7 @@ export const Label = styled.div`
     span {
         font-size: 24px;
         color: ${(props) => props.theme.colors.font.primary.base};
-        font-family: ${(props) => props.theme.typography.family.secondary};
+        font-family: ${(props) => props.theme.typography.family.alt1};
     }
 `;
 
@@ -69,7 +69,7 @@ export const H2 = styled.h2`
 
 export const Header1 = styled(H2)`
     color: ${(props) => props.theme.colors.font.primary.active.base};
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         margin: 0 0 20px 0;
     }

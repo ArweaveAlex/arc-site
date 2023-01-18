@@ -47,7 +47,7 @@ export const H2 = styled.h2`
 
 export const Header1 = styled(H2)`
     color: ${(props) => props.theme.colors.font.primary.active.base};
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
 `;
 
 export const HeaderFlex = styled.div`

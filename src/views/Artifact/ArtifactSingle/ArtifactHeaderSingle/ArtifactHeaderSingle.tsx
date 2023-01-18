@@ -59,7 +59,7 @@ export default function ArtifactHeaderSingle(props: IProps) {
                             })}
                         </Tabs>
                         <SocialShare
-                            type={"secondary"}
+                            type={"alt1"}
                             href={window.location.href}
                             title={LANGUAGE.shareArtifact}
                         />

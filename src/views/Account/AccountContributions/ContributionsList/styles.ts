@@ -29,7 +29,7 @@ export const HeaderFlex = styled.div`
 
 export const H2 = styled.h2`
     font-size: 32px;
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
     color: ${(props) => props.theme.colors.font.primary.alt4};
 `;
 
@@ -85,7 +85,7 @@ export const LIHeader1 = styled(H2)`
     font-size: 28px;
     line-height: 34px;
     color: ${(props) => props.theme.colors.font.primary.active.base};
-    font-family: ${(props) => props.theme.typography.family.secondary};
+    font-family: ${(props) => props.theme.typography.family.alt1};
 `;
 
 export const SubheaderFlex = styled.div`
