@@ -26,9 +26,9 @@ export default function Table(props: IProps) {
         if (props.showNoResults) {
             return (
                 <S.Body>
-                    <S.NoResultsContainer>
-                        <p>{LANGUAGE.noResults}</p>
-                    </S.NoResultsContainer>
+                    <S.NoArtifactsContainer>
+                        <p>{LANGUAGE.noArtifacts}</p>
+                    </S.NoArtifactsContainer>
                 </S.Body>
             )
         }

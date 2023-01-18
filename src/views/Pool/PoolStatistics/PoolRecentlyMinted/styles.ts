@@ -134,3 +134,11 @@ export const Placeholder = styled.div`
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;
+
+export const NoArtifactsContainer = styled.div`
+    height: 100%;
+    width: 100%;
+    p {
+        color: ${(props) => props.theme.colors.warning};
+    }
+`;

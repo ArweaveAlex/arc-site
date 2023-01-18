@@ -122,7 +122,7 @@ export const TData = styled(RowData)<{ even: boolean, width: string }>`
     }
 `;
 
-export const NoResultsContainer = styled.div`
+export const NoArtifactsContainer = styled.div`
     height: 100%;
     width: 100%;
     p {

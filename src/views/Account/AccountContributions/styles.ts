@@ -9,3 +9,9 @@ export const LoadingContainer = styled.div`
     width: 22.5px;
     position: relative;
 `;
+
+export const NoContributionsContainer = styled.div`
+    p {
+        color: ${(props) => props.theme.colors.warning};
+    }
+`;

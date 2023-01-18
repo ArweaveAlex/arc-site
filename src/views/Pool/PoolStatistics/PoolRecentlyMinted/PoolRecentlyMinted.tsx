@@ -49,7 +49,11 @@ export default function PoolRecentlyMinted(props: IProps) {
             )
         }
         else if (props.data && props.data.contracts.length <= 0) {
-            return <p>{LANGUAGE.noArtifacts}</p>;
+            return (
+                <S.NoArtifactsContainer>
+                    <p>{LANGUAGE.noArtifacts}</p>
+                </S.NoArtifactsContainer>
+            )
         }
         else {
             return (
