@@ -92,11 +92,16 @@ export const InfoTitle = styled.div`
     }
 `;
 
-export const NodeWrapper = styled.div`
-    height: 310px;
+export const NLWrapper = styled.div`
+    height: 325px;
     min-width: 250px;
     width: 290px;
     max-width: 250px;
+`;
+
+export const NodeWrapper = styled.div`
+    height: calc(100% - 15px);
+    width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
@@ -111,6 +116,22 @@ export const NodeWrapper = styled.div`
         width: 100%;
         display: block;
     }
+`;
+
+export const ALinkNT = styled.div`
+    height: 15px;
+    width: 100%;
+    margin: 5px 0 0 0;
+    display: flex;
+    align-items: center;
+    a {
+        text-decoration: none !important;
+        color: ${(props) => props.theme.colors.font.primary.active.base};
+        font-size: 13px;
+        &:hover {
+            color: ${(props) => props.theme.colors.font.primary.active.hover};
+        }
+      }
 `;
 
 export const Placeholder = styled.div`

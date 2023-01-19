@@ -41,7 +41,7 @@ function CollectionToggle(props: {
         <S.CollectionToggle>
             <IconButton
                 type={"primary"}
-                src={props.selected ? ASSETS.bookmarkSelected : ASSETS.collection}
+                src={props.selected ? ASSETS.collectionSelected : ASSETS.collection}
                 handlePress={() => props.handleCollectionUpdate(props.artifactId)}
 
             />
@@ -97,33 +97,56 @@ export default function ArtifactsTable(props: IProps) {
             </S.TypeContainer>
         )
     }
-    
+
     function getArtifactLink(id: string, tags: KeyValueType[]) {
         let redirect: string;
         const associationId = getTagValue(tags, TAGS.keys.associationId);
+
+        const hasMedia = getTagValue(tags, TAGS.keys.mediaIds) !== "{}";
+        const hasAssociation = getTagValue(tags, TAGS.keys.associationId) !== "";
+
         if (associationId && (associationId !== STORAGE.none)) {
             redirect = `${urls.thread}${associationId}/${id}`
         }
         else {
             redirect = `${urls.artifact}${id}`;
         }
-        return (
-            <S.Link>
-                <Link to={redirect} tabIndex={-1}>
-                    <p>{parse(getTagValue(tags, TAGS.keys.artifactName))}</p>
-                </Link>
-            </S.Link>
 
+        return (
+            <S.LinkWrapper>
+                <S.ALinkWrapper>
+                    <S.ALink>
+                        <Link to={redirect} tabIndex={-1}>
+                            {parse(getTagValue(tags, TAGS.keys.artifactName))}
+                        </Link>
+                    </S.ALink>
+                    <S.ALinkNT>
+                        <Link to={redirect} target={"_blank"} tabIndex={-1}>
+                            <ReactSVG src={ASSETS.newTab} />
+                        </Link>
+                    </S.ALinkNT>
+                </S.ALinkWrapper>
+                <S.Icons>
+                    {hasMedia &&
+                        <ReactSVG src={ASSETS.media} />
+                    }
+                    {hasAssociation &&
+                        <S.AssociationIcon>
+                            <ReactSVG src={ASSETS.association} />
+                        </S.AssociationIcon>
+                    }
+                </S.Icons>
+            </S.LinkWrapper>
         )
     }
 
     function getPoolLink(url: string, label: string) {
         return (
-            <S.Link>
+            <S.PLink>
                 <Link to={url} tabIndex={-1}>
-                    <p>{label}</p>
+                    {label}
                 </Link>
-            </S.Link>
+            </S.PLink>
 
         )
     }
@@ -206,7 +229,7 @@ export default function ArtifactsTable(props: IProps) {
         <Table
             title={LANGUAGE.artifacts}
             action={
-                <ArtifactsSearch 
+                <ArtifactsSearch
                     id={props.id}
                     indexIds={props.indexIds}
                     cursorObject={props.cursorObject}

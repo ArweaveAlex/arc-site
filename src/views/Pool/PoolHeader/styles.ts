@@ -68,6 +68,7 @@ export const SubheaderContainer = styled.div`
 export const Subheader1 = styled.div`
     p {
         font-size: ${(props) => props.theme.typography.size.base};
+        line-height: 20px;
         color: ${(props) => props.theme.colors.font.primary.alt6};
     }
 `;
@@ -75,6 +76,7 @@ export const Subheader1 = styled.div`
 export const Subheader2 = styled.div`
     p {
         font-size: ${(props) => props.theme.typography.size.base};
+        line-height: 20px;
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
 `;
@@ -88,6 +90,7 @@ export const Image = styled.div<{ image: string }>`
     background-size: cover;
     background-position: center;
     margin: 0 0 20px 0;
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     animation: ${open} ${fadeIn2};
 `;
@@ -114,7 +117,7 @@ export const FlexTiles = styled.div`
 
 export const Tile = styled.div`
     height: 100px;
-    width: 33%;
+    width: 32.5%;
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};

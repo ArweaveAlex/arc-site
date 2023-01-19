@@ -141,6 +141,9 @@ export const RPWrapper = styled.div`
     }
     white-space: nowrap;
     overflow: hidden;
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        gap: 10px;
+    }
 `;
 
 export const Message = styled.div`

@@ -34,6 +34,15 @@ function getHours(hours: number) {
     else return hours;
 }
 
+function getHourFormat(hours: number) {
+    if (hours >= 12 && hours <= 23) {
+        return `PM`
+    }
+    else {
+        return `AM`
+    }
+}
+
 export function formatDate(dateArg: string | null, dateType: DateType) {
     if (!dateArg) {
         return STORAGE.none;
@@ -53,9 +62,7 @@ export function formatDate(dateArg: string | null, dateType: DateType) {
             break;
     }
 
-    return `${date.toLocaleString("default", { month: "long" })} 
-            ${date.getDate()}, ${date.getUTCFullYear()} @ 
-            ${getHours(date.getHours())}:${formatTime(date.getMinutes())}:${formatTime(date.getSeconds())}`;
+    return `${date.toLocaleString("default", { month: "long" })} ${date.getDate()}, ${date.getUTCFullYear()} @ ${getHours(date.getHours())}:${formatTime(date.getMinutes())}:${formatTime(date.getSeconds())} ${getHourFormat(date.getHours())}`;
 }
 
 export function formatTitle(string: string) {

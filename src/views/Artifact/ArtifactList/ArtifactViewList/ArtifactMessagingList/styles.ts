@@ -118,6 +118,7 @@ export const ArtifactInfoWrapper = styled.div`
     align-items: end;
     @media(max-width: ${STYLING.cutoffs.secondary}) {
         margin: 20px 0 0 0;
+        gap: 10px;
         align-items: start;
     }
 `;
@@ -259,7 +260,7 @@ export const HeaderWrapper = styled.div`
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-    padding: 20px;
+    padding: 20px 20px 15px 20px;
     margin: 0 0 20px 0;
     a {
         font-size: 22px;
@@ -299,6 +300,7 @@ export const SubheaderContainer = styled.div`
 export const Subheader1 = styled.div`
     p {
         font-size: ${(props) => props.theme.typography.size.base};
+        line-height: 20px;
         color: ${(props) => props.theme.colors.font.primary.alt6};
     }
 `;
@@ -306,6 +308,7 @@ export const Subheader1 = styled.div`
 export const Subheader2 = styled.div`
     p, a {
         font-size: ${(props) => props.theme.typography.size.base};
+        line-height: 20px;
         font-weight: ${(props) => props.theme.typography.weight.regular};
         color: ${(props) => props.theme.colors.font.primary.alt4};
     }
