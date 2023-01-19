@@ -77,6 +77,7 @@ export const LANGUAGE = {
     noArtifacts: `No Artifacts`,
     noContributions: `No Contributions`,
     ofArtifactsCreated: `of new Artifacts created`,
+    openInNewTab: `Open in New Tab`,
     owner: `Owner`,
     pageNotFound: `Page Not Found`,
     paths: {

@@ -23,60 +23,71 @@ export default function Table(props: IProps) {
     const nPages = props.data ? Math.ceil(props.data.length / recordsPerPage) : null;
 
     function getTable() {
-        if (props.showNoResults) {
+        if (!currentRecords) {
             return (
-                <S.Body>
-                    <S.NoArtifactsContainer>
-                        <p>{LANGUAGE.noArtifacts}</p>
-                    </S.NoArtifactsContainer>
-                </S.Body>
+                <TableLoader rowCount={PAGINATOR} />
             )
         }
         else {
-            if (currentRecords) {
-                if (currentRecords.length <= 0) {
-                    return null
-                }
-                else {
+            if (currentRecords.length <= 0) {
+                if (props.showNoResults) {
                     return (
                         <S.Body>
-                            <S.Table>
-                                <S.TableHeader>
-                                    {Object.keys(props.header).map((element: string, index: number) => {
-                                        return (
-                                            <S.THeader key={index} even={(index + 1) % 2 === 0} width={props.header[element]!.width} align={props.header[element]!.align}>
-                                                <p>{formatTitle(element)}</p>
-                                            </S.THeader>
-                                        )
-                                    })}
-                                </S.TableHeader>
-                                {currentRecords.map((element: KeyValueType, index: number) => {
-                                    return (
-                                        <S.Row key={index} even={index % 2 === 0}>
-                                            {Object.keys(element).map((row: string, rowIndex: number) => {
-                                                const rowData = typeof element[row] === "object" ? element[row] : <p>{element[row]}</p>
-                                                return (
-                                                    <S.TData
-                                                        key={rowIndex}
-                                                        even={(rowIndex + 1) % 2 === 0}
-                                                        width={props.header[row]!.width}
-                                                    >
-                                                        {rowData}
-                                                    </S.TData>
-                                                )
-                                            })}
-                                        </S.Row>
-                                    )
-                                })}
-                            </S.Table>
+                            <S.NoArtifactsContainer>
+                                <p>{LANGUAGE.noArtifacts}</p>
+                            </S.NoArtifactsContainer>
                         </S.Body>
                     )
                 }
+                else {
+                    return null;
+                }
+            }
+            else if (currentRecords.length > 0) {
+                return (
+                    <S.Body>
+                        <S.Table>
+                            <S.TableHeader>
+                                {Object.keys(props.header).map((element: string, index: number) => {
+                                    return (
+                                        <S.THeader key={index} even={(index + 1) % 2 === 0} width={props.header[element]!.width} align={props.header[element]!.align}>
+                                            <p>{formatTitle(element)}</p>
+                                        </S.THeader>
+                                    )
+                                })}
+                            </S.TableHeader>
+                            {currentRecords.map((element: KeyValueType, index: number) => {
+                                return (
+                                    <S.Row key={index} even={index % 2 === 0}>
+                                        {Object.keys(element).map((row: string, rowIndex: number) => {
+                                            const rowData = typeof element[row] === "object" ? element[row] : <p>{element[row]}</p>
+                                            return (
+                                                <S.TData
+                                                    key={rowIndex}
+                                                    even={(rowIndex + 1) % 2 === 0}
+                                                    width={props.header[row]!.width}
+                                                >
+                                                    {rowData}
+                                                </S.TData>
+                                            )
+                                        })}
+                                    </S.Row>
+                                )
+                            })}
+                        </S.Table>
+                    </S.Body>
+                )
             }
             else {
-                return (
-                    <TableLoader rowCount={PAGINATOR} />
-                )
+                if (props.showNoResults) {
+                    return (
+                        <S.Body>
+                            <S.NoArtifactsContainer>
+                                <p>{LANGUAGE.noArtifacts}</p>
+                            </S.NoArtifactsContainer>
+                        </S.Body>
+                    )
+                }
             }
         }
     }
