@@ -55,7 +55,7 @@ export const ArweaveLinkWrapper = styled.div`
         background: ${(props) => props.theme.colors.container.primary.hover};
     }
     a {
-        text-decoration: none;
+        text-decoration: none !important;
         font-weight: ${(props) => props.theme.typography.weight.medium};
     }
 `;
