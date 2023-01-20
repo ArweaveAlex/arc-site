@@ -71,8 +71,6 @@ export const ASSETS = {
     data: `${ASSET_SRC}/data.svg`,
     disconnect: `${ASSET_SRC}/disconnect.svg`,
     dropdown: `${ASSET_SRC}/dropdown.svg`,
-    faviconDark: `${ASSET_SRC}/favicon-dark.svg`,
-    faviconLight: `${ASSET_SRC}/favicon-light.svg`,
     favorite: `${ASSET_SRC}/favorite.svg`,
     impressions: `${ASSET_SRC}/impressions.svg`,
     infoGraphic: `${ASSET_SRC}/info-graphic.png`,
