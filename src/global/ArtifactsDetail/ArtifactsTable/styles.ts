@@ -70,26 +70,35 @@ export const PLink = styled(ALink)`
 
 export const Icons = styled.div`
     height: 100%;
+    width: 80px;
     display: flex;
-    justify-content: end;
-    align-items: center;
-    position: relative;
     position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translate(0, -50%);
+    right: 0;
     svg {
         width: 12.5px;
-        margin: 0 0 0 20px;
-        fill: ${(props) => props.theme.colors.font.primary.alt1};
+        fill: ${(props) => props.theme.colors.font.primary.active.base};
     }
 `;
 
-export const AssociationIcon = styled.div`
+export const Icon = styled.div`
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: auto;
+    transform: translate(0, -50%);
+`;
+
+export const AssociationIcon = styled(Icon)`
+    right: 0;
+    left: auto;
     svg {
         width: 15px;
-        margin: 0 0 0 20px;
-        fill: ${(props) => props.theme.colors.font.primary.alt1};
+        fill: ${(props) => props.theme.colors.font.primary.active.base};
     }
 `;
 
