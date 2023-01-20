@@ -23,6 +23,7 @@ export const TAGS = {
         artifactType: "Artifact-Type",
         associationId: "Association-Id",
         associationSequence: "Association-Sequence",
+        childAssets: "Child-Assets",
         collectionIds: "Bookmark-Ids-Tag",
         collectionSearch: "Alex-Bookmark-Search",
         dateCreated: "Date-Created",

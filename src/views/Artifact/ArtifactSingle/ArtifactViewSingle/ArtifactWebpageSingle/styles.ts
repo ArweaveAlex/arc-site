@@ -441,6 +441,8 @@ export const Wrapper = styled.div`
         text-align: right;
         padding-right: 0.2em;
         padding-left: 0.2em;
+        max-width: 90vw;
+        overflow: hidden;
     }
 
     .mw-collapsible-leftside-toggle .mw-collapsible-toggle {

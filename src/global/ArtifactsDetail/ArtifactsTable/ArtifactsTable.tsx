@@ -101,9 +101,12 @@ export default function ArtifactsTable(props: IProps) {
     function getArtifactLink(id: string, tags: KeyValueType[]) {
         let redirect: string;
         const associationId = getTagValue(tags, TAGS.keys.associationId);
-
-        const hasMedia = getTagValue(tags, TAGS.keys.mediaIds) !== "{}";
-        const hasAssociation = getTagValue(tags, TAGS.keys.associationId) !== "";
+        
+        const hasMedia = (getTagValue(tags, TAGS.keys.mediaIds) !== "{}") &&
+            (getTagValue(tags, TAGS.keys.mediaIds) !== STORAGE.none) &&
+            (getTagValue(tags, TAGS.keys.mediaIds) !== `{"":""}`);
+        const hasAssociation = (getTagValue(tags, TAGS.keys.associationId) !== "") &&
+            (getTagValue(tags, TAGS.keys.associationId) !== STORAGE.none);
 
         if (associationId && (associationId !== STORAGE.none)) {
             redirect = `${urls.thread}${associationId}/${id}`
@@ -127,14 +130,16 @@ export default function ArtifactsTable(props: IProps) {
                     </S.ALinkNT>
                 </S.ALinkWrapper>
                 <S.Icons>
-                    {hasMedia &&
-                        <ReactSVG src={ASSETS.media} />
-                    }
-                    {hasAssociation &&
-                        <S.AssociationIcon>
+                    <S.Icon>
+                        {hasMedia &&
+                            <ReactSVG src={ASSETS.media} />
+                        }
+                    </S.Icon>
+                    <S.AssociationIcon>
+                        {hasAssociation &&
                             <ReactSVG src={ASSETS.association} />
-                        </S.AssociationIcon>
-                    }
+                        }
+                    </S.AssociationIcon>
                 </S.Icons>
             </S.LinkWrapper>
         )

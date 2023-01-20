@@ -21,6 +21,39 @@ import * as urls from "helpers/urls";
 import { IProps } from "../../types";
 import * as S from "./styles";
 
+function ChildAsset(props: { id: string }) {
+    const [detailData, setDetailData] = React.useState<ArtifactDetailType | null>(null);
+
+    React.useEffect(() => {
+        (async function () {
+            if (props.id) {
+                setDetailData(await getArtifactById(props.id));
+            }
+        })()
+    }, [props.id]);
+
+    function getDetailData() {
+        if (!detailData) {
+            return <Loader sm />
+        }
+        else {
+            return (
+                <ListItem
+                    data={detailData}
+                    showBorder={false}
+                    active={false}
+                />
+            )
+        }
+    }
+
+    return (
+        <S.ChildAssetContainer>
+            {getDetailData()}
+        </S.ChildAssetContainer>
+    )
+}
+
 function ListItem(props: { data: ArtifactDetailType, showBorder: boolean, active: boolean }) {
     const [messageData, setMessageData] = React.useState<any>(null);
 
@@ -41,6 +74,25 @@ function ListItem(props: { data: ArtifactDetailType, showBorder: boolean, active
                     <img src={getTxEndpoint(profileImageId)} alt={""} />
                 </S.ProfileImage>
             )
+        }
+        else {
+            return null;
+        }
+    }
+
+    function getChildAssets() {
+        if (props.data && props.data.childAssets && props.data.childAssets !== STORAGE.none) {
+            const childAssetsJson = JSON.parse(props.data.childAssets);
+            if (childAssetsJson.length > 0) {
+                return (childAssetsJson.map((id: string) => {
+                    return (
+                        <ChildAsset id={id} key={id} />
+                    )
+                }))
+            }
+            else {
+                return null;
+            }
         }
         else {
             return null;
@@ -82,6 +134,7 @@ function ListItem(props: { data: ArtifactDetailType, showBorder: boolean, active
                     <S.Message>
                         <p>{parse(getMessageText(messageData))}</p>
                     </S.Message>
+                    {getChildAssets()}
                     <MessagingMedia mediaIds={props.data.mediaIds} />
                     {messageData.created_at &&
                         <S.PostDate>{formatDate(messageData.created_at, "iso")}</S.PostDate>
@@ -232,7 +285,7 @@ export default function ArtifactMessagingList(props: IProps) {
             return (
                 <ListItem
                     data={detailData}
-                    showBorder={true}
+                    showBorder={false}
                     active={true}
                 />
             )

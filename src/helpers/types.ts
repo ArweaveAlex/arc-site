@@ -35,6 +35,7 @@ export interface ArtifactDetailType {
   keywords: NStringType
   poolName: NStringType
   mediaIds: NStringType
+  childAssets: NStringType,
   poolId: NStringType
   dataUrl: NStringType
   dataSize: NStringType

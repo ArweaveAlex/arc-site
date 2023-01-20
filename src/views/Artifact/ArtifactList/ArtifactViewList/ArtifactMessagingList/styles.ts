@@ -51,8 +51,6 @@ export const ListWrapper = styled.div`
 export const LIWrapper = styled.div<{ showBorder: boolean, active: boolean }>`
     width: 100%;
     border-bottom: ${(props) => props.showBorder ? `1px solid ${props.theme.colors.border.primary}` : 'none'};
-    background: ${(props) => props.active ? 
-        props.theme.colors.container.primary.background : props.theme.colors.container.primary.background};
     animation: ${open} ${fadeIn2};
 `;
 
@@ -237,6 +235,14 @@ export const SingleContent = styled.div`
     overflow-y: auto;
     overflow-x: hidden;
     top: 95px;
+
+    height: 80vh;
+width: 500px;
+position: fixed;
+overflow-y: auto;
+overflow-x: hidden;
+top: 95px;
+
     @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
         height: auto;
         width: ${WRAP_WIDTH};
@@ -360,4 +366,14 @@ export const ActiveContainer = styled.div`
         width: 15px;
         fill: ${(props) => props.theme.colors.icon.alt1.fill};
     }
+`;
+
+export const ChildAssetContainer = styled.div`
+    min-height: 300px;
+    width: 100%;
+    margin: 15px 0 0 0;
+    position: relative;
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt6};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};  
 `;

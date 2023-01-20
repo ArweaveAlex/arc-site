@@ -100,12 +100,12 @@ export function unquoteJsonKeys(json: Object): string {
 }
 
 export function stripSearch(s: string) {
-    return s.replaceAll(' ','')
-        .replaceAll('\t','')
-        .replaceAll('\r','')
-        .replaceAll('\n','')
-        .replaceAll(SEARCH.idTerm,'')
-        .replaceAll(SEARCH.ownerTerm,'')
+    return s.replaceAll(' ', '')
+        .replaceAll('\t', '')
+        .replaceAll('\r', '')
+        .replaceAll('\n', '')
+        .replaceAll(SEARCH.idTerm, '')
+        .replaceAll(SEARCH.ownerTerm, '')
         .toLowerCase();
 }
 
@@ -127,7 +127,7 @@ export function checkGqlCursor(string: string): boolean {
     }
     else if (/[A-Za-z0-9]/.test(string) || /[=]/.test(string)) {
         return true;
-    } 
+    }
     else {
         return true;
     }
@@ -152,11 +152,23 @@ export function getMessageText(data: any) {
         if (count < tweetText.length) {
             finalStr += tweetText.substring(count, tweetText.length);
         }
-        return finalStr;
+        return removeUrls(finalStr);
     }
     else {
         return STORAGE.none;
     }
+}
+
+export function addUrls(text: string) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function (url) {
+        return `<a href=${url} target={"_blank"}>${url}</a>`
+    });
+}
+
+export function removeUrls(text: string) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, "");
 }
 
 export function getUsername(data: any) {
