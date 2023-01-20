@@ -101,8 +101,8 @@ export default function Pool() {
     return headerData ? (
         <>
             <S.Wrapper>
-                {/* {getPoolHeader()}
-                {getPoolStatistics()} */}
+                {getPoolHeader()}
+                {getPoolStatistics()}
                 {getPoolDetail()}
             </S.Wrapper>
         </>
