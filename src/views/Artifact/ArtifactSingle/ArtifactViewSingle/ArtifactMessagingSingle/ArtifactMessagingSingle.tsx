@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 import { MessagingMedia } from "global/MessagingMedia";
 
 import { STORAGE } from "helpers/config";
-import { getMessageText, getUsername } from "helpers/utils";
+import { formatMessagingData, getUsername } from "helpers/utils";
 import { LANGUAGE } from "helpers/language";
 import { formatDate } from "helpers/utils";
 import { IProps } from "../../types";
@@ -41,7 +41,7 @@ export default function ArtifactMessagingSingle(props: IProps) {
                         <span>{LANGUAGE.messaging.message}</span>
                     </S.InfoData>
                     <S.Message>
-                        <p>{parse(getMessageText(messageData))}</p>
+                        <p>{parse(formatMessagingData(messageData))}</p>
                     </S.Message>
                 </S.Body>
                 <S.Footer>

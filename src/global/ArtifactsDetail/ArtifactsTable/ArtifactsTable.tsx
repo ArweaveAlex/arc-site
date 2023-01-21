@@ -25,6 +25,7 @@ import {
 
 import {
     formatDate,
+    formatMessagingText,
     getTagValue
 } from "helpers/utils";
 
@@ -98,12 +99,16 @@ export default function ArtifactsTable(props: IProps) {
         )
     }
 
+    function getArtifactLinkLabel(tags: KeyValueType[]) {
+        return parse(formatMessagingText(getTagValue(tags, TAGS.keys.artifactName)));
+    }
+
     function getArtifactLink(id: string, tags: KeyValueType[]) {
         let redirect: string;
         const associationId = getTagValue(tags, TAGS.keys.associationId);
-        
         const hasMedia = (getTagValue(tags, TAGS.keys.mediaIds) !== "{}") &&
             (getTagValue(tags, TAGS.keys.mediaIds) !== STORAGE.none) &&
+            (getTagValue(tags, TAGS.keys.mediaIds) !== "") &&
             (getTagValue(tags, TAGS.keys.mediaIds) !== `{"":""}`);
         const hasAssociation = (getTagValue(tags, TAGS.keys.associationId) !== "") &&
             (getTagValue(tags, TAGS.keys.associationId) !== STORAGE.none);
@@ -120,7 +125,7 @@ export default function ArtifactsTable(props: IProps) {
                 <S.ALinkWrapper>
                     <S.ALink>
                         <Link to={redirect} tabIndex={-1}>
-                            {parse(getTagValue(tags, TAGS.keys.artifactName))}
+                            {getArtifactLinkLabel(tags)}
                         </Link>
                     </S.ALink>
                     <S.ALinkNT>

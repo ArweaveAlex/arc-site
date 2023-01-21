@@ -237,11 +237,11 @@ export const SingleContent = styled.div`
     top: 95px;
 
     height: 80vh;
-width: 500px;
-position: fixed;
-overflow-y: auto;
-overflow-x: hidden;
-top: 95px;
+    width: 500px;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    top: 95px;
 
     @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
         height: auto;
