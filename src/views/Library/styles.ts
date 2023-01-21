@@ -10,7 +10,9 @@ export const Wrapper = styled.div`
 
 export const HeaderWrapper = styled.div`
     width: 100%;
-    padding 20px 0;
+    max-width: ${STYLING.cutoffs.max};
+    margin: calc(${STYLING.dimensions.navHeight} + 20px) auto 0 auto;
+    padding: 0 20px;
     background: ${(props) => props.theme.colors.container.primary.background};
     @media(max-width: ${STYLING.cutoffs.desktop}) {
         height: auto;
@@ -20,17 +22,20 @@ export const HeaderWrapper = styled.div`
 export const HeaderContent = styled.div`
     height: 100%;
     width: 100%;
-    max-width: ${STYLING.cutoffs.max};
-    margin: 0 auto;
-    padding: 20px 20px 30px 20px;
+    
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    padding: 30px 20px;
+    margin: 0 0 40px 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     animation: ${open} ${fadeIn2};
     @media(max-width: ${STYLING.cutoffs.desktop}) {
         flex-direction: column;
         align-items: start;
-        padding: 35px 20px;
+        padding: 20px;
     }
 `;
 
@@ -109,6 +114,6 @@ export const Header2 = styled(Header1)`
         margin: 10px 0 0 0;
     }
     @media(max-width: ${STYLING.cutoffs.secondary}) {
-        font-size: 7.5vw;
+        font-size: 5.5vw;
     }
 `;

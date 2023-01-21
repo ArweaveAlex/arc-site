@@ -16,23 +16,29 @@ export const Content = styled.div`
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
     margin: 0 auto;
-    padding: 20px 0 30px 0;
+    margin: calc(${STYLING.dimensions.navHeight} + 20px) auto 0 auto;
+    padding: 0 30px 7.5px 30px;
     display: flex;
     align-items: center;
     animation: ${open} ${fadeIn2};
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     @media(max-width: ${STYLING.cutoffs.desktop}) {
         flex-direction: column;
         align-items: start;
+        padding: 20px;
     }
 `;
 
-export const HeaderContainer = styled.div`
+export const HeaderWrapper = styled.div`
     height: 100%;
     width: 700px;
     display: flex;
     align-items: center;
     @media(max-width: ${STYLING.cutoffs.desktop}) {
         width: auto;
+        margin: 0 0 20px 0;
     }
 `;
 
@@ -84,16 +90,20 @@ export const Highlight = styled.div`
     }
 `;
 
-export const SubheaderContainer = styled.div`
+export const SubheaderWrapper = styled.div`
     height: 100%;
     width: calc(100% - 700px);
     min-width: 460px;
-    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: end;
     @media(max-width: ${STYLING.cutoffs.desktop}) {
         width: auto;
         min-width: 0;
     }
 `;
+
+export const SubheaderContainer = styled.div``;
 
 export const FlexSubheader = styled.div`
     display: flex;
@@ -101,7 +111,6 @@ export const FlexSubheader = styled.div`
     justify-content: end;
     @media(max-width: ${STYLING.cutoffs.desktop}) {
         justify-content: start;
-        margin: 10px 0;
     }
 `;
 

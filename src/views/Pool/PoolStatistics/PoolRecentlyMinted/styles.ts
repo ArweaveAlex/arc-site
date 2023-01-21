@@ -121,7 +121,7 @@ export const NodeWrapper = styled.div`
 export const ALinkNT = styled.div`
     height: 15px;
     width: 100%;
-    margin: 5px 0 0 0;
+    margin: 10px 0 0 0;
     display: flex;
     align-items: center;
     a {

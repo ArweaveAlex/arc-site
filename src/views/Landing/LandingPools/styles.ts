@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
     height: 550px;
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
-    margin: 0px auto;
+    margin: 15px auto 0 auto;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: fit-content;
     }

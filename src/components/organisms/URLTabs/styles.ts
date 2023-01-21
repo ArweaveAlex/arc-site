@@ -13,7 +13,7 @@ export const ListHeader = styled.div`
 `;
 
 export const List = styled.ol`
-  padding: 0 20px 20px 20px;
+  padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

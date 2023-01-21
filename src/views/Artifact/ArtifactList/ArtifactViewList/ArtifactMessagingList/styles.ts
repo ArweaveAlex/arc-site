@@ -108,7 +108,7 @@ export const Username = styled(P)`
     margin: 5px 0;
 `;
 
-export const ArtifactInfoWrapper = styled.div`
+export const AInfoWrapper = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -121,7 +121,11 @@ export const ArtifactInfoWrapper = styled.div`
     }
 `;
 
-export const ArtifactLinkWrapper = styled.div`
+export const ALinkWrapper = styled.div`
+    display: flex;
+`;
+
+export const ALink = styled.div`
     display: flex;
     span, a {
         font-size: ${(props) => props.theme.typography.size.xSmall};
@@ -135,6 +139,25 @@ export const ArtifactLinkWrapper = styled.div`
         white-space: nowrap;
         &:hover {
             text-decoration-thickness: 1.5px;
+        }
+    }
+`;
+
+export const ALinkNT = styled.div`
+    margin: 0 0 0 12.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    svg {
+        width: 12.5px;
+        fill: ${(props) => props.theme.colors.button.alt1.background};
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        &:hover {
+            fill: ${(props) => props.theme.colors.button.alt1.hover};
         }
     }
 `;
@@ -356,11 +379,9 @@ export const ActionContainer = styled.div`
 `;
 
 export const ActiveContainer = styled.div`
-    width: 100%;
     display: flex;
-    justify-content: end;
     align-items: center;
-    margin: 0 0 0 7.5px;
+    margin: 1.15px 7.5px 0 0;
     svg {
         height: 15px;
         width: 15px;

@@ -99,6 +99,9 @@ function ListItem(props: { data: ArtifactDetailType, showBorder: boolean, active
         }
     }
 
+    const artifactLink = `${urls.artifact}${props.data.artifactId}`;
+    const ownerLink = `${urls.libraryAll(props.data.owner)}`;
+
     return (props.data && messageData) ? (
         <S.LIWrapper showBorder={props.showBorder} active={props.active}>
             <S.LIContent>
@@ -110,25 +113,39 @@ function ListItem(props: { data: ArtifactDetailType, showBorder: boolean, active
                             <S.Username>{getUsername(messageData)}</S.Username>
                         </S.NUContainer>
                     </S.ProfileWrapper>
-                    <S.ArtifactInfoWrapper>
-                        <S.ArtifactLinkWrapper>
-                            <span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
-                            <Link to={`${urls.artifact}${props.data.artifactId}`}>
-                                {props.data ? formatAddress(props.data.artifactId, false) : null}
-                            </Link>
-                            {props.active &&
+                    <S.AInfoWrapper>
+                        <S.ALinkWrapper>
+                        {props.active &&
                                 <S.ActiveContainer>
                                     <ReactSVG src={ASSETS.star} />
                                 </S.ActiveContainer>
                             }
-                        </S.ArtifactLinkWrapper>
-                        <S.ArtifactLinkWrapper>
-                            <span>{`${LANGUAGE.owner}:`}&nbsp;</span>
-                            <Link to={`${urls.libraryAll(props.data.owner)}`}>
-                                {props.data ? formatAddress(props.data.owner, false) : null}
-                            </Link>
-                        </S.ArtifactLinkWrapper>
-                    </S.ArtifactInfoWrapper>
+                            <S.ALink>
+                                <span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
+                                <Link to={artifactLink}>
+                                    {props.data ? formatAddress(props.data.artifactId, false) : null}
+                                </Link>
+                            </S.ALink>
+                            <S.ALinkNT>
+                                <Link to={artifactLink} target={"_blank"} tabIndex={-1}>
+                                    <ReactSVG src={ASSETS.newTab} />
+                                </Link>
+                            </S.ALinkNT>
+                        </S.ALinkWrapper>
+                        <S.ALinkWrapper>
+                            <S.ALink>
+                                <span>{`${LANGUAGE.owner}:`}&nbsp;</span>
+                                <Link to={ownerLink}>
+                                    {props.data ? formatAddress(props.data.owner, false) : null}
+                                </Link>
+                            </S.ALink>
+                            <S.ALinkNT>
+                                <Link to={ownerLink} target={"_blank"} tabIndex={-1}>
+                                    <ReactSVG src={ASSETS.newTab} />
+                                </Link>
+                            </S.ALinkNT>
+                        </S.ALinkWrapper>
+                    </S.AInfoWrapper>
                 </S.LIHeader>
                 <S.LIBody>
                     <S.Message>

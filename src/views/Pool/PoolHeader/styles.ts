@@ -16,6 +16,10 @@ export const Header = styled.div`
     margin: 0 0 20px 0;
     display: flex;
     flex-direction: column;
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    padding: 20px;
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: auto;
         margin: 0 0 20px 0;

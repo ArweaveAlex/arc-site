@@ -10,7 +10,6 @@ export const Wrapper = styled.header`
     top: 0;
     z-index: 4;
     background: ${props => props.theme.colors.navigation.header.background};
-    border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
 `;
 
 export const NavContainer = styled.div`
