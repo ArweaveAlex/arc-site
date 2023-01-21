@@ -29,21 +29,16 @@ export const ListWrapper = styled.div`
     width: ${THREAD_WIDTH};
     max-width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border-left: 1px solid ${(props) => props.theme.colors.border.primary};
-    border-right: 1px solid ${(props) => props.theme.colors.border.primary};
+    border: 1px solid ${(props) => props.theme.colors.border.primary};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     padding: 0 0 300px 0;
+    margin: 25px 0 0 0;
     @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
         width: ${WRAP_WIDTH};
-        border-top: 1px solid ${(props) => props.theme.colors.border.primary};
-        border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
-        border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
         margin: 0 auto;
     }
     @media(max-height: 600px) {
         width: ${WRAP_WIDTH};
-        border-top: 1px solid ${(props) => props.theme.colors.border.primary};
-        border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
-        border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
         margin: 0 auto;
     }
 `;
