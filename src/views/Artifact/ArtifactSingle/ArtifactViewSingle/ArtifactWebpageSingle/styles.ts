@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
 
 import { STYLING } from "helpers/styling";
+import { open, fadeIn2 } from "helpers/animations";
 
 export const Wrapper = styled.div`
     height: 100%;
@@ -10,6 +11,7 @@ export const Wrapper = styled.div`
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     background: ${(props) => props.theme.colors.container.primary.background};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    animation: ${open} ${fadeIn2};
 
     p, span, button, a, b, li, input {
         font-family: sans-serif;
@@ -5931,7 +5933,10 @@ export const Wrapper = styled.div`
 `;
 
 export const LoadingContainer = styled.div`
-    height: 50px;
-    width: 50px;
+    height: 200px;
+    width: 100%;
+    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     position: relative;
 `;

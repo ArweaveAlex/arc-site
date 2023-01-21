@@ -15,7 +15,7 @@ import { ArtifactDetailType, PoolType } from "helpers/types";
 import { STORAGE } from "helpers/config";
 import { getTxEndpoint } from "helpers/endpoints";
 import { ASSETS } from "helpers/config";
-import { formatAddress, getMessageText, getUsername, formatDate } from "helpers/utils";
+import { formatAddress, formatMessagingData, getUsername, formatDate } from "helpers/utils";
 import { LANGUAGE } from "helpers/language";
 import * as urls from "helpers/urls";
 import { IProps } from "../../types";
@@ -132,7 +132,7 @@ function ListItem(props: { data: ArtifactDetailType, showBorder: boolean, active
                 </S.LIHeader>
                 <S.LIBody>
                     <S.Message>
-                        <p>{parse(getMessageText(messageData))}</p>
+                        <p>{parse(formatMessagingData(messageData))}</p>
                     </S.Message>
                     {getChildAssets()}
                     <MessagingMedia mediaIds={props.data.mediaIds} />

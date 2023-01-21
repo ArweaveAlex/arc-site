@@ -35,11 +35,18 @@ export const ALink = styled.div`
     max-width: calc(100% - 35px);
     display: flex;
     align-items: center;
+    a, span, b {
+        font-size: ${(props) => props.theme.typography.size.xSmall};
+    }
     a {
         line-height: 18px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+    }
+    span, b {
+        color: ${(props) => props.theme.colors.font.primary.alt4};
+        font-weight: ${(props) => props.theme.typography.weight.medium};
     }
 `;
 

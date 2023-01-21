@@ -49,6 +49,9 @@ export const SearchInput = styled.input`
         box-shadow: none;
         border: 1px solid ${(props) => props.theme.colors.form.border};
     }
+    @media(max-width: ${STYLING.cutoffs.tablet}) {
+        font-size: ${(props) => props.theme.typography.size.base};
+    }
 `;
 
 export const CloseWrapper = styled.div`

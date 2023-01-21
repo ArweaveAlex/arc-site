@@ -133,26 +133,30 @@ export function checkGqlCursor(string: string): boolean {
     }
 }
 
-export function getMessageText(data: any) {
-    if (data && (data.text || data.full_text)) {
-        let finalStr = "";
-        const tweetText = data.text ? data.text : data.full_text;
-        let count = 0;
-        for (let i = 0; i < tweetText.length; i++) {
-            if (tweetText[i] === " ") {
-                if (tweetText.substring(count, i).includes("@")) {
-                    finalStr += `<span>${tweetText.substring(count, i)}</span>`;
-                }
-                else {
-                    finalStr += tweetText.substring(count, i);
-                }
-                count = i;
+export function formatMessagingText(text: string) {
+    let finalStr = "";
+    let count = 0;
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] === " ") {
+            if (text.substring(count, i).includes("@")) {
+                finalStr += `<span>${text.substring(count, i)}</span>`;
             }
+            else {
+                finalStr += text.substring(count, i);
+            }
+            count = i;
         }
-        if (count < tweetText.length) {
-            finalStr += tweetText.substring(count, tweetText.length);
-        }
-        return removeUrls(finalStr);
+    }
+    if (count < text.length) {
+        finalStr += text.substring(count, text.length);
+    }
+    return removeUrls(finalStr);
+}
+
+export function formatMessagingData(data: any) {
+    if (data && (data.text || data.full_text)) {
+        const tweetText = data.text ? data.text : data.full_text;
+        return formatMessagingText(tweetText);
     }
     else {
         return STORAGE.none;
