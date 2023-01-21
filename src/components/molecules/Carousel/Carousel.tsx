@@ -23,6 +23,7 @@ export default function _Carousel(props: IProps) {
                     swipeScrollTolerance={100}
                     swipeable={true}
                     emulateTouch={true}
+                    preventMovementUntilSwipeScrollTolerance={true}
                     renderIndicator={(onClickHandler, isSelected, index) => {
                         return (
                             <S.Indicator
