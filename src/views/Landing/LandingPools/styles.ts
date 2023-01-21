@@ -7,9 +7,6 @@ export const Wrapper = styled.div`
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
     margin: 0px auto;
-    // padding: 10px 25px 20px 25px;
-    // border: 1px solid ${(props) => props.theme.colors.border.alt1};
-    // border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     @media(max-width: ${STYLING.cutoffs.tablet}) {
         height: fit-content;
     }
@@ -20,7 +17,6 @@ export const PCWrapper = styled.div`
     margin: 15px 0 0 0;
     width: 100%;
     display: flex;
-    // padding: 10px 25px 20px 25px;
     padding: 25px;
     border: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
