@@ -41,11 +41,11 @@ export const Body = styled.div`
     animation: ${open} ${fadeIn2};
 `;
 
-export const Row = styled.div<{ showBorder: boolean }>`
+export const Row = styled.div<{ isEnd: boolean }>`
     height: 50px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid ${(props) => props.showBorder ? 
+    border-bottom: 1px solid ${(props) => props.isEnd ? 
         props.theme.colors.border.alt3 : props.theme.colors.transparent};
 `;
 

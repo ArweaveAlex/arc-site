@@ -164,7 +164,6 @@ export const Link = styled.div`
       height: 60px;
       width: 100vw;
       justify-content: left;
-      border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
       padding: 0 20px;
       &:hover {
         text-decoration: none;

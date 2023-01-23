@@ -135,7 +135,7 @@ export const ALinkNT = styled.div`
 `;
 
 export const Placeholder = styled.div`
-    height: 310px;
+    height: 325px;
     min-width: 250px;
     width: 290px;
     max-width: 250px;

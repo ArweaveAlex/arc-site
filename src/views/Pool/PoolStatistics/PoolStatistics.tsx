@@ -28,8 +28,8 @@ export default function PoolStatistics(props: IProps) {
                 if (dataForTags && (dataForTags.contracts.length > 0)) {
                     const nftContractSrc = getTagValue(dataForTags.contracts[0].node.tags, TAGS.keys.contractSrc);
                     const redstoneContracts = await fetch(getRedstoneDescEndpoint(nftContractSrc));
-                    const json = await redstoneContracts.json();
-                    const ids = json.contracts.map((contract: any) => { return contract.contractId });
+                    const redstoneJson = await redstoneContracts.json();
+                    const ids = redstoneJson.contracts.map((contract: any) => { return contract.contractId });
                     const detailDataFinal = await getArtifactsByIds({
                         ids: ids,
                         owner: null,

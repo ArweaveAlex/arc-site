@@ -33,7 +33,7 @@ export default function PoolContributors(props: IProps) {
 
             for (let i = 0; i < sortedKeys.length; i++) {
                 contributorList.push(
-                    <S.Row key={i} showBorder={i !== 2}>
+                    <S.Row key={i} isEnd={i !== 2}>
                         <S.Number>
                             <p>{i + 1}.</p>
                         </S.Number>
@@ -70,7 +70,7 @@ export default function PoolContributors(props: IProps) {
             const contributorKeys = Object.keys(props.data.state.contributors);
             for (let i = 0; i < contributorKeys.length; i++) {
                 contributorList.push(
-                    <S.Row key={i} showBorder={i !== 2}>
+                    <S.Row key={i} isEnd={i !== 2}>
                         <S.RecentOwner>
                             <Link to={`${urls.libraryAll(contributorKeys[i])}`}>{formatAddress(contributorKeys[i], false)}</Link>
                         </S.RecentOwner>
