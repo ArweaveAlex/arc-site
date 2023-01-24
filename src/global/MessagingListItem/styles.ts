@@ -3,30 +3,8 @@ import styled from "styled-components/macro";
 import { STYLING } from "helpers/styling";
 import { open, fadeIn2 } from "helpers/animations";
 
-const THREAD_WIDTH = "600px";
 const DETAIL_WIDTH = "500px";
 const WRAP_WIDTH = "675px";
-
-export const Wrapper = styled.div`
-    display: flex;
-    width: ${THREAD_WIDTH};
-    max-width: 90vw;
-    margin: 0 auto;
-    position: relative;
-    display flex;
-    justify-content: space-between;
-`;
-
-export const DetailWrapper = styled.div`
-    min-height: 141.5px;
-    width: 100%;
-    position: relative;
-    animation: ${open} ${fadeIn2};
-    background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.alt1};
-    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-    z-index: 3;
-`;
 
 export const LIWrapper = styled.div<{ isListItem: boolean, active: boolean }>`
     width: 100%;
