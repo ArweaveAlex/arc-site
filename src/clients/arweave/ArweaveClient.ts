@@ -5,9 +5,9 @@ import { WarpFactory, defaultCacheOptions } from "warp-contracts/web";
 
 import { store } from "redux/store";
 import * as poolActions from "redux/pools/actions";
-import { getGQLData } from "helpers/gql";
-import { getPools } from "helpers/gql/pools";
-import { getArtifactsByUser } from "helpers/gql/artifacts";
+import { getGQLData } from "gql";
+import { getPools } from "gql/pools";
+import { getArtifactsByUser } from "gql/artifacts";
 
 import {
     PoolType,

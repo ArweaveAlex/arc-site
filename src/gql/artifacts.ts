@@ -13,7 +13,7 @@ import {
     AssociationDetailType,
     SequenceType
 } from "helpers/types";
-import { getGQLData } from "helpers/gql";
+import { getGQLData } from "gql";
 import { getTxEndpoint } from "helpers/endpoints";
 import { getPoolById, getPoolIds } from "./pools";
 import { checkGqlCursor, getTagValue } from "helpers/utils";

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { getArtifactsByAssociation } from "helpers/gql/artifacts";
+import { getArtifactsByAssociation } from "gql/artifacts";
 import { SequenceType } from "helpers/types";
 import { ArtifactList } from "../ArtifactList";
 

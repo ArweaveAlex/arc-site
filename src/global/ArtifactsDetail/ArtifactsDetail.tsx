@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "redux/store";
-import { getArtifactsByIds } from "helpers/gql/artifacts";
+import { getArtifactsByIds } from "gql/artifacts";
 
 import { ArtifactsTable } from "global/ArtifactsDetail/ArtifactsTable";
 

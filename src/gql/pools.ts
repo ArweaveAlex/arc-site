@@ -5,7 +5,7 @@ import {
     PoolType
 } from "helpers/types";
 import { getRedstoneSrcTxEndpoint } from "helpers/endpoints";
-import { getGQLData } from "helpers/gql";
+import { getGQLData } from "gql";
 import { getTagValue } from "helpers/utils";
 import { TAGS } from "helpers/config";
 

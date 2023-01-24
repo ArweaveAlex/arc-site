@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import { Button } from "components/atoms/Button";
 import { Loader } from "components/atoms/Loader";
 
-import { getPoolById } from "helpers/gql/pools";
-import { getArtifactById } from "helpers/gql/artifacts";
+import { getPoolById } from "gql/pools";
+import { getArtifactById } from "gql/artifacts";
 import { sortByAssociationSequence } from "filters/artifacts";
 import { ArtifactDetailType, PoolType } from "helpers/types";
 import { formatAddress, formatDate } from "helpers/utils";

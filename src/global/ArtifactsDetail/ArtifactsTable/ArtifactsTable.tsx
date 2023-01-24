@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as artifactActions from "redux/artifacts/actions";
 import { RootState } from "redux/store";
-import { getCollectionIds, setCollectionIds } from "helpers/gql/artifacts";
+import { getCollectionIds, setCollectionIds } from "gql/artifacts";
 
 import { ArtifactsSearch } from "../ArtifactsSearch";
 

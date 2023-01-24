@@ -1,6 +1,6 @@
 import { ArtifactsDetail } from "global/ArtifactsDetail";
 
-import { getArtifactsByPool } from "helpers/gql/artifacts";
+import { getArtifactsByPool } from "gql/artifacts";
 
 import { IProps } from "./types";
 
