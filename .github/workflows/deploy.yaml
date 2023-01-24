@@ -13,7 +13,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 18.x
-      - run: npm
       - run: npm run deploy
         env:
           KEY: ${{ secrets.ALEX_DEPLOY_KEY }}
