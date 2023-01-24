@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { getPoolById, getPoolCount } from "gql/pools";
+import { getPoolById, getPoolCount } from "helpers/gql/pools";
 
 import { Loader } from "components/atoms/Loader";
 
@@ -15,7 +15,7 @@ import { formatDate, getTagValue } from "helpers/utils";
 import { TAGS, FALLBACK_IMAGE } from "helpers/config";
 import { REDUX_TABLES } from "helpers/redux";
 import * as S from "./styles";
-import { getArtifactsByPool } from "gql/artifacts";
+import { getArtifactsByPool } from "helpers/gql/artifacts";
 
 export default function Pool() {
     const { id } = useParams();

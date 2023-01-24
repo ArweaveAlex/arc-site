@@ -7,7 +7,7 @@ import * as S from "./styles";
 import { getRedstoneDescEndpoint } from "helpers/endpoints";
 import React from "react";
 import { REDUX_TABLES } from "helpers/redux";
-import { getArtifactsByIds, getArtifactsByPool } from "gql/artifacts";
+import { getArtifactsByIds, getArtifactsByPool } from "helpers/gql/artifacts";
 import { getTagValue } from "helpers/utils";
 import { TAGS } from "helpers/config";
 import { ArtifactResponseType } from "helpers/types";

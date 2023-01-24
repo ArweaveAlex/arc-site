@@ -1,7 +1,7 @@
 import { OwnerView } from "global/OwnerView";
 
 import { useArweaveProvider } from "providers/ArweaveProvider";
-import { getArtifactsByUser } from "gql/artifacts";
+import { getArtifactsByUser } from "helpers/gql/artifacts";
 import { REDUX_TABLES } from "helpers/redux";
 import { CursorEnum } from "helpers/types";
 

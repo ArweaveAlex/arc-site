@@ -7,7 +7,7 @@ import { Loader } from "components/atoms/Loader";
 import { Carousel } from "components/molecules/Carousel";
 
 import { getTxEndpoint } from "helpers/endpoints";
-import { getArtifactById } from "gql/artifacts";
+import { getArtifactById } from "helpers/gql/artifacts";
 import { formatMessagingData, getUsername } from "helpers/utils";
 import { formatDate, formatAddress } from "helpers/utils";
 import { LANGUAGE } from "helpers/language";

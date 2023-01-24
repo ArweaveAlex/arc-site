@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { IProps } from "./types";
 
 export default function Portal(props: IProps) {
-  const [DOM, setDOM] = React.useState(false);
+  const [DOM, setDOM] = React.useState<boolean>(false);
   React.useEffect(() => {
     setDOM(true);
   }, []);

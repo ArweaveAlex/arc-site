@@ -1,0 +1,20 @@
+name: publish 
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy Bundle
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - run: npm
+      - run: npm run deploy
+        env:
+          KEY: ${{ secrets.ALEX_DEPLOY_KEY }}

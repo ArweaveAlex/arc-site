@@ -3,7 +3,7 @@ import axios from "axios";
 import { 
     getLatestPoolSearchIndexTxId, 
     getPoolSearchIndexById 
-} from "gql/pools";
+} from "helpers/gql/pools";
 import { getTxEndpoint } from "helpers/endpoints";
 import { getTagValue, stripSearch } from "helpers/utils";
 import { TAGS, SEARCH } from "helpers/config";

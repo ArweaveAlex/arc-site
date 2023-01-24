@@ -7,11 +7,11 @@ import { WalletConnect } from "wallet/WalletConnect";
 
 import { ASSETS } from "helpers/config";
 import * as urls from "helpers/urls";
-import { 
-    checkDesktop, 
-    checkWindowResize, 
-    hideDocumentBody, 
-    showDocumentBody 
+import {
+    checkDesktop,
+    checkWindowResize,
+    hideDocumentBody,
+    showDocumentBody
 } from "helpers/window";
 import { NAV_PATHS } from "helpers/paths";
 import * as S from "./styles";
@@ -49,29 +49,29 @@ export default function Header() {
 
     function navList() {
         return (
-                <S.NC>
-                    <S.NavPaths>
-                        {NAV_PATHS.map((path, index) => (
-                            <S.Link key={index}>
-                                <Link to={path.href} onClick={() => setOpen(false)}>
-                                    {path.name}
-                                </Link>
-                            </S.Link>
-                        ))}
-                    </S.NavPaths>
-                    <S.SC>
-                        {/* <S.SocialPaths>
+            <S.NC>
+                <S.NavPaths>
+                    {NAV_PATHS.map((path, index) => (
+                        <S.Link key={index}>
+                            <Link to={path.href} onClick={() => setOpen(false)}>
+                                {path.name}
+                            </Link>
+                        </S.Link>
+                    ))}
+                </S.NavPaths>
+                <S.SC>
+                    {/* <S.SocialPaths>
                             {SOCIAL_PATHS.map((path, index) => (
                                 <S.SocialLink key={index} target={"_blank"} href={path.href}>
                                     <ReactSVG src={`${path.svg}`} />
                                 </S.SocialLink>
                             ))}
                         </S.SocialPaths> */}
-                        <S.Connect show={getWalletDisplay()}>
-                            <WalletConnect callback={() => setOpen(!open)}/>
-                        </S.Connect>
-                    </S.SC>
-                </S.NC>
+                    <S.Connect show={getWalletDisplay()}>
+                        <WalletConnect callback={() => setOpen(!open)} />
+                    </S.Connect>
+                </S.SC>
+            </S.NC>
         );
     }
 

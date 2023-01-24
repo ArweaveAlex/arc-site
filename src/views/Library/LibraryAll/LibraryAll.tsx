@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 
 import { OwnerView } from "global/OwnerView";
 
-import { getArtifactsByUser } from "gql/artifacts";
+import { getArtifactsByUser } from "helpers/gql/artifacts";
 import { REDUX_TABLES } from "helpers/redux";
 import { CursorEnum } from "helpers/types";
 

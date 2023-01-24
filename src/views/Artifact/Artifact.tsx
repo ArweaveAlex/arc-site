@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { getArtifactById } from "gql/artifacts";
+import { getArtifactById } from "helpers/gql/artifacts";
 
 import { ArtifactSingle } from "./ArtifactSingle";
 

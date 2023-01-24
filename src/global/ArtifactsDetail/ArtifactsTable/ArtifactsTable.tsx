@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as artifactActions from "redux/artifacts/actions";
 import { RootState } from "redux/store";
-import { getCollectionIds, setCollectionIds } from "gql/artifacts";
+import { getCollectionIds, setCollectionIds } from "helpers/gql/artifacts";
 
 import { ArtifactsSearch } from "../ArtifactsSearch";
 
@@ -33,6 +33,7 @@ import * as urls from "helpers/urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 
+// TODO - Debug 400
 function CollectionToggle(props: {
     artifactId: string,
     selected: boolean,
