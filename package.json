@@ -36,7 +36,7 @@
     "test:verbose": "npm test -- --verbose",
     "test:coverage": "CI=true npm test -- --env=jsdom --coverage",
     "build": "react-scripts build",
-    "deploy": "node src/workflows/deploy.ts"
+    "deploy": "node src/workflows/deploy.mjs"
   },
   "eslintConfig": {
     "extends": [
