@@ -21,6 +21,8 @@ import { WarpFactory, defaultCacheOptions } from "warp-contracts";
     const result = await bundlr.uploadFolder(DEPLOY_FOLDER, {
         indexFile: "index.html"
     })
+
+    await new Promise(r => setTimeout(r, 1000));
     
     await contract.writeInteraction({
         function: "setRecord",

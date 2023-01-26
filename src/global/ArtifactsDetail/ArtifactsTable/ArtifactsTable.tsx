@@ -33,7 +33,6 @@ import * as urls from "helpers/urls";
 import { IProps } from "./types";
 import * as S from "./styles";
 
-// TODO - Debug 400
 function CollectionToggle(props: {
     artifactId: string,
     selected: boolean,
