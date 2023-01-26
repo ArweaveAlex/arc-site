@@ -1,7 +1,6 @@
 import React from "react";
 
 import { getBalanceEndpoint } from "helpers/endpoints";
-import { LANGUAGE } from "helpers/language";
 import { AR_WALLETS, WALLET_PERMISSIONS } from "helpers/config";
 
 interface ArweaveContextState {
