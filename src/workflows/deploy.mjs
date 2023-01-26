@@ -9,7 +9,7 @@ import { WarpFactory, defaultCacheOptions } from "warp-contracts";
     const arweave = Arweave.init({ host: "arweave.net", port: 443, protocol: "https" })
     const jwk = JSON.parse(Buffer.from(process.env.ALEX_DEPLOY_KEY, "base64").toString("utf-8"))
 
-    const bundlr = new (Bundlr as any).default(BUNDLR_NODE, "arweave", jwk);
+    const bundlr = new Bundlr.default(BUNDLR_NODE, "arweave", jwk);
     const warp = WarpFactory.custom(
         arweave,
         defaultCacheOptions,
