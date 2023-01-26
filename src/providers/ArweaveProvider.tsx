@@ -47,13 +47,16 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
     const [walletAddress, setWalletAddress] = React.useState<string | null>(null);
     const [availableBalance, setAvailableBalance] = React.useState<number | null>(null);
 
-    async function handleConnect() {
-        await global.window?.arweaveWallet?.connect(WALLET_PERMISSIONS as any).then(() => {
-            setWalletModalVisible(false)
-        }).catch(() => {
-            alert(LANGUAGE.connectionError);
-        })
-    }
+	async function handleConnect() {
+		await global.window?.arweaveWallet
+			?.connect(WALLET_PERMISSIONS as any)
+			.then(() => {
+				setWalletModalVisible(false);
+			})
+			.catch((e: any) => {
+				alert(e);
+			});
+	}
 
     async function handleDisconnect() {
         await global.window?.arweaveWallet?.disconnect();
