@@ -1,15 +1,19 @@
-name: publish 
+name: publish
 
 on:
-  push:
-    branches:
-      - "main"
+    push:
+        branches:
+            - "main"
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - run: npm i
-      - run: npm run deploy
-        env:
-          KEY: ${{ secrets.ALEX_DEPLOY_KEY }}
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 16.x
+            - run: npm i
+            - run: npm run deploy
+              env:
+                  KEY: ${{ secrets.ALEX_DEPLOY_KEY }}
