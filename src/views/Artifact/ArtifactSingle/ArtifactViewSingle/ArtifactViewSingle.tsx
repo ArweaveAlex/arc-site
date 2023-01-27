@@ -5,6 +5,7 @@ import { ArtifactEnum } from "helpers/types";
 import { IProps } from "../types";
 import * as S from "./styles";
 
+// TODO - Messaging - Tweet
 export default function ArtifactViewSingle(props: IProps) {
     function getArtifact() {
         if (props.data) {

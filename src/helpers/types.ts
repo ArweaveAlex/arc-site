@@ -2,7 +2,8 @@ import React from "react";
 
 export enum ArtifactEnum {
   Messaging = "Alex-Messaging",
-  Webpage = "Alex-Webpage"
+  Webpage = "Alex-Webpage",
+  Reddit = "Alex-Reddit-Thread"
 }
 
 export enum CursorEnum {

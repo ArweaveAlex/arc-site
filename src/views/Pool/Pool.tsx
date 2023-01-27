@@ -97,11 +97,11 @@ export default function Pool() {
             />
         )
     }
-
+    
     return headerData ? (
         <>
             <S.Wrapper>
-                {getPoolHeader()}
+                {getPoolHeader()} 
                 {getPoolStatistics()}
                 {getPoolDetail()}
             </S.Wrapper>

@@ -12,7 +12,6 @@ import { getTagValue } from "helpers/utils";
 import { TAGS } from "helpers/config";
 import { ArtifactResponseType } from "helpers/types";
 
-// TODO - Goldsky not getting recent
 export default function PoolStatistics(props: IProps) {
   const [detailData, setDetailData] =
     React.useState<ArtifactResponseType | null>(null);
