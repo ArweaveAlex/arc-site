@@ -10,10 +10,10 @@ export function getTxEndpoint(txId: string) {
     return `https://arweave.net/${txId}`;
 }
 
-export function getRedstoneSrcTxEndpoint(contractId: string, page: any){
-    return `https://gateway.redstone.finance/gateway/contracts-by-source?id=${contractId}&limit=15&page=${page}`;
+export function getRedstoneSrcTxEndpoint(contractId: string, page: number){
+    return `https://gateway.redstone.finance/gateway/contracts-by-source?id=${contractId}&limit=15&page=${page.toString()}`;
 }
 
-export function getRedstoneDescEndpoint(src: string) {
-    return `https://gateway.redstone.finance/gateway/contracts-by-source?id=${src}&page=1&sort=desc&limit=5`;
+export function getRedstoneDescEndpoint(src: string, page: number, limit: number) {
+    return `https://gateway.redstone.finance/gateway/contracts-by-source?id=${src}&page=${page.toString()}&sort=desc&limit=${limit.toString()}`;
 }

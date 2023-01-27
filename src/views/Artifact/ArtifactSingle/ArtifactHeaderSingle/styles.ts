@@ -39,7 +39,7 @@ export const Info = styled.div`
     width: 100%;
     display: flex;
     position: relative;
-    background: ${(props) => props.theme.colors.container.primary.background};
+    background: ${(props) => props.theme.colors.container.alt6.background};
     border-top: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-right: 1px solid ${(props) => props.theme.colors.border.alt1};
@@ -116,7 +116,7 @@ export const InfoPools = styled(InfoStyled)`
 export const Body = styled.div`
     height: 46.5%;
     width: 100%;
-    background: ${(props) => props.theme.colors.container.primary.background};
+    background: ${(props) => props.theme.colors.container.alt6.background};
     display: flex;
     justify-content: space-between;
     align-items: center;
