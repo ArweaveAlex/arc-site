@@ -32,11 +32,13 @@ export const Content = styled.div`
     max-width: ${STYLING.cutoffs.max};
     width: 100%;
     background: ${(props) => props.theme.colors.container.primary.background};
+    position: relative;
 `;
 
 export const Info = styled.div`
     height: 50%;
     width: 100%;
+    padding: 0 25px;
     display: flex;
     position: relative;
     background: ${(props) => props.theme.colors.container.alt6.background};
@@ -54,7 +56,6 @@ export const InfoData = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 10px;
     margin: auto 0;
     div, p, a {
         text-overflow: ellipsis;
@@ -67,10 +68,6 @@ export const InfoData = styled.div`
     p {
         line-height: 16px;
     }
-`;
-
-export const InfoTitle = styled(InfoData)`
-    padding: 0 20px;
 `;
 
 export const InfoStyled = styled(InfoData)`
@@ -90,19 +87,19 @@ export const InfoStyled = styled(InfoData)`
         fill: ${(props) => props.theme.colors.font.primary.active.base};
     }
     border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
-    @media(max-width: ${STYLING.cutoffs.initial}) {
-        svg {
-            display: none;
-        }
-    }
+`;
+
+export const InfoTitle = styled(InfoData)`
+    width: 27.5%;
+    padding: 0 10px 0 0;
 `;
 
 export const InfoType = styled(InfoStyled)`
-    width: 15%;
+    width: 12.5%;
 `;
 
 export const InfoMintDate = styled(InfoStyled)`
-    width: 20%;
+    width: 25%;
 `;
 
 export const InfoOwner = styled(InfoStyled)`
@@ -113,6 +110,16 @@ export const InfoPools = styled(InfoStyled)`
     width: 20%;
 `;
 
+export const Divider = styled.div`
+    height: 1px;
+    width: calc(100% - 50px);
+    position: absolute;
+    top: 52.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-top: 1px solid ${(props) => props.theme.colors.border.alt1};
+`;
+
 export const Body = styled.div`
     height: 46.5%;
     width: 100%;
@@ -120,7 +127,7 @@ export const Body = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 60px;
+    padding: 0 25px;
     border-bottom-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
     border-bottom-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
     border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};

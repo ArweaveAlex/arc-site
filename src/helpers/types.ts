@@ -26,7 +26,7 @@ export type GQLResponseType = {
 export interface ArtifactDetailType {
   artifactId: NStringType
   artifactName: NStringType
-  artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage
+  artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage | ArtifactEnum.Reddit
   associationId: NStringType
   associationSequence: NStringType
   profileImagePath: NStringType

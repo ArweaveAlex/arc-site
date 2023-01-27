@@ -165,7 +165,8 @@ export const PostDate = styled(P)`
 export const PublicMetrics = styled.div`
     height: 25px;
     width: 50%;
-    min-width: 180px;
+    width: 400px;
+    max-width: 80vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -184,7 +185,7 @@ export const Metric = styled.div`
         font-size: ${(props) => props.theme.typography.size.xSmall};
         color: ${(props) => props.theme.colors.font.primary.alt1};
         font-weight: ${(props) => props.theme.typography.weight.medium};
-        margin: 0 0 3.5px 10px;
+        margin: 0 0 3.5px 7.5px;
         white-space: nowrap;
     }
 `;

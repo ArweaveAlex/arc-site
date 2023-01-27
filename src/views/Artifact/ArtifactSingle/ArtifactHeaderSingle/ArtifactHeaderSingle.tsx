@@ -50,6 +50,7 @@ export default function ArtifactHeaderSingle(props: IProps) {
                             </>
                         </S.InfoPools>
                     </S.Info>
+                    <S.Divider />
                     <S.Body>
                         <Tabs onTabPropClick={(label: string) => props.onTabPropClick(label)}>
                             {ARTIFACT_TABS.map((tab: { label: string }, index: number) => {
