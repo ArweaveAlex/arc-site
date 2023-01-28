@@ -121,7 +121,6 @@ export const CollectionToggle = styled.div`
     svg {
         fill: ${(props) => props.theme.colors.icon.alt1.fill} !important;
         margin: 0 0 5px 0;
-        position: absolute;
     }
     button {
         margin: 7.5px 0 0 0;
