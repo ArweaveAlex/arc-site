@@ -19,6 +19,12 @@ export const Content = styled.div`
 export const FlexWrapper = styled.div`
     display: flex;
     margin: 25px 0 0 0;
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        margin: 50px 0 0 0;
+    }
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        margin: 100px 0 0 0;
+    }
 `;
 
 export const ArtifactWrapper = styled.div`

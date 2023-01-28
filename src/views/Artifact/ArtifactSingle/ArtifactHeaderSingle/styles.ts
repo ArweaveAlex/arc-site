@@ -7,11 +7,11 @@ export const Wrapper = styled.div`
     position: fixed;
     max-width: calc(${STYLING.cutoffs.max} - 40px);
     z-index: 4;
-    position: fixed;
     height: 140px;
     top: ${STYLING.dimensions.navHeight};
     background: ${(props) => props.theme.colors.view.background};
-    @media(max-width: ${STYLING.cutoffs.secondary}) {
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        height: auto;
         width: 100%;
         margin: 0 0 0 -20px;
     }
@@ -24,6 +24,11 @@ export const ContentWrapper = styled.div`
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        height: auto;
+        top: auto;
+        transform: translate(0, 0);
+    }
 `;
 
 export const Content = styled.div`
@@ -47,6 +52,15 @@ export const Info = styled.div`
     border-right: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
     border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        background: ${(props) => props.theme.colors.transparent};
+        border: none;
+        height: auto;
+        flex-wrap: wrap;
+        padding: 0;
+        border-radius: 0;
+        padding: 0 20px;
+    }
 `;
 
 export const InfoData = styled.div`
@@ -57,6 +71,7 @@ export const InfoData = styled.div`
     align-items: center;
     justify-content: center;
     margin: auto 0;
+    padding: 0 12.5px;
     div, p, a {
         text-overflow: ellipsis;
         overflow: hidden;
@@ -67,6 +82,16 @@ export const InfoData = styled.div`
     }
     p {
         line-height: 16px;
+    }
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        height: 35px;
+        width: fit-content !important;
+        max-width: 100%;
+        margin: 0 10px 10px 0;
+        padding: 10px !important;
+        border: 1px solid ${(props) => props.theme.colors.border.alt1} !important;
+        border-radius: ${STYLING.dimensions.borderRadiusWrapper} !important;
+        background: ${(props) => props.theme.colors.container.alt6.background};
     }
 `;
 
@@ -87,6 +112,12 @@ export const InfoStyled = styled(InfoData)`
         fill: ${(props) => props.theme.colors.font.primary.active.base};
     }
     border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        border: none;
+        svg {
+            width: 17.5px;
+        }
+    }
 `;
 
 export const InfoTitle = styled(InfoData)`
@@ -118,6 +149,9 @@ export const Divider = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     border-top: 1px solid ${(props) => props.theme.colors.border.alt1};
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        display: none;
+    }
 `;
 
 export const Body = styled.div`
@@ -133,6 +167,13 @@ export const Body = styled.div`
     border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
     border-right: 1px solid ${(props) => props.theme.colors.border.alt1};
+    @media(max-width: ${STYLING.cutoffs.initial}) {
+        height: 50px;
+        width: calc(100% - 40px);
+        margin: 0 auto;
+        border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+        border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    }
 `;
 
 export const TabWrapper = styled.div<{ label: string }>``;

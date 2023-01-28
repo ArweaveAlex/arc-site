@@ -8,7 +8,7 @@ export const Wrapper = styled.header`
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 4;
+    z-index: 5;
     background: ${props => props.theme.colors.navigation.header.background};
 `;
 

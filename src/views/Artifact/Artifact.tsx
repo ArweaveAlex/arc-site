@@ -32,6 +32,6 @@ export default function ArtifactThread() {
             return null;
         }
     }
-
+    
     return data ? <>{getData()}</> : <Loader />;
 }

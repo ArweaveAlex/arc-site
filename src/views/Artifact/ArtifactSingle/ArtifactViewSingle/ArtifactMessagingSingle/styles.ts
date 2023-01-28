@@ -13,6 +13,9 @@ export const Wrapper = styled.div`
     position: relative;
     display flex;
     justify-content: space-between;
+    @media(max-width: ${THREAD_WIDTH}) {
+        width: auto;
+    }
 `;
 
 export const DetailWrapper = styled.div`
