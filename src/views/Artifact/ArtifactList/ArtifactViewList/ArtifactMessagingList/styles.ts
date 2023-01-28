@@ -68,7 +68,7 @@ export const HDContent = styled.div`
     position: fixed;
     overflow-y: auto;
     overflow-x: hidden;
-    top: ${STYLING.dimensions.navHeight};
+    top: calc(${STYLING.dimensions.navHeight} + 20px);
 
     @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
         height: auto;
