@@ -44,6 +44,8 @@ export default function Landing() {
         }
     }
 
+    console.log(data);
+
     return (
         <ReduxPoolsUpdate>
             {getData()}

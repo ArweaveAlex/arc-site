@@ -15,7 +15,6 @@ export const Content = styled.div`
     height: 100%;
     width: 100%;
     max-width: ${STYLING.cutoffs.max};
-    margin: 0 auto;
     margin: calc(${STYLING.dimensions.navHeight} + 20px) auto 0 auto;
     padding: 0 30px 7.5px 30px;
     display: flex;
@@ -40,6 +39,9 @@ export const HeaderWrapper = styled.div`
         width: auto;
         margin: 0 0 20px 0;
     }
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        margin: 0;
+    }
 `;
 
 export const FlexHeader = styled.div`
@@ -62,6 +64,9 @@ export const H1 = styled.h1`
 
 export const Header1 = styled(H1)`
     color: ${(props) => props.theme.colors.font.primary.active.base};
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        margin: 10px 0;
+    }
 `;
 
 export const Header2Container = styled.div`
@@ -72,6 +77,9 @@ export const Header2Container = styled.div`
 export const Header2 = styled(Header1)`
     position: relative;
     z-index: 1;
+    @media(max-width: ${STYLING.cutoffs.secondary}) {
+        margin: 0;
+    }
 `;
 
 export const Header3 = styled(H1)`
@@ -119,19 +127,21 @@ export const Subheader1 = styled.p`
     color: ${(props) => props.theme.colors.font.primary.alt1};
     font-weight: ${(props) => props.theme.typography.weight.medium};
     @media(max-width: ${STYLING.cutoffs.secondary}) {
-        font-size: ${(props) => props.theme.typography.size.small};
+        font-size: ${(props) => props.theme.typography.size.xSmall};
     }
 `;
 
 export const Logo = styled.div`
-    margin: 0 0 0 10px;
+    margin: 0 0 0 7.5px;
     svg {
         
         width: 100px;
     }
     @media(max-width: ${STYLING.cutoffs.secondary}) {
+        margin: 0 0 0 5px;
         svg {
-            width: 75px;
+            width: 55px;
+            padding: 2.5px 0 0 0;
         }
     }
 `;
