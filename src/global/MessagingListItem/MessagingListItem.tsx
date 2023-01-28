@@ -169,8 +169,8 @@ export default function MessagingListItem(props: IProps) {
         }
     }
 
-    const artifactLink = `${urls.artifact}${props.data.artifactId}`;
-    const ownerLink = `${urls.libraryAll(props.data.owner)}`;
+    const artifactLink = props.data ? `${urls.artifact}${props.data.artifactId}` : "#";
+    const ownerLink = props.data ? `${urls.libraryAll(props.data.owner)}` : "#";
 
     return (props.data && messageData) ? (
         <S.LIWrapper

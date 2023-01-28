@@ -13,6 +13,7 @@ const DEFAULT = {
     neutral10: "#BABABA",
     neutral11: "#000000",
     neutral12: "#FAFAFA",
+    neutral13: "#F7F7F7",
     primary: "#003153",
     primary2: "#265F85",
     primary3: "#4C8CB8",
@@ -86,7 +87,7 @@ export const defaultTheme: DefaultTheme = {
                     label: DEFAULT.neutral1
                 },
                 disabled: {
-                    background: DEFAULT.neutral5,
+                    background: DEFAULT.neutral13,
                     border: DEFAULT.neutral3,
                     label: DEFAULT.neutral7
                 }

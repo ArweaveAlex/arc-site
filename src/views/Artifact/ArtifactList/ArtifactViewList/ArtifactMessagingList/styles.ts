@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
     max-width: 90vw;
     margin: 0 auto;
     position: relative;
+    padding: 20px 0;
     display flex;
     justify-content: space-between;
     @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
@@ -178,6 +179,7 @@ export const ActionContainer = styled.div`
         height: 100% !important;
         width: 100% !important;
         border: none !important;
+        border-radius: 0;
     }
 `;
 

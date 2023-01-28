@@ -68,7 +68,7 @@ export default function ArtifactMessagingList(props: IProps) {
                     type={"alt2"}
                     label={LANGUAGE.showMoreReplies}
                     handlePress={() => updateSequence()}
-                    disabled={props.updateDisabled}
+                    disabled={true}
                 />
             )
         }

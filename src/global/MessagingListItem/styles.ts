@@ -163,12 +163,12 @@ export const PostDate = styled(P)`
 `;
 
 export const PublicMetrics = styled.div`
-    height: 25px;
     width: 50%;
-    width: 400px;
-    max-width: 80vw;
+    width: 350px;
+    max-width: 75.5vw;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
 `;
 
@@ -177,15 +177,16 @@ export const Metric = styled.div`
     height: 100%;
     display: flex;
     align-items: center;
+    margin: 0 12.5px 0 0;
     svg {
-        width: 15px;
+        width: 13.5px;
         fill: ${(props) => props.theme.colors.font.primary.alt1};
     }
     p {
         font-size: ${(props) => props.theme.typography.size.xSmall};
         color: ${(props) => props.theme.colors.font.primary.alt1};
         font-weight: ${(props) => props.theme.typography.weight.medium};
-        margin: 0 0 3.5px 7.5px;
+        margin: 0 0 3.5px 5.5px;
         white-space: nowrap;
     }
 `;

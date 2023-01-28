@@ -84,6 +84,7 @@ export const Icons = styled.div`
     svg {
         width: 12.5px;
         fill: ${(props) => props.theme.colors.font.primary.active.base};
+        
     }
 `;
 
@@ -98,6 +99,7 @@ export const Icon = styled.div`
     left: 0;
     right: auto;
     transform: translate(0, -50%);
+    padding: 3.5px 0 0 0;
 `;
 
 export const AssociationIcon = styled(Icon)`
@@ -119,6 +121,7 @@ export const CollectionToggle = styled.div`
     svg {
         fill: ${(props) => props.theme.colors.icon.alt1.fill} !important;
         margin: 0 0 5px 0;
+        position: absolute;
     }
     button {
         margin: 7.5px 0 0 0;
