@@ -329,6 +329,7 @@ export const ActiveContainer = styled.div`
         width: 15px;
         fill: ${(props) => props.theme.colors.icon.alt1.fill};
     }
+    display: none;
 `;
 
 export const ChildAssetContainer = styled.div`

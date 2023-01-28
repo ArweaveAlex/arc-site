@@ -182,14 +182,3 @@ export const ActionContainer = styled.div`
         border-radius: 0;
     }
 `;
-
-export const ActiveContainer = styled.div`
-    display: flex;
-    align-items: center;
-    margin: 1.15px 7.5px 0 0;
-    svg {
-        height: 15px;
-        width: 15px;
-        fill: ${(props) => props.theme.colors.icon.alt1.fill};
-    }
-`;
