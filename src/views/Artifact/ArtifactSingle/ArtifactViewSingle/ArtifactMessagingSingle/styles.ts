@@ -19,12 +19,12 @@ export const Wrapper = styled.div`
 `;
 
 export const DetailWrapper = styled.div`
-    min-height: 141.5px;
-    width: 100%;
-    position: relative;
-    animation: ${open} ${fadeIn2};
-    background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.alt1};
-    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-    z-index: 3;
+	min-height: 141.5px;
+	width: 100%;
+	position: relative;
+	animation: ${open} ${fadeIn2};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	z-index: 3;
 `;

@@ -1,1 +1,1 @@
-export {default as URLTabs} from "./URLTabs";
+export { default as URLTabs } from "./URLTabs";

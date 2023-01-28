@@ -1,4 +1,4 @@
 export interface IProps {
-  sm?: boolean;
-  disabled?: boolean;
+	sm?: boolean;
+	disabled?: boolean;
 }

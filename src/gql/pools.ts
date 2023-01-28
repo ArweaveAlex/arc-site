@@ -1,141 +1,126 @@
 import { ArweaveClient } from "clients/arweave";
-import {
-    GQLResponseType,
-    PoolSearchIndexType,
-    PoolType
-} from "helpers/types";
+import { GQLResponseType, PoolSearchIndexType, PoolType } from "helpers/types";
 import { getRedstoneSrcTxEndpoint } from "helpers/endpoints";
 import { getGQLData } from "gql";
 import { getTagValue } from "helpers/utils";
 import { TAGS } from "helpers/config";
 
 export async function getPoolIds() {
-    const pools: GQLResponseType[] = await getGQLData({
-        ids: null,
-        tagFilters: [
-            {
-                name: TAGS.keys.appType,
-                values: [
-                    TAGS.values.poolVersions["1.2"],
-                    TAGS.values.poolVersions["1.4"]
-                ]
-            }
-        ],
-        uploader: null,
-        cursor: null,
-        reduxCursor: null,
-        cursorObject: null
-    });
+	const pools: GQLResponseType[] = await getGQLData({
+		ids: null,
+		tagFilters: [
+			{
+				name: TAGS.keys.appType,
+				values: [TAGS.values.poolVersions["1.2"], TAGS.values.poolVersions["1.4"]],
+			},
+		],
+		uploader: null,
+		cursor: null,
+		reduxCursor: null,
+		cursorObject: null,
+	});
 
-    return pools.map((pool: GQLResponseType) => {
-        switch (getTagValue(pool.node.tags, TAGS.keys.appType)) {
-            case TAGS.values.poolVersions["1.2"]:
-                return pool.node.id;
-            case TAGS.values.poolVersions["1.4"]:
-                return getTagValue(pool.node.tags, TAGS.keys.uploaderTxId);
-            default:
-                return getTagValue(pool.node.tags, TAGS.keys.uploaderTxId);
-        }
-    });
+	return pools.map((pool: GQLResponseType) => {
+		switch (getTagValue(pool.node.tags, TAGS.keys.appType)) {
+			case TAGS.values.poolVersions["1.2"]:
+				return pool.node.id;
+			case TAGS.values.poolVersions["1.4"]:
+				return getTagValue(pool.node.tags, TAGS.keys.uploaderTxId);
+			default:
+				return getTagValue(pool.node.tags, TAGS.keys.uploaderTxId);
+		}
+	});
 }
 
 export async function getPools(): Promise<PoolType[]> {
-    const arClient = new ArweaveClient();
+	const arClient = new ArweaveClient();
 
-    const pools: PoolType[] = [];
-    const poolIds = await getPoolIds();
+	const pools: PoolType[] = [];
+	const poolIds = await getPoolIds();
 
-    for (let i = 0; i < poolIds.length; i++) {
-        if (poolIds[i]) {
-            try {
-                const contract = arClient.warp.contract(poolIds[i]).setEvaluationOptions({ allowBigInt: true });
-                try {
-                    pools.push({ id: poolIds[i], state: (await contract.readState() as any).cachedValue.state });
-                }
-                catch (error: any) {
-                    console.error(error);
-                }
-            }
-            catch (error: any) {
-                console.error(error)
-            }
-        }
-    }
+	for (let i = 0; i < poolIds.length; i++) {
+		if (poolIds[i]) {
+			try {
+				const contract = arClient.warp.contract(poolIds[i]).setEvaluationOptions({ allowBigInt: true });
+				try {
+					pools.push({ id: poolIds[i], state: ((await contract.readState()) as any).cachedValue.state });
+				} catch (error: any) {
+					console.error(error);
+				}
+			} catch (error: any) {
+				console.error(error);
+			}
+		}
+	}
 
-    return pools;
+	return pools;
 }
 
 export async function getPoolById(poolId: string): Promise<PoolType | null> {
-    const arClient = new ArweaveClient();
+	const arClient = new ArweaveClient();
 
-    try {
-        const contract = arClient.warp.contract(poolId).setEvaluationOptions({ allowBigInt: true });
-        return { id: poolId, state: (await contract.readState() as any).cachedValue.state };
-    }
-    catch (error: any) {
-        console.error(error)
-        return null
-    }
+	try {
+		const contract = arClient.warp.contract(poolId).setEvaluationOptions({ allowBigInt: true });
+		return { id: poolId, state: ((await contract.readState()) as any).cachedValue.state };
+	} catch (error: any) {
+		console.error(error);
+		return null;
+	}
 }
 
 export async function getLatestPoolSearchIndexTxId(poolId: string) {
-    const poolSearchIndeces: GQLResponseType[] = await getGQLData({
-        ids: null,
-        tagFilters: [
-            {
-                name: TAGS.keys.appType,
-                values: [
-                    TAGS.values.searchIndex
-                ]
-            },
-            {
-                name: TAGS.keys.alexPoolId,
-                values: [
-                    poolId
-                ]
-            }
-        ],
-        uploader: null,
-        cursor: null,
-        reduxCursor: null,
-        cursorObject: null
-    });
+	const poolSearchIndeces: GQLResponseType[] = await getGQLData({
+		ids: null,
+		tagFilters: [
+			{
+				name: TAGS.keys.appType,
+				values: [TAGS.values.searchIndex],
+			},
+			{
+				name: TAGS.keys.alexPoolId,
+				values: [poolId],
+			},
+		],
+		uploader: null,
+		cursor: null,
+		reduxCursor: null,
+		cursorObject: null,
+	});
 
-    if(poolSearchIndeces.length === 0) return null;
+	if (poolSearchIndeces.length === 0) return null;
 
-    if(poolSearchIndeces.length === 1) return poolSearchIndeces[0];
+	if (poolSearchIndeces.length === 1) return poolSearchIndeces[0];
 
-    let latestIndex = poolSearchIndeces[0];
+	let latestIndex = poolSearchIndeces[0];
 
-    for(let i = 1; i < poolSearchIndeces.length; i++) {
-        let thisIndex = poolSearchIndeces[i];
-        let thisIndexDateTag = getTagValue(thisIndex.node.tags, TAGS.keys.timestamp);
-        let latestIndexDateTag = getTagValue(latestIndex.node.tags, TAGS.keys.timestamp);
-        let thisIndexDate = thisIndexDateTag && thisIndexDateTag !== 'N/A' ? parseInt(thisIndexDateTag) : 0;
-        let latestIndexDate = latestIndexDateTag && latestIndexDateTag !== 'N/A' ? parseInt(latestIndexDateTag) : 0;
-        if(thisIndexDate > latestIndexDate) {
-            latestIndex = thisIndex;
-        }
-    }
+	for (let i = 1; i < poolSearchIndeces.length; i++) {
+		let thisIndex = poolSearchIndeces[i];
+		let thisIndexDateTag = getTagValue(thisIndex.node.tags, TAGS.keys.timestamp);
+		let latestIndexDateTag = getTagValue(latestIndex.node.tags, TAGS.keys.timestamp);
+		let thisIndexDate = thisIndexDateTag && thisIndexDateTag !== "N/A" ? parseInt(thisIndexDateTag) : 0;
+		let latestIndexDate = latestIndexDateTag && latestIndexDateTag !== "N/A" ? parseInt(latestIndexDateTag) : 0;
+		if (thisIndexDate > latestIndexDate) {
+			latestIndex = thisIndex;
+		}
+	}
 
-    return latestIndex;
+	return latestIndex;
 }
 
 export async function getPoolSearchIndexById(poolSearchIndexId: string): Promise<PoolSearchIndexType | null> {
-    const arClient = new ArweaveClient();
+	const arClient = new ArweaveClient();
 
-    try {
-        const contract = arClient.warp.contract(poolSearchIndexId).setEvaluationOptions({ allowBigInt: true });
-        return { id: poolSearchIndexId, state: (await contract.readState() as any).cachedValue.state };
-    }
-    catch (error: any) {
-        console.error(error)
-        return null
-    }
+	try {
+		const contract = arClient.warp.contract(poolSearchIndexId).setEvaluationOptions({ allowBigInt: true });
+		return { id: poolSearchIndexId, state: ((await contract.readState()) as any).cachedValue.state };
+	} catch (error: any) {
+		console.error(error);
+		return null;
+	}
 }
 
 export async function getPoolCount(nftContractSrc: string): Promise<number> {
-    let redstoneContracts = await fetch(getRedstoneSrcTxEndpoint(nftContractSrc, 1));
-    let redstoneJson = await redstoneContracts.json();
-    return parseInt(redstoneJson.paging.total);
+	let redstoneContracts = await fetch(getRedstoneSrcTxEndpoint(nftContractSrc, 1));
+	let redstoneJson = await redstoneContracts.json();
+	return parseInt(redstoneJson.paging.total);
 }

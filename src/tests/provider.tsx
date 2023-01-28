@@ -6,11 +6,5 @@ import { ArweaveProvider } from "providers/ArweaveProvider";
 import { defaultTheme } from "helpers/themes";
 
 export function wrapWithProviders(children: React.ReactNode) {
-    return (
-        <ThemeProvider theme={defaultTheme}>
-            
-                {children}
-            
-        </ThemeProvider>
-    )
+	return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>;
 }

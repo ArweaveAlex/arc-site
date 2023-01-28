@@ -2,16 +2,16 @@
 
 <a href="https://alex.arweave.dev">https://alex.arweave.dev</a>
 
-
 ### Requirements
 
-- Node.js 14+ and npm
+-   Node.js 14+ and npm
 
 ### Local Run
 
 ```
 npm install
 ```
+
 ```
 npm start
 ```

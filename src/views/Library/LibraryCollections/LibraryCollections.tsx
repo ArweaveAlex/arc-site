@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { OwnerView } from "global/OwnerView";
+import { OwnerArtifacts } from "global/Owner/OwnerArtifacts";
 
 import { getArtifactsByCollections } from "gql/artifacts";
 import { REDUX_TABLES } from "helpers/redux";
@@ -10,12 +10,14 @@ export default function LibraryCollection() {
     const { id } = useParams();
 
     return id ? (
-        <OwnerView 
+        <OwnerArtifacts 
             owner={id}
             reduxCursor={REDUX_TABLES.libraryCollections}
             fetch={getArtifactsByCollections}
             showCollections={false}
             showPoolIds={true}
+            selectCallback={null}
+            selectedCallbackIds={null}
             cursorObject={{
                 key: CursorEnum.Search,
                 value: REDUX_TABLES.libraryCollections

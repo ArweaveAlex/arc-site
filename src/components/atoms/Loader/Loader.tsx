@@ -8,48 +8,44 @@ import { IProps } from "./types";
 import * as window from "helpers/window";
 
 export default function Loader(props: IProps) {
-  React.useEffect(() => {
-    if (!props.sm) {
-      window.scrollTo(0, 0);
-      window.hideDocumentBody();
-      return () => {
-        window.showDocumentBody();
-      };
-    }
-  }, [props.sm]);
+	React.useEffect(() => {
+		if (!props.sm) {
+			window.scrollTo(0, 0);
+			window.hideDocumentBody();
+			return () => {
+				window.showDocumentBody();
+			};
+		}
+	}, [props.sm]);
 
-  function getLoader(size: number, height: number, width: number) {
-    return (
-      <S.Container>
-        <S.Spinner size={size} height={height} width={width}>
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-          <S.Blade />
-        </S.Spinner>
-      </S.Container>
-    )
-  }
+	function getLoader(size: number, height: number, width: number) {
+		return (
+			<S.Container>
+				<S.Spinner size={size} height={height} width={width}>
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+					<S.Blade />
+				</S.Spinner>
+			</S.Container>
+		);
+	}
 
-  if (props.sm) {
-    return (
-      <>{getLoader(19.75, 6, 2)}</>
-    );
-  }
+	if (props.sm) {
+		return <>{getLoader(19.75, 6, 2)}</>;
+	}
 
-  return (
-    <Portal node={DOM.loader}>
-      <S.Wrapper>
-        {getLoader(27.5, 7.5, 2.65)}
-      </S.Wrapper>
-    </Portal>
-  );
+	return (
+		<Portal node={DOM.loader}>
+			<S.Wrapper>{getLoader(27.5, 7.5, 2.65)}</S.Wrapper>
+		</Portal>
+	);
 }

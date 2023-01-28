@@ -11,3 +11,5 @@ export const pools = `${base}pools/`;
 export const library = `${base}library/`;
 export const libraryAll = (id: string) => `${library}${id}/all/`;
 export const libraryCollections = (id: string) => `${library}${id}/collections/`;
+export const collections = `${base}collections/`;
+export const collectionsCreate = `${collections}create`;

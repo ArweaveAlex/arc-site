@@ -12,21 +12,19 @@ import { defaultTheme } from "helpers/themes";
 
 import { store, persistor } from "redux/store";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <ThemeProvider theme={defaultTheme}>
-        <React.StrictMode>
-          <HashRouter>
-            <GlobalStyle />
-            <App />
-          </HashRouter>
-        </React.StrictMode>
-      </ThemeProvider>
-    </PersistGate>
-  </Provider>
+	<Provider store={store}>
+		<PersistGate loading={null} persistor={persistor}>
+			<ThemeProvider theme={defaultTheme}>
+				<React.StrictMode>
+					<HashRouter>
+						<GlobalStyle />
+						<App />
+					</HashRouter>
+				</React.StrictMode>
+			</ThemeProvider>
+		</PersistGate>
+	</Provider>
 );

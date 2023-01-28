@@ -1,15 +1,15 @@
 import { ButtonType } from "helpers/types";
 
 export interface IProps {
-  src: string;
-  type: ButtonType;
-  handlePress: () => void;
-  sm?: boolean;
-  warning?: boolean;
-  disabled?: boolean;
-  testingCtx?: string;
-  dimensions?: {
-    wrapper: number,
-    icon: number
-  }
+	src: string;
+	type: ButtonType;
+	handlePress: () => void;
+	sm?: boolean;
+	warning?: boolean;
+	disabled?: boolean;
+	testingCtx?: string;
+	dimensions?: {
+		wrapper: number;
+		icon: number;
+	};
 }

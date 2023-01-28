@@ -1,15 +1,17 @@
-import { ArtifactResponseType, ArtifactArgsType, CursorObjectType, TableIdType, PoolType } from "helpers/types";
+import { ArtifactResponseType, ArtifactArgsType, CursorObjectType, TableIdType } from "helpers/types";
 
 export interface IProps {
-    id: TableIdType;
-    indexIds: string [] | null;
-    cursorObject: CursorObjectType;
-    defaultFetch: {
-        ids: string[] | null,
-        fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>
-    };
-    showCollections: boolean;
-    showPoolIds: boolean;
-    owner: string | null;
-    uploader: string | null;
+	id: TableIdType;
+	indexIds: string[] | null;
+	cursorObject: CursorObjectType;
+	defaultFetch: {
+		ids: string[] | null;
+		fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
+	};
+	showCollections: boolean;
+	selectCallback: ((id: string) => void) | null;
+	showPoolIds: boolean;
+	owner: string | null;
+	uploader: string | null;
+	selectedCallbackIds: string[] | null;
 }

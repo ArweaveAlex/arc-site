@@ -2,83 +2,83 @@ import styled from "styled-components/macro";
 
 import { STYLING } from "helpers/styling";
 
-export const Wrapper = styled.div`
-  width: 100%;
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  @media (max-width: ${STYLING.cutoffs.initial}) {
-    max-width: none;
-  }
+export const Wrapper = styled.div<{ sm: boolean | undefined }>`
+	width: 100%;
+	margin: 10px 0;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	label {
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+	}
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		max-width: none;
+	}
 `;
 
-export const Input = styled.input<{ disabled: boolean; invalid: boolean }>`
-  height: ${STYLING.dimensions.formHeightMax};
-  color: ${(props) => props.theme.colors.font.primary.active.base};
-  font-size: 19px;
-  font-weight: ${(props) => props.theme.typography.weight.medium};
-  margin: 5px 0 0 0;
-  border: 1px solid ${(props) => props.invalid 
-    ? props.theme.colors.form.invalid.outline
-    : props.theme.colors.form.border};
-  border-radius: ${STYLING.dimensions.borderRadiusField};
-  &:focus {
-    outline: 0;
-    border: 1px solid
-      ${(props) =>
-    props.invalid
-      ? props.theme.colors.form.invalid.outline
-      : props.theme.colors.form.valid.outline};
-    box-shadow: 0 0 2px 1px
-      ${(props) =>
-    props.invalid
-      ? props.theme.colors.form.invalid.shadow
-      : props.theme.colors.form.valid.shadow};
-    transition: box-shadow, border 225ms ease-in-out;
-  }
-  &:disabled {
-    background: ${(props) => props.theme.colors.form.disabled.background};
-    color: ${(props) => props.theme.colors.form.disabled.label};
-    box-shadow: none;
-    border: 1px solid ${(props) => props.theme.colors.form.border};
-  }
+export const Input = styled.input<{
+	sm: boolean | undefined;
+	disabled: boolean;
+	invalid: boolean;
+}>`
+	height: ${(props) => (props.sm ? STYLING.dimensions.formHeightSm : STYLING.dimensions.formHeightMax)};
+	color: ${(props) => props.theme.colors.font.primary.active.base};
+	font-size: ${(props) => (props.sm ? props.theme.typography.size.small : "19px")};
+	font-weight: ${(props) => props.theme.typography.weight.medium};
+	margin: 7.5px 0 0 0;
+	border: 1px solid ${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.border)};
+	border-radius: ${STYLING.dimensions.borderRadiusField};
+	&:focus {
+		outline: 0;
+		border: 1px solid ${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.valid.outline)};
+		box-shadow: 0 0 2px 1px ${(props) => (props.invalid ? props.theme.colors.form.invalid.shadow : props.theme.colors.form.valid.shadow)};
+		transition: box-shadow, border 225ms ease-in-out;
+	}
+	&:disabled {
+		background: ${(props) => props.theme.colors.form.disabled.background};
+		color: ${(props) => props.theme.colors.form.disabled.label};
+		box-shadow: none;
+		border: 1px solid ${(props) => props.theme.colors.form.border};
+	}
 `;
 
-export const EndTextContainer = styled.div<{ disabled: boolean }>`
-  height: calc(${STYLING.dimensions.formHeightMax} - 7.5px);
-  max-width: 100px;
-  position: absolute;
-  right: 47.5px;
-  top: 35%;
-  transform: translate(0, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  background: ${(props) => props.disabled ? 
-    props.theme.colors.form.disabled.background : props.theme.colors.form.background};
+export const EndTextContainer = styled.div<{
+	sm: boolean | undefined;
+	disabled: boolean;
+}>`
+	height: ${(props) => (props.sm ? STYLING.dimensions.formHeightSm : `calc(${STYLING.dimensions.formHeightMax} - 7.5px)`)};
+	height: 100%;
+	max-width: 100px;
+	position: absolute;
+	top: ${(props) => (props.sm ? "42.5%" : "35%")};
+	right: 47.5px;
+	transform: translate(0, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	background: transparent;
 `;
 
-export const EndText = styled.span`
-  color: ${(props) => props.theme.colors.font.primary.alt4};
-  font-size: 19px;
-  font-weight: ${(props) => props.theme.typography.weight.regular};
-  width: 100%;
+export const EndText = styled.span<{ sm: boolean | undefined }>`
+	color: ${(props) => props.theme.colors.font.primary.alt4};
+	font-size: ${(props) => (props.sm ? props.theme.typography.size.small : "19px")};
+	font-weight: ${(props) => props.theme.typography.weight.regular};
+	width: 100%;
 `;
 
 export const ErrorContainer = styled.div`
-  margin: 7.5px 0 0 0;
-  height: 25px;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+	margin: 7.5px 0 0 0;
+	height: 25px;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 `;
 
 export const Error = styled.span`
-  font-size: ${(props) => props.theme.typography.size.xSmall};
-  border-left: 3.5px solid ${(props) => props.theme.colors.font.primary.invalid};
-  padding-left: 5px;
+	font-size: ${(props) => props.theme.typography.size.xSmall};
+	border-left: 3.5px solid ${(props) => props.theme.colors.font.primary.invalid};
+	padding-left: 5px;
 `;

@@ -16,37 +16,30 @@ import { sortByMostContributed } from "filters/pools";
 import * as S from "./styles";
 
 export default function Landing() {
-    const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
+	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 
-    const [data, setData] = React.useState<PoolType[] | null>(null);
+	const [data, setData] = React.useState<PoolType[] | null>(null);
 
-    React.useEffect(() => {
-        if (poolsReducer.data) {
-            setData(sortByMostContributed(poolsReducer.data, 5));
-        }
-    }, [poolsReducer.data])
+	React.useEffect(() => {
+		if (poolsReducer.data) {
+			setData(sortByMostContributed(poolsReducer.data, 5));
+		}
+	}, [poolsReducer.data]);
 
-    function getData() {
-        if (data) {
-            return (
-                <S.Wrapper>
-                    <LandingHeader />
-                    <LandingPools data={data} />
-                    <LandingInfo />
-                    <LandingSteps />
-                </S.Wrapper>
-            )
-        }
-        else {
-            return (
-                <Loader />
-            )
-        }
-    }
+	function getData() {
+		if (data) {
+			return (
+				<S.Wrapper>
+					<LandingHeader />
+					<LandingPools data={data} />
+					<LandingInfo />
+					<LandingSteps />
+				</S.Wrapper>
+			);
+		} else {
+			return <Loader />;
+		}
+	}
 
-    return (
-        <ReduxPoolsUpdate>
-            {getData()}
-        </ReduxPoolsUpdate>
-    )
+	return <ReduxPoolsUpdate>{getData()}</ReduxPoolsUpdate>;
 }

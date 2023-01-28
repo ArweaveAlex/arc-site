@@ -16,105 +16,95 @@ import { LANGUAGE } from "helpers/language";
 import * as S from "./styles";
 
 function WalletList() {
-    const arProvider = useArweaveProvider();
+	const arProvider = useArweaveProvider();
 
-    return (
-        <S.WalletListContainer>
-            {arProvider.wallets.map((wallet, index) => (
-                <S.WalletListItem key={index} onClick={() => arProvider.handleConnect()}>
-                    <img src={`${wallet.logo}`} alt={""}/>
-                    <span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
-                </S.WalletListItem>
-            ))}
-        </S.WalletListContainer>
-    )
+	return (
+		<S.WalletListContainer>
+			{arProvider.wallets.map((wallet, index) => (
+				<S.WalletListItem key={index} onClick={() => arProvider.handleConnect()}>
+					<img src={`${wallet.logo}`} alt={""} />
+					<span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
+				</S.WalletListItem>
+			))}
+		</S.WalletListContainer>
+	);
 }
 
 export default function WalletConnect(props: { callback: () => void }) {
-    const navigate = useNavigate();
-    
-    const arProvider = useArweaveProvider();
+	const navigate = useNavigate();
 
-    const [showDropdown, setShowDropdown] = React.useState<boolean>(false);
-    const [copied, setCopied] = React.useState<boolean>(false);
+	const arProvider = useArweaveProvider();
 
-    function handlePress() {
-        if (arProvider.walletAddress) {
-            setShowDropdown(true)
-        }
-        else {
-            arProvider.setWalletModalVisible(true);
-        }
-    }
+	const [showDropdown, setShowDropdown] = React.useState<boolean>(false);
+	const [copied, setCopied] = React.useState<boolean>(false);
 
-    const copyAddress = React.useCallback(async () => {
-        if (arProvider.walletAddress) {
-            if (arProvider.walletAddress.length > 0) {
-                await navigator.clipboard.writeText(arProvider.walletAddress);
-                setCopied(true);
-                setTimeout(() => setCopied(false), 2000);
-            }
-        }
-    }, [arProvider.walletAddress]);
+	function handlePress() {
+		if (arProvider.walletAddress) {
+			setShowDropdown(true);
+		} else {
+			arProvider.setWalletModalVisible(true);
+		}
+	}
 
-    function handleDisconnect() {
-        arProvider.handleDisconnect();
-        setShowDropdown(false);
-    }
+	const copyAddress = React.useCallback(async () => {
+		if (arProvider.walletAddress) {
+			if (arProvider.walletAddress.length > 0) {
+				await navigator.clipboard.writeText(arProvider.walletAddress);
+				setCopied(true);
+				setTimeout(() => setCopied(false), 2000);
+			}
+		}
+	}, [arProvider.walletAddress]);
 
-    function handleViewAccount() {
-        navigate(URLS.account[0]!.url);
-        setShowDropdown(false);
-        props.callback();
-    }
+	function handleDisconnect() {
+		arProvider.handleDisconnect();
+		setShowDropdown(false);
+	}
 
-    return (
-        <CloseHandler handler={() => setShowDropdown(!showDropdown)} active={showDropdown}>
-            <S.Wrapper>
-                {arProvider.walletModalVisible &&
-                    <Modal
-                        title={LANGUAGE.connectWallet}
-                        handleClose={() => arProvider.setWalletModalVisible(false)}
-                    >
-                        <WalletList />
-                    </Modal>
-                }
-                <Button
-                    type={"primary"}
-                    label={arProvider.walletAddress ?
-                        formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet}
-                    handlePress={handlePress}
-                    useMaxWidth
-                />
-                {showDropdown &&
-                    <S.WalletDropdown>
-                        <li onClick={handleViewAccount}>
-                            <S.Icon strokeFill={true}>
-                                <ReactSVG src={ASSETS.user} />
-                            </S.Icon>
-                            {LANGUAGE.viewAccount}
-                        </li>
-                        <li onClick={copyAddress}>
-                            <S.Icon strokeFill={false}>
-                                <ReactSVG src={ASSETS.copy} />
-                            </S.Icon>
-                            {copied ?
-                                <div>
-                                    <span>
-                                        {LANGUAGE.copied}
-                                    </span>
-                                </div>
-                                : LANGUAGE.copyAddress}
-                        </li>
-                        <li onClick={handleDisconnect}>
-                            <S.Icon strokeFill={false}>
-                                <ReactSVG src={ASSETS.disconnect} />
-                            </S.Icon>
-                            {LANGUAGE.disconnect}
-                        </li>
-                    </S.WalletDropdown>
-                }
-            </S.Wrapper>
-        </CloseHandler>
-    )
+	function handleViewAccount() {
+		navigate(URLS.account[0]!.url);
+		setShowDropdown(false);
+		props.callback();
+	}
+
+	return (
+		<CloseHandler handler={() => setShowDropdown(!showDropdown)} active={showDropdown}>
+			<S.Wrapper>
+				{arProvider.walletModalVisible && (
+					<Modal title={LANGUAGE.connectWallet} handleClose={() => arProvider.setWalletModalVisible(false)}>
+						<WalletList />
+					</Modal>
+				)}
+				<Button type={"primary"} label={arProvider.walletAddress ? formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet} handlePress={handlePress} useMaxWidth />
+				{showDropdown && (
+					<S.WalletDropdown>
+						<li onClick={handleViewAccount}>
+							<S.Icon strokeFill={true}>
+								<ReactSVG src={ASSETS.user} />
+							</S.Icon>
+							{LANGUAGE.viewAccount}
+						</li>
+						<li onClick={copyAddress}>
+							<S.Icon strokeFill={false}>
+								<ReactSVG src={ASSETS.copy} />
+							</S.Icon>
+							{copied ? (
+								<div>
+									<span>{LANGUAGE.copied}</span>
+								</div>
+							) : (
+								LANGUAGE.copyAddress
+							)}
+						</li>
+						<li onClick={handleDisconnect}>
+							<S.Icon strokeFill={false}>
+								<ReactSVG src={ASSETS.disconnect} />
+							</S.Icon>
+							{LANGUAGE.disconnect}
+						</li>
+					</S.WalletDropdown>
+				)}
+			</S.Wrapper>
+		</CloseHandler>
+	);
 }
