@@ -136,6 +136,7 @@ export default function ArtifactsSearch(props: IProps) {
 				handleSearch={(e: React.KeyboardEvent<HTMLInputElement>) => handleSearch(e)}
 				handleClear={handleClear}
 				disabled={!searchIndeces || (searchIndeces && searchIndeces.length <= 0) || props.disabled}
+				loading={!searchIndeces}
 			/>
 		</ReduxSearchIndexUpdate>
 	);

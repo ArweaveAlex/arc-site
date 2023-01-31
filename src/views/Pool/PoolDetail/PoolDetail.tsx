@@ -16,6 +16,7 @@ export default function PoolDetail(props: IProps) {
 			}}
 			showCollections={false}
 			showPoolIds={false}
+			showSearch={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
 			owner={null}

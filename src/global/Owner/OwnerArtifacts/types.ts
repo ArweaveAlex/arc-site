@@ -6,6 +6,7 @@ export interface IProps {
 	fetch: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
 	showCollections: boolean;
 	showPoolIds: boolean;
+	showSearch: boolean;
 	cursorObject: CursorObjectType;
 	selectCallback: ((id: string) => void) | null;
 	selectedCallbackIds: string[] | null;

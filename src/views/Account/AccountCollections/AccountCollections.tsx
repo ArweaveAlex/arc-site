@@ -15,6 +15,7 @@ export default function AccountCollection() {
             fetch={getArtifactsByCollections}
             showCollections={true}
             showPoolIds={true}
+            showSearch={false}
 			selectCallback={null}
 			selectedCallbackIds={null}
             cursorObject={{

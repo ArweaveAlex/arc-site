@@ -27,7 +27,7 @@ export default function Library() {
 					<S.HeaderContainer>
 						<S.FlexHeader>
 							<S.Header1>{LANGUAGE.library.header1}</S.Header1>
-							&nbsp; &nbsp; &nbsp;
+							&nbsp; &nbsp;
 							<S.Header2Container>
 								<S.Header2>{id ? formatAddress(id, true) : "N/A"}</S.Header2>
 							</S.Header2Container>

@@ -22,7 +22,6 @@ export const HeaderWrapper = styled.div`
 export const HeaderContent = styled.div`
 	height: 100%;
 	width: 100%;
-
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
@@ -40,6 +39,14 @@ export const HeaderContent = styled.div`
 `;
 
 export const HeaderContainer = styled.div``;
+
+export const FlexHeader = styled.div`
+	display: flex;
+	align-items: center;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		flex-wrap: wrap;
+	}
+`;
 
 export const ShareWrapper = styled.div`
 	height: 100%;
@@ -74,22 +81,11 @@ export const TabsWrapper = styled.div`
 	width: 100%;
 `;
 
-export const FlexHeader = styled.div`
-	display: flex;
-	align-items: center;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		flex-wrap: wrap;
-	}
-`;
-
 export const H1 = styled.h1`
-	font-size: 40px;
+	font-size: 28px;
 	line-height: 1.25;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		font-size: 40px;
-	}
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		font-size: 7.5vw;
+		font-size: 24px;
 	}
 `;
 
@@ -105,17 +101,9 @@ export const Header2Container = styled.div`
 `;
 
 export const Header2 = styled(Header1)`
-	font-size: 40px;
 	font-family: ${(props) => props.theme.typography.family.primary};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 	color: ${(props) => props.theme.colors.font.primary.alt4};
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		font-size: 40px;
-		margin: 10px 0 0 0;
-	}
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		font-size: 5.5vw;
-	}
 `;
 
 export const Message = styled.div`

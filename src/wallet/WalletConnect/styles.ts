@@ -50,7 +50,7 @@ export const WalletDropdown = styled.ul`
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		right: auto;
 		left: 17.5px;
-		top: 115.5px;
+		top: 67.5px;
 	}
 	li {
 		text-align: center;
