@@ -16,6 +16,7 @@ export default function LibraryAll() {
 			fetch={getArtifactsByUser}
 			showCollections={false}
 			showPoolIds={true}
+			showSearch={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
 			cursorObject={{

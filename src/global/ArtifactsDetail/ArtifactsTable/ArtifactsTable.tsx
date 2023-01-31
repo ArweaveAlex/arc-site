@@ -187,6 +187,24 @@ export default function ArtifactsTable(props: IProps) {
 		return <Callback artifactId={id} selected={selectedCallbackIdsState.includes(id)} selectCallback={() => props.selectCallback(id)} />;
 	}
 
+	function getAction() {
+		if (props.showSearch) {
+			return (
+				<ArtifactsSearch
+					id={props.id}
+					indexIds={props.indexIds}
+					cursorObject={props.cursorObject}
+					setSearchRequested={(searchRequested: boolean) => props.setSearchRequested(searchRequested)}
+					disabled={!props.data}
+					owner={props.owner}
+				/>
+			)
+		}
+		else {
+			return null;
+		}
+	}
+
 	async function handleCollectionStateUpdate(artifactId: string) {
 		const updatedCollections: string[] = [];
 		for (let i = 0; i < collectionIdsState.length; i++) {
@@ -269,16 +287,7 @@ export default function ArtifactsTable(props: IProps) {
 	return (
 		<Table
 			title={LANGUAGE.artifacts}
-			action={
-				<ArtifactsSearch
-					id={props.id}
-					indexIds={props.indexIds}
-					cursorObject={props.cursorObject}
-					setSearchRequested={(searchRequested: boolean) => props.setSearchRequested(searchRequested)}
-					disabled={!props.data}
-					owner={props.owner}
-				/>
-			}
+			action={getAction()}
 			header={getHeader()}
 			data={data}
 			recordsPerPage={PAGINATOR}

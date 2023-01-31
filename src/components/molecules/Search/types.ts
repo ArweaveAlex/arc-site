@@ -4,4 +4,5 @@ export interface IProps {
 	handleSearch: (e: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => void;
 	handleClear: () => void;
 	disabled: boolean;
+	loading: boolean;
 }

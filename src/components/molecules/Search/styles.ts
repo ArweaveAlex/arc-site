@@ -52,7 +52,7 @@ export const SearchInput = styled.input`
 	}
 `;
 
-export const CloseWrapper = styled.div`
+export const ClearWrapper = styled.div`
 	button {
 		width: auto;
 	}

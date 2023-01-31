@@ -11,6 +11,7 @@ export interface IProps {
 	showCollections: boolean;
 	selectCallback: ((id: string) => void) | null;
 	showPoolIds: boolean;
+	showSearch: boolean;
 	owner: string | null;
 	uploader: string | null;
 	selectedCallbackIds: string[] | null;

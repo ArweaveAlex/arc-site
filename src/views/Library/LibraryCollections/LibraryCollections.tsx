@@ -15,7 +15,8 @@ export default function LibraryCollection() {
             reduxCursor={REDUX_TABLES.libraryCollections}
             fetch={getArtifactsByCollections}
             showCollections={false}
-            showPoolIds={true}
+            showPoolIds={false}
+            showSearch={true}
             selectCallback={null}
             selectedCallbackIds={null}
             cursorObject={{

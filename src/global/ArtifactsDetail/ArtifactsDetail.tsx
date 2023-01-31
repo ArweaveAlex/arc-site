@@ -21,9 +21,7 @@ export default function ArtifactsDetail(props: IProps) {
 
 	const [cursor, setCursor] = React.useState<string | null>(null);
 	const [searchRequested, setSearchRequested] = React.useState<boolean | null>(
-		searchTermReducer[props.cursorObject.value].value !== "" && searchTermReducer[props.cursorObject.value].id.value === props.id.value
-			? true
-			: null
+		searchTermReducer[props.cursorObject.value].value !== "" && searchTermReducer[props.cursorObject.value].id.value === props.id.value ? true : null
 	);
 	const [showNoResults, setShowNoResults] = React.useState<boolean>(false);
 
@@ -50,7 +48,7 @@ export default function ArtifactsDetail(props: IProps) {
 						owner: null,
 						uploader: null,
 						cursor: cursor,
-						reduxCursor: props.cursorObject.value,
+						reduxCursor: props.cursorObject.value
 					})
 				);
 			}
@@ -70,7 +68,7 @@ export default function ArtifactsDetail(props: IProps) {
 						owner: props.owner,
 						uploader: props.uploader,
 						cursor: cursor,
-						reduxCursor: props.cursorObject.value,
+						reduxCursor: props.cursorObject.value
 					})
 				);
 			}
@@ -90,6 +88,12 @@ export default function ArtifactsDetail(props: IProps) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [detailDataUpdated]);
 
+	React.useEffect(() => {
+		if (detailData && detailData.contracts.length <= 0) {
+			handleShowNoResults();
+		}
+	}, [detailData]);
+
 	return (
 		<ArtifactsTable
 			id={props.id}
@@ -97,6 +101,7 @@ export default function ArtifactsDetail(props: IProps) {
 			data={detailData}
 			showCollections={props.showCollections}
 			showPoolIds={props.showPoolIds}
+			showSearch={props.showSearch}
 			handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
 			cursors={{
 				next: detailData?.nextCursor ?? null,

@@ -9,25 +9,44 @@ export const Wrapper = styled.div`
 	max-width: ${STYLING.cutoffs.max};
 	margin: 0 auto;
 	animation: ${open} ${fadeIn2};
-	padding: 20px 20px 0 20px;
 `;
 
-export const Header = styled.div`
+export const HeaderWrapper = styled.div`
 	width: 100%;
-	display: flex;
-	flex-direction: column;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
+	max-width: ${STYLING.cutoffs.max};
+	margin: calc(${STYLING.dimensions.navHeight} + 20px) auto 0 auto;
+	padding: 0 20px;
+	background: ${(props) => props.theme.colors.container.primary.background};
+	@media (max-width: ${STYLING.cutoffs.desktop}) {
 		height: auto;
 	}
 `;
 
-export const HeaderFlex = styled.div`
+export const HeaderContent = styled.div`
+	height: 100%;
+	width: 100%;
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	padding: 30px 20px;
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
+	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		width: fit-content;
 		flex-direction: column;
-		margin: 0 0 20px 0;
+		align-items: start;
+		padding: 20px;
+	}
+`;
+
+export const HeaderContainer = styled.div``;
+
+export const FlexHeader = styled.div`
+	display: flex;
+	align-items: center;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		flex-wrap: wrap;
 	}
 `;
 

@@ -14,8 +14,8 @@ export default function OwnerArtifacts(props: IProps) {
 		(async function () {
 			if (props.owner) {
 				let contributions = await arClient.getUserContributions(props.owner);
-				let ids = contributions.map((c) => {
-					return c.id;
+				let ids = contributions.map((contribution) => {
+					return contribution.id;
 				});
 				setPoolIds(ids);
 			}
@@ -30,10 +30,11 @@ export default function OwnerArtifacts(props: IProps) {
 			cursorObject={props.cursorObject}
 			defaultFetch={{
 				fn: props.fetch,
-				ids: null,
+				ids: null
 			}}
 			showCollections={props.showCollections}
 			showPoolIds={props.showPoolIds}
+			showSearch={props.showSearch}
 			owner={props.owner}
 			uploader={null}
 			selectCallback={props.selectCallback}

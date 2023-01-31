@@ -6,12 +6,12 @@ import * as S from "./styles";
 export default function PoolsHeader() {
 	return (
 		<S.Wrapper>
-			<S.Header>
-				<S.HeaderFlex>
+			<S.HeaderWrapper>
+				<S.HeaderContent>
 					<S.Header1>{LANGUAGE.pools.header1}</S.Header1>
 					<SocialShare type={"primary"} href={window.location.href} title={LANGUAGE.sharePools} />
-				</S.HeaderFlex>
-			</S.Header>
+				</S.HeaderContent>
+			</S.HeaderWrapper>
 		</S.Wrapper>
 	);
 }

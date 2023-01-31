@@ -6,6 +6,7 @@ export interface IProps {
 	data: ArtifactResponseType;
 	showCollections: boolean;
 	showPoolIds: boolean;
+	showSearch: boolean;
 	handleCursorFetch: (cursor: string | null) => void;
 	cursors: CursorType;
 	owner: string | null;

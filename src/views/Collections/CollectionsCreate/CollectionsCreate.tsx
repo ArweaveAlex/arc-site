@@ -76,6 +76,7 @@ export default function CollectionsCreate() {
 						reduxCursor={REDUX_TABLES.accountAll}
 						showCollections={true}
 						showPoolIds={true}
+						showSearch={false}
 						selectCallback={(id: string) => handleIdUpdate(id)}
 						selectedCallbackIds={selectedIds}
 						cursorObject={{

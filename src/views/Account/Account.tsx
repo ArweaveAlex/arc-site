@@ -30,7 +30,7 @@ export default function Account() {
 					<S.HeaderContainer>
 						<S.FlexHeader>
 							<S.Header1>{LANGUAGE.account.header1}</S.Header1>
-							&nbsp; &nbsp; &nbsp;
+							&nbsp; &nbsp;
 							<S.Header2Container>
 								<S.Header2>{formatAddress(arProvider.walletAddress, true)}</S.Header2>
 							</S.Header2Container>
