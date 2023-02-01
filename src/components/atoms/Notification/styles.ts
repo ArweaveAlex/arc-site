@@ -1,9 +1,9 @@
-import styled, { DefaultTheme } from "styled-components/macro";
+import styled, { DefaultTheme } from 'styled-components/macro';
 
-import { NotificationType } from "helpers/types";
+import { NotificationType } from 'helpers/types';
 
-import { STYLING } from "helpers/styling";
-import { open, fadeIn1 } from "helpers/animations";
+import { STYLING } from 'helpers/styling';
+import { open, fadeIn1 } from 'helpers/animations';
 
 type NotificationProps = {
 	type: NotificationType;
@@ -11,11 +11,11 @@ type NotificationProps = {
 
 function getColor(m: NotificationType, theme: DefaultTheme) {
 	switch (m) {
-		case "success":
+		case 'success':
 			return theme.colors.notification.success;
-		case "warning":
+		case 'warning':
 			return theme.colors.notification.warning;
-		case "neutral":
+		case 'neutral':
 			return theme.colors.notification.neutral;
 		default:
 			return theme.colors.notification.neutral;

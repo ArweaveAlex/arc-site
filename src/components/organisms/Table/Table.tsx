@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import { TableLoader } from "components/atoms/TableLoader";
-import { Paginator } from "components/molecules/Paginator";
+import { TableLoader } from 'components/atoms/TableLoader';
+import { Paginator } from 'components/molecules/Paginator';
 
-import { KeyValueType } from "helpers/types";
+import { KeyValueType } from 'helpers/types';
 
-import { IProps } from "./types";
-import * as S from "./styles";
-import { PAGINATOR } from "helpers/config";
-import { LANGUAGE } from "helpers/language";
+import { IProps } from './types';
+import * as S from './styles';
+import { PAGINATOR } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
 
 export default function Table(props: IProps) {
 	const scrollRef = React.useRef(null);
@@ -44,13 +44,8 @@ export default function Table(props: IProps) {
 							<S.TableHeader>
 								{Object.keys(props.header).map((element: string, index: number) => {
 									return (
-										<S.THeader
-											key={index}
-											even={(index + 1) % 2 === 0}
-											width={props.header[element]!.width}
-											align={props.header[element]!.align}
-										>
-											<p>{props.header[element].display ? props.header[element].display : ""}</p>
+										<S.THeader key={index} even={(index + 1) % 2 === 0} width={props.header[element]!.width} align={props.header[element]!.align}>
+											<p>{props.header[element].display ? props.header[element].display : ''}</p>
 										</S.THeader>
 									);
 								})}
@@ -59,7 +54,7 @@ export default function Table(props: IProps) {
 								return (
 									<S.Row key={index} even={index % 2 === 0}>
 										{Object.keys(element).map((row: string, rowIndex: number) => {
-											const rowData = typeof element[row] === "object" ? element[row] : <p>{element[row]}</p>;
+											const rowData = typeof element[row] === 'object' ? element[row] : <p>{element[row]}</p>;
 											return (
 												<S.TData key={rowIndex} even={(rowIndex + 1) % 2 === 0} width={props.header[row]!.width}>
 													{rowData}

@@ -1,9 +1,9 @@
-import React from "react";
-import { ThemeProvider } from "styled-components";
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
 
-import { ArweaveProvider } from "providers/ArweaveProvider";
+import { ArweaveProvider } from 'providers/ArweaveProvider';
 
-import { defaultTheme } from "helpers/themes";
+import { defaultTheme } from 'helpers/themes';
 
 export function wrapWithProviders(children: React.ReactNode) {
 	return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>;

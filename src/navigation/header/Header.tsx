@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ReactSVG } from "react-svg";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
-import { IconButton } from "components/atoms/IconButton";
-import { WalletConnect } from "wallet/WalletConnect";
+import { IconButton } from 'components/atoms/IconButton';
+import { WalletConnect } from 'wallet/WalletConnect';
 
-import { ASSETS } from "helpers/config";
-import * as urls from "helpers/urls";
-import { checkDesktop, checkWindowResize, hideDocumentBody, showDocumentBody } from "helpers/window";
-import { NAV_PATHS } from "helpers/paths";
-import * as S from "./styles";
+import { ASSETS } from 'helpers/config';
+import * as urls from 'helpers/urls';
+import { checkDesktop, checkWindowResize, hideDocumentBody, showDocumentBody } from 'helpers/window';
+import { NAV_PATHS } from 'helpers/paths';
+import * as S from './styles';
 
 export default function Header() {
 	const [open, setOpen] = React.useState(checkDesktop());
@@ -78,7 +78,7 @@ export default function Header() {
 					<S.NCMobile>
 						<S.MenuContainer>
 							<S.Menu>
-								<IconButton type={"primary"} warning={open} src={open ? ASSETS.close : ASSETS.menu} handlePress={handleNavStatus} />
+								<IconButton type={'primary'} warning={open} src={open ? ASSETS.close : ASSETS.menu} handlePress={handleNavStatus} />
 							</S.Menu>
 						</S.MenuContainer>
 					</S.NCMobile>

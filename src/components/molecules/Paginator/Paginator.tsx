@@ -1,10 +1,10 @@
-import { Button } from "components/atoms/Button";
-import { IconButton } from "components/atoms/IconButton";
+import { Button } from 'components/atoms/Button';
+import { IconButton } from 'components/atoms/IconButton';
 
-import { LANGUAGE } from "helpers/language";
-import { ASSETS, CURSORS } from "helpers/config";
-import { IProps } from "./types";
-import * as S from "./styles";
+import { LANGUAGE } from 'helpers/language';
+import { ASSETS, CURSORS } from 'helpers/config';
+import { IProps } from './types';
+import * as S from './styles';
 
 export default function Paginator(props: IProps) {
 	let pageNumbers: number[] = [];
@@ -42,7 +42,7 @@ export default function Paginator(props: IProps) {
 	function handleScroll() {
 		if (props.scrollRef.current) {
 			setTimeout(function () {
-				props.scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+				props.scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}, 1);
 		}
 	}
@@ -64,9 +64,9 @@ export default function Paginator(props: IProps) {
 
 	function getPreviousAction() {
 		if (props.useIcons) {
-			return <IconButton src={ASSETS.arrowPrevious} type={"alt1"} handlePress={handlePreviousPage} disabled={!props.cursors.previous} dimensions={{ wrapper: 25, icon: 11 }} />;
+			return <IconButton src={ASSETS.arrowPrevious} type={'alt1'} handlePress={handlePreviousPage} disabled={!props.cursors.previous} dimensions={{ wrapper: 25, icon: 11 }} />;
 		} else {
-			return <Button label={LANGUAGE.previous} type={"alt1"} handlePress={handlePreviousPage} disabled={!props.cursors.previous} noMinWidth />;
+			return <Button label={LANGUAGE.previous} type={'alt1'} handlePress={handlePreviousPage} disabled={!props.cursors.previous} noMinWidth />;
 		}
 	}
 
@@ -75,14 +75,14 @@ export default function Paginator(props: IProps) {
 			return (
 				<IconButton
 					src={ASSETS.arrowNext}
-					type={"alt1"}
+					type={'alt1'}
 					handlePress={handleNextPage}
 					disabled={!props.cursors.next || props.cursors.next === CURSORS.end}
 					dimensions={{ wrapper: 25, icon: 11 }}
 				/>
 			);
 		} else {
-			return <Button label={LANGUAGE.next} type={"alt1"} handlePress={handleNextPage} disabled={!props.cursors.next || props.cursors.next === CURSORS.end} noMinWidth />;
+			return <Button label={LANGUAGE.next} type={'alt1'} handlePress={handleNextPage} disabled={!props.cursors.next || props.cursors.next === CURSORS.end} noMinWidth />;
 		}
 	}
 
@@ -94,7 +94,7 @@ export default function Paginator(props: IProps) {
 					{pageNumbers.slice(sliceStart, sliceEnd).map((number: number, index: number) => {
 						return (
 							<S.NumberButtonContainer key={index}>
-								<Button label={number} type={"primary"} handlePress={() => handleCurrentPage(number)} active={number === props.currentPage} noMinWidth />
+								<Button label={number} type={'primary'} handlePress={() => handleCurrentPage(number)} active={number === props.currentPage} noMinWidth />
 							</S.NumberButtonContainer>
 						);
 					})}
@@ -107,7 +107,7 @@ export default function Paginator(props: IProps) {
 							)}
 							{!(props.nPages === 3) && (
 								<S.NumberButtonContainer>
-									<Button label={pageLength} type={"primary"} handlePress={() => handleCurrentPage(pageLength)} active={pageLength === props.currentPage} noMinWidth />
+									<Button label={pageLength} type={'primary'} handlePress={() => handleCurrentPage(pageLength)} active={pageLength === props.currentPage} noMinWidth />
 								</S.NumberButtonContainer>
 							)}
 						</>

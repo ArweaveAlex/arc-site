@@ -1,8 +1,8 @@
-import parse from "html-react-parser";
+import parse from 'html-react-parser';
 
-import { ASSETS } from "helpers/config";
-import { LANGUAGE } from "helpers/language";
-import * as S from "./styles";
+import { ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import * as S from './styles';
 
 export default function LandingSteps() {
 	const stepList = LANGUAGE.steps.list;
@@ -17,7 +17,7 @@ export default function LandingSteps() {
 				</S.Header>
 				<S.Body>
 					<S.Asset>
-						<img src={ASSETS.cycle} alt={""} />
+						<img src={ASSETS.cycle} alt={''} />
 					</S.Asset>
 					<S.StepList>
 						{stepList.map((step, index) => (

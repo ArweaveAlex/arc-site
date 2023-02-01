@@ -1,9 +1,9 @@
-import { ButtonType } from "helpers/types";
+import { ButtonType } from 'helpers/types';
 
 export interface IProps {
 	src: string;
 	type: ButtonType;
-	handlePress: () => void;
+	handlePress: any;
 	sm?: boolean;
 	warning?: boolean;
 	disabled?: boolean;

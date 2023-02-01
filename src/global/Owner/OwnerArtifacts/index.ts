@@ -1,1 +1,1 @@
-export { default as OwnerArtifacts } from "./OwnerArtifacts";
+export { default as OwnerArtifacts } from './OwnerArtifacts';

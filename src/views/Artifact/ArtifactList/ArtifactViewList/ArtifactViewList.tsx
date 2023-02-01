@@ -1,11 +1,11 @@
-import { ArtifactMessagingList } from "./ArtifactMessagingList";
+import { ArtifactMessagingList } from './ArtifactMessagingList';
 
 // import { ArtifactEnum } from "helpers/types";
-import { IProps } from "../types";
-import * as S from "./styles";
+import { IProps } from '../types';
+import * as S from './styles';
 
 export default function ArtifactViewList(props: IProps) {
-	// Get Artifact Type without props
+	// TODO - Get Artifact Type without props
 	// function getArtifact() {
 	//     if (props.data && props.data.length > 1) {
 	//         switch (props.data[0].artifactType) {

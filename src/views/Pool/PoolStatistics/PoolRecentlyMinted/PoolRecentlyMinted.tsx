@@ -1,13 +1,13 @@
-import { ReactSVG } from "react-svg";
-import { Link } from "react-router-dom";
+import { ReactSVG } from 'react-svg';
+import { Link } from 'react-router-dom';
 
-import { getTagValue, formatArtifactType } from "helpers/utils";
-import { GQLResponseType, KeyValueType } from "helpers/types";
-import { ARTIFACT_TYPES, TAGS, STORAGE } from "helpers/config";
-import * as urls from "helpers/urls";
-import { IProps } from "./types";
-import * as S from "./styles";
-import { LANGUAGE } from "helpers/language";
+import { getTagValue, formatArtifactType } from 'helpers/utils';
+import { GQLResponseType, KeyValueType } from 'helpers/types';
+import { ARTIFACT_TYPES, TAGS, STORAGE } from 'helpers/config';
+import * as urls from 'helpers/urls';
+import { IProps } from './types';
+import * as S from './styles';
+import { LANGUAGE } from 'helpers/language';
 
 export default function PoolRecentlyMinted(props: IProps) {
 	function getArtifactType(type: string) {
@@ -53,7 +53,7 @@ export default function PoolRecentlyMinted(props: IProps) {
 									</Link>
 								</S.NodeWrapper>
 								<S.ALinkNT>
-									<Link to={getArtifactLink(element.node.id, element.node.tags)} target={"_blank"}>
+									<Link to={getArtifactLink(element.node.id, element.node.tags)} target={'_blank'}>
 										{LANGUAGE.openInNewTab}
 									</Link>
 								</S.ALinkNT>

@@ -1,9 +1,9 @@
-import { ReactSVG } from "react-svg";
-import { Link } from "react-router-dom";
+import { ReactSVG } from 'react-svg';
+import { Link } from 'react-router-dom';
 
-import { LANGUAGE } from "helpers/language";
-import { IProps } from "./types";
-import * as S from "./styles";
+import { LANGUAGE } from 'helpers/language';
+import { IProps } from './types';
+import * as S from './styles';
 
 export default function ButtonLink(props: IProps) {
 	const buttonStyle = getType();
@@ -16,13 +16,13 @@ export default function ButtonLink(props: IProps) {
 			icon: any;
 		};
 		switch (props.type) {
-			case "alt1":
+			case 'alt1':
 				buttonObj = {
 					wrapper: S.Alt1,
 					icon: S.IconSecondary,
 				};
 				return buttonObj;
-			case "alt2":
+			case 'alt2':
 				buttonObj = {
 					wrapper: S.Alt2,
 					icon: S.IconTertiary,

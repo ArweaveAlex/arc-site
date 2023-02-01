@@ -1,5 +1,5 @@
-import { IProps } from "./types";
-import * as S from "./styles";
+import { IProps } from './types';
+import * as S from './styles';
 
 export default function TableLoader(props: IProps) {
 	return (

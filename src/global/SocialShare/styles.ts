@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	display: flex;
@@ -9,10 +9,10 @@ export const Wrapper = styled.div`
 
 export const Info = styled.div<{ alt1: boolean }>`
 	display: flex;
-	margin: ${(props) => (props.alt1 ? "0px 5px 0 0" : "5.5px 5px 0 0")};
+	margin: ${(props) => (props.alt1 ? '0px 5px 0 0' : '5.5px 5px 0 0')};
 	p {
 		color: ${(props) => props.theme.colors.font.primary.active.base};
-		font-size: ${(props) => (props.alt1 ? "12px" : props.theme.typography.size.xSmall)};
+		font-size: ${(props) => (props.alt1 ? '12px' : props.theme.typography.size.xSmall)};
 	}
 	svg {
 		fill: ${(props) => props.theme.colors.font.primary.alt7};
@@ -42,7 +42,7 @@ export const Icon = styled.div<{ alt1: boolean }>`
 		background: ${(props) => (props.alt1 ? props.theme.colors.transparent : props.theme.colors.button.alt1.hover)};
 		cursor: pointer;
 		svg {
-			opacity: ${(props) => (props.alt1 ? "0.75" : "1")};
+			opacity: ${(props) => (props.alt1 ? '0.75' : '1')};
 		}
 	}
 

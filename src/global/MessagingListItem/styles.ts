@@ -1,14 +1,14 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
-import { open, fadeIn2 } from "helpers/animations";
+import { STYLING } from 'helpers/styling';
+import { open, fadeIn2 } from 'helpers/animations';
 
-const DETAIL_WIDTH = "500px";
-const WRAP_WIDTH = "675px";
+const DETAIL_WIDTH = '500px';
+const WRAP_WIDTH = '675px';
 
 export const LIWrapper = styled.div<{ isListItem: boolean; active: boolean }>`
 	width: 100%;
-	border-bottom: ${(props) => (props.isListItem ? `1px solid ${props.theme.colors.border.primary}` : "none")};
+	border-bottom: ${(props) => (props.isListItem ? `1px solid ${props.theme.colors.border.primary}` : 'none')};
 	animation: ${open} ${fadeIn2};
 `;
 
@@ -166,7 +166,7 @@ export const Message = styled(InfoData)`
 `;
 
 export const PostDate = styled(P)`
-	margin: 20px 0;
+	margin: 20px 0 !important;
 	font-size: ${(props) => props.theme.typography.size.xSmall};
 `;
 
@@ -189,13 +189,15 @@ export const Metric = styled.div`
 	svg {
 		width: 13.5px;
 		fill: ${(props) => props.theme.colors.font.primary.alt1};
+		margin: 0 !important;
 	}
 	p {
-		font-size: ${(props) => props.theme.typography.size.xSmall};
-		color: ${(props) => props.theme.colors.font.primary.alt1};
-		font-weight: ${(props) => props.theme.typography.weight.medium};
-		margin: 0 0 3.5px 5.5px;
-		white-space: nowrap;
+		font-size: ${(props) => props.theme.typography.size.xSmall} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		margin: 0 0 3.5px 5.5px !important; 
+		white-space: nowrap !important;
+		height: auto !important;
 	}
 `;
 
@@ -300,6 +302,7 @@ export const Subheader2 = styled.div`
 	a {
 		font-size: ${(props) => props.theme.typography.size.base};
 		line-height: 20px;
+		height: auto !important;
 		font-weight: ${(props) => props.theme.typography.weight.regular};
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 	}

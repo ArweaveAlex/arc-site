@@ -1,12 +1,12 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-import { getArtifactsByAssociation } from "gql/artifacts";
-import { SequenceType } from "helpers/types";
-import { ArtifactList } from "../ArtifactList";
+import { getArtifactsByAssociation } from 'gql/artifacts';
+import { SequenceType } from 'helpers/types';
+import { ArtifactList } from '../ArtifactList';
 
-import * as window from "helpers/window";
-import { AssociationDetailType } from "helpers/types";
+import * as window from 'helpers/window';
+import { AssociationDetailType } from 'helpers/types';
 
 const SEQUENCE_ITERATION = 5;
 

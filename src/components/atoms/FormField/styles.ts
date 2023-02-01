@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div<{ sm: boolean | undefined }>`
 	width: 100%;
@@ -23,7 +23,7 @@ export const Input = styled.input<{
 }>`
 	height: ${(props) => (props.sm ? STYLING.dimensions.formHeightSm : STYLING.dimensions.formHeightMax)};
 	color: ${(props) => props.theme.colors.font.primary.active.base};
-	font-size: ${(props) => (props.sm ? props.theme.typography.size.small : "19px")};
+	font-size: ${(props) => (props.sm ? props.theme.typography.size.small : '19px')};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 	margin: 7.5px 0 0 0;
 	border: 1px solid ${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.border)};
@@ -50,7 +50,7 @@ export const EndTextContainer = styled.div<{
 	height: 100%;
 	max-width: 100px;
 	position: absolute;
-	top: ${(props) => (props.sm ? "42.5%" : "35%")};
+	top: ${(props) => (props.sm ? '42.5%' : '35%')};
 	right: 47.5px;
 	transform: translate(0, -50%);
 	display: flex;
@@ -64,7 +64,7 @@ export const EndTextContainer = styled.div<{
 
 export const EndText = styled.span<{ sm: boolean | undefined }>`
 	color: ${(props) => props.theme.colors.font.primary.alt4};
-	font-size: ${(props) => (props.sm ? props.theme.typography.size.small : "19px")};
+	font-size: ${(props) => (props.sm ? props.theme.typography.size.small : '19px')};
 	font-weight: ${(props) => props.theme.typography.weight.regular};
 	width: 100%;
 `;

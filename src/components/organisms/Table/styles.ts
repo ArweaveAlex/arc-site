@@ -1,9 +1,9 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { AlignType } from "helpers/types";
+import { AlignType } from 'helpers/types';
 
-import { open, fadeIn2 } from "helpers/animations";
-import { STYLING } from "helpers/styling";
+import { open, fadeIn2 } from 'helpers/animations';
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	width: 100%;
@@ -87,7 +87,8 @@ export const RowData = styled.div`
 	align-items: center;
 	p {
 		font-family: ${(props) => props.theme.typography.family.primary};
-		font-size: ${(props) => props.theme.typography.size.small};
+		font-size: ${(props) => props.theme.typography.size.xxSmall};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -104,8 +105,8 @@ export const THeader = styled(RowData)<{
 }>`
 	width: ${(props) => props.width};
 	min-width: 60px;
-	border-left: 1px solid ${(props) => (props.even ? "transparent" : props.theme.colors.border.alt5)};
-	border-right: 1px solid ${(props) => (props.even ? "transparent" : props.theme.colors.border.alt5)};
+	border-left: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};
+	border-right: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};
 	display: flex;
 	justify-content: ${(props) => props.align};
 	p {
@@ -116,16 +117,13 @@ export const THeader = styled(RowData)<{
 export const TData = styled(RowData)<{ even: boolean; width: string }>`
 	width: ${(props) => props.width};
 	min-width: 60px;
-	border-left: 1px solid ${(props) => (props.even ? "transparent" : props.theme.colors.border.alt5)};
-	border-right: 1px solid ${(props) => (props.even ? "transparent" : props.theme.colors.border.alt5)};
+	border-left: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};
+	border-right: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};
 	background: none;
-	div {
-		overflow: hidden;
-	}
 	p {
 		font-family: ${(props) => props.theme.typography.family.primary};
-		font-weight: ${(props) => props.theme.typography.weight.regular};
-		font-size: ${(props) => props.theme.typography.size.small};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		font-size: ${(props) => props.theme.typography.size.xSxmall};
 	}
 `;
 

@@ -1,19 +1,19 @@
-import { STORAGE, SEARCH } from "helpers/config";
-import { DateType, KeyValueType } from "helpers/types";
+import { STORAGE, SEARCH } from 'helpers/config';
+import { DateType, KeyValueType } from 'helpers/types';
 
 export function getHashUrl(url: string) {
 	return `${url}/#`;
 }
 
 export function formatArtifactType(artifactType: string) {
-	return artifactType.substring(5);
+	return artifactType.includes('Alex') ? artifactType.substring(5) : artifactType;
 }
 
 export function formatAddress(address: string | null, wrap: boolean) {
 	if (!address) {
-		return "";
+		return '';
 	}
-	const formattedAddress = address.substring(0, 5) + "..." + address.substring(36, address.length - 1);
+	const formattedAddress = address.substring(0, 5) + '...' + address.substring(36, address.length - 1);
 	return wrap ? `(${formattedAddress})` : formattedAddress;
 }
 
@@ -22,7 +22,7 @@ export function formatDataSize(size: string) {
 }
 
 export function formatCount(count: string): string {
-	return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function formatTime(time: number): string {
@@ -50,10 +50,10 @@ export function formatDate(dateArg: string | null, dateType: DateType) {
 	let date: Date | null = null;
 
 	switch (dateType) {
-		case "iso":
+		case 'iso':
 			date = new Date(dateArg);
 			break;
-		case "epoch":
+		case 'epoch':
 			date = new Date(Number(dateArg));
 			break;
 		default:
@@ -61,13 +61,13 @@ export function formatDate(dateArg: string | null, dateType: DateType) {
 			break;
 	}
 
-	return `${date.toLocaleString("default", { month: "long" })} ${date.getDate()}, ${date.getUTCFullYear()} @ ${getHours(date.getHours())}:${formatTime(date.getMinutes())}:${formatTime(
+	return `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getUTCFullYear()} @ ${getHours(date.getHours())}:${formatTime(date.getMinutes())}:${formatTime(
 		date.getSeconds()
 	)} ${getHourFormat(date.getHours())}`;
 }
 
 export function formatTitle(string: string) {
-	const result = string.replace(/([A-Z])/g, " $1");
+	const result = string.replace(/([A-Z])/g, ' $1');
 	const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
 	return finalResult;
 }
@@ -97,11 +97,11 @@ export function checkNullValues(obj: any) {
 }
 
 export function unquoteJsonKeys(json: Object): string {
-	return JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
+	return JSON.stringify(json).replace(/"([^"]+)":/g, '$1:');
 }
 
 export function stripSearch(s: string) {
-	return s.replaceAll(" ", "").replaceAll("\t", "").replaceAll("\r", "").replaceAll("\n", "").replaceAll(SEARCH.idTerm, "").replaceAll(SEARCH.ownerTerm, "").toLowerCase();
+	return s.replaceAll(' ', '').replaceAll('\t', '').replaceAll('\r', '').replaceAll('\n', '').replaceAll(SEARCH.idTerm, '').replaceAll(SEARCH.ownerTerm, '').toLowerCase();
 }
 
 export function splitArray(array: any[], size: number) {
@@ -127,11 +127,11 @@ export function checkGqlCursor(string: string): boolean {
 }
 
 export function formatMessagingText(text: string) {
-	let finalStr = "";
+	let finalStr = '';
 	let count = 0;
 	for (let i = 0; i < text.length; i++) {
-		if (text[i] === " ") {
-			if (text.substring(count, i).includes("@")) {
+		if (text[i] === ' ') {
+			if (text.substring(count, i).includes('@')) {
 				finalStr += `<span>${text.substring(count, i)}</span>`;
 			} else {
 				finalStr += text.substring(count, i);
@@ -163,7 +163,7 @@ export function addUrls(text: string) {
 
 export function removeUrls(text: string) {
 	const urlRegex = /(https?:\/\/[^\s]+)/g;
-	return text.replace(urlRegex, "");
+	return text.replace(urlRegex, '');
 }
 
 export function getUsername(data: any) {
@@ -173,5 +173,17 @@ export function getUsername(data: any) {
 		else return STORAGE.none;
 	} else {
 		return STORAGE.none;
+	}
+}
+
+export async function traverse(callBackFields: string[], obj: any, callBack: any) {
+	for (let key in obj) {
+		if (obj.hasOwnProperty(key)) {
+			if (callBackFields.includes(key)) {
+				await callBack(obj[key], key);
+			} else if (typeof obj[key] === 'object' && obj[key] !== null) {
+				await traverse(callBackFields, obj[key], callBack);
+			}
+		}
 	}
 }

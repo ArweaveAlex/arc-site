@@ -1,1 +1,1 @@
-export { default as ArtifactsDetail } from "./ArtifactsDetail";
+export { default as ArtifactsDetail } from './ArtifactsDetail';

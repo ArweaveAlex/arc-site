@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { ArtifactsDetail } from "global/ArtifactsDetail";
-import { ArweaveClient } from "clients/arweave";
+import { ArtifactsDetail } from 'global/ArtifactsDetail';
+import { ArweaveClient } from 'clients/arweave';
 
-import { IProps } from "./types";
+import { IProps } from './types';
 
 export default function OwnerArtifacts(props: IProps) {
 	const arClient = new ArweaveClient();
@@ -25,16 +25,17 @@ export default function OwnerArtifacts(props: IProps) {
 
 	return (
 		<ArtifactsDetail
-			id={{ value: props.owner, type: "ownerId" }}
+			id={{ value: props.owner, type: 'ownerId' }}
 			indexIds={poolIds}
 			cursorObject={props.cursorObject}
 			defaultFetch={{
 				fn: props.fetch,
-				ids: null
+				ids: null,
 			}}
-			showCollections={props.showCollections}
+			showActions={props.showActions}
 			showPoolIds={props.showPoolIds}
 			showSearch={props.showSearch}
+			bookmarksDisabled={props.bookmarksDisabled}
 			owner={props.owner}
 			uploader={null}
 			selectCallback={props.selectCallback}

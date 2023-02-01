@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { formatAddress, formatDate, getHashUrl } from "helpers/utils";
-import * as urls from "helpers/urls";
-import { LANGUAGE } from "helpers/language";
-import * as S from "./styles";
+import { formatAddress, formatDate } from 'helpers/utils';
+import * as urls from 'helpers/urls';
+import { LANGUAGE } from 'helpers/language';
+import * as S from './styles';
 
 export default function ContributionsList({ data }: any) {
 	return (
@@ -17,7 +17,7 @@ export default function ContributionsList({ data }: any) {
 				{data.map((pool: any, index: number) => {
 					return (
 						<S.Link key={index}>
-							<Link to={getHashUrl(`${urls.pool}${pool.id}`)}>
+							<Link to={`${urls.pool}${pool.id}`}>
 								<S.ListItemWrapper>
 									<S.LIHeaderContainer>
 										<S.LIHeader1>{pool.state.title}</S.LIHeader1>
@@ -38,7 +38,7 @@ export default function ContributionsList({ data }: any) {
 												</S.Subheader1>
 												&nbsp;
 												<S.Date>
-													<p>{formatDate(pool.state.timestamp, "epoch")}</p>
+													<p>{formatDate(pool.state.timestamp, 'epoch')}</p>
 												</S.Date>
 											</S.SubheaderContainer>
 										</S.SubheaderFlex>

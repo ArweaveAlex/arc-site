@@ -1,1 +1,1 @@
-export default function OwnerCollectionsCreate() {}
+export default function OwnerBookmarksCreate() {}

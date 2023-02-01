@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -98,6 +98,7 @@ export const GlobalStyle = createGlobalStyle`
 
     &:hover {
       text-decoration: underline;
+      text-decoration-thickness: 1.215px;
     }
     &:focus {
       text-decoration: underline;

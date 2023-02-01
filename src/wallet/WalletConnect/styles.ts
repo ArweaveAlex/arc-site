@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	height: 100%;
@@ -45,7 +45,7 @@ export const WalletDropdown = styled.ul`
 	right: 18.5px;
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border-radius: ${STYLING.dimensions.borderRadiusField};
 
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		right: auto;
@@ -54,25 +54,17 @@ export const WalletDropdown = styled.ul`
 	}
 	li {
 		text-align: center;
-		height: 35px;
+		height: 32.5px;
 		display: flex;
 		align-items: center;
 		cursor: pointer;
-		font-size: ${(props) => props.theme.typography.size.xSmall};
+		font-size: 13px;
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		border: 1px solid ${(props) => props.theme.colors.transparent};
+		padding: 0 15px;
 		&:hover {
-			background: ${(props) => props.theme.colors.container.primary.hover};
+			background: ${(props) => props.theme.colors.button.alt2.active.background};
+			color: ${(props) => props.theme.colors.font.primary.base};
 		}
-	}
-	span {
-		font-size: ${(props) => props.theme.typography.size.xSmall};
-	}
-`;
-
-export const Icon = styled.div<{ strokeFill: boolean }>`
-	svg {
-		width: 17.5px;
-		margin: 5.5px 17.5px 0 17.5px;
-		fill: ${(props) => (props.strokeFill ? "none" : props.theme.colors.font.primary.active.base)};
-		stroke: ${(props) => (props.strokeFill ? props.theme.colors.font.primary.active.base : "none")};
 	}
 `;

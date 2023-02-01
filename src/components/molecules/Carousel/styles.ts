@@ -1,7 +1,7 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { open, fadeIn2 } from "helpers/animations";
-import { STYLING } from "helpers/styling";
+import { open, fadeIn2 } from 'helpers/animations';
+import { STYLING } from 'helpers/styling';
 
 export const Content = styled.div`
 	height: 100%;
@@ -53,7 +53,13 @@ export const Body = styled.div`
 	.slider {
 		height: 100%;
 	}
-	&:hover {
+	li {
+		height: auto !important;
+		padding: 0 !important;
+		&:hover {
+			cursor: default;
+			background: transparent !important;
+		}
 	}
 `;
 

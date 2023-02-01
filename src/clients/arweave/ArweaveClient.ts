@@ -1,24 +1,24 @@
-import { Buffer } from "buffer";
-import Arweave from "arweave";
+import { Buffer } from 'buffer';
+import Arweave from 'arweave';
 //@ts-ignore
-import { WarpFactory, defaultCacheOptions } from "warp-contracts/web";
+import { WarpFactory, defaultCacheOptions } from 'warp-contracts/web';
 
-import { store } from "redux/store";
-import * as poolActions from "redux/pools/actions";
-import { getGQLData } from "gql";
-import { getPools } from "gql/pools";
-import { getArtifactsByUser } from "gql/artifacts";
+import { store } from 'redux/store';
+import * as poolActions from 'redux/pools/actions';
+import { getGQLData } from 'gql';
+import { getPools } from 'gql/pools';
+import { getArtifactsByUser } from 'gql/artifacts';
 
-import { PoolType, ContributionType, ContributionResultType, GQLResponseType } from "helpers/types";
-import { LANGUAGE } from "helpers/language";
-import { TAGS } from "helpers/config";
-import { getTagValue } from "helpers/utils";
+import { PoolType, ContributionType, ContributionResultType, GQLResponseType } from 'helpers/types';
+import { LANGUAGE } from 'helpers/language';
+import { TAGS } from 'helpers/config';
+import { getTagValue } from 'helpers/utils';
 
-const GET_ENDPOINT = "arweave-search.goldsky.com";
-const POST_ENDPOINT = "arweave.net";
+const GET_ENDPOINT = 'arweave-search.goldsky.com';
+const POST_ENDPOINT = 'arweave.net';
 
 const PORT = 443;
-const PROTOCOL = "https";
+const PROTOCOL = 'https';
 const TIMEOUT = 40000;
 const LOGGING = false;
 
@@ -130,16 +130,16 @@ export default class ArweaveClient {
 				calc = (amount / parseFloat(totalContributions)) * 100;
 			}
 			let tokens = calc.toFixed(4);
-			if (isNaN(calc)) return "0";
-			return calc >= 100 ? "100" : tokens;
+			if (isNaN(calc)) return '0';
+			return calc >= 100 ? '100' : tokens;
 		} else {
-			return "0";
+			return '0';
 		}
 	}
 
 	calcContributions(contributions: string | ContributionType[]): string {
 		let amount: number = 0;
-		if (typeof contributions === "object") {
+		if (typeof contributions === 'object') {
 			for (let i = 0; i < contributions.length; i++) {
 				amount += Number(contributions[i].qty);
 			}
@@ -176,16 +176,16 @@ export default class ArweaveClient {
 
 			let owner = contractData.owner;
 			if (arweaveContract) {
-				owner = JSON.parse(Buffer.from(contractData.data, "base64").toString("utf-8")).owner;
+				owner = JSON.parse(Buffer.from(contractData.data, 'base64').toString('utf-8')).owner;
 			}
 			if (!owner) {
 				return { status: false, message: LANGUAGE.pool.contribute.failed };
 			}
-			const warpContract = this.warp.contract(poolId).connect("use_wallet").setEvaluationOptions({
+			const warpContract = this.warp.contract(poolId).connect('use_wallet').setEvaluationOptions({
 				waitForConfirmation: false,
 			});
 			const result = await warpContract.writeInteraction(
-				{ function: "contribute" },
+				{ function: 'contribute' },
 				{
 					disableBundling: true,
 					transfer: {

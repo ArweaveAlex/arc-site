@@ -1,17 +1,17 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from "redux/store";
-import { ReduxSearchIndexUpdate } from "redux/search/ReduxSearchIndexUpdate";
-import { runSearch } from "search";
+import { RootState } from 'redux/store';
+import { ReduxSearchIndexUpdate } from 'redux/search/ReduxSearchIndexUpdate';
+import { runSearch } from 'search';
 
-import { Search } from "components/molecules/Search";
+import { Search } from 'components/molecules/Search';
 
-import * as searchActions from "redux/search/actions";
-import * as cursorActions from "redux/cursors/actions";
-import { splitArray } from "helpers/utils";
-import { PAGINATOR, SEARCH } from "helpers/config";
-import { IProps } from "./types";
+import * as searchActions from 'redux/search/actions';
+import * as cursorActions from 'redux/cursors/actions';
+import { splitArray } from 'helpers/utils';
+import { PAGINATOR, SEARCH } from 'helpers/config';
+import { IProps } from './types';
 
 export default function ArtifactsSearch(props: IProps) {
 	const dispatch = useDispatch();
@@ -19,16 +19,12 @@ export default function ArtifactsSearch(props: IProps) {
 	const searchIndecesReducer = useSelector((state: RootState) => state.searchIndecesReducer);
 
 	const [searchIndeces, setSearchIndeces] = React.useState<string[] | null>(
-		props.cursorObject.value &&
-			searchIndecesReducer[props.cursorObject.value] &&
-			searchIndecesReducer[props.cursorObject.value].id.value === props.id.value
+		props.cursorObject.value && searchIndecesReducer[props.cursorObject.value] && searchIndecesReducer[props.cursorObject.value].id.value === props.id.value
 			? searchIndecesReducer[props.cursorObject.value].value
 			: null
 	);
 
-	const [searchTerm, setSearchTerm] = React.useState<string>(
-		searchTermReducer[props.cursorObject.value].id.value === props.id.value ? searchTermReducer[props.cursorObject.value].value || "" : ""
-	);
+	const [searchTerm, setSearchTerm] = React.useState<string>(searchTermReducer[props.cursorObject.value].id.value === props.id.value ? searchTermReducer[props.cursorObject.value].value || '' : '');
 
 	const [searchResultIds, setSearchResultIds] = React.useState<string[]>([]);
 	const [searchRequested, setSearchRequested] = React.useState<boolean>(false);
@@ -50,7 +46,7 @@ export default function ArtifactsSearch(props: IProps) {
 	);
 
 	const handleClear = React.useCallback(() => {
-		setSearchTerm("");
+		setSearchTerm('');
 		setSearchResultIds([]);
 		props.setSearchRequested(null);
 		dispatch(searchActions.clearSearchIds());
@@ -69,7 +65,7 @@ export default function ArtifactsSearch(props: IProps) {
 	}
 
 	function handleSearch(e: any) {
-		if ((e.type === "keydown" && e.key === "Enter") || e.type === "click") {
+		if ((e.type === 'keydown' && e.key === 'Enter') || e.type === 'click') {
 			setSearchResultIds([]);
 			dispatch(searchActions.clearSearchIds());
 			dispatch(cursorActions.clearCursors());
@@ -79,22 +75,18 @@ export default function ArtifactsSearch(props: IProps) {
 	}
 
 	React.useEffect(() => {
-		if (
-			props.cursorObject.value &&
-			searchIndecesReducer[props.cursorObject.value] &&
-			searchIndecesReducer[props.cursorObject.value].id.value === props.id.value
-		) {
+		if (props.cursorObject.value && searchIndecesReducer[props.cursorObject.value] && searchIndecesReducer[props.cursorObject.value].id.value === props.id.value) {
 			setSearchIndeces(searchIndecesReducer[props.cursorObject.value].value);
 		}
 	}, [searchIndecesReducer, props.cursorObject.value, props.id.value]);
 
 	React.useEffect(() => {
 		if (
-			(searchTermReducer[props.cursorObject.value].value || searchTermReducer[props.cursorObject.value].value === "") &&
+			(searchTermReducer[props.cursorObject.value].value || searchTermReducer[props.cursorObject.value].value === '') &&
 			searchTermReducer[props.cursorObject.value].id.value === props.id.value
 		) {
 			setSearchTerm(searchTermReducer[props.cursorObject.value].value);
-			if (searchTermReducer[props.cursorObject.value].value === "") {
+			if (searchTermReducer[props.cursorObject.value].value === '') {
 				setSearchRequested(null);
 				props.setSearchRequested(null);
 			}

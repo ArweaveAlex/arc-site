@@ -1,18 +1,18 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 
-import { View } from "wrappers/View";
+import { View } from 'wrappers/View';
 
-import { Landing } from "views/Landing";
-import { Pool } from "views/Pool";
-import { Pools } from "views/Pools";
-import { Artifact } from "views/Artifact";
-import { ArtifactThread } from "views/Artifact/ArtifactThread";
-import { Account } from "views/Account";
-import { Library } from "views/Library";
-import { CollectionsCreate } from "views/Collections/CollectionsCreate";
-import { NotFound } from "views/NotFound";
+import { Landing } from 'views/Landing';
+import { Pool } from 'views/Pool';
+import { Pools } from 'views/Pools';
+import { Artifact } from 'views/Artifact';
+import { ArtifactThread } from 'views/Artifact/ArtifactThread';
+import { Account } from 'views/Account';
+import { Library } from 'views/Library';
+import { CollectionsCreate } from 'views/Collections/CollectionsCreate';
+import { NotFound } from 'views/NotFound';
 
-import * as urls from "helpers/urls";
+import * as urls from 'helpers/urls';
 
 export default function _Routes() {
 	return (
@@ -82,7 +82,7 @@ export default function _Routes() {
 				}
 			/>
 			<Route
-				path={"*"}
+				path={'*'}
 				element={
 					<View>
 						<NotFound />

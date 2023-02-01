@@ -1,8 +1,8 @@
-import { ReactSVG } from "react-svg";
+import { ReactSVG } from 'react-svg';
 
-import { LANGUAGE } from "helpers/language";
-import { IProps } from "./types";
-import * as S from "./styles";
+import { LANGUAGE } from 'helpers/language';
+import { IProps } from './types';
+import * as S from './styles';
 
 export default function Button(props: IProps) {
 	const buttonStyle = getType();
@@ -15,13 +15,13 @@ export default function Button(props: IProps) {
 			icon: any;
 		};
 		switch (props.type) {
-			case "alt1":
+			case 'alt1':
 				buttonObj = {
 					wrapper: S.Alt1,
 					icon: S.IconSecondary,
 				};
 				return buttonObj;
-			case "alt2":
+			case 'alt2':
 				buttonObj = {
 					wrapper: S.Alt2,
 					icon: S.IconTertiary,
@@ -62,7 +62,7 @@ export default function Button(props: IProps) {
 	return (
 		<StyledButton
 			tabIndex={props.noFocus ? -1 : 0}
-			type={props.formSubmit ? "submit" : "button"}
+			type={props.formSubmit ? 'submit' : 'button'}
 			onClick={props.handlePress}
 			onKeyPress={handlePress}
 			disabled={props.disabled}

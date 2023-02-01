@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ReactSVG } from "react-svg";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
-import { IconButton } from "components/atoms/IconButton";
+import { IconButton } from 'components/atoms/IconButton';
 
-import { formatAddress, formatDataSize, formatDate } from "helpers/utils";
-import * as urls from "helpers/urls";
-import { LANGUAGE } from "helpers/language";
-import { ASSETS } from "helpers/config";
-import { IProps } from "./types";
-import * as S from "./styles";
+import { formatAddress, formatDataSize, formatDate } from 'helpers/utils';
+import * as urls from 'helpers/urls';
+import { LANGUAGE } from 'helpers/language';
+import { ASSETS } from 'helpers/config';
+import { IProps } from './types';
+import * as S from './styles';
 
 export default function ArtifactDetailSingle(props: IProps) {
 	const [viewRaw, setViewRaw] = React.useState<boolean>(false);
@@ -44,7 +44,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 						<S.DataWrapper>
 							<S.DataLine>
 								<S.DataHeader>{LANGUAGE.minted}:&nbsp;</S.DataHeader>
-								<p>{formatDate(props.data.minted, "epoch")}</p>
+								<p>{formatDate(props.data.minted, 'epoch')}</p>
 							</S.DataLine>
 							<S.WrapElement>
 								<S.DataHeader>{LANGUAGE.pool.subheader1}:&nbsp;</S.DataHeader>
@@ -68,7 +68,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 					<S.InfoData>
 						<S.RawContainer>
 							<button onClick={() => setViewRaw(!viewRaw)}>{LANGUAGE.artifactDetail.viewRaw}</button>
-							<IconButton type={"primary"} src={ASSETS.copy} handlePress={copyRawData} />
+							<IconButton type={'primary'} src={ASSETS.copy} handlePress={copyRawData} />
 						</S.RawContainer>
 						{viewRaw && (
 							<S.RawData>
@@ -101,7 +101,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 						<S.LinkWrapperAlt>
 							<S.DataLine>
 								<ReactSVG src={ASSETS.logoAlt2} />
-								<S.DataUrl target={"_blank"} rel={"noreferrer"} href={props.data.dataUrl!}>
+								<S.DataUrl target={'_blank'} rel={'noreferrer'} href={props.data.dataUrl!}>
 									{props.data.dataUrl}
 								</S.DataUrl>
 							</S.DataLine>

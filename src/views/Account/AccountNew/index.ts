@@ -1,1 +1,1 @@
-export { default as AccountNew } from "./AccountNew";
+export { default as AccountNew } from './AccountNew';

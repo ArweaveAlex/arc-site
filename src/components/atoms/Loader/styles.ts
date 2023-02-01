@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { loaderKeyFrame, open } from "helpers/animations";
+import { loaderKeyFrame, open } from 'helpers/animations';
 
 export const Wrapper = styled.div`
 	height: 100%;

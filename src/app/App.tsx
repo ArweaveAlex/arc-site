@@ -1,4 +1,4 @@
-import { Root } from "../root";
+import { Root } from '../root';
 
 export default function App() {
 	return <Root />;

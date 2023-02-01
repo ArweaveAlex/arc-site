@@ -1,7 +1,7 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
-import { loadingSlide } from "helpers/animations";
+import { STYLING } from 'helpers/styling';
+import { loadingSlide } from 'helpers/animations';
 
 export const Wrapper = styled.div`
 	width: 100%;

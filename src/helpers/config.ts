@@ -1,63 +1,64 @@
-import { AccountAll } from "views/Account/AccountAll";
-import { AccountCollections } from "views/Account/AccountCollections";
-import { AccountContributions } from "views/Account/AccountContributions";
-import { LibraryAll } from "views/Library/LibraryAll";
-import { LibraryCollections } from "views/Library/LibraryCollections";
+import { AccountAll } from 'views/Account/AccountAll';
+import { AccountBookmarks } from 'views/Account/AccountBookmarks';
+import { AccountContributions } from 'views/Account/AccountContributions';
+import { LibraryAll } from 'views/Library/LibraryAll';
+import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
 
-import { IURLView, PoolType } from "helpers/types";
-import * as filters from "filters/pools";
-import * as urls from "helpers/urls";
-import { LANGUAGE } from "helpers/language";
+import { IURLView, PoolType } from 'helpers/types';
+import * as filters from 'filters/pools';
+import * as urls from 'helpers/urls';
+import { LANGUAGE } from 'helpers/language';
 
 export const APP = {
-	key: "appVersion",
-	version: "1.0.0",
+	key: 'appVersion',
+	version: '1.0.1',
 };
 
 export const TAGS = {
 	keys: {
-		alexPoolId: "Alex-Pool-Id",
-		ansTitle: "Title",
-		ansDescription: "Description",
-		ansTopic: "Topic",
-		ansType: "Type",
-		ansImplements: "Implements",
-		appType: "App-Type",
-		artifactName: "Artifact-Name",
-		artifactType: "Artifact-Type",
-		associationId: "Association-Id",
-		associationSequence: "Association-Sequence",
-		childAssets: "Child-Assets",
-		collectionIds: "Bookmark-Ids-Tag",
-		collectionSearch: "Alex-Bookmark-Search",
-		dateCreated: "Date-Created",
-		keywords: "Keywords",
-		initialOwner: "Initial-Owner",
-		poolId: "Pool-Id",
-		profileImage: "Profile-Image",
-		uploaderTxId: "Uploader-Tx-Id",
-		contractSrc: "Contract-Src",
-		mediaIds: "Media-Ids",
-		timestamp: "Timestamp",
-		collectionName: "Collection-Name",
-		collectionDescription: "Collection-Description",
+		alexPoolId: 'Alex-Pool-Id',
+		ansTitle: 'Title',
+		ansDescription: 'Description',
+		ansTopic: 'Topic',
+		ansType: 'Type',
+		ansImplements: 'Implements',
+		appType: 'App-Type',
+		artifactName: 'Artifact-Name',
+		artifactType: 'Artifact-Type',
+		associationId: 'Association-Id',
+		associationSequence: 'Association-Sequence',
+		childAssets: 'Child-Assets',
+		bookmarkIds: 'Bookmark-Ids-Tag',
+		bookmarkSearch: 'Alex-Bookmark-Search',
+		dateCreated: 'Date-Created',
+		keywords: 'Keywords',
+		initialOwner: 'Initial-Owner',
+		poolId: 'Pool-Id',
+		profileImage: 'Profile-Image',
+		uploaderTxId: 'Uploader-Tx-Id',
+		contractSrc: 'Contract-Src',
+		mediaIds: 'Media-Ids',
+		timestamp: 'Timestamp',
+		collectionName: 'Collection-Name',
+		collectionDescription: 'Collection-Description',
 	},
 	values: {
-		defaultArtifactType: "Alex-Default",
-		messagingArtifactType: "Alex-Messaging",
-		webpageArtifactType: "Alex-Webpage",
+		defaultArtifactType: 'Alex-Default',
+		messagingArtifactType: 'Alex-Messaging',
+		redditThreadArtifactType: 'Alex-Reddit-Thread',
+		webpageArtifactType: 'Alex-Webpage',
 		poolVersions: {
-			"1.2": "Alex-Archiving-Pool-v1.2",
-			"1.4": "Alex-Archiving-Pool-v1.4",
+			'1.2': 'Alex-Archiving-Pool-v1.2',
+			'1.4': 'Alex-Archiving-Pool-Thread-Testing-v1.0', // 'Alex-Archiving-Pool-v1.4'
 		},
-		searchIndex: "Alex-Search-Index-v0",
-		collectionAppType: "Alex-Collection-v0",
-		ansVersion: "ANS-110",
-		ansType: "token"
+		searchIndex: 'Alex-Search-Index-v0',
+		collectionAppType: 'Alex-Collection-v0',
+		ansVersion: 'ANS-110',
+		ansType: 'token',
 	},
 };
 
-export const ASSET_SRC = "assets";
+export const ASSET_SRC = 'assets';
 
 export const ASSETS = {
 	all: `${ASSET_SRC}/all.svg`,
@@ -67,12 +68,13 @@ export const ASSETS = {
 	artifactTypes: {
 		default: `${ASSET_SRC}/artifact-types/webpage.svg`,
 		messaging: `${ASSET_SRC}/artifact-types/messaging.svg`,
+		redditThread: `${ASSET_SRC}/artifact-types/reddit-thread.svg`,
 		webpage: `${ASSET_SRC}/artifact-types/webpage.svg`,
 	},
 	association: `${ASSET_SRC}/association.svg`,
-	collection: `${ASSET_SRC}/collection.svg`,
-	collectionSelected: `${ASSET_SRC}/collection-selected.svg`,
-	collections: `${ASSET_SRC}/collections.svg`,
+	bookmark: `${ASSET_SRC}/bookmark.svg`,
+	bookmarkSelected: `${ASSET_SRC}/bookmark-selected.svg`,
+	bookmarks: `${ASSET_SRC}/bookmarks.svg`,
 	close: `${ASSET_SRC}/close.svg`,
 	contributions: `${ASSET_SRC}/contributions.svg`,
 	copy: `${ASSET_SRC}/copy.svg`,
@@ -91,10 +93,12 @@ export const ASSETS = {
 	logoAlt2: `${ASSET_SRC}/logo-alt-2.svg`,
 	media: `${ASSET_SRC}/media.svg`,
 	menu: `${ASSET_SRC}/menu.svg`,
+	menuAction: `${ASSET_SRC}/action-menu.svg`,
 	mint: `${ASSET_SRC}/mint.svg`,
 	newTab: `${ASSET_SRC}/new-tab.svg`,
 	owner: `${ASSET_SRC}/owner.svg`,
 	pool: `${ASSET_SRC}/pool.svg`,
+	preview: `${ASSET_SRC}/preview.svg`,
 	replies: `${ASSET_SRC}/replies.svg`,
 	retweet: `${ASSET_SRC}/retweet.svg`,
 	search: `${ASSET_SRC}/search.svg`,
@@ -112,9 +116,9 @@ export const ASSETS = {
 	},
 };
 
-export const AR_WALLETS = [{ name: "arconnect", logo: ASSETS.wallets.arconnect }];
+export const AR_WALLETS = [{ name: 'arconnect', logo: ASSETS.wallets.arconnect }];
 
-export const WALLET_PERMISSIONS = ["ACCESS_ADDRESS", "ACCESS_PUBLIC_KEY", "SIGN_TRANSACTION", "DISPATCH"];
+export const WALLET_PERMISSIONS = ['ACCESS_ADDRESS', 'ACCESS_PUBLIC_KEY', 'SIGN_TRANSACTION', 'DISPATCH'];
 
 export const TAB_OPTIONS = {
 	details: LANGUAGE.details,
@@ -139,6 +143,10 @@ export const ARTIFACT_TYPES = {
 		label: TAGS.values.messagingArtifactType,
 		icon: ASSETS.artifactTypes.messaging,
 	},
+	[TAGS.values.redditThreadArtifactType]: {
+		label: TAGS.values.redditThreadArtifactType,
+		icon: ASSETS.artifactTypes.redditThread,
+	},
 	[TAGS.values.webpageArtifactType]: {
 		label: TAGS.values.webpageArtifactType,
 		icon: ASSETS.artifactTypes.webpage,
@@ -146,9 +154,9 @@ export const ARTIFACT_TYPES = {
 };
 
 export const DOM = {
-	loader: "loader-portal",
-	modal: "modal-portal",
-	notification: "notification-portal",
+	loader: 'loader',
+	modal: 'modal',
+	notification: 'notification'
 };
 
 export const URLS: IURLView = {
@@ -163,11 +171,11 @@ export const URLS: IURLView = {
 		},
 		{
 			index: 1,
-			label: LANGUAGE.account.collections.title,
-			icon: ASSETS.collections,
+			label: LANGUAGE.account.bookmarks.title,
+			icon: ASSETS.bookmarks,
 			disabled: false,
-			url: urls.accountCollections,
-			view: AccountCollections,
+			url: urls.accountBookmarks,
+			view: AccountBookmarks,
 		},
 		{
 			index: 2,
@@ -189,31 +197,31 @@ export const URLS: IURLView = {
 		},
 		{
 			index: 1,
-			label: LANGUAGE.library.collections.title,
-			icon: ASSETS.collections,
+			label: LANGUAGE.library.bookmarks.title,
+			icon: ASSETS.bookmarks,
 			disabled: false,
-			url: (id: string) => urls.libraryCollections(id),
-			view: LibraryCollections,
+			url: (id: string) => urls.libraryBookmarks(id),
+			view: LibraryBookmarks,
 		},
 	],
 };
 
 export const STORAGE = {
-	none: "N/A",
+	none: 'N/A',
 };
 
 export const PAGINATOR = 100;
 
 export const CURSORS = {
-	p1: "P1",
-	end: "END",
+	p1: 'P1',
+	end: 'END',
 };
 
 export const MEDIA_TYPES = {
-	mp4: "mp4",
-	jpg: "jpg",
-	jpeg: "jpeg",
-	png: "png",
+	mp4: 'mp4',
+	jpg: 'jpg',
+	jpeg: 'jpeg',
+	png: 'png',
 };
 
 export const POOL_FILTERS = [
@@ -231,12 +239,12 @@ export const POOL_FILTERS = [
 	},
 ];
 
-export const FALLBACK_IMAGE = "8HqSqy_nNRSTPv-q-j7_iHGTp6lEA5K77TP4BPuXGyA";
+export const FALLBACK_IMAGE = '8HqSqy_nNRSTPv-q-j7_iHGTp6lEA5K77TP4BPuXGyA';
 
 export const SEARCH = {
-	cursorPrefix: "searchCursor",
-	idTerm: "`*",
-	ownerTerm: "`%",
+	cursorPrefix: 'searchCursor',
+	idTerm: '`*',
+	ownerTerm: '`%',
 };
 
-export const OPERATOR_LINK = "https://alex-operator-guide.arweave.dev/";
+export const OPERATOR_LINK = 'https://alex-operator-guide.arweave.dev/';

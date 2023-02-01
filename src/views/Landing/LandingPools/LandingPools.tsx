@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import parse from "html-react-parser";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import parse from 'html-react-parser';
 
-import { Carousel } from "components/molecules/Carousel";
+import { Carousel } from 'components/molecules/Carousel';
 
-import { getTxEndpoint } from "helpers/endpoints";
-import * as urls from "helpers/urls";
-import { LANGUAGE } from "helpers/language";
-import { PoolType } from "helpers/types";
-import * as S from "./styles";
-import { FALLBACK_IMAGE } from "helpers/config";
+import { getTxEndpoint } from 'helpers/endpoints';
+import * as urls from 'helpers/urls';
+import { LANGUAGE } from 'helpers/language';
+import { PoolType } from 'helpers/types';
+import * as S from './styles';
+import { FALLBACK_IMAGE } from 'helpers/config';
 
 function PoolCard(props: PoolType) {
 	const [poolUrl, setPoolsUrl] = React.useState<string | null>(null);

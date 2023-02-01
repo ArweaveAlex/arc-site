@@ -1,9 +1,9 @@
-import { OwnerArtifacts } from "global/Owner/OwnerArtifacts";
+import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
 
-import { useArweaveProvider } from "providers/ArweaveProvider";
-import { getArtifactsByUser } from "gql/artifacts";
-import { REDUX_TABLES } from "helpers/redux";
-import { CursorEnum } from "helpers/types";
+import { useArweaveProvider } from 'providers/ArweaveProvider';
+import { getArtifactsByUser } from 'gql/artifacts';
+import { REDUX_TABLES } from 'helpers/redux';
+import { CursorEnum } from 'helpers/types';
 
 export default function AccountAll() {
 	const arProvider = useArweaveProvider();
@@ -13,11 +13,12 @@ export default function AccountAll() {
 			owner={arProvider.walletAddress}
 			reduxCursor={REDUX_TABLES.accountAll}
 			fetch={getArtifactsByUser}
-			showCollections={true}
+			showActions={true}
 			showPoolIds={true}
 			showSearch={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
+			bookmarksDisabled={false}
 			cursorObject={{
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.accountAll,

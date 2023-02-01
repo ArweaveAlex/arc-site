@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { IProps } from "./types";
-import { RefType } from "helpers/types";
+import { IProps } from './types';
+import { RefType } from 'helpers/types';
 
-import * as S from "./styles";
+import * as S from './styles';
 
 function useCloseHandler(ref: RefType, func: () => void) {
 	React.useEffect(() => {
@@ -12,16 +12,16 @@ function useCloseHandler(ref: RefType, func: () => void) {
 				func();
 			}
 		}
-		document.addEventListener("mousedown", (e) => handleActionOutside(e as any, func));
+		document.addEventListener('mousedown', (e) => handleActionOutside(e as any, func));
 		return () => {
-			document.removeEventListener("mousedown", (e) => handleActionOutside(e as any, func));
+			document.removeEventListener('mousedown', (e) => handleActionOutside(e as any, func));
 		};
 	}, [ref, func]);
 }
 
 export default function CloseHandler(props: IProps) {
 	const wrapperRef = React.useRef<any>(null);
-	useCloseHandler(wrapperRef, props.handler);
+	useCloseHandler(wrapperRef, props.callback);
 	if (props.active) {
 		return <S.Wrapper ref={wrapperRef}>{props.children}</S.Wrapper>;
 	} else {

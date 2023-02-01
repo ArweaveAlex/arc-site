@@ -1,8 +1,8 @@
-import { ArtifactsDetail } from "global/ArtifactsDetail";
+import { ArtifactsDetail } from 'global/ArtifactsDetail';
 
-import { getArtifactsByPool } from "gql/artifacts";
+import { getArtifactsByPool } from 'gql/artifacts';
 
-import { IProps } from "./types";
+import { IProps } from './types';
 
 export default function PoolDetail(props: IProps) {
 	return (
@@ -14,9 +14,10 @@ export default function PoolDetail(props: IProps) {
 				ids: [props.id.value],
 				fn: getArtifactsByPool,
 			}}
-			showCollections={false}
+			showActions={true}
 			showPoolIds={false}
 			showSearch={true}
+			bookmarksDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
 			owner={null}

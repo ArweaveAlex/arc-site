@@ -1,7 +1,7 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { open, fadeIn1 } from "helpers/animations";
-import { STYLING } from "helpers/styling";
+import { open, fadeIn1 } from 'helpers/animations';
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.header`
 	height: ${STYLING.dimensions.navHeight};
@@ -123,7 +123,7 @@ export const Connect = styled.div<{ show: boolean }>`
 	align-items: center;
 	padding: 0 20px 0 17.5px;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
-		display: ${(props) => (props.show ? "block" : "none")};
+		display: ${(props) => (props.show ? 'block' : 'none')};
 		height: auto;
 		margin-top: 25px;
 		flex-direction: column;

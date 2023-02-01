@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	a {
@@ -21,8 +21,8 @@ export const Primary = styled.div<{
 	background: ${(props) => (props.active ? props.theme.colors.button.primary.active.background : props.theme.colors.button.primary.background)};
 	border: 1.5px solid ${(props) => props.theme.colors.button.primary.border};
 	height: ${STYLING.dimensions.buttonHeight};
-	min-width: ${(props) => (props.noMinWidth ? "none" : STYLING.dimensions.buttonWidth)};
-	max-width: ${(props) => (props.useMaxWidth ? STYLING.dimensions.buttonWidth : "none")};
+	min-width: ${(props) => (props.noMinWidth ? 'none' : STYLING.dimensions.buttonWidth)};
+	max-width: ${(props) => (props.useMaxWidth ? STYLING.dimensions.buttonWidth : 'none')};
 	overflow: hidden;
 	text-overflow: ellipsis;
 	padding: 0 15px;
@@ -31,11 +31,11 @@ export const Primary = styled.div<{
 	justify-content: center;
 	border-radius: ${STYLING.dimensions.borderRadiusField};
 	&:hover {
-		border: 1.5px solid ${(props) => (props.active ? "transparent" : props.theme.colors.button.primary.border)};
+		border: 1.5px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.primary.border)};
 		background: ${(props) => (props.active ? props.theme.colors.button.primary.active.hover : props.theme.colors.button.primary.hover)};
 	}
 	&:focus {
-		border: 1.5px solid ${(props) => (props.active ? "transparent" : props.theme.colors.button.primary.border)};
+		border: 1.5px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.primary.border)};
 		background: ${(props) => (props.active ? props.theme.colors.button.primary.active.hover : props.theme.colors.button.primary.hover)};
 	}
 	&:disabled {
@@ -64,7 +64,7 @@ export const IconPrimary = styled.div<{
 	svg {
 		height: 20px;
 		width: 15px;
-		margin: ${(props) => (props.leftAlign ? "0 12.5px 0 0" : "0 0 0 12.5px")};
+		margin: ${(props) => (props.leftAlign ? '0 12.5px 0 0' : '0 0 0 12.5px')};
 		padding: 3.5px 0 0 0;
 		fill: ${(props) =>
 			props.disabled ? props.theme.colors.button.primary.disabled.label : props.active ? props.theme.colors.button.primary.active.label : props.theme.colors.button.primary.label};
@@ -75,11 +75,11 @@ export const Alt1 = styled(Primary)`
 	background: ${(props) => (props.active ? props.theme.colors.button.alt1.active.background : props.theme.colors.button.alt1.background)};
 	border: 1.5px solid ${(props) => props.theme.colors.button.alt1.border};
 	&:hover {
-		border: 1.5px solid ${(props) => (props.active ? "transparent" : props.theme.colors.button.alt1.border)};
+		border: 1.5px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.alt1.border)};
 		background: ${(props) => (props.active ? props.theme.colors.button.alt1.active.hover : props.theme.colors.button.alt1.hover)};
 	}
 	&:focus {
-		border: 1.5px solid ${(props) => (props.active ? "transparent" : props.theme.colors.button.alt1.border)};
+		border: 1.5px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.alt1.border)};
 		background: ${(props) => (props.active ? props.theme.colors.button.alt1.active.hover : props.theme.colors.button.alt1.hover)};
 	}
 	&:disabled {

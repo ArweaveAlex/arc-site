@@ -1,7 +1,7 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
-import { open, fadeIn2 } from "helpers/animations";
+import { STYLING } from 'helpers/styling';
+import { open, fadeIn2 } from 'helpers/animations';
 
 export const Wrapper = styled.div`
 	height: 100%;
@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
+	overflow: auto;
 
 	p,
 	span,
@@ -199,12 +200,12 @@ export const Wrapper = styled.div`
 
 	/* Generate interpuncts */
 	.hlist dt:after {
-		content: ": ";
+		content: ': ';
 	}
 
 	.hlist dd:after,
 	.hlist li:after {
-		content: " · ";
+		content: ' · ';
 		font-weight: bold;
 	}
 
@@ -224,7 +225,7 @@ export const Wrapper = styled.div`
 	.hlist li dd:first-child:before,
 	.hlist li dt:first-child:before,
 	.hlist li li:first-child:before {
-		content: " (";
+		content: ' (';
 		font-weight: normal;
 	}
 
@@ -237,7 +238,7 @@ export const Wrapper = styled.div`
 	.hlist li dd:last-child:after,
 	.hlist li dt:last-child:after,
 	.hlist li li:last-child:after {
-		content: ")";
+		content: ')';
 		font-weight: normal;
 	}
 
@@ -251,13 +252,13 @@ export const Wrapper = styled.div`
 	}
 
 	.hlist ol > li:before {
-		content: " " counter(listitem) "\a0";
+		content: ' ' counter(listitem) '\a0';
 	}
 
 	.hlist dd ol > li:first-child:before,
 	.hlist dt ol > li:first-child:before,
 	.hlist li ol > li:first-child:before {
-		content: " (" counter(listitem) "\a0";
+		content: ' (' counter(listitem) '\a0';
 	}
 
 	/* Unbulleted lists */
@@ -573,7 +574,7 @@ export const Wrapper = styled.div`
 	}
 
 	/* Normal font styling for wikitable row headers with scope="row" tag */
-	.wikitable.plainrowheaders th[scope="row"] {
+	.wikitable.plainrowheaders th[scope='row'] {
 		font-weight: normal;
 		/* @noflip */
 		text-align: left;
@@ -601,7 +602,7 @@ export const Wrapper = styled.div`
     [[Template:Multi-video_start]] */
 	/* TemplateStyles */
 	div.listenlist {
-		background: url("upload.wikimedia.org/wikipedia/commons/4/47/Sound-icon.svg") no-repeat scroll 0 0 transparent;
+		background: url('upload.wikimedia.org/wikipedia/commons/4/47/Sound-icon.svg') no-repeat scroll 0 0 transparent;
 		background-size: 30px;
 		padding-left: 40px;
 	}
@@ -637,19 +638,19 @@ export const Wrapper = styled.div`
 	}
 
 	/* Change the external link icon to an Adobe icon for all PDF files */
-	div#content a[href$=".pdf"].external,
-	div#content a[href*=".pdf?"].external,
-	div#content a[href*=".pdf#"].external,
-	div#content a[href$=".PDF"].external,
-	div#content a[href*=".PDF?"].external,
-	div#content a[href*=".PDF#"].external,
-	div#mw_content a[href$=".pdf"].external,
-	div#mw_content a[href*=".pdf?"].external,
-	div#mw_content a[href*=".pdf#"].external,
-	div#mw_content a[href$=".PDF"].external,
-	div#mw_content a[href*=".PDF?"].external,
-	div#mw_content a[href*=".PDF#"].external {
-		background: url("upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
+	div#content a[href$='.pdf'].external,
+	div#content a[href*='.pdf?'].external,
+	div#content a[href*='.pdf#'].external,
+	div#content a[href$='.PDF'].external,
+	div#content a[href*='.PDF?'].external,
+	div#content a[href*='.PDF#'].external,
+	div#mw_content a[href$='.pdf'].external,
+	div#mw_content a[href*='.pdf?'].external,
+	div#mw_content a[href*='.pdf#'].external,
+	div#mw_content a[href$='.PDF'].external,
+	div#mw_content a[href*='.PDF?'].external,
+	div#mw_content a[href*='.PDF#'].external {
+		background: url('upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif') no-repeat right;
 		/* @noflip */
 		padding-right: 18px;
 	}
@@ -1180,13 +1181,13 @@ export const Wrapper = styled.div`
 		display: list-item;
 		line-height: 1.5em;
 		list-style-type: square;
-		list-style-image: url("en.wikipedia.org/w/skins/MonoBook/resources/images/bullet.gif");
+		list-style-image: url('en.wikipedia.org/w/skins/MonoBook/resources/images/bullet.gif');
 	}
 
 	.skin-vector .compact-ambox table .mbox-text-span {
 		list-style-type: disc;
-		list-style-image: url("en.wikipedia.org/w/skins/Vector/images/bullet-icon.svg");
-		list-style-image: url("en.wikipedia.org/w/skins/Vector/images/bullet-icon.png");
+		list-style-image: url('en.wikipedia.org/w/skins/Vector/images/bullet-icon.svg');
+		list-style-image: url('en.wikipedia.org/w/skins/Vector/images/bullet-icon.png');
 	}
 
 	/* Allow for hiding text in compact form */
@@ -1448,7 +1449,7 @@ export const Wrapper = styled.div`
 	/* Generic class for Times-based serif, texhtml class for inline math */
 	.times-serif,
 	span.texhtml {
-		font-family: "Nimbus Roman No9 L", "Times New Roman", Times, serif;
+		font-family: 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;
 		font-size: 118%;
 		line-height: 1;
 	}
@@ -1468,9 +1469,9 @@ export const Wrapper = styled.div`
 	/* Force tabular and lining display for digits and texhtml */
 	.digits,
 	.texhtml {
-		-moz-font-feature-settings: "lnum", "tnum", "kern" 0;
-		-webkit-font-feature-settings: "lnum", "tnum", "kern" 0;
-		font-feature-settings: "lnum", "tnum", "kern" 0;
+		-moz-font-feature-settings: 'lnum', 'tnum', 'kern' 0;
+		-webkit-font-feature-settings: 'lnum', 'tnum', 'kern' 0;
+		font-feature-settings: 'lnum', 'tnum', 'kern' 0;
 		font-variant-numeric: lining-nums tabular-nums;
 		font-kerning: none;
 	}
@@ -1541,7 +1542,7 @@ export const Wrapper = styled.div`
 
 	/* Formerly for announcements, now used intermittently */
 	#bodyContent .letterhead {
-		background-image: url("upload.wikimedia.org/wikipedia/commons/e/e0/Tan-page-corner.png");
+		background-image: url('upload.wikimedia.org/wikipedia/commons/e/e0/Tan-page-corner.png');
 		background-repeat: no-repeat;
 		padding: 2em;
 		background-color: #faf9f2;
@@ -1597,7 +1598,7 @@ export const Wrapper = styled.div`
 		/* Put a chequered background behind images, only visible if they have transparency.
         '.filehistory a img' and '#view img:hover' are handled by MediaWiki core (as of 1.19) */
 		.gallerybox .thumb img {
-			background: #fff url("upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png") repeat;
+			background: #fff url('upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png') repeat;
 		}
 
 		/* But not on articles, user pages, portals or with opt-out. */
@@ -1709,9 +1710,9 @@ export const Wrapper = styled.div`
 
 	#p-lang .uls-settings-trigger {
 		background: transparent no-repeat center top;
-		background-image: url("en.wikipedia.org/w/extensions/UniversalLanguageSelector/resources/images/cog-sprite.png");
+		background-image: url('en.wikipedia.org/w/extensions/UniversalLanguageSelector/resources/images/cog-sprite.png');
 		background-image: linear-gradient(transparent, transparent),
-			url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 width=%2214%22 height=%2232%22%3E %3Cdefs%3E %3Cpath id=%22a%22 d=%22M14 9.3V6.73l-1.575-.264a4.947 4.947 0 0 0-.496-1.2l.93-1.285-1.81-1.84-1.31.908c-.38-.205-.79-.38-1.196-.497L8.284 1H5.716l-.263 1.578a5.489 5.489 0 0 0-1.196.497L2.975 2.17 1.137 3.98l.934 1.287c-.2.38-.376.79-.493 1.228L0 6.73V9.3l1.575.264c.117.438.292.818.496 1.198l-.93 1.315L2.95 13.89l1.312-.938c.38.205.787.38 1.224.497L5.746 15h2.566l.263-1.578a6.13 6.13 0 0 0 1.196-.497l1.315.935 1.81-1.812-.935-1.315c.203-.38.38-.76.495-1.2L14 9.303zm-7 1.404c-1.488 0-2.683-1.2-2.683-2.69S5.542 5.327 7 5.327a2.698 2.698 0 0 1 2.683 2.69A2.678 2.678 0 0 1 7 10.705z%22/%3E %3C/defs%3E %3Cuse fill=%22%2372777d%22 xlink:href=%22%23a%22/%3E %3Cuse fill=%22%2354595d%22 transform=%22translate%280 16%29%22 xlink:href=%22%23a%22/%3E %3C/svg%3E");
+			url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 width=%2214%22 height=%2232%22%3E %3Cdefs%3E %3Cpath id=%22a%22 d=%22M14 9.3V6.73l-1.575-.264a4.947 4.947 0 0 0-.496-1.2l.93-1.285-1.81-1.84-1.31.908c-.38-.205-.79-.38-1.196-.497L8.284 1H5.716l-.263 1.578a5.489 5.489 0 0 0-1.196.497L2.975 2.17 1.137 3.98l.934 1.287c-.2.38-.376.79-.493 1.228L0 6.73V9.3l1.575.264c.117.438.292.818.496 1.198l-.93 1.315L2.95 13.89l1.312-.938c.38.205.787.38 1.224.497L5.746 15h2.566l.263-1.578a6.13 6.13 0 0 0 1.196-.497l1.315.935 1.81-1.812-.935-1.315c.203-.38.38-.76.495-1.2L14 9.303zm-7 1.404c-1.488 0-2.683-1.2-2.683-2.69S5.542 5.327 7 5.327a2.698 2.698 0 0 1 2.683 2.69A2.678 2.678 0 0 1 7 10.705z%22/%3E %3C/defs%3E %3Cuse fill=%22%2372777d%22 xlink:href=%22%23a%22/%3E %3Cuse fill=%22%2354595d%22 transform=%22translate%280 16%29%22 xlink:href=%22%23a%22/%3E %3C/svg%3E');
 		border: 0;
 		min-height: 16px;
 		min-width: 16px;
@@ -1759,29 +1760,29 @@ export const Wrapper = styled.div`
 	.badge-goodarticle,
 	.badge-goodlist,
 	.badge-recommendedarticle {
-		list-style-image: url("en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-silver-star.png");
+		list-style-image: url('en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-silver-star.png');
 	}
 
 	.badge-featuredarticle,
 	.badge-featuredportal,
 	.badge-featuredlist {
-		list-style-image: url("en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-golden-star.png");
+		list-style-image: url('en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-golden-star.png');
 	}
 
 	.badge-problematic {
-		list-style-image: url("en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-problematic.png");
+		list-style-image: url('en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-problematic.png');
 	}
 
 	.badge-proofread {
-		list-style-image: url("en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-proofread.png");
+		list-style-image: url('en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-proofread.png');
 	}
 
 	.badge-validated {
-		list-style-image: url("en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-validated.png");
+		list-style-image: url('en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-validated.png');
 	}
 
 	.badge-digitaldocument {
-		list-style-image: url("en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-digitaldocument.png");
+		list-style-image: url('en.wikipedia.org/w/extensions/WikimediaBadges/resources/images/badge-digitaldocument.png');
 	}
 
 	@media print {
@@ -1833,7 +1834,7 @@ export const Wrapper = styled.div`
 
 		.mw-parser-output a.external.text:after,
 		.mw-parser-output a.external.autonumber:after {
-			content: " (" attr(href) ")";
+			content: ' (' attr(href) ')';
 			word-break: break-all;
 			word-wrap: break-word;
 		}
@@ -1841,7 +1842,7 @@ export const Wrapper = styled.div`
 		.mw-parser-output a.external.text[href^='//']:after,
         .mw-parser-output a.external.autonumber[href^='//']:after
 		{
-			content: " (https:" attr(href) ")";
+			content: ' (https:' attr(href) ')';
 		}
 
 		dt {
@@ -2123,20 +2124,20 @@ export const Wrapper = styled.div`
 			display: inline-block;
 		}
 
-		input[type="submit"],
-		input[type="button"],
-		input[type="reset"],
-		input[type="view"] {
+		input[type='submit'],
+		input[type='button'],
+		input[type='reset'],
+		input[type='view'] {
 			direction: ltr;
 		}
 
-		textarea[dir="ltr"],
-		input[dir="ltr"] {
+		textarea[dir='ltr'],
+		input[dir='ltr'] {
 			direction: ltr;
 		}
 
-		textarea[dir="rtl"],
-		input[dir="rtl"] {
+		textarea[dir='rtl'],
+		input[dir='rtl'] {
 			direction: rtl;
 		}
 
@@ -2509,7 +2510,7 @@ export const Wrapper = styled.div`
 		}
 
 		.mw-ajax-loader {
-			background-image: url("en.wikipedia.org/w/resources/src/mediawiki.legacy/images/ajax-loader.gif");
+			background-image: url('en.wikipedia.org/w/resources/src/mediawiki.legacy/images/ajax-loader.gif');
 			background-position: center center;
 			background-repeat: no-repeat;
 			padding: 16px;
@@ -2520,7 +2521,7 @@ export const Wrapper = styled.div`
 		.mw-small-spinner {
 			padding: 10px !important;
 			margin-right: 0.6em;
-			background-image: url("en.wikipedia.org/w/resources/src/mediawiki.legacy/images/spinner.gif");
+			background-image: url('en.wikipedia.org/w/resources/src/mediawiki.legacy/images/spinner.gif');
 			background-position: center center;
 			background-repeat: no-repeat;
 		}
@@ -3212,9 +3213,9 @@ export const Wrapper = styled.div`
 			overflow: hidden;
 			width: 15px;
 			height: 11px;
-			background-image: url("en.wikipedia.org/w/resources/src/mediawiki.skinning/images/magnify-clip-ltr.png");
+			background-image: url('en.wikipedia.org/w/resources/src/mediawiki.skinning/images/magnify-clip-ltr.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 11 15%22 width=%2215%22 height=%2211%22%3E %3Cg id=%22magnify-clip%22 fill=%22%23fff%22 stroke=%22%23000%22%3E %3Cpath id=%22bigbox%22 d=%22M1.509 1.865h10.99v7.919h-10.99z%22/%3E %3Cpath id=%22smallbox%22 d=%22M-1.499 6.868h5.943v4.904h-5.943z%22/%3E %3C/g%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 11 15%22 width=%2215%22 height=%2211%22%3E %3Cg id=%22magnify-clip%22 fill=%22%23fff%22 stroke=%22%23000%22%3E %3Cpath id=%22bigbox%22 d=%22M1.509 1.865h10.99v7.919h-10.99z%22/%3E %3Cpath id=%22smallbox%22 d=%22M-1.499 6.868h5.943v4.904h-5.943z%22/%3E %3C/g%3E %3C/svg%3E');
 			-moz-user-select: none;
 			-webkit-user-select: none;
 			-ms-user-select: none;
@@ -3236,9 +3237,9 @@ export const Wrapper = styled.div`
 		}
 
 		.mw-content-ltr div.magnify a {
-			background-image: url("en.wikipedia.org/w/resources/src/mediawiki.skinning/images/magnify-clip-ltr.png");
+			background-image: url('en.wikipedia.org/w/resources/src/mediawiki.skinning/images/magnify-clip-ltr.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 11 15%22 width=%2215%22 height=%2211%22%3E %3Cg id=%22magnify-clip%22 fill=%22%23fff%22 stroke=%22%23000%22%3E %3Cpath id=%22bigbox%22 d=%22M1.509 1.865h10.99v7.919h-10.99z%22/%3E %3Cpath id=%22smallbox%22 d=%22M-1.499 6.868h5.943v4.904h-5.943z%22/%3E %3C/g%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 11 15%22 width=%2215%22 height=%2211%22%3E %3Cg id=%22magnify-clip%22 fill=%22%23fff%22 stroke=%22%23000%22%3E %3Cpath id=%22bigbox%22 d=%22M1.509 1.865h10.99v7.919h-10.99z%22/%3E %3Cpath id=%22smallbox%22 d=%22M-1.499 6.868h5.943v4.904h-5.943z%22/%3E %3C/g%3E %3C/svg%3E');
 		}
 
 		.mw-content-rtl .thumbcaption {
@@ -3252,9 +3253,9 @@ export const Wrapper = styled.div`
 		}
 
 		.mw-content-rtl div.magnify a {
-			background-image: url("en.wikipedia.org/w/resources/src/mediawiki.skinning/images/magnify-clip-rtl.png");
+			background-image: url('en.wikipedia.org/w/resources/src/mediawiki.skinning/images/magnify-clip-rtl.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 11 15%22 width=%2215%22 height=%2211%22%3E %3Cg id=%22magnify-clip%22 fill=%22%23fff%22 stroke=%22%23000%22%3E %3Cpath id=%22bigbox%22 d=%22M9.491 1.865h-10.99v7.919h10.99z%22/%3E %3Cpath id=%22smallbox%22 d=%22M12.499 6.868h-5.943v4.904h5.943z%22/%3E %3C/g%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 11 15%22 width=%2215%22 height=%2211%22%3E %3Cg id=%22magnify-clip%22 fill=%22%23fff%22 stroke=%22%23000%22%3E %3Cpath id=%22bigbox%22 d=%22M9.491 1.865h-10.99v7.919h10.99z%22/%3E %3Cpath id=%22smallbox%22 d=%22M12.499 6.868h-5.943v4.904h5.943z%22/%3E %3C/g%3E %3C/svg%3E');
 		}
 
 		div.tright {
@@ -3335,19 +3336,19 @@ export const Wrapper = styled.div`
 	}
 
 	.mw-wiki-logo {
-		background-image: url("en.wikipedia.org/static/images/project-logos/enwiki.png");
+		background-image: url('en.wikipedia.org/static/images/project-logos/enwiki.png');
 	}
 
 	@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx), (min-resolution: 144dpi) {
 		.mw-wiki-logo {
-			background-image: url("en.wikipedia.org/static/images/project-logos/enwiki-1.5x.png");
+			background-image: url('en.wikipedia.org/static/images/project-logos/enwiki-1.5x.png');
 			background-size: 135px auto;
 		}
 	}
 
 	@media (-webkit-min-device-pixel-ratio: 2), (min--moz-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
 		.mw-wiki-logo {
-			background-image: url("en.wikipedia.org/static/images/project-logos/enwiki-2x.png");
+			background-image: url('en.wikipedia.org/static/images/project-logos/enwiki-2x.png');
 			background-size: 135px auto;
 		}
 	}
@@ -3387,7 +3388,7 @@ export const Wrapper = styled.div`
 		.mw-body h1,
 		.mw-body-content h1,
 		.mw-body-content h2 {
-			font-family: "Linux Libertine", "Georgia", "Times", serif;
+			font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
 			line-height: 1.3;
 			margin-bottom: 0.25em;
 			padding: 0;
@@ -3496,9 +3497,9 @@ export const Wrapper = styled.div`
 
 		ul {
 			list-style-type: disc;
-			list-style-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%225%22 height=%2213%22%3E %3Ccircle cx=%222.5%22 cy=%229.5%22 r=%222.5%22 fill=%22%2300528c%22/%3E %3C/svg%3E");
+			list-style-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%225%22 height=%2213%22%3E %3Ccircle cx=%222.5%22 cy=%229.5%22 r=%222.5%22 fill=%22%2300528c%22/%3E %3C/svg%3E');
 			list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAANCAIAAADuXjPfAAAABnRSTlMA/wD/AP83WBt9AAAAHklEQVR4AWP4jwrowWcI6oEgEBtIISNCfFT9mOYDACO/lbNIGC/yAAAAAElFTkSuQmCC);
-			list-style-image: url("en.wikipedia.org/w/skins/Vector/images/bullet-icon.png");
+			list-style-image: url('en.wikipedia.org/w/skins/Vector/images/bullet-icon.png');
 		}
 
 		pre,
@@ -3538,9 +3539,9 @@ export const Wrapper = styled.div`
 
 		#pt-anonuserpage,
 		#pt-userpage a {
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/user-avatar.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/user-avatar.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E %3Cg fill=%22%2354595d%22%3E %3Cpath d=%22M10 11c-5.92 0-8 3-8 5v3h16v-3c0-2-2.08-5-8-5z%22/%3E %3Ccircle cx=%2210%22 cy=%225.5%22 r=%224.5%22/%3E %3C/g%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E %3Cg fill=%22%2354595d%22%3E %3Cpath d=%22M10 11c-5.92 0-8 3-8 5v3h16v-3c0-2-2.08-5-8-5z%22/%3E %3Ccircle cx=%2210%22 cy=%225.5%22 r=%224.5%22/%3E %3C/g%3E %3C/svg%3E');
 			background-position: left 0.33333333em;
 			background-repeat: no-repeat;
 			background-size: 1.16666667em 1.16666667em;
@@ -3586,7 +3587,7 @@ export const Wrapper = styled.div`
 		#simpleSearch {
 			background-color: #fff;
 			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAQCAIAAABY/YLgAAAAJUlEQVQIHQXBsQEAAAjDoND/73UWdnerhmHVsDQZJrNWVg3Dqge6bgMe6bejNAAAAABJRU5ErkJggg==);
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/search-fade.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/search-fade.png');
 			background-position: top left;
 			background-repeat: repeat-x;
 			color: #000;
@@ -3678,9 +3679,9 @@ export const Wrapper = styled.div`
 		}
 
 		#simpleSearch #searchButton {
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/search-ltr.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/search-ltr.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2213%22%3E %3Cg fill=%22none%22 stroke=%22%2354595d%22 stroke-width=%222%22%3E %3Cpath d=%22M11.29 11.71l-4-4%22/%3E %3Ccircle cx=%225%22 cy=%225%22 r=%224%22/%3E %3C/g%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2213%22%3E %3Cg fill=%22none%22 stroke=%22%2354595d%22 stroke-width=%222%22%3E %3Cpath d=%22M11.29 11.71l-4-4%22/%3E %3Ccircle cx=%225%22 cy=%225%22 r=%224%22/%3E %3C/g%3E %3C/svg%3E');
 			background-position: center center;
 			background-repeat: no-repeat;
 		}
@@ -3693,7 +3694,7 @@ export const Wrapper = styled.div`
 			float: left;
 			height: 2.5em;
 			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAuCAIAAABmjeQ9AAAAQ0lEQVR4AWVOhQEAIAzC/X+xAXbXeoDFGA3A9yk1n4juBROcUegfarWjP3ojZvEzxs6j+nygmo+zzsk79nY+tOxdEhlf3UHVgUFrVwAAAABJRU5ErkJggg==);
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/tab-break.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/tab-break.png');
 			background-position: bottom left;
 			background-repeat: no-repeat;
 			padding-left: 1px;
@@ -3710,7 +3711,7 @@ export const Wrapper = styled.div`
 			margin: 0;
 			padding: 0;
 			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAuCAIAAABmjeQ9AAAAQ0lEQVR4AWVOhQEAIAzC/X+xAXbXeoDFGA3A9yk1n4juBROcUegfarWjP3ojZvEzxs6j+nygmo+zzsk79nY+tOxdEhlf3UHVgUFrVwAAAABJRU5ErkJggg==);
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/tab-break.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/tab-break.png');
 			background-position: right bottom;
 			background-repeat: no-repeat;
 		}
@@ -3723,7 +3724,7 @@ export const Wrapper = styled.div`
 			margin: 0;
 			padding: 0;
 			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABkCAIAAADITs03AAAAO0lEQVR4AeSKhREAMQzDdN5/5uixuEKDpqgBjl2f78wd2DVj1+26/h///PfteVMN7zoGebcg1/Y/ZQQAlAUtQCujIJMAAAAASUVORK5CYII=);
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/tab-normal-fade.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/tab-normal-fade.png');
 			background-position: bottom left;
 			background-repeat: repeat-x;
 			white-space: nowrap;
@@ -3736,7 +3737,7 @@ export const Wrapper = styled.div`
 
 		.vectorTabs li.selected {
 			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABkAQAAAABvV2fNAAAADElEQVR4AWNoGB4QAInlMgFKeRKBAAAAAElFTkSuQmCC);
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/tab-current-fade.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/tab-current-fade.png');
 		}
 
 		.vectorTabs li.selected a,
@@ -3763,7 +3764,7 @@ export const Wrapper = styled.div`
 		.vectorTabs span {
 			display: inline-block;
 			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAuCAIAAABmjeQ9AAAAQ0lEQVR4AWVOhQEAIAzC/X+xAXbXeoDFGA3A9yk1n4juBROcUegfarWjP3ojZvEzxs6j+nygmo+zzsk79nY+tOxdEhlf3UHVgUFrVwAAAABJRU5ErkJggg==);
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/tab-break.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/tab-break.png');
 			background-position: bottom right;
 			background-repeat: no-repeat;
 			height: 100%;
@@ -3796,15 +3797,15 @@ export const Wrapper = styled.div`
 		}
 
 		.vectorMenu h3 span:after {
-			content: "";
+			content: '';
 			position: absolute;
 			top: 1.25em;
 			right: 0;
 			bottom: 0;
 			left: 0;
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/arrow-down.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/arrow-down.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22%3E %3Cpath d=%22M11.05 3.996l-.965-1.053-4.035 3.86-3.947-3.86L1.05 3.996l5 5 5-5%22 fill=%22%23222%22/%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22%3E %3Cpath d=%22M11.05 3.996l-.965-1.053-4.035 3.86-3.947-3.86L1.05 3.996l5 5 5-5%22 fill=%22%23222%22/%3E %3C/svg%3E');
 			background-position: 100% 50%;
 			background-repeat: no-repeat;
 			opacity: 0.85;
@@ -3878,7 +3879,7 @@ export const Wrapper = styled.div`
 		#mw-head .vectorMenu h3 {
 			float: left;
 			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAuCAIAAABmjeQ9AAAAQ0lEQVR4AWVOhQEAIAzC/X+xAXbXeoDFGA3A9yk1n4juBROcUegfarWjP3ojZvEzxs6j+nygmo+zzsk79nY+tOxdEhlf3UHVgUFrVwAAAABJRU5ErkJggg==);
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/tab-break.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/tab-break.png');
 			background-repeat: no-repeat;
 			background-position: bottom right;
 			font-size: 1em;
@@ -3970,36 +3971,36 @@ export const Wrapper = styled.div`
 		}
 
 		.vectorTabs #ca-unwatch.icon a {
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/unwatch-icon.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/unwatch-icon.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22%3E %3Cdefs%3E %3ClinearGradient id=%22a%22%3E %3Cstop offset=%220%22 stop-color=%22%23c2edff%22/%3E %3Cstop offset=%22.5%22 stop-color=%22%2368bdff%22/%3E %3Cstop offset=%221%22 stop-color=%22%23fff%22/%3E %3C/linearGradient%3E %3ClinearGradient id=%22b%22 x1=%2213.47%22 x2=%224.596%22 y1=%2214.363%22 y2=%223.397%22 xlink:href=%22%23a%22 gradientUnits=%22userSpaceOnUse%22/%3E %3C/defs%3E %3Cpath fill=%22url%28%23b%29%22 stroke=%22%237cb5d1%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22%3E %3Cdefs%3E %3ClinearGradient id=%22a%22%3E %3Cstop offset=%220%22 stop-color=%22%23c2edff%22/%3E %3Cstop offset=%22.5%22 stop-color=%22%2368bdff%22/%3E %3Cstop offset=%221%22 stop-color=%22%23fff%22/%3E %3C/linearGradient%3E %3ClinearGradient id=%22b%22 x1=%2213.47%22 x2=%224.596%22 y1=%2214.363%22 y2=%223.397%22 xlink:href=%22%23a%22 gradientUnits=%22userSpaceOnUse%22/%3E %3C/defs%3E %3Cpath fill=%22url%28%23b%29%22 stroke=%22%237cb5d1%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E');
 		}
 
 		.vectorTabs #ca-watch.icon a {
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/watch-icon.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/watch-icon.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%237cb5d1%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%237cb5d1%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E');
 		}
 
 		.vectorTabs #ca-unwatch.icon a:hover,
 		.vectorTabs #ca-unwatch.icon a:focus {
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/unwatch-icon-hl.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/unwatch-icon-hl.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22%3E %3Cdefs%3E %3ClinearGradient id=%22a%22%3E %3Cstop offset=%220%22 stop-color=%22%23c2edff%22/%3E %3Cstop offset=%22.5%22 stop-color=%22%2368bdff%22/%3E %3Cstop offset=%221%22 stop-color=%22%23fff%22/%3E %3C/linearGradient%3E %3ClinearGradient id=%22b%22 x1=%2213.47%22 x2=%224.596%22 y1=%2214.363%22 y2=%223.397%22 xlink:href=%22%23a%22 gradientUnits=%22userSpaceOnUse%22/%3E %3C/defs%3E %3Cpath fill=%22url%28%23b%29%22 stroke=%22%23c8b250%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22%3E %3Cdefs%3E %3ClinearGradient id=%22a%22%3E %3Cstop offset=%220%22 stop-color=%22%23c2edff%22/%3E %3Cstop offset=%22.5%22 stop-color=%22%2368bdff%22/%3E %3Cstop offset=%221%22 stop-color=%22%23fff%22/%3E %3C/linearGradient%3E %3ClinearGradient id=%22b%22 x1=%2213.47%22 x2=%224.596%22 y1=%2214.363%22 y2=%223.397%22 xlink:href=%22%23a%22 gradientUnits=%22userSpaceOnUse%22/%3E %3C/defs%3E %3Cpath fill=%22url%28%23b%29%22 stroke=%22%23c8b250%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E');
 		}
 
 		.vectorTabs #ca-watch.icon a:hover,
 		.vectorTabs #ca-watch.icon a:focus {
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/watch-icon-hl.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/watch-icon-hl.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%23c8b250%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%23c8b250%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E');
 		}
 
 		.vectorTabs #ca-unwatch.icon a.loading,
 		.vectorTabs #ca-watch.icon a.loading {
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/watch-icon-loading.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/watch-icon-loading.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%23c8ccd1%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%23c8ccd1%22 stroke-width=%22.99992%22 d=%22M8.103 1.146l2.175 4.408 4.864.707-3.52 3.431.831 4.845-4.351-2.287-4.351 2.287.831-4.845-3.52-3.431 4.864-.707z%22/%3E %3C/svg%3E');
 			-webkit-animation: rotate 700ms infinite linear;
 			-moz-animation: rotate 700ms infinite linear;
 			animation: rotate 700ms infinite linear;
@@ -4037,7 +4038,7 @@ export const Wrapper = styled.div`
 			height: 5em;
 			background-position: bottom left;
 			background-repeat: repeat-x;
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/page-fade.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/page-fade.png');
 			background-color: #f6f6f6;
 			background-image: -webkit-linear-gradient(top, #ffffff 50%, #f6f6f6 100%);
 			background-image: -moz-linear-gradient(top, #ffffff 50%, #f6f6f6 100%);
@@ -4114,7 +4115,7 @@ export const Wrapper = styled.div`
 			margin-left: 0.5em;
 			padding-top: 0;
 			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAAABCAAAAAAphRnkAAAAJ0lEQVQIW7XFsQEAIAyAMPD/b7uLWz8wS5youFW1UREfiIpH1Q2VBz7fGPS1dOGeAAAAAElFTkSuQmCC);
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/portal-break.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/portal-break.png');
 			background-repeat: no-repeat;
 		}
 
@@ -4200,9 +4201,9 @@ export const Wrapper = styled.div`
 		.mw-parser-output .external {
 			background-position: center right;
 			background-repeat: no-repeat;
-			background-image: url("en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png");
+			background-image: url('en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png');
 			background-image: linear-gradient(transparent, transparent),
-				url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%2336c%22 d=%22M1.5 4.518h5.982V10.5H1.5z%22/%3E %3Cpath fill=%22%2336c%22 d=%22M5.765 1H11v5.39L9.427 7.937l-1.31-1.31L5.393 9.35l-2.69-2.688 2.81-2.808L4.2 2.544z%22/%3E %3Cpath fill=%22%23fff%22 d=%22M9.995 2.004l.022 4.885L8.2 5.07 5.32 7.95 4.09 6.723l2.882-2.88-1.85-1.852z%22/%3E %3C/svg%3E");
+				url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%2336c%22 d=%22M1.5 4.518h5.982V10.5H1.5z%22/%3E %3Cpath fill=%22%2336c%22 d=%22M5.765 1H11v5.39L9.427 7.937l-1.31-1.31L5.393 9.35l-2.69-2.688 2.81-2.808L4.2 2.544z%22/%3E %3Cpath fill=%22%23fff%22 d=%22M9.995 2.004l.022 4.885L8.2 5.07 5.32 7.95 4.09 6.723l2.882-2.88-1.85-1.852z%22/%3E %3C/svg%3E');
 			padding-right: 13px;
 		}
 	}
@@ -4237,7 +4238,7 @@ export const Wrapper = styled.div`
 	}
 
 	.firstHeading:before {
-		content: url("en.wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en.svg");
+		content: url('en.wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en.svg');
 		display: block;
 		height: 18px;
 		left: -9999px;
@@ -4251,7 +4252,7 @@ export const Wrapper = styled.div`
 		.toc,
 		body {
 			padding: 10px;
-			font-family: "Linux Libertine", "Georgia", "Times", serif;
+			font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
 		}
 
 		.printfooter,
@@ -4269,7 +4270,7 @@ export const Wrapper = styled.div`
 		}
 
 		img {
-			font-family: "Linux Libertine", "Georgia", "Times", serif;
+			font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
 		}
 
 		a {
@@ -4336,7 +4337,7 @@ export const Wrapper = styled.div`
 		}
 
 		p:before {
-			content: "";
+			content: '';
 			display: block;
 			overflow: hidden;
 			width: 120pt;
@@ -4595,12 +4596,12 @@ export const Wrapper = styled.div`
 	}
 
 	.hlist dt:after {
-		content: ":";
+		content: ':';
 	}
 
 	.hlist dd:after,
 	.hlist li:after {
-		content: " · ";
+		content: ' · ';
 		font-weight: bold;
 	}
 
@@ -4619,7 +4620,7 @@ export const Wrapper = styled.div`
 	.hlist li dd:first-child:before,
 	.hlist li dt:first-child:before,
 	.hlist li li:first-child:before {
-		content: " (";
+		content: ' (';
 		font-weight: normal;
 	}
 
@@ -4632,7 +4633,7 @@ export const Wrapper = styled.div`
 	.hlist li dd:last-child:after,
 	.hlist li dt:last-child:after,
 	.hlist li li:last-child:after {
-		content: ")";
+		content: ')';
 		font-weight: normal;
 	}
 
@@ -4645,13 +4646,13 @@ export const Wrapper = styled.div`
 	}
 
 	.hlist ol > li:before {
-		content: " " counter(listitem) "\a0";
+		content: ' ' counter(listitem) '\a0';
 	}
 
 	.hlist dd ol > li:first-child:before,
 	.hlist dt ol > li:first-child:before,
 	.hlist li ol > li:first-child:before {
-		content: " (" counter(listitem) "\a0";
+		content: ' (' counter(listitem) '\a0';
 	}
 
 	.plainlist ol,
@@ -4919,7 +4920,7 @@ export const Wrapper = styled.div`
 		padding: 0;
 	}
 
-	.wikitable.plainrowheaders th[scope="row"] {
+	.wikitable.plainrowheaders th[scope='row'] {
 		font-weight: normal;
 		text-align: left;
 	}
@@ -4939,7 +4940,7 @@ export const Wrapper = styled.div`
 	}
 
 	div.listenlist {
-		background: url("upload.wikimedia.org/wikipedia/commons/4/47/Sound-icon.svg") no-repeat scroll 0 0 transparent;
+		background: url('upload.wikimedia.org/wikipedia/commons/4/47/Sound-icon.svg') no-repeat scroll 0 0 transparent;
 		background-size: 30px;
 		padding-left: 40px;
 	}
@@ -4970,13 +4971,13 @@ export const Wrapper = styled.div`
 		padding-bottom: 0;
 	}
 
-	.mw-parser-output a[href$=".pdf"].external,
-	.mw-parser-output a[href*=".pdf?"].external,
-	.mw-parser-output a[href*=".pdf#"].external,
-	.mw-parser-output a[href$=".PDF"].external,
-	.mw-parser-output a[href*=".PDF?"].external,
-	.mw-parser-output a[href*=".PDF#"].external {
-		background: url("upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
+	.mw-parser-output a[href$='.pdf'].external,
+	.mw-parser-output a[href*='.pdf?'].external,
+	.mw-parser-output a[href*='.pdf#'].external,
+	.mw-parser-output a[href$='.PDF'].external,
+	.mw-parser-output a[href*='.PDF?'].external,
+	.mw-parser-output a[href*='.PDF#'].external {
+		background: url('upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif') no-repeat right;
 		padding-right: 18px;
 	}
 
@@ -5388,13 +5389,13 @@ export const Wrapper = styled.div`
 		display: list-item;
 		line-height: 1.5em;
 		list-style-type: square;
-		list-style-image: url("en.wikipedia.org/w/skins/MonoBook/resources/images/bullet.gif");
+		list-style-image: url('en.wikipedia.org/w/skins/MonoBook/resources/images/bullet.gif');
 	}
 
 	.skin-vector .compact-ambox table .mbox-text-span {
 		list-style-type: disc;
-		list-style-image: url("en.wikipedia.org/w/skins/Vector/images/bullet-icon.svg");
-		list-style-image: url("en.wikipedia.org/w/skins/Vector/images/bullet-icon.png");
+		list-style-image: url('en.wikipedia.org/w/skins/Vector/images/bullet-icon.svg');
+		list-style-image: url('en.wikipedia.org/w/skins/Vector/images/bullet-icon.png');
 	}
 
 	.compact-ambox .hide-when-compact {
@@ -5609,7 +5610,7 @@ export const Wrapper = styled.div`
 
 	.times-serif,
 	span.texhtml {
-		font-family: "Nimbus Roman No9 L", "Times New Roman", Times, serif;
+		font-family: 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;
 		font-size: 118%;
 		line-height: 1;
 	}
@@ -5628,9 +5629,9 @@ export const Wrapper = styled.div`
 
 	.digits,
 	.texhtml {
-		-moz-font-feature-settings: "lnum", "tnum", "kern" 0;
-		-webkit-font-feature-settings: "lnum", "tnum", "kern" 0;
-		font-feature-settings: "lnum", "tnum", "kern" 0;
+		-moz-font-feature-settings: 'lnum', 'tnum', 'kern' 0;
+		-webkit-font-feature-settings: 'lnum', 'tnum', 'kern' 0;
+		font-feature-settings: 'lnum', 'tnum', 'kern' 0;
 		font-variant-numeric: lining-nums tabular-nums;
 		font-kerning: none;
 	}
@@ -5694,7 +5695,7 @@ export const Wrapper = styled.div`
 	}
 
 	#bodyContent .letterhead {
-		background-image: url("upload.wikimedia.org/wikipedia/commons/e/e0/Tan-page-corner.png");
+		background-image: url('upload.wikimedia.org/wikipedia/commons/e/e0/Tan-page-corner.png');
 		background-repeat: no-repeat;
 		padding: 2em;
 		background-color: #faf9f2;
@@ -5738,7 +5739,7 @@ export const Wrapper = styled.div`
 		}
 
 		.gallerybox .thumb img {
-			background: #fff url("upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png") repeat;
+			background: #fff url('upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png') repeat;
 		}
 
 		.ns-0 .gallerybox .thumb img,

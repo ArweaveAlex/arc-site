@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
 export enum ArtifactEnum {
-	Messaging = "Alex-Messaging",
-	Webpage = "Alex-Webpage",
-	Reddit = "Artifact-Reddit-Thread"
+	Messaging = 'Alex-Messaging',
+	Webpage = 'Alex-Webpage',
+	Reddit = 'Alex-Reddit-Thread',
 }
 
 export enum CursorEnum {
-	GQL = "gql",
-	Search = "search",
+	GQL = 'gql',
+	Search = 'search',
 }
 
 export type GQLResponseType = {
@@ -89,9 +89,9 @@ export interface CollectionType {
 }
 
 export interface CollectionStateType {
-	title: string
-    description: string
-    ids: string[]
+	title: string;
+	description: string;
+	ids: string[];
 }
 
 export interface PoolSearchIndexType {
@@ -105,17 +105,17 @@ export interface PoolSearchIndexStateType {
 	searchIndeces: string[];
 }
 
-export type ButtonType = "primary" | "alt1" | "alt2";
-export type FormFieldType = "number" | "password";
-export type NotificationType = "success" | "warning" | "neutral";
-export type AlignType = "left" | "center" | "right";
+export type ButtonType = 'primary' | 'alt1' | 'alt2';
+export type FormFieldType = 'number' | 'password';
+export type NotificationType = 'success' | 'warning' | 'neutral';
+export type AlignType = 'left' | 'center' | 'right';
 export type ContributionResultType = {
 	status: boolean;
 	message: string | null;
 };
 export type RefType = { current: HTMLElement };
-export type DateType = "iso" | "epoch";
-export type PageShareType = "primary" | "alt1";
+export type DateType = 'iso' | 'epoch';
+export type PageShareType = 'primary' | 'alt1';
 export type CursorType = {
 	next: string | null;
 	previous: string | null;
@@ -148,11 +148,11 @@ export type TableHeaderType = {
 };
 
 export type ArtifactTableRowType = {
-	type?: React.ReactNode;
 	title?: React.ReactNode;
+	type?: React.ReactNode;
 	pool?: React.ReactNode;
 	dateCreated?: string;
-	collection?: React.ReactNode;
+	actions?: React.ReactNode;
 	callback?: React.ReactNode;
 };
 
@@ -161,23 +161,20 @@ export type ReduxActionType = {
 	payload: any;
 };
 
-export type CollectionResponseType = {
+export type BookmarkResponseType = {
 	status: number | null;
 	message: string | null;
 };
 
 export type TableIdType = {
 	value: string;
-	type: "poolId" | "ownerId";
+	type: 'poolId' | 'ownerId';
 };
 
 export type TagFilterType = { name: string; values: string[] };
 export type ContributionType = { timestamp: string; qty: string };
 export type PoolFilterType = { title: string; fn: (data: any) => any };
 export type CursorObjectKeyType = CursorEnum.GQL | CursorEnum.Search | null;
-export type CursorObjectType = {
-	key: CursorObjectKeyType;
-	value: string;
-};
-
+export type CursorObjectType = { key: CursorObjectKeyType; value: string; };
+export type ActionDropdownType = { fn: () => void; closeOnAction: boolean; subComponent: { node: React.ReactNode, active: boolean } | null; label: string; disabled: boolean; }
 export type SequenceType = { start: number; end: number };

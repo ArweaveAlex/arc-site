@@ -1,4 +1,4 @@
-import { NotificationType } from "helpers/types";
+import { NotificationType } from 'helpers/types';
 
 export interface IProps {
 	message: string;

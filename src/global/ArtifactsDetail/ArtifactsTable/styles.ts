@@ -1,10 +1,9 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
 export const TypeContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	position: relative;
 	svg {
@@ -14,6 +13,55 @@ export const TypeContainer = styled.div`
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+	}
+`;
+
+export const TypeLabel = styled.div`
+	height: 100%;
+	width: calc(100% - 25px);
+	padding: 0 10px 0 0;
+	display: flex;
+	align-items: center;
+	position: relative;
+`;
+
+export const Icons = styled.div`
+	height: 100%;
+	width: 25px;
+	position: absolute;
+	right: 0;
+	border-left: 1px solid ${(props) => props.theme.colors.border.alt5};
+	border-right: 1px solid ${(props) => props.theme.colors.border.alt5};
+`;
+
+export const Divider = styled.div`
+	height: 1px;
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+	border-top: 1px solid ${(props) => props.theme.colors.border.alt5};
+`;
+
+export const Icon = styled.div`
+	height: 50%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	svg {
+		height: 100%;
+		width: 10px;
+		fill: ${(props) => props.theme.colors.font.primary.active.base};
+	}
+`;
+
+export const AssociationIcon = styled(Icon)`
+	top: auto;
+	bottom: 0;
+	svg {
+		width: 12.5px;
+		fill: ${(props) => props.theme.colors.font.primary.active.base};
 	}
 `;
 
@@ -38,7 +86,8 @@ export const ALink = styled.div`
 	a,
 	span,
 	b {
-		font-size: ${(props) => props.theme.typography.size.xSmall};
+		font-size: ${(props) => props.theme.typography.size.xxSmall};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
 	a {
 		line-height: 18px;
@@ -53,79 +102,8 @@ export const ALink = styled.div`
 	}
 `;
 
-export const ALinkNT = styled.div`
-	height: 100%;
-	width: 30px;
-	margin: 0 0 0 5px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-	svg {
-		width: 12.5px;
-		fill: ${(props) => props.theme.colors.button.alt1.background};
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		&:hover {
-			fill: ${(props) => props.theme.colors.button.alt1.hover};
-		}
-	}
-`;
-
 export const PLink = styled(ALink)`
-	max-width: none;
-`;
-
-export const Icons = styled.div`
-	height: 100%;
-	width: 80px;
-	display: flex;
-	position: absolute;
-	right: 0;
-	svg {
-		width: 12.5px;
-		fill: ${(props) => props.theme.colors.font.primary.active.base};
-	}
-`;
-
-export const Icon = styled.div`
-	height: 100%;
-	width: 50%;
-	display: flex;
-	justify-content: end;
-	align-items: center;
-	position: absolute;
-	top: 50%;
-	left: 0;
-	right: auto;
-	transform: translate(0, -50%);
-`;
-
-export const AssociationIcon = styled(Icon)`
-	right: 0;
-	left: auto;
-	svg {
-		width: 15px;
-		fill: ${(props) => props.theme.colors.font.primary.active.base};
-	}
-`;
-
-export const CollectionToggle = styled.div`
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-	svg {
-		fill: ${(props) => props.theme.colors.icon.alt1.fill} !important;
-		margin: 0 0 5px 0;
-	}
-	button {
-		margin: 7.5px 0 0 0;
-	}
+	max-width: 100%;
 `;
 
 export const CheckboxContainer = styled.div`

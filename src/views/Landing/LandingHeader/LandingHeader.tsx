@@ -1,8 +1,8 @@
-import { ReactSVG } from "react-svg";
+import { ReactSVG } from 'react-svg';
 
-import { ASSETS, OPERATOR_LINK } from "helpers/config";
-import { LANGUAGE } from "helpers/language";
-import * as S from "./styles";
+import { ASSETS, OPERATOR_LINK } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import * as S from './styles';
 
 export default function LandingHeader() {
 	return (
@@ -31,7 +31,7 @@ export default function LandingHeader() {
 						<S.Subheader2>
 							<p>{LANGUAGE.banner.subheader2}&nbsp;</p>
 							<S.Link>
-								<a target={"_blank"} href={OPERATOR_LINK} rel={"noreferrer"}>
+								<a target={'_blank'} href={OPERATOR_LINK} rel={'noreferrer'}>
 									{LANGUAGE.poolOperator}
 								</a>
 							</S.Link>
