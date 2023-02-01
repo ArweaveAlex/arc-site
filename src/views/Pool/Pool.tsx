@@ -1,21 +1,21 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-import { getPoolById, getPoolCount } from "gql/pools";
+import { getPoolById, getPoolCount } from 'gql/pools';
 
-import { Loader } from "components/atoms/Loader";
+import { Loader } from 'components/atoms/Loader';
 
-import { PoolHeader } from "./PoolHeader";
-import { PoolStatistics } from "./PoolStatistics";
-import { PoolDetail } from "./PoolDetail";
+import { PoolHeader } from './PoolHeader';
+import { PoolStatistics } from './PoolStatistics';
+import { PoolDetail } from './PoolDetail';
 
-import { PoolType, CursorEnum } from "helpers/types";
-import { getTxEndpoint } from "helpers/endpoints";
-import { formatDate, getTagValue } from "helpers/utils";
-import { TAGS, FALLBACK_IMAGE } from "helpers/config";
-import { REDUX_TABLES } from "helpers/redux";
-import * as S from "./styles";
-import { getArtifactsByPool } from "gql/artifacts";
+import { PoolType, CursorEnum } from 'helpers/types';
+import { getTxEndpoint } from 'helpers/endpoints';
+import { formatDate, getTagValue } from 'helpers/utils';
+import { TAGS, FALLBACK_IMAGE } from 'helpers/config';
+import { REDUX_TABLES } from 'helpers/redux';
+import * as S from './styles';
+import { getArtifactsByPool } from 'gql/artifacts';
 
 export default function Pool() {
 	const { id } = useParams();
@@ -69,7 +69,7 @@ export default function Pool() {
 				image={imageUrl}
 				title={headerData.state.title}
 				description={headerData.state.description}
-				dateCreated={formatDate(headerData.state.timestamp, "epoch")}
+				dateCreated={formatDate(headerData.state.timestamp, 'epoch')}
 				count={count}
 				totalContributions={headerData.state.totalContributions}
 				contributors={headerData.state.contributors}
@@ -84,7 +84,7 @@ export default function Pool() {
 	function getPoolDetail() {
 		return (
 			<PoolDetail
-				id={{ value: id, type: "poolId" }}
+				id={{ value: id, type: 'poolId' }}
 				cursorObject={{
 					key: CursorEnum.Search,
 					value: REDUX_TABLES.poolAll,
@@ -97,7 +97,7 @@ export default function Pool() {
 	return headerData ? (
 		<>
 			<S.Wrapper>
-				{getPoolHeader()}
+				{/* {getPoolHeader()} */}
 				{getPoolStatistics()}
 				{getPoolDetail()}
 			</S.Wrapper>

@@ -1,1 +1,1 @@
-export { default as OwnerCollectionsList } from "./OwnerCollectionsList";
+export { default as OwnerCollectionsList } from './OwnerCollectionsList';

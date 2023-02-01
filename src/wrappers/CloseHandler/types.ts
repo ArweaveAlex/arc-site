@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 export interface IProps {
 	active: boolean;
-	handler: () => void;
+	callback: () => void;
 	children: React.ReactNode;
 }

@@ -1,7 +1,7 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
-import { loadingSlide } from "helpers/animations";
+import { STYLING } from 'helpers/styling';
+import { loadingSlide } from 'helpers/animations';
 
 export const PlaceholderWrapper = styled.div``;
 

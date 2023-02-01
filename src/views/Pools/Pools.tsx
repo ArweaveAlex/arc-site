@@ -1,17 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { RootState } from "redux/store";
-import { ReduxPoolsUpdate } from "redux/pools/ReduxPoolsUpdate";
+import { RootState } from 'redux/store';
+import { ReduxPoolsUpdate } from 'redux/pools/ReduxPoolsUpdate';
 
-import { PoolsHeader } from "./PoolsHeader";
-import { PoolsGrid } from "./PoolsGrid";
+import { PoolsHeader } from './PoolsHeader';
+import { PoolsGrid } from './PoolsGrid';
 
-import { Loader } from "components/atoms/Loader";
+import { Loader } from 'components/atoms/Loader';
 
-import { PoolType } from "helpers/types";
-import { POOL_FILTERS } from "helpers/config";
-import * as S from "./styles";
+import { PoolType } from 'helpers/types';
+import { POOL_FILTERS } from 'helpers/config';
+import * as S from './styles';
 
 export default function Pools() {
 	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);

@@ -1,21 +1,21 @@
-import { ReduxActionType } from "helpers/types";
-import { SearchIdsType, SearchTermType, SearchIndecesType } from "./types";
-import { SET_SEARCH_IDS, CLEAR_SEARCH_IDS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, SET_SEARCH_INDECES, CLEAR_SEARCH_INDECES } from "./constants";
-import { REDUX_TABLES } from "helpers/redux";
+import { ReduxActionType } from 'helpers/types';
+import { SearchIdsType, SearchTermType, SearchIndecesType } from './types';
+import { SET_SEARCH_IDS, CLEAR_SEARCH_IDS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, SET_SEARCH_INDECES, CLEAR_SEARCH_INDECES } from './constants';
+import { REDUX_TABLES } from 'helpers/redux';
 
 export const initStateSearchIds: SearchIdsType = {
 	[REDUX_TABLES.accountAll]: [],
-	[REDUX_TABLES.accountCollections]: [],
+	[REDUX_TABLES.accountBookmarks]: [],
 	[REDUX_TABLES.poolAll]: [],
 	[REDUX_TABLES.libraryAll]: [],
-	[REDUX_TABLES.libraryCollections]: [],
+	[REDUX_TABLES.libraryBookmarks]: [],
 };
 
 function checkPayload(payload: any, reduxCursor: string) {
 	if (payload === null || payload === undefined) {
 		return false;
 	} else {
-		if (payload[reduxCursor] === "") {
+		if (payload[reduxCursor] === '') {
 			return true;
 		}
 		if (payload[reduxCursor]) {
@@ -31,14 +31,10 @@ export function searchIdsReducer(state: SearchIdsType = initStateSearchIds, acti
 		case SET_SEARCH_IDS:
 			return Object.assign({}, state, {
 				[REDUX_TABLES.accountAll]: checkPayload(action.payload, REDUX_TABLES.accountAll) ? action.payload[REDUX_TABLES.accountAll] : state[REDUX_TABLES.accountAll],
-				[REDUX_TABLES.accountCollections]: checkPayload(action.payload, REDUX_TABLES.accountCollections)
-					? action.payload[REDUX_TABLES.accountCollections]
-					: state[REDUX_TABLES.accountCollections],
+				[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, REDUX_TABLES.accountBookmarks) ? action.payload[REDUX_TABLES.accountBookmarks] : state[REDUX_TABLES.accountBookmarks],
 				[REDUX_TABLES.poolAll]: checkPayload(action.payload, REDUX_TABLES.poolAll) ? action.payload[REDUX_TABLES.poolAll] : state[REDUX_TABLES.poolAll],
 				[REDUX_TABLES.libraryAll]: checkPayload(action.payload, REDUX_TABLES.libraryAll) ? action.payload[REDUX_TABLES.libraryAll] : state[REDUX_TABLES.libraryAll],
-				[REDUX_TABLES.libraryCollections]: checkPayload(action.payload, REDUX_TABLES.libraryCollections)
-					? action.payload[REDUX_TABLES.libraryCollections]
-					: state[REDUX_TABLES.libraryCollections],
+				[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, REDUX_TABLES.libraryBookmarks) ? action.payload[REDUX_TABLES.libraryBookmarks] : state[REDUX_TABLES.libraryBookmarks],
 			});
 		case CLEAR_SEARCH_IDS:
 			return Object.assign({}, initStateSearchIds);
@@ -49,24 +45,24 @@ export function searchIdsReducer(state: SearchIdsType = initStateSearchIds, acti
 
 export const initStateSearchTerm: SearchTermType = {
 	[REDUX_TABLES.accountAll]: {
-		value: "",
-		id: { value: "", type: null },
+		value: '',
+		id: { value: '', type: null },
 	},
-	[REDUX_TABLES.accountCollections]: {
-		value: "",
-		id: { value: "", type: null },
+	[REDUX_TABLES.accountBookmarks]: {
+		value: '',
+		id: { value: '', type: null },
 	},
 	[REDUX_TABLES.poolAll]: {
-		value: "",
-		id: { value: "", type: null },
+		value: '',
+		id: { value: '', type: null },
 	},
 	[REDUX_TABLES.libraryAll]: {
-		value: "",
-		id: { value: "", type: null },
+		value: '',
+		id: { value: '', type: null },
 	},
-	[REDUX_TABLES.libraryCollections]: {
-		value: "",
-		id: { value: "", type: null },
+	[REDUX_TABLES.libraryBookmarks]: {
+		value: '',
+		id: { value: '', type: null },
 	},
 };
 
@@ -75,38 +71,34 @@ export function searchTermReducer(state: SearchTermType = initStateSearchTerm, a
 		case SET_SEARCH_TERM:
 			return Object.assign({}, state, {
 				[REDUX_TABLES.accountAll]: checkPayload(action.payload, REDUX_TABLES.accountAll) ? action.payload[REDUX_TABLES.accountAll] : state[REDUX_TABLES.accountAll],
-				[REDUX_TABLES.accountCollections]: checkPayload(action.payload, REDUX_TABLES.accountCollections)
-					? action.payload[REDUX_TABLES.accountCollections]
-					: state[REDUX_TABLES.accountCollections],
+				[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, REDUX_TABLES.accountBookmarks) ? action.payload[REDUX_TABLES.accountBookmarks] : state[REDUX_TABLES.accountBookmarks],
 				[REDUX_TABLES.poolAll]: checkPayload(action.payload, REDUX_TABLES.poolAll) ? action.payload[REDUX_TABLES.poolAll] : state[REDUX_TABLES.poolAll],
 				[REDUX_TABLES.libraryAll]: checkPayload(action.payload, REDUX_TABLES.libraryAll) ? action.payload[REDUX_TABLES.libraryAll] : state[REDUX_TABLES.libraryAll],
-				[REDUX_TABLES.libraryCollections]: checkPayload(action.payload, REDUX_TABLES.libraryCollections)
-					? action.payload[REDUX_TABLES.libraryCollections]
-					: state[REDUX_TABLES.libraryCollections],
+				[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, REDUX_TABLES.libraryBookmarks) ? action.payload[REDUX_TABLES.libraryBookmarks] : state[REDUX_TABLES.libraryBookmarks],
 			});
 		case CLEAR_SEARCH_TERM:
 			return Object.assign(
 				{},
 				{
 					[REDUX_TABLES.accountAll]: {
-						value: "",
+						value: '',
 						id: state[REDUX_TABLES.accountAll].id,
 					},
-					[REDUX_TABLES.accountCollections]: {
-						value: "",
-						id: state[REDUX_TABLES.accountCollections].id,
+					[REDUX_TABLES.accountBookmarks]: {
+						value: '',
+						id: state[REDUX_TABLES.accountBookmarks].id,
 					},
 					[REDUX_TABLES.poolAll]: {
-						value: "",
+						value: '',
 						id: state[REDUX_TABLES.poolAll].id,
 					},
 					[REDUX_TABLES.libraryAll]: {
-						value: "",
+						value: '',
 						id: state[REDUX_TABLES.libraryAll].id,
 					},
-					[REDUX_TABLES.libraryCollections]: {
-						value: "",
-						id: state[REDUX_TABLES.libraryCollections].id,
+					[REDUX_TABLES.libraryBookmarks]: {
+						value: '',
+						id: state[REDUX_TABLES.libraryBookmarks].id,
 					},
 				}
 			);
@@ -118,23 +110,23 @@ export function searchTermReducer(state: SearchTermType = initStateSearchTerm, a
 export const initStateSearchIndeces: SearchTermType = {
 	[REDUX_TABLES.accountAll]: {
 		value: [],
-		id: { value: "", type: null },
+		id: { value: '', type: null },
 	},
-	[REDUX_TABLES.accountCollections]: {
+	[REDUX_TABLES.accountBookmarks]: {
 		value: [],
-		id: { value: "", type: null },
+		id: { value: '', type: null },
 	},
 	[REDUX_TABLES.poolAll]: {
 		value: [],
-		id: { value: "", type: null },
+		id: { value: '', type: null },
 	},
 	[REDUX_TABLES.libraryAll]: {
 		value: [],
-		id: { value: "", type: null },
+		id: { value: '', type: null },
 	},
-	[REDUX_TABLES.libraryCollections]: {
+	[REDUX_TABLES.libraryBookmarks]: {
 		value: [],
-		id: { value: "", type: null },
+		id: { value: '', type: null },
 	},
 };
 
@@ -143,14 +135,10 @@ export function searchIndecesReducer(state: SearchIndecesType = initStateSearchI
 		case SET_SEARCH_INDECES:
 			return Object.assign({}, state, {
 				[REDUX_TABLES.accountAll]: checkPayload(action.payload, REDUX_TABLES.accountAll) ? action.payload[REDUX_TABLES.accountAll] : state[REDUX_TABLES.accountAll],
-				[REDUX_TABLES.accountCollections]: checkPayload(action.payload, REDUX_TABLES.accountCollections)
-					? action.payload[REDUX_TABLES.accountCollections]
-					: state[REDUX_TABLES.accountCollections],
+				[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, REDUX_TABLES.accountBookmarks) ? action.payload[REDUX_TABLES.accountBookmarks] : state[REDUX_TABLES.accountBookmarks],
 				[REDUX_TABLES.poolAll]: checkPayload(action.payload, REDUX_TABLES.poolAll) ? action.payload[REDUX_TABLES.poolAll] : state[REDUX_TABLES.poolAll],
 				[REDUX_TABLES.libraryAll]: checkPayload(action.payload, REDUX_TABLES.libraryAll) ? action.payload[REDUX_TABLES.libraryAll] : state[REDUX_TABLES.libraryAll],
-				[REDUX_TABLES.libraryCollections]: checkPayload(action.payload, REDUX_TABLES.libraryCollections)
-					? action.payload[REDUX_TABLES.libraryCollections]
-					: state[REDUX_TABLES.libraryCollections],
+				[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, REDUX_TABLES.libraryBookmarks) ? action.payload[REDUX_TABLES.libraryBookmarks] : state[REDUX_TABLES.libraryBookmarks],
 			});
 		case CLEAR_SEARCH_INDECES:
 			return Object.assign(
@@ -160,9 +148,9 @@ export function searchIndecesReducer(state: SearchIndecesType = initStateSearchI
 						value: [],
 						id: state[REDUX_TABLES.accountAll].id,
 					},
-					[REDUX_TABLES.accountCollections]: {
+					[REDUX_TABLES.accountBookmarks]: {
 						value: [],
-						id: state[REDUX_TABLES.accountCollections].id,
+						id: state[REDUX_TABLES.accountBookmarks].id,
 					},
 					[REDUX_TABLES.poolAll]: {
 						value: [],
@@ -172,9 +160,9 @@ export function searchIndecesReducer(state: SearchIndecesType = initStateSearchI
 						value: [],
 						id: state[REDUX_TABLES.libraryAll].id,
 					},
-					[REDUX_TABLES.libraryCollections]: {
+					[REDUX_TABLES.libraryBookmarks]: {
 						value: [],
-						id: state[REDUX_TABLES.libraryCollections].id,
+						id: state[REDUX_TABLES.libraryBookmarks].id,
 					},
 				}
 			);

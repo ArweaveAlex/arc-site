@@ -1,4 +1,4 @@
-import { PoolType, PoolSearchIndexType } from "helpers/types";
+import { PoolType, PoolSearchIndexType } from 'helpers/types';
 
 export type PoolsType = {
 	data: PoolType[] | null;

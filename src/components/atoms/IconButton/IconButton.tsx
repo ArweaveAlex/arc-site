@@ -1,7 +1,7 @@
-import { ReactSVG } from "react-svg";
+import { ReactSVG } from 'react-svg';
 
-import * as S from "./styles";
-import { IProps } from "./types";
+import * as S from './styles';
+import { IProps } from './types';
 
 export default function IconButton(props: IProps) {
 	const buttonStyle = getType();
@@ -12,12 +12,12 @@ export default function IconButton(props: IProps) {
 			wrapper: any;
 		};
 		switch (props.type) {
-			case "alt1":
+			case 'alt1':
 				buttonObj = {
 					wrapper: S.Alt1,
 				};
 				return buttonObj;
-			case "alt2":
+			case 'alt2':
 				buttonObj = {
 					wrapper: S.Alt2,
 				};

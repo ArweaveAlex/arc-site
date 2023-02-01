@@ -1,1 +1,1 @@
-export { default as AccountContributions } from "./AccountContributions";
+export { default as AccountContributions } from './AccountContributions';

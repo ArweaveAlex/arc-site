@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.footer`
 	height: 50px;

@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import * as window from "helpers/window";
-import * as S from "./styles";
+import * as window from 'helpers/window';
+import * as S from './styles';
 
 class Tab extends React.Component<any, any> {
 	static propTypes = {

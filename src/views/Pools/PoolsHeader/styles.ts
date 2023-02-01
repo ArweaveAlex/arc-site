@@ -1,7 +1,7 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { open, fadeIn2 } from "helpers/animations";
-import { STYLING } from "helpers/styling";
+import { open, fadeIn2 } from 'helpers/animations';
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	height: 100%;

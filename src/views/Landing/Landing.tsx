@@ -1,20 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { RootState } from "redux/store";
-import { ReduxPoolsUpdate } from "redux/pools/ReduxPoolsUpdate";
+import { RootState } from 'redux/store';
+import { ReduxPoolsUpdate } from 'redux/pools/ReduxPoolsUpdate';
 
-import { Loader } from "components/atoms/Loader";
+import { Loader } from 'components/atoms/Loader';
 
-import { LandingHeader } from "./LandingHeader";
-import { LandingPools } from "./LandingPools";
-import { LandingInfo } from "./LandingInfo";
-import { LandingSteps } from "./LandingSteps";
+import { LandingHeader } from './LandingHeader';
+import { LandingPools } from './LandingPools';
+import { LandingInfo } from './LandingInfo';
+import { LandingSteps } from './LandingSteps';
 
-import { PoolType } from "helpers/types";
-import { sortByMostContributed } from "filters/pools";
-import * as S from "./styles";
+import { PoolType } from 'helpers/types';
+import { sortByMostContributed } from 'filters/pools';
+import * as S from './styles';
 
+// TODO - Remote Assets
 export default function Landing() {
 	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 

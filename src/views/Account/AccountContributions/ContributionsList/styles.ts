@@ -1,7 +1,7 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { open, fadeIn2 } from "helpers/animations";
-import { STYLING } from "helpers/styling";
+import { open, fadeIn2 } from 'helpers/animations';
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	width: 100%;
@@ -26,9 +26,12 @@ export const HeaderFlex = styled.div`
 `;
 
 export const H2 = styled.h2`
-	font-size: 32px;
+	font-size: 28px;
 	font-family: ${(props) => props.theme.typography.family.alt1};
 	color: ${(props) => props.theme.colors.font.primary.alt4};
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		font-size: 24px;
+	}
 `;
 
 export const List = styled.ol`

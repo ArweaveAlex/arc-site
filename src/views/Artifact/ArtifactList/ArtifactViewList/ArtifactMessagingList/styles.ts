@@ -1,11 +1,11 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
-import { open, fadeIn2 } from "helpers/animations";
+import { STYLING } from 'helpers/styling';
+import { open, fadeIn2 } from 'helpers/animations';
 
-const THREAD_WIDTH = "600px";
-const DETAIL_WIDTH = "500px";
-const WRAP_WIDTH = "675px";
+const THREAD_WIDTH = '600px';
+const DETAIL_WIDTH = '500px';
+const WRAP_WIDTH = '675px';
 
 export const Wrapper = styled.div`
     display: flex;

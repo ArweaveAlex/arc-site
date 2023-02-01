@@ -1,1 +1,1 @@
-export { default as ArweaveClient } from "./ArweaveClient";
+export { default as ArweaveClient } from './ArweaveClient';

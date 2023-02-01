@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { getBalanceEndpoint } from "helpers/endpoints";
-import { AR_WALLETS, WALLET_PERMISSIONS } from "helpers/config";
+import { getBalanceEndpoint } from 'helpers/endpoints';
+import { AR_WALLETS, WALLET_PERMISSIONS } from 'helpers/config';
 
 interface ArweaveContextState {
 	wallets: { name: string; logo: string }[];
@@ -82,10 +82,10 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 
 		handleWallet();
 
-		window.addEventListener("arweaveWalletLoaded", handleWallet);
+		window.addEventListener('arweaveWalletLoaded', handleWallet);
 
 		return () => {
-			window.removeEventListener("arweaveWalletLoaded", handleWallet);
+			window.removeEventListener('arweaveWalletLoaded', handleWallet);
 		};
 	});
 

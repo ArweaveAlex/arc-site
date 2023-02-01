@@ -1,9 +1,9 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import * as poolActions from "redux/pools/actions";
-import { RootState } from "redux/store";
-import { getPools } from "gql/pools";
+import * as poolActions from 'redux/pools/actions';
+import { RootState } from 'redux/store';
+import { getPools } from 'gql/pools';
 
 export default function ReduxPoolsUpdate(props: { children: React.ReactNode }) {
 	const dispatch = useDispatch();

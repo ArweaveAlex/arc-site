@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Select } from "components/atoms/Select";
+import { Select } from 'components/atoms/Select';
 
-import { PoolType, PoolFilterType } from "helpers/types";
-import { getTxEndpoint } from "helpers/endpoints";
-import * as urls from "helpers/urls";
-import { formatDate } from "helpers/utils";
-import { FALLBACK_IMAGE, POOL_FILTERS } from "helpers/config";
-import { LANGUAGE } from "helpers/language";
-import * as S from "./styles";
+import { PoolType, PoolFilterType } from 'helpers/types';
+import { getTxEndpoint } from 'helpers/endpoints';
+import * as urls from 'helpers/urls';
+import { formatDate } from 'helpers/utils';
+import { FALLBACK_IMAGE, POOL_FILTERS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import * as S from './styles';
 
 function PoolTile(props: PoolType) {
 	const [poolUrl, setPoolsUrl] = React.useState<string | null>(null);
@@ -40,7 +40,7 @@ function PoolTile(props: PoolType) {
 						</S.DC1>
 						&nbsp;
 						<S.DC2>
-							<p>{formatDate(props.state.timestamp, "epoch")}</p>
+							<p>{formatDate(props.state.timestamp, 'epoch')}</p>
 						</S.DC2>
 					</S.DCContainer>
 				</S.Info>

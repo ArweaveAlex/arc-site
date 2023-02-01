@@ -1,1 +1,1 @@
-export { default as ArtifactWebpageSingle } from "./ArtifactWebpageSingle";
+export { default as ArtifactWebpageSingle } from './ArtifactWebpageSingle';

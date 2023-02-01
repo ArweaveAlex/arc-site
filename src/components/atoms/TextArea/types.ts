@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { ValidationType } from "helpers/types";
+import { ValidationType } from 'helpers/types';
 
 export interface IProps {
 	label?: string;

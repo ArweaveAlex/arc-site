@@ -1,13 +1,13 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-import { Button } from "components/atoms/Button";
-import { URLTabs } from "components/organisms/URLTabs";
+import { Button } from 'components/atoms/Button';
+import { URLTabs } from 'components/organisms/URLTabs';
 
-import { formatAddress } from "helpers/utils";
-import { LANGUAGE } from "helpers/language";
-import { ASSETS, URLS } from "helpers/config";
-import * as S from "./styles";
+import { formatAddress } from 'helpers/utils';
+import { LANGUAGE } from 'helpers/language';
+import { ASSETS, URLS } from 'helpers/config';
+import * as S from './styles';
 
 export default function Library() {
 	const { id } = useParams();
@@ -29,7 +29,7 @@ export default function Library() {
 							<S.Header1>{LANGUAGE.library.header1}</S.Header1>
 							&nbsp; &nbsp;
 							<S.Header2Container>
-								<S.Header2>{id ? formatAddress(id, true) : "N/A"}</S.Header2>
+								<S.Header2>{id ? formatAddress(id, true) : 'N/A'}</S.Header2>
 							</S.Header2Container>
 						</S.FlexHeader>
 					</S.HeaderContainer>
@@ -39,7 +39,7 @@ export default function Library() {
 								<p>{LANGUAGE.urlCopied}</p>
 							</S.URLCopied>
 						)}
-						<Button type={"primary"} label={LANGUAGE.shareUrlLabel} handlePress={copyUrl} icon={ASSETS.shareLink} iconLeftAlign />
+						<Button type={'primary'} label={LANGUAGE.shareUrlLabel} handlePress={copyUrl} icon={ASSETS.shareLink} iconLeftAlign />
 					</S.ShareWrapper>
 				</S.HeaderContent>
 			</S.HeaderWrapper>

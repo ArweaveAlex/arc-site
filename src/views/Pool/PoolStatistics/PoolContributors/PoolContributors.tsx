@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { ArweaveClient } from "clients/arweave";
+import { ArweaveClient } from 'clients/arweave';
 
-import { TableLoader } from "components/atoms/TableLoader";
+import { TableLoader } from 'components/atoms/TableLoader';
 
-import { formatAddress } from "helpers/utils";
-import * as urls from "helpers/urls";
-import { LANGUAGE } from "helpers/language";
-import { IProps } from "./types";
-import * as S from "./styles";
+import { formatAddress } from 'helpers/utils';
+import * as urls from 'helpers/urls';
+import { LANGUAGE } from 'helpers/language';
+import { IProps } from './types';
+import * as S from './styles';
 
 const ROW_COUNT = 3;
 

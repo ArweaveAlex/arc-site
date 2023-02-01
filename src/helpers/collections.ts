@@ -1,49 +1,46 @@
-import { ArweaveClient } from "clients/arweave";
-import { TAGS } from "./config";
-import { CollectionStateType } from "./types";
+import { ArweaveClient } from 'clients/arweave';
+import { TAGS } from './config';
+import { CollectionStateType } from './types';
 
 const arClient = new ArweaveClient();
 
 let collectionInitState = {
-    "title": "Alex Archiving Collection",
-    "name": "",
-    "description": "",
-    "ticker": "ALEXCOLLECTION",
-    "balances": {},
-    "maxSupply": 1,
-    "transferable": false,
-    "lockTime": 0,
-    "lastTransferTimestamp": null,
-    "ids": []
+	title: 'Alex Archiving Bookmark',
+	name: '',
+	description: '',
+	ticker: 'ALEXCOLLECTION',
+	balances: {},
+	maxSupply: 1,
+	transferable: false,
+	lockTime: 0,
+	lastTransferTimestamp: null,
+	ids: [],
 };
 
-export async function createCollection(
-    collection: CollectionStateType,
-    topic: string
-) {
-    const tags = [
-        { "name": TAGS.keys.appType, "value": TAGS.values.collectionAppType },
-        { "name": TAGS.keys.collectionName, "value": collection.title },
-        { "name": TAGS.keys.collectionDescription, "value": collection.description },
-        { "name": TAGS.keys.ansTitle, "value": collection.title },
-        { "name": TAGS.keys.ansTopic + ":" + topic, "value": topic },
-        { "name": TAGS.keys.ansDescription, "value": collection.description },
-        { "name": TAGS.keys.ansType, "value": TAGS.values.ansType },
-        { "name": TAGS.keys.ansImplements, "value": TAGS.values.ansVersion },
-    ];
+export async function createCollection(collection: CollectionStateType, topic: string) {
+	const tags = [
+		{ name: TAGS.keys.appType, value: TAGS.values.collectionAppType },
+		{ name: TAGS.keys.collectionName, value: collection.title },
+		{ name: TAGS.keys.collectionDescription, value: collection.description },
+		{ name: TAGS.keys.ansTitle, value: collection.title },
+		{ name: TAGS.keys.ansTopic + ':' + topic, value: topic },
+		{ name: TAGS.keys.ansDescription, value: collection.description },
+		{ name: TAGS.keys.ansType, value: TAGS.values.ansType },
+		{ name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
+	];
 
-    console.log(tags);
+	console.log(tags);
 
-    let collectionContract = await arClient.warp.createContract.deploy({
-        src: COLLECTION_CONTRACT,
-        initState: JSON.stringify(collectionInitState),
-        wallet: "use_wallet",
-        tags: tags
-    });
+	let collectionContract = await arClient.warp.createContract.deploy({
+		src: COLLECTION_CONTRACT,
+		initState: JSON.stringify(collectionInitState),
+		wallet: 'use_wallet',
+		tags: tags,
+	});
 
-    console.log("Collection contract id" + collectionContract.contractTxId);
+	console.log('Bookmark contract id' + collectionContract.contractTxId);
 
-    return collectionContract.contractTxId;
+	return collectionContract.contractTxId;
 }
 
 export const COLLECTION_CONTRACT = `

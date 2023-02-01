@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	height: 100%;
@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 	padding: 20px;
 `;
 
-export const CollectionToggle = styled.div`
+export const BookmarkToggle = styled.div`
 	height: 100%;
 	width: 100%;
 	display: flex;

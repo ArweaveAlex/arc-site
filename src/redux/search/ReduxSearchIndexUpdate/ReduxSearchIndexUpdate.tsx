@@ -1,11 +1,11 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import * as searchActions from "redux/search/actions";
-import { RootState } from "redux/store";
-import { initSearch } from "search";
+import * as searchActions from 'redux/search/actions';
+import { RootState } from 'redux/store';
+import { initSearch } from 'search';
 
-import { TableIdType } from "helpers/types";
+import { TableIdType } from 'helpers/types';
 
 export default function ReduxSearchIndexUpdate(props: { id: TableIdType; indexIds: string[] | null; reduxCursor: string; children: React.ReactNode }) {
 	const dispatch = useDispatch();

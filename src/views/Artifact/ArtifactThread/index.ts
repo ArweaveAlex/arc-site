@@ -1,1 +1,1 @@
-export { default as ArtifactThread } from "./ArtifactThread";
+export { default as ArtifactThread } from './ArtifactThread';

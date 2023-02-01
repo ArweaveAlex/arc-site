@@ -1,19 +1,17 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { ReactSVG } from "react-svg";
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 
-import { useArweaveProvider } from "providers/ArweaveProvider";
+import { Button } from 'components/atoms/Button';
+import { Modal } from 'components/molecules/Modal';
 
-import { Button } from "components/atoms/Button";
-import { Modal } from "components/molecules/Modal";
+import { CloseHandler } from 'wrappers/CloseHandler';
 
-import { CloseHandler } from "components/organisms/CloseHandler";
-
-import { formatAddress } from "helpers/utils";
-import { ASSETS, URLS } from "helpers/config";
-import { LANGUAGE } from "helpers/language";
-import * as S from "./styles";
+import { formatAddress } from 'helpers/utils';
+import { URLS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import * as S from './styles';
 
 function WalletList() {
 	const arProvider = useArweaveProvider();
@@ -22,7 +20,7 @@ function WalletList() {
 		<S.WalletListContainer>
 			{arProvider.wallets.map((wallet, index) => (
 				<S.WalletListItem key={index} onClick={() => arProvider.handleConnect()}>
-					<img src={`${wallet.logo}`} alt={""} />
+					<img src={`${wallet.logo}`} alt={''} />
 					<span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
 				</S.WalletListItem>
 			))}
@@ -68,40 +66,19 @@ export default function WalletConnect(props: { callback: () => void }) {
 	}
 
 	return (
-		<CloseHandler handler={() => setShowDropdown(!showDropdown)} active={showDropdown}>
+		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown}>
 			<S.Wrapper>
 				{arProvider.walletModalVisible && (
 					<Modal title={LANGUAGE.connectWallet} handleClose={() => arProvider.setWalletModalVisible(false)}>
 						<WalletList />
 					</Modal>
 				)}
-				<Button type={"primary"} label={arProvider.walletAddress ? formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet} handlePress={handlePress} useMaxWidth />
+				<Button type={'primary'} label={arProvider.walletAddress ? formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet} handlePress={handlePress} useMaxWidth />
 				{showDropdown && (
 					<S.WalletDropdown>
-						<li onClick={handleViewAccount}>
-							<S.Icon strokeFill={true}>
-								<ReactSVG src={ASSETS.user} />
-							</S.Icon>
-							{LANGUAGE.viewAccount}
-						</li>
-						<li onClick={copyAddress}>
-							<S.Icon strokeFill={false}>
-								<ReactSVG src={ASSETS.copy} />
-							</S.Icon>
-							{copied ? (
-								<div>
-									<span>{LANGUAGE.copied}</span>
-								</div>
-							) : (
-								LANGUAGE.copyAddress
-							)}
-						</li>
-						<li onClick={handleDisconnect}>
-							<S.Icon strokeFill={false}>
-								<ReactSVG src={ASSETS.disconnect} />
-							</S.Icon>
-							{LANGUAGE.disconnect}
-						</li>
+						<li onClick={handleViewAccount}>{LANGUAGE.viewAccount}</li>
+						<li onClick={copyAddress}>{copied ? LANGUAGE.copied : LANGUAGE.copyAddress}</li>
+						<li onClick={handleDisconnect}>{LANGUAGE.disconnect}</li>
 					</S.WalletDropdown>
 				)}
 			</S.Wrapper>

@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
+import { STYLING } from 'helpers/styling';
 
 export const Primary = styled.button<{
 	sm: boolean | undefined;
@@ -8,7 +8,7 @@ export const Primary = styled.button<{
 	disabled: boolean | undefined;
 }>`
 	height: auto;
-	width: ${(props) => (props.sm ? "15px" : "17.5px")};
+	width: ${(props) => (props.sm ? '15px' : '17.5px')};
 	color: inherit;
 	border: none;
 	padding: 0;
@@ -17,7 +17,7 @@ export const Primary = styled.button<{
 	&:focus {
 		outline: none;
 		svg {
-			opacity: ${(props) => (props.disabled ? "1" : "0.75")};
+			opacity: ${(props) => (props.disabled ? '1' : '0.75')};
 		}
 	}
 
@@ -27,8 +27,8 @@ export const Primary = styled.button<{
 		fill: ${(props) => (props.warning ? (props.disabled ? props.theme.colors.icon.inactive : props.theme.colors.warning) : props.theme.colors.icon.inactive)};
 
 		&:hover {
-			cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-			opacity: ${(props) => (props.disabled ? "1" : "0.75")};
+			cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+			opacity: ${(props) => (props.disabled ? '1' : '0.75')};
 		}
 	}
 `;
@@ -60,7 +60,7 @@ export const Alt1 = styled(Primary)<{
 		transform: translate(-50%, -50%);
 
 		&:hover {
-			cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+			cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 			opacity: 1;
 		}
 	}

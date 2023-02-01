@@ -1,8 +1,8 @@
-import "styled-components";
+import 'styled-components';
 
-declare module "styled-components" {
+declare module 'styled-components' {
 	export interface DefaultTheme {
-		scheme: "dark" | "light";
+		scheme: 'dark' | 'light';
 		colors: any;
 		typography: any;
 	}

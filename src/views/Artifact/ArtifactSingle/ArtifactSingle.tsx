@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 
-import { ArtifactHeaderSingle } from "./ArtifactHeaderSingle";
-import { ArtifactDetailSingle } from "./ArtifactDetailSingle";
-import { ArtifactViewSingle } from "./ArtifactViewSingle";
+import { ArtifactHeaderSingle } from './ArtifactHeaderSingle';
+import { ArtifactDetailSingle } from './ArtifactDetailSingle';
+import { ArtifactViewSingle } from './ArtifactViewSingle';
 
-import { Loader } from "components/atoms/Loader";
+import { Loader } from 'components/atoms/Loader';
 
-import { ARTIFACT_TABS, ARTIFACT_TYPES, TAB_OPTIONS, TAGS } from "helpers/config";
-import { checkNullValues } from "helpers/utils";
-import { ArtifactDetailType } from "helpers/types";
-import { LANGUAGE } from "helpers/language";
-import * as S from "./styles";
-import { IProps } from "./types";
+import { ARTIFACT_TABS, ARTIFACT_TYPES, TAB_OPTIONS, TAGS } from 'helpers/config';
+import { checkNullValues } from 'helpers/utils';
+import { ArtifactDetailType } from 'helpers/types';
+import { LANGUAGE } from 'helpers/language';
+import * as S from './styles';
+import { IProps } from './types';
 
 export default function ArtifactSingle(props: IProps) {
 	const [data, setData] = React.useState<ArtifactDetailType | null>(null);

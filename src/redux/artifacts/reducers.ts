@@ -1,13 +1,13 @@
-import { ReduxActionType } from "helpers/types";
-import { CollectionsType } from "./types";
-import { SET_COLLECTION } from "./constants";
+import { ReduxActionType } from 'helpers/types';
+import { BookmarksType } from './types';
+import { SET_COLLECTION } from './constants';
 
-export const initStateCollections: CollectionsType = {
+export const initStateBookmarks: BookmarksType = {
 	owner: null,
 	ids: [],
 };
 
-export function collectionsReducer(state: CollectionsType = initStateCollections, action: ReduxActionType) {
+export function bookmarksReducer(state: BookmarksType = initStateBookmarks, action: ReduxActionType) {
 	switch (action.type) {
 		case SET_COLLECTION:
 			return Object.assign({}, state, {

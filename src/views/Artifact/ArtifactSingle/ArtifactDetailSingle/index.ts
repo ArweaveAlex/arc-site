@@ -1,1 +1,1 @@
-export { default as ArtifactDetailSingle } from "./ArtifactDetailSingle";
+export { default as ArtifactDetailSingle } from './ArtifactDetailSingle';

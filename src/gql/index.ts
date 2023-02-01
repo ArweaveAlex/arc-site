@@ -1,10 +1,10 @@
-import * as cursorActions from "redux/cursors/actions";
-import { store } from "redux/store";
+import * as cursorActions from 'redux/cursors/actions';
+import { store } from 'redux/store';
 
-import { ArweaveClient } from "clients/arweave";
-import { unquoteJsonKeys, checkGqlCursor } from "helpers/utils";
-import { CURSORS, PAGINATOR, SEARCH } from "helpers/config";
-import { GQLResponseType, TagFilterType, CursorObjectKeyType, CursorEnum } from "helpers/types";
+import { ArweaveClient } from 'clients/arweave';
+import { unquoteJsonKeys, checkGqlCursor } from 'helpers/utils';
+import { CURSORS, PAGINATOR, SEARCH } from 'helpers/config';
+import { GQLResponseType, TagFilterType, CursorObjectKeyType, CursorEnum } from 'helpers/types';
 
 export async function getGQLData(args: {
 	ids: string[] | null;
@@ -75,7 +75,7 @@ export async function getGQLData(args: {
         `,
 	};
 
-	const response = await arClient.arweaveGet.api.post("/graphql", operation);
+	const response = await arClient.arweaveGet.api.post('/graphql', operation);
 	if (response.data.data) {
 		const responseData = response.data.data.transactions.edges;
 		if (responseData.length > 0) {

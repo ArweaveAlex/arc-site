@@ -1,20 +1,20 @@
-import React from "react";
-import { ReactSVG } from "react-svg";
+import React from 'react';
+import { ReactSVG } from 'react-svg';
 
-import { useArweaveProvider } from "providers/ArweaveProvider";
-import { ArweaveClient } from "clients/arweave";
-import { ContributionResultType } from "helpers/types";
+import { useArweaveProvider } from 'providers/ArweaveProvider';
+import { ArweaveClient } from 'clients/arweave';
+import { ContributionResultType } from 'helpers/types';
 
-import { Button } from "components/atoms/Button";
-import { FormField } from "components/atoms/FormField";
-import { Modal } from "components/molecules/Modal";
-import { Notification } from "components/atoms/Notification";
+import { Button } from 'components/atoms/Button';
+import { FormField } from 'components/atoms/FormField';
+import { Modal } from 'components/molecules/Modal';
+import { Notification } from 'components/atoms/Notification';
 
-import { ValidationType } from "helpers/types";
-import { ASSETS } from "helpers/config";
-import { LANGUAGE } from "helpers/language";
-import { IProps } from "./types";
-import * as S from "./styles";
+import { ValidationType } from 'helpers/types';
+import { ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import { IProps } from './types';
+import * as S from './styles';
 
 export default function PoolContribute(props: IProps) {
 	const arProvider = useArweaveProvider();
@@ -105,7 +105,7 @@ export default function PoolContribute(props: IProps) {
 	return (
 		<>
 			{contributionResult && (
-				<Notification type={contributionResult.status === true ? "success" : "warning"} message={contributionResult.message!} callback={() => setContributionResult(null)} />
+				<Notification type={contributionResult.status === true ? 'success' : 'warning'} message={contributionResult.message!} callback={() => setContributionResult(null)} />
 			)}
 			{showModal && (
 				<Modal title={LANGUAGE.contributeTo} handleClose={() => setShowModal(false)}>
@@ -121,7 +121,7 @@ export default function PoolContribute(props: IProps) {
 							<S.FormWrapper>
 								<S.FormContainer>
 									<FormField
-										type={"number"}
+										type={'number'}
 										value={amount}
 										onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
 										disabled={loading || !arProvider.walletAddress}
@@ -135,7 +135,7 @@ export default function PoolContribute(props: IProps) {
 								<p>{LANGUAGE.contributionMessage}</p>
 							</S.Message>
 							<S.SubmitWrapper>
-								<Button label={LANGUAGE.submit} type={"alt1"} handlePress={(e) => handlePoolContribute(e)} disabled={getDisabledSubmit()} loading={loading} formSubmit />
+								<Button label={LANGUAGE.submit} type={'alt1'} handlePress={(e) => handlePoolContribute(e)} disabled={getDisabledSubmit()} loading={loading} formSubmit />
 							</S.SubmitWrapper>
 						</S.Form>
 					</S.ModalWrapper>

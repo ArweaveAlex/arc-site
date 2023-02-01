@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import { IProps } from "./types";
+import { IProps } from './types';
 
 export default function Portal(props: IProps) {
 	const [DOM, setDOM] = React.useState<boolean>(false);

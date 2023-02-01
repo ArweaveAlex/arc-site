@@ -1,13 +1,13 @@
-import React from "react";
-import { ReactSVG } from "react-svg";
+import React from 'react';
+import { ReactSVG } from 'react-svg';
 
-import { IconButton } from "components/atoms/IconButton";
-import { Portal } from "components/atoms/Portal";
+import { IconButton } from 'components/atoms/IconButton';
+import { Portal } from 'components/atoms/Portal';
 
-import { ASSETS, DOM } from "helpers/config";
-import * as window from "helpers/window";
-import * as S from "./styles";
-import { IProps } from "./types";
+import { ASSETS, DOM } from 'helpers/config';
+import * as window from 'helpers/window';
+import * as S from './styles';
+import { IProps } from './types';
 
 export default function Modal(props: IProps) {
 	React.useEffect(() => {
@@ -30,7 +30,7 @@ export default function Modal(props: IProps) {
 							<S.Title>{props.title}</S.Title>
 						</S.LT>
 						<S.Close>
-							<IconButton type={"primary"} sm warning src={ASSETS.close} handlePress={props.handleClose} />
+							<IconButton type={'primary'} sm warning src={ASSETS.close} handlePress={props.handleClose} />
 						</S.Close>
 					</S.Header>
 					<S.Body>{props.children}</S.Body>

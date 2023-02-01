@@ -1,2 +1,2 @@
-export const SET_POOLS = "SET_POOLS";
-export const SET_POOLS_INDEX_SEARCH = "SET_POOLS_INDEX_SEARCH";
+export const SET_POOLS = 'SET_POOLS';
+export const SET_POOLS_INDEX_SEARCH = 'SET_POOLS_INDEX_SEARCH';

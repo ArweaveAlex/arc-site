@@ -1,21 +1,21 @@
-import React from "react";
-import { ReactSVG } from "react-svg";
-import parse from "html-react-parser";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { ReactSVG } from 'react-svg';
+import parse from 'html-react-parser';
+import { Link } from 'react-router-dom';
 
-import { Loader } from "components/atoms/Loader";
-import { Carousel } from "components/molecules/Carousel";
+import { Loader } from 'components/atoms/Loader';
+import { Carousel } from 'components/molecules/Carousel';
 
-import { getTxEndpoint } from "helpers/endpoints";
-import { getArtifactById } from "gql/artifacts";
-import { formatMessagingData, getUsername } from "helpers/utils";
-import { formatDate, formatAddress } from "helpers/utils";
-import { LANGUAGE } from "helpers/language";
-import { STORAGE, ASSETS, MEDIA_TYPES } from "helpers/config";
-import { ArtifactDetailType } from "helpers/types";
-import * as urls from "helpers/urls";
-import { IProps, IMProps } from "./types";
-import * as S from "./styles";
+import { getTxEndpoint } from 'helpers/endpoints';
+import { getArtifactById } from 'gql/artifacts';
+import { formatMessagingData, getUsername } from 'helpers/utils';
+import { formatDate, formatAddress } from 'helpers/utils';
+import { LANGUAGE } from 'helpers/language';
+import { STORAGE, ASSETS, MEDIA_TYPES } from 'helpers/config';
+import { ArtifactDetailType } from 'helpers/types';
+import * as urls from 'helpers/urls';
+import { IProps, IMProps } from './types';
+import * as S from './styles';
 
 function MessagingMedia(props: IMProps) {
 	function getMediaType(type: string, url: string) {
@@ -24,7 +24,7 @@ function MessagingMedia(props: IMProps) {
 				return (
 					<S.MediaContent>
 						<S.VideoContent controls>
-							<S.VideoSource type={"video/mp4"} src={url} />
+							<S.VideoSource type={'video/mp4'} src={url} />
 						</S.VideoContent>
 					</S.MediaContent>
 				);
@@ -35,7 +35,7 @@ function MessagingMedia(props: IMProps) {
 			default:
 				return (
 					<S.ArweaveLinkWrapper>
-						<S.ArweaveLink target={"_blank"} rel={"noreferrer"} href={url}>
+						<S.ArweaveLink target={'_blank'} rel={'noreferrer'} href={url}>
 							{LANGUAGE.viewOnArweave}
 						</S.ArweaveLink>
 					</S.ArweaveLinkWrapper>
@@ -53,8 +53,8 @@ function MessagingMedia(props: IMProps) {
 			for (let i = 0; i < mediaIdsJsonKeys.length; i++) {
 				if (mediaIdsJsonKeys[i].length > 0) {
 					const mediaId = mediaIdsJson[mediaIdsJsonKeys[i]].id;
-					if (mediaIdsJsonKeys[i].indexOf(".")) {
-						mediaComponents.push(<S.MediaElement key={mediaId}>{getMediaType(mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf(".") + 1), getTxEndpoint(mediaId))}</S.MediaElement>);
+					if (mediaIdsJsonKeys[i].indexOf('.')) {
+						mediaComponents.push(<S.MediaElement key={mediaId}>{getMediaType(mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf('.') + 1), getTxEndpoint(mediaId))}</S.MediaElement>);
 					}
 				}
 			}
@@ -115,7 +115,7 @@ export default function MessagingListItem(props: IProps) {
 
 			return (
 				<S.ProfileImage>
-					<img src={getTxEndpoint(profileImageId)} alt={""} />
+					<img src={getTxEndpoint(profileImageId)} alt={''} />
 				</S.ProfileImage>
 			);
 		} else {
@@ -138,8 +138,8 @@ export default function MessagingListItem(props: IProps) {
 		}
 	}
 
-	const artifactLink = props.data ? `${urls.artifact}${props.data.artifactId}` : "#";
-	const ownerLink = props.data ? `${urls.libraryAll(props.data.owner)}` : "#";
+	const artifactLink = props.data ? `${urls.artifact}${props.data.artifactId}` : '#';
+	const ownerLink = props.data ? `${urls.libraryAll(props.data.owner)}` : '#';
 
 	return props.data && messageData ? (
 		<S.LIWrapper isListItem={props.isListItem} active={props.active}>
@@ -166,7 +166,7 @@ export default function MessagingListItem(props: IProps) {
 										<Link to={artifactLink}>{props.data ? formatAddress(props.data.artifactId, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>
-										<Link to={artifactLink} target={"_blank"} tabIndex={-1}>
+										<Link to={artifactLink} target={'_blank'} tabIndex={-1}>
 											<ReactSVG src={ASSETS.newTab} />
 										</Link>
 									</S.ALinkNT>
@@ -181,7 +181,7 @@ export default function MessagingListItem(props: IProps) {
 										<Link to={ownerLink}>{props.data ? formatAddress(props.data.owner, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>
-										<Link to={ownerLink} target={"_blank"} tabIndex={-1}>
+										<Link to={ownerLink} target={'_blank'} tabIndex={-1}>
 											<ReactSVG src={ASSETS.newTab} />
 										</Link>
 									</S.ALinkNT>
@@ -196,7 +196,7 @@ export default function MessagingListItem(props: IProps) {
 					</S.Message>
 					{getChildAssets()}
 					<MessagingMedia mediaIds={props.data.mediaIds} />
-					{messageData.created_at && <S.PostDate>{formatDate(messageData.created_at, "iso")}</S.PostDate>}
+					{messageData.created_at && <S.PostDate>{formatDate(messageData.created_at, 'iso')}</S.PostDate>}
 					{messageData.public_metrics && (
 						<S.PublicMetrics>
 							<S.Metric>

@@ -1,14 +1,14 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from "redux/store";
-import { getArtifactsByIds } from "gql/artifacts";
+import { RootState } from 'redux/store';
+import { getArtifactsByIds } from 'gql/artifacts';
 
-import { ArtifactsTable } from "global/ArtifactsDetail/ArtifactsTable";
+import { ArtifactsTable } from 'global/ArtifactsDetail/ArtifactsTable';
 
-import { clearCursors } from "redux/cursors/actions";
-import { ArtifactResponseType } from "helpers/types";
-import { IProps } from "./types";
+import { clearCursors } from 'redux/cursors/actions';
+import { ArtifactResponseType } from 'helpers/types';
+import { IProps } from './types';
 
 export default function ArtifactsDetail(props: IProps) {
 	const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export default function ArtifactsDetail(props: IProps) {
 
 	const [cursor, setCursor] = React.useState<string | null>(null);
 	const [searchRequested, setSearchRequested] = React.useState<boolean | null>(
-		searchTermReducer[props.cursorObject.value].value !== "" && searchTermReducer[props.cursorObject.value].id.value === props.id.value ? true : null
+		searchTermReducer[props.cursorObject.value].value !== '' && searchTermReducer[props.cursorObject.value].id.value === props.id.value ? true : null
 	);
 	const [showNoResults, setShowNoResults] = React.useState<boolean>(false);
 
@@ -48,7 +48,7 @@ export default function ArtifactsDetail(props: IProps) {
 						owner: null,
 						uploader: null,
 						cursor: cursor,
-						reduxCursor: props.cursorObject.value
+						reduxCursor: props.cursorObject.value,
 					})
 				);
 			}
@@ -68,7 +68,7 @@ export default function ArtifactsDetail(props: IProps) {
 						owner: props.owner,
 						uploader: props.uploader,
 						cursor: cursor,
-						reduxCursor: props.cursorObject.value
+						reduxCursor: props.cursorObject.value,
 					})
 				);
 			}
@@ -99,7 +99,7 @@ export default function ArtifactsDetail(props: IProps) {
 			id={props.id}
 			indexIds={props.indexIds}
 			data={detailData}
-			showCollections={props.showCollections}
+			showActions={props.showActions}
 			showPoolIds={props.showPoolIds}
 			showSearch={props.showSearch}
 			handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
@@ -111,6 +111,7 @@ export default function ArtifactsDetail(props: IProps) {
 			cursorObject={props.cursorObject}
 			setSearchRequested={(searchRequested: boolean) => setSearchRequested(searchRequested)}
 			showNoResults={showNoResults}
+			bookmarksDisabled={props.bookmarksDisabled}
 			selectCallback={props.selectCallback}
 			selectedCallbackIds={props.selectedCallbackIds}
 		/>

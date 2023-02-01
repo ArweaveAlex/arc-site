@@ -1,25 +1,25 @@
-import React from "react";
+import React from 'react';
 
-import { OwnerArtifacts } from "global/Owner/OwnerArtifacts";
+import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
 
-import { useQuery } from "hooks/useQuery";
+import { useQuery } from 'hooks/useQuery';
 
-import { Button } from "components/atoms/Button";
-import { FormField } from "components/atoms/FormField";
-import { TextArea } from "components/atoms/TextArea";
+import { Button } from 'components/atoms/Button';
+import { FormField } from 'components/atoms/FormField';
+import { TextArea } from 'components/atoms/TextArea';
 
-import { getArtifactsByUser } from "gql/artifacts";
-import { REDUX_TABLES } from "helpers/redux";
-import { LANGUAGE } from "helpers/language";
-import { CollectionStateType, CursorEnum } from "helpers/types";
-import { createCollection } from "helpers/collections";
-import * as S from "./styles";
+import { getArtifactsByUser } from 'gql/artifacts';
+import { REDUX_TABLES } from 'helpers/redux';
+import { LANGUAGE } from 'helpers/language';
+import { CollectionStateType, CursorEnum } from 'helpers/types';
+import { createCollection } from 'helpers/collections';
+import * as S from './styles';
 
 export default function CollectionsCreate() {
 	const query = useQuery();
 
-	const [title, setTitle] = React.useState<string>("");
-	const [description, setDescription] = React.useState<string>("");
+	const [title, setTitle] = React.useState<string>('');
+	const [description, setDescription] = React.useState<string>('');
 	const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
 
 	async function handleSubmit() {
@@ -30,15 +30,12 @@ export default function CollectionsCreate() {
 		});
 
 		let collection: CollectionStateType = {
-			title: "test",
-			description: "test desc",
-			ids: ["jNS-i6ZWL0k1h6CwkWDBe34FPgCYUW3igWCD4zpUDH8"],
+			title: 'test',
+			description: 'test desc',
+			ids: ['jNS-i6ZWL0k1h6CwkWDBe34FPgCYUW3igWCD4zpUDH8'],
 		};
 
-		let collectionContractId = await createCollection(
-			collection,
-			"crypto"
-		);
+		let collectionContractId = await createCollection(collection, 'crypto');
 
 		console.log(collectionContractId);
 	}
@@ -57,6 +54,7 @@ export default function CollectionsCreate() {
 		setSelectedIds(idList);
 	}
 
+	// TODO - Make sure owner is Provider Address
 	return (
 		<S.Wrapper>
 			<S.HeaderWrapper>
@@ -71,12 +69,13 @@ export default function CollectionsCreate() {
 			<S.ContentWrapper>
 				<S.ArtifactsWrapper>
 					<OwnerArtifacts
-						owner={query.get("owner")}
+						owner={query.get('owner')}
 						fetch={getArtifactsByUser}
 						reduxCursor={REDUX_TABLES.accountAll}
-						showCollections={true}
+						showActions={true}
 						showPoolIds={true}
 						showSearch={false}
+						bookmarksDisabled={false}
 						selectCallback={(id: string) => handleIdUpdate(id)}
 						selectedCallbackIds={selectedIds}
 						cursorObject={{
@@ -108,7 +107,7 @@ export default function CollectionsCreate() {
 									disabled={false}
 								/>
 								<S.SubmitContainer>
-									<Button type={"alt1"} label={LANGUAGE.submit} handlePress={() => handleSubmit()} formSubmit noMinWidth />
+									<Button type={'alt1'} label={LANGUAGE.submit} handlePress={() => handleSubmit()} formSubmit noMinWidth />
 								</S.SubmitContainer>
 							</S.Form>
 						</S.FormFixedContainer>

@@ -1,1 +1,1 @@
-export { default as LandingSteps } from "./LandingSteps";
+export { default as LandingSteps } from './LandingSteps';

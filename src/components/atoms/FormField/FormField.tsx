@@ -1,10 +1,10 @@
-import { IProps } from "./types";
-import * as S from "./styles";
+import { IProps } from './types';
+import * as S from './styles';
 
 export default function FormField(props: IProps) {
 	function getValue() {
-		if (props.type === "number") {
-			return isNaN(Number(props.value)) ? "" : props.value;
+		if (props.type === 'number') {
+			return isNaN(Number(props.value)) ? '' : props.value;
 		} else {
 			return props.value;
 		}
@@ -14,12 +14,12 @@ export default function FormField(props: IProps) {
 		<S.Wrapper sm={props.sm}>
 			{props.label && <label>{props.label}</label>}
 			<S.Input
-				type={props.type ? props.type : "text"}
+				type={props.type ? props.type : 'text'}
 				value={getValue()}
 				onChange={props.onChange}
 				disabled={props.disabled}
 				invalid={props.invalid.status}
-				placeholder={props.placeholder ? props.placeholder : ""}
+				placeholder={props.placeholder ? props.placeholder : ''}
 				sm={props.sm}
 				data-testid={props.testingCtx}
 			/>

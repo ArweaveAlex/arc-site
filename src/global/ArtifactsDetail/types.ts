@@ -1,4 +1,4 @@
-import { ArtifactResponseType, ArtifactArgsType, CursorObjectType, TableIdType } from "helpers/types";
+import { ArtifactResponseType, ArtifactArgsType, CursorObjectType, TableIdType } from 'helpers/types';
 
 export interface IProps {
 	id: TableIdType;
@@ -8,7 +8,8 @@ export interface IProps {
 		ids: string[] | null;
 		fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
 	};
-	showCollections: boolean;
+	showActions: boolean;
+	bookmarksDisabled: boolean;
 	selectCallback: ((id: string) => void) | null;
 	showPoolIds: boolean;
 	showSearch: boolean;

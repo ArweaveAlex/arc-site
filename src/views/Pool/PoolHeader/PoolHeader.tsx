@@ -1,15 +1,15 @@
-import parse from "html-react-parser";
+import parse from 'html-react-parser';
 
-import { ArweaveClient } from "clients/arweave";
+import { ArweaveClient } from 'clients/arweave';
 
-import { SocialShare } from "global/SocialShare";
-import { PoolContribute } from "../PoolContribute";
-import { Loader } from "components/atoms/Loader";
+import { SocialShare } from 'global/SocialShare';
+import { PoolContribute } from '../PoolContribute';
+import { Loader } from 'components/atoms/Loader';
 
-import { formatAddress, formatCount } from "helpers/utils";
-import { LANGUAGE } from "helpers/language";
-import { IProps } from "./types";
-import * as S from "./styles";
+import { formatAddress, formatCount } from 'helpers/utils';
+import { LANGUAGE } from 'helpers/language';
+import { IProps } from './types';
+import * as S from './styles';
 
 export default function PoolsHeader(props: IProps) {
 	const arClient = new ArweaveClient();
@@ -65,7 +65,7 @@ export default function PoolsHeader(props: IProps) {
 			<S.Header>
 				<S.HeaderFlex>
 					<S.Header1>{props.title ? props.title : null}</S.Header1>
-					<SocialShare type={"primary"} href={window.location.href} title={LANGUAGE.sharePools} />
+					<SocialShare type={'primary'} href={window.location.href} title={LANGUAGE.sharePools} />
 				</S.HeaderFlex>
 				{getSubheader()}
 			</S.Header>

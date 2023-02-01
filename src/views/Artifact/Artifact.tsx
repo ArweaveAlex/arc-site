@@ -1,14 +1,14 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-import { getArtifactById } from "gql/artifacts";
+import { getArtifactById } from 'gql/artifacts';
 
-import { ArtifactSingle } from "./ArtifactSingle";
+import { ArtifactSingle } from './ArtifactSingle';
 
-import { Loader } from "components/atoms/Loader";
+import { Loader } from 'components/atoms/Loader';
 
-import * as window from "helpers/window";
-import { ArtifactDetailType } from "helpers/types";
+import * as window from 'helpers/window';
+import { ArtifactDetailType } from 'helpers/types';
 
 export default function ArtifactThread() {
 	const { id } = useParams();

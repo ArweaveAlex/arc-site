@@ -1,1 +1,1 @@
-export { default as ArtifactMessagingList } from "./ArtifactMessagingList";
+export { default as ArtifactMessagingList } from './ArtifactMessagingList';

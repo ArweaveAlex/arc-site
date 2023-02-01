@@ -1,9 +1,9 @@
-import { ArweaveClient } from "clients/arweave";
-import { GQLResponseType, PoolSearchIndexType, PoolType } from "helpers/types";
-import { getRedstoneSrcTxEndpoint } from "helpers/endpoints";
-import { getGQLData } from "gql";
-import { getTagValue } from "helpers/utils";
-import { TAGS } from "helpers/config";
+import { ArweaveClient } from 'clients/arweave';
+import { GQLResponseType, PoolSearchIndexType, PoolType } from 'helpers/types';
+import { getRedstoneSrcTxEndpoint } from 'helpers/endpoints';
+import { getGQLData } from 'gql';
+import { getTagValue } from 'helpers/utils';
+import { TAGS } from 'helpers/config';
 
 export async function getPoolIds() {
 	const pools: GQLResponseType[] = await getGQLData({
@@ -11,7 +11,7 @@ export async function getPoolIds() {
 		tagFilters: [
 			{
 				name: TAGS.keys.appType,
-				values: [TAGS.values.poolVersions["1.2"], TAGS.values.poolVersions["1.4"]],
+				values: [TAGS.values.poolVersions['1.2'], TAGS.values.poolVersions['1.4']],
 			},
 		],
 		uploader: null,
@@ -22,9 +22,9 @@ export async function getPoolIds() {
 
 	return pools.map((pool: GQLResponseType) => {
 		switch (getTagValue(pool.node.tags, TAGS.keys.appType)) {
-			case TAGS.values.poolVersions["1.2"]:
+			case TAGS.values.poolVersions['1.2']:
 				return pool.node.id;
-			case TAGS.values.poolVersions["1.4"]:
+			case TAGS.values.poolVersions['1.4']:
 				return getTagValue(pool.node.tags, TAGS.keys.uploaderTxId);
 			default:
 				return getTagValue(pool.node.tags, TAGS.keys.uploaderTxId);
@@ -97,8 +97,8 @@ export async function getLatestPoolSearchIndexTxId(poolId: string) {
 		let thisIndex = poolSearchIndeces[i];
 		let thisIndexDateTag = getTagValue(thisIndex.node.tags, TAGS.keys.timestamp);
 		let latestIndexDateTag = getTagValue(latestIndex.node.tags, TAGS.keys.timestamp);
-		let thisIndexDate = thisIndexDateTag && thisIndexDateTag !== "N/A" ? parseInt(thisIndexDateTag) : 0;
-		let latestIndexDate = latestIndexDateTag && latestIndexDateTag !== "N/A" ? parseInt(latestIndexDateTag) : 0;
+		let thisIndexDate = thisIndexDateTag && thisIndexDateTag !== 'N/A' ? parseInt(thisIndexDateTag) : 0;
+		let latestIndexDate = latestIndexDateTag && latestIndexDateTag !== 'N/A' ? parseInt(latestIndexDateTag) : 0;
 		if (thisIndexDate > latestIndexDate) {
 			latestIndex = thisIndex;
 		}

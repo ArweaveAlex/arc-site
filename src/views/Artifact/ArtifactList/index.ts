@@ -1,1 +1,1 @@
-export { default as ArtifactList } from "./ArtifactList";
+export { default as ArtifactList } from './ArtifactList';

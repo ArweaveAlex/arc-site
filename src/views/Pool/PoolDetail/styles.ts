@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
 export const EmptyWrapper = styled.div`
 	margin: 20px 0;

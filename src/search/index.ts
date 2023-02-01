@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { getLatestPoolSearchIndexTxId, getPoolSearchIndexById } from "gql/pools";
-import { getTxEndpoint } from "helpers/endpoints";
-import { getTagValue, stripSearch } from "helpers/utils";
-import { TAGS, SEARCH } from "helpers/config";
+import { getLatestPoolSearchIndexTxId, getPoolSearchIndexById } from 'gql/pools';
+import { getTxEndpoint } from 'helpers/endpoints';
+import { getTagValue, stripSearch } from 'helpers/utils';
+import { TAGS, SEARCH } from 'helpers/config';
 
 let processedIndeces = 0;
 let poolIndecesLength = 0;
@@ -50,7 +50,7 @@ async function searchIndex(searchTerm: string, index: string, owner: string | nu
 	let text = searchIndex;
 	searchTerm = stripSearch(searchTerm);
 
-	let indeces = [...text.matchAll(new RegExp(searchTerm, "gi"))].map((a) => a.index);
+	let indeces = [...text.matchAll(new RegExp(searchTerm, 'gi'))].map((a) => a.index);
 
 	let ids: string[] = [];
 	for (let i = 0; i < indeces.length; i++) {

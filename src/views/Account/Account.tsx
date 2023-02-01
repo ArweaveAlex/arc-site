@@ -1,14 +1,14 @@
-import React from "react";
-import { useArweaveProvider } from "providers/ArweaveProvider";
+import React from 'react';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 
-import { Button } from "components/atoms/Button";
-import { URLTabs } from "components/organisms/URLTabs";
+import { Button } from 'components/atoms/Button';
+import { URLTabs } from 'components/organisms/URLTabs';
 
-import * as urls from "helpers/urls";
-import { formatAddress, getHashUrl } from "helpers/utils";
-import { ASSETS, URLS } from "helpers/config";
-import { LANGUAGE } from "helpers/language";
-import * as S from "./styles";
+import * as urls from 'helpers/urls';
+import { formatAddress, getHashUrl } from 'helpers/utils';
+import { ASSETS, URLS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import * as S from './styles';
 
 export default function Account() {
 	const arProvider = useArweaveProvider();
@@ -42,7 +42,7 @@ export default function Account() {
 								<p>{LANGUAGE.urlCopied}</p>
 							</S.URLCopied>
 						)}
-						<Button type={"primary"} label={LANGUAGE.shareUrlLabel} handlePress={copyUrl} icon={ASSETS.shareLink} iconLeftAlign />
+						<Button type={'primary'} label={LANGUAGE.shareUrlLabel} handlePress={copyUrl} icon={ASSETS.shareLink} iconLeftAlign />
 					</S.ShareWrapper>
 				</S.HeaderContent>
 			</S.HeaderWrapper>

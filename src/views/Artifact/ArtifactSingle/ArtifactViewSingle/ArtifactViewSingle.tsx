@@ -1,10 +1,12 @@
-import { ArtifactMessagingSingle } from "./ArtifactMessagingSingle";
-import { ArtifactWebpageSingle } from "./ArtifactWebpageSingle";
-import { ArtifactRedditSingle } from "./ArtifactRedditSingle";
+import { ArtifactMessagingSingle } from './ArtifactMessagingSingle';
+import { ArtifactWebpageSingle } from './ArtifactWebpageSingle';
+import { ArtifactRedditSingle } from './ArtifactRedditSingle';
 
-import { ArtifactEnum } from "helpers/types";
-import { IProps } from "../types";
-import * as S from "./styles";
+import { Loader } from 'components/atoms/Loader';
+
+import { ArtifactEnum } from 'helpers/types';
+import { IProps } from '../types';
+import * as S from './styles';
 
 export default function ArtifactViewSingle(props: IProps) {
 	function getArtifact() {
@@ -20,7 +22,11 @@ export default function ArtifactViewSingle(props: IProps) {
 					return null;
 			}
 		} else {
-			return null;
+			return (
+				<S.LoadingContainer>
+					<Loader sm />
+				</S.LoadingContainer>
+			);
 		}
 	}
 

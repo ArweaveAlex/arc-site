@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { STYLING } from "helpers/styling";
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	display: flex;
@@ -22,7 +22,7 @@ export const SearchIcon = styled.div<{ disabled: boolean | undefined }>`
         width: 15px;
         fill ${(props) => props.theme.colors.icon.primary.alt1.fill};
         &:hover {
-            cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
+            cursor: ${(props) => (props.disabled ? 'not-allowed' : 'default')};
         }
     }
 `;

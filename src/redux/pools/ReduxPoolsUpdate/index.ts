@@ -1,1 +1,1 @@
-export { default as ReduxPoolsUpdate } from "./ReduxPoolsUpdate";
+export { default as ReduxPoolsUpdate } from './ReduxPoolsUpdate';

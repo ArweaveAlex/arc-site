@@ -1,12 +1,12 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-import { open, fadeIn2 } from "helpers/animations";
-import { STYLING } from "helpers/styling";
+import { open, fadeIn2 } from 'helpers/animations';
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	height: 150px;
 	width: 100%;
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: calc(${STYLING.cutoffs.desktop} + 50px)) {
 		height: auto;
 	}
 `;
@@ -23,7 +23,7 @@ export const Content = styled.div`
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: calc(${STYLING.cutoffs.desktop} + 50px)) {
 		flex-direction: column;
 		align-items: start;
 		padding: 20px;
@@ -35,7 +35,7 @@ export const HeaderWrapper = styled.div`
 	width: 700px;
 	display: flex;
 	align-items: center;
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: calc(${STYLING.cutoffs.desktop} + 50px)) {
 		width: auto;
 		margin: 0 0 20px 0;
 	}
@@ -105,7 +105,7 @@ export const SubheaderWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: end;
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: calc(${STYLING.cutoffs.desktop} + 50px)) {
 		width: auto;
 		min-width: 0;
 	}
@@ -117,7 +117,7 @@ export const FlexSubheader = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: end;
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: calc(${STYLING.cutoffs.desktop} + 50px)) {
 		justify-content: start;
 	}
 `;
@@ -157,7 +157,7 @@ export const Subheader2 = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.alt1};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: calc(${STYLING.cutoffs.desktop} + 50px)) {
 		margin: 0;
 		text-align: left;
 		justify-content: start;
@@ -177,7 +177,7 @@ export const Link = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: calc(${STYLING.cutoffs.desktop} + 50px)) {
 		margin: 0;
 		text-align: left;
 	}

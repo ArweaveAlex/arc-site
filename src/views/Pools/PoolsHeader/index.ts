@@ -1,1 +1,1 @@
-export { default as PoolsHeader } from "./PoolsHeader";
+export { default as PoolsHeader } from './PoolsHeader';

@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
-import { ReactSVG } from "react-svg";
+import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
-import { SocialShare } from "global/SocialShare";
+import { SocialShare } from 'global/SocialShare';
 
-import { Tabs } from "components/organisms/Tabs";
+import { Tabs } from 'components/organisms/Tabs';
 
-import { formatAddress, formatDate, formatArtifactType } from "helpers/utils";
-import { LANGUAGE } from "helpers/language";
-import { ARTIFACT_TABS, ASSETS } from "helpers/config";
-import * as urls from "helpers/urls";
-import { IProps } from "./types";
-import * as S from "./styles";
+import { formatAddress, formatDate, formatArtifactType } from 'helpers/utils';
+import { LANGUAGE } from 'helpers/language';
+import { ARTIFACT_TABS, ASSETS } from 'helpers/config';
+import * as urls from 'helpers/urls';
+import { IProps } from './types';
+import * as S from './styles';
 
 export default function ArtifactHeaderSingle(props: IProps) {
 	return props.data && props.type ? (
@@ -30,7 +30,7 @@ export default function ArtifactHeaderSingle(props: IProps) {
 						<S.InfoMintDate>
 							<>
 								<ReactSVG src={ASSETS.mint} />
-								<p>{formatDate(props.data.minted, "epoch")}</p>
+								<p>{formatDate(props.data.minted, 'epoch')}</p>
 							</>
 						</S.InfoMintDate>
 						<S.InfoOwner>
@@ -53,7 +53,7 @@ export default function ArtifactHeaderSingle(props: IProps) {
 								return <S.TabWrapper key={index} label={tab.label} />;
 							})}
 						</Tabs>
-						<SocialShare type={"alt1"} href={window.location.href} title={LANGUAGE.shareArtifact} />
+						<SocialShare type={'alt1'} href={window.location.href} title={LANGUAGE.shareArtifact} />
 					</S.Body>
 				</S.Content>
 			</S.ContentWrapper>

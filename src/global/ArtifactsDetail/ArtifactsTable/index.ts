@@ -1,1 +1,1 @@
-export { default as ArtifactsTable } from "./ArtifactsTable";
+export { default as ArtifactsTable } from './ArtifactsTable';

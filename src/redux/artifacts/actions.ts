@@ -1,9 +1,9 @@
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 
-import { SET_COLLECTION } from "./constants";
-import { CollectionsType } from "./types";
+import { SET_COLLECTION } from './constants';
+import { BookmarksType } from './types';
 
-export function setCollection(payload: CollectionsType) {
+export function setBookmark(payload: BookmarksType) {
 	return (dispatch: Dispatch) => {
 		dispatch({
 			type: SET_COLLECTION,

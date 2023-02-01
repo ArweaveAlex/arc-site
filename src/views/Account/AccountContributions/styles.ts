@@ -1,8 +1,6 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro';
 
-export const Wrapper = styled.div`
-	margin: 25px 0 0 0;
-`;
+export const Wrapper = styled.div``;
 
 export const LoadingContainer = styled.div`
 	height: 50px;
