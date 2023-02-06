@@ -16,8 +16,7 @@ export const HeaderWrapper = styled.div`
 	max-width: ${STYLING.cutoffs.max};
 	margin: calc(${STYLING.dimensions.navHeight} + 20px) auto 0 auto;
 	padding: 0 20px;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		height: auto;
 	}
 `;
@@ -25,9 +24,10 @@ export const HeaderWrapper = styled.div`
 export const HeaderContent = styled.div`
 	height: 100%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
 	padding: 30px 20px;
 	display: flex;
 	align-items: center;

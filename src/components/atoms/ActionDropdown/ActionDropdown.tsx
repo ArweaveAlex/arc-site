@@ -8,9 +8,8 @@ import { ASSETS } from 'helpers/config';
 import { IProps } from './types';
 import * as S from './styles';
 
-// TODO - ESC Event Handler
 export default function ActionDropdown(props: IProps) {
-	const [openDown, setOpenDown] = React.useState<boolean>(false);
+	const [openDown, setOpenDown] = React.useState<boolean>(true);
 	const [showDropdown, setShowDropdown] = React.useState<boolean>(false);
 
 	const dropdownHeight = 32.5 * props.actions.length + 10;
@@ -35,14 +34,14 @@ export default function ActionDropdown(props: IProps) {
 	}
 
 	function handleShowDropdown(e: any) {
-		if (e) {
-			let m = window.innerHeight / 1.325;
-			if (e.clientY > m) {
-				setOpenDown(false);
-			} else {
-				setOpenDown(true);
-			}
-		}
+		// if (e) {
+		// 	let m = window.innerHeight / 1.325;
+		// 	if (e.clientY > m) {
+		// 		setOpenDown(false);
+		// 	} else {
+		// 		setOpenDown(true);
+		// 	}
+		// }
 		setShowDropdown(!showDropdown);
 	}
 

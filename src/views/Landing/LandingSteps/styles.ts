@@ -11,7 +11,6 @@ export const Content = styled.div`
 	width: 100%;
 	max-width: ${STYLING.cutoffs.max};
 	margin: 0 auto 40px auto;
-	padding: 20px 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -19,26 +18,23 @@ export const Content = styled.div`
 `;
 
 export const Header = styled.div`
-	height: 175px;
+	height: auto;
 	width: 100%;
-	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		height: auto;
-		padding: 0 35px;
-		margin: 20px 0 0 0;
-	}
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		padding: 0 20px;
-	}
+	background: ${(props) => props.theme.colors.container.alt6.background};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
+	padding: 30px 20px;
+	margin: 0 auto 40px auto;
 `;
 
 export const H2 = styled.h2`
 	font-size: 28px;
-	line-height: 1.25;
+	line-height: 1.5;
 	text-align: center;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		font-size: 24px;
@@ -61,13 +57,12 @@ export const HeaderFlex = styled.div`
 		width: 100%;
 		padding: 0 20px;
 		flex-direction: column;
-		margin: 0 0 20px 0;
 	}
 `;
 
 export const Header2 = styled.p`
 	font-size: 18px;
-	line-height: 1.295;
+	line-height: 1.5;
 	text-align: center;
 	margin: 20px 0 0 0;
 	color: ${(props) => props.theme.colors.font.primary.alt4};
@@ -76,48 +71,48 @@ export const Header2 = styled.p`
 		margin: 20px 0 0 0;
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 	}
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		line-height: 1.5;
-		margin: 40px 0 0 0;
-	}
 `;
 
 export const Body = styled.div`
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
-	padding: 20px;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
 	}
 `;
 
-export const Asset = styled.div`
-	height: 100%;
+export const Asset = styled.div<{ image: string }>`
+	height: auto;
 	width: 50%;
 	display: flex;
-	img {
-		width: 67.5%;
-		margin: 0 0 0 auto;
-	}
+	background-image: ${(props) => `url("${props.image}")`};
+	background-size: 67.5%;
+	background-position: center;
+	background-repeat: no-repeat;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		height: 400px;
 		width: 100%;
-		margin: 0 0 50px 0;
-		img {
-			width: 100%;
-			max-width: 500px;
-			margin: 0 auto;
-		}
+		background-size: contain;
+		margin: 0 0 40px 0;
 	}
 `;
 
 export const StepList = styled.div`
 	height: 100%;
 	width: 50%;
-	padding: 0 0 0 50px;
+	background: ${(props) => props.theme.colors.container.alt6.background};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
+	padding: 20px;
+	> * {
+		&:last-child {
+		   margin: 0;
+		}
+	}
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		width: 100%;
-		padding: 0;
 	}
 `;
 

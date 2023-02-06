@@ -99,11 +99,11 @@ function ChildAsset(props: { id: string }) {
 }
 
 export default function MessagingListItem(props: IProps) {
-	const [messageData, setMessageData] = React.useState<any>(null);
+	const [jsonData, setJsonData] = React.useState<any>(null);
 
 	React.useEffect(() => {
 		if (props.data && props.data.rawData) {
-			setMessageData(JSON.parse(props.data.rawData));
+			setJsonData(JSON.parse(props.data.rawData));
 		}
 	}, [props.data]);
 
@@ -141,15 +141,15 @@ export default function MessagingListItem(props: IProps) {
 	const artifactLink = props.data ? `${urls.artifact}${props.data.artifactId}` : '#';
 	const ownerLink = props.data ? `${urls.libraryAll(props.data.owner)}` : '#';
 
-	return props.data && messageData ? (
+	return props.data && jsonData ? (
 		<S.LIWrapper isListItem={props.isListItem} active={props.active}>
 			<S.LIContent>
 				<S.LIHeader>
 					<S.ProfileWrapper>
 						{getProfileImage()}
 						<S.NUContainer>
-							<S.Name>{messageData.user && messageData.user.name ? messageData.user.name : STORAGE.none}</S.Name>
-							<S.Username>{getUsername(messageData)}</S.Username>
+							<S.Name>{jsonData.user && jsonData.user.name ? jsonData.user.name : STORAGE.none}</S.Name>
+							<S.Username>{getUsername(jsonData)}</S.Username>
 						</S.NUContainer>
 					</S.ProfileWrapper>
 					<S.AInfoWrapper>
@@ -192,28 +192,28 @@ export default function MessagingListItem(props: IProps) {
 				</S.LIHeader>
 				<S.LIBody>
 					<S.Message>
-						<p>{parse(formatMessagingData(messageData))}</p>
+						<p>{parse(formatMessagingData(jsonData))}</p>
 					</S.Message>
 					{getChildAssets()}
 					<MessagingMedia mediaIds={props.data.mediaIds} />
-					{messageData.created_at && <S.PostDate>{formatDate(messageData.created_at, 'iso')}</S.PostDate>}
-					{messageData.public_metrics && (
+					{jsonData.created_at && <S.PostDate>{formatDate(jsonData.created_at, 'iso')}</S.PostDate>}
+					{jsonData.public_metrics && (
 						<S.PublicMetrics>
 							<S.Metric>
 								<ReactSVG src={ASSETS.impressions} />
-								<p>{messageData.public_metrics.impression_count}</p>
+								<p>{jsonData.public_metrics.impression_count}</p>
 							</S.Metric>
 							<S.Metric>
 								<ReactSVG src={ASSETS.replies} />
-								<p>{messageData.public_metrics.reply_count}</p>
+								<p>{jsonData.public_metrics.reply_count}</p>
 							</S.Metric>
 							<S.Metric>
 								<ReactSVG src={ASSETS.retweet} />
-								<p>{messageData.public_metrics.retweet_count}</p>
+								<p>{jsonData.public_metrics.retweet_count}</p>
 							</S.Metric>
 							<S.Metric>
 								<ReactSVG src={ASSETS.favorite} />
-								<p>{messageData.public_metrics.like_count}</p>
+								<p>{jsonData.public_metrics.like_count}</p>
 							</S.Metric>
 						</S.PublicMetrics>
 					)}

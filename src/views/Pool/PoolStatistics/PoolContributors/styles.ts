@@ -34,9 +34,10 @@ export const Header = styled.div`
 export const Body = styled.div`
 	height: calc(100% - 50px);
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
 	padding: 0 15px;
 	animation: ${open} ${fadeIn2};
 `;
@@ -52,7 +53,8 @@ export const InfoData = styled.div`
 	p,
 	span,
 	a {
-		font-size: ${(props) => props.theme.typography.size.small};
+		font-family: ${(props) => props.theme.typography.family.primary};
+		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 	}
@@ -67,7 +69,6 @@ export const Number = styled(InfoData)`
 export const Owner = styled(InfoData)`
 	margin: 0 0 0 20px;
 	a {
-		font-weight: ${(props) => props.theme.typography.weight.regular};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 	}
 `;

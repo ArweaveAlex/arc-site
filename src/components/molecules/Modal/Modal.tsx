@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { Portal } from 'components/atoms/Portal';
@@ -24,9 +23,6 @@ export default function Modal(props: IProps) {
 				<S.Container>
 					<S.Header>
 						<S.LT>
-							<S.Logo>
-								<ReactSVG src={ASSETS.logoAlt} />
-							</S.Logo>
 							<S.Title>{props.title}</S.Title>
 						</S.LT>
 						<S.Close>

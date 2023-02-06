@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
 	top: 0;
 	left: 0;
 	background: ${(props) => props.theme.colors.overlay.primary};
+	backdrop-filter: blur(2px);
 	animation: ${open} ${fadeIn1};
 `;
 
@@ -20,11 +21,12 @@ export const Container = styled.div`
 	width: 555px;
 	max-width: 87.5vw;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border-radius: ${STYLING.dimensions.borderRadius};
 	position: absolute;
 	top: 47.5%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.primary};
 	@media (max-width: ${STYLING.cutoffs.secondary}) {
 		top: 50%;
 	}
@@ -33,9 +35,6 @@ export const Container = styled.div`
 export const Header = styled.div`
 	height: 65px;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.alt1.background};
-	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -54,9 +53,10 @@ export const Logo = styled.div`
 	}
 `;
 
-export const Title = styled.h2`
-	color: ${(props) => props.theme.colors.font.primary.base};
-	font-family: ${(props) => props.theme.typography.family.alt1};
+export const Title = styled.p`
+	color: ${(props) => props.theme.colors.font.primary.alt1};
+	font-family: ${(props) => props.theme.typography.family.primary};
+	font-weight: ${(props) => props.theme.typography.weight.medium};
 `;
 
 export const Close = styled.div`

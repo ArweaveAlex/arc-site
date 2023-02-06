@@ -1,5 +1,7 @@
 import parse from 'html-react-parser';
 
+import landingStepsAsset from 'assets/cycle.png';
+
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as S from './styles';
@@ -16,9 +18,7 @@ export default function LandingSteps() {
 					</S.HeaderFlex>
 				</S.Header>
 				<S.Body>
-					<S.Asset>
-						<img src={ASSETS.cycle} alt={''} />
-					</S.Asset>
+					<S.Asset style={{backgroundImage: `url(${landingStepsAsset})`}} image={ASSETS.cycle} />
 					<S.StepList>
 						{stepList.map((step, index) => (
 							<S.Step key={index}>

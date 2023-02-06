@@ -48,7 +48,9 @@ export const Body = styled.div`
 	display: flex;
 	flex-direction: column;
 	overflow-x: auto;
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	overflow-y: auto;
+	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
 	min-height: 66.5vh;
 `;
@@ -57,6 +59,12 @@ export const Table = styled.div`
 	height: 100%;
 	width: 100%;
 	border-right: 1px solid ${(props) => props.theme.colors.border.alt5};
+	> * {
+		&:last-child {
+			border-bottom-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
+			border-bottom-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
+		}
+	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: ${STYLING.cutoffs.initial};
 	}
@@ -87,7 +95,7 @@ export const RowData = styled.div`
 	align-items: center;
 	p {
 		font-family: ${(props) => props.theme.typography.family.primary};
-		font-size: ${(props) => props.theme.typography.size.xxSmall};
+		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 		overflow: hidden;

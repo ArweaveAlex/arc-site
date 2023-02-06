@@ -40,7 +40,7 @@ export const Icon = styled.div`
 	align-items: center;
 	background: ${(props) => props.theme.colors.container.alt1.background};
 	svg {
-		width: 57.5%;
+		width: 50%;
 		position: absolute;
 		top: 50%;
 		left: 50%;

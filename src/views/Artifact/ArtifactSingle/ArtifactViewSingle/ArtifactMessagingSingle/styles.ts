@@ -3,17 +3,15 @@ import styled from 'styled-components/macro';
 import { STYLING } from 'helpers/styling';
 import { open, fadeIn2 } from 'helpers/animations';
 
-const THREAD_WIDTH = '600px';
-
 export const Wrapper = styled.div`
     display: flex;
-    width: ${THREAD_WIDTH};
+    width: ${STYLING.dimensions.threadWidth};
     max-width: 90vw;
     margin: 0 auto;
     position: relative;
     display flex;
     justify-content: space-between;
-    @media(max-width: ${THREAD_WIDTH}) {
+    @media(max-width: ${STYLING.dimensions.threadWidth}) {
         width: auto;
     }
 `;

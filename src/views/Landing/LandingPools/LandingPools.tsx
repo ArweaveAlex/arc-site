@@ -1,9 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { RootState } from 'redux/store';
+import { ReduxPoolsUpdate } from 'redux/pools/ReduxPoolsUpdate';
+
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 
+import { Loader } from 'components/atoms/Loader';
 import { Carousel } from 'components/molecules/Carousel';
 
+import { sortByMostContributed } from 'filters/pools';
 import { getTxEndpoint } from 'helpers/endpoints';
 import * as urls from 'helpers/urls';
 import { LANGUAGE } from 'helpers/language';
@@ -44,16 +51,41 @@ function PoolCard(props: PoolType) {
 	) : null;
 }
 
-export default function LandingPools(props: { data: PoolType[] }) {
+// TODO - async page load without cache
+export default function LandingPools() {
+	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
+
+	const [data, setData] = React.useState<PoolType[] | null>(null);
+
+	React.useEffect(() => {
+		if (poolsReducer.data) {
+			setData(sortByMostContributed(poolsReducer.data, 5));
+		}
+	}, [poolsReducer.data]);
+
 	function getPools() {
-		return props.data.map((pool: PoolType) => {
+		return data.map((pool: PoolType) => {
 			return <PoolCard {...pool} key={pool.id} />;
 		});
 	}
 
+	function getData() {
+		if (data) {
+			return <Carousel title={LANGUAGE.activePools} data={getPools()} />;
+		} else {
+			return (
+				<S.LoadingContainer>
+					<Loader sm />
+				</S.LoadingContainer>
+			);
+		}
+	}
+
 	return (
-		<S.Wrapper>
-			<Carousel title={LANGUAGE.activePools} data={getPools()} />
-		</S.Wrapper>
+		<ReduxPoolsUpdate>
+			<S.Wrapper>
+				{getData()}
+			</S.Wrapper>
+		</ReduxPoolsUpdate>
 	);
 }

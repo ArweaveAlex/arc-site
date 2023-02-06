@@ -13,8 +13,7 @@ export const HeaderWrapper = styled.div`
 	max-width: ${STYLING.cutoffs.max};
 	margin: calc(${STYLING.dimensions.navHeight} + 20px) auto 0 auto;
 	padding: 0 20px;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		height: auto;
 	}
 `;
@@ -22,16 +21,17 @@ export const HeaderWrapper = styled.div`
 export const HeaderContent = styled.div`
 	height: 100%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
 	padding: 30px 20px;
 	margin: 0 0 40px 0;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	animation: ${open} ${fadeIn2};
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		flex-direction: column;
 		align-items: start;
 		padding: 20px;
@@ -52,7 +52,7 @@ export const ShareWrapper = styled.div`
 	height: 100%;
 	width: fit-content;
 	position: relative;
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		margin: 20px 0 0 0;
 	}
 `;
@@ -70,7 +70,7 @@ export const URLCopied = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 		white-space: nowrap;
 	}
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		bottom: auto;
 		left: 170px;
 	}
@@ -107,10 +107,23 @@ export const Header2 = styled(Header1)`
 `;
 
 export const Message = styled.div`
-	margin: calc(20px + ${STYLING.dimensions.navHeight}) auto 0 auto;
-	padding: 0 20px;
-	max-width: ${STYLING.cutoffs.max};
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: ${(props) => props.theme.colors.container.alt6.background};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
+	padding: 20px 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	p {
 		font-size: ${(props) => props.theme.typography.size.xSmall};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+	}
+	button {
+		margin: 20px auto 0 auto;
 	}
 `;

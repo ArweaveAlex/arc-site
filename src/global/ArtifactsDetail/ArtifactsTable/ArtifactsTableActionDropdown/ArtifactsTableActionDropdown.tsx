@@ -7,13 +7,14 @@ import { getBookmarkIds, setBookmarkIds, getArtifactById } from 'gql/artifacts';
 
 import { ArtifactViewSingle } from 'views/Artifact/ArtifactSingle/ArtifactViewSingle';
 
+import { Notification } from 'components/atoms/Notification';
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 
 import { getHashUrl, getTagValue } from 'helpers/utils';
 import * as urls from 'helpers/urls';
 import { LANGUAGE } from 'helpers/language';
 import { TAGS, STORAGE } from 'helpers/config';
-import { ArtifactDetailType } from 'helpers/types';
+import { ArtifactDetailType, BookmarkResponseType } from 'helpers/types';
 import { IProps } from './types';
 import * as S from './styles';
 
@@ -35,21 +36,18 @@ function Preview(props: { artifactId: string; callback: () => void }) {
 	);
 }
 
-// TODO - Preview
-// TODO - Bookmark Notification
 // TODO - Stamp
 // TODO - Permafacts Link
-// TODO - Action dropdown on all tabes, disable each action conditionally
 export default function ArtifactsTableActionDropdown(props: IProps) {
 	const dispatch = useDispatch();
 	const bookmarksReducer = useSelector((state: RootState) => state.bookmarksReducer);
 
 	const [copied, setCopied] = React.useState<boolean>(false);
 	const [showPreview, setShowPreview] = React.useState<boolean>(false);
+	const [bookmarkNotification, setbookmarkNotification] = React.useState<BookmarkResponseType | null>(null);
 
 	const [bookmarkIdsState, setBookmarkIdsState] = React.useState<string[]>([]);
-
-	// TODO - EscHandler Wrapper
+	
 	const escFunction = React.useCallback(
 		(e: any) => {
 			if (e.key === 'Escape' && showPreview) {
@@ -70,7 +68,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (props.owner) {
-				console.log(bookmarksReducer.owner === props.owner);
 				if (bookmarksReducer.owner === props.owner) {
 					setBookmarkIdsState(bookmarksReducer.ids);
 				} else {
@@ -100,7 +97,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 			updatedBookmarks.push(artifactId);
 		}
 
-		await setBookmarkIds(props.owner!, updatedBookmarks);
+		setbookmarkNotification(await setBookmarkIds(props.owner!, updatedBookmarks));
 	}
 
 	let redirect: string;
@@ -131,6 +128,11 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		setShowPreview(false);
 	}
 
+	function handleBookmarkCallback() {
+		setbookmarkNotification(null);
+		handleCallback();
+	}
+
 	const copyArtifactId = React.useCallback(async () => {
 		if (props.artifactId) {
 			await navigator.clipboard.writeText(props.artifactId);
@@ -142,8 +144,8 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	function getActions() {
 		return [
 			{ fn: handleShowPreview, closeOnAction: false, subComponent: getPreview(), label: showPreview ? LANGUAGE.closePreview : LANGUAGE.previewArtifact, disabled: false },
-			{ fn: () => console.log('STAMP'), closeOnAction: false, subComponent: null, label: LANGUAGE.stamp, disabled: false },
-			{ fn: () => console.log('Assert on Permafacts'), closeOnAction: false, subComponent: null, label: LANGUAGE.assertOnPermafacts, disabled: false },
+			// { fn: () => console.log('STAMP'), closeOnAction: false, subComponent: null, label: LANGUAGE.stamp, disabled: true },
+			// { fn: () => console.log('Assert on Permafacts'), closeOnAction: false, subComponent: null, label: LANGUAGE.assertOnPermafacts, disabled: true },
 			{ fn: copyArtifactId, closeOnAction: false, subComponent: null, label: copied ? LANGUAGE.copied : LANGUAGE.copyArtifactId, disabled: false },
 			{ fn: handleViewRedirect, closeOnAction: true, subComponent: null, label: LANGUAGE.openInNewTab, disabled: false },
 			{
@@ -152,9 +154,19 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				subComponent: null,
 				label: bookmarkIdsState.includes(props.artifactId) ? LANGUAGE.removeFromBookmarks : LANGUAGE.addtoBookmarks,
 				disabled: props.bookmarksDisabled,
-			}
+			},
 		];
 	}
 
-	return <ActionDropdown handleCallback={handleCallback} actions={getActions()} />;
+	return (
+		<>
+			{bookmarkNotification && (
+				<Notification 
+					message={bookmarkNotification.message} 
+					type={bookmarkNotification.status === 200 ? 'success' : 'warning'} 
+					callback={handleBookmarkCallback} />
+			)}
+			<ActionDropdown handleCallback={handleCallback} actions={getActions()} />
+		</>
+	);
 }

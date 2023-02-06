@@ -19,6 +19,7 @@ export const TypeContainer = styled.div`
 export const TypeLabel = styled.div`
 	height: 100%;
 	width: calc(100% - 25px);
+	width: 100%;
 	padding: 0 10px 0 0;
 	display: flex;
 	align-items: center;
@@ -27,43 +28,38 @@ export const TypeLabel = styled.div`
 
 export const Icons = styled.div`
 	height: 100%;
-	width: 25px;
+	width: 80px;
+	display: flex;
 	position: absolute;
 	right: 0;
-	border-left: 1px solid ${(props) => props.theme.colors.border.alt5};
-	border-right: 1px solid ${(props) => props.theme.colors.border.alt5};
-`;
-
-export const Divider = styled.div`
-	height: 1px;
-	width: 100%;
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%);
-	border-top: 1px solid ${(props) => props.theme.colors.border.alt5};
 `;
 
 export const Icon = styled.div`
-	height: 50%;
-	width: 100%;
+	height: 100%;
+	width: 50%;
+	display: flex;
+	justify-content: end;
+	align-items: center;
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 50%;
+	left: 0;
+	right: auto;
+	transform: translate(0, -50%);
 	svg {
-		height: 100%;
 		width: 10px;
+		margin: 3.5px 0 0 0;
 		fill: ${(props) => props.theme.colors.font.primary.active.base};
 	}
 `;
 
 export const AssociationIcon = styled(Icon)`
-	top: auto;
-	bottom: 0;
+	right: 0;
+	left: auto;
 	svg {
 		width: 12.5px;
-		fill: ${(props) => props.theme.colors.font.primary.active.base};
 	}
 `;
+
 
 export const LinkWrapper = styled.div`
 	height: 100%;
@@ -86,7 +82,7 @@ export const ALink = styled.div`
 	a,
 	span,
 	b {
-		font-size: ${(props) => props.theme.typography.size.xxSmall};
+		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
 	a {
