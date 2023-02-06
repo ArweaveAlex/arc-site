@@ -214,7 +214,7 @@ export const defaultTheme: DefaultTheme = {
 		},
 		shadow: {
 			primary: DEFAULT.neutral7,
-			alt1: DEFAULT.transparent
+			alt1: DEFAULT.neutral2
 		},
 		table: {
 			placeholder: {
