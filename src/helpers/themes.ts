@@ -30,7 +30,7 @@ const DEFAULT = {
 	neutral: '#FFB600',
 	transparent: 'rgba(255, 255, 255, 0)',
 	semiTransparent: 'rgba(255, 255, 255, 0.5)',
-	imageShadow1: '#000000b0',
+	imageShadow1: '#a2a2a2b0',
 	imageShadow2: '#000000ba'
 };
 
