@@ -16,9 +16,10 @@ export const Header = styled.div`
 	margin: 0 0 20px 0;
 	display: flex;
 	flex-direction: column;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
 	padding: 20px;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		height: auto;
@@ -104,7 +105,7 @@ export const ImageLoading = styled.div`
 	width: 100%;
 	margin: 0 0 20px 0;
 	position: relative;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
@@ -122,9 +123,10 @@ export const FlexTiles = styled.div`
 export const Tile = styled.div`
 	height: 100px;
 	width: 32.5%;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
 	padding: 15px;
 	position: relative;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
@@ -189,8 +191,10 @@ export const LDHeader = styled.div`
 export const LDBody = styled.div`
 	margin: 20px 0;
 	padding: 15px;
+	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
 	color: ${(props) => props.theme.colors.font.primary.active.base};
 	font-size: ${(props) => props.theme.typography.size.base};
 	line-height: 1.5;

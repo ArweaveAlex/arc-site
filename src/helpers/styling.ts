@@ -1,9 +1,9 @@
 export const STYLING = {
 	cutoffs: {
 		initial: '1024px',
+		initialWrapper: '1200px',
 		tablet: '840px',
 		secondary: '540px',
-		desktop: '1200px',
 		max: '1400px',
 	},
 	dimensions: {
@@ -18,6 +18,9 @@ export const STYLING = {
 		formHeightMax: '55px',
 		formWidthMin: '300px',
 		formWidthMax: '500px',
-		messagingContent: '650px'
+		messagingContent: '650px',
+		threadWidth: '600px',
+		threadDetailWidth: '500px',
+		wrapWidth: '675px'
 	},
 };

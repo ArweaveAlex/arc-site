@@ -1,4 +1,4 @@
-import { STORAGE, SEARCH } from 'helpers/config';
+import { STORAGE, SEARCH, TAGS } from 'helpers/config';
 import { DateType, KeyValueType } from 'helpers/types';
 
 export function getHashUrl(url: string) {
@@ -42,7 +42,7 @@ function getHourFormat(hours: number) {
 	}
 }
 
-export function formatDate(dateArg: string | null, dateType: DateType) {
+export function formatDate(dateArg: string | number | null, dateType: DateType) {
 	if (!dateArg) {
 		return STORAGE.none;
 	}
@@ -176,14 +176,61 @@ export function getUsername(data: any) {
 	}
 }
 
-export async function traverse(callBackFields: string[], obj: any, callBack: any) {
+export function checkMedia(tags: KeyValueType[]) {
+	return getTagValue(tags, TAGS.keys.mediaIds) !== '{}' &&
+	getTagValue(tags, TAGS.keys.mediaIds) !== '[]' &&
+	getTagValue(tags, TAGS.keys.mediaIds) !== STORAGE.none &&
+	getTagValue(tags, TAGS.keys.mediaIds) !== '' &&
+	getTagValue(tags, TAGS.keys.mediaIds) !== `{"":""}`;
+}
+
+export function checkAssociation(tags: KeyValueType[]) {
+	return getTagValue(tags, TAGS.keys.associationId) !== '' && getTagValue(tags, TAGS.keys.associationId) !== STORAGE.none;
+}
+
+export async function traverseCommentTree(callBackFields: string[], obj: any, callBack: any) {
 	for (let key in obj) {
 		if (obj.hasOwnProperty(key)) {
 			if (callBackFields.includes(key)) {
-				await callBack(obj[key], key);
+				await callBack(obj);
 			} else if (typeof obj[key] === 'object' && obj[key] !== null) {
-				await traverse(callBackFields, obj[key], callBack);
+				await traverseCommentTree(callBackFields, obj[key], callBack);
 			}
 		}
 	}
+}
+
+export function sortCommentTree(data: any[]) {
+	const reversedData = [...data].reverse();
+	const bodyListData = reversedData.map((element) => element.body);
+	let groupedData: any[] = [];
+	const finalData: any[] = [];
+
+	for (let i = 0; i < reversedData.length; i++) {
+		if (reversedData[i].depth === 0) {
+			let j = bodyListData.indexOf(reversedData[i].body);
+			let commentTraversed = false;
+			const subList: any[] = [];
+			subList.push(reversedData[j]);
+			j++;
+			while (!commentTraversed) {
+				if (reversedData[j]) {
+					if (reversedData[j].depth === 0) {
+						commentTraversed = true;
+					} else {
+						subList.push(reversedData[j]);
+					}
+					j++;
+				} else {
+					commentTraversed = true;
+				}
+			}
+			groupedData.push(subList);
+		}
+	}
+	groupedData = groupedData.reverse();
+	for (let i = 0; i < groupedData.length; i++) {
+		finalData.push(groupedData[i]);
+	}
+	return finalData;
 }

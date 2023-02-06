@@ -18,8 +18,10 @@ export const PCWrapper = styled.div`
 	width: 100%;
 	display: flex;
 	padding: 25px;
+	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
 	}
@@ -45,7 +47,6 @@ export const C1Content = styled.div`
 	padding: 0 25px 25px 5px;
 	text-align: left;
 	overflow-y: auto;
-	background: ${(props) => props.theme.colors.container.primary.background};
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		height: 300px;
 		width: 100%;
@@ -111,4 +112,15 @@ export const C2 = styled.div<{ image: string }>`
 		width: 100%;
 		margin: 10px 0 0 0;
 	}
+`;
+
+export const LoadingContainer = styled.div`
+	height: 100%;
+	min-height: 400px;
+	width: 100%;
+	position: relative;
+	margin: 40px 0 0 0;
+	background: ${(props) => props.theme.colors.container.alt6.background};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;

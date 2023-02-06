@@ -39,6 +39,8 @@ export const Content = styled.div`
 	max-width: ${STYLING.cutoffs.max};
 	width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
 	position: relative;
 `;
 
@@ -128,6 +130,7 @@ export const InfoStyled = styled(InfoData)`
 export const InfoTitle = styled(InfoData)`
 	width: 27.5%;
 	padding: 0 10px 0 0;
+	justify-content: start;
 `;
 
 export const InfoType = styled(InfoStyled)`
@@ -160,7 +163,7 @@ export const Divider = styled.div`
 `;
 
 export const Body = styled.div`
-	height: 46.5%;
+	height: 50%;
 	width: 100%;
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	display: flex;

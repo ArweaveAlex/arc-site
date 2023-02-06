@@ -53,6 +53,12 @@ export default function Account() {
 	) : (
 		<S.Message>
 			<p>{LANGUAGE.walletNotConnected}</p>
+			<Button 
+				type={'alt1'}
+				label={LANGUAGE.connect}
+				handlePress={() => arProvider.setWalletModalVisible(true)}
+				useMaxWidth
+			/>
 		</S.Message>
 	);
 }

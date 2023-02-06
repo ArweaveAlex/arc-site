@@ -3,10 +3,6 @@ import styled from 'styled-components/macro';
 import { STYLING } from 'helpers/styling';
 import { open, fadeIn2 } from 'helpers/animations';
 
-const THREAD_WIDTH = '600px';
-const DETAIL_WIDTH = '500px';
-const WRAP_WIDTH = '675px';
-
 export const Wrapper = styled.div`
     display: flex;
     width: 1125px;
@@ -16,7 +12,7 @@ export const Wrapper = styled.div`
     padding: 20px 0;
     display flex;
     justify-content: space-between;
-    @media(max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
+    @media(max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
         flex-direction: column-reverse;
     }
     @media(max-height: 600px) {
@@ -26,35 +22,35 @@ export const Wrapper = styled.div`
 
 export const ListWrapper = styled.div`
 	min-height: 100vh;
-	width: ${THREAD_WIDTH};
+	width: ${STYLING.dimensions.threadWidth};
 	max-width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	padding: 0 0 300px 0;
-	@media (max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
-		width: ${WRAP_WIDTH};
+	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
+		width: ${STYLING.dimensions.wrapWidth};
 		margin: 0 auto;
 	}
 	@media (max-height: 600px) {
-		width: ${WRAP_WIDTH};
+		width: ${STYLING.dimensions.wrapWidth};
 		margin: 0 auto;
 	}
 `;
 
 export const HDWrapper = styled.div`
-	width: ${DETAIL_WIDTH};
+	width: ${STYLING.dimensions.threadDetailWidth};
 	position: absolute;
 	right: 0;
-	@media (max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
-		width: ${WRAP_WIDTH};
+	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
+		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
 		right: auto;
 		margin: 0 auto 20px auto;
 	}
 	@media (max-height: 600px) {
-		width: ${WRAP_WIDTH};
+		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
 		right: auto;
@@ -67,19 +63,25 @@ export const HDContent = styled.div`
 	width: 500px;
 	position: fixed;
 	overflow-y: auto;
+
+	scrollbar-width: none;
+	::-webkit-scrollbar {
+		width: 0px;
+	}
+
 	overflow-x: hidden;
 	top: calc(${STYLING.dimensions.navHeight} + 20px);
 
-	@media (max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
+	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		height: auto;
-		width: ${WRAP_WIDTH};
+		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
 		top: auto;
 	}
 	@media (max-height: 600px) {
 		height: auto;
-		width: ${WRAP_WIDTH};
+		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
 		top: auto;
@@ -103,7 +105,7 @@ export const HeaderWrapper = styled.div`
 			text-decoration-thickness: 1.5px;
 		}
 	}
-	@media (max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
+	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		margin: 20px 0;
 	}
 	@media (max-height: 600px) {

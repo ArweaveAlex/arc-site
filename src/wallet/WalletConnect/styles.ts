@@ -21,7 +21,6 @@ export const WalletListItem = styled.button`
 	width: 100%;
 	text-align: left;
 	padding: 0 20px;
-	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 	display: flex;
 	align-items: center;
 	&:hover {
@@ -32,7 +31,7 @@ export const WalletListItem = styled.button`
 		margin: 0 15px 0 0;
 	}
 	span {
-		font-size: ${(props) => props.theme.typography.size.base};
+		font-size: ${(props) => props.theme.typography.size.small};
 		margin-top: 2.5px;
 	}
 `;

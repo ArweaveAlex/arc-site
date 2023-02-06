@@ -14,13 +14,14 @@ const DEFAULT = {
 	neutral11: '#000000',
 	neutral12: '#FAFAFA',
 	neutral13: '#F7F7F7',
+	neutral14: '#FFFFFF',
 	primary: '#003153',
 	primary2: '#265F85',
 	primary3: '#4C8CB8',
 	primary4: '#A4CCE9',
 	alt1: '#DAA520',
 	alt2: '#FFD877',
-	overlay1: 'rgba(59, 70, 78, 0.75)',
+	overlay1: 'rgba(193, 193, 193, 0.75)',
 	overlay2: 'rgba(193, 193, 193, 0.75)',
 	overlay3: 'rgba(193, 193, 193, 0.85)',
 	warning: '#EE3C3C',
@@ -123,7 +124,7 @@ export const defaultTheme: DefaultTheme = {
 				background: DEFAULT.neutral11,
 			},
 			alt6: {
-				background: DEFAULT.neutral12,
+				background: DEFAULT.neutral14,
 			},
 		},
 		font: {
@@ -136,6 +137,7 @@ export const defaultTheme: DefaultTheme = {
 				alt5: DEFAULT.primary4,
 				alt6: DEFAULT.neutral7,
 				alt7: DEFAULT.neutral8,
+				alt8: DEFAULT.neutral11,
 				active: {
 					base: DEFAULT.primary,
 					hover: DEFAULT.primary3,
@@ -203,6 +205,10 @@ export const defaultTheme: DefaultTheme = {
 			primary: DEFAULT.overlay1,
 			alt1: DEFAULT.overlay2,
 			alt2: DEFAULT.overlay3,
+		},
+		shadow: {
+			primary: DEFAULT.neutral7,
+			alt1: DEFAULT.transparent
 		},
 		table: {
 			placeholder: {

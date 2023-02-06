@@ -3,9 +3,6 @@ import styled from 'styled-components/macro';
 import { STYLING } from 'helpers/styling';
 import { open, fadeIn2 } from 'helpers/animations';
 
-const DETAIL_WIDTH = '500px';
-const WRAP_WIDTH = '675px';
-
 export const LIWrapper = styled.div<{ isListItem: boolean; active: boolean }>`
 	width: 100%;
 	border-bottom: ${(props) => (props.isListItem ? `1px solid ${props.theme.colors.border.primary}` : 'none')};
@@ -51,19 +48,19 @@ export const NUContainer = styled.div`
 `;
 
 export const P = styled.p`
-	font-size: ${(props) => props.theme.typography.size.small};
+	font-size: ${(props) => props.theme.typography.size.small} !important;
 `;
 
 export const Name = styled(P)`
-	color: ${(props) => props.theme.colors.font.primary.alt1};
-	font-weight: ${(props) => props.theme.typography.weight.medium};
+	color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+	font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 `;
 
 export const Username = styled(P)`
-	font-size: ${(props) => props.theme.typography.size.xSmall};
-	font-weight: ${(props) => props.theme.typography.weight.regular};
-	color: ${(props) => props.theme.colors.font.primary.alt1};
-	margin: 5px 0;
+	font-size: ${(props) => props.theme.typography.size.xSmall} !important;
+	font-weight: ${(props) => props.theme.typography.weight.regular} !important;
+	color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+	margin: 5px 0 !important;
 `;
 
 export const AInfoWrapper = styled.div`
@@ -128,21 +125,23 @@ export const LIBody = styled.div`
 
 export const InfoData = styled.div`
 	span {
-		font-size: 13px;
-		color: ${(props) => props.theme.colors.font.primary.alt4};
+		font-size: 13px !important;
+		color: ${(props) => props.theme.colors.font.primary.alt4} !important;
 	}
 	p,
 	a {
-		font-size: ${(props) => props.theme.typography.size.base};
-		line-height: 18px;
-		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-size: ${(props) => props.theme.typography.size.base} !important;
+		line-height: 18px !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	}
 	span,
 	p,
 	a {
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
+		height: fit-content !important;
+		text-overflow: ellipsis !important;
+		overflow: hidden !important;
+		white-space: nowrap !important;
+		font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 	}
 	overflow: hidden;
 `;
@@ -153,31 +152,33 @@ export const Message = styled(InfoData)`
 	p,
 	a,
 	b {
-		font-size: ${(props) => props.theme.typography.size.base};
-		line-height: 24px;
-		overflow: visible;
-		white-space: pre-wrap;
+		font-size: ${(props) => props.theme.typography.size.base} !important;
+		line-height: 1.5 !important;
+		overflow: visible !important;
+		white-space: pre-wrap !important;
 	}
 	span,
 	b {
-		color: ${(props) => props.theme.colors.font.primary.alt4};
-		font-weight: ${(props) => props.theme.typography.weight.medium};
+		color: ${(props) => props.theme.colors.font.primary.alt4} !important;
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 	}
 `;
 
 export const PostDate = styled(P)`
-	margin: 20px 0 !important;
-	font-size: ${(props) => props.theme.typography.size.xSmall};
+	font-size: ${(props) => props.theme.typography.size.xSmall} !important;
+	font-weight: ${(props) => props.theme.typography.weight.regular} !important;
+	color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+	margin: 20px 0 0 0 !important;
 `;
 
 export const PublicMetrics = styled.div`
-	width: 50%;
 	width: 350px;
 	max-width: 75.5vw;
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
 	align-items: center;
+	margin: 20px 0 0 0 !important;
 `;
 
 export const Metric = styled.div`
@@ -188,12 +189,12 @@ export const Metric = styled.div`
 	margin: 0 12.5px 0 0;
 	svg {
 		width: 13.5px;
-		fill: ${(props) => props.theme.colors.font.primary.alt1};
+		fill: ${(props) => props.theme.colors.font.primary.alt8};
 		margin: 0 !important;
 	}
 	p {
-		font-size: ${(props) => props.theme.typography.size.xSmall} !important;
-		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+		font-size: ${(props) => props.theme.typography.size.xxSmall} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 		margin: 0 0 3.5px 5.5px !important; 
 		white-space: nowrap !important;
@@ -202,18 +203,18 @@ export const Metric = styled.div`
 `;
 
 export const SingleWrapper = styled.div`
-	width: ${DETAIL_WIDTH};
+	width: ${STYLING.dimensions.threadDetailWidth};
 	position: absolute;
 	right: 0;
-	@media (max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
-		width: ${WRAP_WIDTH};
+	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
+		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
 		right: auto;
 		margin: 0 auto 20px auto;
 	}
 	@media (max-height: 600px) {
-		width: ${WRAP_WIDTH};
+		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
 		right: auto;
@@ -229,16 +230,16 @@ export const SingleContent = styled.div`
 	overflow-x: hidden;
 	top: ${STYLING.dimensions.navHeight};
 
-	@media (max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
+	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		height: auto;
-		width: ${WRAP_WIDTH};
+		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
 		top: auto;
 	}
 	@media (max-height: 600px) {
 		height: auto;
-		width: ${WRAP_WIDTH};
+		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
 		top: auto;
@@ -262,7 +263,7 @@ export const HeaderWrapper = styled.div`
 			text-decoration-thickness: 1.5px;
 		}
 	}
-	@media (max-width: calc(${STYLING.cutoffs.desktop} + 25px)) {
+	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		margin: 20px 0;
 	}
 	@media (max-height: 600px) {
@@ -291,20 +292,20 @@ export const SubheaderContainer = styled.div`
 
 export const Subheader1 = styled.div`
 	p {
-		font-size: ${(props) => props.theme.typography.size.base};
-		line-height: 20px;
-		color: ${(props) => props.theme.colors.font.primary.alt6};
+		font-size: ${(props) => props.theme.typography.size.base} !important;
+		line-height: 20px !important;
+		color: ${(props) => props.theme.colors.font.primary.alt6} !important;
 	}
 `;
 
 export const Subheader2 = styled.div`
 	p,
 	a {
-		font-size: ${(props) => props.theme.typography.size.base};
-		line-height: 20px;
-		height: auto !important;
-		font-weight: ${(props) => props.theme.typography.weight.regular};
-		color: ${(props) => props.theme.colors.font.primary.alt4};
+		font-size: ${(props) => props.theme.typography.size.base} !important;
+		line-height: 20px !important;
+		height: fit-content !important;
+		font-weight: ${(props) => props.theme.typography.weight.regular} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt4} !important;
 	}
 `;
 

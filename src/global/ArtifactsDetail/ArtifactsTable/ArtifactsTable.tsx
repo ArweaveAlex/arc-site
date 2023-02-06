@@ -14,7 +14,7 @@ import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from 'helpers/config
 
 import { AlignType, ArtifactTableRowType, KeyValueType, TableHeaderType } from 'helpers/types';
 
-import { formatArtifactType, formatDate, formatMessagingText, getTagValue } from 'helpers/utils';
+import { formatArtifactType, formatDate, formatMessagingText, getTagValue, checkMedia, checkAssociation } from 'helpers/utils';
 
 import * as urls from 'helpers/urls';
 import { IProps } from './types';
@@ -83,13 +83,6 @@ export default function ArtifactsTable(props: IProps) {
 	}
 
 	function getType(type: string, tags: KeyValueType[]) {
-		const hasMedia =
-			getTagValue(tags, TAGS.keys.mediaIds) !== '{}' &&
-			getTagValue(tags, TAGS.keys.mediaIds) !== STORAGE.none &&
-			getTagValue(tags, TAGS.keys.mediaIds) !== '' &&
-			getTagValue(tags, TAGS.keys.mediaIds) !== `{"":""}`;
-		const hasAssociation = getTagValue(tags, TAGS.keys.associationId) !== '' && getTagValue(tags, TAGS.keys.associationId) !== STORAGE.none;
-
 		let artifactType = ARTIFACT_TYPES[type];
 		if (!artifactType) {
 			artifactType = ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
@@ -100,11 +93,6 @@ export default function ArtifactsTable(props: IProps) {
 				<S.TypeLabel>
 					<p>{formatArtifactType(artifactType.label)}</p>
 				</S.TypeLabel>
-				<S.Icons>
-					<S.Icon>{hasMedia && <ReactSVG src={ASSETS.media} />}</S.Icon>
-					<S.Divider />
-					<S.AssociationIcon>{hasAssociation && <ReactSVG src={ASSETS.association} />}</S.AssociationIcon>
-				</S.Icons>
 			</S.TypeContainer>
 		);
 	}
@@ -116,6 +104,7 @@ export default function ArtifactsTable(props: IProps) {
 	function getArtifactLink(id: string, tags: KeyValueType[]) {
 		let redirect: string;
 		const associationId = getTagValue(tags, TAGS.keys.associationId);
+
 
 		if (associationId && associationId !== STORAGE.none) {
 			redirect = `${urls.thread}${associationId}/${id}`;
@@ -132,6 +121,10 @@ export default function ArtifactsTable(props: IProps) {
 						</Link>
 					</S.ALink>
 				</S.ALinkWrapper>
+				<S.Icons>
+					<S.Icon>{checkMedia(tags) && <ReactSVG src={ASSETS.media} />}</S.Icon>
+					<S.AssociationIcon>{checkAssociation(tags) && <ReactSVG src={ASSETS.association} />}</S.AssociationIcon>
+				</S.Icons>
 			</S.LinkWrapper>
 		);
 	}

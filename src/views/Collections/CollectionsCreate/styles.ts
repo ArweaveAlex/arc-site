@@ -15,7 +15,7 @@ export const HeaderWrapper = styled.div`
 	width: 100%;
 	margin: 0 auto;
 	position: relative;
-	@media (max-width: ${STYLING.cutoffs.desktop}) {
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		height: auto;
 	}
 `;
