@@ -37,7 +37,7 @@ export const Label = styled.div`
 export const ModalWrapper = styled.div`
 	height: 100%;
 	width: 100%;
-	padding: 20px;
+	padding: 0 20px 20px 20px;
 `;
 
 export const Header = styled.div`
