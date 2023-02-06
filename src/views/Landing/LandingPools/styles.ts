@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-import { STYLING } from 'helpers/styling';
+import { STYLING, getImageShadow } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	height: 550px;
@@ -17,6 +17,7 @@ export const PCWrapper = styled.div`
 	margin: 15px 0 0 0;
 	width: 100%;
 	display: flex;
+	justify-content: space-between;
 	padding: 25px;
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
@@ -101,11 +102,11 @@ export const LinkContainer = styled.div`
 
 export const C2 = styled.div<{ image: string }>`
 	height: 100%;
-	width: 65%;
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	width: 60%;
 	background-image: ${(props) => `url("${props.image}")`};
 	background-size: cover;
 	background-position: center;
+	box-shadow: ${(props) => getImageShadow(props.theme)};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		height: 200px;

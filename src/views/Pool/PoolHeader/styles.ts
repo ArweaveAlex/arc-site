@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 import { open, fadeIn2 } from 'helpers/animations';
-import { STYLING } from 'helpers/styling';
+import { STYLING, getImageShadow } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	width: 100%;
@@ -94,8 +94,8 @@ export const Image = styled.div<{ image: string }>`
 	background-image: ${(props) => `url("${props.image}")`};
 	background-size: cover;
 	background-position: center;
-	margin: 0 0 20px 0;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	box-shadow: ${(props) => getImageShadow(props.theme)};
+	margin: 0 0 40px 0;
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
 `;
@@ -103,7 +103,7 @@ export const Image = styled.div<{ image: string }>`
 export const ImageLoading = styled.div`
 	height: 425px;
 	width: 100%;
-	margin: 0 0 20px 0;
+	margin: 0 0 40px 0;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};

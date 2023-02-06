@@ -6,7 +6,6 @@ import { Select } from 'components/atoms/Select';
 import { PoolType, PoolFilterType } from 'helpers/types';
 import { getTxEndpoint } from 'helpers/endpoints';
 import * as urls from 'helpers/urls';
-import { formatDate } from 'helpers/utils';
 import { FALLBACK_IMAGE, POOL_FILTERS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as S from './styles';
@@ -34,7 +33,7 @@ function PoolTile(props: PoolType) {
 					<S.InfoTitle>
 						<p>{props.state.title}</p>
 					</S.InfoTitle>
-					<S.DCContainer>
+					{/* <S.DCContainer>
 						<S.DC1>
 							<p>{LANGUAGE.createdOn}</p>
 						</S.DC1>
@@ -42,7 +41,7 @@ function PoolTile(props: PoolType) {
 						<S.DC2>
 							<p>{formatDate(props.state.timestamp, 'epoch')}</p>
 						</S.DC2>
-					</S.DCContainer>
+					</S.DCContainer> */}
 				</S.Info>
 			</Link>
 		</S.PCWrapper>

@@ -30,6 +30,8 @@ const DEFAULT = {
 	neutral: '#FFB600',
 	transparent: 'rgba(255, 255, 255, 0)',
 	semiTransparent: 'rgba(255, 255, 255, 0.5)',
+	imageShadow1: '#000000b0',
+	imageShadow2: '#000000ba'
 };
 
 export const defaultTheme: DefaultTheme = {
@@ -176,6 +178,10 @@ export const defaultTheme: DefaultTheme = {
 				fill: DEFAULT.neutral4,
 			},
 			inactive: DEFAULT.neutral4,
+		},
+		image: {
+			shadow1: DEFAULT.imageShadow1,
+			shadow2: DEFAULT.imageShadow2,
 		},
 		indicator: {
 			active: {
