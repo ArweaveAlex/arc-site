@@ -66,7 +66,7 @@ export const Body = styled.div`
 export const Indicator = styled.button<{ selected: boolean }>`
     height: 15px;
     width: 15px;
-    margin: 0 3.5px;
+    margin: 0 3.5px !important;
     border-radius: 50%;
     background ${(props) => (props.selected ? props.theme.colors.indicator.active.base : props.theme.colors.indicator.inactive.base)};
     &:hover {
