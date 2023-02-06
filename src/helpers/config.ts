@@ -11,7 +11,7 @@ import { LANGUAGE } from 'helpers/language';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.0.1',
+	version: '1.0.2',
 };
 
 export const TAGS = {
