@@ -46,11 +46,12 @@ export const TAGS = {
 	values: {
 		defaultArtifactType: 'Alex-Default',
 		messagingArtifactType: 'Alex-Messaging',
+		nostrEventArtifactType: 'Alex-Nostr-Event',
 		redditThreadArtifactType: 'Alex-Reddit-Thread',
 		webpageArtifactType: 'Alex-Webpage',
 		poolVersions: {
 			'1.2': 'Alex-Archiving-Pool-v1.2',
-			'1.4': 'Alex-Archiving-Pool-v1.4',
+			'1.4': 'Alex-Archiving-Pool-Thread-Testing-v1.0',
 		},
 		searchIndex: 'Alex-Search-Index-v0',
 		collectionAppType: 'Alex-Collection-v0',
@@ -69,6 +70,7 @@ export const ASSETS = {
 	artifactTypes: {
 		default: `${ASSET_SRC}/artifact-types/webpage.svg`,
 		messaging: `${ASSET_SRC}/artifact-types/messaging.svg`,
+		nostrEvent: `${ASSET_SRC}/artifact-types/messaging.svg`,
 		redditThread: `${ASSET_SRC}/artifact-types/reddit-thread.svg`,
 		webpage: `${ASSET_SRC}/artifact-types/webpage.svg`,
 	},
@@ -144,6 +146,10 @@ export const ARTIFACT_TYPES = {
 	[TAGS.values.messagingArtifactType]: {
 		label: TAGS.values.messagingArtifactType,
 		icon: ASSETS.artifactTypes.messaging,
+	},
+	[TAGS.values.nostrEventArtifactType]: {
+		label: TAGS.values.nostrEventArtifactType,
+		icon: ASSETS.artifactTypes.nostrEvent,
 	},
 	[TAGS.values.redditThreadArtifactType]: {
 		label: TAGS.values.redditThreadArtifactType,

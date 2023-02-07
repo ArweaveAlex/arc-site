@@ -10,7 +10,7 @@ import { AssociationDetailType } from 'helpers/types';
 
 const SEQUENCE_ITERATION = 5;
 
-export default function Artifact() {
+export default function ArtifactThread() {
 	const { associationId } = useParams();
 
 	const [data, setData] = React.useState<AssociationDetailType | null>(null);

@@ -10,7 +10,7 @@ import { Loader } from 'components/atoms/Loader';
 import * as window from 'helpers/window';
 import { ArtifactDetailType } from 'helpers/types';
 
-export default function ArtifactThread() {
+export default function Artifact() {
 	const { id } = useParams();
 
 	const [data, setData] = React.useState<ArtifactDetailType | null>(null);

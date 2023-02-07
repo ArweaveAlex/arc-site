@@ -12,32 +12,40 @@ import { getArtifactsByUser } from 'gql/artifacts';
 import { REDUX_TABLES } from 'helpers/redux';
 import { LANGUAGE } from 'helpers/language';
 import { CollectionStateType, CursorEnum } from 'helpers/types';
-import { createCollection } from 'helpers/collections';
+import { createCollection } from 'collections/collections';
 import * as S from './styles';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 export default function CollectionsCreate() {
 	const query = useQuery();
+	const arProvider = useArweaveProvider();
 
 	const [title, setTitle] = React.useState<string>('');
 	const [description, setDescription] = React.useState<string>('');
 	const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
 
 	async function handleSubmit() {
-		console.log({
-			title: title,
-			description: description,
-			ids: selectedIds,
-		});
-
-		let collection: CollectionStateType = {
-			title: 'test',
-			description: 'test desc',
-			ids: ['jNS-i6ZWL0k1h6CwkWDBe34FPgCYUW3igWCD4zpUDH8'],
-		};
-
-		let collectionContractId = await createCollection(collection, 'crypto');
-
-		console.log(collectionContractId);
+		if (arProvider.walletAddress) {
+			console.log({
+				title: title,
+				description: description,
+				ids: selectedIds,
+			});
+	
+			let collection: CollectionStateType = {
+				title: 'test',
+				description: 'test desc',
+				ids: ['jNS-i6ZWL0k1h6CwkWDBe34FPgCYUW3igWCD4zpUDH8'],
+			};
+	
+			let collectionContractId = await createCollection(
+				collection, 
+				'crypto',
+				arProvider.walletAddress
+			);
+	
+			console.log(collectionContractId);
+		}
 	}
 
 	function handleIdUpdate(id: string) {
@@ -107,7 +115,7 @@ export default function CollectionsCreate() {
 									disabled={false}
 								/>
 								<S.SubmitContainer>
-									<Button type={'alt1'} label={LANGUAGE.submit} handlePress={() => handleSubmit()} formSubmit noMinWidth />
+									<Button type={'alt1'} label={LANGUAGE.submit} handlePress={() => handleSubmit()} noMinWidth />
 								</S.SubmitContainer>
 							</S.Form>
 						</S.FormFixedContainer>

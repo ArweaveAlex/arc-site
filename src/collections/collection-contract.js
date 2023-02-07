@@ -25,7 +25,7 @@ async function handle(state, action) {
 			let existingIds = state.ids;
 
 			let finalIds = existingIds.filter((id) => {
-				return !inputIds.contains(id);
+				return !inputIds.includes(id);
 			});
 
 			state.ids = finalIds;
