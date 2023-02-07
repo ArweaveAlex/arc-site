@@ -1,4 +1,5 @@
 import { ArtifactMessagingSingle } from './ArtifactMessagingSingle';
+import { ArtifactNostrEventSingle } from './ArtifactNostrEventSingle';
 import { ArtifactWebpageSingle } from './ArtifactWebpageSingle';
 import { ArtifactRedditSingle } from './ArtifactRedditSingle';
 
@@ -14,6 +15,8 @@ export default function ArtifactViewSingle(props: IProps) {
 			switch (props.data.artifactType) {
 				case ArtifactEnum.Messaging:
 					return <ArtifactMessagingSingle data={props.data} />;
+				case ArtifactEnum.Nostr:
+					return <ArtifactNostrEventSingle data={props.data} />;
 				case ArtifactEnum.Webpage:
 					return <ArtifactWebpageSingle data={props.data} />;
 				case ArtifactEnum.Reddit:

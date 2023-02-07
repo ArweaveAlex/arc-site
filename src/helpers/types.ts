@@ -4,6 +4,7 @@ export enum ArtifactEnum {
 	Messaging = 'Alex-Messaging',
 	Webpage = 'Alex-Webpage',
 	Reddit = 'Alex-Reddit-Thread',
+    Nostr = "Alex-Nostr-Event"
 }
 
 export enum CursorEnum {
@@ -26,7 +27,7 @@ export type GQLResponseType = {
 export interface ArtifactDetailType {
 	artifactId: NStringType;
 	artifactName: NStringType;
-	artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage | ArtifactEnum.Reddit;
+	artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage | ArtifactEnum.Reddit | ArtifactEnum.Nostr;
 	associationId: NStringType;
 	associationSequence: NStringType;
 	profileImagePath: NStringType;
