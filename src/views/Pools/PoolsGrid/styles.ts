@@ -21,7 +21,7 @@ export const SubheaderFlex = styled.div`
 	justify-content: space-between;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		flex-direction: column;
-		margin: 12.5px 0;
+		margin: 12.5px 0 25px 0;
 	}
 `;
 
@@ -114,6 +114,6 @@ export const PCWrapper = styled.div`
 	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 90vw;
-		margin: 0 0 25px 0;
+		margin: 0 0 40px 0;
 	}
 `;
