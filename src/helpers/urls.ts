@@ -1,6 +1,7 @@
 export const base = '/';
 export const account = `${base}account/`;
 export const accountAll = `${account}all/`;
+export const accountCollections = `${account}collections/`;
 export const accountNew = `${account}new/`;
 export const accountBookmarks = `${account}bookmarks/`;
 export const accountContributions = `${account}contributions/`;

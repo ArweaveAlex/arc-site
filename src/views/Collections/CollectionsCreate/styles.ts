@@ -34,7 +34,7 @@ export const HeaderContentFixed = styled.div`
 	justify-content: space-between;
 	animation: ${open} ${fadeIn2};
 	position: fixed;
-	z-index: 1;
+	z-index: 2;
 	top: ${STYLING.dimensions.navHeight};
 	left: 50%;
 	transform: translate(-50%, 0);
@@ -42,9 +42,10 @@ export const HeaderContentFixed = styled.div`
 
 export const Header1Wrapper = styled.div`
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
 	padding: 20px;
 	margin: 20px 0;
 `;

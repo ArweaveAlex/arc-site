@@ -122,7 +122,7 @@ export const THeader = styled(RowData)<{
 	}
 `;
 
-export const TData = styled(RowData)<{ even: boolean; width: string }>`
+export const TData = styled(RowData)<{ even: boolean, width: string, active: boolean }>`
 	width: ${(props) => props.width};
 	min-width: 60px;
 	border-left: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};

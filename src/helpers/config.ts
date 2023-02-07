@@ -1,4 +1,5 @@
 import { AccountAll } from 'views/Account/AccountAll';
+import { AccountCollections } from 'views/Account/AccountCollections';
 import { AccountBookmarks } from 'views/Account/AccountBookmarks';
 import { AccountContributions } from 'views/Account/AccountContributions';
 import { LibraryAll } from 'views/Library/LibraryAll';
@@ -11,7 +12,7 @@ import { LANGUAGE } from 'helpers/language';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.0.2',
+	version: '1.0.3',
 };
 
 export const TAGS = {
@@ -76,6 +77,7 @@ export const ASSETS = {
 	bookmarkSelected: `${ASSET_SRC}/bookmark-selected.svg`,
 	bookmarks: `${ASSET_SRC}/bookmarks.svg`,
 	close: `${ASSET_SRC}/close.svg`,
+	collections: `${ASSET_SRC}/collections.svg`,
 	contributions: `${ASSET_SRC}/contributions.svg`,
 	copy: `${ASSET_SRC}/copy.svg`,
 	cycle: `${ASSET_SRC}/cycle.png`,
@@ -171,6 +173,14 @@ export const URLS: IURLView = {
 		},
 		{
 			index: 1,
+			label: LANGUAGE.account.collections.title,
+			icon: ASSETS.collections,
+			disabled: false,
+			url: urls.accountCollections,
+			view: AccountCollections,
+		},
+		{
+			index: 2,
 			label: LANGUAGE.account.bookmarks.title,
 			icon: ASSETS.bookmarks,
 			disabled: false,
@@ -178,7 +188,7 @@ export const URLS: IURLView = {
 			view: AccountBookmarks,
 		},
 		{
-			index: 2,
+			index: 3,
 			label: LANGUAGE.account.contributions.title,
 			icon: ASSETS.contributions,
 			disabled: false,
