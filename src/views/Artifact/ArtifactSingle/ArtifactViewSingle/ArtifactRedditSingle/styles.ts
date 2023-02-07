@@ -63,7 +63,7 @@ export const HeaderSubReddit = styled.p`
 	width: fit-content;
 	padding: 5px 10px;
 	margin: 0 0 20px 0 !important;
-	font-size: ${(props) => props.theme.typography.size.small} !important;  
+	font-size: ${(props) => props.theme.typography.size.small} !important;
 	font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 	color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 	background: ${(props) => props.theme.colors.container.alt4.background};
@@ -77,14 +77,14 @@ export const HeaderAD = styled.p`
 	color: ${(props) => props.theme.colors.font.primary.alt6} !important;
 	margin: 0 0 5px 0 !important;
 	span {
-		font-size: ${(props) => props.theme.typography.size.xxSmall} !important;  
+		font-size: ${(props) => props.theme.typography.size.xxSmall} !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 	}
 `;
 
 export const HeaderBody = styled.p`
-	font-size: 20px !important;  
+	font-size: 20px !important;
 	font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 	color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 	margin: 0 0 20px 0 !important;
@@ -113,7 +113,7 @@ export const Metric = styled.div`
 		font-size: ${(props) => props.theme.typography.size.xxSmall} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
-		margin: 0 0 3.5px 5.5px !important; 
+		margin: 0 0 3.5px 5.5px !important;
 		white-space: nowrap !important;
 		height: auto !important;
 	}
@@ -149,7 +149,7 @@ export const CommentAuthor = styled.div`
 `;
 
 export const CommentBody = styled.p`
-	font-size: ${(props) => props.theme.typography.size.small} !important;  
+	font-size: ${(props) => props.theme.typography.size.small} !important;
 	font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 	color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 `;

@@ -27,7 +27,12 @@ export default function ArtifactViewList(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<ArtifactMessagingList data={props.data} loading={props.loading} updateSequence={props.updateSequence} updateDisabled={props.updateDisabled} />
+			<ArtifactMessagingList
+				data={props.data}
+				loading={props.loading}
+				updateSequence={props.updateSequence}
+				updateDisabled={props.updateDisabled}
+			/>
 		</S.Wrapper>
 	);
 }

@@ -56,7 +56,12 @@ export default class Tabs extends React.Component<{ children: any; onTabPropClic
 		return singleChild ? (
 			<S.Container>
 				<S.List>
-					<Tab activeTab={activeTab} key={this.props.children!.props.label} label={this.props.children!.props.label} onClick={onClickTabItem} />
+					<Tab
+						activeTab={activeTab}
+						key={this.props.children!.props.label}
+						label={this.props.children!.props.label}
+						onClick={onClickTabItem}
+					/>
 				</S.List>
 				<S.Content>{this.props.children!.props.children}</S.Content>
 			</S.Container>

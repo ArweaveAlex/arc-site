@@ -13,12 +13,22 @@ export const Input = styled.input`
 	width: 12.5px;
 
 	&:hover {
-		background: ${(props) => (props.checked ? props.theme.colors.checkbox.active.background : props.disabled ? props.theme.colors.checkbox.disabled : props.theme.colors.checkbox.hover)};
+		background: ${(props) =>
+			props.checked
+				? props.theme.colors.checkbox.active.background
+				: props.disabled
+				? props.theme.colors.checkbox.disabled
+				: props.theme.colors.checkbox.hover};
 		cursor: pointer;
 	}
 
 	&:focus {
-		background: ${(props) => (props.checked ? props.theme.colors.checkbox.active.background : props.disabled ? props.theme.colors.checkbox.disabled : props.theme.colors.checkbox.hover)};
+		background: ${(props) =>
+			props.checked
+				? props.theme.colors.checkbox.active.background
+				: props.disabled
+				? props.theme.colors.checkbox.disabled
+				: props.theme.colors.checkbox.hover};
 		cursor: pointer;
 	}
 

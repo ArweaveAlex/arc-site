@@ -30,11 +30,21 @@ export function searchIdsReducer(state: SearchIdsType = initStateSearchIds, acti
 	switch (action.type) {
 		case SET_SEARCH_IDS:
 			return Object.assign({}, state, {
-				[REDUX_TABLES.accountAll]: checkPayload(action.payload, REDUX_TABLES.accountAll) ? action.payload[REDUX_TABLES.accountAll] : state[REDUX_TABLES.accountAll],
-				[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, REDUX_TABLES.accountBookmarks) ? action.payload[REDUX_TABLES.accountBookmarks] : state[REDUX_TABLES.accountBookmarks],
-				[REDUX_TABLES.poolAll]: checkPayload(action.payload, REDUX_TABLES.poolAll) ? action.payload[REDUX_TABLES.poolAll] : state[REDUX_TABLES.poolAll],
-				[REDUX_TABLES.libraryAll]: checkPayload(action.payload, REDUX_TABLES.libraryAll) ? action.payload[REDUX_TABLES.libraryAll] : state[REDUX_TABLES.libraryAll],
-				[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, REDUX_TABLES.libraryBookmarks) ? action.payload[REDUX_TABLES.libraryBookmarks] : state[REDUX_TABLES.libraryBookmarks],
+				[REDUX_TABLES.accountAll]: checkPayload(action.payload, REDUX_TABLES.accountAll)
+					? action.payload[REDUX_TABLES.accountAll]
+					: state[REDUX_TABLES.accountAll],
+				[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, REDUX_TABLES.accountBookmarks)
+					? action.payload[REDUX_TABLES.accountBookmarks]
+					: state[REDUX_TABLES.accountBookmarks],
+				[REDUX_TABLES.poolAll]: checkPayload(action.payload, REDUX_TABLES.poolAll)
+					? action.payload[REDUX_TABLES.poolAll]
+					: state[REDUX_TABLES.poolAll],
+				[REDUX_TABLES.libraryAll]: checkPayload(action.payload, REDUX_TABLES.libraryAll)
+					? action.payload[REDUX_TABLES.libraryAll]
+					: state[REDUX_TABLES.libraryAll],
+				[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, REDUX_TABLES.libraryBookmarks)
+					? action.payload[REDUX_TABLES.libraryBookmarks]
+					: state[REDUX_TABLES.libraryBookmarks],
 			});
 		case CLEAR_SEARCH_IDS:
 			return Object.assign({}, initStateSearchIds);
@@ -70,11 +80,21 @@ export function searchTermReducer(state: SearchTermType = initStateSearchTerm, a
 	switch (action.type) {
 		case SET_SEARCH_TERM:
 			return Object.assign({}, state, {
-				[REDUX_TABLES.accountAll]: checkPayload(action.payload, REDUX_TABLES.accountAll) ? action.payload[REDUX_TABLES.accountAll] : state[REDUX_TABLES.accountAll],
-				[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, REDUX_TABLES.accountBookmarks) ? action.payload[REDUX_TABLES.accountBookmarks] : state[REDUX_TABLES.accountBookmarks],
-				[REDUX_TABLES.poolAll]: checkPayload(action.payload, REDUX_TABLES.poolAll) ? action.payload[REDUX_TABLES.poolAll] : state[REDUX_TABLES.poolAll],
-				[REDUX_TABLES.libraryAll]: checkPayload(action.payload, REDUX_TABLES.libraryAll) ? action.payload[REDUX_TABLES.libraryAll] : state[REDUX_TABLES.libraryAll],
-				[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, REDUX_TABLES.libraryBookmarks) ? action.payload[REDUX_TABLES.libraryBookmarks] : state[REDUX_TABLES.libraryBookmarks],
+				[REDUX_TABLES.accountAll]: checkPayload(action.payload, REDUX_TABLES.accountAll)
+					? action.payload[REDUX_TABLES.accountAll]
+					: state[REDUX_TABLES.accountAll],
+				[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, REDUX_TABLES.accountBookmarks)
+					? action.payload[REDUX_TABLES.accountBookmarks]
+					: state[REDUX_TABLES.accountBookmarks],
+				[REDUX_TABLES.poolAll]: checkPayload(action.payload, REDUX_TABLES.poolAll)
+					? action.payload[REDUX_TABLES.poolAll]
+					: state[REDUX_TABLES.poolAll],
+				[REDUX_TABLES.libraryAll]: checkPayload(action.payload, REDUX_TABLES.libraryAll)
+					? action.payload[REDUX_TABLES.libraryAll]
+					: state[REDUX_TABLES.libraryAll],
+				[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, REDUX_TABLES.libraryBookmarks)
+					? action.payload[REDUX_TABLES.libraryBookmarks]
+					: state[REDUX_TABLES.libraryBookmarks],
 			});
 		case CLEAR_SEARCH_TERM:
 			return Object.assign(
@@ -134,11 +154,21 @@ export function searchIndecesReducer(state: SearchIndecesType = initStateSearchI
 	switch (action.type) {
 		case SET_SEARCH_INDECES:
 			return Object.assign({}, state, {
-				[REDUX_TABLES.accountAll]: checkPayload(action.payload, REDUX_TABLES.accountAll) ? action.payload[REDUX_TABLES.accountAll] : state[REDUX_TABLES.accountAll],
-				[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, REDUX_TABLES.accountBookmarks) ? action.payload[REDUX_TABLES.accountBookmarks] : state[REDUX_TABLES.accountBookmarks],
-				[REDUX_TABLES.poolAll]: checkPayload(action.payload, REDUX_TABLES.poolAll) ? action.payload[REDUX_TABLES.poolAll] : state[REDUX_TABLES.poolAll],
-				[REDUX_TABLES.libraryAll]: checkPayload(action.payload, REDUX_TABLES.libraryAll) ? action.payload[REDUX_TABLES.libraryAll] : state[REDUX_TABLES.libraryAll],
-				[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, REDUX_TABLES.libraryBookmarks) ? action.payload[REDUX_TABLES.libraryBookmarks] : state[REDUX_TABLES.libraryBookmarks],
+				[REDUX_TABLES.accountAll]: checkPayload(action.payload, REDUX_TABLES.accountAll)
+					? action.payload[REDUX_TABLES.accountAll]
+					: state[REDUX_TABLES.accountAll],
+				[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, REDUX_TABLES.accountBookmarks)
+					? action.payload[REDUX_TABLES.accountBookmarks]
+					: state[REDUX_TABLES.accountBookmarks],
+				[REDUX_TABLES.poolAll]: checkPayload(action.payload, REDUX_TABLES.poolAll)
+					? action.payload[REDUX_TABLES.poolAll]
+					: state[REDUX_TABLES.poolAll],
+				[REDUX_TABLES.libraryAll]: checkPayload(action.payload, REDUX_TABLES.libraryAll)
+					? action.payload[REDUX_TABLES.libraryAll]
+					: state[REDUX_TABLES.libraryAll],
+				[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, REDUX_TABLES.libraryBookmarks)
+					? action.payload[REDUX_TABLES.libraryBookmarks]
+					: state[REDUX_TABLES.libraryBookmarks],
 			});
 		case CLEAR_SEARCH_INDECES:
 			return Object.assign(

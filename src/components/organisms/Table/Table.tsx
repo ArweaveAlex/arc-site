@@ -44,7 +44,12 @@ export default function Table(props: IProps) {
 							<S.TableHeader>
 								{Object.keys(props.header).map((element: string, index: number) => {
 									return (
-										<S.THeader key={index} even={(index + 1) % 2 === 0} width={props.header[element]!.width} align={props.header[element]!.align}>
+										<S.THeader
+											key={index}
+											even={(index + 1) % 2 === 0}
+											width={props.header[element]!.width}
+											align={props.header[element]!.align}
+										>
 											<p>{props.header[element].display ? props.header[element].display : ''}</p>
 										</S.THeader>
 									);

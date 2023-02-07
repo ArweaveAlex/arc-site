@@ -155,6 +155,7 @@ export type ArtifactTableRowType = {
 	dateCreated?: string;
 	actions?: React.ReactNode;
 	callback?: React.ReactNode;
+	stamps?: React.ReactNode;
 };
 
 export type ReduxActionType = {
@@ -162,7 +163,7 @@ export type ReduxActionType = {
 	payload: any;
 };
 
-export type BookmarkResponseType = {
+export type NotificationResponseType = {
 	status: number | null;
 	message: string | null;
 };
@@ -176,6 +177,13 @@ export type TagFilterType = { name: string; values: string[] };
 export type ContributionType = { timestamp: string; qty: string };
 export type PoolFilterType = { title: string; fn: (data: any) => any };
 export type CursorObjectKeyType = CursorEnum.GQL | CursorEnum.Search | null;
-export type CursorObjectType = { key: CursorObjectKeyType; value: string; };
-export type ActionDropdownType = { fn: () => void; closeOnAction: boolean; subComponent: { node: React.ReactNode, active: boolean } | null; label: string; disabled: boolean; }
+export type CursorObjectType = { key: CursorObjectKeyType; value: string };
+export type ActionDropdownType = {
+	fn: () => void;
+	closeOnAction: boolean;
+	subComponent: { node: React.ReactNode; active: boolean } | null;
+	label: string;
+	disabled: boolean;
+	loading: boolean;
+};
 export type SequenceType = { start: number; end: number };

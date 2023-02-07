@@ -105,7 +105,11 @@ export default function PoolContribute(props: IProps) {
 	return (
 		<>
 			{contributionResult && (
-				<Notification type={contributionResult.status === true ? 'success' : 'warning'} message={contributionResult.message!} callback={() => setContributionResult(null)} />
+				<Notification
+					type={contributionResult.status === true ? 'success' : 'warning'}
+					message={contributionResult.message!}
+					callback={() => setContributionResult(null)}
+				/>
 			)}
 			{showModal && (
 				<Modal title={LANGUAGE.contributeTo} handleClose={() => setShowModal(false)}>
@@ -135,7 +139,14 @@ export default function PoolContribute(props: IProps) {
 								<p>{LANGUAGE.contributionMessage}</p>
 							</S.Message>
 							<S.SubmitWrapper>
-								<Button label={LANGUAGE.submit} type={'alt1'} handlePress={(e) => handlePoolContribute(e)} disabled={getDisabledSubmit()} loading={loading} formSubmit />
+								<Button
+									label={LANGUAGE.submit}
+									type={'alt1'}
+									handlePress={(e) => handlePoolContribute(e)}
+									disabled={getDisabledSubmit()}
+									loading={loading}
+									formSubmit
+								/>
 							</S.SubmitWrapper>
 						</S.Form>
 					</S.ModalWrapper>

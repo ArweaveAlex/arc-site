@@ -10,30 +10,37 @@ let poolIndecesLength = 0;
 
 export async function initSearch(poolIds: string[]) {
 	try {
-		let poolIndeces: string[] = [];
+		if (poolIds) {
+			let poolIndeces: string[] = [];
 
-		for (let i = 0; i < poolIds.length; i++) {
-			let latestIndexTransaction = await getLatestPoolSearchIndexTxId(poolIds[i]);
-			if (!latestIndexTransaction) continue;
-			let latestIndexTransactionId = getTagValue(latestIndexTransaction.node.tags, TAGS.keys.uploaderTxId);
-			let poolSearchState = (await getPoolSearchIndexById(latestIndexTransactionId)).state;
-			if (!poolSearchState || !poolSearchState.searchIndeces) {
-				continue;
+			for (let i = 0; i < poolIds.length; i++) {
+				let latestIndexTransaction = await getLatestPoolSearchIndexTxId(poolIds[i]);
+				if (!latestIndexTransaction) continue;
+				let latestIndexTransactionId = getTagValue(latestIndexTransaction.node.tags, TAGS.keys.uploaderTxId);
+				let poolSearchState = (await getPoolSearchIndexById(latestIndexTransactionId)).state;
+				if (!poolSearchState || !poolSearchState.searchIndeces) {
+					continue;
+				}
+				let thisPoolIndeces = poolSearchState.searchIndeces.map((index: string) => {
+					return getTxEndpoint(index);
+				});
+				poolIndeces = poolIndeces.concat(thisPoolIndeces);
 			}
-			let thisPoolIndeces = poolSearchState.searchIndeces.map((index: string) => {
-				return getTxEndpoint(index);
-			});
-			poolIndeces = poolIndeces.concat(thisPoolIndeces);
+	
+			return poolIndeces;
 		}
-
-		return poolIndeces;
 	} catch (e: any) {
 		console.error(e);
 		return null;
 	}
 }
 
-export async function runSearch(searchTerm: string, poolIndeces: string[] | null, owner: string | null, callback: (ids: string[], checkProcessed: any) => void) {
+export async function runSearch(
+	searchTerm: string,
+	poolIndeces: string[] | null,
+	owner: string | null,
+	callback: (ids: string[], checkProcessed: any) => void
+) {
 	processedIndeces = 0;
 	poolIndecesLength = poolIndeces.length;
 	if (poolIndeces) {

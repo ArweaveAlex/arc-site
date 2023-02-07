@@ -7,7 +7,12 @@ import { initSearch } from 'search';
 
 import { TableIdType } from 'helpers/types';
 
-export default function ReduxSearchIndexUpdate(props: { id: TableIdType; indexIds: string[] | null; reduxCursor: string; children: React.ReactNode }) {
+export default function ReduxSearchIndexUpdate(props: {
+	id: TableIdType;
+	indexIds: string[] | null;
+	reduxCursor: string;
+	children: React.ReactNode;
+}) {
 	const dispatch = useDispatch();
 	const searchIndecesReducer = useSelector((state: RootState) => state.searchIndecesReducer);
 

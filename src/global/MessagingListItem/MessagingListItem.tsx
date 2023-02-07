@@ -54,7 +54,11 @@ function MessagingMedia(props: IMProps) {
 				if (mediaIdsJsonKeys[i].length > 0) {
 					const mediaId = mediaIdsJson[mediaIdsJsonKeys[i]].id;
 					if (mediaIdsJsonKeys[i].indexOf('.')) {
-						mediaComponents.push(<S.MediaElement key={mediaId}>{getMediaType(mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf('.') + 1), getTxEndpoint(mediaId))}</S.MediaElement>);
+						mediaComponents.push(
+							<S.MediaElement key={mediaId}>
+								{getMediaType(mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf('.') + 1), getTxEndpoint(mediaId))}
+							</S.MediaElement>
+						);
 					}
 				}
 			}

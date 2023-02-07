@@ -61,9 +61,9 @@ export function formatDate(dateArg: string | number | null, dateType: DateType) 
 			break;
 	}
 
-	return `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getUTCFullYear()} @ ${getHours(date.getHours())}:${formatTime(date.getMinutes())}:${formatTime(
-		date.getSeconds()
-	)} ${getHourFormat(date.getHours())}`;
+	return `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getUTCFullYear()} @ ${getHours(
+		date.getHours()
+	)}:${formatTime(date.getMinutes())}:${formatTime(date.getSeconds())} ${getHourFormat(date.getHours())}`;
 }
 
 export function formatTitle(string: string) {
@@ -101,7 +101,14 @@ export function unquoteJsonKeys(json: Object): string {
 }
 
 export function stripSearch(s: string) {
-	return s.replaceAll(' ', '').replaceAll('\t', '').replaceAll('\r', '').replaceAll('\n', '').replaceAll(SEARCH.idTerm, '').replaceAll(SEARCH.ownerTerm, '').toLowerCase();
+	return s
+		.replaceAll(' ', '')
+		.replaceAll('\t', '')
+		.replaceAll('\r', '')
+		.replaceAll('\n', '')
+		.replaceAll(SEARCH.idTerm, '')
+		.replaceAll(SEARCH.ownerTerm, '')
+		.toLowerCase();
 }
 
 export function splitArray(array: any[], size: number) {
@@ -177,11 +184,13 @@ export function getUsername(data: any) {
 }
 
 export function checkMedia(tags: KeyValueType[]) {
-	return getTagValue(tags, TAGS.keys.mediaIds) !== '{}' &&
-	getTagValue(tags, TAGS.keys.mediaIds) !== '[]' &&
-	getTagValue(tags, TAGS.keys.mediaIds) !== STORAGE.none &&
-	getTagValue(tags, TAGS.keys.mediaIds) !== '' &&
-	getTagValue(tags, TAGS.keys.mediaIds) !== `{"":""}`;
+	return (
+		getTagValue(tags, TAGS.keys.mediaIds) !== '{}' &&
+		getTagValue(tags, TAGS.keys.mediaIds) !== '[]' &&
+		getTagValue(tags, TAGS.keys.mediaIds) !== STORAGE.none &&
+		getTagValue(tags, TAGS.keys.mediaIds) !== '' &&
+		getTagValue(tags, TAGS.keys.mediaIds) !== `{"":""}`
+	);
 }
 
 export function checkAssociation(tags: KeyValueType[]) {

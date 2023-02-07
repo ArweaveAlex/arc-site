@@ -16,6 +16,7 @@ export const LANGUAGE = {
 	addtoBookmarks: `Add to Bookmarks`,
 	amountExceedsBalance: `Amount exceeds available balance`,
 	artifact: `Artifact`,
+	artifactStamped: `Artifact Stamped`,
 	artifacts: `Artifacts`,
 	artifactDetail: {
 		fileInformation: `File Information`,
@@ -140,7 +141,8 @@ export const LANGUAGE = {
 		twitter: `Twitter`,
 	},
 	sortBy: `Sort By`,
-	stamp: `STAMP`,
+	stamp: `Stamp`,
+	stamps: `Stamps`,
 	steps: {
 		header1: `A New Way to Get Involved in the Human Story`,
 		header2: `Alex. offers a unique way for everyone to participate and "own" a piece of the human story. By supporting the participating archival institutions, you are helping protect our history from edits, omissions, narratives, & malicious intent. <b>Here&#8217;s how.</b>`,

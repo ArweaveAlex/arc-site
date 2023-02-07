@@ -31,7 +31,7 @@ const DEFAULT = {
 	transparent: 'rgba(255, 255, 255, 0)',
 	semiTransparent: 'rgba(255, 255, 255, 0.5)',
 	backdropShadow1: '#c4c4c4b0',
-	backdropShadow2: '#dadadaba'
+	backdropShadow2: '#dadadaba',
 };
 
 export const defaultTheme: DefaultTheme = {
@@ -214,7 +214,7 @@ export const defaultTheme: DefaultTheme = {
 		},
 		shadow: {
 			primary: DEFAULT.neutral7,
-			alt1: DEFAULT.neutral2
+			alt1: DEFAULT.neutral2,
 		},
 		table: {
 			placeholder: {
@@ -245,7 +245,7 @@ export const defaultTheme: DefaultTheme = {
 			base: '16px',
 			small: '15px',
 			xSmall: '14px',
-			xxSmall: '13px'
+			xxSmall: '13px',
 		},
 		weight: {
 			regular: '400',

@@ -21,7 +21,9 @@ export default function ArtifactsDetail(props: IProps) {
 
 	const [cursor, setCursor] = React.useState<string | null>(null);
 	const [searchRequested, setSearchRequested] = React.useState<boolean | null>(
-		searchTermReducer[props.cursorObject.value].value !== '' && searchTermReducer[props.cursorObject.value].id.value === props.id.value ? true : null
+		searchTermReducer[props.cursorObject.value].value !== '' && searchTermReducer[props.cursorObject.value].id.value === props.id.value
+			? true
+			: null
 	);
 	const [showNoResults, setShowNoResults] = React.useState<boolean>(false);
 

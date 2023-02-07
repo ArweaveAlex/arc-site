@@ -21,15 +21,14 @@ export const STYLING = {
 		messagingContent: '650px',
 		threadWidth: '600px',
 		threadDetailWidth: '500px',
-		wrapWidth: '675px'
+		wrapWidth: '675px',
 	},
 };
 
 export function getImageShadow(theme: any) {
 	if (theme) {
 		return `${theme.colors.image.shadow1} 0px 26px 30px -10px, ${theme.colors.image.shadow2} 0px 16px 10px -10px`;
-	}
-	else {
+	} else {
 		return '';
 	}
 }

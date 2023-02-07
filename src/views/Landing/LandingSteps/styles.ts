@@ -108,7 +108,7 @@ export const StepList = styled.div`
 	padding: 20px;
 	> * {
 		&:last-child {
-		   margin: 0;
+			margin: 0;
 		}
 	}
 	@media (max-width: ${STYLING.cutoffs.tablet}) {

@@ -16,7 +16,16 @@ function Tab(props: ITProps) {
 
 	return (
 		<S.Tab>
-			<Button type={'alt2'} label={props.label} handlePress={handlePress} active={props.active} icon={props.icon} iconLeftAlign disabled={props.disabled} noMinWidth />
+			<Button
+				type={'alt2'}
+				label={props.label}
+				handlePress={handlePress}
+				active={props.active}
+				icon={props.icon}
+				iconLeftAlign
+				disabled={props.disabled}
+				noMinWidth
+			/>
 		</S.Tab>
 	);
 }
@@ -58,7 +67,17 @@ export default function URLTabs(props: IUProps) {
 				<S.List>
 					{props.tabs.map((elem, index) => {
 						const url = typeof elem.url === 'function' ? elem.url(id) : elem.url;
-						return <Tab key={index} url={url} label={elem.label} icon={elem.icon} disabled={elem.disabled} active={url.includes(active)} handlePress={() => handleRedirect(url)} />;
+						return (
+							<Tab
+								key={index}
+								url={url}
+								label={elem.label}
+								icon={elem.icon}
+								disabled={elem.disabled}
+								active={url.includes(active)}
+								handlePress={() => handleRedirect(url)}
+							/>
+						);
 					})}
 				</S.List>
 			</S.ListHeader>

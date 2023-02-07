@@ -33,13 +33,28 @@ test('Simulates click', () => {
 
 test('Simulates disabled', () => {
 	const onButtonClick = jest.fn();
-	render(wrapWithProviders(<Button type={'primary'} label={'Test Label'} handlePress={onButtonClick} disabled={true} loading={false} testingCtx={'test-button-disabled'} />));
+	render(
+		wrapWithProviders(
+			<Button
+				type={'primary'}
+				label={'Test Label'}
+				handlePress={onButtonClick}
+				disabled={true}
+				loading={false}
+				testingCtx={'test-button-disabled'}
+			/>
+		)
+	);
 	const button = screen.getByTestId('test-button-disabled');
 	expect(button).toBeDisabled();
 });
 
 test('Simulates style', () => {
-	render(wrapWithProviders(<Button type={'primary'} label={'Test Label'} handlePress={undefined} disabled={true} loading={false} testingCtx={'test-button-styles'} />));
+	render(
+		wrapWithProviders(
+			<Button type={'primary'} label={'Test Label'} handlePress={undefined} disabled={true} loading={false} testingCtx={'test-button-styles'} />
+		)
+	);
 	const button = screen.getByTestId('test-button-styles');
 	expect(button).toHaveStyleRule('background', defaultTheme.colors.button.primary.background);
 });

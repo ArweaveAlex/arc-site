@@ -24,7 +24,8 @@ export const Primary = styled.button<{
 	svg {
 		height: 100%;
 		width: 100%;
-		fill: ${(props) => (props.warning ? (props.disabled ? props.theme.colors.icon.inactive : props.theme.colors.warning) : props.theme.colors.icon.inactive)};
+		fill: ${(props) =>
+			props.warning ? (props.disabled ? props.theme.colors.icon.inactive : props.theme.colors.warning) : props.theme.colors.icon.inactive};
 
 		&:hover {
 			cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};

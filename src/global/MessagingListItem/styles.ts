@@ -196,7 +196,7 @@ export const Metric = styled.div`
 		font-size: ${(props) => props.theme.typography.size.xxSmall} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
-		margin: 0 0 3.5px 5.5px !important; 
+		margin: 0 0 3.5px 5.5px !important;
 		white-space: nowrap !important;
 		height: auto !important;
 	}

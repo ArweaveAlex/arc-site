@@ -56,7 +56,11 @@ export const IconPrimary = styled.div<{
 		margin: ${(props) => (props.leftAlign ? '0 12.5px 0 0' : '0 0 0 12.5px')};
 		padding: 3.5px 0 0 0;
 		fill: ${(props) =>
-			props.disabled ? props.theme.colors.button.primary.disabled.label : props.active ? props.theme.colors.button.primary.active.label : props.theme.colors.button.primary.label};
+			props.disabled
+				? props.theme.colors.button.primary.disabled.label
+				: props.active
+				? props.theme.colors.button.primary.active.label
+				: props.theme.colors.button.primary.label};
 	}
 `;
 
@@ -86,7 +90,12 @@ export const Alt1 = styled(Primary)`
 
 export const IconSecondary = styled(IconPrimary)`
 	svg {
-		fill: ${(props) => (props.disabled ? props.theme.colors.button.alt1.disabled.label : props.active ? props.theme.colors.button.alt1.active.label : props.theme.colors.button.alt1.label)};
+		fill: ${(props) =>
+			props.disabled
+				? props.theme.colors.button.alt1.disabled.label
+				: props.active
+				? props.theme.colors.button.alt1.active.label
+				: props.theme.colors.button.alt1.label};
 	}
 `;
 
@@ -115,6 +124,11 @@ export const Alt2 = styled(Primary)`
 `;
 export const IconTertiary = styled(IconPrimary)`
 	svg {
-		fill: ${(props) => (props.disabled ? props.theme.colors.button.alt2.disabled.label : props.active ? props.theme.colors.button.alt2.active.label : props.theme.colors.button.alt2.label)};
+		fill: ${(props) =>
+			props.disabled
+				? props.theme.colors.button.alt2.disabled.label
+				: props.active
+				? props.theme.colors.button.alt2.active.label
+				: props.theme.colors.button.alt2.label};
 	}
 `;

@@ -18,7 +18,7 @@ export default function LandingSteps() {
 					</S.HeaderFlex>
 				</S.Header>
 				<S.Body>
-					<S.Asset style={{backgroundImage: `url(${landingStepsAsset})`}} image={ASSETS.cycle} />
+					<S.Asset style={{ backgroundImage: `url(${landingStepsAsset})` }} image={ASSETS.cycle} />
 					<S.StepList>
 						{stepList.map((step, index) => (
 							<S.Step key={index}>

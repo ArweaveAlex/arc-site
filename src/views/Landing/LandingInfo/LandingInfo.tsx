@@ -22,7 +22,7 @@ export default function LandingInfo() {
 						<S.Description>{parse(LANGUAGE.info.content)}</S.Description>
 					</S.InfoContainer>
 					<S.AssetContainer>
-						<S.Asset style={{backgroundImage: `url(${landingInfoAsset})`}} image={ASSETS.infoGraphic} />
+						<S.Asset style={{ backgroundImage: `url(${landingInfoAsset})` }} image={ASSETS.infoGraphic} />
 						<S.AssetSource>{LANGUAGE.info.assetSrc}</S.AssetSource>
 					</S.AssetContainer>
 				</S.Body>

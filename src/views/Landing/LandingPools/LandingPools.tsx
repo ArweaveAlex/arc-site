@@ -83,9 +83,7 @@ export default function LandingPools() {
 
 	return (
 		<ReduxPoolsUpdate>
-			<S.Wrapper>
-				{getData()}
-			</S.Wrapper>
+			<S.Wrapper>{getData()}</S.Wrapper>
 		</ReduxPoolsUpdate>
 	);
 }

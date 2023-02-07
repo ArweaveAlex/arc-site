@@ -8,7 +8,6 @@ import { IProps } from '../../types';
 import * as S from './styles';
 
 export default function ArtifactMessagingSingle(props: IProps) {
-
 	function getDetailData() {
 		if (!props.data) {
 			return <Loader sm />;

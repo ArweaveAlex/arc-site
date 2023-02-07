@@ -31,7 +31,14 @@ export default function IconButton(props: IProps) {
 	}
 
 	return (
-		<StyledButton onClick={props.handlePress} disabled={props.disabled} sm={props.sm} warning={props.warning} data-testid={props.testingCtx} dimensions={props.dimensions}>
+		<StyledButton
+			onClick={props.handlePress}
+			disabled={props.disabled}
+			sm={props.sm}
+			warning={props.warning}
+			data-testid={props.testingCtx}
+			dimensions={props.dimensions}
+		>
 			<ReactSVG src={props.src} />
 		</StyledButton>
 	);

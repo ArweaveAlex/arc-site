@@ -74,11 +74,12 @@ export default function ArtifactRedditSingle(props: IProps) {
 							return (
 								<S.CommentGroup key={index}>
 									{commentList.map((element: any, commentIndex: number) => {
-										console.log(element)
+										console.log(element);
 										return (
 											<S.Comment key={commentIndex} depth={element.depth}>
 												<S.CommentAuthor>
-													<p>{element.author}&nbsp;·&nbsp;</p><span> {formatDate(element.created_utc * 1000, 'iso')}</span>
+													<p>{element.author}&nbsp;·&nbsp;</p>
+													<span> {formatDate(element.created_utc * 1000, 'iso')}</span>
 												</S.CommentAuthor>
 												<S.CommentBody>{element.body}</S.CommentBody>
 											</S.Comment>

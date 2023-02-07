@@ -5,7 +5,7 @@ import {
 	ArtifactDetailType,
 	ArtifactArgsType,
 	ArtifactResponseType,
-	BookmarkResponseType,
+	NotificationResponseType,
 	PoolType,
 	GQLResponseType,
 	TagFilterType,
@@ -299,7 +299,7 @@ export async function getBookmarkIds(owner: string): Promise<string[]> {
 	}
 }
 
-export async function setBookmarkIds(owner: string, ids: string[]): Promise<BookmarkResponseType> {
+export async function setBookmarkIds(owner: string, ids: string[]): Promise<NotificationResponseType> {
 	let txRes = await arClient.arweavePost.createTransaction({ data: JSON.stringify(ids) }, 'use_wallet');
 	txRes.addTag(TAGS.keys.bookmarkSearch, owner);
 	txRes.addTag(TAGS.keys.dateCreated, Date.now().toString());

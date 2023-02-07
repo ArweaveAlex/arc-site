@@ -47,5 +47,12 @@ export default function ArtifactThread() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [associationId, sequence]);
 
-	return <ArtifactList data={data ? data.artifacts : null} loading={loading} updateSequence={updateSequence} updateDisabled={data ? sequence.end >= data.length : true} />;
+	return (
+		<ArtifactList
+			data={data ? data.artifacts : null}
+			loading={loading}
+			updateSequence={updateSequence}
+			updateDisabled={data ? sequence.end >= data.length : true}
+		/>
+	);
 }

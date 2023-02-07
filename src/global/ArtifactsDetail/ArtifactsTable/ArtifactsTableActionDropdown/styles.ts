@@ -10,12 +10,13 @@ export const PreviewContainer = styled.div`
 	z-index: 1;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	&:after {
-		content: " ";
+		content: ' ';
 		position: absolute;
 		top: 17.5px;
 		left: 100%;
 		border-width: 5px;
 		border-style: solid;
-		border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.border.alt1};
+		border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent}
+			${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.border.alt1};
 	}
 `;

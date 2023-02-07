@@ -38,7 +38,11 @@ export default function Pools() {
 			return (
 				<S.Wrapper>
 					<PoolsHeader />
-					<PoolsGrid data={currentFilter.fn(data!)} title={currentFilter.title} setCurrentFilter={(option: string) => setCurrentFilter(getPoolFilter(option))} />
+					<PoolsGrid
+						data={currentFilter.fn(data!)}
+						title={currentFilter.title}
+						setCurrentFilter={(option: string) => setCurrentFilter(getPoolFilter(option))}
+					/>
 				</S.Wrapper>
 			);
 		} else {

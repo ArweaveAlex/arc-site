@@ -77,12 +77,18 @@ export function cursorsReducer(state: CursorsType = initStateCursors, action: Re
 		case SET_CURSORS:
 			return Object.assign({}, state, {
 				gql: {
-					[REDUX_TABLES.accountAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.accountAll) ? action.payload.gql[REDUX_TABLES.accountAll] : state.gql[REDUX_TABLES.accountAll],
+					[REDUX_TABLES.accountAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.accountAll)
+						? action.payload.gql[REDUX_TABLES.accountAll]
+						: state.gql[REDUX_TABLES.accountAll],
 					[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.accountBookmarks)
 						? action.payload.gql[REDUX_TABLES.accountBookmarks]
 						: state.gql[REDUX_TABLES.accountBookmarks],
-					[REDUX_TABLES.poolAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.poolAll) ? action.payload.gql[REDUX_TABLES.poolAll] : state.gql[REDUX_TABLES.poolAll],
-					[REDUX_TABLES.libraryAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.libraryAll) ? action.payload.gql[REDUX_TABLES.libraryAll] : state.gql[REDUX_TABLES.libraryAll],
+					[REDUX_TABLES.poolAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.poolAll)
+						? action.payload.gql[REDUX_TABLES.poolAll]
+						: state.gql[REDUX_TABLES.poolAll],
+					[REDUX_TABLES.libraryAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.libraryAll)
+						? action.payload.gql[REDUX_TABLES.libraryAll]
+						: state.gql[REDUX_TABLES.libraryAll],
 					[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.libraryBookmarks)
 						? action.payload.gql[REDUX_TABLES.libraryBookmarks]
 						: state.gql[REDUX_TABLES.libraryBookmarks],
@@ -94,7 +100,9 @@ export function cursorsReducer(state: CursorsType = initStateCursors, action: Re
 					[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, CursorEnum.Search, REDUX_TABLES.accountBookmarks)
 						? action.payload.search[REDUX_TABLES.accountBookmarks]
 						: state.search[REDUX_TABLES.accountBookmarks],
-					[REDUX_TABLES.poolAll]: checkPayload(action.payload, CursorEnum.Search, REDUX_TABLES.poolAll) ? action.payload.search[REDUX_TABLES.poolAll] : state.search[REDUX_TABLES.poolAll],
+					[REDUX_TABLES.poolAll]: checkPayload(action.payload, CursorEnum.Search, REDUX_TABLES.poolAll)
+						? action.payload.search[REDUX_TABLES.poolAll]
+						: state.search[REDUX_TABLES.poolAll],
 					[REDUX_TABLES.libraryAll]: checkPayload(action.payload, CursorEnum.Search, REDUX_TABLES.libraryAll)
 						? action.payload.search[REDUX_TABLES.libraryAll]
 						: state.search[REDUX_TABLES.libraryAll],

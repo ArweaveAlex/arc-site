@@ -164,7 +164,7 @@ export const ARTIFACT_TYPES = {
 export const DOM = {
 	loader: 'loader',
 	modal: 'modal',
-	notification: 'notification'
+	notification: 'notification',
 };
 
 export const URLS: IURLView = {

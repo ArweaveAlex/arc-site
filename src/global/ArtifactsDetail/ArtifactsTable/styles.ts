@@ -60,7 +60,6 @@ export const AssociationIcon = styled(Icon)`
 	}
 `;
 
-
 export const LinkWrapper = styled.div`
 	height: 100%;
 	width: 100%;
@@ -100,6 +99,14 @@ export const ALink = styled.div`
 
 export const PLink = styled(ALink)`
 	max-width: 100%;
+`;
+
+export const StampContainer = styled.div`
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 export const CheckboxContainer = styled.div`

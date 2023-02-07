@@ -3,6 +3,9 @@ import parse from 'html-react-parser';
 import { ReactSVG } from 'react-svg';
 import { Link } from 'react-router-dom';
 
+import Stamps from '@permaweb/stampjs';
+import { ArweaveClient } from 'clients/arweave';
+
 import { ArtifactsSearch } from '../ArtifactsSearch';
 import { ArtifactsTableActionDropdown } from './ArtifactsTableActionDropdown';
 
@@ -12,9 +15,9 @@ import { Table } from 'components/organisms/Table';
 import { LANGUAGE } from 'helpers/language';
 import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from 'helpers/config';
 
-import { AlignType, ArtifactTableRowType, KeyValueType, TableHeaderType } from 'helpers/types';
+import { AlignType, ArtifactTableRowType, GQLResponseType, KeyValueType, TableHeaderType } from 'helpers/types';
 
-import { formatArtifactType, formatDate, formatMessagingText, getTagValue, checkMedia, checkAssociation } from 'helpers/utils';
+import { formatDate, formatMessagingText, getTagValue, checkMedia, checkAssociation } from 'helpers/utils';
 
 import * as urls from 'helpers/urls';
 import { IProps } from './types';
@@ -23,6 +26,9 @@ import * as S from './styles';
 export default function ArtifactsTable(props: IProps) {
 	const [data, setData] = React.useState<any>(null);
 	const [selectedCallbackIdsState, setSelectedCallbackIdsState] = React.useState<string[]>([]);
+	
+	const [stamps, setStamps] = React.useState<any>(null);
+	const [updateStamps, setUpdateStamps] = React.useState<boolean>(false);
 
 	function getTitleWidth() {
 		if (props.showActions && props.showPoolIds) {
@@ -45,16 +51,16 @@ export default function ArtifactsTable(props: IProps) {
 			};
 		}
 
+		header.type = {
+			width: '5%',
+			align: 'center' as AlignType,
+			display: LANGUAGE.type,
+		};
+
 		header.title = {
 			width: getTitleWidth(),
 			align: 'left' as AlignType,
 			display: LANGUAGE.name,
-		};
-
-		header.type = {
-			width: '10%',
-			align: 'left' as AlignType,
-			display: LANGUAGE.type,
 		};
 
 		header.dateCreated = {
@@ -70,6 +76,12 @@ export default function ArtifactsTable(props: IProps) {
 				display: LANGUAGE.pool.subheader1,
 			};
 		}
+
+		header.stamps = {
+			width: '7.5%',
+			align: 'center' as AlignType,
+			display: LANGUAGE.stamps,
+		};
 
 		if (props.showActions) {
 			header.actions = {
@@ -87,12 +99,9 @@ export default function ArtifactsTable(props: IProps) {
 		if (!artifactType) {
 			artifactType = ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
 		}
-
 		return (
 			<S.TypeContainer>
-				<S.TypeLabel>
-					<p>{formatArtifactType(artifactType.label)}</p>
-				</S.TypeLabel>
+				<ReactSVG src={artifactType.icon} />
 			</S.TypeContainer>
 		);
 	}
@@ -138,8 +147,24 @@ export default function ArtifactsTable(props: IProps) {
 		);
 	}
 
+	function getStampCount(id: string) {
+		return (
+			<S.StampContainer>
+				<p>{(stamps && stamps[id]) ? stamps[id].total : `-`}</p>
+			</S.StampContainer>
+		);
+	}
+
 	function getActionDropdown(artifactId: string, tags: KeyValueType[]) {
-		return <ArtifactsTableActionDropdown artifactId={artifactId} tags={tags} owner={props.owner} bookmarksDisabled={props.bookmarksDisabled} />;
+		return (
+			<ArtifactsTableActionDropdown 
+				artifactId={artifactId} 
+				tags={tags} 
+				owner={props.owner} 
+				bookmarksDisabled={props.bookmarksDisabled}
+				handleCallback={() => setUpdateStamps(!updateStamps)}
+			/>
+		);
 	}
 
 	function getCallback(id: string) {
@@ -184,13 +209,19 @@ export default function ArtifactsTable(props: IProps) {
 								row.callback = getCallback(element.node.id);
 							}
 
-							row.title = getArtifactLink(element.node.id, element.node.tags);
 							row.type = getType(getTagValue(element.node.tags, TAGS.keys.artifactType), element.node.tags);
+							row.title = getArtifactLink(element.node.id, element.node.tags);
 							row.dateCreated = formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), 'epoch');
 
 							if (props.showPoolIds) {
-								row.pool = getPoolLink(`${urls.pool}${getTagValue(element.node.tags, TAGS.keys.poolId)}`, getTagValue(element.node.tags, TAGS.keys.poolId));
+								row.pool = getPoolLink(
+									`${urls.pool}${getTagValue(element.node.tags, TAGS.keys.poolId)}`,
+									getTagValue(element.node.tags, TAGS.keys.poolId)
+								);
 							}
+
+							row.stamps = getStampCount(element.node.id);
+
 							if (props.showActions) {
 								row.actions = getActionDropdown(element.node.id, element.node.tags);
 							}
@@ -207,7 +238,23 @@ export default function ArtifactsTable(props: IProps) {
 			setData(null);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [selectedCallbackIdsState, props.data, props.showActions]);
+	}, [selectedCallbackIdsState, stamps, props.data, props.showActions]);
+
+	React.useEffect(() => {
+		if (props.selectedCallbackIds) {
+			setSelectedCallbackIdsState(props.selectedCallbackIds);
+		}
+	}, [props.selectedCallbackIds]);
+
+	React.useEffect(() => {
+		(async function () {
+			if (props.data && props.data.contracts.length > 0) {
+				const arClient = new ArweaveClient();
+				const stamps = Stamps.init({ warp: arClient.warp });
+				setStamps(await stamps.counts(props.data.contracts.map((element: GQLResponseType) => element.node.id)));
+			}
+		})();
+	}, [props.data, updateStamps]);
 
 	return (
 		<Table

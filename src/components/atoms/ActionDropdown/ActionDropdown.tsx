@@ -4,6 +4,7 @@ import { CloseHandler } from 'wrappers/CloseHandler';
 
 import { IconButton } from 'components/atoms/IconButton';
 
+import { LANGUAGE } from 'helpers/language';
 import { ASSETS } from 'helpers/config';
 import { IProps } from './types';
 import * as S from './styles';
@@ -14,11 +15,14 @@ export default function ActionDropdown(props: IProps) {
 
 	const dropdownHeight = 32.5 * props.actions.length + 10;
 
-	const escFunction = React.useCallback((e: any) => {
-		if (e.key === 'Escape' && showDropdown) {
-			setShowDropdown(false);
-		}
-	}, [showDropdown]);
+	const escFunction = React.useCallback(
+		(e: any) => {
+			if (e.key === 'Escape' && showDropdown) {
+				setShowDropdown(false);
+			}
+		},
+		[showDropdown]
+	);
 
 	React.useEffect(() => {
 		document.addEventListener('keydown', escFunction, false);
@@ -42,6 +46,7 @@ export default function ActionDropdown(props: IProps) {
 		// 		setOpenDown(true);
 		// 	}
 		// }
+		props.handleShowDropdown();
 		setShowDropdown(!showDropdown);
 	}
 
@@ -62,8 +67,8 @@ export default function ActionDropdown(props: IProps) {
 							return (
 								<S.Container key={index}>
 									{action.subComponent && action.subComponent.active && action.subComponent.node}
-									<S.LI disabled={action.disabled} onClick={() => runAction(action.fn, action.closeOnAction)}>
-										{action.label}
+									<S.LI disabled={action.disabled || action.loading} onClick={() => runAction(action.fn, action.closeOnAction)}>
+										{action.loading ? `${LANGUAGE.loading} ...` : action.label}
 									</S.LI>
 								</S.Container>
 							);

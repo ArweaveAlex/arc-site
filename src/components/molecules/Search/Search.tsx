@@ -25,11 +25,24 @@ export default function Search(props: IProps) {
 					disabled={props.disabled}
 				/>
 				<S.ClearWrapper>
-					<IconButton src={ASSETS.close} type={'primary'} handlePress={() => props.handleClear()} disabled={props.disabled || !props.value} warning sm />
+					<IconButton
+						src={ASSETS.close}
+						type={'primary'}
+						handlePress={() => props.handleClear()}
+						disabled={props.disabled || !props.value}
+						warning
+						sm
+					/>
 				</S.ClearWrapper>
 			</S.SearchWrapper>
 			<S.SearchButtonWrapper>
-				<Button type={'alt1'} label={'Search'} handlePress={(e: React.MouseEvent<HTMLInputElement>) => props.handleSearch(e)} disabled={props.disabled || !props.value} noMinWidth />
+				<Button
+					type={'alt1'}
+					label={'Search'}
+					handlePress={(e: React.MouseEvent<HTMLInputElement>) => props.handleSearch(e)}
+					disabled={props.disabled || !props.value}
+					noMinWidth
+				/>
 			</S.SearchButtonWrapper>
 		</S.Wrapper>
 	);

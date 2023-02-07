@@ -73,7 +73,12 @@ export default function WalletConnect(props: { callback: () => void }) {
 						<WalletList />
 					</Modal>
 				)}
-				<Button type={'primary'} label={arProvider.walletAddress ? formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet} handlePress={handlePress} useMaxWidth />
+				<Button
+					type={'primary'}
+					label={arProvider.walletAddress ? formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet}
+					handlePress={handlePress}
+					useMaxWidth
+				/>
 				{showDropdown && (
 					<S.WalletDropdown>
 						<li onClick={handleViewAccount}>{LANGUAGE.viewAccount}</li>

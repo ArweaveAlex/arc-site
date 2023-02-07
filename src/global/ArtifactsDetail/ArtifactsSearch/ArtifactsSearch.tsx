@@ -19,12 +19,16 @@ export default function ArtifactsSearch(props: IProps) {
 	const searchIndecesReducer = useSelector((state: RootState) => state.searchIndecesReducer);
 
 	const [searchIndeces, setSearchIndeces] = React.useState<string[] | null>(
-		props.cursorObject.value && searchIndecesReducer[props.cursorObject.value] && searchIndecesReducer[props.cursorObject.value].id.value === props.id.value
+		props.cursorObject.value &&
+			searchIndecesReducer[props.cursorObject.value] &&
+			searchIndecesReducer[props.cursorObject.value].id.value === props.id.value
 			? searchIndecesReducer[props.cursorObject.value].value
 			: null
 	);
 
-	const [searchTerm, setSearchTerm] = React.useState<string>(searchTermReducer[props.cursorObject.value].id.value === props.id.value ? searchTermReducer[props.cursorObject.value].value || '' : '');
+	const [searchTerm, setSearchTerm] = React.useState<string>(
+		searchTermReducer[props.cursorObject.value].id.value === props.id.value ? searchTermReducer[props.cursorObject.value].value || '' : ''
+	);
 
 	const [searchResultIds, setSearchResultIds] = React.useState<string[]>([]);
 	const [searchRequested, setSearchRequested] = React.useState<boolean>(false);
@@ -75,7 +79,11 @@ export default function ArtifactsSearch(props: IProps) {
 	}
 
 	React.useEffect(() => {
-		if (props.cursorObject.value && searchIndecesReducer[props.cursorObject.value] && searchIndecesReducer[props.cursorObject.value].id.value === props.id.value) {
+		if (
+			props.cursorObject.value &&
+			searchIndecesReducer[props.cursorObject.value] &&
+			searchIndecesReducer[props.cursorObject.value].id.value === props.id.value
+		) {
 			setSearchIndeces(searchIndecesReducer[props.cursorObject.value].value);
 		}
 	}, [searchIndecesReducer, props.cursorObject.value, props.id.value]);

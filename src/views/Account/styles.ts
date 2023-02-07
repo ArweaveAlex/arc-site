@@ -106,7 +106,7 @@ export const Header2 = styled(Header1)`
 	color: ${(props) => props.theme.colors.font.primary.alt4};
 `;
 
-export const Message = styled.div`
+export const WalletConnectWrapper = styled.div`
 	position: absolute;
 	top: 50%;
 	left: 50%;

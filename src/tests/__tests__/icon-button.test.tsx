@@ -35,7 +35,11 @@ test('Simulates click', () => {
 
 test('Simulates disabled', () => {
 	const onButtonClick = jest.fn();
-	render(wrapWithProviders(<IconButton type={'primary'} sm warning disabled src={'ASSET'} handlePress={onButtonClick} testingCtx={'test-icon-button-disabled'} />));
+	render(
+		wrapWithProviders(
+			<IconButton type={'primary'} sm warning disabled src={'ASSET'} handlePress={onButtonClick} testingCtx={'test-icon-button-disabled'} />
+		)
+	);
 	const button = screen.getByTestId('test-icon-button-disabled');
 	expect(button).toBeDisabled();
 });

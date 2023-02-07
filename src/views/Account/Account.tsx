@@ -10,10 +10,20 @@ import { ASSETS, URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as S from './styles';
 
+// TODO - Wallet Connect spacing
 export default function Account() {
 	const arProvider = useArweaveProvider();
 
 	const [copied, setCopied] = React.useState<boolean>(false);
+	const [showWalletConnect, setShowWalletConnect] = React.useState<boolean>(false);
+
+	React.useEffect(() => {
+		setTimeout(() => {
+			if (!arProvider.walletAddress) {
+				setShowWalletConnect(true);
+			}
+		}, 500);
+	}, [arProvider.walletAddress]);
 
 	const copyUrl = React.useCallback(async () => {
 		if (arProvider.walletAddress) {
@@ -51,14 +61,11 @@ export default function Account() {
 			</S.TabsWrapper>
 		</S.Wrapper>
 	) : (
-		<S.Message>
-			<p>{LANGUAGE.walletNotConnected}</p>
-			<Button 
-				type={'alt1'}
-				label={LANGUAGE.connect}
-				handlePress={() => arProvider.setWalletModalVisible(true)}
-				useMaxWidth
-			/>
-		</S.Message>
+		showWalletConnect && (
+			<S.WalletConnectWrapper>
+				<p>{LANGUAGE.walletNotConnected}</p>
+				<Button type={'alt1'} label={LANGUAGE.connect} handlePress={() => arProvider.setWalletModalVisible(true)} useMaxWidth />
+			</S.WalletConnectWrapper>
+		)
 	);
 }
