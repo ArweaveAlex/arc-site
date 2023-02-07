@@ -5,6 +5,7 @@
 	"homepage": ".",
 	"dependencies": {
 		"@bundlr-network/client": "^0.9.11",
+		"@permaweb/stampjs": "https://js_stamps.g8way.io/",
 		"@testing-library/react": "^13.4.0",
 		"@types/node": "^16.18.3",
 		"@types/react": "^18.0.24",

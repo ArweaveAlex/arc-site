@@ -6,6 +6,7 @@ export const LANGUAGE = {
 	account: {
 		header1: `Your Library`,
 		all: { title: `All` },
+		collections: { title: `Collections` },
 		new: { title: `New` },
 		bookmarks: { title: `Bookmarks` },
 		contributions: { title: `Contributions` },
@@ -32,12 +33,13 @@ export const LANGUAGE = {
 		subheader2: `Pools are created with the`,
 	},
 	basicInformation: `Basic Information`,
-	bookmark: {
-		subheader1: `Bookmark`,
-	},
 	bookmarks: `Bookmarks`,
 	bookmarksUpdated: `Bookmarks Updated`,
 	closePreview: `Close Preview`,
+	collection: {
+		subheader1: `Bookmark`,
+	},
+	collections: `Collections`,
 	comments: `Comments`,
 	companyTitle: `Alex.`,
 	connect: `Connect`,

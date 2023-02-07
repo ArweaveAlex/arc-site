@@ -87,7 +87,7 @@ export default function ArtifactsTable(props: IProps) {
 		if (!artifactType) {
 			artifactType = ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
 		}
-		
+
 		return (
 			<S.TypeContainer>
 				<S.TypeLabel>
@@ -104,7 +104,6 @@ export default function ArtifactsTable(props: IProps) {
 	function getArtifactLink(id: string, tags: KeyValueType[]) {
 		let redirect: string;
 		const associationId = getTagValue(tags, TAGS.keys.associationId);
-
 
 		if (associationId && associationId !== STORAGE.none) {
 			redirect = `${urls.thread}${associationId}/${id}`;
@@ -169,6 +168,12 @@ export default function ArtifactsTable(props: IProps) {
 	}
 
 	React.useEffect(() => {
+		if (props.selectedCallbackIds) {
+			setSelectedCallbackIdsState(props.selectedCallbackIds);
+		}
+	}, [props.selectedCallbackIds]);
+
+	React.useEffect(() => {
 		if (props.data) {
 			(async function () {
 				setData(
@@ -203,12 +208,6 @@ export default function ArtifactsTable(props: IProps) {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selectedCallbackIdsState, props.data, props.showActions]);
-
-	React.useEffect(() => {
-		if (props.selectedCallbackIds) {
-			setSelectedCallbackIdsState(props.selectedCallbackIds);
-		}
-	}, [props.selectedCallbackIds]);
 
 	return (
 		<Table
