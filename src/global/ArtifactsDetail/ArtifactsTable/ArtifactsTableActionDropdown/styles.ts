@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-export const PreviewContainer = styled.div`
+export const SubComponentContainer = styled.div`
 	min-height: 141.5px;
 	width: 600px;
 	max-width: 90vw;
@@ -19,4 +19,12 @@ export const PreviewContainer = styled.div`
 		border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent}
 			${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.border.alt1};
 	}
+`;
+
+export const PreviewContainer = styled(SubComponentContainer)``;
+
+export const StampWidgetContainer = styled(SubComponentContainer)`
+	min-height: 0;
+	width: 300px;
+	top: 36.5px;
 `;

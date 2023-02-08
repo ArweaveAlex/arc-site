@@ -7,6 +7,7 @@ export interface IProps {
 	sm?: boolean;
 	warning?: boolean;
 	disabled?: boolean;
+	info?: string,
 	testingCtx?: string;
 	dimensions?: {
 		wrapper: number;

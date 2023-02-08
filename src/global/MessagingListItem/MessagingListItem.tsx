@@ -56,7 +56,10 @@ function MessagingMedia(props: IMProps) {
 					if (mediaIdsJsonKeys[i].indexOf('.')) {
 						mediaComponents.push(
 							<S.MediaElement key={mediaId}>
-								{getMediaType(mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf('.') + 1), getTxEndpoint(mediaId))}
+								{getMediaType(
+									mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf('.') + 1),
+									getTxEndpoint(mediaId)
+								)}
 							</S.MediaElement>
 						);
 					}
@@ -95,7 +98,15 @@ function ChildAsset(props: { id: string }) {
 		if (!detailData) {
 			return <Loader sm />;
 		} else {
-			return <MessagingListItem data={detailData} isListItem={false} active={false} showArtifactLink={true} showOwnerLink={true} />;
+			return (
+				<MessagingListItem
+					data={detailData}
+					isListItem={false}
+					active={false}
+					showArtifactLink={true}
+					showOwnerLink={true}
+				/>
+			);
 		}
 	}
 
@@ -112,7 +123,12 @@ export default function MessagingListItem(props: IProps) {
 	}, [props.data]);
 
 	function getProfileImage() {
-		if (props.data && props.data.profileImagePath && props.data.profileImagePath !== STORAGE.none) {
+		if (
+			props.data &&
+			props.data.profileImagePath &&
+			props.data.profileImagePath !== STORAGE.none &&
+			Object.keys(JSON.parse(props.data.profileImagePath)).length
+		) {
 			const profileImageJson = JSON.parse(props.data.profileImagePath);
 			const profileImageKeys = Object.keys(profileImageJson);
 			const profileImageId = profileImageJson[profileImageKeys[0]].id;
@@ -167,7 +183,9 @@ export default function MessagingListItem(props: IProps) {
 								<>
 									<S.ALink>
 										<span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
-										<Link to={artifactLink}>{props.data ? formatAddress(props.data.artifactId, false) : null}</Link>
+										<Link to={artifactLink}>
+											{props.data ? formatAddress(props.data.artifactId, false) : null}
+										</Link>
 									</S.ALink>
 									<S.ALinkNT>
 										<Link to={artifactLink} target={'_blank'} tabIndex={-1}>
@@ -182,7 +200,9 @@ export default function MessagingListItem(props: IProps) {
 								<>
 									<S.ALink>
 										<span>{`${LANGUAGE.owner}:`}&nbsp;</span>
-										<Link to={ownerLink}>{props.data ? formatAddress(props.data.owner, false) : null}</Link>
+										<Link to={ownerLink}>
+											{props.data ? formatAddress(props.data.owner, false) : null}
+										</Link>
 									</S.ALink>
 									<S.ALinkNT>
 										<Link to={ownerLink} target={'_blank'} tabIndex={-1}>

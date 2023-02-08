@@ -75,23 +75,6 @@ export default function CollectionsCreate() {
 				</S.HeaderContent>
 			</S.HeaderWrapper>
 			<S.ContentWrapper>
-				<S.ArtifactsWrapper>
-					<OwnerArtifacts
-						owner={query.get('owner')}
-						fetch={getArtifactsByUser}
-						reduxCursor={REDUX_TABLES.accountAll}
-						showActions={true}
-						showPoolIds={true}
-						showSearch={false}
-						bookmarksDisabled={false}
-						selectCallback={(id: string) => handleIdUpdate(id)}
-						selectedCallbackIds={selectedIds}
-						cursorObject={{
-							key: CursorEnum.Search,
-							value: REDUX_TABLES.accountAll,
-						}}
-					/>
-				</S.ArtifactsWrapper>
 				<S.FormWrapper>
 					<S.FormContainer>
 						<S.FormFixedContainer>
@@ -121,6 +104,23 @@ export default function CollectionsCreate() {
 						</S.FormFixedContainer>
 					</S.FormContainer>
 				</S.FormWrapper>
+				<S.ArtifactsWrapper>
+					<OwnerArtifacts
+						owner={query.get('owner')}
+						fetch={getArtifactsByUser}
+						reduxCursor={REDUX_TABLES.accountAll}
+						showActions={true}
+						showPoolIds={true}
+						showSearch={false}
+						bookmarksDisabled={false}
+						selectCallback={(id: string) => handleIdUpdate(id)}
+						selectedCallbackIds={selectedIds}
+						cursorObject={{
+							key: CursorEnum.Search,
+							value: REDUX_TABLES.accountAll,
+						}}
+					/>
+				</S.ArtifactsWrapper>
 			</S.ContentWrapper>
 		</S.Wrapper>
 	);

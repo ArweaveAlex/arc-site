@@ -2,6 +2,11 @@ import styled from 'styled-components/macro';
 
 import { STYLING } from 'helpers/styling';
 
+export const Wrapper = styled.div`
+	position: relative;
+	width: fit-content;
+`;
+
 export const Primary = styled.button<{
 	sm: boolean | undefined;
 	warning: boolean | undefined;
@@ -78,5 +83,28 @@ export const Alt1 = styled(Primary)<{
 export const Alt2 = styled(Primary)`
 	svg {
 		fill: ${(props) => (props.warning ? props.theme.colors.warning : props.theme.colors.icon.alt1.fill)};
+	}
+`;
+
+export const InfoWrapper = styled.div`
+	position: absolute;
+	z-index: 1;
+	top: 2.5px;
+	left: 85%;
+	height: auto;
+	min-width: none;
+	padding: 0.5px 7.5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: ${(props) => props.theme.colors.icon.info.background};
+	border: 0.75px solid ${(props) => props.theme.colors.icon.info.border};
+	border-radius: ${STYLING.dimensions.borderRadiusField};
+	p {
+		height: auto !important;
+		margin: 0 !important;
+		color: ${(props) => props.theme.colors.font.primary.base} !important;
+		font-size: 12px !important;
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 	}
 `;

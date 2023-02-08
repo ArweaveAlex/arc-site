@@ -30,16 +30,42 @@ export default function IconButton(props: IProps) {
 		}
 	}
 
-	return (
-		<StyledButton
-			onClick={props.handlePress}
-			disabled={props.disabled}
-			sm={props.sm}
-			warning={props.warning}
-			data-testid={props.testingCtx}
-			dimensions={props.dimensions}
-		>
-			<ReactSVG src={props.src} />
-		</StyledButton>
-	);
+	function getButton() {
+		if (props.info) {
+			return (
+				<S.Wrapper>
+					{props.info && (
+						<S.InfoWrapper>
+							<p>{props.info}</p>
+						</S.InfoWrapper>
+					)}
+					<StyledButton
+						onClick={props.handlePress}
+						disabled={props.disabled}
+						sm={props.sm}
+						warning={props.warning}
+						data-testid={props.testingCtx}
+						dimensions={props.dimensions}
+					>
+						<ReactSVG src={props.src} />
+					</StyledButton>
+				</S.Wrapper>
+			);
+		} else {
+			return (
+				<StyledButton
+					onClick={props.handlePress}
+					disabled={props.disabled}
+					sm={props.sm}
+					warning={props.warning}
+					data-testid={props.testingCtx}
+					dimensions={props.dimensions}
+				>
+					<ReactSVG src={props.src} />
+				</StyledButton>
+			);
+		}
+	}
+
+	return <>{getButton()}</>;
 }

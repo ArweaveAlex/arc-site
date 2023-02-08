@@ -107,6 +107,9 @@ export const Header2 = styled(Header1)`
 `;
 
 export const WalletConnectWrapper = styled.div`
+	height: 140px;
+	width: 300px;
+	max-width: 95vw;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -115,15 +118,12 @@ export const WalletConnectWrapper = styled.div`
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
-	padding: 20px 30px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
+	align-items: center;
 	p {
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
-	}
-	button {
-		margin: 20px auto 0 auto;
 	}
 `;

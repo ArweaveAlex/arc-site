@@ -24,8 +24,8 @@ const DEFAULT = {
 	overlay1: 'rgba(193, 193, 193, 0.75)',
 	overlay2: 'rgba(193, 193, 193, 0.75)',
 	overlay3: 'rgba(193, 193, 193, 0.85)',
-	warning: '#EE3C3C',
-	warningShadow: '#F27979',
+	contrast: '#EE3C3C',
+	contrastShadow: '#F27979',
 	success: '#32C422',
 	neutral: '#FFB600',
 	transparent: 'rgba(255, 255, 255, 0)',
@@ -144,15 +144,15 @@ export const defaultTheme: DefaultTheme = {
 					base: DEFAULT.primary,
 					hover: DEFAULT.primary3,
 				},
-				invalid: DEFAULT.warning,
+				invalid: DEFAULT.contrast,
 			},
 		},
 		form: {
 			background: DEFAULT.neutral1,
 			border: DEFAULT.neutral6,
 			invalid: {
-				outline: DEFAULT.warning,
-				shadow: DEFAULT.warningShadow,
+				outline: DEFAULT.contrast,
+				shadow: DEFAULT.contrastShadow,
 			},
 			valid: {
 				outline: DEFAULT.primary3,
@@ -178,6 +178,10 @@ export const defaultTheme: DefaultTheme = {
 				fill: DEFAULT.neutral4,
 			},
 			inactive: DEFAULT.neutral4,
+			info: {
+				background: DEFAULT.contrast,
+				border: DEFAULT.neutral7
+			}
 		},
 		image: {
 			shadow1: DEFAULT.backdropShadow1,
@@ -204,7 +208,7 @@ export const defaultTheme: DefaultTheme = {
 		},
 		notification: {
 			success: DEFAULT.success,
-			warning: DEFAULT.warning,
+			contrast: DEFAULT.contrast,
 			neutral: DEFAULT.neutral,
 		},
 		overlay: {
@@ -232,7 +236,7 @@ export const defaultTheme: DefaultTheme = {
 		view: {
 			background: DEFAULT.neutral1,
 		},
-		warning: DEFAULT.warning,
+		contrast: DEFAULT.contrast,
 	},
 	typography: {
 		family: {

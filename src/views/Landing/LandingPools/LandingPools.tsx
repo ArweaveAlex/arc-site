@@ -51,7 +51,7 @@ function PoolCard(props: PoolType) {
 	) : null;
 }
 
-// TODO - async page load without cache
+// TODO - Pool contract index
 export default function LandingPools() {
 	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 

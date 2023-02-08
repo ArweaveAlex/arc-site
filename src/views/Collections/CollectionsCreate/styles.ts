@@ -107,6 +107,7 @@ export const FormFixedContainer = styled.div`
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		position: relative;
 		width: 100%;
+		margin: 40px 0 0 0;
 	}
 `;
 
@@ -128,5 +129,5 @@ export const Form = styled.form``;
 
 export const SubmitContainer = styled.div`
 	width: fit-content;
-	margin: 0 0 40px auto;
+	margin: 0 0 0 auto;
 `;

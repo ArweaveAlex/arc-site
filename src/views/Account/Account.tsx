@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import { Button } from 'components/atoms/Button';
@@ -10,7 +11,6 @@ import { ASSETS, URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as S from './styles';
 
-// TODO - Wallet Connect spacing
 export default function Account() {
 	const arProvider = useArweaveProvider();
 
@@ -64,7 +64,12 @@ export default function Account() {
 		showWalletConnect && (
 			<S.WalletConnectWrapper>
 				<p>{LANGUAGE.walletNotConnected}</p>
-				<Button type={'alt1'} label={LANGUAGE.connect} handlePress={() => arProvider.setWalletModalVisible(true)} useMaxWidth />
+				<Button 
+					type={'alt2'} 
+					label={LANGUAGE.connect} 
+					handlePress={() => arProvider.setWalletModalVisible(true)} 
+					useMaxWidth 
+				/>
 			</S.WalletConnectWrapper>
 		)
 	);

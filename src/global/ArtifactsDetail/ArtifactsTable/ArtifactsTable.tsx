@@ -77,11 +77,11 @@ export default function ArtifactsTable(props: IProps) {
 			};
 		}
 
-		header.stamps = {
-			width: '7.5%',
-			align: 'center' as AlignType,
-			display: LANGUAGE.stamps,
-		};
+		// header.stamps = {
+		// 	width: '7.5%',
+		// 	align: 'center' as AlignType,
+		// 	display: LANGUAGE.stamps,
+		// };
 
 		if (props.showActions) {
 			header.actions = {
@@ -147,13 +147,13 @@ export default function ArtifactsTable(props: IProps) {
 		);
 	}
 
-	function getStampCount(id: string) {
-		return (
-			<S.StampContainer>
-				<p>{(stamps && stamps[id]) ? stamps[id].total : `-`}</p>
-			</S.StampContainer>
-		);
-	}
+	// function getStampCount(id: string) {
+	// 	return (
+	// 		<S.StampContainer>
+	// 			<p>{(stamps && stamps[id]) ? stamps[id].total : `-`}</p>
+	// 		</S.StampContainer>
+	// 	);
+	// }
 
 	function getActionDropdown(artifactId: string, tags: KeyValueType[]) {
 		return (
@@ -162,7 +162,7 @@ export default function ArtifactsTable(props: IProps) {
 				tags={tags} 
 				owner={props.owner} 
 				bookmarksDisabled={props.bookmarksDisabled}
-				handleCallback={() => setUpdateStamps(!updateStamps)}
+				handleStampCallback={() => setUpdateStamps(!updateStamps)}
 			/>
 		);
 	}
@@ -220,7 +220,7 @@ export default function ArtifactsTable(props: IProps) {
 								);
 							}
 
-							row.stamps = getStampCount(element.node.id);
+							// row.stamps = getStampCount(element.node.id);
 
 							if (props.showActions) {
 								row.actions = getActionDropdown(element.node.id, element.node.tags);

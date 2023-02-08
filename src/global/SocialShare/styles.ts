@@ -35,7 +35,6 @@ export const Icon = styled.div<{ alt1: boolean }>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 2.5px 0 0 0;
 	background: ${(props) => (props.alt1 ? props.theme.colors.transparent : props.theme.colors.button.alt1.background)};
 	border-radius: ${STYLING.dimensions.borderRadiusField};
 	&:hover {

@@ -5,5 +5,5 @@ export interface IProps {
 	tags: KeyValueType[];
 	owner: string | null;
 	bookmarksDisabled: boolean;
-	handleCallback: () => void;
+	handleStampCallback: () => void;
 }

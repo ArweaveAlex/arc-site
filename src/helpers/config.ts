@@ -12,7 +12,7 @@ import { LANGUAGE } from 'helpers/language';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.0.3',
+	version: '1.0.4',
 };
 
 export const TAGS = {
@@ -51,7 +51,7 @@ export const TAGS = {
 		webpageArtifactType: 'Alex-Webpage',
 		poolVersions: {
 			'1.2': 'Alex-Archiving-Pool-v1.2',
-			'1.4': 'Alex-Archiving-Pool-Thread-Testing-v1.0',
+			'1.4': 'Alex-Archiving-Pool-v1.4',
 		},
 		searchIndex: 'Alex-Search-Index-v0',
 		collectionAppType: 'Alex-Collection-v0',
@@ -69,8 +69,8 @@ export const ASSETS = {
 	artifact: `${ASSET_SRC}/artifact.svg`,
 	artifactTypes: {
 		default: `${ASSET_SRC}/artifact-types/webpage.svg`,
-		messaging: `${ASSET_SRC}/artifact-types/messaging.svg`,
-		nostrEvent: `${ASSET_SRC}/artifact-types/messaging.svg`,
+		messaging: `${ASSET_SRC}/artifact-types/twitter.svg`,
+		nostrEvent: `${ASSET_SRC}/artifact-types/nostr.svg`,
 		redditThread: `${ASSET_SRC}/artifact-types/reddit-thread.svg`,
 		webpage: `${ASSET_SRC}/artifact-types/webpage.svg`,
 	},
@@ -113,6 +113,7 @@ export const ASSETS = {
 		discord: `${ASSET_SRC}/discord.svg`,
 		twitter: `${ASSET_SRC}/twitter.svg`,
 	},
+	stamp: `${ASSET_SRC}/stamp.svg`, 
 	star: `${ASSET_SRC}/star.svg`,
 	user: `${ASSET_SRC}/user.svg`,
 	wallets: {

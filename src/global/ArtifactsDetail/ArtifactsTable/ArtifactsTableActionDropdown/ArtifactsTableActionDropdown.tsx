@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Stamps from '@permaweb/stampjs';
-import { ArweaveClient } from 'clients/arweave';
+// import { useArweaveProvider } from 'providers/ArweaveProvider';
+// import { ArweaveClient } from 'clients/arweave';
 
 import * as artifactActions from 'redux/artifacts/actions';
 import { RootState } from 'redux/store';
 import { getBookmarkIds, setBookmarkIds, getArtifactById } from 'gql/artifacts';
 
+// import { StampWidget } from 'global/StampWidget';
 import { ArtifactViewSingle } from 'views/Artifact/ArtifactSingle/ArtifactViewSingle';
 
 import { Notification } from 'components/atoms/Notification';
@@ -21,7 +22,7 @@ import { ArtifactDetailType, NotificationResponseType } from 'helpers/types';
 import { IProps } from './types';
 import * as S from './styles';
 
-function Preview(props: { artifactId: string; callback: () => void }) {
+function Preview(props: { artifactId: string }) {
 	const [data, setData] = React.useState<ArtifactDetailType | null>(null);
 
 	React.useEffect(() => {
@@ -39,12 +40,15 @@ function Preview(props: { artifactId: string; callback: () => void }) {
 	);
 }
 
-// TODO - Full stamp widget as Stamp subcomponent if user has stamp tokens, enable form field with qty arg amount
+// User clicks STAMP -> If connected show form else show wallet dropdown
+// Form - (2 options: 1. Single stamp 2. Super stamp (Form field send qty <= balance)) Disabled if no balance
+// TODO - Full stamp widget as STAMP subcomponent if user has stamp tokens, enable form field with qty arg amount
 export default function ArtifactsTableActionDropdown(props: IProps) {
 	const dispatch = useDispatch();
 
-	const arClient = new ArweaveClient();
-	const stamps = Stamps.init({ warp: arClient.warp });
+	// const arClient = new ArweaveClient();
+	// const arProvider = useArweaveProvider();
+	// const stamps = Stamps.init({ warp: arClient.warp });
 
 	const bookmarksReducer = useSelector((state: RootState) => state.bookmarksReducer);
 
@@ -53,19 +57,20 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	const [showPreview, setShowPreview] = React.useState<boolean>(false);
 	const [bookmarkNotification, setBookmarkNotification] = React.useState<NotificationResponseType | null>(null);
 
-	const [stampDisabled, setStampDisabled] = React.useState<boolean>(true);
-	const [stampCheckLoading, setStampCheckLoading] = React.useState<boolean>(false);
-	const [stampNotification, setStampNotification] = React.useState<NotificationResponseType | null>(null);
+	// const [stampDisabled, setStampDisabled] = React.useState<boolean>(true);
+	// const [stampCheckLoading, setStampCheckLoading] = React.useState<boolean>(false);
+	// const [stampNotification, setStampNotification] = React.useState<NotificationResponseType | null>(null);
+	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
 
 	const [bookmarkIdsState, setBookmarkIdsState] = React.useState<string[]>([]);
 
 	const escFunction = React.useCallback(
 		(e: any) => {
-			if (e.key === 'Escape' && showPreview) {
+			if (e.key === 'Escape' && (showPreview || showStampWidget)) {
 				setShowPreview(false);
 			}
 		},
-		[showPreview]
+		[showPreview, showStampWidget]
 	);
 
 	React.useEffect(() => {
@@ -94,21 +99,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		})();
 	}, [props.owner, dispatch, bookmarksReducer.owner, bookmarksReducer.ids]);
 
-	// TODO - Disabled if connected wallet has stamped not stamp total
-	React.useEffect(() => {
-		(async function () {
-			if (props.artifactId && dropdownOpen) {
-				setStampCheckLoading(true);
-				const stamp = await stamps.count(props.artifactId);
-				setStampCheckLoading(false);
-				if (stamp && stamp.total <= 0) {
-					setStampDisabled(false);
-				}
-			}
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.artifactId, dropdownOpen]);
-
 	async function handleBookmarkStateUpdate(artifactId: string) {
 		const updatedBookmarks: string[] = [];
 		for (let i = 0; i < bookmarkIdsState.length; i++) {
@@ -134,14 +124,37 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	function getPreview() {
 		return {
-			node: <Preview artifactId={props.artifactId} callback={() => setShowPreview(false)} />,
+			node: <Preview artifactId={props.artifactId} />,
 			active: showPreview,
 		};
 	}
 
+	// function getStampWidget() {
+	// 	return {
+	// 		node: (
+	// 			<S.StampWidgetContainer>
+	// 				<StampWidget
+	// 					txId={props.artifactId}
+	// 					walletAddress={arProvider.walletAddress}
+	// 					setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
+	// 					warp={arClient.warp}
+	// 					handleStampCallback={() => props.handleStampCallback()}
+	// 				/>
+	// 			</S.StampWidgetContainer>
+	// 		),
+	// 		active: showStampWidget,
+	// 	};
+	// }
+
 	function handleShowPreview() {
 		setShowPreview(!showPreview);
+		setShowStampWidget(false);
 	}
+
+	// function handleShowStampWidget() {
+	// 	setShowStampWidget(!showStampWidget);
+	// 	setShowPreview(false);
+	// }
 
 	function handleViewRedirect() {
 		window.open(redirect, '_blank');
@@ -151,15 +164,11 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	function handleCallback() {
 		setDropdownOpen(!dropdownOpen);
 		setShowPreview(false);
+		setShowStampWidget(false);
 	}
 
 	function handleBookmarkCallback() {
 		setBookmarkNotification(null);
-		handleCallback();
-	}
-
-	function handleStampCallback() {
-		setStampNotification(null);
 		handleCallback();
 	}
 
@@ -171,21 +180,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		}
 	}, [props.artifactId]);
 
-	const handleStamp = React.useCallback(async () => {
-		if (props.artifactId) {
-			setStampCheckLoading(true);
-			const stamp = await stamps.stamp(props.artifactId);
-			const stampSuccess = stamp && stamp.bundlrResponse && stamp.bundlrResponse.id;
-			setStampCheckLoading(false);
-			setStampDisabled(true);
-			setStampNotification({
-				status: stampSuccess ? 200 : 500,
-				message: stampSuccess ? LANGUAGE.artifactStamped : LANGUAGE.errorOccurred,
-			});
-			props.handleCallback();
-		}
-	}, [stamps, props]);
-
 	function getActions() {
 		return [
 			{
@@ -196,14 +190,14 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				disabled: false,
 				loading: false,
 			},
-			{
-				fn: handleStamp,
-				closeOnAction: false,
-				subComponent: null,
-				label: LANGUAGE.stamp,
-				disabled: stampDisabled,
-				loading: stampCheckLoading,
-			},
+			// {
+			// 	fn: handleShowStampWidget,
+			// 	closeOnAction: false,
+			// 	subComponent: getStampWidget(),
+			// 	label: LANGUAGE.stamp,
+			// 	disabled: false,
+			// 	loading: false,
+			// },
 			{
 				fn: copyArtifactId,
 				closeOnAction: false,
@@ -224,7 +218,9 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				fn: () => handleBookmarkStateUpdate(props.artifactId),
 				closeOnAction: false,
 				subComponent: null,
-				label: bookmarkIdsState.includes(props.artifactId) ? LANGUAGE.removeFromBookmarks : LANGUAGE.addtoBookmarks,
+				label: bookmarkIdsState.includes(props.artifactId)
+					? LANGUAGE.removeFromBookmarks
+					: LANGUAGE.addtoBookmarks,
 				disabled: props.bookmarksDisabled,
 				loading: false,
 			},
@@ -240,14 +236,11 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 					callback={handleBookmarkCallback}
 				/>
 			)}
-			{stampNotification && (
-				<Notification
-					message={stampNotification.message}
-					type={stampNotification.status === 200 ? 'success' : 'warning'}
-					callback={handleStampCallback}
-				/>
-			)}
-			<ActionDropdown handleCallback={handleCallback} handleShowDropdown={() => setDropdownOpen(!dropdownOpen)} actions={getActions()} />
+			<ActionDropdown
+				handleCallback={handleCallback}
+				handleShowDropdown={() => setDropdownOpen(!dropdownOpen)}
+				actions={getActions()}
+			/>
 		</>
 	);
 }
