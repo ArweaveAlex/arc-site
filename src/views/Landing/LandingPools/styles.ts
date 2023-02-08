@@ -2,8 +2,10 @@ import styled from 'styled-components/macro';
 
 import { STYLING, getImageShadow } from 'helpers/styling';
 
+const WRAPPER_HEIGHT = '550px';
+
 export const Wrapper = styled.div`
-	height: 550px;
+	height: ${WRAPPER_HEIGHT};
 	width: 100%;
 	max-width: ${STYLING.cutoffs.max};
 	margin: 15px auto 0 auto;
@@ -117,7 +119,7 @@ export const C2 = styled.div<{ image: string }>`
 
 export const LoadingContainer = styled.div`
 	height: 100%;
-	min-height: 400px;
+	height: ${WRAPPER_HEIGHT};
 	width: 100%;
 	position: relative;
 	margin: 40px 0 0 0;

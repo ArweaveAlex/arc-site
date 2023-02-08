@@ -66,7 +66,7 @@ export default function ButtonLink(props: IProps) {
 					noMinWidth={props.noMinWidth}
 					data-testid={props.testingCtx}
 				>
-					{props.loading ? `${LANGUAGE.loading}...` : getLabel()}
+					{props.loading ? `${LANGUAGE.loading} ...` : getLabel()}
 				</StyledButton>
 			</Link>
 		</S.Wrapper>

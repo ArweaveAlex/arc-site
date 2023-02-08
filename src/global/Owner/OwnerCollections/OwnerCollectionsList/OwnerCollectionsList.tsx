@@ -13,7 +13,7 @@ export default function OwnerCollectionsList(props: IProps) {
 		<S.Wrapper>
 			<S.Header>
 				<S.HeaderFlex>
-					<S.H2>{LANGUAGE.bookmarks}</S.H2>
+					<S.H2>{LANGUAGE.collections}</S.H2>
 					{props.showCreateCollections && (
 						<ButtonLink
 							type={'alt1'}

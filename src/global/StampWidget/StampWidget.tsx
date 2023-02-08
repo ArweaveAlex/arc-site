@@ -5,6 +5,7 @@ import Stamps from '@permaweb/stampjs';
 import { Loader } from 'components/atoms/Loader';
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
+import { FormField } from 'components/atoms/FormField';
 import { Notification } from 'components/atoms/Notification';
 
 import { LANGUAGE } from 'helpers/language';
@@ -12,6 +13,45 @@ import { NotificationResponseType } from 'helpers/types';
 import { IProps } from './types';
 import * as S from './styles';
 import { ASSETS } from 'helpers/config';
+
+function StampAction(props: { balance: number; handleSubmit: (amount: number) => void; handleClose: () => void }) {
+	const [amount, setAmount] = React.useState<string>('0');
+
+	const invalid = Number(amount) > props.balance;
+
+	return (
+		<S.SAContainer>
+			<S.SAInfoContainer>
+				<p>{`${LANGUAGE.stampTokenBalance}: ${props.balance}`}</p>
+				<S.SACloseContainer>
+					<IconButton type={'primary'} sm warning src={ASSETS.close} handlePress={props.handleClose} />
+				</S.SACloseContainer>
+			</S.SAInfoContainer>
+			<S.SAFormContainer onSubmit={() => props.handleSubmit(Number(amount))}>
+				<S.SAInput>
+					<FormField
+						type={'number'}
+						value={amount}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(e.target.value)}
+						disabled={false}
+						invalid={{ status: invalid, message: invalid ? LANGUAGE.amountExceedsBalance : null }}
+						sm
+					/>
+				</S.SAInput>
+				<S.SASubmit>
+					<Button
+						type={'alt1'}
+						label={'Submit'}
+						handlePress={() => props.handleSubmit(Number(amount))}
+						disabled={invalid || Number(amount) <= 0 || Number(amount) % 1 !== 0}
+						formSubmit
+						noMinWidth
+					/>
+				</S.SASubmit>
+			</S.SAFormContainer>
+		</S.SAContainer>
+	);
+}
 
 export default function StampWidget(props: IProps) {
 	const stamps = Stamps.init({ warp: props.warp });
@@ -22,6 +62,8 @@ export default function StampWidget(props: IProps) {
 	const [balance, setBalance] = React.useState<number>(0);
 
 	const [showWalletConnect, setShowWalletConnect] = React.useState<boolean>(false);
+	const [showStampAction, setShowStampAction] = React.useState<boolean>(false);
+
 	const [stampDisabled, setStampDisabled] = React.useState<boolean>(true);
 	const [stampCheckLoading, setStampCheckLoading] = React.useState<boolean>(false);
 	const [stampNotification, setStampNotification] = React.useState<NotificationResponseType | null>(null);
@@ -38,7 +80,6 @@ export default function StampWidget(props: IProps) {
 			if (props.walletAddress) {
 				try {
 					setBalance(await stamps.balance(props.walletAddress));
-                    console.log(`Stamp Balance: ${balance}`);
 				} catch {}
 			}
 		})();
@@ -80,26 +121,40 @@ export default function StampWidget(props: IProps) {
 		}
 	}, [count, stampCheckLoading]);
 
-	const handleStamp = React.useCallback(async () => {
-		if (props.txId) {
-			setStampCheckLoading(true);
-			const stamp = await stamps.stamp(props.txId);
-			const stampSuccess = stamp && stamp.bundlrResponse && stamp.bundlrResponse.id;
-			setStampCheckLoading(false);
-			setStampDisabled(true);
-			setUpdateCount(!updateCount);
-			setStampNotification({
-				status: stampSuccess ? 200 : 500,
-				message: stampSuccess ? LANGUAGE.artifactStamped : LANGUAGE.errorOccurred,
-			});
-			props.handleStampCallback();
-		}
-	}, [stamps, updateCount, props]);
+	const handleStamp = React.useCallback(
+		async (amount?: number) => {
+			if (props.txId) {
+				setStampCheckLoading(true);
+                let stamp: any;
+                if (amount) {
+                    stamp = await stamps.stamp(props.txId, amount);
+                }
+                else {
+                    stamp = await stamps.stamp(props.txId);
+                }
+				const stampSuccess = stamp && stamp.bundlrResponse && stamp.bundlrResponse.id;
+				setStampCheckLoading(false);
+				setStampDisabled(true);
+				setUpdateCount(!updateCount);
+				setStampNotification({
+					status: stampSuccess ? 200 : 500,
+					message: stampSuccess ? LANGUAGE.artifactStamped : LANGUAGE.errorOccurred,
+				});
+				props.handleStampCallback();
+			}
+		},
+		[stamps, updateCount, props]
+	);
 
 	function handleStampCallback() {
 		setStampNotification(null);
 		props.handleStampCallback();
 	}
+
+    function handleStampAction(amount: number) {
+        handleStamp(amount);
+        setShowStampAction(false);
+    }
 
 	function getWidget() {
 		if (showWalletConnect) {
@@ -123,36 +178,44 @@ export default function StampWidget(props: IProps) {
 				);
 			} else {
 				return (
-					<S.WidgetContainer>
-						<S.Action>
-							<IconButton
-								type={'alt1'}
-								src={ASSETS.stamp.default}
-								handlePress={handleStamp}
-								disabled={stampDisabled || stampCheckLoading}
-								info={count.total.toString()}
+					<>
+						{showStampAction && (
+							<StampAction
+								balance={balance}
+								handleClose={() => setShowStampAction(false)}
+								handleSubmit={(amount: number) => handleStampAction(amount)}
 							/>
-						</S.Action>
-						<S.Action>
-							<IconButton
-								type={'alt1'}
-								src={ASSETS.stamp.super}
-								handlePress={() => console.log('Super Stamp dropdown')}
-								// disabled={balance <= 0 || stampDisabled || stampCheckLoading}
-                                disabled={true}
-								info={count.super.toString()}
-							/>
-						</S.Action>
-						<S.Action>
-							<IconButton
-								type={'alt3'}
-								src={ASSETS.stamp.vouched}
-								handlePress={null}
-								disabled={true}
-								info={count.vouched.toString()}
-							/>
-						</S.Action>
-					</S.WidgetContainer>
+						)}
+						<S.WidgetContainer>
+							<S.Action>
+								<IconButton
+									type={'alt1'}
+									src={ASSETS.stamp.default}
+									handlePress={handleStamp}
+									disabled={stampDisabled || stampCheckLoading}
+									info={count.total.toString()}
+								/>
+							</S.Action>
+							<S.Action>
+								<IconButton
+									type={'alt1'}
+									src={ASSETS.stamp.super}
+									handlePress={() => setShowStampAction(!showStampAction)}
+									disabled={balance <= 0 || stampDisabled || stampCheckLoading || showStampAction}
+									info={count.super.toString()}
+								/>
+							</S.Action>
+							<S.Action>
+								<IconButton
+									type={'alt3'}
+									src={ASSETS.stamp.vouched}
+									handlePress={null}
+									disabled={true}
+									info={count.vouched.toString()}
+								/>
+							</S.Action>
+						</S.WidgetContainer>
+					</>
 				);
 			}
 		}

@@ -14,7 +14,7 @@ export const LANGUAGE = {
 	actions: `Actions`,
 	activePools: `Active Pools`,
 	addtoBookmarks: `Add to Bookmarks`,
-	amountExceedsBalance: `Amount exceeds available balance`,
+	amountExceedsBalance: `Amount exceeds Balance`,
 	artifact: `Artifact`,
 	artifactStamped: `Artifact Stamped`,
 	artifacts: `Artifacts`,
@@ -143,6 +143,7 @@ export const LANGUAGE = {
 	},
 	sortBy: `Sort By`,
 	stamp: `STAMP`,
+	stampTokenBalance: `STAMP Token Balance`,
 	stamps: `Stamps`,
 	steps: {
 		header1: `A New Way to Get Involved in the Human Story`,

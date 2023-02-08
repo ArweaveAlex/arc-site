@@ -71,7 +71,7 @@ export default function Button(props: IProps) {
 			noMinWidth={props.noMinWidth}
 			data-testid={props.testingCtx}
 		>
-			{props.loading ? `${LANGUAGE.loading}...` : getLabel()}
+			{props.loading ? `${LANGUAGE.loading} ...` : getLabel()}
 		</StyledButton>
 	);
 }
