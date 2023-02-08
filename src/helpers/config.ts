@@ -114,9 +114,9 @@ export const ASSETS = {
 		twitter: `${ASSET_SRC}/twitter.svg`,
 	},
 	stamp: {
-		default: `${ASSET_SRC}/star.svg`,
-		super: `${ASSET_SRC}/star.svg`,
-		vouched: `${ASSET_SRC}/star.svg`,
+		default: `${ASSET_SRC}/stamp-default.svg`,
+		super: `${ASSET_SRC}/stamp-super.svg`,
+		vouched: `${ASSET_SRC}/stamp-vouched.svg`,
 	},
 	star: `${ASSET_SRC}/star.svg`,
 	user: `${ASSET_SRC}/user.svg`,
