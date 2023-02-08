@@ -38,6 +38,7 @@ export default function StampWidget(props: IProps) {
 			if (props.walletAddress) {
 				try {
 					setBalance(await stamps.balance(props.walletAddress));
+                    console.log(`STAMP Balance: ${balance}`)
 				} catch {}
 			}
 		})();
