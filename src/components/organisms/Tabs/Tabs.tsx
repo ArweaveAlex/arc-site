@@ -35,7 +35,9 @@ export default class Tabs extends React.Component<{ children: any; onTabPropClic
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			activeTab: Array.isArray(this.props.children) ? this.props.children[0].props.label : this.props.children!.props.label,
+			activeTab: Array.isArray(this.props.children)
+				? this.props.children[0].props.label
+				: this.props.children!.props.label,
 		};
 	}
 

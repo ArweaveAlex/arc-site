@@ -68,8 +68,10 @@ export const Indicator = styled.button<{ selected: boolean }>`
     width: 15px;
     margin: 0 3.5px !important;
     border-radius: 50%;
-    background ${(props) => (props.selected ? props.theme.colors.indicator.active.base : props.theme.colors.indicator.inactive.base)};
+    background ${(props) =>
+		props.selected ? props.theme.colors.indicator.active.base : props.theme.colors.indicator.inactive.base};
     &:hover {
-        background ${(props) => (props.selected ? props.theme.colors.indicator.active.hover : props.theme.colors.indicator.inactive.hover)};
+        background ${(props) =>
+			props.selected ? props.theme.colors.indicator.active.hover : props.theme.colors.indicator.inactive.hover};
     }
 `;

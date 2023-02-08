@@ -3,8 +3,8 @@ import parse from 'html-react-parser';
 import { ReactSVG } from 'react-svg';
 import { Link } from 'react-router-dom';
 
-// import Stamps from '@permaweb/stampjs';
-// import { ArweaveClient } from 'clients/arweave';
+import Stamps from '@permaweb/stampjs';
+import { ArweaveClient } from 'clients/arweave';
 
 import { ArtifactsSearch } from '../ArtifactsSearch';
 import { ArtifactsTableActionDropdown } from './ArtifactsTableActionDropdown';
@@ -15,7 +15,7 @@ import { Table } from 'components/organisms/Table';
 import { LANGUAGE } from 'helpers/language';
 import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from 'helpers/config';
 
-import { AlignType, ArtifactTableRowType, KeyValueType, TableHeaderType } from 'helpers/types';
+import { AlignType, ArtifactTableRowType, GQLResponseType, KeyValueType, TableHeaderType } from 'helpers/types';
 
 import { formatDate, formatMessagingText, getTagValue, checkMedia, checkAssociation } from 'helpers/utils';
 
@@ -26,9 +26,9 @@ import * as S from './styles';
 export default function ArtifactsTable(props: IProps) {
 	const [data, setData] = React.useState<any>(null);
 	const [selectedCallbackIdsState, setSelectedCallbackIdsState] = React.useState<string[]>([]);
-	
-	// const [stamps, setStamps] = React.useState<any>(null);
-	// const [updateStamps, setUpdateStamps] = React.useState<boolean>(false);
+
+	const [stamps, setStamps] = React.useState<any>(null);
+	const [updateStamps, setUpdateStamps] = React.useState<boolean>(false);
 
 	function getTitleWidth() {
 		if (props.showActions && props.showPoolIds) {
@@ -77,11 +77,11 @@ export default function ArtifactsTable(props: IProps) {
 			};
 		}
 
-		// header.stamps = {
-		// 	width: '7.5%',
-		// 	align: 'center' as AlignType,
-		// 	display: LANGUAGE.stamps,
-		// };
+		header.stamps = {
+			width: '7.5%',
+			align: 'center' as AlignType,
+			display: LANGUAGE.stamps,
+		};
 
 		if (props.showActions) {
 			header.actions = {
@@ -131,7 +131,9 @@ export default function ArtifactsTable(props: IProps) {
 				</S.ALinkWrapper>
 				<S.Icons>
 					<S.Icon>{checkMedia(tags) && <ReactSVG src={ASSETS.media} />}</S.Icon>
-					<S.AssociationIcon>{checkAssociation(tags) && <ReactSVG src={ASSETS.association} />}</S.AssociationIcon>
+					<S.AssociationIcon>
+						{checkAssociation(tags) && <ReactSVG src={ASSETS.association} />}
+					</S.AssociationIcon>
 				</S.Icons>
 			</S.LinkWrapper>
 		);
@@ -147,22 +149,22 @@ export default function ArtifactsTable(props: IProps) {
 		);
 	}
 
-	// function getStampCount(id: string) {
-	// 	return (
-	// 		<S.StampContainer>
-	// 			<p>{(stamps && stamps[id]) ? stamps[id].total : `-`}</p>
-	// 		</S.StampContainer>
-	// 	);
-	// }
+	function getStampCount(id: string) {
+		return (
+			<S.StampContainer>
+				<p>{stamps && stamps[id] ? stamps[id].total : `-`}</p>
+			</S.StampContainer>
+		);
+	}
 
 	function getActionDropdown(artifactId: string, tags: KeyValueType[]) {
 		return (
-			<ArtifactsTableActionDropdown 
-				artifactId={artifactId} 
-				tags={tags} 
-				owner={props.owner} 
+			<ArtifactsTableActionDropdown
+				artifactId={artifactId}
+				tags={tags}
+				owner={props.owner}
 				bookmarksDisabled={props.bookmarksDisabled}
-				handleStampCallback={() => console.log()}
+				handleStampCallback={() => setUpdateStamps(!updateStamps)}
 			/>
 		);
 	}
@@ -170,7 +172,11 @@ export default function ArtifactsTable(props: IProps) {
 	function getCallback(id: string) {
 		return (
 			<S.CheckboxContainer>
-				<Checkbox checked={selectedCallbackIdsState.includes(id)} disabled={false} handleSelect={() => props.selectCallback(id)} />
+				<Checkbox
+					checked={selectedCallbackIdsState.includes(id)}
+					disabled={false}
+					handleSelect={() => props.selectCallback(id)}
+				/>
 			</S.CheckboxContainer>
 		);
 	}
@@ -209,9 +215,15 @@ export default function ArtifactsTable(props: IProps) {
 								row.callback = getCallback(element.node.id);
 							}
 
-							row.type = getType(getTagValue(element.node.tags, TAGS.keys.artifactType), element.node.tags);
+							row.type = getType(
+								getTagValue(element.node.tags, TAGS.keys.artifactType),
+								element.node.tags
+							);
 							row.title = getArtifactLink(element.node.id, element.node.tags);
-							row.dateCreated = formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), 'epoch');
+							row.dateCreated = formatDate(
+								getTagValue(element.node.tags, TAGS.keys.dateCreated),
+								'epoch'
+							);
 
 							if (props.showPoolIds) {
 								row.pool = getPoolLink(
@@ -220,7 +232,7 @@ export default function ArtifactsTable(props: IProps) {
 								);
 							}
 
-							// row.stamps = getStampCount(element.node.id);
+							row.stamps = getStampCount(element.node.id);
 
 							if (props.showActions) {
 								row.actions = getActionDropdown(element.node.id, element.node.tags);
@@ -238,7 +250,7 @@ export default function ArtifactsTable(props: IProps) {
 			setData(null);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [selectedCallbackIdsState, props.data, props.showActions]);
+	}, [selectedCallbackIdsState, stamps, props.data, props.showActions]);
 
 	React.useEffect(() => {
 		if (props.selectedCallbackIds) {
@@ -246,15 +258,15 @@ export default function ArtifactsTable(props: IProps) {
 		}
 	}, [props.selectedCallbackIds]);
 
-	// React.useEffect(() => {
-	// 	(async function () {
-	// 		if (props.data && props.data.contracts.length > 0) {
-	// 			const arClient = new ArweaveClient();
-	// 			const stamps = Stamps.init({ warp: arClient.warp });
-	// 			setStamps(await stamps.counts(props.data.contracts.map((element: GQLResponseType) => element.node.id)));
-	// 		}
-	// 	})();
-	// }, [props.data, updateStamps]);
+	React.useEffect(() => {
+		(async function () {
+			if (props.data && props.data.contracts.length > 0) {
+				const arClient = new ArweaveClient();
+				const stamps = Stamps.init({ warp: arClient.warp });
+				setStamps(await stamps.counts(props.data.contracts.map((element: GQLResponseType) => element.node.id)));
+			}
+		})();
+	}, [props.data, updateStamps]);
 
 	return (
 		<Table

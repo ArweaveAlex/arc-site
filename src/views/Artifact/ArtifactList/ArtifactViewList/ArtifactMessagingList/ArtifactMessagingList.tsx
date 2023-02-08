@@ -61,7 +61,14 @@ export default function ArtifactMessagingList(props: IProps) {
 			return <Loader sm />;
 		}
 		if (showAction) {
-			return <Button type={'alt2'} label={LANGUAGE.showMoreReplies} handlePress={() => updateSequence()} disabled={props.updateDisabled} />;
+			return (
+				<Button
+					type={'alt2'}
+					label={LANGUAGE.showMoreReplies}
+					handlePress={() => updateSequence()}
+					disabled={props.updateDisabled}
+				/>
+			);
 		}
 		return null;
 	}
@@ -108,7 +115,9 @@ export default function ArtifactMessagingList(props: IProps) {
 							</S.Subheader1>
 							&nbsp;
 							<S.ID>
-								<Link to={`${urls.pool}${headerData.id}`}>{headerData.id ? formatAddress(headerData.id, false) : null}</Link>
+								<Link to={`${urls.pool}${headerData.id}`}>
+									{headerData.id ? formatAddress(headerData.id, false) : null}
+								</Link>
 							</S.ID>
 						</S.SubheaderContainer>
 						<S.SubheaderContainer>
@@ -117,7 +126,11 @@ export default function ArtifactMessagingList(props: IProps) {
 							</S.Subheader1>
 							&nbsp;
 							<S.Subheader2>
-								<p>{headerData.state.timestamp ? formatDate(headerData.state.timestamp, 'epoch') : null}</p>
+								<p>
+									{headerData.state.timestamp
+										? formatDate(headerData.state.timestamp, 'epoch')
+										: null}
+								</p>
 							</S.Subheader2>
 						</S.SubheaderContainer>
 					</S.SubheaderFlex>
@@ -130,7 +143,15 @@ export default function ArtifactMessagingList(props: IProps) {
 		if (!detailData) {
 			return <Loader sm />;
 		} else {
-			return <MessagingListItem data={detailData} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />;
+			return (
+				<MessagingListItem
+					data={detailData}
+					isListItem={false}
+					active={true}
+					showArtifactLink={true}
+					showOwnerLink={true}
+				/>
+			);
 		}
 	}
 

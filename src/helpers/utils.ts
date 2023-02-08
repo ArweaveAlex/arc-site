@@ -61,9 +61,11 @@ export function formatDate(dateArg: string | number | null, dateType: DateType) 
 			break;
 	}
 
-	return `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getUTCFullYear()} @ ${getHours(
-		date.getHours()
-	)}:${formatTime(date.getMinutes())}:${formatTime(date.getSeconds())} ${getHourFormat(date.getHours())}`;
+	return `${date.toLocaleString('default', {
+		month: 'long',
+	})} ${date.getDate()}, ${date.getUTCFullYear()} @ ${getHours(date.getHours())}:${formatTime(
+		date.getMinutes()
+	)}:${formatTime(date.getSeconds())} ${getHourFormat(date.getHours())}`;
 }
 
 export function formatTitle(string: string) {
@@ -194,7 +196,9 @@ export function checkMedia(tags: KeyValueType[]) {
 }
 
 export function checkAssociation(tags: KeyValueType[]) {
-	return getTagValue(tags, TAGS.keys.associationId) !== '' && getTagValue(tags, TAGS.keys.associationId) !== STORAGE.none;
+	return (
+		getTagValue(tags, TAGS.keys.associationId) !== '' && getTagValue(tags, TAGS.keys.associationId) !== STORAGE.none
+	);
 }
 
 export async function traverseCommentTree(callBackFields: string[], obj: any, callBack: any) {

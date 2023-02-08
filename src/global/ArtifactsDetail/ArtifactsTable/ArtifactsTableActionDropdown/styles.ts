@@ -25,6 +25,6 @@ export const PreviewContainer = styled(SubComponentContainer)``;
 
 export const StampWidgetContainer = styled(SubComponentContainer)`
 	min-height: 0;
-	width: 300px;
+	width: fit-content;
 	top: 36.5px;
 `;

@@ -15,14 +15,10 @@ let collectionInitState = {
 	lockTime: 0,
 	lastTransferTimestamp: null,
 	ids: [],
-    owner: null,
+	owner: null,
 };
 
-export async function createCollection(
-    collection: CollectionStateType, 
-    topic: string,
-    walletAddress: string
-) {
+export async function createCollection(collection: CollectionStateType, topic: string, walletAddress: string) {
 	const tags = [
 		{ name: TAGS.keys.appType, value: TAGS.values.collectionAppType },
 		{ name: TAGS.keys.collectionName, value: collection.title },
@@ -34,11 +30,11 @@ export async function createCollection(
 		{ name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
 	];
 
-    collectionInitState.title = collection.title;
-    collectionInitState.name = collection.title;
-    collectionInitState.description = collection.description;
-    collectionInitState.owner = walletAddress;
-    collectionInitState.ids = collection.ids;
+	collectionInitState.title = collection.title;
+	collectionInitState.name = collection.title;
+	collectionInitState.description = collection.description;
+	collectionInitState.owner = walletAddress;
+	collectionInitState.ids = collection.ids;
 
 	let collectionContract = await arClient.warp.createContract.deploy({
 		src: COLLECTION_CONTRACT,

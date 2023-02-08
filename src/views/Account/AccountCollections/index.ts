@@ -1,1 +1,1 @@
-export { default as AccountCollections } from "./AccountCollections";
+export { default as AccountCollections } from './AccountCollections';

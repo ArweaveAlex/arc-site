@@ -31,19 +31,15 @@ export default function CollectionsCreate() {
 				description: description,
 				ids: selectedIds,
 			});
-	
+
 			let collection: CollectionStateType = {
 				title: 'test',
 				description: 'test desc',
 				ids: ['jNS-i6ZWL0k1h6CwkWDBe34FPgCYUW3igWCD4zpUDH8'],
 			};
-	
-			let collectionContractId = await createCollection(
-				collection, 
-				'crypto',
-				arProvider.walletAddress
-			);
-	
+
+			let collectionContractId = await createCollection(collection, 'crypto', arProvider.walletAddress);
+
 			console.log(collectionContractId);
 		}
 	}
@@ -93,12 +89,19 @@ export default function CollectionsCreate() {
 								<TextArea
 									label={LANGUAGE.description}
 									value={description}
-									onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
+									onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+										setDescription(e.target.value)
+									}
 									invalid={{ status: false, message: null }}
 									disabled={false}
 								/>
 								<S.SubmitContainer>
-									<Button type={'alt1'} label={LANGUAGE.submit} handlePress={() => handleSubmit()} noMinWidth />
+									<Button
+										type={'alt1'}
+										label={LANGUAGE.submit}
+										handlePress={() => handleSubmit()}
+										noMinWidth
+									/>
 								</S.SubmitContainer>
 							</S.Form>
 						</S.FormFixedContainer>

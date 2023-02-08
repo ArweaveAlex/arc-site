@@ -30,7 +30,11 @@ export const Primary = styled.button<{
 		height: 100%;
 		width: 100%;
 		fill: ${(props) =>
-			props.warning ? (props.disabled ? props.theme.colors.icon.inactive : props.theme.colors.warning) : props.theme.colors.icon.inactive};
+			props.warning
+				? props.disabled
+					? props.theme.colors.icon.inactive
+					: props.theme.colors.warning
+				: props.theme.colors.icon.inactive};
 
 		&:hover {
 			cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
@@ -83,6 +87,15 @@ export const Alt1 = styled(Primary)<{
 export const Alt2 = styled(Primary)`
 	svg {
 		fill: ${(props) => (props.warning ? props.theme.colors.warning : props.theme.colors.icon.alt1.fill)};
+	}
+`;
+
+export const Alt3 = styled(Alt1)`
+	pointer-events: none;
+	background: ${(props) => props.theme.colors.container.primary.background} !important;
+	border: 1px solid ${(props) => props.theme.colors.icon.inactive} !important;
+	svg {
+		fill: ${(props) => props.theme.colors.icon.inactive} !important;
 	}
 `;
 

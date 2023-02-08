@@ -75,7 +75,11 @@ export default function WalletConnect(props: { callback: () => void }) {
 				)}
 				<Button
 					type={'primary'}
-					label={arProvider.walletAddress ? formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet}
+					label={
+						arProvider.walletAddress
+							? formatAddress(arProvider.walletAddress, false)
+							: LANGUAGE.connectWallet
+					}
 					handlePress={handlePress}
 					useMaxWidth
 				/>

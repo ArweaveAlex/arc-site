@@ -15,7 +15,12 @@ export default function OwnerCollectionsList(props: IProps) {
 				<S.HeaderFlex>
 					<S.H2>{LANGUAGE.bookmarks}</S.H2>
 					{props.showCreateCollections && (
-						<ButtonLink type={'alt1'} label={LANGUAGE.create} href={`${urls.collectionsCreate}?owner=${props.owner}`} noMinWidth />
+						<ButtonLink
+							type={'alt1'}
+							label={LANGUAGE.create}
+							href={`${urls.collectionsCreate}?owner=${props.owner}`}
+							noMinWidth
+						/>
 					)}
 				</S.HeaderFlex>
 			</S.Header>

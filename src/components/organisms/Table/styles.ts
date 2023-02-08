@@ -81,7 +81,8 @@ export const Row = styled.div<{ even: boolean }>`
 	height: 40px;
 	display: flex;
 	align-items: center;
-	background: ${(props) => (props.even ? props.theme.colors.container.primary.background : props.theme.colors.container.alt4.background)};
+	background: ${(props) =>
+		props.even ? props.theme.colors.container.primary.background : props.theme.colors.container.alt4.background};
 `;
 
 export const RowData = styled.div`
@@ -122,7 +123,7 @@ export const THeader = styled(RowData)<{
 	}
 `;
 
-export const TData = styled(RowData)<{ even: boolean, width: string, active: boolean }>`
+export const TData = styled(RowData)<{ even: boolean; width: string; active: boolean }>`
 	width: ${(props) => props.width};
 	min-width: 60px;
 	border-left: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};

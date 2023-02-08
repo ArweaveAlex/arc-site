@@ -54,7 +54,9 @@ export default function PoolStatistics(props: IProps) {
 				});
 
 				if (dataContractSrc && dataContractSrc.contracts.length > 0) {
-					setDetailData(await getDetailData(getTagValue(dataContractSrc.contracts[0].node.tags, TAGS.keys.contractSrc)));
+					setDetailData(
+						await getDetailData(getTagValue(dataContractSrc.contracts[0].node.tags, TAGS.keys.contractSrc))
+					);
 				} else {
 					if (dataContractSrc && dataContractSrc.contracts.length <= 0) {
 						setDetailData({

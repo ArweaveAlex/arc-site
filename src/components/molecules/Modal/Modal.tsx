@@ -26,7 +26,13 @@ export default function Modal(props: IProps) {
 							<S.Title>{props.title}</S.Title>
 						</S.LT>
 						<S.Close>
-							<IconButton type={'primary'} sm warning src={ASSETS.close} handlePress={props.handleClose} />
+							<IconButton
+								type={'primary'}
+								sm
+								warning
+								src={ASSETS.close}
+								handlePress={props.handleClose}
+							/>
 						</S.Close>
 					</S.Header>
 					<S.Body>{props.children}</S.Body>

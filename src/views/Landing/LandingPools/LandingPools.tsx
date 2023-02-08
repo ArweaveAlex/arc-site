@@ -28,7 +28,9 @@ function PoolCard(props: PoolType) {
 
 	React.useEffect(() => {
 		(async function () {
-			const imageResponse = await fetch(getTxEndpoint(props.state.image.length > 0 ? props.state.image : FALLBACK_IMAGE));
+			const imageResponse = await fetch(
+				getTxEndpoint(props.state.image.length > 0 ? props.state.image : FALLBACK_IMAGE)
+			);
 			setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
 		})();
 	});

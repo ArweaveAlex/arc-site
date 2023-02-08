@@ -67,7 +67,10 @@ export default function ActionDropdown(props: IProps) {
 							return (
 								<S.Container key={index}>
 									{action.subComponent && action.subComponent.active && action.subComponent.node}
-									<S.LI disabled={action.disabled || action.loading} onClick={() => runAction(action.fn, action.closeOnAction)}>
+									<S.LI
+										disabled={action.disabled || action.loading}
+										onClick={() => runAction(action.fn, action.closeOnAction)}
+									>
 										{action.loading ? `${LANGUAGE.loading}...` : action.label}
 									</S.LI>
 								</S.Container>

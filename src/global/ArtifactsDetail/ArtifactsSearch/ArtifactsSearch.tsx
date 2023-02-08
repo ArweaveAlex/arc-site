@@ -27,7 +27,9 @@ export default function ArtifactsSearch(props: IProps) {
 	);
 
 	const [searchTerm, setSearchTerm] = React.useState<string>(
-		searchTermReducer[props.cursorObject.value].id.value === props.id.value ? searchTermReducer[props.cursorObject.value].value || '' : ''
+		searchTermReducer[props.cursorObject.value].id.value === props.id.value
+			? searchTermReducer[props.cursorObject.value].value || ''
+			: ''
 	);
 
 	const [searchResultIds, setSearchResultIds] = React.useState<string[]>([]);
@@ -90,7 +92,8 @@ export default function ArtifactsSearch(props: IProps) {
 
 	React.useEffect(() => {
 		if (
-			(searchTermReducer[props.cursorObject.value].value || searchTermReducer[props.cursorObject.value].value === '') &&
+			(searchTermReducer[props.cursorObject.value].value ||
+				searchTermReducer[props.cursorObject.value].value === '') &&
 			searchTermReducer[props.cursorObject.value].id.value === props.id.value
 		) {
 			setSearchTerm(searchTermReducer[props.cursorObject.value].value);
@@ -102,7 +105,10 @@ export default function ArtifactsSearch(props: IProps) {
 	}, [searchTermReducer, props]);
 
 	React.useEffect(() => {
-		if (searchTermReducer[props.cursorObject.value].value && searchTermReducer[props.cursorObject.value].id.value === props.id.value) {
+		if (
+			searchTermReducer[props.cursorObject.value].value &&
+			searchTermReducer[props.cursorObject.value].id.value === props.id.value
+		) {
 			setSearchRequested(true);
 			setSearchTerm(searchTermReducer[props.cursorObject.value].value);
 			setSearchToggle(!searchToggle);
@@ -119,10 +125,15 @@ export default function ArtifactsSearch(props: IProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (searchRequested && searchTerm && searchIndeces && searchResultIds.length <= 0) {
-				await runSearch(searchTerm, searchIndeces, props.owner, (resultIds: string[], allIndecesProcessed: boolean) => {
-					props.setSearchRequested(allIndecesProcessed);
-					setSearchResultIds((prevArray: string[]) => [...prevArray, ...resultIds]);
-				});
+				await runSearch(
+					searchTerm,
+					searchIndeces,
+					props.owner,
+					(resultIds: string[], allIndecesProcessed: boolean) => {
+						props.setSearchRequested(allIndecesProcessed);
+						setSearchResultIds((prevArray: string[]) => [...prevArray, ...resultIds]);
+					}
+				);
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps

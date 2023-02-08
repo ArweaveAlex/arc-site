@@ -3339,14 +3339,20 @@ export const Wrapper = styled.div`
 		background-image: url('en.wikipedia.org/static/images/project-logos/enwiki.png');
 	}
 
-	@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx), (min-resolution: 144dpi) {
+	@media (-webkit-min-device-pixel-ratio: 1.5),
+		(min--moz-device-pixel-ratio: 1.5),
+		(min-resolution: 1.5dppx),
+		(min-resolution: 144dpi) {
 		.mw-wiki-logo {
 			background-image: url('en.wikipedia.org/static/images/project-logos/enwiki-1.5x.png');
 			background-size: 135px auto;
 		}
 	}
 
-	@media (-webkit-min-device-pixel-ratio: 2), (min--moz-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
+	@media (-webkit-min-device-pixel-ratio: 2),
+		(min--moz-device-pixel-ratio: 2),
+		(min-resolution: 2dppx),
+		(min-resolution: 192dpi) {
 		.mw-wiki-logo {
 			background-image: url('en.wikipedia.org/static/images/project-logos/enwiki-2x.png');
 			background-size: 135px auto;

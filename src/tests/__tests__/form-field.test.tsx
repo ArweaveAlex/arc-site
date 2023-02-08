@@ -10,7 +10,16 @@ import { FormField } from 'components/atoms/FormField';
 describe('<FormField />', () => {
 	const onChange = jest.fn();
 	beforeEach(() => {
-		render(wrapWithProviders(<FormField value={'Test Value'} onChange={onChange} disabled={false} invalid={{ status: false, message: null }} />));
+		render(
+			wrapWithProviders(
+				<FormField
+					value={'Test Value'}
+					onChange={onChange}
+					disabled={false}
+					invalid={{ status: false, message: null }}
+				/>
+			)
+		);
 	});
 
 	test(`

@@ -36,7 +36,10 @@ async function handle(state, action) {
 			ContractAssert(state.transferable ?? true, 'Token cannot be transferred - soulbound');
 			const current = SmartWeave.block.timestamp;
 			if (state.lastTransferTimestamp && state.lockTime) {
-				ContractAssert(current - state.lastTransferTimestamp <= state.lockTime, 'Token cannot be transferred - time-based soulbound');
+				ContractAssert(
+					current - state.lastTransferTimestamp <= state.lockTime,
+					'Token cannot be transferred - time-based soulbound'
+				);
 			}
 			const target = input.target;
 			ContractAssert(target, 'No target specified.');

@@ -74,7 +74,15 @@ export default function Paginator(props: IProps) {
 				/>
 			);
 		} else {
-			return <Button label={LANGUAGE.previous} type={'alt1'} handlePress={handlePreviousPage} disabled={!props.cursors.previous} noMinWidth />;
+			return (
+				<Button
+					label={LANGUAGE.previous}
+					type={'alt1'}
+					handlePress={handlePreviousPage}
+					disabled={!props.cursors.previous}
+					noMinWidth
+				/>
+			);
 		}
 	}
 

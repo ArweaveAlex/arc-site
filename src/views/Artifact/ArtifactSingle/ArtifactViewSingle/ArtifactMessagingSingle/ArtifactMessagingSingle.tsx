@@ -13,12 +13,12 @@ export default function ArtifactMessagingSingle(props: IProps) {
 			return <Loader sm />;
 		} else {
 			return (
-				<MessagingListItem 
-					data={props.data} 
-					isListItem={false} 
-					active={false} 
-					showArtifactLink={false} 
-					showOwnerLink={false} 
+				<MessagingListItem
+					data={props.data}
+					isListItem={false}
+					active={false}
+					showArtifactLink={false}
+					showOwnerLink={false}
 				/>
 			);
 		}

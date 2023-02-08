@@ -33,7 +33,10 @@ const persistedReducer = persistReducer<any, any>(persistConfig, rootReducer);
 
 let composedEnhancer: any;
 if (window.__REDUX_DEVTOOLS_EXTENSION__) {
-	composedEnhancer = compose(applyMiddleware(thunk, logger), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+	composedEnhancer = compose(
+		applyMiddleware(thunk, logger),
+		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	);
 } else {
 	composedEnhancer = compose(applyMiddleware(thunk, logger));
 }

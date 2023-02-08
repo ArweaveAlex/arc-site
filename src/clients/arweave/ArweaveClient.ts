@@ -82,7 +82,10 @@ export default class ArweaveClient {
 
 	calcReceivingPercent(userWallet: string, pool: PoolType) {
 		if (pool) {
-			let calc = (parseFloat(this.calcContributions(pool.state.contributors[userWallet])) / parseFloat(pool.state.totalContributions)) * 100;
+			let calc =
+				(parseFloat(this.calcContributions(pool.state.contributors[userWallet])) /
+					parseFloat(pool.state.totalContributions)) *
+				100;
 			let tokens = calc.toFixed(4);
 			return tokens;
 		} else {
@@ -114,7 +117,12 @@ export default class ArweaveClient {
 		return contributionMap;
 	}
 
-	getReceivingPercent(userWallet: string, contributors: any, totalContributions: string, activeAmount: number): string {
+	getReceivingPercent(
+		userWallet: string,
+		contributors: any,
+		totalContributions: string,
+		activeAmount: number
+	): string {
 		if (userWallet && contributors && totalContributions) {
 			let amount: number = 0;
 			if (!isNaN(activeAmount)) {
@@ -153,7 +161,11 @@ export default class ArweaveClient {
 		return Math.floor(+this.arweavePost.ar.winstonToAr(amount) * 1e6) / 1e6;
 	}
 
-	async handlePoolContribute(poolId: string, amount: number, availableBalance: number): Promise<ContributionResultType> {
+	async handlePoolContribute(
+		poolId: string,
+		amount: number,
+		availableBalance: number
+	): Promise<ContributionResultType> {
 		if (!availableBalance) {
 			return { status: false, message: LANGUAGE.walletNotConnected };
 		}

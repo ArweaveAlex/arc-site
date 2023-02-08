@@ -9,14 +9,14 @@ import * as window from 'helpers/window';
 
 export default function Loader(props: IProps) {
 	React.useEffect(() => {
-		if (!props.sm) {
+		if (!props.sm && !props.xSm) {
 			window.scrollTo(0, 0);
 			window.hideDocumentBody();
 			return () => {
 				window.showDocumentBody();
 			};
 		}
-	}, [props.sm]);
+	}, [props.sm, props.xSm]);
 
 	function getLoader(size: number, height: number, width: number) {
 		return (
@@ -41,6 +41,10 @@ export default function Loader(props: IProps) {
 
 	if (props.sm) {
 		return <>{getLoader(19.75, 6, 2)}</>;
+	}
+
+	if (props.xSm) {
+		return <>{getLoader(16.5, 5.5, 1.95)}</>;
 	}
 
 	return (

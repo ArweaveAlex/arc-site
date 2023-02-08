@@ -7,16 +7,16 @@ import * as S from './styles';
 
 // TODO - Styling
 export default function ArtifactNostrEventSingle(props: IProps) {
-    const [parsedJsonData, setParsedJsonData] = React.useState<any>(null);
-    const [data, setData] = React.useState<any>([]);
+	const [parsedJsonData, setParsedJsonData] = React.useState<any>(null);
+	const [data, setData] = React.useState<any>([]);
 
-    React.useEffect(() => {
+	React.useEffect(() => {
 		if (props.data && props.data.rawData) {
 			setParsedJsonData(JSON.parse(props.data.rawData));
 		}
 	}, [props.data]);
 
-    React.useEffect(() => {
+	React.useEffect(() => {
 		(async function () {
 			if (parsedJsonData) {
 				setData(parsedJsonData);

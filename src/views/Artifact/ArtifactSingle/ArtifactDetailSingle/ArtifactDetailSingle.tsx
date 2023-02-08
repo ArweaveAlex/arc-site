@@ -34,7 +34,9 @@ export default function ArtifactDetailSingle(props: IProps) {
 						<S.DataWrapper>
 							<S.DataLine>
 								<S.DataHeader>{LANGUAGE.archivist}:&nbsp;</S.DataHeader>
-								<Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
+								<Link to={`${urls.libraryAll(props.data.owner!)}`}>
+									{formatAddress(props.data.owner, false)}
+								</Link>
 							</S.DataLine>
 						</S.DataWrapper>
 					</S.InfoData>

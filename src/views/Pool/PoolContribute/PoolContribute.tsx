@@ -31,7 +31,9 @@ export default function PoolContribute(props: IProps) {
 		if (arProvider.availableBalance) {
 			e.preventDefault();
 			setLoading(true);
-			setContributionResult(await arClient.handlePoolContribute(props.poolId, amount, arProvider.availableBalance));
+			setContributionResult(
+				await arClient.handlePoolContribute(props.poolId, amount, arProvider.availableBalance)
+			);
 			setLoading(false);
 		}
 	}
@@ -96,7 +98,14 @@ export default function PoolContribute(props: IProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (arProvider.walletAddress) {
-				setReceivingPercent(arClient.getReceivingPercent(arProvider.walletAddress, props.contributors, props.totalContributions, amount));
+				setReceivingPercent(
+					arClient.getReceivingPercent(
+						arProvider.walletAddress,
+						props.contributors,
+						props.totalContributions,
+						amount
+					)
+				);
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -127,7 +136,9 @@ export default function PoolContribute(props: IProps) {
 									<FormField
 										type={'number'}
 										value={amount}
-										onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
+										onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+											setAmount(parseFloat(e.target.value))
+										}
 										disabled={loading || !arProvider.walletAddress}
 										invalid={getInvalidForm()}
 										endText={LANGUAGE.arTokens}

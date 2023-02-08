@@ -36,7 +36,9 @@ export default function ArtifactHeaderSingle(props: IProps) {
 						<S.InfoOwner>
 							<>
 								<ReactSVG src={ASSETS.owner} />
-								<Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
+								<Link to={`${urls.libraryAll(props.data.owner!)}`}>
+									{formatAddress(props.data.owner, false)}
+								</Link>
 							</>
 						</S.InfoOwner>
 						<S.InfoPools>

@@ -68,7 +68,11 @@ export default function ArtifactSingle(props: IProps) {
 			return (
 				<S.Wrapper>
 					<S.Content>
-						<ArtifactHeaderSingle data={data} type={getArtifactType()} onTabPropClick={(label: string) => handleTabClick(label)} />
+						<ArtifactHeaderSingle
+							data={data}
+							type={getArtifactType()}
+							onTabPropClick={(label: string) => handleTabClick(label)}
+						/>
 						<S.FlexWrapper>
 							<S.ArtifactWrapper>{getArtifact()}</S.ArtifactWrapper>
 						</S.FlexWrapper>

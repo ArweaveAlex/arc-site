@@ -41,12 +41,18 @@ export const LI = styled.li<{ disabled: boolean }>`
 	font-size: 13px;
 	color: ${(props) => props.theme.colors.font.primary.alt1};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
-	border: 1px solid ${(props) => (props.disabled ? props.theme.colors.button.alt2.disabled.border : props.theme.colors.transparent)};
-	background: ${(props) => (props.disabled ? props.theme.colors.button.alt2.disabled.background : props.theme.colors.button.alt2.background)};
+	border: 1px solid
+		${(props) => (props.disabled ? props.theme.colors.button.alt2.disabled.border : props.theme.colors.transparent)};
+	background: ${(props) =>
+		props.disabled
+			? props.theme.colors.button.alt2.disabled.background
+			: props.theme.colors.button.alt2.background};
 	padding: 0 15px;
 	&:hover {
 		background: ${(props) =>
-			props.disabled ? props.theme.colors.button.alt2.disabled.background : props.theme.colors.button.alt2.active.background};
+			props.disabled
+				? props.theme.colors.button.alt2.disabled.background
+				: props.theme.colors.button.alt2.active.background};
 		color: ${(props) => props.theme.colors.font.primary.base};
 	}
 `;

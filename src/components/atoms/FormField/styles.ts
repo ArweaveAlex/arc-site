@@ -26,12 +26,17 @@ export const Input = styled.input<{
 	font-size: ${(props) => (props.sm ? props.theme.typography.size.small : '19px')};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 	margin: 7.5px 0 0 0;
-	border: 1px solid ${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.border)};
+	border: 1px solid
+		${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.border)};
 	border-radius: ${STYLING.dimensions.borderRadiusField};
 	&:focus {
 		outline: 0;
-		border: 1px solid ${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.valid.outline)};
-		box-shadow: 0 0 2px 1px ${(props) => (props.invalid ? props.theme.colors.form.invalid.shadow : props.theme.colors.form.valid.shadow)};
+		border: 1px solid
+			${(props) =>
+				props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.valid.outline};
+		box-shadow: 0 0 2px 1px
+			${(props) =>
+				props.invalid ? props.theme.colors.form.invalid.shadow : props.theme.colors.form.valid.shadow};
 		transition: box-shadow, border 225ms ease-in-out;
 	}
 	&:disabled {
@@ -46,7 +51,8 @@ export const EndTextContainer = styled.div<{
 	sm: boolean | undefined;
 	disabled: boolean;
 }>`
-	height: ${(props) => (props.sm ? STYLING.dimensions.formHeightSm : `calc(${STYLING.dimensions.formHeightMax} - 7.5px)`)};
+	height: ${(props) =>
+		props.sm ? STYLING.dimensions.formHeightSm : `calc(${STYLING.dimensions.formHeightMax} - 7.5px)`};
 	height: 100%;
 	max-width: 100px;
 	position: absolute;

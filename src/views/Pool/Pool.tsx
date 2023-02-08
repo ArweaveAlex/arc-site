@@ -56,7 +56,9 @@ export default function Pool() {
 	React.useEffect(() => {
 		(async function () {
 			if (headerData) {
-				const imageResponse = await fetch(getTxEndpoint(headerData.state.image.length > 0 ? headerData.state.image : FALLBACK_IMAGE));
+				const imageResponse = await fetch(
+					getTxEndpoint(headerData.state.image.length > 0 ? headerData.state.image : FALLBACK_IMAGE)
+				);
 				setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
 			}
 		})();

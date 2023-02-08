@@ -39,7 +39,13 @@ export default function Library() {
 								<p>{LANGUAGE.urlCopied}</p>
 							</S.URLCopied>
 						)}
-						<Button type={'primary'} label={LANGUAGE.shareUrlLabel} handlePress={copyUrl} icon={ASSETS.shareLink} iconLeftAlign />
+						<Button
+							type={'primary'}
+							label={LANGUAGE.shareUrlLabel}
+							handlePress={copyUrl}
+							icon={ASSETS.shareLink}
+							iconLeftAlign
+						/>
 					</S.ShareWrapper>
 				</S.HeaderContent>
 			</S.HeaderWrapper>

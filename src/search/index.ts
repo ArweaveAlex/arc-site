@@ -26,7 +26,7 @@ export async function initSearch(poolIds: string[]) {
 				});
 				poolIndeces = poolIndeces.concat(thisPoolIndeces);
 			}
-	
+
 			return poolIndeces;
 		}
 	} catch (e: any) {
@@ -51,7 +51,12 @@ export async function runSearch(
 	}
 }
 
-async function searchIndex(searchTerm: string, index: string, owner: string | null, callback: (ids: string[], checkProcessed: any) => void) {
+async function searchIndex(
+	searchTerm: string,
+	index: string,
+	owner: string | null,
+	callback: (ids: string[], checkProcessed: any) => void
+) {
 	const searchIndex = (await axios.get(index)).data;
 
 	let text = searchIndex;

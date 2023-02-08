@@ -59,9 +59,15 @@ export default function Table(props: IProps) {
 								return (
 									<S.Row key={index} even={index % 2 === 0}>
 										{Object.keys(element).map((row: string, rowIndex: number) => {
-											const rowData = typeof element[row] === 'object' ? element[row] : <p>{element[row]}</p>;
+											const rowData =
+												typeof element[row] === 'object' ? element[row] : <p>{element[row]}</p>;
 											return (
-												<S.TData key={rowIndex} even={(rowIndex + 1) % 2 === 0} width={props.header[row]!.width} active={false}>
+												<S.TData
+													key={rowIndex}
+													even={(rowIndex + 1) % 2 === 0}
+													width={props.header[row]!.width}
+													active={false}
+												>
 													{rowData}
 												</S.TData>
 											);

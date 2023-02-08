@@ -4,7 +4,7 @@ export enum ArtifactEnum {
 	Messaging = 'Alex-Messaging',
 	Webpage = 'Alex-Webpage',
 	Reddit = 'Alex-Reddit-Thread',
-    Nostr = "Alex-Nostr-Event"
+	Nostr = 'Alex-Nostr-Event',
 }
 
 export enum CursorEnum {
@@ -106,7 +106,7 @@ export interface PoolSearchIndexStateType {
 	searchIndeces: string[];
 }
 
-export type ButtonType = 'primary' | 'alt1' | 'alt2';
+export type ButtonType = 'primary' | 'alt1' | 'alt2' | 'alt3';
 export type FormFieldType = 'number' | 'password';
 export type NotificationType = 'success' | 'warning' | 'neutral';
 export type AlignType = 'left' | 'center' | 'right';

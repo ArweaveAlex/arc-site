@@ -1,6 +1,13 @@
 import { ReduxActionType } from 'helpers/types';
 import { SearchIdsType, SearchTermType, SearchIndecesType } from './types';
-import { SET_SEARCH_IDS, CLEAR_SEARCH_IDS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, SET_SEARCH_INDECES, CLEAR_SEARCH_INDECES } from './constants';
+import {
+	SET_SEARCH_IDS,
+	CLEAR_SEARCH_IDS,
+	SET_SEARCH_TERM,
+	CLEAR_SEARCH_TERM,
+	SET_SEARCH_INDECES,
+	CLEAR_SEARCH_INDECES,
+} from './constants';
 import { REDUX_TABLES } from 'helpers/redux';
 
 export const initStateSearchIds: SearchIdsType = {

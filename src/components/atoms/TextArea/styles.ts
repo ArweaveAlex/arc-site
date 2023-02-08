@@ -25,12 +25,17 @@ export const TextArea = styled.textarea<{
 	font-size: ${(props) => props.theme.typography.size.small};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 	margin: 7.5px 0 0 0;
-	border: 1px solid ${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.border)};
+	border: 1px solid
+		${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.border)};
 	border-radius: ${STYLING.dimensions.borderRadiusField};
 	&:focus {
 		outline: 0;
-		border: 1px solid ${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.valid.outline)};
-		box-shadow: 0 0 2px 1px ${(props) => (props.invalid ? props.theme.colors.form.invalid.shadow : props.theme.colors.form.valid.shadow)};
+		border: 1px solid
+			${(props) =>
+				props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.valid.outline};
+		box-shadow: 0 0 2px 1px
+			${(props) =>
+				props.invalid ? props.theme.colors.form.invalid.shadow : props.theme.colors.form.valid.shadow};
 		transition: box-shadow, border 225ms ease-in-out;
 	}
 	&:disabled {

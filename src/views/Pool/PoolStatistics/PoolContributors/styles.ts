@@ -46,7 +46,8 @@ export const Row = styled.div<{ isEnd: boolean }>`
 	height: 50px;
 	display: flex;
 	align-items: center;
-	border-bottom: 1px solid ${(props) => (props.isEnd ? props.theme.colors.border.alt3 : props.theme.colors.transparent)};
+	border-bottom: 1px solid
+		${(props) => (props.isEnd ? props.theme.colors.border.alt3 : props.theme.colors.transparent)};
 `;
 
 export const InfoData = styled.div`

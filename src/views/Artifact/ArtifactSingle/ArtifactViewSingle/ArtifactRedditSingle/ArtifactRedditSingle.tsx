@@ -43,13 +43,16 @@ export default function ArtifactRedditSingle(props: IProps) {
 							<S.HeaderInfo>
 								<S.HeaderAD>
 									<span>{headerData.subreddit_name_prefixed}&nbsp;·&nbsp;</span>
-									{`${LANGUAGE.redditAuthor}${headerData.author}`} {formatDate(headerData.created_utc * 1000, 'iso')}
+									{`${LANGUAGE.redditAuthor}${headerData.author}`}{' '}
+									{formatDate(headerData.created_utc * 1000, 'iso')}
 								</S.HeaderAD>
 								<S.HeaderBody>{headerData.title}</S.HeaderBody>
 								<S.PublicMetrics>
 									<S.Metric>
 										<ReactSVG src={ASSETS.replies} />
-										<p>{`${formatCount(data ? data.join().split(',').length : headerData.num_comments)} ${LANGUAGE.comments}`}</p>
+										<p>{`${formatCount(
+											data ? data.join().split(',').length : headerData.num_comments
+										)} ${LANGUAGE.comments}`}</p>
 									</S.Metric>
 									<S.Metric>
 										<p>{`${Math.round(headerData.upvote_ratio * 100)}% ${LANGUAGE.upvoted}`}</p>

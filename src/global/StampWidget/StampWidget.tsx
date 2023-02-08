@@ -1,137 +1,171 @@
-// import React from 'react';
+import React from 'react';
 
-// import Stamps from '@permaweb/stampjs';
+import Stamps from '@permaweb/stampjs';
 
-// import { Button } from 'components/atoms/Button';
-// import { IconButton } from 'components/atoms/IconButton';
-// import { Notification } from 'components/atoms/Notification';
+import { Loader } from 'components/atoms/Loader';
+import { Button } from 'components/atoms/Button';
+import { IconButton } from 'components/atoms/IconButton';
+import { Notification } from 'components/atoms/Notification';
 
-// import { LANGUAGE } from 'helpers/language';
-// import { NotificationResponseType } from 'helpers/types';
-// import { IProps } from './types';
-// import * as S from './styles';
-// import { ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import { NotificationResponseType } from 'helpers/types';
+import { IProps } from './types';
+import * as S from './styles';
+import { ASSETS } from 'helpers/config';
 
-// export default function StampWidget(props: IProps) {
-// 	const stamps = Stamps.init({ warp: props.warp });
+export default function StampWidget(props: IProps) {
+	const stamps = Stamps.init({ warp: props.warp });
 
-// 	const [showWalletConnect, setShowWalletConnect] = React.useState<boolean>(false);
-// 	const [stampDisabled, setStampDisabled] = React.useState<boolean>(true);
-// 	const [stampCheckLoading, setStampCheckLoading] = React.useState<boolean>(false);
-// 	const [stampNotification, setStampNotification] = React.useState<NotificationResponseType | null>(null);
+	const [loading, setLoading] = React.useState<boolean>(true);
+	const [count, setCount] = React.useState<{ total: number; vouched: number; super: number } | null>(null);
+	const [updateCount, setUpdateCount] = React.useState<boolean>(false);
+	const [balance, setBalance] = React.useState<number>(0);
 
-// 	React.useEffect(() => {
-// 		setTimeout(() => {
-// 			if (!props.walletAddress) {
-// 				setShowWalletConnect(true);
-// 			}
-// 		}, 0);
-// 	}, [props.walletAddress]);
+	const [showWalletConnect, setShowWalletConnect] = React.useState<boolean>(false);
+	const [stampDisabled, setStampDisabled] = React.useState<boolean>(true);
+	const [stampCheckLoading, setStampCheckLoading] = React.useState<boolean>(false);
+	const [stampNotification, setStampNotification] = React.useState<NotificationResponseType | null>(null);
 
-// 	// TODO - Check Balance super stamps disabled if none or <= 0
-// 	React.useEffect(() => {
-// 		(async function () {
-// 			if (props.walletAddress) {
-// 				try {
-// 					console.log(await stamps.balance(props.walletAddress));
-// 				} catch {}
-// 			}
-// 		})();
-// 		// eslint-disable-next-line react-hooks/exhaustive-deps
-// 	}, [props.walletAddress]);
+	React.useEffect(() => {
+		if (!props.walletAddress) {
+			setShowWalletConnect(true);
+		}
+	}, [props.walletAddress]);
 
-// 	// TODO - Disabled if connected wallet has stamped not stamp total
-// 	React.useEffect(() => {
-// 		(async function () {
-// 			if (props.txId) {
-// 				setStampCheckLoading(true);
-// 				const hasStamped = await stamps.hasStamped(props.walletAddress, props.txId);
-// 				setStampCheckLoading(false);
-// 				if (!hasStamped) {
-// 					setStampDisabled(false);
-// 				}
-// 			}
-// 		})();
-// 		// eslint-disable-next-line react-hooks/exhaustive-deps
-// 	}, [props.txId]);
+	// TODO - Check Balance super stamps disabled if none or <= 0
+	React.useEffect(() => {
+		(async function () {
+			if (props.walletAddress) {
+				try {
+					setBalance(await stamps.balance(props.walletAddress));
+				} catch {}
+			}
+		})();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [props.walletAddress]);
 
-// 	const handleStamp = React.useCallback(async () => {
-// 		if (props.txId) {
-// 			setStampCheckLoading(true);
-// 			const stamp = await stamps.stamp(props.txId);
-// 			const stampSuccess = stamp && stamp.bundlrResponse && stamp.bundlrResponse.id;
-// 			setStampCheckLoading(false);
-// 			setStampDisabled(true);
-// 			setStampNotification({
-// 				status: stampSuccess ? 200 : 500,
-// 				message: stampSuccess ? LANGUAGE.artifactStamped : LANGUAGE.errorOccurred,
-// 			});
-// 			props.handleStampCallback();
-// 		}
-// 	}, [stamps, props]);
+	React.useEffect(() => {
+		(async function () {
+			if (props.txId) {
+				try {
+					setStampCheckLoading(true);
+					setCount(await stamps.count(props.txId));
+					setStampCheckLoading(false);
+				} catch {}
+			}
+		})();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [props.txId, updateCount]);
 
-// 	function handleStampCallback() {
-// 		setStampNotification(null);
-// 		props.handleStampCallback();
-// 	}
+	React.useEffect(() => {
+		(async function () {
+			if (props.txId) {
+				setStampCheckLoading(true);
+				const hasStamped = await stamps.hasStamped(props.walletAddress, props.txId);
+				setStampCheckLoading(false);
+				if (!hasStamped) {
+					setStampDisabled(false);
+				}
+			}
+		})();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [props.txId]);
 
-//     function getTotalCount() {
-//         return '0'
-//     }
+	React.useEffect(() => {
+		if (count && !stampCheckLoading) {
+			setLoading(false);
+		} else {
+			setLoading(true);
+		}
+	}, [count, stampCheckLoading]);
 
-// 	function getWidget() {
-// 		if (!showWalletConnect) {
-// 			return (
-// 				<S.WidgetContainer>
-//                     {/* <S.Title>
-//                         <p>{props.txId ? formatAddress(props.txId, false) : `-`}</p>
-//                     </S.Title>
-// 					<Button
-// 						type={'alt2'}
-// 						label={LANGUAGE.stamp}
-//                         loading={stampCheckLoading}
-// 						handlePress={handleStamp}
-// 						disabled={stampDisabled || stampCheckLoading}
-//                         noMinWidth
-// 					/> */}
-//                     <IconButton
-//                         type={'alt1'}
-//                         src={ASSETS.stamp}
-// 						handlePress={handleStamp}
-// 						disabled={stampDisabled || stampCheckLoading}
-//                         info={getTotalCount()}
-//                     />
-// 				</S.WidgetContainer>
-// 			);
-// 		} else {
-// 			return (
-// 				<S.WalletConnectWrapper>
-// 					<p>{LANGUAGE.walletNotConnected}</p>
-// 					<Button
-// 						type={'alt2'}
-// 						label={LANGUAGE.connect}
-// 						handlePress={() => props.setWalletModalVisible(true)}
-// 						useMaxWidth
-// 					/>
-// 				</S.WalletConnectWrapper>
-// 			);
-// 		}
-// 	}
+	const handleStamp = React.useCallback(async () => {
+		if (props.txId) {
+			setStampCheckLoading(true);
+			const stamp = await stamps.stamp(props.txId);
+			const stampSuccess = stamp && stamp.bundlrResponse && stamp.bundlrResponse.id;
+			setStampCheckLoading(false);
+			setStampDisabled(true);
+			setUpdateCount(!updateCount);
+			setStampNotification({
+				status: stampSuccess ? 200 : 500,
+				message: stampSuccess ? LANGUAGE.artifactStamped : LANGUAGE.errorOccurred,
+			});
+			props.handleStampCallback();
+		}
+	}, [stamps, updateCount, props]);
 
-// 	return (
-// 		<>
-// 			{stampNotification && (
-// 				<Notification
-// 					message={stampNotification.message}
-// 					type={stampNotification.status === 200 ? 'success' : 'warning'}
-// 					callback={handleStampCallback}
-// 				/>
-// 			)}
-// 			<S.Wrapper>{getWidget()}</S.Wrapper>
-// 		</>
-// 	);
-// }
+	function handleStampCallback() {
+		setStampNotification(null);
+		props.handleStampCallback();
+	}
 
-export default function StampWidget() {
-     return null;
+	function getWidget() {
+		if (showWalletConnect) {
+			return (
+				<S.WalletConnectWrapper>
+					<p>{LANGUAGE.walletNotConnected}</p>
+					<Button
+						type={'alt2'}
+						label={LANGUAGE.connect}
+						handlePress={() => props.setWalletModalVisible(true)}
+						useMaxWidth
+					/>
+				</S.WalletConnectWrapper>
+			);
+		} else {
+			if (loading) {
+				return (
+					<S.LoadingContainer>
+						<Loader xSm />
+					</S.LoadingContainer>
+				);
+			} else {
+				return (
+					<S.WidgetContainer>
+						<S.Action>
+							<IconButton
+								type={'alt1'}
+								src={ASSETS.stamp.default}
+								handlePress={handleStamp}
+								disabled={stampDisabled || stampCheckLoading}
+								info={count.total.toString()}
+							/>
+						</S.Action>
+						<S.Action>
+							<IconButton
+								type={'alt1'}
+								src={ASSETS.stamp.super}
+								handlePress={() => console.log('Super Stamp dropdown')}
+								disabled={balance <= 0 || stampCheckLoading}
+								info={count.super.toString()}
+							/>
+						</S.Action>
+						<S.Action>
+							<IconButton
+								type={'alt3'}
+								src={ASSETS.stamp.vouched}
+								handlePress={null}
+								disabled={true}
+								info={count.vouched.toString()}
+							/>
+						</S.Action>
+					</S.WidgetContainer>
+				);
+			}
+		}
+	}
+
+	return (
+		<>
+			{stampNotification && (
+				<Notification
+					message={stampNotification.message}
+					type={stampNotification.status === 200 ? 'success' : 'warning'}
+					callback={handleStampCallback}
+				/>
+			)}
+			<S.Wrapper>{getWidget()}</S.Wrapper>
+		</>
+	);
 }

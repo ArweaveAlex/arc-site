@@ -180,8 +180,8 @@ export const defaultTheme: DefaultTheme = {
 			inactive: DEFAULT.neutral4,
 			info: {
 				background: DEFAULT.contrast,
-				border: DEFAULT.neutral7
-			}
+				border: DEFAULT.neutral7,
+			},
 		},
 		image: {
 			shadow1: DEFAULT.backdropShadow1,
@@ -236,7 +236,7 @@ export const defaultTheme: DefaultTheme = {
 		view: {
 			background: DEFAULT.neutral1,
 		},
-		contrast: DEFAULT.contrast,
+		warning: DEFAULT.contrast,
 	},
 	typography: {
 		family: {

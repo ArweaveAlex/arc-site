@@ -22,7 +22,10 @@ import { TAGS, STORAGE, CURSORS } from 'helpers/config';
 
 const arClient = new ArweaveClient();
 
-export async function getArtifactsByAssociation(associationId: string, sequence: SequenceType): Promise<AssociationDetailType | null> {
+export async function getArtifactsByAssociation(
+	associationId: string,
+	sequence: SequenceType
+): Promise<AssociationDetailType | null> {
 	const artifacts: ArtifactDetailType[] = [];
 	const range = Array.from({ length: sequence.end - sequence.start + 1 }, (_, i) => (i + sequence.start).toString());
 
@@ -265,7 +268,9 @@ export async function getArtifactsByBookmarks(args: ArtifactArgsType): Promise<A
 	return {
 		nextCursor: nextCursor,
 		previousCursor: previousCursor,
-		contracts: artifacts.filter((element: GQLResponseType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none),
+		contracts: artifacts.filter(
+			(element: GQLResponseType) => getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none
+		),
 	};
 }
 

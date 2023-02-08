@@ -78,7 +78,12 @@ export default function Header() {
 					<S.NCMobile>
 						<S.MenuContainer>
 							<S.Menu>
-								<IconButton type={'primary'} warning={open} src={open ? ASSETS.close : ASSETS.menu} handlePress={handleNavStatus} />
+								<IconButton
+									type={'primary'}
+									warning={open}
+									src={open ? ASSETS.close : ASSETS.menu}
+									handlePress={handleNavStatus}
+								/>
 							</S.Menu>
 						</S.MenuContainer>
 					</S.NCMobile>

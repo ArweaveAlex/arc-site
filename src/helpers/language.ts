@@ -36,6 +36,7 @@ export const LANGUAGE = {
 	basicInformation: `Basic Information`,
 	bookmarks: `Bookmarks`,
 	bookmarksUpdated: `Bookmarks Updated`,
+	close: `Close`,
 	closePreview: `Close Preview`,
 	collection: {
 		subheader1: `Bookmark`,
@@ -141,7 +142,7 @@ export const LANGUAGE = {
 		twitter: `Twitter`,
 	},
 	sortBy: `Sort By`,
-	stamp: `Stamp`,
+	stamp: `STAMP`,
 	stamps: `Stamps`,
 	steps: {
 		header1: `A New Way to Get Involved in the Human Story`,

@@ -25,7 +25,15 @@ export default function _Carousel(props: IProps) {
 					emulateTouch={true}
 					preventMovementUntilSwipeScrollTolerance={true}
 					renderIndicator={(onClickHandler, isSelected, index) => {
-						return <S.Indicator onClick={onClickHandler} onKeyDown={onClickHandler} selected={isSelected} value={index} key={index} />;
+						return (
+							<S.Indicator
+								onClick={onClickHandler}
+								onKeyDown={onClickHandler}
+								selected={isSelected}
+								value={index}
+								key={index}
+							/>
+						);
 					}}
 				>
 					{props.data}

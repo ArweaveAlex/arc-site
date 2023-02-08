@@ -23,7 +23,10 @@ export default function PoolContributors(props: IProps) {
 
 			const sortedKeys: any = Object.keys(contributors)
 				.sort(function (a, b) {
-					return Number(arClient.calcContributions(contributors[a])) - Number(arClient.calcContributions(contributors[b]));
+					return (
+						Number(arClient.calcContributions(contributors[a])) -
+						Number(arClient.calcContributions(contributors[b]))
+					);
 				})
 				.reverse();
 
@@ -37,7 +40,11 @@ export default function PoolContributors(props: IProps) {
 							<Link to={`${urls.libraryAll(sortedKeys[i])}`}>{formatAddress(sortedKeys[i], false)}</Link>
 						</S.Owner>
 						<S.Amount>
-							<p>{arClient.getARAmount(arClient.calcContributions(props.data.state.contributors[sortedKeys[i]]))}</p>
+							<p>
+								{arClient.getARAmount(
+									arClient.calcContributions(props.data.state.contributors[sortedKeys[i]])
+								)}
+							</p>
 							&nbsp;
 							<span>{`${LANGUAGE.arTokens} ${LANGUAGE.total}`}</span>
 						</S.Amount>
@@ -45,7 +52,11 @@ export default function PoolContributors(props: IProps) {
 					</S.Row>
 				);
 			}
-			return <S.Body>{contributorList.length >= ROW_COUNT ? contributorList.slice(0, ROW_COUNT) : contributorList}</S.Body>;
+			return (
+				<S.Body>
+					{contributorList.length >= ROW_COUNT ? contributorList.slice(0, ROW_COUNT) : contributorList}
+				</S.Body>
+			);
 		} else {
 			return <TableLoader rowCount={ROW_COUNT} />;
 		}
@@ -59,17 +70,27 @@ export default function PoolContributors(props: IProps) {
 				contributorList.push(
 					<S.Row key={i} isEnd={i !== 2}>
 						<S.RecentOwner>
-							<Link to={`${urls.libraryAll(contributorKeys[i])}`}>{formatAddress(contributorKeys[i], false)}</Link>
+							<Link to={`${urls.libraryAll(contributorKeys[i])}`}>
+								{formatAddress(contributorKeys[i], false)}
+							</Link>
 						</S.RecentOwner>
 						<S.Amount>
-							<p>{arClient.getARAmount(arClient.calcContributions(props.data.state.contributors[contributorKeys[i]]))}</p>
+							<p>
+								{arClient.getARAmount(
+									arClient.calcContributions(props.data.state.contributors[contributorKeys[i]])
+								)}
+							</p>
 							&nbsp;
 							<span>{`${LANGUAGE.arTokens}`}</span>
 						</S.Amount>
 					</S.Row>
 				);
 			}
-			return <S.Body>{contributorList.length >= ROW_COUNT ? contributorList.slice(0, ROW_COUNT) : contributorList}</S.Body>;
+			return (
+				<S.Body>
+					{contributorList.length >= ROW_COUNT ? contributorList.slice(0, ROW_COUNT) : contributorList}
+				</S.Body>
+			);
 		} else {
 			return <TableLoader rowCount={ROW_COUNT} />;
 		}

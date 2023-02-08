@@ -33,7 +33,8 @@ export const Select = styled.select`
 	border: 1px solid ${(props) => props.theme.colors.form.border};
 	border-radius: ${STYLING.dimensions.borderRadiusField};
 
-	color: ${(props) => (props.disabled ? props.theme.colors.font.primary.invalid : props.theme.colors.font.primary.alt1)};
+	color: ${(props) =>
+		props.disabled ? props.theme.colors.font.primary.invalid : props.theme.colors.font.primary.alt1};
 	position: relative;
 
 	&:hover {

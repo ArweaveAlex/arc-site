@@ -27,7 +27,9 @@ export default function Account() {
 
 	const copyUrl = React.useCallback(async () => {
 		if (arProvider.walletAddress) {
-			await navigator.clipboard.writeText(`${getHashUrl(window.location.origin)}${urls.libraryAll(arProvider.walletAddress)}`);
+			await navigator.clipboard.writeText(
+				`${getHashUrl(window.location.origin)}${urls.libraryAll(arProvider.walletAddress)}`
+			);
 			setCopied(true);
 			setTimeout(() => setCopied(false), 2000);
 		}
@@ -52,7 +54,13 @@ export default function Account() {
 								<p>{LANGUAGE.urlCopied}</p>
 							</S.URLCopied>
 						)}
-						<Button type={'primary'} label={LANGUAGE.shareUrlLabel} handlePress={copyUrl} icon={ASSETS.shareLink} iconLeftAlign />
+						<Button
+							type={'primary'}
+							label={LANGUAGE.shareUrlLabel}
+							handlePress={copyUrl}
+							icon={ASSETS.shareLink}
+							iconLeftAlign
+						/>
 					</S.ShareWrapper>
 				</S.HeaderContent>
 			</S.HeaderWrapper>
@@ -64,11 +72,11 @@ export default function Account() {
 		showWalletConnect && (
 			<S.WalletConnectWrapper>
 				<p>{LANGUAGE.walletNotConnected}</p>
-				<Button 
-					type={'alt2'} 
-					label={LANGUAGE.connect} 
-					handlePress={() => arProvider.setWalletModalVisible(true)} 
-					useMaxWidth 
+				<Button
+					type={'alt2'}
+					label={LANGUAGE.connect}
+					handlePress={() => arProvider.setWalletModalVisible(true)}
+					useMaxWidth
 				/>
 			</S.WalletConnectWrapper>
 		)

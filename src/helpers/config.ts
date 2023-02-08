@@ -113,7 +113,11 @@ export const ASSETS = {
 		discord: `${ASSET_SRC}/discord.svg`,
 		twitter: `${ASSET_SRC}/twitter.svg`,
 	},
-	stamp: `${ASSET_SRC}/stamp.svg`, 
+	stamp: {
+		default: `${ASSET_SRC}/star.svg`,
+		super: `${ASSET_SRC}/star.svg`,
+		vouched: `${ASSET_SRC}/star.svg`,
+	},
 	star: `${ASSET_SRC}/star.svg`,
 	user: `${ASSET_SRC}/user.svg`,
 	wallets: {
@@ -182,7 +186,7 @@ export const URLS: IURLView = {
 			index: 1,
 			label: LANGUAGE.account.collections.title,
 			icon: ASSETS.collections,
-			disabled: false,
+			disabled: true,
 			url: urls.accountCollections,
 			view: AccountCollections,
 		},

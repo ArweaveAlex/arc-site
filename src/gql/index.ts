@@ -95,7 +95,12 @@ export async function getGQLData(args: {
 	return data;
 }
 
-function handleCursors(cursor: string | null, reduxCursor: string | null, cursorObject: CursorObjectKeyType, nextCursor: string | null) {
+function handleCursors(
+	cursor: string | null,
+	reduxCursor: string | null,
+	cursorObject: CursorObjectKeyType,
+	nextCursor: string | null
+) {
 	let cursorState: any;
 	let cursorList: (string | null)[] = [];
 

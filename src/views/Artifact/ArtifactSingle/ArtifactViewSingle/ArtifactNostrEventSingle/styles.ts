@@ -21,7 +21,7 @@ export const DetailWrapper = styled.div`
 	width: 100%;
 	position: relative;
 	animation: ${open} ${fadeIn2};
-    padding: 20px;
+	padding: 20px;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};

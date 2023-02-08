@@ -21,10 +21,13 @@ export const Tab = styled.div<{ active: boolean }>`
 	font-size: ${(props) => props.theme.typography.size.xSmall};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 
-	border-bottom: ${(props) => (props.active ? `2px solid ${props.theme.colors.tabs.active}` : `2px solid ${props.theme.colors.tabs.inactive}`)};
+	border-bottom: ${(props) =>
+		props.active ? `2px solid ${props.theme.colors.tabs.active}` : `2px solid ${props.theme.colors.tabs.inactive}`};
 
-	color: ${(props) => (props.active ? props.theme.colors.font.primary.active.base : props.theme.colors.font.primary.alt1)};
-	border-bottom: ${(props) => (props.active ? `2px solid ${props.theme.colors.tabs.active}` : `2px solid ${props.theme.colors.tabs.inactive}`)};
+	color: ${(props) =>
+		props.active ? props.theme.colors.font.primary.active.base : props.theme.colors.font.primary.alt1};
+	border-bottom: ${(props) =>
+		props.active ? `2px solid ${props.theme.colors.tabs.active}` : `2px solid ${props.theme.colors.tabs.inactive}`};
 	cursor: pointer;
 	padding-bottom: 23px;
 	background: ${(props) => (props.active ? props.theme.colors.tabs.inactive : props.theme.colors.tabs.inactive)};
