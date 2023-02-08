@@ -137,7 +137,7 @@ export default function StampWidget(props: IProps) {
 								type={'alt1'}
 								src={ASSETS.stamp.super}
 								handlePress={() => console.log('Super Stamp dropdown')}
-								disabled={balance <= 0 || stampCheckLoading}
+								disabled={true}
 								info={count.super.toString()}
 							/>
 						</S.Action>
