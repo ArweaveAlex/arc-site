@@ -141,7 +141,7 @@ export const LANGUAGE = {
 		twitter: `Twitter`,
 	},
 	sortBy: `Sort By`,
-	stamp: `STAMP`,
+	stamp: `Stamp`,
 	stamps: `Stamps`,
 	steps: {
 		header1: `A New Way to Get Involved in the Human Story`,

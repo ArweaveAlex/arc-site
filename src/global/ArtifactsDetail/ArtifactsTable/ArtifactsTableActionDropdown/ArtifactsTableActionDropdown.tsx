@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useArweaveProvider } from 'providers/ArweaveProvider';
-import { ArweaveClient } from 'clients/arweave';
+// import { useArweaveProvider } from 'providers/ArweaveProvider';
+// import { ArweaveClient } from 'clients/arweave';
 
 import * as artifactActions from 'redux/artifacts/actions';
 import { RootState } from 'redux/store';
 import { getBookmarkIds, setBookmarkIds, getArtifactById } from 'gql/artifacts';
 
-import { StampWidget } from 'global/StampWidget';
+// import { StampWidget } from 'global/StampWidget';
 import { ArtifactViewSingle } from 'views/Artifact/ArtifactSingle/ArtifactViewSingle';
 
 import { Notification } from 'components/atoms/Notification';
@@ -40,14 +40,14 @@ function Preview(props: { artifactId: string }) {
 	);
 }
 
-// User clicks STAMP -> If connected show form else show wallet dropdown
+// User clicks Stamp -> If connected show form else show wallet dropdown
 // Form - (2 options: 1. Single stamp 2. Super stamp (Form field send qty <= balance)) Disabled if no balance
-// TODO - Full stamp widget as STAMP subcomponent if user has stamp tokens, enable form field with qty arg amount
+// TODO - Full stamp widget as Stamp subcomponent if user has stamp tokens, enable form field with qty arg amount
 export default function ArtifactsTableActionDropdown(props: IProps) {
 	const dispatch = useDispatch();
 
-	const arClient = new ArweaveClient();
-	const arProvider = useArweaveProvider();
+	// const arClient = new ArweaveClient();
+	// const arProvider = useArweaveProvider();
 	// const stamps = Stamps.init({ warp: arClient.warp });
 
 	const bookmarksReducer = useSelector((state: RootState) => state.bookmarksReducer);
@@ -129,32 +129,32 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		};
 	}
 
-	function getStampWidget() {
-		return {
-			node: (
-				<S.StampWidgetContainer>
-					<StampWidget
-						txId={props.artifactId}
-						walletAddress={arProvider.walletAddress}
-						setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
-						warp={arClient.warp}
-						handleStampCallback={() => props.handleStampCallback()}
-					/>
-				</S.StampWidgetContainer>
-			),
-			active: showStampWidget,
-		};
-	}
+	// function getStampWidget() {
+	// 	return {
+	// 		node: (
+	// 			<S.StampWidgetContainer>
+	// 				<StampWidget
+	// 					txId={props.artifactId}
+	// 					walletAddress={arProvider.walletAddress}
+	// 					setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
+	// 					warp={arClient.warp}
+	// 					handleStampCallback={() => props.handleStampCallback()}
+	// 				/>
+	// 			</S.StampWidgetContainer>
+	// 		),
+	// 		active: showStampWidget,
+	// 	};
+	// }
 
 	function handleShowPreview() {
 		setShowPreview(!showPreview);
 		setShowStampWidget(false);
 	}
 
-	function handleShowStampWidget() {
-		setShowStampWidget(!showStampWidget);
-		setShowPreview(false);
-	}
+	// function handleShowStampWidget() {
+	// 	setShowStampWidget(!showStampWidget);
+	// 	setShowPreview(false);
+	// }
 
 	function handleViewRedirect() {
 		window.open(redirect, '_blank');

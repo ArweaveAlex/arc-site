@@ -12,7 +12,7 @@ import { LANGUAGE } from 'helpers/language';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.0.4',
+	version: '1.0.5',
 };
 
 export const TAGS = {
@@ -51,7 +51,7 @@ export const TAGS = {
 		webpageArtifactType: 'Alex-Webpage',
 		poolVersions: {
 			'1.2': 'Alex-Archiving-Pool-v1.2',
-			'1.4': 'Alex-Archiving-Pool-Thread-Testing-v1.0',
+			'1.4': 'Alex-Archiving-Pool-v1.4',
 		},
 		searchIndex: 'Alex-Search-Index-v0',
 		collectionAppType: 'Alex-Collection-v0',

@@ -3,8 +3,8 @@ import parse from 'html-react-parser';
 import { ReactSVG } from 'react-svg';
 import { Link } from 'react-router-dom';
 
-import Stamps from '@permaweb/stampjs';
-import { ArweaveClient } from 'clients/arweave';
+// import Stamps from '@permaweb/stampjs';
+// import { ArweaveClient } from 'clients/arweave';
 
 import { ArtifactsSearch } from '../ArtifactsSearch';
 import { ArtifactsTableActionDropdown } from './ArtifactsTableActionDropdown';
@@ -15,7 +15,7 @@ import { Table } from 'components/organisms/Table';
 import { LANGUAGE } from 'helpers/language';
 import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from 'helpers/config';
 
-import { AlignType, ArtifactTableRowType, GQLResponseType, KeyValueType, TableHeaderType } from 'helpers/types';
+import { AlignType, ArtifactTableRowType, KeyValueType, TableHeaderType } from 'helpers/types';
 
 import { formatDate, formatMessagingText, getTagValue, checkMedia, checkAssociation } from 'helpers/utils';
 
@@ -27,8 +27,8 @@ export default function ArtifactsTable(props: IProps) {
 	const [data, setData] = React.useState<any>(null);
 	const [selectedCallbackIdsState, setSelectedCallbackIdsState] = React.useState<string[]>([]);
 	
-	const [stamps, setStamps] = React.useState<any>(null);
-	const [updateStamps, setUpdateStamps] = React.useState<boolean>(false);
+	// const [stamps, setStamps] = React.useState<any>(null);
+	// const [updateStamps, setUpdateStamps] = React.useState<boolean>(false);
 
 	function getTitleWidth() {
 		if (props.showActions && props.showPoolIds) {
@@ -147,13 +147,13 @@ export default function ArtifactsTable(props: IProps) {
 		);
 	}
 
-	function getStampCount(id: string) {
-		return (
-			<S.StampContainer>
-				<p>{(stamps && stamps[id]) ? stamps[id].total : `-`}</p>
-			</S.StampContainer>
-		);
-	}
+	// function getStampCount(id: string) {
+	// 	return (
+	// 		<S.StampContainer>
+	// 			<p>{(stamps && stamps[id]) ? stamps[id].total : `-`}</p>
+	// 		</S.StampContainer>
+	// 	);
+	// }
 
 	function getActionDropdown(artifactId: string, tags: KeyValueType[]) {
 		return (
@@ -162,7 +162,7 @@ export default function ArtifactsTable(props: IProps) {
 				tags={tags} 
 				owner={props.owner} 
 				bookmarksDisabled={props.bookmarksDisabled}
-				handleStampCallback={() => setUpdateStamps(!updateStamps)}
+				handleStampCallback={() => console.log()}
 			/>
 		);
 	}
@@ -238,7 +238,7 @@ export default function ArtifactsTable(props: IProps) {
 			setData(null);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [selectedCallbackIdsState, stamps, props.data, props.showActions]);
+	}, [selectedCallbackIdsState, props.data, props.showActions]);
 
 	React.useEffect(() => {
 		if (props.selectedCallbackIds) {
@@ -246,15 +246,15 @@ export default function ArtifactsTable(props: IProps) {
 		}
 	}, [props.selectedCallbackIds]);
 
-	React.useEffect(() => {
-		(async function () {
-			if (props.data && props.data.contracts.length > 0) {
-				const arClient = new ArweaveClient();
-				const stamps = Stamps.init({ warp: arClient.warp });
-				setStamps(await stamps.counts(props.data.contracts.map((element: GQLResponseType) => element.node.id)));
-			}
-		})();
-	}, [props.data, updateStamps]);
+	// React.useEffect(() => {
+	// 	(async function () {
+	// 		if (props.data && props.data.contracts.length > 0) {
+	// 			const arClient = new ArweaveClient();
+	// 			const stamps = Stamps.init({ warp: arClient.warp });
+	// 			setStamps(await stamps.counts(props.data.contracts.map((element: GQLResponseType) => element.node.id)));
+	// 		}
+	// 	})();
+	// }, [props.data, updateStamps]);
 
 	return (
 		<Table
