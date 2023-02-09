@@ -172,7 +172,7 @@ export const PostDate = styled(P)`
 `;
 
 export const PublicMetrics = styled.div`
-	width: 350px;
+	width: 290px;
 	max-width: 75.5vw;
 	display: flex;
 	justify-content: space-between;
@@ -189,12 +189,12 @@ export const Metric = styled.div`
 	margin: 0 12.5px 0 0;
 	svg {
 		width: 13.5px;
-		fill: ${(props) => props.theme.colors.font.primary.alt8};
+		fill: ${(props) => props.theme.colors.font.primary.alt9};
 		margin: 0 !important;
 	}
 	p {
 		font-size: ${(props) => props.theme.typography.size.xxSmall} !important;
-		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt9} !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 		margin: 0 0 3.5px 5.5px !important;
 		white-space: nowrap !important;

@@ -47,8 +47,7 @@ export const Body = styled.div`
 	margin: 0 0 20px 0;
 	display: flex;
 	flex-direction: column;
-	overflow-x: auto;
-	overflow-y: auto;
+	overflow: auto;
 	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
@@ -82,7 +81,10 @@ export const Row = styled.div<{ even: boolean }>`
 	display: flex;
 	align-items: center;
 	background: ${(props) =>
-		props.even ? props.theme.colors.container.primary.background : props.theme.colors.container.alt4.background};
+		props.even ? props.theme.colors.container.primary.background : props.theme.colors.container.primary.background};
+	&:hover {
+		background: ${(props) => props.theme.colors.container.primary.hover};
+	}
 `;
 
 export const RowData = styled.div`

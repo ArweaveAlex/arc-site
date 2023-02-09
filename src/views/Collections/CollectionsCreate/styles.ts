@@ -38,6 +38,9 @@ export const HeaderContentFixed = styled.div`
 	top: ${STYLING.dimensions.navHeight};
 	left: 50%;
 	transform: translate(-50%, 0);
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		width: 100%;
+	}
 `;
 
 export const Header1Wrapper = styled.div`
@@ -68,8 +71,6 @@ export const ContentWrapper = styled.div`
 	width: 100%;
 	max-width: calc(${STYLING.cutoffs.max} - 40px);
 	margin: calc(${STYLING.dimensions.navHeight} + 125px) auto 0 auto;
-	display: flex;
-	justify-content: space-between;
 	position: relative;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		flex-direction: column-reverse;
@@ -77,15 +78,12 @@ export const ContentWrapper = styled.div`
 `;
 
 export const ArtifactsWrapper = styled.div`
-	width: calc(100% - 460px);
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		width: 100%;
-	}
+	width: 100%;
 `;
 
 export const FormWrapper = styled.div`
 	position: relative;
-	width: 415px;
+	width: 100%;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;
 	}
@@ -93,22 +91,22 @@ export const FormWrapper = styled.div`
 
 export const FormContainer = styled.div`
 	height: 100%;
-	width: 100%;
-	position: absolute;
+	width: 450px;
+	max-width: 90vw;
+	padding: 25px;
+	margin: 20px auto;
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-radius: ${STYLING.dimensions.borderRadius};
+	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
+	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		position: relative;
 	}
 `;
 
 export const FormFixedContainer = styled.div`
-	height: fit-content;
-	width: 415px;
-	position: fixed;
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		position: relative;
-		width: 100%;
-		margin: 40px 0 0 0;
-	}
+	width: 100%;
 `;
 
 export const FormHeader = styled.div`

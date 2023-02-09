@@ -25,6 +25,20 @@ export function formatCount(count: string): string {
 	return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+export function formatFloat(number: number, value: number) {
+	let string = number.toString();
+	string = string.slice(0, string.indexOf('.') + value + 1);
+	return Number(string);
+}
+
+export function formatMetric(count: string): string {
+	if (Number(count) > 1000) {
+		return `${formatFloat(Number(count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')), 1).toString()}k`;
+	} else {
+		return count;
+	}
+}
+
 function formatTime(time: number): string {
 	return time < 10 ? `0${time.toString()}` : time.toString();
 }

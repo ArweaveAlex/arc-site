@@ -90,9 +90,10 @@ export interface CollectionType {
 }
 
 export interface CollectionStateType {
+	ids: string[];
 	title: string;
 	description: string;
-	ids: string[];
+	timestamp: string;
 }
 
 export interface PoolSearchIndexType {

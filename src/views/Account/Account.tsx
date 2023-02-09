@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useArweaveProvider } from 'providers/ArweaveProvider';
+import { WalletBlock } from 'wallet/WalletBlock';
 
 import { Button } from 'components/atoms/Button';
 import { URLTabs } from 'components/organisms/URLTabs';
@@ -22,7 +23,7 @@ export default function Account() {
 			if (!arProvider.walletAddress) {
 				setShowWalletConnect(true);
 			}
-		}, 500);
+		}, 200);
 	}, [arProvider.walletAddress]);
 
 	const copyUrl = React.useCallback(async () => {
@@ -69,16 +70,6 @@ export default function Account() {
 			</S.TabsWrapper>
 		</S.Wrapper>
 	) : (
-		showWalletConnect && (
-			<S.WalletConnectWrapper>
-				<p>{LANGUAGE.walletNotConnected}</p>
-				<Button
-					type={'alt2'}
-					label={LANGUAGE.connect}
-					handlePress={() => arProvider.setWalletModalVisible(true)}
-					useMaxWidth
-				/>
-			</S.WalletConnectWrapper>
-		)
+		showWalletConnect && <WalletBlock />
 	);
 }

@@ -8,7 +8,7 @@ import { Carousel } from 'components/molecules/Carousel';
 
 import { getTxEndpoint } from 'helpers/endpoints';
 import { getArtifactById } from 'gql/artifacts';
-import { formatMessagingData, getUsername } from 'helpers/utils';
+import { formatMessagingData, formatMetric, getUsername } from 'helpers/utils';
 import { formatDate, formatAddress } from 'helpers/utils';
 import { LANGUAGE } from 'helpers/language';
 import { STORAGE, ASSETS, MEDIA_TYPES } from 'helpers/config';
@@ -225,19 +225,19 @@ export default function MessagingListItem(props: IProps) {
 						<S.PublicMetrics>
 							<S.Metric>
 								<ReactSVG src={ASSETS.impressions} />
-								<p>{jsonData.public_metrics.impression_count}</p>
+								<p>{formatMetric(jsonData.public_metrics.impression_count)}</p>
 							</S.Metric>
 							<S.Metric>
 								<ReactSVG src={ASSETS.replies} />
-								<p>{jsonData.public_metrics.reply_count}</p>
+								<p>{formatMetric(jsonData.public_metrics.reply_count)}</p>
 							</S.Metric>
 							<S.Metric>
 								<ReactSVG src={ASSETS.retweet} />
-								<p>{jsonData.public_metrics.retweet_count}</p>
+								<p>{formatMetric(jsonData.public_metrics.retweet_count)}</p>
 							</S.Metric>
 							<S.Metric>
 								<ReactSVG src={ASSETS.favorite} />
-								<p>{jsonData.public_metrics.like_count}</p>
+								<p>{formatMetric(jsonData.public_metrics.like_count)}</p>
 							</S.Metric>
 						</S.PublicMetrics>
 					)}

@@ -37,7 +37,7 @@
 		"test:verbose": "npm test -- --verbose",
 		"test:coverage": "CI=true npm test -- --env=jsdom --coverage",
 		"build": "GENERATE_SOURCEMAP=false react-scripts build",
-		"deploy": "npm run build && node --loader ts-node/esm src/workflows/deploy.ts"
+		"deploy": "npm run build && node --loader ts-node/esm src/actions/deploy.ts"
 	},
 	"eslintConfig": {
 		"extends": [

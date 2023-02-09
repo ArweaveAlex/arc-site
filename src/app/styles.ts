@@ -63,6 +63,9 @@ export const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    &:focus {
+      outline: 0;
+    }
   }
 
   h1 {
@@ -78,7 +81,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: ${(props) => props.theme.typography.weight.medium};
   }
   
-  p, span, button, a, b, li, input {
+  p, span, button, a, b, li, input, textarea {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

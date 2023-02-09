@@ -2,6 +2,8 @@ import React from 'react';
 
 import Stamps from '@permaweb/stampjs';
 
+import { WalletBlock } from 'wallet/WalletBlock';
+
 import { Loader } from 'components/atoms/Loader';
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
@@ -11,6 +13,7 @@ import { Notification } from 'components/atoms/Notification';
 import { LANGUAGE } from 'helpers/language';
 import { NotificationResponseType } from 'helpers/types';
 import { IProps } from './types';
+import { formatFloat } from 'helpers/utils';
 import * as S from './styles';
 import { ASSETS } from 'helpers/config';
 
@@ -22,7 +25,7 @@ function StampAction(props: { balance: number; handleSubmit: (amount: number) =>
 	return (
 		<S.SAContainer>
 			<S.SAInfoContainer>
-				<p>{`${LANGUAGE.stampTokenBalance}: ${props.balance}`}</p>
+				<p>{`${LANGUAGE.stampTokenBalance}: ${formatFloat(props.balance, 2)}`}</p>
 				<S.SACloseContainer>
 					<IconButton type={'primary'} sm warning src={ASSETS.close} handlePress={props.handleClose} />
 				</S.SACloseContainer>
@@ -74,7 +77,6 @@ export default function StampWidget(props: IProps) {
 		}
 	}, [props.walletAddress]);
 
-	// TODO - Check Balance super stamps disabled if none or <= 0
 	React.useEffect(() => {
 		(async function () {
 			if (props.walletAddress) {
@@ -125,13 +127,12 @@ export default function StampWidget(props: IProps) {
 		async (amount?: number) => {
 			if (props.txId) {
 				setStampCheckLoading(true);
-                let stamp: any;
-                if (amount) {
-                    stamp = await stamps.stamp(props.txId, amount);
-                }
-                else {
-                    stamp = await stamps.stamp(props.txId);
-                }
+				let stamp: any;
+				if (amount) {
+					stamp = await stamps.stamp(props.txId, amount);
+				} else {
+					stamp = await stamps.stamp(props.txId);
+				}
 				const stampSuccess = stamp && stamp.bundlrResponse && stamp.bundlrResponse.id;
 				setStampCheckLoading(false);
 				setStampDisabled(true);
@@ -151,22 +152,16 @@ export default function StampWidget(props: IProps) {
 		props.handleStampCallback();
 	}
 
-    function handleStampAction(amount: number) {
-        handleStamp(amount);
-        setShowStampAction(false);
-    }
+	function handleStampAction(amount: number) {
+		handleStamp(amount);
+		setShowStampAction(false);
+	}
 
 	function getWidget() {
 		if (showWalletConnect) {
 			return (
 				<S.WalletConnectWrapper>
-					<p>{LANGUAGE.walletNotConnected}</p>
-					<Button
-						type={'alt2'}
-						label={LANGUAGE.connect}
-						handlePress={() => props.setWalletModalVisible(true)}
-						useMaxWidth
-					/>
+					<WalletBlock />
 				</S.WalletConnectWrapper>
 			);
 		} else {

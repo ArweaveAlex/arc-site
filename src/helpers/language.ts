@@ -60,6 +60,7 @@ export const LANGUAGE = {
 	copyArtifactId: `Copy Artifact ID`,
 	create: `Create`,
 	createCollection: `Create Collection`,
+	createFirstCollection: `Create your first collection`,
 	createdOn: `Created on`,
 	dateCreated: `Date Created`,
 	default: `Default`,
@@ -78,6 +79,7 @@ export const LANGUAGE = {
 		content: `In 48 BC, humanity lost one of the greatest troves of human knowledge to a fire. We will never know the full extent of the culture, knowledge or history lost when the Library of Alexandria was destroyed, but we can learn from the past to better prepare for the future.<br><br>We’ve come a long way from centrally storing vast amounts of information on highly combustible mediums, but we still face a lot of the same challenges from antiquity; the manipulation, corruption or deletion of important information.<br><br>Alex. is a decentralized archival platform that leverages the immutable and permanent data storage of Arweave and includes a mechanism that encourages end user participation.<br><br>Users contribute to pools and they receive “artifacts” back into their wallet as they are minted. Artifacts are NFTs of items the pool is storing. Since the artifacts are stored on Arweave, they cannot be changed or removed in any way by anyone.<br><br>This is the continuation of the dream that was the Great Library of Alexandria. In order for us to move forward and continue making better decisions we need the ability to clearly see our past.<br><br><b>Alex.</b><br><br>Always accessible. Never changing. Never deleted.`,
 		assetSrc: `A 19th century illustration of the burning of the Library of Alexandria. Heritage Images/Getty Images.`,
 	},
+	invalidQuery: `Invalid Query`,
 	lastContribution: `Last Contribution`,
 	library: {
 		header1: `Library`,
@@ -143,7 +145,7 @@ export const LANGUAGE = {
 	},
 	sortBy: `Sort By`,
 	stamp: `STAMP`,
-	stampTokenBalance: `STAMP Token Balance`,
+	stampTokenBalance: `STAMP Balance`,
 	stamps: `Stamps`,
 	steps: {
 		header1: `A New Way to Get Involved in the Human Story`,

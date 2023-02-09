@@ -40,9 +40,6 @@ function Preview(props: { artifactId: string }) {
 	);
 }
 
-// User clicks Stamp -> If connected show form else show wallet dropdown
-// Form - (2 options: 1. Single stamp 2. Super stamp (Form field send qty <= balance)) Disabled if no balance
-// TODO - Full stamp widget as Stamp subcomponent if user has stamp tokens, enable form field with qty arg amount
 export default function ArtifactsTableActionDropdown(props: IProps) {
 	const dispatch = useDispatch();
 

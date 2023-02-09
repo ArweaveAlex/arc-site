@@ -113,9 +113,10 @@ export default function ArtifactsTable(props: IProps) {
 	function getArtifactLink(id: string, tags: KeyValueType[]) {
 		let redirect: string;
 		const associationId = getTagValue(tags, TAGS.keys.associationId);
+		const artifactType = getTagValue(tags, TAGS.keys.artifactType);
 
 		if (associationId && associationId !== STORAGE.none) {
-			redirect = `${urls.thread}${associationId}/${id}`;
+			redirect = `${urls.thread}${associationId}/${id}?type=${artifactType}`;
 		} else {
 			redirect = `${urls.artifact}${id}`;
 		}

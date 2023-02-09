@@ -5,10 +5,11 @@ import { Loader } from 'components/atoms/Loader';
 
 import { LANGUAGE } from 'helpers/language';
 import { ASSETS } from 'helpers/config';
-import { formatCount, formatDate, traverseCommentTree, sortCommentTree } from 'helpers/utils';
+import { formatCount, formatMetric, formatDate, traverseCommentTree, sortCommentTree } from 'helpers/utils';
 import { IProps } from '../../types';
 import * as S from './styles';
 
+// TODO - Media
 export default function ArtifactRedditSingle(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
 	const [data, setData] = React.useState<any>([]);
@@ -51,7 +52,9 @@ export default function ArtifactRedditSingle(props: IProps) {
 									<S.Metric>
 										<ReactSVG src={ASSETS.replies} />
 										<p>{`${formatCount(
-											data ? data.join().split(',').length : headerData.num_comments
+											data
+												? formatMetric(data.join().split(',').length)
+												: formatMetric(headerData.num_comments)
 										)} ${LANGUAGE.comments}`}</p>
 									</S.Metric>
 									<S.Metric>

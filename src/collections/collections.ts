@@ -24,7 +24,7 @@ export async function createCollection(collection: CollectionStateType, topic: s
 		{ name: TAGS.keys.collectionName, value: collection.title },
 		{ name: TAGS.keys.collectionDescription, value: collection.description },
 		{ name: TAGS.keys.ansTitle, value: collection.title },
-		{ name: TAGS.keys.ansTopic + ':' + topic, value: topic },
+		{ name: `${TAGS.keys.ansTopic}:${topic}`, value: topic },
 		{ name: TAGS.keys.ansDescription, value: collection.description },
 		{ name: TAGS.keys.ansType, value: TAGS.values.ansType },
 		{ name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
@@ -36,14 +36,14 @@ export async function createCollection(collection: CollectionStateType, topic: s
 	collectionInitState.owner = walletAddress;
 	collectionInitState.ids = collection.ids;
 
-	let collectionContract = await arClient.warp.createContract.deploy({
+	const collectionContract = await arClient.warp.createContract.deploy({
 		src: COLLECTION_CONTRACT,
 		initState: JSON.stringify(collectionInitState),
 		wallet: 'use_wallet',
 		tags: tags,
 	});
 
-	console.log('Bookmark contract id' + collectionContract.contractTxId);
+	console.log(collectionContract.contractTxId);
 
 	return collectionContract.contractTxId;
 }
