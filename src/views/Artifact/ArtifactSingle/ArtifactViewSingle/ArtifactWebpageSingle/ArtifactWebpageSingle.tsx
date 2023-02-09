@@ -16,7 +16,11 @@ export default function ArtifactWebpageSingle(props: IProps) {
 	}, [props.data]);
 
 	return data ? (
-		<S.Wrapper>{parse(data)}</S.Wrapper>
+		<S.Wrapper>
+			<S.Container>
+				{parse(data)}
+			</S.Container>
+		</S.Wrapper>
 	) : (
 		<S.LoadingContainer>
 			<Loader sm />

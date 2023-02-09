@@ -12,6 +12,12 @@ export const Wrapper = styled.div`
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
+`;
+
+export const Container = styled.div`
+	height: 100%;
+	width: 100%;
+	position: relative;
 	overflow: auto;
 
 	p,
@@ -20,6 +26,7 @@ export const Wrapper = styled.div`
 	a,
 	b,
 	li,
+	th,
 	input {
 		font-family: sans-serif;
 		line-height: 20px;
@@ -1636,12 +1643,13 @@ export const Wrapper = styled.div`
 		float: right;
 		margin: 0;
 		padding: 0;
-		line-height: 1.5em;
-		text-align: right;
-		text-indent: 0;
-		font-size: 85%;
+		line-height: 1.5em !important;
+		text-align: right !important;
+		text-indent: 0 !important;
+		font-size: 85% !important;
 		text-transform: none;
 		white-space: nowrap;
+		display: none;
 	}
 
 	/* correct position for VE */
@@ -5775,15 +5783,16 @@ export const Wrapper = styled.div`
 		position: absolute;
 		top: 0;
 		right: 0;
-		float: right;
+		float: left;
 		margin: 0;
 		padding: 0;
-		line-height: 1.5em;
+		line-height: 1.5em !important;
 		text-align: right;
 		text-indent: 0;
-		font-size: 85%;
+		font-size: 85% !important;
 		text-transform: none;
 		white-space: nowrap;
+		display: none;
 	}
 
 	.ve-ce-surface-enabled #coordinates {

@@ -5,7 +5,6 @@ import { Loader } from 'components/atoms/Loader';
 import { IProps } from '../../types';
 import * as S from './styles';
 
-// TODO - Styling
 export default function ArtifactNostrEventSingle(props: IProps) {
 	const [parsedJsonData, setParsedJsonData] = React.useState<any>(null);
 	const [data, setData] = React.useState<any>([]);

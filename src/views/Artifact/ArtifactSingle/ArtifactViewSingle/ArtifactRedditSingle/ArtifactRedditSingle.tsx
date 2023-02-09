@@ -9,7 +9,6 @@ import { formatCount, formatMetric, formatDate, traverseCommentTree, sortComment
 import { IProps } from '../../types';
 import * as S from './styles';
 
-// TODO - Media
 export default function ArtifactRedditSingle(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
 	const [data, setData] = React.useState<any>([]);

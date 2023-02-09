@@ -53,7 +53,6 @@ function PoolCard(props: PoolType) {
 	) : null;
 }
 
-// TODO - Pool contract index
 export default function LandingPools() {
 	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 

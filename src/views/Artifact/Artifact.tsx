@@ -11,7 +11,6 @@ import * as window from 'helpers/window';
 import { ArtifactDetailType } from 'helpers/types';
 
 
-// TODO - Stamp Widget
 export default function Artifact() {
 	const { id } = useParams();
 
