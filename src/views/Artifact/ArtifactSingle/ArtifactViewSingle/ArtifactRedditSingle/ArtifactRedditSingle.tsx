@@ -31,11 +31,25 @@ export default function ArtifactRedditSingle(props: IProps) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [jsonData]);
 
+	function getTopPreview(preview: string) {
+		return <S.HeaderBodyPreview image={preview} />;
+	}
+
 	function getTopPost() {
 		if (jsonData && jsonData.length) {
 			if (jsonData[0].data && jsonData[0].data.children && jsonData[0].data.children.length) {
 				if (jsonData[0].data.children[0].data && jsonData[0].data.children[0].data.title) {
 					const headerData: any = jsonData[0].data.children[0].data;
+
+					let preview: string | null = null;
+					let hasPreview: boolean = false;
+					if (headerData.preview && headerData.preview.images && headerData.preview.images.length) {
+						hasPreview = true;
+					}
+					if (hasPreview) {
+						preview = headerData.preview.images[0].source.url;
+					}
+
 					return (
 						<S.HeaderContent>
 							<S.HeaderFlex>
@@ -47,7 +61,10 @@ export default function ArtifactRedditSingle(props: IProps) {
 									{`${LANGUAGE.redditAuthor}${headerData.author}`}{' '}
 									{formatDate(headerData.created_utc * 1000, 'iso')}
 								</S.HeaderAD>
-								<S.HeaderBody>{headerData.title}</S.HeaderBody>
+								<S.HeaderBody>
+									<S.HeaderTitle width={hasPreview ? 70 : 100}>{headerData.title}</S.HeaderTitle>
+									{hasPreview && getTopPreview(preview)}
+								</S.HeaderBody>
 								<S.PublicMetrics>
 									<S.Metric>
 										<ReactSVG src={ASSETS.replies} />
@@ -80,7 +97,6 @@ export default function ArtifactRedditSingle(props: IProps) {
 							return (
 								<S.CommentGroup key={index}>
 									{commentList.map((element: any, commentIndex: number) => {
-										console.log(element);
 										return (
 											<S.Comment key={commentIndex} depth={element.depth}>
 												<S.CommentAuthor>

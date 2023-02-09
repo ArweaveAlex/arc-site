@@ -83,11 +83,33 @@ export const HeaderAD = styled.p`
 	}
 `;
 
-export const HeaderBody = styled.p`
+export const HeaderBody = styled.div`
+	display: flex;
+	justify-content: space-between;
+`;
+
+export const HeaderTitle = styled.p<{ width: number }> `
+	width: ${(props) => `${props.width.toString()}%`};
 	font-size: 20px !important;
 	font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 	color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 	margin: 0 0 20px 0 !important;
+`
+
+export const HeaderBodyPreview = styled.div<{ image: string }>`
+	height: 125px;
+	width: 25%;
+	min-width: 125px;
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	background-image: ${(props) => `url("${props.image}")`};
+	background-size: cover;
+	background-position: center;
+	img {
+		height: 100%;
+		width: 100%;
+	}
 `;
 
 export const PublicMetrics = styled.div`
