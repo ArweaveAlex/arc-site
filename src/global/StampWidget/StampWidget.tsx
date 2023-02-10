@@ -186,7 +186,7 @@ export default function StampWidget(props: IProps) {
 								<IconButton
 									type={'alt1'}
 									src={ASSETS.stamp.default}
-									handlePress={handleStamp}
+									handlePress={() => handleStamp()}
 									disabled={stampDisabled || stampCheckLoading}
 									info={count.total.toString()}
 								/>
