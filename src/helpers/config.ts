@@ -12,7 +12,7 @@ import { LANGUAGE } from 'helpers/language';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.0.7',
+	version: '1.0.8',
 };
 
 export const TAGS = {
@@ -269,6 +269,6 @@ export const SEARCH = {
 	ownerTerm: '`%',
 };
 
-export const POOL_INDEX_CONTRACT_ID = 'ucjXooi8LYxYTwlsdOKHV_03a2M8qrduYYQS_rs1DHc';
+export const POOL_INDEX_CONTRACT_ID = 'uafMNNCOG7YyoBQn4cs3ZmE-gU30OQX5d4H3p06hAd8';
 
 export const OPERATOR_LINK = 'https://alex-operator-guide.arweave.dev/';
