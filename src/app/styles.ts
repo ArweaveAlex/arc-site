@@ -1,6 +1,41 @@
 import { createGlobalStyle } from 'styled-components';
 
+import FiraSansRegular from 'assets/fonts/FiraSans-Regular.ttf';
+import FiraSansMedium from 'assets/fonts/FiraSans-Medium.ttf';
+import FiraSansBold from 'assets/fonts/FiraSans-Medium.ttf';
+
+import PTSerifRegular from 'assets/fonts/PTSerif-Regular.ttf';
+import PTSerifBold from 'assets/fonts/PTSerif-Bold.ttf';
+
 export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url(${FiraSansRegular}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url(${FiraSansMedium}) format('truetype');
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url(${FiraSansBold}) format('truetype');
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: 'PT Serif';
+    src: url(${PTSerifRegular}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'PT Serif';
+    src: url(${PTSerifBold}) format('truetype');
+    font-weight: 500;
+  }
+
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,

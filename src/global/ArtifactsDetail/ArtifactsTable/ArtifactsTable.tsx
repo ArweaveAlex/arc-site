@@ -24,11 +24,14 @@ import { IProps } from './types';
 import * as S from './styles';
 
 export default function ArtifactsTable(props: IProps) {
-	const [data, setData] = React.useState<any>(null);
+	const [data, setData] = React.useState<{ data: ArtifactTableRowType; active: boolean; viewed: boolean }[] | null>(
+		null
+	);
 	const [selectedCallbackIdsState, setSelectedCallbackIdsState] = React.useState<string[]>([]);
 
 	const [stamps, setStamps] = React.useState<any>(null);
 	const [updateStamps, setUpdateStamps] = React.useState<boolean>(false);
+	const [updateViews, setUpdateViews] = React.useState<boolean>(false);
 
 	function getTitleWidth() {
 		if (props.showActions && props.showPoolIds) {
@@ -110,6 +113,13 @@ export default function ArtifactsTable(props: IProps) {
 		return parse(formatMessagingText(getTagValue(tags, TAGS.keys.artifactName)));
 	}
 
+	function handleView(id: string) {
+		if (!sessionStorage.getItem(id)) {
+			setUpdateViews(!updateViews)
+			sessionStorage.setItem(id, '-');
+		}
+	}
+
 	function getArtifactLink(id: string, tags: KeyValueType[]) {
 		let redirect: string;
 		const associationId = getTagValue(tags, TAGS.keys.associationId);
@@ -125,7 +135,7 @@ export default function ArtifactsTable(props: IProps) {
 			<S.LinkWrapper>
 				<S.ALinkWrapper>
 					<S.ALink>
-						<Link to={redirect} tabIndex={-1}>
+						<Link to={redirect} tabIndex={-1} onClick={() => handleView(id)}>
 							{getArtifactLinkLabel(tags)}
 						</Link>
 					</S.ALink>
@@ -166,6 +176,7 @@ export default function ArtifactsTable(props: IProps) {
 				owner={props.owner}
 				bookmarksDisabled={props.bookmarksDisabled}
 				handleStampCallback={() => setUpdateStamps(!updateStamps)}
+				handleViewedCallback={() => setUpdateViews(!updateViews)}
 			/>
 		);
 	}
@@ -180,6 +191,18 @@ export default function ArtifactsTable(props: IProps) {
 				/>
 			</S.CheckboxContainer>
 		);
+	}
+
+	function getActive(id: string) {
+		if (props.selectCallback) {
+			return selectedCallbackIdsState.includes(id);
+		} else {
+			return false;
+		}
+	}
+
+	function getViewed(id: string) {
+		return sessionStorage.getItem(id) !== null && sessionStorage.getItem(id) !== undefined;
 	}
 
 	function getAction() {
@@ -239,7 +262,11 @@ export default function ArtifactsTable(props: IProps) {
 								row.actions = getActionDropdown(element.node.id, element.node.tags);
 							}
 							if (getTagValue(element.node.tags, TAGS.keys.uploaderTxId) === STORAGE.none) {
-								return row;
+								return {
+									data: row,
+									active: getActive(element.node.id),
+									viewed: getViewed(element.node.id),
+								};
 							} else {
 								return null;
 							}
@@ -251,7 +278,7 @@ export default function ArtifactsTable(props: IProps) {
 			setData(null);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [selectedCallbackIdsState, stamps, props.data, props.showActions]);
+	}, [selectedCallbackIdsState, updateViews, stamps, props.data, props.showActions]);
 
 	React.useEffect(() => {
 		if (props.selectedCallbackIds) {

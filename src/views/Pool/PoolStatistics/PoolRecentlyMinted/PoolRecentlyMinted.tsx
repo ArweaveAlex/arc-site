@@ -20,13 +20,17 @@ export default function PoolRecentlyMinted(props: IProps) {
 	}
 
 	function getArtifactLink(id: string, tags: KeyValueType[]) {
+		let redirect: string;
 		const associationId = getTagValue(tags, TAGS.keys.associationId);
+		const artifactType = getTagValue(tags, TAGS.keys.artifactType);
 
 		if (associationId && associationId !== STORAGE.none) {
-			return `${urls.thread}${associationId}/${id}`;
+			redirect = `${urls.thread}${associationId}/${id}?type=${artifactType}`;
 		} else {
-			return `${urls.artifact}${id}`;
+			redirect = `${urls.artifact}${id}`;
 		}
+
+		return redirect;
 	}
 
 	function getData() {

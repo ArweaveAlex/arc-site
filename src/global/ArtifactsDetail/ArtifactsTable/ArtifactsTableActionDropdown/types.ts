@@ -6,4 +6,5 @@ export interface IProps {
 	owner: string | null;
 	bookmarksDisabled: boolean;
 	handleStampCallback: () => void;
+	handleViewedCallback: () => void;
 }

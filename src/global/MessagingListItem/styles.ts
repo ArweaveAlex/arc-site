@@ -346,7 +346,6 @@ export const ActiveContainer = styled.div`
 `;
 
 export const ChildAssetContainer = styled.div`
-	min-height: 300px;
 	width: 100%;
 	margin: 15px 0 0 0;
 	position: relative;

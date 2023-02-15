@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { DefaultTheme } from 'styled-components/macro';
 
 import { AlignType } from 'helpers/types';
 
@@ -48,8 +48,7 @@ export const Body = styled.div`
 	display: flex;
 	flex-direction: column;
 	overflow: auto;
-	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
 	min-height: 66.5vh;
 `;
@@ -57,7 +56,9 @@ export const Body = styled.div`
 export const Table = styled.div`
 	height: 100%;
 	width: 100%;
-	border-right: 1px solid ${(props) => props.theme.colors.border.alt5};
+	border-left: 0.5px solid ${(props) => props.theme.colors.border.alt5};
+	border-right: 0.5px solid ${(props) => props.theme.colors.border.alt5};
+	border-bottom: 0.5px solid ${(props) => props.theme.colors.border.alt5};
 	> * {
 		&:last-child {
 			border-bottom-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
@@ -73,17 +74,45 @@ export const TableHeader = styled.div`
     height: 40px;
     display: flex;
     align-items: center;
-    border-top 1px solid ${(props) => props.theme.colors.border.alt5};
+    border-top: 1px solid ${(props) => props.theme.colors.border.alt5};
+	border-bottom: 0.5px solid ${(props) => props.theme.colors.border.alt5};
+    border-left: 0.5px solid ${(props) => props.theme.colors.border.alt5};
+    border-right: 0.5px solid ${(props) => props.theme.colors.border.alt5};
 `;
 
-export const Row = styled.div<{ even: boolean }>`
+function getRowStyle(theme: DefaultTheme, active: boolean, viewed: boolean) {
+	if (active) {
+		return `
+			background: ${theme.colors.table.row.active.background};
+			border: 0.5px solid ${theme.colors.table.row.active.border};
+		`
+	}
+	else {
+		if (viewed) {
+			return `
+				background: ${theme.colors.container.primary.hover};
+				border: 0.5px solid ${theme.colors.border.alt5};
+			`
+		}
+		else {
+			return `
+				background: ${theme.colors.container.primary.background};
+				border: 0.5px solid ${theme.colors.border.alt5};
+			`
+		}
+	}
+}
+
+export const Row = styled.div<{ active: boolean, viewed: boolean }>`
 	height: 40px;
 	display: flex;
 	align-items: center;
-	background: ${(props) =>
-		props.even ? props.theme.colors.container.primary.background : props.theme.colors.container.primary.background};
+	${(props) => getRowStyle(props.theme, props.active, props.viewed)}
 	&:hover {
-		background: ${(props) => props.theme.colors.container.primary.hover};
+		background: ${(props) =>
+			props.active ? props.theme.colors.table.row.active.background : props.theme.colors.container.primary.hover};
+		border: 0.5px solid ${(props) =>
+			props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.alt5};
 	}
 `;
 
@@ -92,9 +121,6 @@ export const RowData = styled.div`
 	display: flex;
 	padding: 0 10px;
 	background: ${(props) => props.theme.colors.container.alt3.background};
-	border-left: 1px solid ${(props) => props.theme.colors.border.alt5};
-	border-right: 1px solid ${(props) => props.theme.colors.border.alt5};
-	border-bottom: 1px solid ${(props) => props.theme.colors.border.alt5};
 	align-items: center;
 	p {
 		font-family: ${(props) => props.theme.typography.family.primary};
@@ -116,8 +142,6 @@ export const THeader = styled(RowData)<{
 }>`
 	width: ${(props) => props.width};
 	min-width: 60px;
-	border-left: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};
-	border-right: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};
 	display: flex;
 	justify-content: ${(props) => props.align};
 	p {
@@ -128,8 +152,6 @@ export const THeader = styled(RowData)<{
 export const TData = styled(RowData)<{ even: boolean; width: string; active: boolean }>`
 	width: ${(props) => props.width};
 	min-width: 60px;
-	border-left: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};
-	border-right: 1px solid ${(props) => (props.even ? 'transparent' : props.theme.colors.border.alt5)};
 	background: none;
 	p {
 		font-family: ${(props) => props.theme.typography.family.primary};

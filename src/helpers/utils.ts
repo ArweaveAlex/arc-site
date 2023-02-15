@@ -33,8 +33,12 @@ export function formatFloat(number: number, value: number) {
 
 export function formatMetric(count: string): string {
 	if (Number(count) > 1000) {
-		return `${formatFloat(Number(count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')), 1).toString()}k`;
-	} else {
+		const localeString = Number(count).toLocaleString();
+		const parsedString = localeString.substring(0, localeString.indexOf(','));
+		const unit = count.toString().length >= 7 ? 'm' : 'k';
+		return `${parsedString}${unit}`;
+	}
+	else {
 		return count;
 	}
 }
@@ -139,7 +143,7 @@ export function splitArray(array: any[], size: number) {
 
 export function checkGqlCursor(string: string): boolean {
 	/* All Search Cursors contain '-'
-        GQL Cursors contain letters, numbers or '=' */
+		GQL Cursors contain letters, numbers or '=' */
 	if (/[-]/.test(string)) {
 		return false;
 	} else if (/[A-Za-z0-9]/.test(string) || /[=]/.test(string)) {

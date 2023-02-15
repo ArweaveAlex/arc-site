@@ -45,7 +45,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	const arClient = new ArweaveClient();
 	const arProvider = useArweaveProvider();
-	// const stamps = Stamps.init({ warp: arClient.warp });
 
 	const bookmarksReducer = useSelector((state: RootState) => state.bookmarksReducer);
 
@@ -54,9 +53,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	const [showPreview, setShowPreview] = React.useState<boolean>(false);
 	const [bookmarkNotification, setBookmarkNotification] = React.useState<NotificationResponseType | null>(null);
 
-	// const [stampDisabled, setStampDisabled] = React.useState<boolean>(true);
-	// const [stampCheckLoading, setStampCheckLoading] = React.useState<boolean>(false);
-	// const [stampNotification, setStampNotification] = React.useState<NotificationResponseType | null>(null);
 	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
 
 	const [bookmarkIdsState, setBookmarkIdsState] = React.useState<string[]>([]);
@@ -113,8 +109,10 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	let redirect: string;
 	const associationId = getTagValue(props.tags, TAGS.keys.associationId);
+	const artifactType = getTagValue(props.tags, TAGS.keys.artifactType);
+
 	if (associationId && associationId !== STORAGE.none) {
-		redirect = `${getHashUrl(window.location.origin)}${urls.thread}${associationId}/${props.artifactId}`;
+		redirect = `${getHashUrl(window.location.origin)}${urls.thread}${associationId}/${props.artifactId}?type=${artifactType}`;
 	} else {
 		redirect = `${getHashUrl(window.location.origin)}${urls.artifact}${props.artifactId}`;
 	}
@@ -143,9 +141,17 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		};
 	}
 
+	function handleView() {
+		if (!sessionStorage.getItem(props.artifactId)) {
+			props.handleViewedCallback();
+			sessionStorage.setItem(props.artifactId, '-');
+		}
+	}
+
 	function handleShowPreview() {
 		setShowPreview(!showPreview);
 		setShowStampWidget(false);
+		handleView();
 	}
 
 	function handleShowStampWidget() {
@@ -156,6 +162,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	function handleViewRedirect() {
 		window.open(redirect, '_blank');
 		setShowPreview(false);
+		handleView();
 	}
 
 	function handleCallback() {

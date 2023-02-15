@@ -3,7 +3,7 @@ import React from 'react';
 import { TableLoader } from 'components/atoms/TableLoader';
 import { Paginator } from 'components/molecules/Paginator';
 
-import { KeyValueType } from 'helpers/types';
+import { TableRowType } from 'helpers/types';
 
 import { IProps } from './types';
 import * as S from './styles';
@@ -55,12 +55,12 @@ export default function Table(props: IProps) {
 									);
 								})}
 							</S.TableHeader>
-							{currentRecords.map((element: KeyValueType, index: number) => {
+							{currentRecords.map((element: TableRowType, index: number) => {
 								return (
-									<S.Row key={index} even={index % 2 === 0}>
-										{Object.keys(element).map((row: string, rowIndex: number) => {
+									<S.Row key={index} active={element.active} viewed={element.viewed}>
+										{Object.keys(element.data).map((row: string, rowIndex: number) => {
 											const rowData =
-												typeof element[row] === 'object' ? element[row] : <p>{element[row]}</p>;
+												typeof element.data[row] === 'object' ? element.data[row] : <p>{element.data[row]}</p>;
 											return (
 												<S.TData
 													key={rowIndex}

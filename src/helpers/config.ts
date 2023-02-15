@@ -12,7 +12,7 @@ import { LANGUAGE } from 'helpers/language';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.0.5',
+	version: '1.0.7',
 };
 
 export const TAGS = {
@@ -78,6 +78,7 @@ export const ASSETS = {
 	bookmark: `${ASSET_SRC}/bookmark.svg`,
 	bookmarkSelected: `${ASSET_SRC}/bookmark-selected.svg`,
 	bookmarks: `${ASSET_SRC}/bookmarks.svg`,
+	checkmark: `${ASSET_SRC}/checkmark.svg`,
 	close: `${ASSET_SRC}/close.svg`,
 	collections: `${ASSET_SRC}/collections.svg`,
 	contributions: `${ASSET_SRC}/contributions.svg`,
@@ -267,5 +268,7 @@ export const SEARCH = {
 	idTerm: '`*',
 	ownerTerm: '`%',
 };
+
+export const POOL_INDEX_CONTRACT_ID = 'ucjXooi8LYxYTwlsdOKHV_03a2M8qrduYYQS_rs1DHc';
 
 export const OPERATOR_LINK = 'https://alex-operator-guide.arweave.dev/';

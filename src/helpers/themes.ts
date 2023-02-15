@@ -16,6 +16,7 @@ const DEFAULT = {
 	neutral13: '#F7F7F7',
 	neutral14: '#FFFFFF',
 	neutral15: '#536471',
+	neutral16: '#F0F9FE',
 	primary: '#003153',
 	primary2: '#265F85',
 	primary3: '#4C8CB8',
@@ -99,7 +100,7 @@ export const defaultTheme: DefaultTheme = {
 		},
 		checkbox: {
 			active: {
-				background: DEFAULT.alt1,
+				background: DEFAULT.primary2,
 			},
 			background: DEFAULT.neutral1,
 			hover: DEFAULT.neutral9,
@@ -229,6 +230,12 @@ export const defaultTheme: DefaultTheme = {
 				backgroundSlide: DEFAULT.semiTransparent,
 				backgroundEnd: DEFAULT.transparent,
 			},
+			row: {
+				active: {
+					background: DEFAULT.neutral16,
+					border: DEFAULT.primary4
+				}
+			}
 		},
 		tabs: {
 			active: DEFAULT.primary,
@@ -242,8 +249,8 @@ export const defaultTheme: DefaultTheme = {
 	},
 	typography: {
 		family: {
-			primary: "'Fira Sans', sans-serif",
-			alt1: "'PT Serif', serif",
+			primary: `'Fira Sans', sans-serif`,
+			alt1: `'PT Serif', serif`,
 		},
 		size: {
 			h1: '48px',

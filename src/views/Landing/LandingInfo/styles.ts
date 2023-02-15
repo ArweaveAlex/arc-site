@@ -112,7 +112,7 @@ export const Title = styled.h2`
 		font-family: ${(props) => props.theme.typography.family.alt1};
 		color: ${(props) => props.theme.colors.font.primary.alt2};
 		font-size: ${(props) => props.theme.typography.size.h2};
-		font-weight: ${(props) => props.theme.typography.weight.bold};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
 `;
 

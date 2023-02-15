@@ -28,9 +28,9 @@ export const Label = styled.div`
 		margin: 0 20px 0 0;
 	}
 	span {
-		font-size: 24px;
+		font-size: 26px;
+		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.base};
-		font-family: ${(props) => props.theme.typography.family.alt1};
 	}
 `;
 

@@ -154,10 +154,9 @@ export const TileData = styled.div`
 	transform: translate(-50%, -50%);
 	display: flex;
 	p {
-		font-size: 24px;
+		font-size: 26px;
 		color: ${(props) => props.theme.colors.font.primary.active.base};
-		font-family: ${(props) => props.theme.typography.family.alt1};
-		font-weight: ${(props) => props.theme.typography.weight.bold};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
 		text-align: center;
 	}
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
