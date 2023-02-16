@@ -81,7 +81,7 @@ export const SAContainer = styled.div`
 			border-width: 5px;
 			border-style: solid;
 			border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent}
-				${(props) => props.theme.colors.border.alt1} ${(props) => props.theme.colors.transparent} ;
+				${(props) => props.theme.colors.border.alt1} ${(props) => props.theme.colors.transparent};
 		}
 	}
 `;

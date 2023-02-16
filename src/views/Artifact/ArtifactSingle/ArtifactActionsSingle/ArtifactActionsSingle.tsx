@@ -42,7 +42,6 @@ export default function ArtifactActionsSingle(props: IProps) {
 						label={showStampWidget ? LANGUAGE.close : LANGUAGE.stamp}
 						handlePress={() => setShowStampWidget(!showStampWidget)}
 						width={100}
-						
 					/>
 				</S.ButtonContainer>
 			</S.ButtonsContainer>

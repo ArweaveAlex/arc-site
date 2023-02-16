@@ -201,7 +201,7 @@ export const defaultTheme: DefaultTheme = {
 			},
 		},
 		loader: {
-			primary: DEFAULT.primary3
+			primary: DEFAULT.primary3,
 		},
 		navigation: {
 			footer: {

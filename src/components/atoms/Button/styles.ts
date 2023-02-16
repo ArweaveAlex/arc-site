@@ -4,13 +4,11 @@ import { STYLING } from 'helpers/styling';
 
 function getWidth(noMinWidth: boolean | undefined, width: number | undefined) {
 	if (width) {
-		return `${width.toString()}px`
-	}
-	else {
+		return `${width.toString()}px`;
+	} else {
 		if (noMinWidth) {
 			return 'none';
-		}
-		else {
+		} else {
 			return STYLING.dimensions.buttonWidth;
 		}
 	}
