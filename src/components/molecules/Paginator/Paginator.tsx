@@ -42,7 +42,10 @@ export default function Paginator(props: IProps) {
 	function handleScroll() {
 		if (props.scrollRef.current) {
 			setTimeout(function () {
-				props.scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				props.scrollRef.current.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start',
+				});
 			}, 1);
 		}
 	}

@@ -37,7 +37,10 @@ function StampAction(props: { balance: number; handleSubmit: (amount: number) =>
 						value={amount}
 						onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(e.target.value)}
 						disabled={false}
-						invalid={{ status: invalid, message: invalid ? LANGUAGE.amountExceedsBalance : null }}
+						invalid={{
+							status: invalid,
+							message: invalid ? LANGUAGE.amountExceedsBalance : null,
+						}}
 						sm
 					/>
 				</S.SAInput>
@@ -60,7 +63,11 @@ export default function StampWidget(props: IProps) {
 	const stamps = Stamps.init({ warp: props.warp });
 
 	const [loading, setLoading] = React.useState<boolean>(true);
-	const [count, setCount] = React.useState<{ total: number; vouched: number; super: number } | null>(null);
+	const [count, setCount] = React.useState<{
+		total: number;
+		vouched: number;
+		super: number;
+	} | null>(null);
 	const [updateCount, setUpdateCount] = React.useState<boolean>(false);
 	const [balance, setBalance] = React.useState<number>(0);
 

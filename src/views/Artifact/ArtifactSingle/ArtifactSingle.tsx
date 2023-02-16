@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ArtifactHeaderSingle } from './ArtifactHeaderSingle';
+// import { ArtifactActionsSingle } from './ArtifactActionsSingle';
 import { ArtifactDetailSingle } from './ArtifactDetailSingle';
 import { ArtifactViewSingle } from './ArtifactViewSingle';
 
@@ -73,6 +74,7 @@ export default function ArtifactSingle(props: IProps) {
 							type={getArtifactType()}
 							onTabPropClick={(label: string) => handleTabClick(label)}
 						/>
+						{/* <ArtifactActionsSingle /> */}
 						<S.FlexWrapper>
 							<S.ArtifactWrapper>{getArtifact()}</S.ArtifactWrapper>
 						</S.FlexWrapper>

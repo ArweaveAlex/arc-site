@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 	position: fixed;
 	max-width: calc(${STYLING.cutoffs.max} - 40px);
 	z-index: 4;
-	height: 140px;
+	height: 100px;
 	top: ${STYLING.dimensions.navHeight};
 	background: ${(props) => props.theme.colors.view.background};
 	@media (max-width: ${STYLING.cutoffs.initial}) {

@@ -161,7 +161,11 @@ function handleCursors(
 
 		if (cursorObject) {
 			cursorState.cursors = cursorList;
-			store.dispatch(cursorActions.setCursors({ [cursorObject]: { [reduxCursor]: cursorState } }));
+			store.dispatch(
+				cursorActions.setCursors({
+					[cursorObject]: { [reduxCursor]: cursorState },
+				})
+			);
 		}
 	}
 }

@@ -43,7 +43,10 @@ export async function getPoolById(poolId: string): Promise<PoolType | null> {
 
 	try {
 		const contract = arClient.warp.contract(poolId).setEvaluationOptions({ allowBigInt: true });
-		return { id: poolId, state: ((await contract.readState()) as any).cachedValue.state };
+		return {
+			id: poolId,
+			state: ((await contract.readState()) as any).cachedValue.state,
+		};
 	} catch (error: any) {
 		console.error(error);
 		return null;
@@ -94,7 +97,10 @@ export async function getPoolSearchIndexById(poolSearchIndexId: string): Promise
 
 	try {
 		const contract = arClient.warp.contract(poolSearchIndexId).setEvaluationOptions({ allowBigInt: true });
-		return { id: poolSearchIndexId, state: ((await contract.readState()) as any).cachedValue.state };
+		return {
+			id: poolSearchIndexId,
+			state: ((await contract.readState()) as any).cachedValue.state,
+		};
 	} catch (error: any) {
 		console.error(error);
 		return null;

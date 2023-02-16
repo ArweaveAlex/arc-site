@@ -147,7 +147,11 @@ export const THeader = styled(RowData)<{
 	}
 `;
 
-export const TData = styled(RowData)<{ even: boolean; width: string; active: boolean }>`
+export const TData = styled(RowData)<{
+	even: boolean;
+	width: string;
+	active: boolean;
+}>`
 	width: ${(props) => props.width};
 	min-width: 60px;
 	background: none;

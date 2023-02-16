@@ -170,7 +170,10 @@ export default class ArweaveClient {
 			return { status: false, message: LANGUAGE.walletNotConnected };
 		}
 		if (amount > availableBalance) {
-			return { status: false, message: LANGUAGE.pool.contribute.notEnoughFunds };
+			return {
+				status: false,
+				message: LANGUAGE.pool.contribute.notEnoughFunds,
+			};
 		}
 		try {
 			const arweaveContract: GQLResponseType = (
