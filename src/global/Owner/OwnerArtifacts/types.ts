@@ -11,4 +11,5 @@ export interface IProps {
 	cursorObject: CursorObjectType;
 	selectCallback: ((id: string) => void) | null;
 	selectedCallbackIds: string[] | null;
+	usePreviewModal: boolean;
 }

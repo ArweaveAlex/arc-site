@@ -26,7 +26,7 @@ export const Dropdown = styled.ul<{ openDown: boolean; height: number }>`
 	top: ${(props) => (props.openDown ? `26.5px` : `-${props.height.toString()}px`)};
 	right: 45%;
 	z-index: 1;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusField};
 `;

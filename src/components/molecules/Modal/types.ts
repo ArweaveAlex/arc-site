@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface IProps {
-	title: string;
+	header: string | null;
 	handleClose: () => void;
 	children: React.ReactNode;
 }

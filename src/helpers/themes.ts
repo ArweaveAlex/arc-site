@@ -23,9 +23,7 @@ const DEFAULT = {
 	primary4: '#A4CCE9',
 	alt1: '#DAA520',
 	alt2: '#FFD877',
-	overlay1: 'rgba(193, 193, 193, 0.75)',
-	overlay2: 'rgba(193, 193, 193, 0.75)',
-	overlay3: 'rgba(193, 193, 193, 0.85)',
+	overlay1: 'rgba(255, 255, 255, 0.75)',
 	contrast: '#EE3C3C',
 	contrastShadow: '#F27979',
 	success: '#32C422',
@@ -41,12 +39,9 @@ export const defaultTheme: DefaultTheme = {
 	colors: {
 		border: {
 			primary: DEFAULT.neutral5,
-			alt1: DEFAULT.neutral5,
-			alt2: DEFAULT.primary3,
-			alt3: DEFAULT.primary4,
-			alt4: DEFAULT.primary,
-			alt5: DEFAULT.neutral5,
-			alt6: DEFAULT.neutral6,
+			alt1: DEFAULT.primary3,
+			alt2: DEFAULT.primary4,
+			alt3: DEFAULT.neutral6,
 		},
 		button: {
 			primary: {
@@ -126,10 +121,7 @@ export const defaultTheme: DefaultTheme = {
 			},
 			alt5: {
 				background: DEFAULT.neutral11,
-			},
-			alt6: {
-				background: DEFAULT.neutral1,
-			},
+			}
 		},
 		font: {
 			primary: {
@@ -214,17 +206,14 @@ export const defaultTheme: DefaultTheme = {
 		},
 		notification: {
 			success: DEFAULT.success,
-			contrast: DEFAULT.contrast,
+			warning: DEFAULT.contrast,
 			neutral: DEFAULT.neutral,
 		},
 		overlay: {
-			primary: DEFAULT.overlay1,
-			alt1: DEFAULT.overlay2,
-			alt2: DEFAULT.overlay3,
+			primary: DEFAULT.overlay1
 		},
 		shadow: {
-			primary: DEFAULT.neutral7,
-			alt1: DEFAULT.neutral9,
+			primary: DEFAULT.neutral9
 		},
 		table: {
 			placeholder: {

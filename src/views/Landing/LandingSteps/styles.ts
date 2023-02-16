@@ -24,10 +24,10 @@ export const Header = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 30px 20px;
 	margin: 0 auto 40px auto;
 `;
@@ -101,10 +101,10 @@ export const Asset = styled.div<{ image: string }>`
 export const StepList = styled.div`
 	height: 100%;
 	width: 50%;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 20px;
 	> * {
 		&:last-child {

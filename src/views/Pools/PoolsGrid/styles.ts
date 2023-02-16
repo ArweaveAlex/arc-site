@@ -74,8 +74,8 @@ export const Info = styled.div`
 	top: 10px;
 	right: 12.5px;
 	padding: 6.5px 17.5px;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	p {
 		font-size: ${(props) => props.theme.typography.size.xSmall};

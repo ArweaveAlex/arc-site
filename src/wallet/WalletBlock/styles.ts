@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	display: flex;
 	flex-direction: column;

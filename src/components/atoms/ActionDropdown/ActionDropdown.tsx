@@ -10,18 +10,15 @@ import { IProps } from './types';
 import * as S from './styles';
 
 export default function ActionDropdown(props: IProps) {
-	// const [openDown, setOpenDown] = React.useState<boolean>(true);
-	const [showDropdown, setShowDropdown] = React.useState<boolean>(false);
-
 	const dropdownHeight = 32.5 * props.actions.length + 10;
 
 	const escFunction = React.useCallback(
 		(e: any) => {
-			if (e.key === 'Escape' && showDropdown) {
-				setShowDropdown(false);
+			if (e.key === 'Escape' && props.open && !props.closeDisabled) {
+				props.handleCallback()
 			}
 		},
-		[showDropdown]
+		[props]
 	);
 
 	React.useEffect(() => {
@@ -33,35 +30,29 @@ export default function ActionDropdown(props: IProps) {
 	}, [escFunction]);
 
 	function handleCallback() {
-		setShowDropdown(!showDropdown);
-		props.handleCallback();
+		if (!props.closeDisabled) {
+			props.handleCallback();
+		}
 	}
 
 	function handleShowDropdown(e: any) {
-		// if (e) {
-		// 	let m = window.innerHeight / 1.325;
-		// 	if (e.clientY > m) {
-		// 		setOpenDown(false);
-		// 	} else {
-		// 		setOpenDown(true);
-		// 	}
-		// }
-		props.handleShowDropdown();
-		setShowDropdown(!showDropdown);
+		if (!props.closeDisabled) {
+			props.handleShowDropdown();
+		}
 	}
 
 	function runAction(action: () => void, closeOnAction: boolean) {
 		action();
 		if (closeOnAction) {
-			setShowDropdown(false);
+			props.handleCallback()
 		}
 	}
 
 	return (
-		<CloseHandler callback={() => handleCallback()} active={showDropdown}>
+		<CloseHandler callback={() => handleCallback()} active={props.open} disabled={props.closeDisabled}>
 			<S.Wrapper>
 				<IconButton type={'primary'} src={ASSETS.menuAction} handlePress={(e: any) => handleShowDropdown(e)} />
-				{showDropdown && (
+				{props.open && (
 					<S.Dropdown openDown={true} height={dropdownHeight}>
 						{props.actions.map((action, index) => {
 							return (

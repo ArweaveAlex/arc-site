@@ -13,7 +13,7 @@ export const WidgetContainer = styled.div`
 	width: 215px;
 	padding: 10px 30px 10px 15px;
 	animation: ${open} ${fadeIn1};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	display: flex;
@@ -31,7 +31,7 @@ export const Action = styled.div`
 export const Title = styled.div`
 	width: fit-content;
 	padding: 2.5px 10px;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	p {
@@ -56,7 +56,7 @@ export const SAContainer = styled.div`
 	right: 65%;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn1};
@@ -68,7 +68,7 @@ export const SAContainer = styled.div`
 		border-width: 5px;
 		border-style: solid;
 		border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent}
-			${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.border.alt1};
+			${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.border.primary};
 	}
 	@media (max-width: ${STYLING.cutoffs.secondary}) {
 		right: 0;
@@ -81,7 +81,7 @@ export const SAContainer = styled.div`
 			border-width: 5px;
 			border-style: solid;
 			border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent}
-				${(props) => props.theme.colors.border.alt1} ${(props) => props.theme.colors.transparent};
+				${(props) => props.theme.colors.border.primary} ${(props) => props.theme.colors.transparent};
 		}
 	}
 `;
@@ -98,13 +98,13 @@ export const SABalanceContainer = styled.div`
 	display: flex;
 	align-items: center;
 	padding: 7.5px 12.5px !important;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.alt4.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	svg {
 		fill: ${(props) => props.theme.colors.font.primary.active.base} !important;
-		width: 12.5px;
-		margin: 2.5px 10px 0 0;
+		width: 12.5px !important;
+		margin: 2.5px 10px 0 0 !important;
 	}
 	p {
 		max-width: 85%;
@@ -144,7 +144,7 @@ export const LoadingContainer = styled.div`
 	height: 60px;
 	width: 215px;
 	position: relative;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;
@@ -153,8 +153,8 @@ export const WalletConnectWrapper = styled.div`
 	height: 140px;
 	width: 300px;
 	max-width: 95vw;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn1};
 	display: flex;

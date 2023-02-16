@@ -23,6 +23,6 @@ export const Placeholder = styled.div`
 	background-size: 50px 500px;
 	background-position: 0 0;
 	animation: ${loadingSlide} 1.25s infinite;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusField};
 `;

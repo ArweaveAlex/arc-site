@@ -27,9 +27,9 @@ export const Wrapper = styled.div`
 	width: 555px;
 	max-width: 90vw;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	position: fixed;
 	left: 50%;
 	bottom: 20px;

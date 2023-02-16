@@ -4,6 +4,7 @@ import { STYLING } from 'helpers/styling';
 import { open, fadeIn2 } from 'helpers/animations';
 
 export const LIWrapper = styled.div<{ isListItem: boolean; active: boolean }>`
+	height: 100%;
 	width: 100%;
 	border-bottom: ${(props) => (props.isListItem ? `1px solid ${props.theme.colors.border.primary}` : 'none')};
 	animation: ${open} ${fadeIn2};
@@ -124,6 +125,7 @@ export const ALinkNT = styled.div`
 `;
 
 export const LIBody = styled.div`
+	height: 100%;
 	width: 100%;
 	margin: 25px 0 0 0;
 `;
@@ -218,7 +220,7 @@ export const SingleWrapper = styled.div`
 		right: auto;
 		margin: 0 auto 20px auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
@@ -242,7 +244,7 @@ export const SingleContent = styled.div`
 		position: relative;
 		top: auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		height: auto;
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
@@ -256,7 +258,7 @@ export const HeaderWrapper = styled.div`
 	width: 100%;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	padding: 20px 20px 15px 20px;
 	margin: 0 0 20px 0;
@@ -271,7 +273,7 @@ export const HeaderWrapper = styled.div`
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		margin: 20px 0;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		margin: 20px 0;
 	}
 `;
@@ -330,7 +332,7 @@ export const ActionContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 	button {
 		height: 100% !important;
 		width: 100% !important;
@@ -355,7 +357,7 @@ export const ChildAssetContainer = styled.div`
 	margin: 15px 0 0 0;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt6};
+	border: 1px solid ${(props) => props.theme.colors.border.alt3};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;
 
@@ -376,7 +378,7 @@ export const MediaElement = styled.div`
 export const MediaContent = styled.div`
 	height: ${STYLING.dimensions.messagingContent};
 	width: 100%;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.alt5.background};
 	border-radius: ${STYLING.dimensions.borderRadius};
 `;
@@ -405,7 +407,7 @@ export const ArweaveLinkWrapper = styled.div`
 	height: 100px;
 	width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadius};
 	margin: 20px 0;
 	&:hover {

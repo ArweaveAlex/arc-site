@@ -24,6 +24,7 @@ export default function LibraryAll() {
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.libraryAll,
 			}}
+			usePreviewModal={true}
 		/>
 	) : null;
 }

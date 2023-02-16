@@ -16,12 +16,12 @@ export default function Account() {
 	const arProvider = useArweaveProvider();
 
 	const [copied, setCopied] = React.useState<boolean>(false);
-	const [showWalletConnect, setShowWalletConnect] = React.useState<boolean>(false);
+	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
 		setTimeout(() => {
 			if (!arProvider.walletAddress) {
-				setShowWalletConnect(true);
+				setShowWalletBlock(true);
 			}
 		}, 200);
 	}, [arProvider.walletAddress]);
@@ -70,6 +70,6 @@ export default function Account() {
 			</S.TabsWrapper>
 		</S.Wrapper>
 	) : (
-		showWalletConnect && <WalletBlock />
+		showWalletBlock && <WalletBlock />
 	);
 }

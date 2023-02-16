@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 	width: 100%;
 	position: relative;
 	padding: 20px;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
@@ -19,6 +19,10 @@ export const Container = styled.div`
 	width: 100%;
 	position: relative;
 	overflow: auto;
+	scrollbar-width: none;
+	::-webkit-scrollbar {
+		width: 0px;
+	}
 
 	p,
 	span,
@@ -5950,7 +5954,7 @@ export const Container = styled.div`
 export const LoadingContainer = styled.div`
 	height: 200px;
 	width: 100%;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;

@@ -22,6 +22,7 @@ export default function PoolDetail(props: IProps) {
 			selectedCallbackIds={null}
 			owner={null}
 			uploader={props.uploader}
+			usePreviewModal={true}
 		/>
 	);
 }

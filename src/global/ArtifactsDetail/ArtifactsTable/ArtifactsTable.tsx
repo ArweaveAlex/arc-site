@@ -177,6 +177,7 @@ export default function ArtifactsTable(props: IProps) {
 				bookmarksDisabled={props.bookmarksDisabled}
 				handleStampCallback={() => setUpdateStamps(!updateStamps)}
 				handleViewedCallback={() => setUpdateViews(!updateViews)}
+				usePreviewModal={props.usePreviewModal}
 			/>
 		);
 	}

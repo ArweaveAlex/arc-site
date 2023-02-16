@@ -56,7 +56,7 @@ export const EndTextContainer = styled.div<{
 	height: 100%;
 	max-width: 100px;
 	position: absolute;
-	top: ${(props) => (props.sm ? '42.5%' : '35%')};
+	top: ${(props) => (props.sm ? '42.5%' : '37.5%')};
 	right: 47.5px;
 	transform: translate(0, -50%);
 	display: flex;
@@ -84,7 +84,8 @@ export const ErrorContainer = styled.div`
 `;
 
 export const Error = styled.span`
-	font-size: ${(props) => props.theme.typography.size.xSmall};
+	font-size: ${(props) => props.theme.typography.size.xxSmall};
+	font-weight: ${(props) => props.theme.typography.weight.medium};
 	border-left: 3.5px solid ${(props) => props.theme.colors.font.primary.invalid};
 	padding-left: 5px;
 `;

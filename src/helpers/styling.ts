@@ -5,6 +5,7 @@ export const STYLING = {
 		tablet: '840px',
 		secondary: '540px',
 		max: '1400px',
+		mobileLandscape: '600px',
 	},
 	dimensions: {
 		borderRadius: '10px',
@@ -26,10 +27,5 @@ export const STYLING = {
 };
 
 export function getImageShadow(theme: any) {
-	if (theme) {
-		return '';
-		// return `${theme.colors.image.shadow1} 0px 26px 30px -10px, ${theme.colors.image.shadow2} 0px 16px 10px -10px`;
-	} else {
-		return '';
-	}
+	return '';
 }

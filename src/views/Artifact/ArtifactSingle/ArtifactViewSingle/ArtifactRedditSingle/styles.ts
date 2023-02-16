@@ -4,8 +4,8 @@ import { STYLING } from 'helpers/styling';
 import { open, fadeIn2 } from 'helpers/animations';
 
 export const Wrapper = styled.div`
+	height: 100%;
     display: flex;
-    width: 1125px;
     max-width: 100%;
     margin: 0 auto;
     position: relative;
@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		width: auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		width: auto;
 	}
 `;
@@ -26,6 +26,11 @@ export const ListWrapper = styled.div`
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	overflow: auto;
+	scrollbar-width: none;
+	::-webkit-scrollbar {
+		width: 0px;
+	}
 `;
 
 export const PostWrapper = styled.div`
@@ -36,7 +41,6 @@ export const PostWrapper = styled.div`
 export const HeaderWrapper = styled(PostWrapper)``;
 
 export const PostContent = styled.div`
-	height: 100%;
 	width: 100%;
 	animation: ${open} ${fadeIn2};
 	word-wrap: break-word;
@@ -100,7 +104,7 @@ export const HeaderBodyPreview = styled.div<{ image: string }>`
 	height: 125px;
 	width: 25%;
 	min-width: 125px;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	background-image: ${(props) => `url("${props.image}")`};
@@ -179,7 +183,7 @@ export const CommentBody = styled.p`
 export const LoadingContainer = styled.div`
 	height: 200px;
 	width: 100%;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;

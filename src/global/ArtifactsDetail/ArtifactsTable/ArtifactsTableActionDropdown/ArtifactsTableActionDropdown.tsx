@@ -11,6 +11,7 @@ import { getBookmarkIds, setBookmarkIds, getArtifactById } from 'gql/artifacts';
 import { StampWidget } from 'global/StampWidget';
 import { ArtifactViewSingle } from 'views/Artifact/ArtifactSingle/ArtifactViewSingle';
 
+import { Modal } from 'components/molecules/Modal';
 import { Notification } from 'components/atoms/Notification';
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 
@@ -22,7 +23,7 @@ import { ArtifactDetailType, NotificationResponseType } from 'helpers/types';
 import { IProps } from './types';
 import * as S from './styles';
 
-function Preview(props: { artifactId: string }) {
+function Preview(props: { artifactId: string; useModal: boolean; handleClose: () => void }) {
 	const [data, setData] = React.useState<ArtifactDetailType | null>(null);
 
 	React.useEffect(() => {
@@ -33,7 +34,13 @@ function Preview(props: { artifactId: string }) {
 		})();
 	}, [props.artifactId, data]);
 
-	return (
+	return props.useModal ? (
+		<Modal header={null} handleClose={() => props.handleClose()}>
+			<S.ModalPreviewContainer>
+				<ArtifactViewSingle data={data} />
+			</S.ModalPreviewContainer>
+		</Modal>
+	) : (
 		<S.PreviewContainer>
 			<ArtifactViewSingle data={data} />
 		</S.PreviewContainer>
@@ -59,11 +66,14 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	const escFunction = React.useCallback(
 		(e: any) => {
-			if (e.key === 'Escape' && (showPreview || showStampWidget)) {
+			if (e.key === 'Escape' && ((showPreview && !props.usePreviewModal) || showStampWidget)) {
 				setShowPreview(false);
+				if (showStampWidget) {
+					setShowStampWidget(false);
+				}
 			}
 		},
-		[showPreview, showStampWidget]
+		[showPreview, showStampWidget, props.usePreviewModal]
 	);
 
 	React.useEffect(() => {
@@ -121,7 +131,13 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	function getPreview() {
 		return {
-			node: <Preview artifactId={props.artifactId} />,
+			node: (
+				<Preview
+					artifactId={props.artifactId}
+					useModal={props.usePreviewModal}
+					handleClose={() => handleCallback()}
+				/>
+			),
 			active: showPreview,
 		};
 	}
@@ -244,9 +260,11 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				/>
 			)}
 			<ActionDropdown
+				open={dropdownOpen}
 				handleCallback={handleCallback}
 				handleShowDropdown={() => setDropdownOpen(!dropdownOpen)}
 				actions={getActions()}
+				closeDisabled={showPreview && props.usePreviewModal}
 			/>
 		</>
 	);

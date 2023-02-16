@@ -24,6 +24,7 @@ export default function LibraryBookmark() {
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.libraryBookmarks,
 			}}
+			usePreviewModal={true}
 		/>
 	) : null;
 }

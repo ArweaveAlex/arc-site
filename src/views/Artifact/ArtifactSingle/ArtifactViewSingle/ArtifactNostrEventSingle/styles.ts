@@ -6,7 +6,7 @@ import { open, fadeIn2 } from 'helpers/animations';
 export const Wrapper = styled.div`
     display: flex;
     width: ${STYLING.dimensions.threadWidth};
-    max-width: 90vw;
+    max-width: 100%;
     margin: 0 auto;
     position: relative;
     display flex;
@@ -23,7 +23,7 @@ export const DetailWrapper = styled.div`
 	animation: ${open} ${fadeIn2};
 	padding: 20px;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	z-index: 3;
 `;

@@ -58,7 +58,7 @@ export const ListItemWrapper = styled.li`
 	display: flex;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	&:hover {
 		background: ${(props) => props.theme.colors.container.primary.hover};
@@ -199,9 +199,9 @@ export const EWrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	background: ${(props) => props.theme.colors.container.alt4.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	animation: ${open} ${fadeIn2};
 `;
 
@@ -214,7 +214,7 @@ export const ELogo = styled.div`
 	justify-content: center;
 	align-items: center;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: 50%;
 
 	svg {

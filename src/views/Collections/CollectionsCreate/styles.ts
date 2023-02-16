@@ -45,12 +45,16 @@ export const HeaderContentFixed = styled.div`
 
 export const Header1Wrapper = styled.div`
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 20px;
 	margin: 20px 0;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		border: none;
+		box-shadow: none;
+	}
 `;
 
 export const H2 = styled.h2`
@@ -71,19 +75,25 @@ export const ContentWrapper = styled.div`
 	width: 100%;
 	max-width: calc(${STYLING.cutoffs.max} - 40px);
 	margin: calc(${STYLING.dimensions.navHeight} + 125px) auto 0 auto;
-	position: relative;
+	display: flex;
+	justify-content: space-between;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		flex-direction: column-reverse;
 	}
 `;
 
 export const ArtifactsWrapper = styled.div`
-	width: 100%;
+	width: calc(100% - 400px);
+	padding: 0 10px 0 0;
+	position: relative;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		width: 100%;
+	}
 `;
 
 export const FormWrapper = styled.div`
 	position: relative;
-	width: 100%;
+	width: 375px;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;
 	}
@@ -91,22 +101,33 @@ export const FormWrapper = styled.div`
 
 export const FormContainer = styled.div`
 	height: 100%;
-	width: 450px;
-	max-width: 90vw;
-	padding: 25px;
-	margin: 20px auto;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
-	border-radius: ${STYLING.dimensions.borderRadius};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
-	animation: ${open} ${fadeIn2};
+	width: 100%;
+	position: absolute;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		position: relative;
 	}
 `;
 
 export const FormFixedContainer = styled.div`
-	width: 100%;
+	height: fit-content;
+	max-height: 65vh;
+	width: 375px;
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
+	padding: 20px;
+	position: fixed;
+	overflow: auto;
+	scrollbar-width: none;
+	::-webkit-scrollbar {
+		width: 0px;
+	}
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		max-height: none;
+		position: relative;
+		width: 100%;
+		margin: 0 0 40px;
+	}
 `;
 
 export const FormHeader = styled.div`
@@ -128,4 +149,7 @@ export const Form = styled.form``;
 export const SubmitContainer = styled.div`
 	width: fit-content;
 	margin: 0 0 0 auto;
+	position: fixed;
+	bottom: 20px;
+	right: 68px;
 `;

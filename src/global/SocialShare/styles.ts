@@ -58,7 +58,7 @@ export const URLCopied = styled.div`
 	right: 90%;
 	z-index: 5;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	padding: 6.5px 15px 5px 15px;
 	p {
 		font-size: 12px;

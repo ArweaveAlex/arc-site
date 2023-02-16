@@ -24,10 +24,10 @@ export const HeaderWrapper = styled.div`
 export const HeaderContent = styled.div`
 	height: 100%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 30px 20px;
 	display: flex;
 	align-items: center;
@@ -52,7 +52,7 @@ export const FlexHeader = styled.div`
 
 export const H2 = styled.h2`
 	font-size: 28px;
-	line-height: 1.25;
+	line-height: 1.5;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		font-size: 24px;
 	}

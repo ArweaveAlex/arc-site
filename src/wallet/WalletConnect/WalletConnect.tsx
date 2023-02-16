@@ -66,10 +66,10 @@ export default function WalletConnect(props: { callback: () => void }) {
 	}
 
 	return (
-		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown}>
+		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown} disabled={false}>
 			<S.Wrapper>
 				{arProvider.walletModalVisible && (
-					<Modal title={LANGUAGE.connectWallet} handleClose={() => arProvider.setWalletModalVisible(false)}>
+					<Modal header={LANGUAGE.connectWallet} handleClose={() => arProvider.setWalletModalVisible(false)}>
 						<WalletList />
 					</Modal>
 				)}

@@ -23,6 +23,7 @@ export default function AccountBookmark() {
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.accountBookmarks,
 			}}
+			usePreviewModal={true}
 		/>
 	) : null;
 }

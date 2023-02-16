@@ -92,6 +92,7 @@ export interface CollectionType {
 export interface CollectionStateType {
 	ids: string[];
 	title: string;
+	topic: string;
 	description: string;
 	timestamp: string;
 }

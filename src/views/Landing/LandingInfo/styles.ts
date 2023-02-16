@@ -23,10 +23,10 @@ export const Header = styled.div`
 	margin: 0 auto 40px 0;
 	display: flex;
 	flex-direction: column;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 30px 20px;
 	align-items: center;
 	justify-content: center;
@@ -92,10 +92,10 @@ export const Body = styled.div`
 export const InfoContainer = styled.div`
 	height: 100%;
 	width: 51.5%;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 20px;
 	overflow-y: auto;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {

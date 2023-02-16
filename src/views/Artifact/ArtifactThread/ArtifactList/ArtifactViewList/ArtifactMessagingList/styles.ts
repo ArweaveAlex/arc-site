@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
     @media(max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
         flex-direction: column-reverse;
     }
-    @media(max-height: 600px) {
+    @media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
         flex-direction: column-reverse;
     }
 `;
@@ -32,7 +32,7 @@ export const ListWrapper = styled.div`
 		width: ${STYLING.dimensions.wrapWidth};
 		margin: 0 auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		width: ${STYLING.dimensions.wrapWidth};
 		margin: 0 auto;
 	}
@@ -49,7 +49,7 @@ export const HDWrapper = styled.div`
 		right: auto;
 		margin: 0 auto 20px auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
@@ -79,7 +79,7 @@ export const HDContent = styled.div`
 		position: relative;
 		top: auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		height: auto;
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
@@ -93,7 +93,7 @@ export const HeaderWrapper = styled.div`
 	width: 100%;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	padding: 20px 20px 15px 20px;
 	margin: 0 0 20px 0;
@@ -108,7 +108,7 @@ export const HeaderWrapper = styled.div`
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		margin: 20px 0;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		margin: 20px 0;
 	}
 `;
@@ -158,7 +158,7 @@ export const DetailWrapper = styled.div`
 	position: relative;
 	animation: ${open} ${fadeIn2};
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	z-index: 3;
 `;
@@ -177,7 +177,7 @@ export const ActionContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 	button {
 		height: 100% !important;
 		width: 100% !important;

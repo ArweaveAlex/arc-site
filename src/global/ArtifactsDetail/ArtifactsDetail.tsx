@@ -125,6 +125,7 @@ export default function ArtifactsDetail(props: IProps) {
 			bookmarksDisabled={props.bookmarksDisabled}
 			selectCallback={props.selectCallback}
 			selectedCallbackIds={props.selectedCallbackIds}
+			usePreviewModal={props.usePreviewModal}
 		/>
 	);
 }

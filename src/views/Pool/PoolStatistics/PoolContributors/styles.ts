@@ -34,10 +34,10 @@ export const Header = styled.div`
 export const Body = styled.div`
 	height: calc(100% - 50px);
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 0 15px;
 	animation: ${open} ${fadeIn2};
 `;
@@ -47,7 +47,7 @@ export const Row = styled.div<{ isEnd: boolean }>`
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid
-		${(props) => (props.isEnd ? props.theme.colors.border.alt3 : props.theme.colors.transparent)};
+		${(props) => (props.isEnd ? props.theme.colors.border.alt2 : props.theme.colors.transparent)};
 `;
 
 export const InfoData = styled.div`

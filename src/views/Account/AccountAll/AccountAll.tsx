@@ -23,6 +23,7 @@ export default function AccountAll() {
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.accountAll,
 			}}
+			usePreviewModal={true}
 		/>
 	) : null;
 }

@@ -21,10 +21,10 @@ export const HeaderWrapper = styled.div`
 export const HeaderContent = styled.div`
 	height: 100%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 30px 20px;
 	margin: 0 0 40px 0;
 	display: flex;
@@ -63,7 +63,7 @@ export const URLCopied = styled.div`
 	left: -100px;
 	z-index: 3;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	padding: 6.5px 15px 5px 15px;
 	p {
 		font-size: 12px;

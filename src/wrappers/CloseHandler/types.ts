@@ -4,4 +4,5 @@ export interface IProps {
 	active: boolean;
 	callback: () => void;
 	children: React.ReactNode;
+	disabled: boolean;
 }

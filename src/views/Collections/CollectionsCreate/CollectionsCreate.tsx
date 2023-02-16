@@ -21,7 +21,18 @@ export default function CollectionsCreate() {
 	const query = useQuery();
 	const arProvider = useArweaveProvider();
 
+	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
+
+	React.useEffect(() => {
+		setTimeout(() => {
+			if (!arProvider.walletAddress) {
+				setShowWalletBlock(true);
+			}
+		}, 200);
+	}, [arProvider.walletAddress]);
+
 	const [title, setTitle] = React.useState<string>('');
+	const [topic, setTopic] = React.useState<string>('');
 	const [description, setDescription] = React.useState<string>('');
 	const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
 
@@ -39,16 +50,26 @@ export default function CollectionsCreate() {
 		setSelectedIds(idList);
 	}
 
+	function getSubmitDisabled() {
+		return !title || getInvalidTitle().status|| !topic || !description || selectedIds.length <= 0;
+	}
+
+	function getInvalidTitle() {
+		return { status: false, message: null };
+		// return { status: true, message: LANGUAGE.collectionNameAlreadyExists };
+	}
+
 	async function handleSubmit() {
 		if (arProvider.walletAddress) {
 			const collectionState: CollectionStateType = {
 				ids: selectedIds,
 				title: title,
+				topic: topic,
 				description: description,
 				timestamp: Date.now().toString(),
 			};
 
-			const collectionContractId = await createCollection(collectionState, 'crypto', arProvider.walletAddress);
+			const collectionContractId = await createCollection(collectionState, topic, arProvider.walletAddress);
 			console.log(collectionContractId);
 		}
 	}
@@ -66,6 +87,24 @@ export default function CollectionsCreate() {
 					</S.HeaderContent>
 				</S.HeaderWrapper>
 				<S.ContentWrapper>
+					<S.ArtifactsWrapper>
+						<OwnerArtifacts
+							owner={query.get('owner')}
+							fetch={getArtifactsByUser}
+							reduxCursor={REDUX_TABLES.accountAll}
+							showActions={true}
+							showPoolIds={true}
+							showSearch={false}
+							bookmarksDisabled={false}
+							selectCallback={(id: string) => handleIdUpdate(id)}
+							selectedCallbackIds={selectedIds}
+							cursorObject={{
+								key: CursorEnum.Search,
+								value: REDUX_TABLES.accountAll,
+							}}
+							usePreviewModal={true}
+						/>
+					</S.ArtifactsWrapper>
 					<S.FormWrapper>
 						<S.FormContainer>
 							<S.FormFixedContainer>
@@ -77,6 +116,14 @@ export default function CollectionsCreate() {
 										label={LANGUAGE.title}
 										value={title}
 										onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+										invalid={getInvalidTitle()}
+										disabled={false}
+										sm
+									/>
+									<FormField
+										label={LANGUAGE.topic}
+										value={topic}
+										onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTopic(e.target.value)}
 										invalid={{ status: false, message: null }}
 										disabled={false}
 										sm
@@ -95,6 +142,7 @@ export default function CollectionsCreate() {
 											type={'alt1'}
 											label={LANGUAGE.submit}
 											handlePress={() => handleSubmit()}
+											disabled={getSubmitDisabled()}
 											noMinWidth
 										/>
 									</S.SubmitContainer>
@@ -102,23 +150,6 @@ export default function CollectionsCreate() {
 							</S.FormFixedContainer>
 						</S.FormContainer>
 					</S.FormWrapper>
-					<S.ArtifactsWrapper>
-						<OwnerArtifacts
-							owner={query.get('owner')}
-							fetch={getArtifactsByUser}
-							reduxCursor={REDUX_TABLES.accountAll}
-							showActions={true}
-							showPoolIds={true}
-							showSearch={false}
-							bookmarksDisabled={false}
-							selectCallback={(id: string) => handleIdUpdate(id)}
-							selectedCallbackIds={selectedIds}
-							cursorObject={{
-								key: CursorEnum.Search,
-								value: REDUX_TABLES.accountAll,
-							}}
-						/>
-					</S.ArtifactsWrapper>
 				</S.ContentWrapper>
 			</S.Wrapper>
 		);
@@ -129,6 +160,6 @@ export default function CollectionsCreate() {
 			{getData()}
 		</Query>
 	) : (
-		<WalletBlock />
+		showWalletBlock && <WalletBlock />
 	);
 }

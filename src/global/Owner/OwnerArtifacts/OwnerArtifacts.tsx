@@ -40,6 +40,7 @@ export default function OwnerArtifacts(props: IProps) {
 			uploader={null}
 			selectCallback={props.selectCallback}
 			selectedCallbackIds={props.selectedCallbackIds}
+			usePreviewModal={props.usePreviewModal}
 		/>
 	);
 }

@@ -16,4 +16,5 @@ export interface IProps {
 	owner: string | null;
 	uploader: string | null;
 	selectedCallbackIds: string[] | null;
+	usePreviewModal: boolean;
 }

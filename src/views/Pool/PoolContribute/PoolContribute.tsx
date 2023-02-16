@@ -121,7 +121,7 @@ export default function PoolContribute(props: IProps) {
 				/>
 			)}
 			{showModal && (
-				<Modal title={LANGUAGE.contributeTo} handleClose={() => setShowModal(false)}>
+				<Modal header={LANGUAGE.contributeTo} handleClose={() => setShowModal(false)}>
 					<S.ModalWrapper>
 						<S.Header>
 							<S.HeaderFlex>

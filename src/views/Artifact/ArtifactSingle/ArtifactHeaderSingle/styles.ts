@@ -40,7 +40,7 @@ export const Content = styled.div`
 	width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	position: relative;
 `;
 
@@ -50,10 +50,10 @@ export const Info = styled.div`
 	padding: 0 25px;
 	display: flex;
 	position: relative;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border-top: 1px solid ${(props) => props.theme.colors.border.alt1};
-	border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
-	border-right: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-left: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
@@ -94,9 +94,9 @@ export const InfoData = styled.div`
 		max-width: 100%;
 		margin: 0 10px 10px 0;
 		padding: 10px !important;
-		border: 1px solid ${(props) => props.theme.colors.border.alt1} !important;
+		border: 1px solid ${(props) => props.theme.colors.border.primary} !important;
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper} !important;
-		background: ${(props) => props.theme.colors.container.alt6.background};
+		background: ${(props) => props.theme.colors.container.primary.background};
 	}
 `;
 
@@ -118,7 +118,7 @@ export const InfoStyled = styled(InfoData)`
 		margin: 0 10px 0 0;
 		fill: ${(props) => props.theme.colors.font.primary.active.base};
 	}
-	border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-left: 1px solid ${(props) => props.theme.colors.border.primary};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		border: none;
 		svg {
@@ -156,7 +156,7 @@ export const Divider = styled.div`
 	top: 52.5%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	border-top: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		display: none;
 	}
@@ -165,21 +165,21 @@ export const Divider = styled.div`
 export const Body = styled.div`
 	height: 50%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.alt6.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 25px;
 	border-bottom-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	border-bottom-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	border-bottom: 1px solid ${(props) => props.theme.colors.border.alt1};
-	border-left: 1px solid ${(props) => props.theme.colors.border.alt1};
-	border-right: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-left: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: 50px;
 		margin: 0 auto;
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-		border: 1px solid ${(props) => props.theme.colors.border.alt1};
+		border: 1px solid ${(props) => props.theme.colors.border.primary};
 	}
 `;
 

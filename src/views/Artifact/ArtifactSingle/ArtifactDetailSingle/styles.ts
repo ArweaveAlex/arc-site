@@ -15,7 +15,7 @@ export const IconWrapper = styled.div`
     height 375px;
     width: 375px;
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.alt1};
+    border: 1px solid ${(props) => props.theme.colors.border.primary};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     position: relative;
     p {
@@ -76,7 +76,7 @@ export const ContentLine = styled.div`
 	margin: 0 0 15px 0;
 	padding: 17.5px;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;
 `;
@@ -152,7 +152,7 @@ export const RawDataCopied = styled.div`
 	right: 35px;
 	z-index: 3;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	padding: 6.5px 15px 5px 15px;
 	p {
 		font-size: 12px;
@@ -218,7 +218,7 @@ export const Tags = styled.div`
 export const Tag = styled.div`
 	padding: 8px 14.5px;
 	width: fit-content;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	margin: 0 10px 10px 0;
 	background: ${(props) => props.theme.colors.container.alt4.background};

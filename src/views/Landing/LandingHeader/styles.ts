@@ -20,10 +20,10 @@ export const Content = styled.div`
 	display: flex;
 	align-items: center;
 	animation: ${open} ${fadeIn2};
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 50px)) {
 		flex-direction: column;
 		align-items: start;

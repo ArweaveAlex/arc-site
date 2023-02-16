@@ -56,9 +56,9 @@ export const Body = styled.div`
 export const Table = styled.div`
 	height: 100%;
 	width: 100%;
-	border-left: 0.5px solid ${(props) => props.theme.colors.border.alt5};
-	border-right: 0.5px solid ${(props) => props.theme.colors.border.alt5};
-	border-bottom: 0.5px solid ${(props) => props.theme.colors.border.alt5};
+	border-left: 0.5px solid ${(props) => props.theme.colors.border.primary};
+	border-right: 0.5px solid ${(props) => props.theme.colors.border.primary};
+	border-bottom: 0.5px solid ${(props) => props.theme.colors.border.primary};
 	> * {
 		&:last-child {
 			border-bottom-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
@@ -74,10 +74,10 @@ export const TableHeader = styled.div`
 	height: 40px;
 	display: flex;
 	align-items: center;
-	border-top: 1px solid ${(props) => props.theme.colors.border.alt5};
-	border-bottom: 0.5px solid ${(props) => props.theme.colors.border.alt5};
-	border-left: 0.5px solid ${(props) => props.theme.colors.border.alt5};
-	border-right: 0.5px solid ${(props) => props.theme.colors.border.alt5};
+	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-bottom: 0.5px solid ${(props) => props.theme.colors.border.primary};
+	border-left: 0.5px solid ${(props) => props.theme.colors.border.primary};
+	border-right: 0.5px solid ${(props) => props.theme.colors.border.primary};
 `;
 
 function getRowStyle(theme: DefaultTheme, active: boolean, viewed: boolean) {
@@ -90,12 +90,12 @@ function getRowStyle(theme: DefaultTheme, active: boolean, viewed: boolean) {
 		if (viewed) {
 			return `
 				background: ${theme.colors.container.primary.hover};
-				border: 0.5px solid ${theme.colors.border.alt5};
+				border: 0.5px solid ${theme.colors.border.primary};
 			`;
 		} else {
 			return `
 				background: ${theme.colors.container.primary.background};
-				border: 0.5px solid ${theme.colors.border.alt5};
+				border: 0.5px solid ${theme.colors.border.primary};
 			`;
 		}
 	}
@@ -110,7 +110,7 @@ export const Row = styled.div<{ active: boolean; viewed: boolean }>`
 		background: ${(props) =>
 			props.active ? props.theme.colors.table.row.active.background : props.theme.colors.container.primary.hover};
 		border: 0.5px solid
-			${(props) => (props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.alt5)};
+			${(props) => (props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.primary)};
 	}
 `;
 

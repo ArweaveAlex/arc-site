@@ -21,10 +21,10 @@ export const PCWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	padding: 25px;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
 	}
@@ -83,7 +83,7 @@ export const LinkContainer = styled.div`
 	height: 80px;
 	width: calc(100% - 10px);
 	margin: 10px 0 0 0;
-	border: 1px solid ${(props) => props.theme.colors.border.alt2};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -123,7 +123,7 @@ export const LoadingContainer = styled.div`
 	width: 100%;
 	position: relative;
 	margin: 40px 0 0 0;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;

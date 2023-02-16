@@ -13,7 +13,7 @@ export const LoadingContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	position: relative;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;

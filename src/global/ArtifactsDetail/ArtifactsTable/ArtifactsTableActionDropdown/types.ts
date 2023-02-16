@@ -7,4 +7,5 @@ export interface IProps {
 	bookmarksDisabled: boolean;
 	handleStampCallback: () => void;
 	handleViewedCallback: () => void;
+	usePreviewModal: boolean;
 }

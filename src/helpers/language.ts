@@ -16,6 +16,7 @@ export const LANGUAGE = {
 	addtoBookmarks: `Add to Bookmarks`,
 	amountExceedsBalance: `Amount exceeds Balance`,
 	artifact: `Artifact`,
+	artifactPreview: `Artifact Preview`,
 	artifactStamped: `Artifact Stamped`,
 	artifacts: `Artifacts`,
 	artifactDetail: {
@@ -41,6 +42,7 @@ export const LANGUAGE = {
 	collection: {
 		subheader1: `Bookmark`,
 	},
+	collectionNameAlreadyExists: `Collection Name already exists`,
 	collections: `Collections`,
 	comments: `Comments`,
 	companyTitle: `Alex.`,
@@ -159,6 +161,7 @@ export const LANGUAGE = {
 	},
 	submit: `Submit`,
 	title: `Title`,
+	topic: `Topic`,
 	total: `Total`,
 	totalContributed: `Total Contributed`,
 	type: `Type`,

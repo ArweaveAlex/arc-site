@@ -103,7 +103,7 @@ export const NodeWrapper = styled.div`
 	height: calc(100% - 15px);
 	width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;
 	&:hover {
@@ -151,7 +151,7 @@ export const Placeholder = styled.div`
 	background-size: 50px 500px;
 	background-position: 0 0;
 	animation: ${loadingSlide} 1.25s infinite;
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;
 

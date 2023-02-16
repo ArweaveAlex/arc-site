@@ -6,7 +6,7 @@ export const Wrapper = styled.button`
 	height: 100%;
 	width: 100%;
 	background: ${(props) => props.theme.colors.button.alt1.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt2};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	display: flex;
 	align-items: center;
@@ -109,7 +109,7 @@ export const Form = styled.form`
 export const FormWrapper = styled.div``;
 
 export const FormContainer = styled.div`
-	width: ${STYLING.dimensions.formWidthMin};
+	max-width: ${STYLING.dimensions.formWidthMin};
 	margin: 50px auto 0 auto;
 `;
 
@@ -148,11 +148,11 @@ export const RPWrapper = styled.div`
 `;
 
 export const Message = styled.div`
-	width: 100%;
+	width: 90%;
 	margin: 12.5px auto 0 auto;
 	text-align: center;
 	p {
-		font-size: 12px;
+		font-size: ${(props) => props.theme.typography.size.xSmall};
 		line-height: 1.5;
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 	}
