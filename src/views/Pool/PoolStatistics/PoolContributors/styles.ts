@@ -94,3 +94,12 @@ export const Amount = styled(InfoData)`
 `;
 
 export const Count = styled(Amount)``;
+
+export const NoArtifactsContainer = styled.div`
+	height: 100%;
+	width: 100%;
+	p {
+		margin: 15px 0 0 0;
+		color: ${(props) => props.theme.colors.warning};
+	}
+`;

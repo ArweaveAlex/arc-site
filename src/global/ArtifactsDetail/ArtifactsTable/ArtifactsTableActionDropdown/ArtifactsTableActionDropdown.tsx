@@ -136,6 +136,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 						setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
 						warp={arClient.warp}
 						handleStampCallback={() => props.handleStampCallback()}
+						showWalletConnect={true}
 					/>
 				</S.StampWidgetContainer>
 			),

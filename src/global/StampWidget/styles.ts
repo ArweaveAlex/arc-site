@@ -48,6 +48,7 @@ export const Title = styled.div`
 export const SAContainer = styled.div`
 	min-height: 100px;
 	width: 300px;
+	max-width: 55vw;
 	padding: 20px;
 	position: absolute;
 	z-index: 2;
@@ -77,6 +78,20 @@ export const SAInfoContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+`;
+
+export const SABalanceContainer = styled.div`
+	display: flex;
+	align-items: center;
+	padding: 7.5px 12.5px !important;
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.container.alt4.background};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	svg {
+		fill: ${(props) => props.theme.colors.font.primary.active.base} !important;
+		width: 12.5px;
+		margin: 2.5px 10px 0 0;
+	}
 	p {
 		max-width: 85%;
 		font-family: ${(props) => props.theme.typography.family.primary} !important;
@@ -87,10 +102,6 @@ export const SAInfoContainer = styled.div`
 		text-overflow: ellipsis;
 		height: auto !important;
 		margin: 0 !important;
-		padding: 7.5px 12.5px !important;
-		border: 1px solid ${(props) => props.theme.colors.border.alt1};
-		background: ${(props) => props.theme.colors.container.alt4.background};
-		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	}
 `;
 

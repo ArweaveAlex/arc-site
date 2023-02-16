@@ -154,7 +154,7 @@ export const TileData = styled.div`
 	transform: translate(-50%, -50%);
 	display: flex;
 	p {
-		font-size: 26px;
+		font-size: 24px;
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		text-align: center;

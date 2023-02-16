@@ -16,6 +16,24 @@ const ROW_COUNT = 3;
 export default function PoolContributors(props: IProps) {
 	const arClient = new ArweaveClient();
 
+	function getBody(list: React.ReactNode[]) {
+		if (list.length <= 0) {
+			return (
+				<S.NoArtifactsContainer>
+					<p>{LANGUAGE.noArtifacts}</p>
+				</S.NoArtifactsContainer>
+			);
+		}
+		else {
+			if (list.length >= ROW_COUNT) {
+				return list.slice(0, ROW_COUNT);
+			}
+			else {
+				return list;
+			}
+		}
+	}
+
 	function getTopContributors() {
 		if (props.data) {
 			const contributorList: React.ReactNode[] = [];
@@ -54,7 +72,7 @@ export default function PoolContributors(props: IProps) {
 			}
 			return (
 				<S.Body>
-					{contributorList.length >= ROW_COUNT ? contributorList.slice(0, ROW_COUNT) : contributorList}
+					{getBody(contributorList)}
 				</S.Body>
 			);
 		} else {
@@ -88,7 +106,7 @@ export default function PoolContributors(props: IProps) {
 			}
 			return (
 				<S.Body>
-					{contributorList.length >= ROW_COUNT ? contributorList.slice(0, ROW_COUNT) : contributorList}
+					{getBody(contributorList)}
 				</S.Body>
 			);
 		} else {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReactSVG } from 'react-svg';
 
 import Stamps from '@permaweb/stampjs';
 
@@ -17,6 +18,7 @@ import { formatFloat } from 'helpers/utils';
 import * as S from './styles';
 import { ASSETS } from 'helpers/config';
 
+
 function StampAction(props: { balance: number; handleSubmit: (amount: number) => void; handleClose: () => void }) {
 	const [amount, setAmount] = React.useState<string>('0');
 
@@ -25,7 +27,10 @@ function StampAction(props: { balance: number; handleSubmit: (amount: number) =>
 	return (
 		<S.SAContainer>
 			<S.SAInfoContainer>
-				<p>{`${LANGUAGE.stampTokenBalance}: ${formatFloat(props.balance, 2)}`}</p>
+				<S.SABalanceContainer>
+					<ReactSVG src={ASSETS.stamp.super} />
+					<p>{formatFloat(props.balance, 2)}</p>
+				</S.SABalanceContainer>
 				<S.SACloseContainer>
 					<IconButton type={'primary'} sm warning src={ASSETS.close} handlePress={props.handleClose} />
 				</S.SACloseContainer>
@@ -79,10 +84,10 @@ export default function StampWidget(props: IProps) {
 	const [stampNotification, setStampNotification] = React.useState<NotificationResponseType | null>(null);
 
 	React.useEffect(() => {
-		if (!props.walletAddress) {
+		if (!props.walletAddress && props.showWalletConnect) {
 			setShowWalletConnect(true);
 		}
-	}, [props.walletAddress]);
+	}, [props.walletAddress, props.showWalletConnect]);
 
 	React.useEffect(() => {
 		(async function () {
@@ -194,7 +199,7 @@ export default function StampWidget(props: IProps) {
 									type={'alt1'}
 									src={ASSETS.stamp.default}
 									handlePress={() => handleStamp()}
-									disabled={stampDisabled || stampCheckLoading}
+									disabled={stampDisabled || stampCheckLoading || !props.walletAddress}
 									info={count.total.toString()}
 								/>
 							</S.Action>
@@ -203,7 +208,7 @@ export default function StampWidget(props: IProps) {
 									type={'alt1'}
 									src={ASSETS.stamp.super}
 									handlePress={() => setShowStampAction(!showStampAction)}
-									disabled={balance <= 0 || stampDisabled || stampCheckLoading || showStampAction}
+									disabled={balance <= 0 || stampDisabled || stampCheckLoading || showStampAction || !props.walletAddress}
 									info={count.super.toString()}
 								/>
 							</S.Action>

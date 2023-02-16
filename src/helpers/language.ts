@@ -145,7 +145,6 @@ export const LANGUAGE = {
 	},
 	sortBy: `Sort By`,
 	stamp: `STAMP`,
-	stampTokenBalance: `STAMP Balance`,
 	stamps: `Stamps`,
 	steps: {
 		header1: `A New Way to Get Involved in the Human Story`,

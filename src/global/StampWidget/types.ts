@@ -4,4 +4,5 @@ export interface IProps {
 	setWalletModalVisible: (open: boolean) => void;
 	warp: any;
 	handleStampCallback: () => void;
+	showWalletConnect: boolean;
 }

@@ -28,7 +28,7 @@ export const Label = styled.div`
 		margin: 0 20px 0 0;
 	}
 	span {
-		font-size: 26px;
+		font-size: 24px;
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.base};
 	}

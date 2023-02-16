@@ -24,7 +24,7 @@ export const ArtifactWrapper = styled.div`
 	min-height: calc(100vh - (165px + ${STYLING.dimensions.navHeight}));
 	width: calc(100% - 70px);
 	width: 100%;
-	margin: 125px 0 0 0;
+	margin: 200px 0 0 0;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		margin: 25px 0 0 0;
 	}
