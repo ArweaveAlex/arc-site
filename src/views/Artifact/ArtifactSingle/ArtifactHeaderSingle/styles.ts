@@ -40,7 +40,7 @@ export const Content = styled.div`
 	width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
 	position: relative;
 `;
 
@@ -114,7 +114,7 @@ export const InfoStyled = styled(InfoData)`
 		}
 	}
 	svg {
-		width: 25px;
+		width: 20px;
 		margin: 0 10px 0 0;
 		fill: ${(props) => props.theme.colors.font.primary.active.base};
 	}

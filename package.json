@@ -26,8 +26,6 @@
 		"redux-persist": "^6.0.0",
 		"redux-thunk": "^2.4.2",
 		"styled-components": "^5.3.6",
-		"typeface-fira-sans": "^1.1.13",
-		"typeface-pt-serif": "^1.1.13",
 		"typescript": "^4.8.4",
 		"warp-contracts": "^1.2.11"
 	},

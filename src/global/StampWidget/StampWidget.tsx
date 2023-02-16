@@ -18,7 +18,6 @@ import { formatFloat } from 'helpers/utils';
 import * as S from './styles';
 import { ASSETS } from 'helpers/config';
 
-
 function StampAction(props: { balance: number; handleSubmit: (amount: number) => void; handleClose: () => void }) {
 	const [amount, setAmount] = React.useState<string>('0');
 
@@ -208,7 +207,13 @@ export default function StampWidget(props: IProps) {
 									type={'alt1'}
 									src={ASSETS.stamp.super}
 									handlePress={() => setShowStampAction(!showStampAction)}
-									disabled={balance <= 0 || stampDisabled || stampCheckLoading || showStampAction || !props.walletAddress}
+									disabled={
+										balance <= 0 ||
+										stampDisabled ||
+										stampCheckLoading ||
+										showStampAction ||
+										!props.walletAddress
+									}
 									info={count.super.toString()}
 								/>
 							</S.Action>

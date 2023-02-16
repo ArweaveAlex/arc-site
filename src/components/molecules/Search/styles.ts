@@ -38,7 +38,7 @@ export const SearchInput = styled.input`
 	&:focus {
 		outline: 0;
 		border: 1px solid ${(props) => props.theme.colors.form.valid.outline};
-		box-shadow: 0 0 2px 1px ${(props) => props.theme.colors.form.valid.shadow};
+		box-shadow: 0 0 2.5px 1px ${(props) => props.theme.colors.form.valid.shadow};
 		transition: box-shadow, border 225ms ease-in-out;
 	}
 	&:disabled {

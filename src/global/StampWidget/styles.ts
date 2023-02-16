@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 import { STYLING } from 'helpers/styling';
-import { open, fadeIn1, fadeIn2 } from 'helpers/animations';
+import { open, fadeIn1 } from 'helpers/animations';
 
 export const Wrapper = styled.div`
 	height: 100%;
@@ -12,7 +12,7 @@ export const WidgetContainer = styled.div`
 	height: 60px;
 	width: 215px;
 	padding: 10px 30px 10px 15px;
-	animation: ${open} ${fadeIn2};
+	animation: ${open} ${fadeIn1};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
@@ -69,6 +69,20 @@ export const SAContainer = styled.div`
 		border-style: solid;
 		border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent}
 			${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.border.alt1};
+	}
+	@media (max-width: ${STYLING.cutoffs.secondary}) {
+		right: 0;
+		top: 58.5px;
+		&:after {
+			content: ' ';
+			position: absolute;
+			top: -10px;
+			left: 50%;
+			border-width: 5px;
+			border-style: solid;
+			border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent}
+				${(props) => props.theme.colors.border.alt1} ${(props) => props.theme.colors.transparent} ;
+		}
 	}
 `;
 
@@ -142,7 +156,7 @@ export const WalletConnectWrapper = styled.div`
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	animation: ${open} ${fadeIn2};
+	animation: ${open} ${fadeIn1};
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;

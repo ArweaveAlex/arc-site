@@ -17,7 +17,7 @@ export const Info = styled.div<{ alt1: boolean }>`
 	svg {
 		fill: ${(props) => props.theme.colors.font.primary.alt7};
 		width: 12.5px;
-		margin: -1.75px 5px 0 0;
+		margin: -1.75px 10px 0 0;
 	}
 `;
 

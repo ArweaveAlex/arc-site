@@ -4,7 +4,7 @@ export const LANGUAGE = {
 	artifactsCreated: `of Artifacts Created`,
 	accept: `Accept`,
 	account: {
-		header1: `Your Library`,
+		header1: `Account`,
 		all: { title: `All` },
 		collections: { title: `Collections` },
 		new: { title: `New` },
@@ -165,7 +165,7 @@ export const LANGUAGE = {
 	upvoted: `Upvoted`,
 	urlCopied: `URL Copied!`,
 	view: `View`,
-	viewAccount: `My Library`,
+	viewAccount: `Account`,
 	viewOnArweave: `View on Arweave`,
 	viewPool: `View Pool`,
 	walletNotConnected: `Connect a wallet to continue`,

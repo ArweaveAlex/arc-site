@@ -19,7 +19,7 @@ export const Header = styled.div`
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
 	padding: 20px;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		height: auto;
@@ -126,7 +126,7 @@ export const Tile = styled.div`
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
 	padding: 15px;
 	position: relative;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
@@ -193,7 +193,7 @@ export const LDBody = styled.div`
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
 	color: ${(props) => props.theme.colors.font.primary.active.base};
 	font-size: ${(props) => props.theme.typography.size.base};
 	line-height: 1.5;

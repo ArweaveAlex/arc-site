@@ -23,12 +23,10 @@ export default function PoolContributors(props: IProps) {
 					<p>{LANGUAGE.noArtifacts}</p>
 				</S.NoArtifactsContainer>
 			);
-		}
-		else {
+		} else {
 			if (list.length >= ROW_COUNT) {
 				return list.slice(0, ROW_COUNT);
-			}
-			else {
+			} else {
 				return list;
 			}
 		}
@@ -70,11 +68,7 @@ export default function PoolContributors(props: IProps) {
 					</S.Row>
 				);
 			}
-			return (
-				<S.Body>
-					{getBody(contributorList)}
-				</S.Body>
-			);
+			return <S.Body>{getBody(contributorList)}</S.Body>;
 		} else {
 			return <TableLoader rowCount={ROW_COUNT} />;
 		}
@@ -104,11 +98,7 @@ export default function PoolContributors(props: IProps) {
 					</S.Row>
 				);
 			}
-			return (
-				<S.Body>
-					{getBody(contributorList)}
-				</S.Body>
-			);
+			return <S.Body>{getBody(contributorList)}</S.Body>;
 		} else {
 			return <TableLoader rowCount={ROW_COUNT} />;
 		}

@@ -52,8 +52,13 @@ export const P = styled.p`
 `;
 
 export const Name = styled(P)`
+	line-height: 24px;
 	color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+	max-width: 190px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 `;
 
 export const Username = styled(P)`

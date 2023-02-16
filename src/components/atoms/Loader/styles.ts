@@ -24,7 +24,7 @@ export const Container = styled.div`
 `;
 
 export const Blade = styled.div`
-	background-color: ${(props) => props.theme.colors.font.primary.active.base};
+	background-color: ${(props) => props.theme.colors.loader.primary};
 	position: absolute;
 	left: 0.4629em;
 	bottom: 0;

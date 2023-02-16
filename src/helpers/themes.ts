@@ -5,7 +5,7 @@ const DEFAULT = {
 	neutral2: '#F2F3F4',
 	neutral3: '#EEEEEE',
 	neutral4: '#3A3A3A',
-	neutral5: '#EAEAEA',
+	neutral5: '#E3E9ED',
 	neutral6: '#D9D9D9',
 	neutral7: '#959595',
 	neutral8: '#ACACAC',
@@ -128,7 +128,7 @@ export const defaultTheme: DefaultTheme = {
 				background: DEFAULT.neutral11,
 			},
 			alt6: {
-				background: DEFAULT.neutral14,
+				background: DEFAULT.neutral1,
 			},
 		},
 		font: {
@@ -200,6 +200,9 @@ export const defaultTheme: DefaultTheme = {
 				hover: DEFAULT.neutral8,
 			},
 		},
+		loader: {
+			primary: DEFAULT.primary3
+		},
 		navigation: {
 			footer: {
 				background: DEFAULT.neutral1,
@@ -221,7 +224,7 @@ export const defaultTheme: DefaultTheme = {
 		},
 		shadow: {
 			primary: DEFAULT.neutral7,
-			alt1: DEFAULT.neutral2,
+			alt1: DEFAULT.neutral9,
 		},
 		table: {
 			placeholder: {

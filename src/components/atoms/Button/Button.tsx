@@ -69,6 +69,7 @@ export default function Button(props: IProps) {
 			active={props.active}
 			useMaxWidth={props.useMaxWidth}
 			noMinWidth={props.noMinWidth}
+			width={props.width}
 			data-testid={props.testingCtx}
 		>
 			{props.loading ? `${LANGUAGE.loading} ...` : getLabel()}

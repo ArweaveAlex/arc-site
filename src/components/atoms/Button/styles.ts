@@ -2,9 +2,24 @@ import styled from 'styled-components/macro';
 
 import { STYLING } from 'helpers/styling';
 
+function getWidth(noMinWidth: boolean | undefined, width: number | undefined) {
+	if (width) {
+		return `${width.toString()}px`
+	}
+	else {
+		if (noMinWidth) {
+			return 'none';
+		}
+		else {
+			return STYLING.dimensions.buttonWidth;
+		}
+	}
+}
+
 export const Primary = styled.button<{
 	useMaxWidth: boolean | undefined;
 	noMinWidth: boolean | undefined;
+	width: number | undefined;
 	active: boolean | undefined;
 }>`
 	position: relative;
@@ -14,7 +29,7 @@ export const Primary = styled.button<{
 			: props.theme.colors.button.primary.background};
 	border: 1.5px solid ${(props) => props.theme.colors.button.primary.border};
 	height: ${STYLING.dimensions.buttonHeight};
-	min-width: ${(props) => (props.noMinWidth ? 'none' : STYLING.dimensions.buttonWidth)};
+	min-width: ${(props) => getWidth(props.noMinWidth, props.width)};
 	max-width: ${(props) => (props.useMaxWidth ? STYLING.dimensions.buttonWidth : 'none')};
 	overflow: hidden;
 	text-overflow: ellipsis;

@@ -26,7 +26,7 @@ export const Container = styled.div`
 	top: 47.5%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.primary};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	@media (max-width: ${STYLING.cutoffs.secondary}) {
 		top: 50%;
 	}

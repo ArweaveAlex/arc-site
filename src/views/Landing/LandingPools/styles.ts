@@ -24,7 +24,7 @@ export const PCWrapper = styled.div`
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	border: 1px solid ${(props) => props.theme.colors.border.alt1};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 5px ${(props) => props.theme.colors.shadow.alt1};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.alt1};
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
 	}

@@ -46,7 +46,7 @@ export const Select = styled.select`
 	&:focus {
 		outline: 0;
 		border: 1px solid ${(props) => props.theme.colors.form.valid.outline};
-		box-shadow: 0 0 2px 1px ${(props) => props.theme.colors.form.valid.shadow};
+		box-shadow: 0 0 2.5px 1px ${(props) => props.theme.colors.form.valid.shadow};
 		background-color: ${(props) => props.theme.colors.form.background};
 	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
