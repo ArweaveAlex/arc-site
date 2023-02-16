@@ -112,7 +112,9 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	const artifactType = getTagValue(props.tags, TAGS.keys.artifactType);
 
 	if (associationId && associationId !== STORAGE.none) {
-		redirect = `${getHashUrl(window.location.origin)}${urls.thread}${associationId}/${props.artifactId}?type=${artifactType}`;
+		redirect = `${getHashUrl(window.location.origin)}${urls.thread}${associationId}/${
+			props.artifactId
+		}?type=${artifactType}`;
 	} else {
 		redirect = `${getHashUrl(window.location.origin)}${urls.artifact}${props.artifactId}`;
 	}

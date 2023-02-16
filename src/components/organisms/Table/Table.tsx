@@ -60,7 +60,11 @@ export default function Table(props: IProps) {
 									<S.Row key={index} active={element.active} viewed={element.viewed}>
 										{Object.keys(element.data).map((row: string, rowIndex: number) => {
 											const rowData =
-												typeof element.data[row] === 'object' ? element.data[row] : <p>{element.data[row]}</p>;
+												typeof element.data[row] === 'object' ? (
+													element.data[row]
+												) : (
+													<p>{element.data[row]}</p>
+												);
 											return (
 												<S.TData
 													key={rowIndex}

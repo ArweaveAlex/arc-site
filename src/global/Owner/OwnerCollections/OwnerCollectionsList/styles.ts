@@ -191,7 +191,6 @@ export const LIButton = styled.button`
 	}
 `;
 
-
 export const EWrapper = styled.div`
 	width: 700px;
 	max-width: 90vw;

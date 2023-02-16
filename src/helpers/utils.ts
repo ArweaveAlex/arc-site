@@ -37,8 +37,7 @@ export function formatMetric(count: string): string {
 		const parsedString = localeString.substring(0, localeString.indexOf(','));
 		const unit = count.toString().length >= 7 ? 'm' : 'k';
 		return `${parsedString}${unit}`;
-	}
-	else {
+	} else {
 		return count;
 	}
 }

@@ -88,13 +88,13 @@ export const HeaderBody = styled.div`
 	justify-content: space-between;
 `;
 
-export const HeaderTitle = styled.p<{ width: number }> `
+export const HeaderTitle = styled.p<{ width: number }>`
 	width: ${(props) => `${props.width.toString()}%`};
 	font-size: 20px !important;
 	font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 	color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 	margin: 0 0 20px 0 !important;
-`
+`;
 
 export const HeaderBodyPreview = styled.div<{ image: string }>`
 	height: 125px;

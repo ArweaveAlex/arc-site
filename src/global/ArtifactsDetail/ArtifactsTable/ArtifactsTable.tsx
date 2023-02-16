@@ -115,7 +115,7 @@ export default function ArtifactsTable(props: IProps) {
 
 	function handleView(id: string) {
 		if (!sessionStorage.getItem(id)) {
-			setUpdateViews(!updateViews)
+			setUpdateViews(!updateViews);
 			sessionStorage.setItem(id, '-');
 		}
 	}

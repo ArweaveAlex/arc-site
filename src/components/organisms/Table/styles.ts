@@ -71,13 +71,13 @@ export const Table = styled.div`
 `;
 
 export const TableHeader = styled.div`
-    height: 40px;
-    display: flex;
-    align-items: center;
-    border-top: 1px solid ${(props) => props.theme.colors.border.alt5};
+	height: 40px;
+	display: flex;
+	align-items: center;
+	border-top: 1px solid ${(props) => props.theme.colors.border.alt5};
 	border-bottom: 0.5px solid ${(props) => props.theme.colors.border.alt5};
-    border-left: 0.5px solid ${(props) => props.theme.colors.border.alt5};
-    border-right: 0.5px solid ${(props) => props.theme.colors.border.alt5};
+	border-left: 0.5px solid ${(props) => props.theme.colors.border.alt5};
+	border-right: 0.5px solid ${(props) => props.theme.colors.border.alt5};
 `;
 
 function getRowStyle(theme: DefaultTheme, active: boolean, viewed: boolean) {
@@ -85,25 +85,23 @@ function getRowStyle(theme: DefaultTheme, active: boolean, viewed: boolean) {
 		return `
 			background: ${theme.colors.table.row.active.background};
 			border: 0.5px solid ${theme.colors.table.row.active.border};
-		`
-	}
-	else {
+		`;
+	} else {
 		if (viewed) {
 			return `
 				background: ${theme.colors.container.primary.hover};
 				border: 0.5px solid ${theme.colors.border.alt5};
-			`
-		}
-		else {
+			`;
+		} else {
 			return `
 				background: ${theme.colors.container.primary.background};
 				border: 0.5px solid ${theme.colors.border.alt5};
-			`
+			`;
 		}
 	}
 }
 
-export const Row = styled.div<{ active: boolean, viewed: boolean }>`
+export const Row = styled.div<{ active: boolean; viewed: boolean }>`
 	height: 40px;
 	display: flex;
 	align-items: center;
@@ -111,8 +109,8 @@ export const Row = styled.div<{ active: boolean, viewed: boolean }>`
 	&:hover {
 		background: ${(props) =>
 			props.active ? props.theme.colors.table.row.active.background : props.theme.colors.container.primary.hover};
-		border: 0.5px solid ${(props) =>
-			props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.alt5};
+		border: 0.5px solid
+			${(props) => (props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.alt5)};
 	}
 `;
 

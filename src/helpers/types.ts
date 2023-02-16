@@ -148,7 +148,7 @@ export type KeyValueType = { [key: string]: string | React.ReactNode };
 export type TableHeaderType = {
 	[key: string]: { width: string; align: AlignType; display: string | null };
 };
-export type TableRowType = { data: KeyValueType, active: boolean, viewed: boolean };
+export type TableRowType = { data: KeyValueType; active: boolean; viewed: boolean };
 
 export type ArtifactTableRowType = {
 	title?: React.ReactNode;

@@ -10,7 +10,6 @@ import { Loader } from 'components/atoms/Loader';
 import * as window from 'helpers/window';
 import { ArtifactDetailType } from 'helpers/types';
 
-
 export default function Artifact() {
 	const { id } = useParams();
 

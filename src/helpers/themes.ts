@@ -233,9 +233,9 @@ export const defaultTheme: DefaultTheme = {
 			row: {
 				active: {
 					background: DEFAULT.neutral16,
-					border: DEFAULT.primary4
-				}
-			}
+					border: DEFAULT.primary4,
+				},
+			},
 		},
 		tabs: {
 			active: DEFAULT.primary,
