@@ -19,9 +19,9 @@ export default function PoolContributors(props: IProps) {
 	function getBody(list: React.ReactNode[]) {
 		if (list.length <= 0) {
 			return (
-				<S.NoArtifactsContainer>
-					<p>{LANGUAGE.noArtifacts}</p>
-				</S.NoArtifactsContainer>
+				<S.NoContributionsContainer>
+					<p>{LANGUAGE.noContributions}</p>
+				</S.NoContributionsContainer>
 			);
 		} else {
 			if (list.length >= ROW_COUNT) {

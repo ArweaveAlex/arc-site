@@ -95,7 +95,7 @@ export const Amount = styled(InfoData)`
 
 export const Count = styled(Amount)``;
 
-export const NoArtifactsContainer = styled.div`
+export const NoContributionsContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	p {
