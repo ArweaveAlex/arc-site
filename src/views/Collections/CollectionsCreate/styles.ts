@@ -78,8 +78,11 @@ export const ContentWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
-		flex-direction: column-reverse;
+		flex-direction: column;
 	}
+	@media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
+        flex-direction: column;
+    }
 `;
 
 export const ArtifactsWrapper = styled.div`
@@ -88,15 +91,24 @@ export const ArtifactsWrapper = styled.div`
 	position: relative;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;
+		margin: 0 0 40px 0;
 	}
+	@media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
+        width: 100%;
+		margin: 0 0 40px 0;
+    }
+	
 `;
 
 export const FormWrapper = styled.div`
 	position: relative;
-	width: 375px;
+	width: 350px;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;
 	}
+	@media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
+        width: 100%;
+    }
 `;
 
 export const FormContainer = styled.div`
@@ -106,16 +118,16 @@ export const FormContainer = styled.div`
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		position: relative;
 	}
+	@media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
+        position: relative;
+    }
 `;
 
 export const FormFixedContainer = styled.div`
 	height: fit-content;
-	max-height: 65vh;
-	width: 375px;
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
-	padding: 20px;
+	max-height: calc(80vh - 65px);
+	width: 350px;
+	padding: 0 0 20px 0;
 	position: fixed;
 	overflow: auto;
 	scrollbar-width: none;
@@ -126,8 +138,13 @@ export const FormFixedContainer = styled.div`
 		max-height: none;
 		position: relative;
 		width: 100%;
-		margin: 0 0 40px;
 	}
+	@media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
+        position: relative;
+		max-height: none;
+		position: relative;
+		width: 100%;
+    }
 `;
 
 export const FormHeader = styled.div`
@@ -149,6 +166,20 @@ export const Form = styled.form``;
 export const SubmitContainer = styled.div`
 	width: fit-content;
 	margin: 0 0 0 auto;
+	// position: fixed;
+	// bottom: 20px;
+	// right: 20px;
+	// @media (max-width: ${STYLING.cutoffs.initial}) {
+	// 	position: relative;
+	// 	bottom: auto;
+	// 	right: auto;
+	// }
+	// @media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
+    //     position: relative;
+	// 	bottom: auto;
+	// 	right: auto;
+    // }
+	
 `;
 
 export const ActionContainer = styled.div`

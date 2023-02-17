@@ -4,7 +4,6 @@ import { STYLING } from 'helpers/styling';
 import { open, fadeIn2 } from 'helpers/animations';
 
 export const LIWrapper = styled.div<{ isListItem: boolean; active: boolean }>`
-	// height: 100%;
 	width: 100%;
 	border-bottom: ${(props) => (props.isListItem ? `1px solid ${props.theme.colors.border.primary}` : 'none')};
 	animation: ${open} ${fadeIn2};
