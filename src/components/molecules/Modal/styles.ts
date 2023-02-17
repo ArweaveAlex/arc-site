@@ -4,6 +4,7 @@ import { open, fadeIn1 } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div<{ top: number }>`
+	min-height: 100vh;
 	height: 100%;
 	width: 100%;
 	position: absolute;
