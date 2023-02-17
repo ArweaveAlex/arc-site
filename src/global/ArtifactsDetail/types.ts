@@ -17,4 +17,5 @@ export interface IProps {
 	uploader: string | null;
 	selectedCallbackIds: string[] | null;
 	usePreviewModal: boolean;
+	action?: React.ReactNode;
 }

@@ -12,4 +12,5 @@ export interface IProps {
 	selectCallback: ((id: string) => void) | null;
 	selectedCallbackIds: string[] | null;
 	usePreviewModal: boolean;
+	action?: React.ReactNode;
 }

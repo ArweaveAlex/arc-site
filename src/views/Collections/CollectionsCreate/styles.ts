@@ -149,7 +149,15 @@ export const Form = styled.form``;
 export const SubmitContainer = styled.div`
 	width: fit-content;
 	margin: 0 0 0 auto;
-	position: fixed;
-	bottom: 20px;
-	right: 68px;
 `;
+
+export const ActionContainer = styled.div`
+	display: flex;
+	> * {
+		&:last-child {
+		   margin: 0 0 0 20px;
+		}
+	  }
+`;
+
+export const ActionButtonContainer = styled.div``;

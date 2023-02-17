@@ -219,6 +219,9 @@ export default function ArtifactsTable(props: IProps) {
 				/>
 			);
 		} else {
+			if (props.action) {
+				return props.action;
+			}
 			return null;
 		}
 	}

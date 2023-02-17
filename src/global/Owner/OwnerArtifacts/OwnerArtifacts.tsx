@@ -41,6 +41,7 @@ export default function OwnerArtifacts(props: IProps) {
 			selectCallback={props.selectCallback}
 			selectedCallbackIds={props.selectedCallbackIds}
 			usePreviewModal={props.usePreviewModal}
+			action={props.action}
 		/>
 	);
 }
