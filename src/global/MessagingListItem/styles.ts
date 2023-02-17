@@ -4,7 +4,7 @@ import { STYLING } from 'helpers/styling';
 import { open, fadeIn2 } from 'helpers/animations';
 
 export const LIWrapper = styled.div<{ isListItem: boolean; active: boolean }>`
-	height: 100%;
+	// height: 100%;
 	width: 100%;
 	border-bottom: ${(props) => (props.isListItem ? `1px solid ${props.theme.colors.border.primary}` : 'none')};
 	animation: ${open} ${fadeIn2};
@@ -353,6 +353,7 @@ export const ActiveContainer = styled.div`
 `;
 
 export const ChildAssetContainer = styled.div`
+	min-height: 141.5px;
 	width: 100%;
 	margin: 15px 0 0 0;
 	position: relative;
