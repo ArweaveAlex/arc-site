@@ -35,15 +35,6 @@ function PoolTile(props: PoolType) {
 					<S.InfoTitle>
 						<p>{props.state.title}</p>
 					</S.InfoTitle>
-					{/* <S.DCContainer>
-						<S.DC1>
-							<p>{LANGUAGE.createdOn}</p>
-						</S.DC1>
-						&nbsp;
-						<S.DC2>
-							<p>{formatDate(props.state.timestamp, 'epoch')}</p>
-						</S.DC2>
-					</S.DCContainer> */}
 				</S.Info>
 			</Link>
 		</S.PCWrapper>
