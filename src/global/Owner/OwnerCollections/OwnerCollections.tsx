@@ -1,7 +1,7 @@
-import { OwnerCollectionsList } from "./OwnerCollectionsList";
+import { OwnerCollectionsList } from './OwnerCollectionsList';
 
-import { IProps } from "./types";
-import * as S from "./styles";
+import { IProps } from './types';
+import * as S from './styles';
 
 // const data = [
 // 	{
@@ -69,13 +69,9 @@ import * as S from "./styles";
 const data = [];
 
 export default function OwnerCollections(props: IProps) {
-  return (
-    <S.Wrapper>
-      <OwnerCollectionsList
-        owner={props.owner}
-        data={data}
-        showCreateCollections={props.showCreateCollections}
-      />
-    </S.Wrapper>
-  );
+	return (
+		<S.Wrapper>
+			<OwnerCollectionsList owner={props.owner} data={data} showCreateCollections={props.showCreateCollections} />
+		</S.Wrapper>
+	);
 }

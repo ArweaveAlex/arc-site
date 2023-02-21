@@ -1,112 +1,109 @@
-import React from "react";
+import React from 'react';
 
-import { getBalanceEndpoint } from "helpers/endpoints";
-import { AR_WALLETS, WALLET_PERMISSIONS } from "helpers/config";
+import { getBalanceEndpoint } from 'helpers/endpoints';
+import { AR_WALLETS, WALLET_PERMISSIONS } from 'helpers/config';
 
 interface ArweaveContextState {
-  wallets: { name: string; logo: string }[];
-  walletAddress: string | null;
-  availableBalance: number | null;
-  handleConnect: () => void;
-  handleDisconnect: () => void;
-  walletModalVisible: boolean;
-  setWalletModalVisible: (open: boolean) => void;
+	wallets: { name: string; logo: string }[];
+	walletAddress: string | null;
+	availableBalance: number | null;
+	handleConnect: () => void;
+	handleDisconnect: () => void;
+	walletModalVisible: boolean;
+	setWalletModalVisible: (open: boolean) => void;
 }
 
 interface ArweaveProviderProps {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }
 
 const DEFAULT_CONTEXT = {
-  wallets: [],
-  walletAddress: null,
-  availableBalance: null,
-  handleConnect() {
-    console.error(`No Connector Found`);
-  },
-  handleDisconnect() {
-    console.error(`No Connection Found`);
-  },
-  walletModalVisible: false,
-  setWalletModalVisible(_open: boolean) {
-    console.error(
-      `Make sure to render ArweaveProvider as an ancestor of the component that uses ARContext.Provider`
-    );
-  },
+	wallets: [],
+	walletAddress: null,
+	availableBalance: null,
+	handleConnect() {
+		console.error(`No Connector Found`);
+	},
+	handleDisconnect() {
+		console.error(`No Connection Found`);
+	},
+	walletModalVisible: false,
+	setWalletModalVisible(_open: boolean) {
+		console.error(
+			`Make sure to render ArweaveProvider as an ancestor of the component that uses ARContext.Provider`
+		);
+	},
 };
 
 const ARContext = React.createContext<ArweaveContextState>(DEFAULT_CONTEXT);
 
 export function useArweaveProvider(): ArweaveContextState {
-  return React.useContext(ARContext);
+	return React.useContext(ARContext);
 }
 
 export function ArweaveProvider(props: ArweaveProviderProps) {
-  const wallets = AR_WALLETS;
+	const wallets = AR_WALLETS;
 
-  const [walletModalVisible, setWalletModalVisible] =
-    React.useState<boolean>(false);
-  const [walletAddress, setWalletAddress] = React.useState<string | null>(null);
-  const [availableBalance, setAvailableBalance] = React.useState<number | null>(
-    null
-  );
+	const [walletModalVisible, setWalletModalVisible] = React.useState<boolean>(false);
+	const [walletAddress, setWalletAddress] = React.useState<string | null>(null);
+	const [availableBalance, setAvailableBalance] = React.useState<number | null>(null);
 
-  async function handleConnect() {
-    await global.window?.arweaveWallet
-      ?.connect(WALLET_PERMISSIONS as any)
-      .then(() => {
-        setWalletModalVisible(false);
-      })
-      .catch((e: any) => {
-        alert(e);
-      });
-  }
+	async function handleConnect() {
+		await global.window?.arweaveWallet
+			?.connect(WALLET_PERMISSIONS as any)
+			.then(() => {
+				setWalletModalVisible(false);
+			})
+			.catch((e: any) => {
+				alert(e);
+			});
+	}
 
-  async function handleDisconnect() {
-    await global.window?.arweaveWallet?.disconnect();
-    setWalletAddress(null);
-  }
+	async function handleDisconnect() {
+		await global.window?.arweaveWallet?.disconnect();
+		setWalletAddress(null);
+	}
 
-  const getUserBalance = async (wallet: string) => {
-    const rawBalance = await fetch(getBalanceEndpoint(wallet));
-    const jsonBalance = await rawBalance.json();
-    return jsonBalance / 1e12;
-  };
+	const getUserBalance = async (wallet: string) => {
+		const rawBalance = await fetch(getBalanceEndpoint(wallet));
+		const jsonBalance = await rawBalance.json();
+		return jsonBalance / 1e12;
+	};
 
-  React.useEffect(() => {
-    async function handleWallet() {
-      let walletAddress: string | null = null;
-      try {
-        walletAddress = await global.window.arweaveWallet.getActiveAddress();
-      } catch {}
-      if (walletAddress) {
-        setWalletAddress(walletAddress as any);
-        setAvailableBalance(await getUserBalance(walletAddress));
-      }
-    }
+	React.useEffect(() => {
+		async function handleWallet() {
+			let walletAddress: string | null = null;
+			try {
+				walletAddress = await global.window.arweaveWallet.getActiveAddress();
+			} catch {}
+			if (walletAddress) {
+				setWalletAddress(walletAddress as any);
+				setAvailableBalance(await getUserBalance(walletAddress));
+			}
+		}
 
-    handleWallet();
+		handleWallet();
 
-    window.addEventListener("arweaveWalletLoaded", handleWallet);
+		window.addEventListener('arweaveWalletLoaded', handleWallet);
 
-    return () => {
-      window.removeEventListener("arweaveWalletLoaded", handleWallet);
-    };
-  });
+		return () => {
+			window.removeEventListener('arweaveWalletLoaded', handleWallet);
+		};
+	});
 
-  return (
-    <ARContext.Provider
-      value={{
-        walletAddress,
-        availableBalance,
-        handleConnect,
-        handleDisconnect,
-        wallets,
-        walletModalVisible,
-        setWalletModalVisible,
-      }}
-    >
-      {props.children}
-    </ARContext.Provider>
-  );
+	return (
+		<ARContext.Provider
+			value={{
+				walletAddress,
+				availableBalance,
+				handleConnect,
+				handleDisconnect,
+				wallets,
+				walletModalVisible,
+				setWalletModalVisible,
+			}}
+		>
+			{props.children}
+		</ARContext.Provider>
+	);
 }

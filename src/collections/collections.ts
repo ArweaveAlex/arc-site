@@ -1,55 +1,51 @@
-import { ArweaveClient } from "clients/arweave";
-import { TAGS } from "helpers/config";
-import { CollectionStateType } from "helpers/types";
+import { ArweaveClient } from 'clients/arweave';
+import { TAGS } from 'helpers/config';
+import { CollectionStateType } from 'helpers/types';
 
 const arClient = new ArweaveClient();
 
 let collectionInitState = {
-  title: null,
-  name: null,
-  description: null,
-  ticker: "ALEXCOLLECTION",
-  balances: {},
-  maxSupply: 1,
-  transferable: true,
-  lockTime: 0,
-  lastTransferTimestamp: null,
-  ids: [],
-  owner: null,
+	title: null,
+	name: null,
+	description: null,
+	ticker: 'ALEXCOLLECTION',
+	balances: {},
+	maxSupply: 1,
+	transferable: true,
+	lockTime: 0,
+	lastTransferTimestamp: null,
+	ids: [],
+	owner: null,
 };
 
-export async function createCollection(
-  collection: CollectionStateType,
-  topic: string,
-  walletAddress: string
-) {
-  const tags = [
-    { name: TAGS.keys.appType, value: TAGS.values.collectionAppType },
-    { name: TAGS.keys.collectionName, value: collection.title },
-    { name: TAGS.keys.collectionDescription, value: collection.description },
-    { name: TAGS.keys.ansTitle, value: collection.title },
-    { name: `${TAGS.keys.ansTopic}:${topic}`, value: topic },
-    { name: TAGS.keys.ansDescription, value: collection.description },
-    { name: TAGS.keys.ansType, value: TAGS.values.ansType },
-    { name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
-  ];
+export async function createCollection(collection: CollectionStateType, topic: string, walletAddress: string) {
+	const tags = [
+		{ name: TAGS.keys.appType, value: TAGS.values.collectionAppType },
+		{ name: TAGS.keys.collectionName, value: collection.title },
+		{ name: TAGS.keys.collectionDescription, value: collection.description },
+		{ name: TAGS.keys.ansTitle, value: collection.title },
+		{ name: `${TAGS.keys.ansTopic}:${topic}`, value: topic },
+		{ name: TAGS.keys.ansDescription, value: collection.description },
+		{ name: TAGS.keys.ansType, value: TAGS.values.ansType },
+		{ name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
+	];
 
-  collectionInitState.title = collection.title;
-  collectionInitState.name = collection.title;
-  collectionInitState.description = collection.description;
-  collectionInitState.owner = walletAddress;
-  collectionInitState.ids = collection.ids;
+	collectionInitState.title = collection.title;
+	collectionInitState.name = collection.title;
+	collectionInitState.description = collection.description;
+	collectionInitState.owner = walletAddress;
+	collectionInitState.ids = collection.ids;
 
-  const collectionContract = await arClient.warp.createContract.deploy({
-    src: COLLECTION_CONTRACT,
-    initState: JSON.stringify(collectionInitState),
-    wallet: "use_wallet",
-    tags: tags,
-  });
+	const collectionContract = await arClient.warp.createContract.deploy({
+		src: COLLECTION_CONTRACT,
+		initState: JSON.stringify(collectionInitState),
+		wallet: 'use_wallet',
+		tags: tags,
+	});
 
-  console.log(collectionContract.contractTxId);
+	console.log(collectionContract.contractTxId);
 
-  return collectionContract.contractTxId;
+	return collectionContract.contractTxId;
 }
 
 export const COLLECTION_CONTRACT = `

@@ -1,1 +1,1 @@
-export { default as ArtifactActionsSingle } from "./ArtifactActionsSingle";
+export { default as ArtifactActionsSingle } from './ArtifactActionsSingle';

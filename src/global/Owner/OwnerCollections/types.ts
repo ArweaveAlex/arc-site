@@ -1,4 +1,4 @@
 export interface IProps {
-  owner: string | null;
-  showCreateCollections: boolean;
+	owner: string | null;
+	showCreateCollections: boolean;
 }

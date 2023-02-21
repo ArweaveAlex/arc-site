@@ -1,1 +1,1 @@
-export { default as ArtifactsTableActionDropdown } from "./ArtifactsTableActionDropdown";
+export { default as ArtifactsTableActionDropdown } from './ArtifactsTableActionDropdown';

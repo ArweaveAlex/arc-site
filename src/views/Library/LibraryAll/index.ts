@@ -1,1 +1,1 @@
-export { default as LibraryAll } from "./LibraryAll";
+export { default as LibraryAll } from './LibraryAll';

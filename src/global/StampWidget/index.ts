@@ -1,1 +1,1 @@
-export { default as StampWidget } from "./StampWidget";
+export { default as StampWidget } from './StampWidget';

@@ -1,1 +1,1 @@
-export { default as ArtifactsSearch } from "./ArtifactsSearch";
+export { default as ArtifactsSearch } from './ArtifactsSearch';

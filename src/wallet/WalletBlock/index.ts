@@ -1,1 +1,1 @@
-export { default as WalletBlock } from "./WalletBlock";
+export { default as WalletBlock } from './WalletBlock';

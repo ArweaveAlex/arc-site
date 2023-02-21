@@ -1,14 +1,11 @@
-import { OwnerCollections } from "global/Owner/OwnerCollections";
+import { OwnerCollections } from 'global/Owner/OwnerCollections';
 
-import { useArweaveProvider } from "providers/ArweaveProvider";
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 export default function AccountCollections() {
-  const arProvider = useArweaveProvider();
+	const arProvider = useArweaveProvider();
 
-  return arProvider.walletAddress ? (
-    <OwnerCollections
-      owner={arProvider.walletAddress}
-      showCreateCollections={true}
-    />
-  ) : null;
+	return arProvider.walletAddress ? (
+		<OwnerCollections owner={arProvider.walletAddress} showCreateCollections={true} />
+	) : null;
 }

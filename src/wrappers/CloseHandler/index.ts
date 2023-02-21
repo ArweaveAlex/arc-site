@@ -1,1 +1,1 @@
-export { default as CloseHandler } from "./CloseHandler";
+export { default as CloseHandler } from './CloseHandler';

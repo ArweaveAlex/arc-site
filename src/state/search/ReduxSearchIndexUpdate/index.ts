@@ -1,1 +1,1 @@
-export { default as ReduxSearchIndexUpdate } from "./ReduxSearchIndexUpdate";
+export { default as ReduxSearchIndexUpdate } from './ReduxSearchIndexUpdate';

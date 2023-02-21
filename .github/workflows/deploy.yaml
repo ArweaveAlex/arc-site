@@ -1,20 +1,20 @@
 name: publish
 
 on:
-  push:
-    branches:
-      - "main"
+    push:
+        branches:
+            - 'main'
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 18.x
-      - run: npm i
-      - run: npm run deploy
-        env:
-          ALEX_DEPLOY_KEY: ${{ secrets.ALEX_DEPLOY_KEY }}
-          ALEX_ANT_CONTRACT: ${{ secrets.ALEX_ANT_CONTRACT }}
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 18.x
+            - run: npm i
+            - run: npm run deploy
+              env:
+                  ALEX_DEPLOY_KEY: ${{ secrets.ALEX_DEPLOY_KEY }}
+                  ALEX_ANT_CONTRACT: ${{ secrets.ALEX_ANT_CONTRACT }}

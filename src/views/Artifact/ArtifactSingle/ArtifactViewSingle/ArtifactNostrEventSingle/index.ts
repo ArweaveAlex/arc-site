@@ -1,1 +1,1 @@
-export { default as ArtifactNostrEventSingle } from "./ArtifactNostrEventSingle";
+export { default as ArtifactNostrEventSingle } from './ArtifactNostrEventSingle';

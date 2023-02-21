@@ -1,1 +1,1 @@
-export { default as AccountBookmarks } from "./AccountBookmarks";
+export { default as AccountBookmarks } from './AccountBookmarks';
