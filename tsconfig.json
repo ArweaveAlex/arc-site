@@ -20,6 +20,11 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/actions/deploy.mjs",
+    "src/actions/deploy.mjs"
+  ],
   "exclude": ["./tests", "./dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }
