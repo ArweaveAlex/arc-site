@@ -145,10 +145,22 @@ export function formatMessagingText(text: string) {
 	return removeUrls(finalStr);
 }
 
+export function formatNostrText(text: string) {
+	return text;
+}
+
 export function formatMessagingData(data: any) {
 	if (data && (data.text || data.full_text)) {
 		const tweetText = data.text ? data.text : data.full_text;
 		return formatMessagingText(tweetText);
+	} else {
+		return STORAGE.none;
+	}
+}
+
+export function formatNostrData(data: any) {
+	if (data && (data.post || data.post.content)) {
+		return formatNostrText(data.post.content);
 	} else {
 		return STORAGE.none;
 	}
@@ -167,10 +179,21 @@ export function removeUrls(text: string) {
 }
 
 export function getUsername(data: any) {
+	// Twitter
 	if (data && data.user) {
 		if (data.user.username) return `@${data.user.username}`;
 		else if (data.user.screen_name) return `@${data.user.screen_name}`;
 		else return STORAGE.none;
+	// Nostr
+	} else if(data && data.profile) {
+		if(data.profile.name) {
+			return data.profile.name
+		} else if(data.profile.display_name) {
+			return data.profile.display_name;
+		}
+		else if(data.profile) {
+			return data.profile.slice(0, 7) + ".." + data.profile.slice(-3);
+		}
 	} else {
 		return STORAGE.none;
 	}

@@ -8,7 +8,7 @@ import { Carousel } from 'components/molecules/Carousel';
 
 import { getTxEndpoint } from 'helpers/endpoints';
 import { getArtifactById } from 'gql/artifacts';
-import { formatMessagingData, getUsername } from 'helpers/utils';
+import { formatNostrData, getUsername } from 'helpers/utils';
 import { formatDate, formatAddress } from 'helpers/utils';
 import { LANGUAGE } from 'helpers/language';
 import { STORAGE, ASSETS, MEDIA_TYPES } from 'helpers/config';
@@ -109,13 +109,9 @@ export default function NostrListItem(props: IProps) {
 
 	function getProfileImage() {
 		if (props.data && props.data.profileImagePath && props.data.profileImagePath !== STORAGE.none) {
-			const profileImageJson = JSON.parse(props.data.profileImagePath);
-			const profileImageKeys = Object.keys(profileImageJson);
-			const profileImageId = profileImageJson[profileImageKeys[0]].id;
-
 			return (
 				<S.ProfileImage>
-					<img src={getTxEndpoint(profileImageId)} alt={''} />
+					<img src={props.data.profileImagePath} alt={''} />
 				</S.ProfileImage>
 			);
 		} else {
@@ -140,7 +136,7 @@ export default function NostrListItem(props: IProps) {
 
 	const artifactLink = props.data ? `${urls.artifact}${props.data.artifactId}` : '#';
 	const ownerLink = props.data ? `${urls.libraryAll(props.data.owner)}` : '#';
-
+	console.log(jsonData)
 	return props.data && jsonData ? (
 		<S.LIWrapper isListItem={props.isListItem} active={props.active}>
 			<S.LIContent>
@@ -148,7 +144,9 @@ export default function NostrListItem(props: IProps) {
 					<S.ProfileWrapper>
 						{getProfileImage()}
 						<S.NUContainer>
-							<S.Name>{jsonData.user && jsonData.user.name ? jsonData.user.name : STORAGE.none}</S.Name>
+							<S.Name>{
+								jsonData.profile && jsonData.profile.name ? jsonData.profile.name : (jsonData.profile.slice(0, 7) + ".." + jsonData.profile.slice(-3))
+							}</S.Name>
 							<S.Username>{getUsername(jsonData)}</S.Username>
 						</S.NUContainer>
 					</S.ProfileWrapper>
@@ -192,11 +190,11 @@ export default function NostrListItem(props: IProps) {
 				</S.LIHeader>
 				<S.LIBody>
 					<S.Message>
-						<p>{parse(formatMessagingData(jsonData))}</p>
+						<p>{parse(formatNostrData(jsonData))}</p>
 					</S.Message>
 					{getChildAssets()}
 					<MessagingMedia mediaIds={props.data.mediaIds} />
-					{jsonData.created_at && <S.PostDate>{formatDate(jsonData.created_at, 'iso')}</S.PostDate>}
+					{jsonData.post.created_at && <S.PostDate>{formatDate(jsonData.post.created_at, 'iso')}</S.PostDate>}
 					{jsonData.public_metrics && (
 						<S.PublicMetrics>
 							<S.Metric>
