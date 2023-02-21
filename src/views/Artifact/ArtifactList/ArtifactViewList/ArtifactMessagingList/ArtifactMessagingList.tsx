@@ -8,7 +8,7 @@ import { Loader } from 'components/atoms/Loader';
 import { getPoolById } from 'gql/pools';
 import { getArtifactById } from 'gql/artifacts';
 import { sortByAssociationSequence } from 'filters/artifacts';
-import { ArtifactDetailType, PoolType } from 'helpers/types';
+import { ArtifactDetailType, ArtifactEnum, PoolType } from 'helpers/types';
 import { formatAddress, formatDate } from 'helpers/utils';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
@@ -16,6 +16,7 @@ import { IProps } from '../../types';
 import * as S from './styles';
 
 import { MessagingListItem } from 'global/MessagingListItem';
+import { NostrListItem } from 'global/NostrListItem';
 
 export default function ArtifactMessagingList(props: IProps) {
 	const { id } = useParams();
@@ -130,7 +131,18 @@ export default function ArtifactMessagingList(props: IProps) {
 		if (!detailData) {
 			return <Loader sm />;
 		} else {
-			return <MessagingListItem data={detailData} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />;
+			switch (detailData.artifactType) {
+	            case ArtifactEnum.Messaging:
+	                return (
+	                    <MessagingListItem data={detailData} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />
+	                )
+				case ArtifactEnum.Nostr:
+					return (
+						<NostrListItem data={detailData} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />
+					)
+	            default:
+	                return null
+	        }
 		}
 	}
 

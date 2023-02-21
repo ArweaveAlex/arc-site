@@ -1,5 +1,4 @@
 import { ArtifactMessagingList } from './ArtifactMessagingList';
-import { ArtifactNostrList } from './ArtifactNostrList';
 
 import { ArtifactEnum } from "helpers/types";
 import { IProps } from '../types';
@@ -21,7 +20,7 @@ export default function ArtifactViewList(props: IProps) {
 	                )
 				case ArtifactEnum.Nostr:
 					return (
-						<ArtifactNostrList
+						<ArtifactMessagingList
 							data={props.data}
 							loading={props.loading}
 							updateSequence={props.updateSequence}
