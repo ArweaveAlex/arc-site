@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { MessagingListItem } from 'global/MessagingListItem';
-
 import { Loader } from 'components/atoms/Loader';
 
 import { IProps } from '../../types';
 import * as S from './styles';
+import { NostrListItem } from 'global/NostrListItem';
 
 export default function ArtifactNostrEventSingle(props: IProps) {
     const [parsedJsonData, setParsedJsonData] = React.useState<any>(null);
@@ -30,7 +29,7 @@ export default function ArtifactNostrEventSingle(props: IProps) {
 		if (!props.data || !parsedJsonData) {
 			return <Loader sm />;
 		} else {
-			return <div>{parsedJsonData.content}</div>;
+			return <NostrListItem data={props.data} isListItem={false} active={false} showArtifactLink={false} showOwnerLink={false} />;
 		}
 	}
 
