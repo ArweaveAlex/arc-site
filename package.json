@@ -12,7 +12,7 @@
     "test:verbose": "npm test -- --verbose",
     "test:coverage": "CI=true npm test -- --env=jsdom --coverage",
     "build": "webpack",
-    "deploy": "npm run build && node src/actions/deploy.ts"
+    "deploy": "npm run build && node src/actions/deploy.mjs"
   },
   "dependencies": {
     "@bundlr-network/client": "^0.9.11",
