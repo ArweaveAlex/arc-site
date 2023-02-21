@@ -1,1 +1,1 @@
-export { default as PoolRecentlyMinted } from './PoolRecentlyMinted';
+export { default as PoolRecentlyMinted } from "./PoolRecentlyMinted";

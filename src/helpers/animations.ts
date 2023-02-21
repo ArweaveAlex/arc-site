@@ -1,4 +1,4 @@
-import { keyframes } from 'styled-components';
+import { keyframes } from "styled-components";
 
 export const open = keyframes`
   0% {
@@ -33,5 +33,5 @@ export const loadingSlide = keyframes`
   }
 `;
 
-export const fadeIn1 = '250ms cubic-bezier(0, 0, 0.2, 1) 0ms';
-export const fadeIn2 = '1000ms cubic-bezier(0, 0, 0.2, 1) 0ms';
+export const fadeIn1 = "250ms cubic-bezier(0, 0, 0.2, 1) 0ms";
+export const fadeIn2 = "1000ms cubic-bezier(0, 0, 0.2, 1) 0ms";

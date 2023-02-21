@@ -1,1 +1,1 @@
-export { default as LandingPools } from './LandingPools';
+export { default as LandingPools } from "./LandingPools";

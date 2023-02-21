@@ -1,3 +1,3 @@
 export interface IProps {
-	rowCount: number;
+  rowCount: number;
 }

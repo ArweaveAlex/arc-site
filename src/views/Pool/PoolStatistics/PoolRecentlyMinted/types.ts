@@ -1,5 +1,5 @@
-import { ArtifactResponseType } from 'helpers/types';
+import { ArtifactResponseType } from "helpers/types";
 
 export interface IProps {
-	data: ArtifactResponseType;
+  data: ArtifactResponseType;
 }

@@ -1,1 +1,1 @@
-export { default as ArtifactRedditSingle } from './ArtifactRedditSingle';
+export { default as ArtifactRedditSingle } from "./ArtifactRedditSingle";

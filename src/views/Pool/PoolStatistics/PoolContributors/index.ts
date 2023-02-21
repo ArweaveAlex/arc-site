@@ -1,1 +1,1 @@
-export { default as PoolContributors } from './PoolContributors';
+export { default as PoolContributors } from "./PoolContributors";

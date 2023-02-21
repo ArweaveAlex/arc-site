@@ -1,5 +1,5 @@
 export interface IProps {
-	value: string;
-	check?: string[];
-	children: React.ReactNode;
+  value: string;
+  check?: string[];
+  children: React.ReactNode;
 }

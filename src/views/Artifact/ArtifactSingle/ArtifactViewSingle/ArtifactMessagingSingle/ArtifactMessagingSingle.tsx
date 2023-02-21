@@ -1,32 +1,32 @@
-import React from 'react';
+import React from "react";
 
-import { MessagingListItem } from 'global/MessagingListItem';
+import { MessagingListItem } from "global/MessagingListItem";
 
-import { Loader } from 'components/atoms/Loader';
+import { Loader } from "components/atoms/Loader";
 
-import { IProps } from '../../types';
-import * as S from './styles';
+import { IProps } from "../../types";
+import * as S from "./styles";
 
 export default function ArtifactMessagingSingle(props: IProps) {
-	function getDetailData() {
-		if (!props.data) {
-			return <Loader sm />;
-		} else {
-			return (
-				<MessagingListItem
-					data={props.data}
-					isListItem={false}
-					active={false}
-					showArtifactLink={false}
-					showOwnerLink={false}
-				/>
-			);
-		}
-	}
+  function getDetailData() {
+    if (!props.data) {
+      return <Loader sm />;
+    } else {
+      return (
+        <MessagingListItem
+          data={props.data}
+          isListItem={false}
+          active={false}
+          showArtifactLink={false}
+          showOwnerLink={false}
+        />
+      );
+    }
+  }
 
-	return (
-		<S.Wrapper>
-			<S.DetailWrapper>{getDetailData()}</S.DetailWrapper>
-		</S.Wrapper>
-	);
+  return (
+    <S.Wrapper>
+      <S.DetailWrapper>{getDetailData()}</S.DetailWrapper>
+    </S.Wrapper>
+  );
 }

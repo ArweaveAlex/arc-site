@@ -1,5 +1,5 @@
-import { ArtifactDetailType } from 'helpers/types';
+import { ArtifactDetailType } from "helpers/types";
 
 export interface IProps {
-	data: ArtifactDetailType | null;
+  data: ArtifactDetailType | null;
 }

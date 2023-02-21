@@ -1,7 +1,7 @@
-import { CollectionType } from 'helpers/types';
+import { CollectionType } from "helpers/types";
 
 export interface IProps {
-	owner: string | null;
-	data: CollectionType[] | null;
-	showCreateCollections: boolean;
+  owner: string | null;
+  data: CollectionType[] | null;
+  showCreateCollections: boolean;
 }

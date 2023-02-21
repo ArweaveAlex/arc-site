@@ -1,4 +1,4 @@
-export const base = '/';
+export const base = "/";
 export const account = `${base}account/`;
 export const accountAll = `${account}all/`;
 export const accountCollections = `${account}collections/`;

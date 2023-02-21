@@ -1,1 +1,1 @@
-export { default as ArtifactMessagingSingle } from './ArtifactMessagingSingle';
+export { default as ArtifactMessagingSingle } from "./ArtifactMessagingSingle";

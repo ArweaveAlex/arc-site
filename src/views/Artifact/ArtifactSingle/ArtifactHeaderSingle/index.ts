@@ -1,1 +1,1 @@
-export { default as ArtifactHeaderSingle } from './ArtifactHeaderSingle';
+export { default as ArtifactHeaderSingle } from "./ArtifactHeaderSingle";

@@ -1,13 +1,13 @@
-import { ArtifactDetailType } from 'helpers/types';
+import { ArtifactDetailType } from "helpers/types";
 
 export interface IProps {
-	data: ArtifactDetailType;
-	isListItem: boolean;
-	active: boolean;
-	showArtifactLink: boolean;
-	showOwnerLink: boolean;
+  data: ArtifactDetailType;
+  isListItem: boolean;
+  active: boolean;
+  showArtifactLink: boolean;
+  showOwnerLink: boolean;
 }
 
 export interface IMProps {
-	mediaIds: string | null;
+  mediaIds: string | null;
 }

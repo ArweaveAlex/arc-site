@@ -4,7 +4,7 @@
 
 ### Requirements
 
--   Node.js 18+ and npm
+- Node.js 18+ and npm
 
 ### Local Run
 
