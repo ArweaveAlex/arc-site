@@ -74,7 +74,7 @@ export default function WalletConnect(props: { callback: () => void }) {
 					</Modal>
 				)}
 				<Button
-					type={'primary'}
+					type={'alt2'}
 					label={
 						arProvider.walletAddress
 							? formatAddress(arProvider.walletAddress, false)
@@ -82,7 +82,7 @@ export default function WalletConnect(props: { callback: () => void }) {
 					}
 					handlePress={handlePress}
 					useMaxWidth
-					// active={true}
+					active={true}
 				/>
 				{showDropdown && (
 					<S.WalletDropdown>
