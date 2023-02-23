@@ -70,7 +70,7 @@ import { LANGUAGE } from 'helpers/language';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.0.9',
+	version: '1.1.0',
 };
 
 export const ASSETS = {
