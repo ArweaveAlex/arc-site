@@ -15,10 +15,9 @@ import * as urls from 'helpers/urls';
 import { IProps } from '../../types';
 import * as S from './styles';
 
-import { MessagingListItem } from 'global/MessagingListItem';
 import { NostrListItem } from 'global/NostrListItem';
 
-export default function ArtifactMessagingList(props: IProps) {
+export default function ArtifactNostrList(props: IProps) {
 	const { id } = useParams();
 
 	const [threadData, setThreadData] = React.useState<ArtifactDetailType[]>(null);
@@ -79,13 +78,13 @@ export default function ArtifactMessagingList(props: IProps) {
 				<>
 					{threadData.map((artifact: ArtifactDetailType, index: number) => {
 						return (
-							<MessagingListItem
+							<NostrListItem 
 								key={index}
-								data={artifact}
-								isListItem={true}
+								data={artifact} 
+								isListItem={true} 
 								active={detailData ? detailData.artifactId === artifact.artifactId : false}
-								showArtifactLink={true}
-								showOwnerLink={true}
+								showArtifactLink={true} 
+								showOwnerLink={true} 
 							/>
 						)
 					})}
@@ -131,18 +130,9 @@ export default function ArtifactMessagingList(props: IProps) {
 		if (!detailData) {
 			return <Loader sm />;
 		} else {
-			switch (detailData.artifactType) {
-	            case ArtifactEnum.Messaging:
-	                return (
-	                    <MessagingListItem data={detailData} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />
-	                )
-				case ArtifactEnum.Nostr:
-					return (
-						<NostrListItem data={detailData} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />
-					)
-	            default:
-	                return null
-	        }
+			return (
+				<NostrListItem data={detailData} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />
+			)
 		}
 	}
 

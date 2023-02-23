@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MessagingListItem } from 'global/MessagingListItem';
+import { NostrListItem } from 'global/NostrListItem';
 
 import { Loader } from 'components/atoms/Loader';
 
@@ -14,7 +14,7 @@ export default function ArtifactMessagingSingle(props: IProps) {
 			return <Loader sm />;
 		} else {
 			return (
-				<MessagingListItem data={props.data} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />
+				<NostrListItem data={props.data} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />
 			)
 		}
 	}
