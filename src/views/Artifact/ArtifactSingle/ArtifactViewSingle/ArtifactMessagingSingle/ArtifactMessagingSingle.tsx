@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { MessagingListItem } from 'global/MessagingListItem';
 
 import { Loader } from 'components/atoms/Loader';
