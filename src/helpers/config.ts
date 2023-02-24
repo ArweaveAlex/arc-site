@@ -173,7 +173,7 @@ export const TAGS = {
 		webpageArtifactType: 'Alex-Webpage',
 		poolVersions: {
 			'1.2': 'Alex-Archiving-Pool-v1.2',
-			'1.4': 'Alex-Archiving-Pool-v1.4',
+			'1.4': 'Alex-Archiving-Pool-Thread-Testing-v1.0',
 		},
 		searchIndex: 'Alex-Search-Index-v0',
 		collectionAppType: 'Alex-Collection-v0',

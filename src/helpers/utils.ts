@@ -180,6 +180,18 @@ export function formatMessagingData(data: any) {
 	}
 }
 
+export function formatNostrText(text: string) {
+	return text;
+}
+
+export function formatNostrData(data: any) {
+	if (data && (data.post || data.post.content)) {
+		return formatNostrText(data.post.content);
+	} else {
+		return STORAGE.none;
+	}
+}
+
 export function addUrls(text: string) {
 	const urlRegex = /(https?:\/\/[^\s]+)/g;
 	return text.replace(urlRegex, function (url) {

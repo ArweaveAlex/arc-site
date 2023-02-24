@@ -1,6 +1,7 @@
 import { useQuery } from 'hooks/useQuery';
 
 import { ArtifactMessagingList } from './ArtifactMessagingList';
+import { ArtifactNostrList } from './ArtifactNostrList';
 
 import { Query } from 'wrappers/Query';
 
@@ -16,6 +17,15 @@ export default function ArtifactViewList(props: IProps) {
 			case ArtifactEnum.Messaging:
 				return (
 					<ArtifactMessagingList
+						data={props.data}
+						loading={props.loading}
+						updateSequence={props.updateSequence}
+						updateDisabled={props.updateDisabled}
+					/>
+				);
+			case ArtifactEnum.Nostr:
+				return (
+					<ArtifactNostrList
 						data={props.data}
 						loading={props.loading}
 						updateSequence={props.updateSequence}
