@@ -12,6 +12,8 @@ import * as urls from 'helpers/urls';
 import { IProps } from './types';
 import * as S from './styles';
 
+
+// TODO: Nostr Icon
 export default function NostrListItem(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
 
@@ -32,8 +34,6 @@ export default function NostrListItem(props: IProps) {
 			return null;
 		}
 	}
-
-	console.log(jsonData);
 
 	const artifactLink = props.data ? `${urls.artifact}${props.data.artifactId}` : '#';
 	const ownerLink = props.data ? `${urls.libraryAll(props.data.owner)}` : '#';
