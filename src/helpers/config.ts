@@ -173,7 +173,7 @@ export const TAGS = {
 		webpageArtifactType: 'Alex-Webpage',
 		poolVersions: {
 			'1.2': 'Alex-Archiving-Pool-v1.2',
-			'1.4': 'Alex-Archiving-Pool-Thread-Testing-v1.0',
+			'1.4': 'Alex-Archiving-Pool-v1.4',
 		},
 		searchIndex: 'Alex-Search-Index-v0',
 		collectionAppType: 'Alex-Collection-v0',
@@ -243,7 +243,7 @@ export const URLS: IURLView = {
 			index: 1,
 			label: LANGUAGE.account.collections.title,
 			icon: ASSETS.collections,
-			disabled: true,
+			disabled: false,
 			url: urls.accountCollections,
 			view: AccountCollections,
 		},

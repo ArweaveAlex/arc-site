@@ -25,7 +25,8 @@ export const SubComponentContainer = styled.div`
 export const PreviewContainer = styled(SubComponentContainer)``;
 
 export const ModalPreviewContainer = styled.div`
-	height: 100%;
+	min-height: 141.5px;
+	height: auto;
 	width: 100%;
 	margin: 0 auto;
 `;

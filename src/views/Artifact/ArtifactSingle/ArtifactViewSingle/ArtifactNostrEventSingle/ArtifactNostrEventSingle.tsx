@@ -32,8 +32,6 @@ export default function ArtifactNostrEventSingle(props: IProps) {
 		}
 	}
 
-	console.log(data);
-
 	return (
 		<S.Wrapper>
 			<S.DetailWrapper>{getDetailData()}</S.DetailWrapper>

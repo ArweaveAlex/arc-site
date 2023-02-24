@@ -16,8 +16,9 @@ export function checkWindowResize(fn: () => void): void {
 	window.addEventListener('resize', fn);
 }
 
-export function scrollTo(x: number, y: number) {
+export function scrollTo(x: number, y: number, behavior?: 'smooth') {
 	setTimeout(function () {
-		window.scrollTo({ left: x, top: y });
-	}, 1);
+		const obj = behavior ? { left: x, top: y, behavior: behavior } : { left: x, top: y };
+		window.scrollTo(obj);
+	}, 0);
 }

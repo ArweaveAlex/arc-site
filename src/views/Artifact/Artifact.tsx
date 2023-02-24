@@ -7,7 +7,7 @@ import { ArtifactSingle } from './ArtifactSingle';
 
 import { Loader } from 'components/atoms/Loader';
 
-import * as window from 'helpers/window';
+import * as windowUtils from 'helpers/window';
 import { ArtifactDetailType } from 'helpers/types';
 
 export default function Artifact() {
@@ -18,7 +18,7 @@ export default function Artifact() {
 	React.useEffect(() => {
 		(async function () {
 			if (id) {
-				window.scrollTo(0, 0);
+				windowUtils.scrollTo(0, 0);
 				setData(await getArtifactById(id));
 			}
 		})();

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as window from 'helpers/window';
+import * as windowUtils from 'helpers/window';
 import * as S from './styles';
 
 class Tab extends React.Component<any, any> {
@@ -12,7 +12,7 @@ class Tab extends React.Component<any, any> {
 	};
 
 	onClick = () => {
-		window.scrollTo(0, 0);
+		windowUtils.scrollTo(0, 0);
 		const { label, onClick } = this.props as any;
 		onClick(label);
 	};

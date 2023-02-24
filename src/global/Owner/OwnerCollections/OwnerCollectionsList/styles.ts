@@ -198,7 +198,7 @@ export const EWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background: ${(props) => props.theme.colors.container.alt4.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};

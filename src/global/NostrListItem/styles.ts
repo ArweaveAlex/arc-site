@@ -52,8 +52,13 @@ export const P = styled.p`
 `;
 
 export const Name = styled(P)`
+	line-height: 24px;
 	color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+	max-width: 190px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 `;
 
 export const Username = styled(P)`
@@ -119,6 +124,7 @@ export const ALinkNT = styled.div`
 `;
 
 export const LIBody = styled.div`
+	height: 100%;
 	width: 100%;
 	margin: 25px 0 0 0;
 `;
@@ -172,7 +178,7 @@ export const PostDate = styled(P)`
 `;
 
 export const PublicMetrics = styled.div`
-	width: 350px;
+	width: 290px;
 	max-width: 75.5vw;
 	display: flex;
 	justify-content: space-between;
@@ -189,14 +195,14 @@ export const Metric = styled.div`
 	margin: 0 12.5px 0 0;
 	svg {
 		width: 13.5px;
-		fill: ${(props) => props.theme.colors.font.primary.alt8};
+		fill: ${(props) => props.theme.colors.font.primary.alt9};
 		margin: 0 !important;
 	}
 	p {
 		font-size: ${(props) => props.theme.typography.size.xxSmall} !important;
-		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt9} !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
-		margin: 0 0 3.5px 5.5px !important; 
+		margin: 0 0 3.5px 5.5px !important;
 		white-space: nowrap !important;
 		height: auto !important;
 	}
@@ -213,7 +219,7 @@ export const SingleWrapper = styled.div`
 		right: auto;
 		margin: 0 auto 20px auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
@@ -237,7 +243,7 @@ export const SingleContent = styled.div`
 		position: relative;
 		top: auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		height: auto;
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
@@ -266,7 +272,7 @@ export const HeaderWrapper = styled.div`
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		margin: 20px 0;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		margin: 20px 0;
 	}
 `;
@@ -346,12 +352,12 @@ export const ActiveContainer = styled.div`
 `;
 
 export const ChildAssetContainer = styled.div`
-	min-height: 300px;
+	min-height: 141.5px;
 	width: 100%;
 	margin: 15px 0 0 0;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt6};
+	border: 1px solid ${(props) => props.theme.colors.border.alt3};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;
 

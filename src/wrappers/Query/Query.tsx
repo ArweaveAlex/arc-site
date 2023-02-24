@@ -16,7 +16,6 @@ export default function Query(props: IProps) {
 			setInvalid(true);
 		}
 		if (props.check && !props.check.includes(query.get(props.value))) {
-			console.log(props.check);
 			setInvalid(true);
 		}
 	}, [props.value, props.check, query]);

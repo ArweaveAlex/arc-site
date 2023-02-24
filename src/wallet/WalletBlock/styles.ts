@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	display: flex;

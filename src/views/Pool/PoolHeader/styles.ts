@@ -16,7 +16,7 @@ export const Header = styled.div`
 	margin: 0 0 20px 0;
 	display: flex;
 	flex-direction: column;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
@@ -63,8 +63,6 @@ export const SubheaderFlex = styled.div`
 export const SubheaderContainer = styled.div`
 	display: flex;
 	margin: 10px 0 0 0;
-	white-space: nowrap;
-	overflow: hidden;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		margin: 0 0 7.5px 0;
 	}
@@ -92,7 +90,15 @@ export const Subheader2 = styled.div`
 	}
 `;
 
-export const ID = styled(Subheader2)``;
+export const ID = styled(Subheader2)`
+	display: flex;
+	position: relative;
+	p {
+		margin: 0 7.5px 0 0;
+	}
+	svg {
+	}
+`;
 
 export const Image = styled.div<{ image: string }>`
 	height: 425px;
@@ -111,7 +117,7 @@ export const ImageLoading = styled.div`
 	width: 100%;
 	margin: 0 0 40px 0;
 	position: relative;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
@@ -129,7 +135,7 @@ export const FlexTiles = styled.div`
 export const Tile = styled.div`
 	height: 100px;
 	width: 32.5%;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
@@ -196,7 +202,7 @@ export const LDHeader = styled.div`
 export const LDBody = styled.div`
 	margin: 20px 0;
 	padding: 15px;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
@@ -212,5 +218,20 @@ export const LDBody = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 		font-size: ${(props) => props.theme.typography.size.base};
 		text-decoration: underline;
+	}
+`;
+
+export const IDCopied = styled.div`
+	position: absolute;
+	bottom: 100%;
+	left: 100%;
+	z-index: 5;
+	background: ${(props) => props.theme.colors.container.alt3.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	padding: 3.5px 12.5px 2.5px 17.5px;
+	p {
+		font-size: 12px;
+		color: ${(props) => props.theme.colors.font.primary.alt4};
+		white-space: nowrap;
 	}
 `;

@@ -7,6 +7,7 @@ import { getArtifactsByIds } from 'gql/artifacts';
 import { ArtifactsTable } from 'global/ArtifactsDetail/ArtifactsTable';
 
 import { clearCursors } from 'state/cursors/actions';
+import * as windowUtils from 'helpers/window';
 import { ArtifactResponseType } from 'helpers/types';
 import { IProps } from './types';
 
@@ -35,7 +36,7 @@ export default function ArtifactsDetail(props: IProps) {
 	}
 
 	React.useEffect(() => {
-		window.scrollTo(0, 0);
+		windowUtils.scrollTo(0, 0);
 		dispatch(clearCursors());
 	}, [dispatch]);
 

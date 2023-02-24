@@ -1,18 +1,34 @@
+import React from 'react';
 import parse from 'html-react-parser';
 
 import { ArweaveClient } from 'clients/arweave';
 
 import { SocialShare } from 'global/SocialShare';
 import { PoolContribute } from '../PoolContribute';
+
 import { Loader } from 'components/atoms/Loader';
+import { IconButton } from 'components/atoms/IconButton';
 
 import { formatAddress, formatCount } from 'helpers/utils';
 import { LANGUAGE } from 'helpers/language';
+import { ASSETS } from 'helpers/config';
 import { IProps } from './types';
 import * as S from './styles';
 
-export default function PoolsHeader(props: IProps) {
+export default function PoolHeader(props: IProps) {
 	const arClient = new ArweaveClient();
+
+	const [copied, setCopied] = React.useState<boolean>(false);
+
+	const copyAddress = React.useCallback(async () => {
+		if (props.id) {
+			if (props.id.length > 0) {
+				await navigator.clipboard.writeText(props.id);
+				setCopied(true);
+				setTimeout(() => setCopied(false), 2000);
+			}
+		}
+	}, [props.id]);
 
 	function getSubheader() {
 		return (
@@ -24,9 +40,15 @@ export default function PoolsHeader(props: IProps) {
 					&nbsp;
 					<S.ID>
 						<p>{props.id ? formatAddress(props.id, false) : null}</p>
+						<IconButton type={'primary'} src={ASSETS.copy} handlePress={copyAddress} sm />
+						{copied && (
+							<S.IDCopied>
+								<p>{LANGUAGE.copied}</p>
+							</S.IDCopied>
+						)}
 					</S.ID>
 				</S.SubheaderContainer>
-				&nbsp;
+				&nbsp; &nbsp;
 				<S.SubheaderContainer>
 					<S.Subheader1>
 						<p>{LANGUAGE.createdOn}</p>

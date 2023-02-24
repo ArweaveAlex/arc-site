@@ -6,14 +6,19 @@ import { IProps } from '../../types';
 import * as S from './styles';
 
 export default function ArtifactNostrSingle(props: IProps) {
-
 	function getDetailData() {
 		if (!props.data) {
 			return <Loader sm />;
 		} else {
 			return (
-				<NostrListItem data={props.data} isListItem={false} active={true} showArtifactLink={true} showOwnerLink={true} />
-			)
+				<NostrListItem
+					data={props.data}
+					isListItem={false}
+					active={true}
+					showArtifactLink={true}
+					showOwnerLink={true}
+				/>
+			);
 		}
 	}
 

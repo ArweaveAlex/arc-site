@@ -38,7 +38,7 @@ export const Content = styled.div`
 	width: calc(100% - 110px);
 	max-width: ${STYLING.cutoffs.max};
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	position: relative;
@@ -50,7 +50,7 @@ export const Info = styled.div`
 	padding: 0 25px;
 	display: flex;
 	position: relative;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-left: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
@@ -165,7 +165,7 @@ export const Divider = styled.div`
 export const Body = styled.div`
 	height: 50%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

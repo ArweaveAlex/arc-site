@@ -5,15 +5,15 @@ import * as S from './styles';
 import { DOM } from 'helpers/config';
 import { IProps } from './types';
 
-import * as window from 'helpers/window';
+import * as windowUtils from 'helpers/window';
 
 export default function Loader(props: IProps) {
 	React.useEffect(() => {
 		if (!props.sm && !props.xSm) {
-			window.scrollTo(0, 0);
-			window.hideDocumentBody();
+			windowUtils.scrollTo(0, 0);
+			windowUtils.hideDocumentBody();
 			return () => {
-				window.showDocumentBody();
+				windowUtils.showDocumentBody();
 			};
 		}
 	}, [props.sm, props.xSm]);

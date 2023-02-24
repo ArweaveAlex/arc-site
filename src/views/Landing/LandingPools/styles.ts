@@ -47,7 +47,7 @@ export const C1 = styled.div`
 export const C1Content = styled.div`
 	height: calc(100% - 90px);
 	width: calc(100% - 10px);
-	padding: 0 25px 25px 5px;
+	padding: 0 0 25px 5px;
 	text-align: left;
 	overflow-y: auto;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
@@ -67,6 +67,11 @@ export const Description = styled.p`
 	color: ${(props) => props.theme.colors.font.primary.active.base};
 	font-size: ${(props) => props.theme.typography.size.base};
 	line-height: 1.45;
+	background: ${(props) => props.theme.colors.container.alt3.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
+	padding: 15px;
 	b {
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 		font-weight: ${(props) => props.theme.typography.weight.medium};

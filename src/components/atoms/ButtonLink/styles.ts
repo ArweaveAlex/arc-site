@@ -153,7 +153,7 @@ export const Alt2 = styled(Primary)`
 			props.active ? props.theme.colors.button.alt2.active.label : props.theme.colors.button.alt2.label};
 	}
 `;
-export const IconTertiary = styled(IconPrimary)`
+export const IconAlt2 = styled(IconPrimary)`
 	svg {
 		fill: ${(props) =>
 			props.disabled

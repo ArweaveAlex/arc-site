@@ -3,17 +3,14 @@ import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 import { Link } from 'react-router-dom';
 
-
-import { formatNostrData, getUsername } from 'helpers/utils';
+import { formatNostrData } from 'helpers/utils';
 import { formatDate, formatAddress } from 'helpers/utils';
 import { LANGUAGE } from 'helpers/language';
-import { STORAGE, ASSETS} from 'helpers/config';
+import { STORAGE, ASSETS } from 'helpers/config';
 
 import * as urls from 'helpers/urls';
 import { IProps } from './types';
 import * as S from './styles';
-
-
 
 export default function NostrListItem(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
@@ -36,9 +33,10 @@ export default function NostrListItem(props: IProps) {
 		}
 	}
 
+	console.log(jsonData);
+
 	const artifactLink = props.data ? `${urls.artifact}${props.data.artifactId}` : '#';
 	const ownerLink = props.data ? `${urls.libraryAll(props.data.owner)}` : '#';
-	console.log(jsonData)
 	return props.data && jsonData ? (
 		<S.LIWrapper isListItem={props.isListItem} active={props.active}>
 			<S.LIContent>
@@ -46,12 +44,16 @@ export default function NostrListItem(props: IProps) {
 					<S.ProfileWrapper>
 						{getProfileImage()}
 						<S.NUContainer>
-							<S.Name>{
-								jsonData.profile && jsonData.profile.name ? jsonData.profile.name : (jsonData.profile.slice(0, 7) + ".." + jsonData.profile.slice(-3))
-							}</S.Name>
-							<S.Username>{
-								jsonData.profile && jsonData.profile.name ? jsonData.profile.name : (jsonData.profile.slice(0, 7) + ".." + jsonData.profile.slice(-3))
-							}</S.Username>
+							<S.Name>
+								{jsonData.profile && jsonData.profile.name
+									? jsonData.profile.name
+									: jsonData.profile.slice(0, 7) + '..' + jsonData.profile.slice(-3)}
+							</S.Name>
+							<S.Username>
+								{jsonData.profile && jsonData.profile.name
+									? jsonData.profile.name
+									: jsonData.profile.slice(0, 7) + '..' + jsonData.profile.slice(-3)}
+							</S.Username>
 						</S.NUContainer>
 					</S.ProfileWrapper>
 					<S.AInfoWrapper>
@@ -65,7 +67,9 @@ export default function NostrListItem(props: IProps) {
 								<>
 									<S.ALink>
 										<span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
-										<Link to={artifactLink}>{props.data ? formatAddress(props.data.artifactId, false) : null}</Link>
+										<Link to={artifactLink}>
+											{props.data ? formatAddress(props.data.artifactId, false) : null}
+										</Link>
 									</S.ALink>
 									<S.ALinkNT>
 										<Link to={artifactLink} target={'_blank'} tabIndex={-1}>
@@ -80,7 +84,9 @@ export default function NostrListItem(props: IProps) {
 								<>
 									<S.ALink>
 										<span>{`${LANGUAGE.owner}:`}&nbsp;</span>
-										<Link to={ownerLink}>{props.data ? formatAddress(props.data.owner, false) : null}</Link>
+										<Link to={ownerLink}>
+											{props.data ? formatAddress(props.data.owner, false) : null}
+										</Link>
 									</S.ALink>
 									<S.ALinkNT>
 										<Link to={ownerLink} target={'_blank'} tabIndex={-1}>
@@ -96,7 +102,9 @@ export default function NostrListItem(props: IProps) {
 					<S.Message>
 						<p>{parse(formatNostrData(jsonData))}</p>
 					</S.Message>
-					{jsonData.post.created_at && <S.PostDate>{formatDate(jsonData.post.created_at, 'iso')}</S.PostDate>}
+					{jsonData.post.created_at && (
+						<S.PostDate>{formatDate(jsonData.post.created_at * 1000, 'iso')}</S.PostDate>
+					)}
 				</S.LIBody>
 			</S.LIContent>
 		</S.LIWrapper>

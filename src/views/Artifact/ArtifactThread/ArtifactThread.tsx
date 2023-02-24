@@ -5,7 +5,7 @@ import { getArtifactsByAssociation } from 'gql/artifacts';
 import { SequenceType } from 'helpers/types';
 import { ArtifactList } from './ArtifactList';
 
-import * as window from 'helpers/window';
+import * as windowUtils from 'helpers/window';
 import { AssociationDetailType } from 'helpers/types';
 
 const SEQUENCE_ITERATION = 5;
@@ -32,7 +32,7 @@ export default function ArtifactThread() {
 			if (associationId) {
 				setLoading(true);
 				if (!data) {
-					window.scrollTo(0, 0);
+					windowUtils.scrollTo(0, 0);
 					setData(await getArtifactsByAssociation(associationId, sequence));
 				} else {
 					const associationDetail = await getArtifactsByAssociation(associationId, sequence);
