@@ -17,7 +17,7 @@ export const SOCIAL_PATHS = [
 	},
 	{
 		name: LANGUAGE.social.discord,
-		href: 'https://discord.gg/EGBWRvx6Hu',
+		href: 'https://discord.gg/r3fj9m5AU5',
 		svg: ASSETS.social.discord,
 	},
 ];
