@@ -179,7 +179,7 @@ export const PostDate = styled(P)`
 
 export const PublicMetrics = styled.div`
 	width: 290px;
-	max-width: 75.5vw;
+	max-width: 65.5vw;
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;

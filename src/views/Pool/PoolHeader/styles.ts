@@ -96,8 +96,6 @@ export const ID = styled(Subheader2)`
 	p {
 		margin: 0 7.5px 0 0;
 	}
-	svg {
-	}
 `;
 
 export const Image = styled.div<{ image: string }>`
