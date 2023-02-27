@@ -153,7 +153,7 @@ export const FormFixedContainer = styled.div`
 
 export const Form = styled.form`
 	margin: -10px 0 0 0;
-	
+
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		margin: 0;
 	}

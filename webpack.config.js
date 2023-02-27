@@ -2,13 +2,22 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-	mode: 'development',
 	entry: './src/index.tsx',
 	output: {
 		path: `${__dirname}/dist`,
 		filename: 'bundle.js',
+	},
+	optimization: {
+		minimize: true,
+		minimizer: [
+			new TerserPlugin({
+				extractComments: false,
+			}),
+		],
+		usedExports: true
 	},
 	module: {
 		rules: [
