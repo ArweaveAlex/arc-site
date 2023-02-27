@@ -35,7 +35,7 @@ export default function ActionDropdown(props: IProps) {
 		}
 	}
 
-	function handleShowDropdown(e: any) {
+	function handleShowDropdown() {
 		if (!props.closeDisabled) {
 			props.handleShowDropdown();
 		}
@@ -51,7 +51,7 @@ export default function ActionDropdown(props: IProps) {
 	return (
 		<CloseHandler callback={() => handleCallback()} active={props.open} disabled={props.closeDisabled}>
 			<S.Wrapper>
-				<IconButton type={'primary'} src={ASSETS.menuAction} handlePress={(e: any) => handleShowDropdown(e)} />
+				<IconButton type={'primary'} src={ASSETS.menuAction} handlePress={() => handleShowDropdown()} />
 				{props.open && (
 					<S.Dropdown openDown={true} height={dropdownHeight}>
 						{props.actions.map((action, index) => {

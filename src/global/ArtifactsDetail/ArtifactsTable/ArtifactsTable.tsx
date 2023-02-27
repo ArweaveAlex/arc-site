@@ -97,7 +97,7 @@ export default function ArtifactsTable(props: IProps) {
 		return header;
 	}
 
-	function getType(type: string, tags: KeyValueType[]) {
+	function getType(type: string) {
 		let artifactType = ARTIFACT_TYPES[type];
 		if (!artifactType) {
 			artifactType = ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
@@ -243,10 +243,7 @@ export default function ArtifactsTable(props: IProps) {
 								row.callback = getCallback(element.node.id);
 							}
 
-							row.type = getType(
-								getTagValue(element.node.tags, TAGS.keys.artifactType),
-								element.node.tags
-							);
+							row.type = getType(getTagValue(element.node.tags, TAGS.keys.artifactType));
 							row.title = getArtifactLink(element.node.id, element.node.tags);
 							row.dateCreated = formatDate(
 								getTagValue(element.node.tags, TAGS.keys.dateCreated),

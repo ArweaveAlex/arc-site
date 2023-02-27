@@ -9,6 +9,8 @@ export default function ArtifactNostrEventSingle(props: IProps) {
 	const [parsedJsonData, setParsedJsonData] = React.useState<any>(null);
 	const [data, setData] = React.useState<any>([]);
 
+	console.log(data);
+
 	React.useEffect(() => {
 		if (props.data && props.data.rawData) {
 			setParsedJsonData(JSON.parse(props.data.rawData));

@@ -100,7 +100,8 @@ export const HeaderWrapper = styled.div`
 	a {
 		font-size: 22px;
 		font-weight: 500;
-		white-space: nowrap;
+		white-space: pre-wrap;
+		line-height: 1.5;
 		&:hover {
 			text-decoration-thickness: 1.5px;
 		}

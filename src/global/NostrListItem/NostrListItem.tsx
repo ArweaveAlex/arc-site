@@ -12,7 +12,6 @@ import * as urls from 'helpers/urls';
 import { IProps } from './types';
 import * as S from './styles';
 
-
 // TODO: Nostr Icon
 export default function NostrListItem(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);

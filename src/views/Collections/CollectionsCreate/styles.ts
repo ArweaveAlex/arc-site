@@ -130,6 +130,11 @@ export const FormFixedContainer = styled.div`
 	position: fixed;
 	overflow: auto;
 	scrollbar-width: none;
+	padding: 20px;
+	background: ${(props) => props.theme.colors.container.alt3.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	::-webkit-scrollbar {
 		width: 0px;
 	}
@@ -146,38 +151,20 @@ export const FormFixedContainer = styled.div`
 	}
 `;
 
-export const FormHeader = styled.div`
-	margin: 0 0 35px 0;
-	h2 {
-		font-size: 28px;
-		font-family: ${(props) => props.theme.typography.family.alt1};
-		color: ${(props) => props.theme.colors.font.primary.alt4};
+export const Form = styled.form`
+	margin: -10px 0 0 0;
+	
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		margin: 0;
 	}
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		h2 {
-			font-size: 24px;
-		}
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
+		margin: 0;
 	}
 `;
-
-export const Form = styled.form``;
 
 export const SubmitContainer = styled.div`
 	width: fit-content;
 	margin: 0 0 0 auto;
-	// position: fixed;
-	// bottom: 20px;
-	// right: 20px;
-	// @media (max-width: ${STYLING.cutoffs.initial}) {
-	// 	position: relative;
-	// 	bottom: auto;
-	// 	right: auto;
-	// }
-	// @media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
-	//     position: relative;
-	// 	bottom: auto;
-	// 	right: auto;
-	// }
 `;
 
 export const ActionContainer = styled.div`

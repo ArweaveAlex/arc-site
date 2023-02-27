@@ -18,6 +18,8 @@ import { createCollection } from 'collections/collections';
 import * as S from './styles';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
+// TODO: Cancel Action
+// TODO: Cache Selected Ids
 export default function CollectionsCreate() {
 	const query = useQuery();
 	const arProvider = useArweaveProvider();
@@ -170,9 +172,6 @@ export default function CollectionsCreate() {
 					<S.FormWrapper>
 						<S.FormContainer>
 							<S.FormFixedContainer>
-								<S.FormHeader>
-									<h2>{LANGUAGE.basicInformation}</h2>
-								</S.FormHeader>
 								<S.Form>
 									<FormField
 										label={LANGUAGE.title}

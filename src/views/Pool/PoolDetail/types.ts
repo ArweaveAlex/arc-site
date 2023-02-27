@@ -1,4 +1,4 @@
-import { CursorObjectType, TableIdType, PoolType } from 'helpers/types';
+import { CursorObjectType, TableIdType } from 'helpers/types';
 
 export interface IProps {
 	id: TableIdType;

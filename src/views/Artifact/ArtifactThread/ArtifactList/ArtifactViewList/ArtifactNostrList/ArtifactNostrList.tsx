@@ -8,7 +8,7 @@ import { Loader } from 'components/atoms/Loader';
 import { getPoolById } from 'gql/pools';
 import { getArtifactById } from 'gql/artifacts';
 import { sortByAssociationSequence } from 'filters/artifacts';
-import { ArtifactDetailType, ArtifactEnum, PoolType } from 'helpers/types';
+import { ArtifactDetailType, PoolType } from 'helpers/types';
 import { formatAddress, formatDate } from 'helpers/utils';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
