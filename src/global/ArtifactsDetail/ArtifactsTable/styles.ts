@@ -7,6 +7,7 @@ export const TypeContainer = styled.div`
 	align-items: center;
 	position: relative;
 	svg {
+		height: fit-content;
 		width: 15px;
 		fill: ${(props) => props.theme.colors.font.primary.active.base};
 		position: absolute;
