@@ -42,6 +42,11 @@ export const Content = styled.div`
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	position: relative;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		background: ${(props) => props.theme.colors.transparent};
+		box-shadow: none;
+		border-radius: 0;
+	}
 `;
 
 export const Info = styled.div`

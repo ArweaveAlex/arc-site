@@ -17,7 +17,7 @@ module.exports = {
 				extractComments: false,
 			}),
 		],
-		usedExports: true
+		usedExports: true,
 	},
 	module: {
 		rules: [
