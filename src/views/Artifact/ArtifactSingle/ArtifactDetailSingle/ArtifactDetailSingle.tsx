@@ -79,18 +79,20 @@ export default function ArtifactDetailSingle(props: IProps) {
 						)}
 					</S.InfoData>
 				</S.ContentLine>
-				<S.ContentLine>
-					<S.InfoData>
-						<span>{LANGUAGE.artifactDetail.tags}</span>
-						<S.Tags>
-							{JSON.parse(props.data.keywords!).map((keyword: string, index: number) => [
-								<S.Tag key={index}>
-									<p>{keyword}</p>
-								</S.Tag>,
-							])}
-						</S.Tags>
-					</S.InfoData>
-				</S.ContentLine>
+				{JSON.parse(props.data.keywords).length > 1 && JSON.parse(props.data.keywords)[0] !== '' && (
+					<S.ContentLine>
+						<S.InfoData>
+							<span>{LANGUAGE.artifactDetail.tags}</span>
+							<S.Tags>
+								{JSON.parse(props.data.keywords!).map((keyword: string, index: number) => [
+									<S.Tag key={index}>
+										<p>{keyword}</p>
+									</S.Tag>,
+								])}
+							</S.Tags>
+						</S.InfoData>
+					</S.ContentLine>
+				)}
 				<S.ContentLine>
 					<S.InfoData>
 						<span>{LANGUAGE.artifactDetail.fileInformation}</span>
