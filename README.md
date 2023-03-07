@@ -1,6 +1,6 @@
 # Alex. Site Repo
 
-<a href="https://alex.arweave.dev" target="_blank">https://alex.arweave.dev</a>
+<a href="https://alex.arweave.dev">https://alex.arweave.dev</a>
 
 ### Requirements
 
