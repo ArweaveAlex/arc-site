@@ -98,27 +98,41 @@ export const ID = styled(Subheader2)`
 	}
 `;
 
+export const ImageContainer = styled.div`
+	position: relative;
+	height: 0;
+	padding: 0 0 35.25% 0;
+	background-color: #000;
+	margin: 0 0 20px 0;
+	animation: ${open} ${fadeIn2};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	@media (max-width: ${STYLING.cutoffs.secondary}) {
+		padding: 0 0 59.25% 0;
+	}
+`;
+
 export const Image = styled.div<{ image: string }>`
-	height: 425px;
+	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
+	height: 100%;
 	background-image: ${(props) => `url("${props.image}")`};
 	background-size: cover;
 	background-position: center;
 	box-shadow: ${(props) => getImageShadow(props.theme)};
-	margin: 0 0 40px 0;
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	animation: ${open} ${fadeIn2};
 `;
 
 export const ImageLoading = styled.div`
 	height: 425px;
 	width: 100%;
-	margin: 0 0 40px 0;
+	margin: 0 0 20px 0;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	animation: ${open} ${fadeIn2};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 `;
 
 export const FlexTiles = styled.div`

@@ -72,7 +72,11 @@ export default function PoolHeader(props: IProps) {
 
 	function getImage() {
 		if (props.image) {
-			return <S.Image image={props.image} />;
+			return (
+				<S.ImageContainer>
+					<S.Image image={props.image} />
+				</S.ImageContainer>
+			);
 		} else {
 			return (
 				<S.ImageLoading>
