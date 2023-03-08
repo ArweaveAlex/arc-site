@@ -102,7 +102,6 @@ export const ImageContainer = styled.div`
 	position: relative;
 	height: 0;
 	padding: 0 0 35.25% 0;
-	background-color: #000;
 	margin: 0 0 20px 0;
 	animation: ${open} ${fadeIn2};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
