@@ -98,8 +98,8 @@ export default function Pool() {
 		<>
 			<S.Wrapper>
 				{getPoolHeader()}
-				{/* {getPoolStatistics()}
-				{getPoolDetail()} */}
+				{getPoolStatistics()}
+				{getPoolDetail()}
 			</S.Wrapper>
 		</>
 	) : (
