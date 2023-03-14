@@ -1,21 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
-import { Link } from 'react-router-dom';
 
 import { Loader } from 'components/atoms/Loader';
 import { Carousel } from 'components/molecules/Carousel';
-
-import { getTxEndpoint } from 'helpers/endpoints';
 import { getArtifactById } from 'gql/artifacts';
-import { formatMessagingData, formatMetric, getUsername } from 'helpers/utils';
-import { formatDate, formatAddress } from 'helpers/utils';
+import { ASSETS, MEDIA_TYPES, STORAGE } from 'helpers/config';
+import { getTxEndpoint } from 'helpers/endpoints';
 import { LANGUAGE } from 'helpers/language';
-import { STORAGE, ASSETS, MEDIA_TYPES } from 'helpers/config';
 import { ArtifactDetailType } from 'helpers/types';
 import * as urls from 'helpers/urls';
-import { IProps, IMProps } from './types';
+import { formatAddress, formatDate, formatMessagingData, formatMetric, getUsername } from 'helpers/utils';
+
 import * as S from './styles';
+import { IMProps, IProps } from './types';
 
 function MessagingMedia(props: IMProps) {
 	function getMediaType(type: string, url: string) {
@@ -56,10 +55,7 @@ function MessagingMedia(props: IMProps) {
 					if (mediaIdsJsonKeys[i].indexOf('.')) {
 						mediaComponents.push(
 							<S.MediaElement key={mediaId}>
-								{getMediaType(
-									mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf('.') + 1),
-									getTxEndpoint(mediaId)
-								)}
+								{getMediaType(mediaIdsJsonKeys[i].slice(mediaIdsJsonKeys[i].indexOf('.') + 1), getTxEndpoint(mediaId))}
 							</S.MediaElement>
 						);
 					}
@@ -183,9 +179,7 @@ export default function MessagingListItem(props: IProps) {
 								<>
 									<S.ALink>
 										<span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
-										<Link to={artifactLink}>
-											{props.data ? formatAddress(props.data.artifactId, false) : null}
-										</Link>
+										<Link to={artifactLink}>{props.data ? formatAddress(props.data.artifactId, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>
 										<Link to={artifactLink} target={'_blank'} tabIndex={-1}>
@@ -200,9 +194,7 @@ export default function MessagingListItem(props: IProps) {
 								<>
 									<S.ALink>
 										<span>{`${LANGUAGE.owner}:`}&nbsp;</span>
-										<Link to={ownerLink}>
-											{props.data ? formatAddress(props.data.owner, false) : null}
-										</Link>
+										<Link to={ownerLink}>{props.data ? formatAddress(props.data.owner, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>
 										<Link to={ownerLink} target={'_blank'} tabIndex={-1}>

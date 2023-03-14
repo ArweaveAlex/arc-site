@@ -1,9 +1,10 @@
 import { ArweaveClient } from 'clients/arweave';
-import { GQLResponseType, PoolSearchIndexType, PoolType } from 'helpers/types';
-import { getRedstoneSrcTxEndpoint } from 'helpers/endpoints';
+
 import { getGQLData } from 'gql';
+import { POOL_INDEX_CONTRACT_ID, TAGS } from 'helpers/config';
+import { getRedstoneSrcTxEndpoint } from 'helpers/endpoints';
+import { GQLResponseType, PoolSearchIndexType, PoolType } from 'helpers/types';
 import { getTagValue } from 'helpers/utils';
-import { TAGS, POOL_INDEX_CONTRACT_ID } from 'helpers/config';
 
 export async function getPoolIds() {
 	const pools: GQLResponseType[] = await getGQLData({

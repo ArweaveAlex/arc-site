@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { ButtonLink } from 'components/atoms/ButtonLink';
-
-import { formatAddress, formatDate } from 'helpers/utils';
-import { LANGUAGE } from 'helpers/language';
 import { ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
-import { IProps } from './types';
+import { formatAddress, formatDate } from 'helpers/utils';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function OwnerCollectionsList(props: IProps) {
 	function getData() {

@@ -1,16 +1,16 @@
-import { PoolRecentlyMinted } from './PoolRecentlyMinted';
-import { PoolContributors } from './PoolContributors';
-
-import { IProps } from './types';
-import * as S from './styles';
-
-import { getRedstoneDescEndpoint } from 'helpers/endpoints';
 import React from 'react';
-import { REDUX_TABLES } from 'helpers/redux';
+
 import { getArtifactsByIds, getArtifactsByPool } from 'gql/artifacts';
-import { getTagValue } from 'helpers/utils';
 import { TAGS } from 'helpers/config';
+import { getRedstoneDescEndpoint } from 'helpers/endpoints';
+import { REDUX_TABLES } from 'helpers/redux';
 import { ArtifactResponseType } from 'helpers/types';
+import { getTagValue } from 'helpers/utils';
+
+import { PoolContributors } from './PoolContributors';
+import { PoolRecentlyMinted } from './PoolRecentlyMinted';
+import * as S from './styles';
+import { IProps } from './types';
 
 export default function PoolStatistics(props: IProps) {
 	const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);

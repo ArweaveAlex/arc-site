@@ -1,9 +1,8 @@
 import styled, { DefaultTheme } from 'styled-components';
 
-import { AlignType } from 'helpers/types';
-
-import { open, fadeIn2 } from 'helpers/animations';
+import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
+import { AlignType } from 'helpers/types';
 
 export const Wrapper = styled.div`
 	width: 100%;
@@ -47,7 +46,8 @@ export const Body = styled.div`
 	margin: 0 0 20px 0;
 	display: flex;
 	flex-direction: column;
-	overflow: auto;
+	overflow-x: auto;
+	overflow-y: hidden;
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
 	min-height: 66.5vh;
@@ -110,8 +110,7 @@ export const Row = styled.div<{ active: boolean; viewed: boolean }>`
 		background: ${(props) =>
 			props.active ? props.theme.colors.table.row.active.background : props.theme.colors.container.primary.hover};
 		border: 0.5px solid
-			${(props) =>
-				props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.primary};
+			${(props) => (props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.primary)};
 	}
 `;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { STYLING, getImageShadow } from 'helpers/styling';
+import { getImageShadow, STYLING } from 'helpers/styling';
 
 const WRAPPER_HEIGHT = '550px';
 
@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 	width: 100%;
 	max-width: ${STYLING.cutoffs.max};
 	margin: 15px auto 0 auto;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
+	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: fit-content;
 	}
 `;
@@ -25,7 +25,7 @@ export const PCWrapper = styled.div`
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
+	@media (max-width: ${STYLING.cutoffs.initial}) {
 		flex-direction: column;
 	}
 `;
@@ -38,7 +38,7 @@ export const C1 = styled.div`
 			text-decoration: none;
 		}
 	}
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
+	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: auto;
 		width: 100%;
 	}
@@ -50,7 +50,7 @@ export const C1Content = styled.div`
 	padding: 0 0 25px 5px;
 	text-align: left;
 	overflow-y: auto;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
+	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: 300px;
 		width: 100%;
 	}
@@ -102,7 +102,7 @@ export const LinkContainer = styled.div`
 		font-size: ${(props) => props.theme.typography.size.base};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
+	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;
 	}
 `;
@@ -115,20 +115,49 @@ export const C2 = styled.div<{ image: string }>`
 	background-position: center;
 	box-shadow: ${(props) => getImageShadow(props.theme)};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
+	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: 200px;
 		width: 100%;
 		margin: 10px 0 0 0;
 	}
 `;
 
-export const LoadingContainer = styled.div`
+export const TP = styled.div`
+	height: 45px;
+	width: calc(100% - 10px);
+	margin: 0 0 20px;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		width: 100%;
+	}
+`;
+
+export const DP = styled.div`
+	height: 175px;
+	width: calc(100% - 10px);
+	margin: 0 0 20px;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		width: 100%;
+	}
+`;
+
+export const C2P = styled.div`
 	height: 100%;
-	height: ${WRAPPER_HEIGHT};
-	width: 100%;
-	position: relative;
-	margin: 40px 0 0 0;
-	background: ${(props) => props.theme.colors.container.alt3.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	width: 60%;
+	box-shadow: ${(props) => getImageShadow(props.theme)};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		height: 200px;
+		width: 100%;
+		margin: 10px 0 0 0;
+	}
+`;
+
+export const LP = styled.div`
+	height: 80px;
+	width: calc(100% - 10px);
+	margin: 10px 0 0 0;
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		width: 100%;
+	}
 `;

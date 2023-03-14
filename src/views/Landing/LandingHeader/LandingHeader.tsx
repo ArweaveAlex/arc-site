@@ -2,6 +2,7 @@ import { ReactSVG } from 'react-svg';
 
 import { ASSETS, OPERATOR_LINK } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
+
 import * as S from './styles';
 
 export default function LandingHeader() {

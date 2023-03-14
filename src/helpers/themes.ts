@@ -25,8 +25,10 @@ const DEFAULT = {
 	alt2: '#FFD877',
 	overlay1: 'rgba(255, 255, 255, 0.75)',
 	contrast: '#EE3C3C',
+	contrastHover: '#F26969',
 	contrastShadow: '#F27979',
-	success: '#32C422',
+	success: '#2DA44E',
+	successHover: '#3FCA66',
 	neutral: '#FFB600',
 	transparent: 'rgba(255, 255, 255, 0)',
 	semiTransparent: 'rgba(255, 255, 255, 0.5)',
@@ -91,6 +93,14 @@ export const defaultTheme: DefaultTheme = {
 					border: DEFAULT.neutral3,
 					label: DEFAULT.neutral7,
 				},
+			},
+			success: {
+				background: DEFAULT.success,
+				hover: DEFAULT.successHover,
+			},
+			warning: {
+				background: DEFAULT.contrast,
+				hover: DEFAULT.contrastHover,
 			},
 		},
 		checkbox: {
@@ -242,7 +252,7 @@ export const defaultTheme: DefaultTheme = {
 	typography: {
 		family: {
 			primary: `'Fira Sans', sans-serif`,
-			alt1: `'PT Serif', serif`,
+			alt1: `'Fira Sans', sans-serif`,
 		},
 		size: {
 			h1: '48px',

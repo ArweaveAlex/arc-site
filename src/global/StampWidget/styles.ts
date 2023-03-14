@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
+import { fadeIn1, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
-import { open, fadeIn1 } from 'helpers/animations';
 
 export const Wrapper = styled.div`
 	height: 100%;

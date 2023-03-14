@@ -1,14 +1,14 @@
 import { Dispatch } from 'redux';
 
 import {
-	SET_SEARCH_IDS,
 	CLEAR_SEARCH_IDS,
-	SET_SEARCH_TERM,
-	CLEAR_SEARCH_TERM,
-	SET_SEARCH_INDECES,
 	CLEAR_SEARCH_INDECES,
+	CLEAR_SEARCH_TERM,
+	SET_SEARCH_IDS,
+	SET_SEARCH_INDECES,
+	SET_SEARCH_TERM,
 } from './constants';
-import { SearchIdsType, SearchTermType, SearchIndecesType } from './types';
+import { SearchIdsType, SearchIndecesType, SearchTermType } from './types';
 
 export function setSearchIds(payload: SearchIdsType) {
 	return (dispatch: Dispatch) => {

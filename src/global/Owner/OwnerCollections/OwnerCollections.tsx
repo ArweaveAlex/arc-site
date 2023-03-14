@@ -1,7 +1,6 @@
 import { OwnerCollectionsList } from './OwnerCollectionsList';
-
-import { IProps } from './types';
 import * as S from './styles';
+import { IProps } from './types';
 
 // const data = [
 // 	{

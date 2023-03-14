@@ -91,11 +91,16 @@ export const Alt2 = styled(Primary)`
 `;
 
 export const Alt3 = styled(Alt1)`
-	pointer-events: none;
-	background: ${(props) => props.theme.colors.container.primary.background} !important;
+	background: ${(props) => props.theme.colors.container.alt3.background} !important;
 	border: 1px solid ${(props) => props.theme.colors.icon.inactive} !important;
+	&:hover {
+		cursor: default;
+	}
 	svg {
 		fill: ${(props) => props.theme.colors.icon.inactive} !important;
+		&:hover {
+			cursor: default;
+		}
 	}
 `;
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { STYLING } from 'helpers/styling';
 import { loadingSlide } from 'helpers/animations';
+import { STYLING } from 'helpers/styling';
 
 export const PlaceholderWrapper = styled.div``;
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { open, fadeIn2 } from 'helpers/animations';
-import { STYLING, getImageShadow } from 'helpers/styling';
+import { fadeIn2, open } from 'helpers/animations';
+import { getImageShadow, STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	width: 100%;

@@ -2,11 +2,10 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from 'components/atoms/Button';
-
 import { NotFound } from 'views/NotFound';
 
 import * as S from './styles';
-import { ITProps, ICProps, IUProps } from './types';
+import { ICProps, ITProps, IUProps } from './types';
 
 function Tab(props: ITProps) {
 	function handlePress(e: any) {

@@ -1,9 +1,8 @@
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-
-import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { getArtifactsByBookmarks } from 'gql/artifacts';
 import { REDUX_TABLES } from 'helpers/redux';
 import { CursorEnum } from 'helpers/types';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 export default function AccountBookmark() {
 	const arProvider = useArweaveProvider();

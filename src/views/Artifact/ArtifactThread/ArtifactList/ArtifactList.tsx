@@ -1,5 +1,4 @@
 import { ArtifactViewList } from './ArtifactViewList';
-
 import { IProps } from './types';
 
 export default function ArtifactList(props: IProps) {

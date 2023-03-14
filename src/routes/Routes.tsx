@@ -1,18 +1,16 @@
-import { Routes, Route } from 'react-router-dom';
-
-import { View } from 'wrappers/View';
-
-import { Landing } from 'views/Landing';
-import { Pool } from 'views/Pool';
-import { Pools } from 'views/Pools';
-import { Artifact } from 'views/Artifact';
-import { ArtifactThread } from 'views/Artifact/ArtifactThread';
-import { Account } from 'views/Account';
-import { Library } from 'views/Library';
-import { CollectionsCreate } from 'views/Collections/CollectionsCreate';
-import { NotFound } from 'views/NotFound';
+import { Route, Routes } from 'react-router-dom';
 
 import * as urls from 'helpers/urls';
+import { Account } from 'views/Account';
+import { Artifact } from 'views/Artifact';
+import { ArtifactThread } from 'views/Artifact/ArtifactThread';
+import { CollectionsCreate } from 'views/Collections/CollectionsCreate';
+import { Landing } from 'views/Landing';
+import { Library } from 'views/Library';
+import { NotFound } from 'views/NotFound';
+import { Pool } from 'views/Pool';
+import { Pools } from 'views/Pools';
+import { View } from 'wrappers/View';
 
 export default function _Routes() {
 	return (

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
+import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
-import { open, fadeIn2 } from 'helpers/animations';
 
 export const LIWrapper = styled.div<{ isListItem: boolean; active: boolean }>`
 	width: 100%;

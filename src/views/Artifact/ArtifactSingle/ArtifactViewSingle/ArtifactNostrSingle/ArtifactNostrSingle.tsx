@@ -1,8 +1,8 @@
+import { Loader } from 'components/atoms/Loader';
 import { NostrListItem } from 'global/NostrListItem';
 
-import { Loader } from 'components/atoms/Loader';
-
 import { IProps } from '../../types';
+
 import * as S from './styles';
 
 export default function ArtifactNostrSingle(props: IProps) {

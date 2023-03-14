@@ -1,14 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from 'state/store';
-import { getArtifactsByIds } from 'gql/artifacts';
-
 import { ArtifactsTable } from 'global/ArtifactsDetail/ArtifactsTable';
-
-import { clearCursors } from 'state/cursors/actions';
-import * as windowUtils from 'helpers/window';
+import { getArtifactsByIds } from 'gql/artifacts';
 import { ArtifactResponseType } from 'helpers/types';
+import * as windowUtils from 'helpers/window';
+import { clearCursors } from 'state/cursors/actions';
+import { RootState } from 'state/store';
+
 import { IProps } from './types';
 
 export default function ArtifactsDetail(props: IProps) {

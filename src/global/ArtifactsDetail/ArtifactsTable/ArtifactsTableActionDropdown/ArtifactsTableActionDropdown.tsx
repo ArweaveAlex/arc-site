@@ -1,27 +1,25 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { ArweaveClient } from 'clients/arweave';
 
+import { ActionDropdown } from 'components/atoms/ActionDropdown';
+import { Notification } from 'components/atoms/Notification';
+import { Modal } from 'components/molecules/Modal';
+import { FactWidget } from 'global/FactWidget';
+import { StampWidget } from 'global/StampWidget';
+import { getArtifactById, getBookmarkIds, setBookmarkIds } from 'gql/artifacts';
+import { STORAGE, TAGS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import { ArtifactDetailType, NotificationResponseType } from 'helpers/types';
+import * as urls from 'helpers/urls';
+import { getHashUrl, getTagValue } from 'helpers/utils';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 import * as artifactActions from 'state/artifacts/actions';
 import { RootState } from 'state/store';
-import { getBookmarkIds, setBookmarkIds, getArtifactById } from 'gql/artifacts';
-
-import { StampWidget } from 'global/StampWidget';
 import { ArtifactViewSingle } from 'views/Artifact/ArtifactSingle/ArtifactViewSingle';
 
-import { Modal } from 'components/molecules/Modal';
-import { Notification } from 'components/atoms/Notification';
-import { ActionDropdown } from 'components/atoms/ActionDropdown';
-
-import { getHashUrl, getTagValue } from 'helpers/utils';
-import * as urls from 'helpers/urls';
-import { LANGUAGE } from 'helpers/language';
-import { TAGS, STORAGE } from 'helpers/config';
-import { ArtifactDetailType, NotificationResponseType } from 'helpers/types';
-import { IProps } from './types';
 import * as S from './styles';
+import { IProps } from './types';
 
 function Preview(props: { artifactId: string; useModal: boolean; handleClose: () => void }) {
 	const [data, setData] = React.useState<ArtifactDetailType | null>(null);
@@ -61,6 +59,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	const [bookmarkNotification, setBookmarkNotification] = React.useState<NotificationResponseType | null>(null);
 
 	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
+	const [showFactWidget, setShowFactWidget] = React.useState<boolean>(false);
 
 	const [bookmarkIdsState, setBookmarkIdsState] = React.useState<string[]>([]);
 
@@ -132,11 +131,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	function getPreview() {
 		return {
 			node: (
-				<Preview
-					artifactId={props.artifactId}
-					useModal={props.usePreviewModal}
-					handleClose={() => handleCallback()}
-				/>
+				<Preview artifactId={props.artifactId} useModal={props.usePreviewModal} handleClose={() => handleCallback()} />
 			),
 			active: showPreview,
 		};
@@ -150,13 +145,29 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 						txId={props.artifactId}
 						walletAddress={arProvider.walletAddress}
 						setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
+						showWalletConnect={true}
 						warp={arClient.warp}
 						handleStampCallback={() => props.handleStampCallback()}
-						showWalletConnect={true}
 					/>
 				</S.StampWidgetContainer>
 			),
 			active: showStampWidget,
+		};
+	}
+
+	function getFactWidget() {
+		return {
+			node: (
+				<S.FactWidgetContainer>
+					<FactWidget
+						txId={props.artifactId}
+						walletAddress={arProvider.walletAddress}
+						setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
+						showWalletConnect={true}
+					/>
+				</S.FactWidgetContainer>
+			),
+			active: showFactWidget,
 		};
 	}
 
@@ -170,12 +181,20 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	function handleShowPreview() {
 		setShowPreview(!showPreview);
 		setShowStampWidget(false);
+		setShowFactWidget(false);
 		handleView();
 	}
 
 	function handleShowStampWidget() {
 		setShowStampWidget(!showStampWidget);
 		setShowPreview(false);
+		setShowFactWidget(false);
+	}
+
+	function handleShowFactWidget() {
+		setShowFactWidget(!showFactWidget);
+		setShowPreview(false);
+		setShowStampWidget(false);
 	}
 
 	function handleViewRedirect() {
@@ -221,6 +240,14 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				disabled: false,
 				loading: false,
 			},
+			// {
+			// 	fn: handleShowFactWidget,
+			// 	closeOnAction: false,
+			// 	subComponent: getFactWidget(),
+			// 	label: showFactWidget ? LANGUAGE.close : LANGUAGE.attachFactMarket,
+			// 	disabled: false,
+			// 	loading: false,
+			// },
 			{
 				fn: copyArtifactId,
 				closeOnAction: false,
@@ -241,9 +268,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				fn: () => handleBookmarkStateUpdate(props.artifactId),
 				closeOnAction: false,
 				subComponent: null,
-				label: bookmarkIdsState.includes(props.artifactId)
-					? LANGUAGE.removeFromBookmarks
-					: LANGUAGE.addtoBookmarks,
+				label: bookmarkIdsState.includes(props.artifactId) ? LANGUAGE.removeFromBookmarks : LANGUAGE.addtoBookmarks,
 				disabled: props.bookmarksDisabled,
 				loading: false,
 			},

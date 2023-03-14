@@ -13,4 +13,5 @@ export interface IProps {
 		wrapper: number;
 		icon: number;
 	};
+	tooltip?: string;
 }

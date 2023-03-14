@@ -3,11 +3,11 @@ import { ReactSVG } from 'react-svg';
 
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
-
-import { LANGUAGE } from 'helpers/language';
 import { ASSETS } from 'helpers/config';
-import { IProps } from './types';
+import { LANGUAGE } from 'helpers/language';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 // TODO: Search Fix
 export default function Search(props: IProps) {

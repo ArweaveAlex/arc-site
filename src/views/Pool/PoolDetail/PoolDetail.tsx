@@ -1,5 +1,4 @@
 import { ArtifactsDetail } from 'global/ArtifactsDetail';
-
 import { getArtifactsByPool } from 'gql/artifacts';
 
 import { IProps } from './types';

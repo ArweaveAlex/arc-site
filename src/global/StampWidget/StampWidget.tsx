@@ -1,22 +1,20 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-
 import Stamps from '@permaweb/stampjs';
 
-import { WalletBlock } from 'wallet/WalletBlock';
-
-import { Loader } from 'components/atoms/Loader';
 import { Button } from 'components/atoms/Button';
-import { IconButton } from 'components/atoms/IconButton';
 import { FormField } from 'components/atoms/FormField';
+import { IconButton } from 'components/atoms/IconButton';
+import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
-
+import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { NotificationResponseType } from 'helpers/types';
-import { IProps } from './types';
 import { formatFloat } from 'helpers/utils';
+import { WalletBlock } from 'wallet/WalletBlock';
+
 import * as S from './styles';
-import { ASSETS } from 'helpers/config';
+import { IProps } from './types';
 
 function StampAction(props: { balance: number; handleSubmit: (amount: number) => void; handleClose: () => void }) {
 	const [amount, setAmount] = React.useState<string>('0');
@@ -134,11 +132,6 @@ export default function StampWidget(props: IProps) {
 		}
 	}, [count, stampCheckLoading]);
 
-	// (property) stamp: (transactionId: string, qty: number, tags: {
-	// 	name: string;
-	// 	value: string;
-	// }[]) => Promise<any>
-
 	const handleStamp = React.useCallback(
 		async (amount?: number) => {
 			if (props.txId) {
@@ -205,6 +198,7 @@ export default function StampWidget(props: IProps) {
 									handlePress={() => handleStamp()}
 									disabled={stampDisabled || stampCheckLoading || !props.walletAddress}
 									info={count.total.toString()}
+									tooltip={LANGUAGE.stamp}
 								/>
 							</S.Action>
 							<S.Action>
@@ -213,13 +207,10 @@ export default function StampWidget(props: IProps) {
 									src={ASSETS.stamp.super}
 									handlePress={() => setShowStampAction(!showStampAction)}
 									disabled={
-										balance <= 0 ||
-										stampDisabled ||
-										stampCheckLoading ||
-										showStampAction ||
-										!props.walletAddress
+										balance <= 0 || stampDisabled || stampCheckLoading || showStampAction || !props.walletAddress
 									}
 									info={count.super.toString()}
+									tooltip={LANGUAGE.superStamp}
 								/>
 							</S.Action>
 							<S.Action>
@@ -229,6 +220,7 @@ export default function StampWidget(props: IProps) {
 									handlePress={null}
 									disabled={true}
 									info={count.vouched.toString()}
+									tooltip={LANGUAGE.stampCount}
 								/>
 							</S.Action>
 						</S.WidgetContainer>

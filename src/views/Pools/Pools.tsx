@@ -1,16 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { RootState } from 'state/store';
-import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
-
-import { PoolsHeader } from './PoolsHeader';
-import { PoolsGrid } from './PoolsGrid';
-
 import { Loader } from 'components/atoms/Loader';
-
-import { PoolType } from 'helpers/types';
 import { POOL_FILTERS } from 'helpers/config';
+import { PoolType } from 'helpers/types';
+import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
+import { RootState } from 'state/store';
+
+import { PoolsGrid } from './PoolsGrid';
+import { PoolsHeader } from './PoolsHeader';
 import * as S from './styles';
 
 export default function Pools() {

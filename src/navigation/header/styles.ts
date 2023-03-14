@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { open, fadeIn1 } from 'helpers/animations';
+import { fadeIn1, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.header`

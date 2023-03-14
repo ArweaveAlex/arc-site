@@ -1,26 +1,26 @@
-import { store } from 'state/store';
-import * as artifactActions from 'state/artifacts/actions';
 import { ArweaveClient } from 'clients/arweave';
+
+import { getGQLData } from 'gql';
+import { CURSORS, STORAGE, TAGS } from 'helpers/config';
+import { getTxEndpoint } from 'helpers/endpoints';
+import { LANGUAGE } from 'helpers/language';
 import {
-	ArtifactDetailType,
 	ArtifactArgsType,
+	ArtifactDetailType,
 	ArtifactResponseType,
+	AssociationDetailType,
+	CursorEnum,
+	GQLResponseType,
 	NotificationResponseType,
 	PoolType,
-	GQLResponseType,
-	TagFilterType,
-	CursorEnum,
-	AssociationDetailType,
 	SequenceType,
+	TagFilterType,
 } from 'helpers/types';
-import { getGQLData } from 'gql';
-import { getTxEndpoint } from 'helpers/endpoints';
-import { getPoolById, getPoolIds } from './pools';
 import { checkGqlCursor, getTagValue } from 'helpers/utils';
-import { LANGUAGE } from 'helpers/language';
-import { TAGS, STORAGE, CURSORS } from 'helpers/config';
+import * as artifactActions from 'state/artifacts/actions';
+import { store } from 'state/store';
 
-const arClient = new ArweaveClient();
+import { getPoolById, getPoolIds } from './pools';
 
 export async function getArtifactsByAssociation(
 	associationId: string,
@@ -305,6 +305,8 @@ export async function getBookmarkIds(owner: string): Promise<string[]> {
 }
 
 export async function setBookmarkIds(owner: string, ids: string[]): Promise<NotificationResponseType> {
+	const arClient = new ArweaveClient();
+
 	let txRes = await arClient.arweavePost.createTransaction({ data: JSON.stringify(ids) }, 'use_wallet');
 	txRes.addTag(TAGS.keys.bookmarkSearch, owner);
 	txRes.addTag(TAGS.keys.dateCreated, Date.now().toString());

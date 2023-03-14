@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { loaderKeyFrame, open } from 'helpers/animations';
+import { loaderKeyFrame, loadingSlide, open } from 'helpers/animations';
+import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	height: 100%;
@@ -122,4 +123,23 @@ export const Spinner = styled.div<{
 		height: ${(props) => `${props.height.toString()}px`};
 		width: ${(props) => `${props.width.toString()}px`};
 	}
+`;
+
+export const Placeholder = styled.div`
+	height: 100%;
+	width: 100%;
+	position: relative;
+	background: linear-gradient(
+			to right,
+			${(props) => props.theme.colors.table.placeholder.backgroundStart},
+			${(props) => props.theme.colors.table.placeholder.backgroundSlide} 50%,
+			${(props) => props.theme.colors.table.placeholder.backgroundEnd} 80%
+		),
+		${(props) => props.theme.colors.table.placeholder.background};
+	background-repeat: repeat-y;
+	background-size: 50px 500px;
+	background-position: 0 0;
+	animation: ${loadingSlide} 1.25s infinite;
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;

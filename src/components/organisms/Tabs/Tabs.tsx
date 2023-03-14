@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import * as windowUtils from 'helpers/window';
+
 import * as S from './styles';
 
 class Tab extends React.Component<any, any> {

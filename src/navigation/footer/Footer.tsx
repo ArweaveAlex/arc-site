@@ -1,5 +1,6 @@
-import { SOCIAL_PATHS } from 'helpers/paths';
 import { LANGUAGE } from 'helpers/language';
+import { SOCIAL_PATHS } from 'helpers/paths';
+
 import * as S from './styles';
 
 export default function Footer() {

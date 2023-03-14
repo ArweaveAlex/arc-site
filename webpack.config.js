@@ -68,7 +68,7 @@ module.exports = {
 					},
 					'url-loader',
 				],
-			},
+			}
 		],
 	},
 	plugins: [
@@ -124,6 +124,7 @@ module.exports = {
 			state: path.resolve(__dirname, 'src/state/'),
 			views: path.resolve(__dirname, 'src/views/'),
 			wallet: path.resolve(__dirname, 'src/wallet/'),
+			workers: path.resolve(__dirname, 'src/workers/'),
 			wrappers: path.resolve(__dirname, 'src/wrappers/'),
 		},
 	},

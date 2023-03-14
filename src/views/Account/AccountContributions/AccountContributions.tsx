@@ -1,12 +1,11 @@
 import React from 'react';
-
-import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { ArweaveClient } from 'clients/arweave';
 
-import { ContributionsList } from './ContributionsList';
 import { Loader } from 'components/atoms/Loader';
-
 import { LANGUAGE } from 'helpers/language';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
+
+import { ContributionsList } from './ContributionsList';
 import * as S from './styles';
 
 export default function AccountContributions() {

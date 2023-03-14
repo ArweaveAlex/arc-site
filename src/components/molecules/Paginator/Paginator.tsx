@@ -1,10 +1,10 @@
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
-
-import { LANGUAGE } from 'helpers/language';
 import { ASSETS, CURSORS } from 'helpers/config';
-import { IProps } from './types';
+import { LANGUAGE } from 'helpers/language';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function Paginator(props: IProps) {
 	let pageNumbers: number[] = [];

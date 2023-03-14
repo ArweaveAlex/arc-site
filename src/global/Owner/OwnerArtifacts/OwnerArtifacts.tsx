@@ -1,7 +1,7 @@
 import React from 'react';
+import { ArweaveClient } from 'clients/arweave';
 
 import { ArtifactsDetail } from 'global/ArtifactsDetail';
-import { ArweaveClient } from 'clients/arweave';
 
 import { IProps } from './types';
 

@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Select } from 'components/atoms/Select';
-
-import { PoolType, PoolFilterType } from 'helpers/types';
-import { getTxEndpoint } from 'helpers/endpoints';
-import * as urls from 'helpers/urls';
 import { FALLBACK_IMAGE, POOL_FILTERS } from 'helpers/config';
+import { getTxEndpoint } from 'helpers/endpoints';
 import { LANGUAGE } from 'helpers/language';
+import { PoolFilterType, PoolType } from 'helpers/types';
+import * as urls from 'helpers/urls';
+
 import * as S from './styles';
 
 function PoolTile(props: PoolType) {
@@ -27,10 +27,18 @@ function PoolTile(props: PoolType) {
 		})();
 	});
 
+	function getImage() {
+		if (imageUrl) {
+			return <S.C2 image={imageUrl} />;
+		} else {
+			return <S.Placeholder />;
+		}
+	}
+
 	return poolUrl ? (
 		<S.PCWrapper>
 			<Link to={poolUrl}>
-				{imageUrl && <S.C2 image={imageUrl} />}
+				{getImage()}
 				<S.Info>
 					<S.InfoTitle>
 						<p>{props.state.title}</p>

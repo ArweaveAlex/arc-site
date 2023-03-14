@@ -2,11 +2,12 @@ import React from 'react';
 import { ReactSVG } from 'react-svg';
 
 import { Loader } from 'components/atoms/Loader';
-
-import { LANGUAGE } from 'helpers/language';
 import { ASSETS } from 'helpers/config';
-import { formatCount, formatMetric, formatDate, traverseCommentTree, sortCommentTree } from 'helpers/utils';
+import { LANGUAGE } from 'helpers/language';
+import { formatCount, formatDate, formatMetric, sortCommentTree, traverseCommentTree } from 'helpers/utils';
+
 import { IProps } from '../../types';
+
 import * as S from './styles';
 
 export default function ArtifactRedditSingle(props: IProps) {
@@ -57,8 +58,7 @@ export default function ArtifactRedditSingle(props: IProps) {
 							<S.HeaderInfo>
 								<S.HeaderAD>
 									<span>{headerData.subreddit_name_prefixed}&nbsp;·&nbsp;</span>
-									{`${LANGUAGE.redditAuthor}${headerData.author}`}{' '}
-									{formatDate(headerData.created_utc * 1000, 'iso')}
+									{`${LANGUAGE.redditAuthor}${headerData.author}`} {formatDate(headerData.created_utc * 1000, 'iso')}
 								</S.HeaderAD>
 								<S.HeaderBody>
 									<S.HeaderTitle width={hasPreview ? 70 : 100}>{headerData.title}</S.HeaderTitle>
@@ -68,9 +68,7 @@ export default function ArtifactRedditSingle(props: IProps) {
 									<S.Metric>
 										<ReactSVG src={ASSETS.replies} />
 										<p>{`${formatCount(
-											data
-												? formatMetric(data.join().split(',').length)
-												: formatMetric(headerData.num_comments)
+											data ? formatMetric(data.join().split(',').length) : formatMetric(headerData.num_comments)
 										)} ${LANGUAGE.comments}`}</p>
 									</S.Metric>
 									<S.Metric>

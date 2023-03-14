@@ -1,19 +1,18 @@
 import React from 'react';
+import { ArweaveClient } from 'clients/arweave';
 import parse from 'html-react-parser';
 
-import { ArweaveClient } from 'clients/arweave';
-
+import { IconButton } from 'components/atoms/IconButton';
+import { Loader } from 'components/atoms/Loader';
 import { SocialShare } from 'global/SocialShare';
+import { ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import { formatAddress, formatCount } from 'helpers/utils';
+
 import { PoolContribute } from '../PoolContribute';
 
-import { Loader } from 'components/atoms/Loader';
-import { IconButton } from 'components/atoms/IconButton';
-
-import { formatAddress, formatCount } from 'helpers/utils';
-import { LANGUAGE } from 'helpers/language';
-import { ASSETS } from 'helpers/config';
-import { IProps } from './types';
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function PoolHeader(props: IProps) {
 	const arClient = new ArweaveClient();

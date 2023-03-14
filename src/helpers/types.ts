@@ -108,7 +108,7 @@ export interface PoolSearchIndexStateType {
 	searchIndeces: string[];
 }
 
-export type ButtonType = 'primary' | 'alt1' | 'alt2' | 'alt3';
+export type ButtonType = 'primary' | 'alt1' | 'alt2' | 'alt3' | 'success' | 'warning';
 export type FormFieldType = 'number' | 'password';
 export type NotificationType = 'success' | 'warning' | 'neutral';
 export type AlignType = 'left' | 'center' | 'right';

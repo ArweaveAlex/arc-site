@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { open, fadeIn2 } from 'helpers/animations';
+import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Content = styled.div`
@@ -69,9 +69,9 @@ export const Indicator = styled.button<{ selected: boolean }>`
     margin: 0 3.5px !important;
     border-radius: 50%;
     background ${(props) =>
-		props.selected ? props.theme.colors.indicator.active.base : props.theme.colors.indicator.inactive.base};
+			props.selected ? props.theme.colors.indicator.active.base : props.theme.colors.indicator.inactive.base};
     &:hover {
         background ${(props) =>
-			props.selected ? props.theme.colors.indicator.active.hover : props.theme.colors.indicator.inactive.hover};
+					props.selected ? props.theme.colors.indicator.active.hover : props.theme.colors.indicator.inactive.hover};
     }
 `;

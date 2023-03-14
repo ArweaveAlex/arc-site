@@ -1,8 +1,9 @@
 import { ReactSVG } from 'react-svg';
 
 import { LANGUAGE } from 'helpers/language';
-import { IProps } from './types';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function Button(props: IProps) {
 	const buttonStyle = getType();
@@ -24,6 +25,18 @@ export default function Button(props: IProps) {
 			case 'alt2':
 				buttonObj = {
 					wrapper: S.Alt2,
+					icon: S.IconAlt2,
+				};
+				return buttonObj;
+			case 'success':
+				buttonObj = {
+					wrapper: S.Success,
+					icon: S.IconAlt2,
+				};
+				return buttonObj;
+			case 'warning':
+				buttonObj = {
+					wrapper: S.Warning,
 					icon: S.IconAlt2,
 				};
 				return buttonObj;

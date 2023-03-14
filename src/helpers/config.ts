@@ -1,14 +1,13 @@
-import { AccountAll } from 'views/Account/AccountAll';
-import { AccountCollections } from 'views/Account/AccountCollections';
-import { AccountBookmarks } from 'views/Account/AccountBookmarks';
-import { AccountContributions } from 'views/Account/AccountContributions';
-import { LibraryAll } from 'views/Library/LibraryAll';
-import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
-
+import menuActionSVG from 'assets/action-menu.svg';
 import allSVG from 'assets/all.svg';
+import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
 import arrowNextSVG from 'assets/arrow-next.svg';
 import arrowPreviousSVG from 'assets/arrow-previous.svg';
 import artifactSVG from 'assets/artifact.svg';
+import nostrEventArtifactTypeSVG from 'assets/artifact-types/nostr.svg';
+import redditThreadArtifactTypeSVG from 'assets/artifact-types/reddit-thread.svg';
+import messagingArtifactTypeSVG from 'assets/artifact-types/twitter.svg';
+import defaultArtifactTypeSVG from 'assets/artifact-types/webpage.svg';
 import associationSVG from 'assets/association.svg';
 import bookmarkSVG from 'assets/bookmark.svg';
 import bookmarkSelectedSVG from 'assets/bookmark-selected.svg';
@@ -21,6 +20,7 @@ import copySVG from 'assets/copy.svg';
 import cyclePNG from 'assets/cycle.png';
 import dataSVG from 'assets/data.svg';
 import disconnectSVG from 'assets/disconnect.svg';
+import discordSocialSVG from 'assets/discord.svg';
 import dropdownSVG from 'assets/dropdown.svg';
 import favoriteSVG from 'assets/favorite.svg';
 import impressionsSVG from 'assets/impressions.svg';
@@ -28,12 +28,11 @@ import infoGraphicPNG from 'assets/info-graphic.png';
 import linkSVG from 'assets/link.svg';
 import logoSVG from 'assets/logo.svg';
 import logoAltSVG from 'assets/logo-alt.svg';
-import logoAltActiveSVG from 'assets/logo-alt-active.svg';
 import logoAlt1SVG from 'assets/logo-alt-1.svg';
 import logoAlt2SVG from 'assets/logo-alt-2.svg';
+import logoAltActiveSVG from 'assets/logo-alt-active.svg';
 import mediaSVG from 'assets/media.svg';
 import menuSVG from 'assets/menu.svg';
-import menuActionSVG from 'assets/action-menu.svg';
 import mintSVG from 'assets/mint.svg';
 import newTabSVG from 'assets/new-tab.svg';
 import ownerSVG from 'assets/owner.svg';
@@ -45,32 +44,26 @@ import searchSVG from 'assets/search.svg';
 import shareSVG from 'assets/share.svg';
 import shareLinkSVG from 'assets/share-link.svg';
 import siteLogoSVG from 'assets/site-logo.svg';
-import starSVG from 'assets/star.svg';
-import userSVG from 'assets/user.svg';
-
-import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
-
-import discordSocialSVG from 'assets/discord.svg';
-import twitterSocialSVG from 'assets/twitter.svg';
-
 import defaultStampSVG from 'assets/stamp-default.svg';
 import superStampSVG from 'assets/stamp-super.svg';
 import vouchedStampSVG from 'assets/stamp-vouched.svg';
-
-import defaultArtifactTypeSVG from 'assets/artifact-types/webpage.svg';
-import messagingArtifactTypeSVG from 'assets/artifact-types/twitter.svg';
-import nostrEventArtifactTypeSVG from 'assets/artifact-types/nostr.svg';
-import redditThreadArtifactTypeSVG from 'assets/artifact-types/reddit-thread.svg';
-import webpageArtifactTypeSVG from 'assets/artifact-types/webpage.svg';
-
-import { IURLView, PoolType } from 'helpers/types';
+import starSVG from 'assets/star.svg';
+import twitterSocialSVG from 'assets/twitter.svg';
+import userSVG from 'assets/user.svg';
 import * as filters from 'filters/pools';
-import * as urls from 'helpers/urls';
 import { LANGUAGE } from 'helpers/language';
+import { IURLView, PoolType } from 'helpers/types';
+import * as urls from 'helpers/urls';
+import { AccountAll } from 'views/Account/AccountAll';
+import { AccountBookmarks } from 'views/Account/AccountBookmarks';
+import { AccountCollections } from 'views/Account/AccountCollections';
+import { AccountContributions } from 'views/Account/AccountContributions';
+import { LibraryAll } from 'views/Library/LibraryAll';
+import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.1.0',
+	version: '1.1.1',
 };
 
 export const ASSETS = {
@@ -83,7 +76,7 @@ export const ASSETS = {
 		messaging: messagingArtifactTypeSVG,
 		nostrEvent: nostrEventArtifactTypeSVG,
 		redditThread: redditThreadArtifactTypeSVG,
-		webpage: webpageArtifactTypeSVG,
+		webpage: defaultArtifactTypeSVG,
 	},
 	association: associationSVG,
 	bookmark: bookmarkSVG,
@@ -325,6 +318,6 @@ export const SEARCH = {
 	ownerTerm: '`%',
 };
 
-export const POOL_INDEX_CONTRACT_ID = 'uafMNNCOG7YyoBQn4cs3ZmE-gU30OQX5d4H3p06hAd8';
+export const POOL_INDEX_CONTRACT_ID = 'G2j_YAD1GQcdtXZEwUIE7VDs8Y0UuWx85inKI-kXajY';
 
 export const OPERATOR_LINK = 'https://alex-operator-guide.arweave.dev/';

@@ -1,15 +1,16 @@
 import React from 'react';
+
+import { DOM } from 'helpers/config';
+import * as windowUtils from 'helpers/window';
+
 import { Portal } from '../Portal';
 
 import * as S from './styles';
-import { DOM } from 'helpers/config';
 import { IProps } from './types';
-
-import * as windowUtils from 'helpers/window';
 
 export default function Loader(props: IProps) {
 	React.useEffect(() => {
-		if (!props.sm && !props.xSm) {
+		if (!props.sm && !props.xSm && !props.placeholder) {
 			windowUtils.scrollTo(0, 0);
 			windowUtils.hideDocumentBody();
 			return () => {
@@ -39,17 +40,21 @@ export default function Loader(props: IProps) {
 		);
 	}
 
-	if (props.sm) {
-		return <>{getLoader(19.75, 6, 2)}</>;
-	}
+	if (props.placeholder) {
+		return <S.Placeholder />;
+	} else {
+		if (props.sm) {
+			return <>{getLoader(19.75, 6, 2)}</>;
+		}
 
-	if (props.xSm) {
-		return <>{getLoader(16.5, 5.5, 1.95)}</>;
-	}
+		if (props.xSm) {
+			return <>{getLoader(16.5, 5.5, 1.95)}</>;
+		}
 
-	return (
-		<Portal node={DOM.loader}>
-			<S.Wrapper>{getLoader(27.5, 7.5, 2.65)}</S.Wrapper>
-		</Portal>
-	);
+		return (
+			<Portal node={DOM.loader}>
+				<S.Wrapper>{getLoader(27.5, 7.5, 2.65)}</S.Wrapper>
+			</Portal>
+		);
+	}
 }

@@ -1,6 +1,6 @@
-import * as S from './styles';
-
 import { LANGUAGE } from 'helpers/language';
+
+import * as S from './styles';
 
 export default function NotFound() {
 	return (

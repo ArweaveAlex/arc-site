@@ -1,21 +1,19 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getPoolById, getPoolCount } from 'gql/pools';
-
 import { Loader } from 'components/atoms/Loader';
+import { getArtifactsByPool } from 'gql/artifacts';
+import { getPoolById, getPoolCount } from 'gql/pools';
+import { FALLBACK_IMAGE, TAGS } from 'helpers/config';
+import { getTxEndpoint } from 'helpers/endpoints';
+import { REDUX_TABLES } from 'helpers/redux';
+import { CursorEnum, PoolType } from 'helpers/types';
+import { formatDate, getTagValue } from 'helpers/utils';
 
+import { PoolDetail } from './PoolDetail';
 import { PoolHeader } from './PoolHeader';
 import { PoolStatistics } from './PoolStatistics';
-import { PoolDetail } from './PoolDetail';
-
-import { PoolType, CursorEnum } from 'helpers/types';
-import { getTxEndpoint } from 'helpers/endpoints';
-import { formatDate, getTagValue } from 'helpers/utils';
-import { TAGS, FALLBACK_IMAGE } from 'helpers/config';
-import { REDUX_TABLES } from 'helpers/redux';
 import * as S from './styles';
-import { getArtifactsByPool } from 'gql/artifacts';
 
 export default function Pool() {
 	const { id } = useParams();
@@ -100,8 +98,8 @@ export default function Pool() {
 		<>
 			<S.Wrapper>
 				{getPoolHeader()}
-				{getPoolStatistics()}
-				{getPoolDetail()}
+				{/* {getPoolStatistics()}
+				{getPoolDetail()} */}
 			</S.Wrapper>
 		</>
 	) : (

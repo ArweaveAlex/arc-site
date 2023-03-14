@@ -1,13 +1,12 @@
 import React from 'react';
 
+import { IconButton } from 'components/atoms/IconButton';
+import { ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
 import { CloseHandler } from 'wrappers/CloseHandler';
 
-import { IconButton } from 'components/atoms/IconButton';
-
-import { LANGUAGE } from 'helpers/language';
-import { ASSETS } from 'helpers/config';
-import { IProps } from './types';
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function ActionDropdown(props: IProps) {
 	const dropdownHeight = 32.5 * props.actions.length + 10;

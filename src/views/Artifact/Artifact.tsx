@@ -1,14 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+import { Loader } from 'components/atoms/Loader';
 import { getArtifactById } from 'gql/artifacts';
+import { ArtifactDetailType } from 'helpers/types';
+import * as windowUtils from 'helpers/window';
 
 import { ArtifactSingle } from './ArtifactSingle';
-
-import { Loader } from 'components/atoms/Loader';
-
-import * as windowUtils from 'helpers/window';
-import { ArtifactDetailType } from 'helpers/types';
 
 export default function Artifact() {
 	const { id } = useParams();

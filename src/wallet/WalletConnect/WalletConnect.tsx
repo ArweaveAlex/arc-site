@@ -1,16 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useArweaveProvider } from 'providers/ArweaveProvider';
-
 import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
-
-import { CloseHandler } from 'wrappers/CloseHandler';
-
-import { formatAddress } from 'helpers/utils';
 import { URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
+import { formatAddress } from 'helpers/utils';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
+import { CloseHandler } from 'wrappers/CloseHandler';
+
 import * as S from './styles';
 
 function WalletList() {
@@ -75,11 +73,7 @@ export default function WalletConnect(props: { callback: () => void }) {
 				)}
 				<Button
 					type={'alt2'}
-					label={
-						arProvider.walletAddress
-							? formatAddress(arProvider.walletAddress, false)
-							: LANGUAGE.connectWallet
-					}
+					label={arProvider.walletAddress ? formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet}
 					handlePress={handlePress}
 					useMaxWidth
 					active={true}

@@ -1,22 +1,21 @@
 import React from 'react';
 
-import { useQuery } from 'hooks/useQuery';
-import { Query } from 'wrappers/Query';
-import { WalletBlock } from 'wallet/WalletBlock';
-import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-
+import { createCollection } from 'collections/collections';
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { TextArea } from 'components/atoms/TextArea';
-
+import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
 import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql/artifacts';
-import { REDUX_TABLES } from 'helpers/redux';
-import { LANGUAGE } from 'helpers/language';
 import { URLS } from 'helpers/config';
-import { CollectionStateType, CursorEnum, ArtifactArgsType, ArtifactResponseType } from 'helpers/types';
-import { createCollection } from 'collections/collections';
-import * as S from './styles';
+import { LANGUAGE } from 'helpers/language';
+import { REDUX_TABLES } from 'helpers/redux';
+import { ArtifactArgsType, ArtifactResponseType, CollectionStateType, CursorEnum } from 'helpers/types';
+import { useQuery } from 'hooks/useQuery';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
+import { WalletBlock } from 'wallet/WalletBlock';
+import { Query } from 'wrappers/Query';
+
+import * as S from './styles';
 
 // TODO: Cancel Action
 // TODO: Cache Selected Ids
@@ -192,9 +191,7 @@ export default function CollectionsCreate() {
 									<TextArea
 										label={LANGUAGE.description}
 										value={description}
-										onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-											setDescription(e.target.value)
-										}
+										onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
 										invalid={{ status: false, message: null }}
 										disabled={false}
 									/>

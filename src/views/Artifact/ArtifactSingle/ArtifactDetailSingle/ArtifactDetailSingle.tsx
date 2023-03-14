@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { IconButton } from 'components/atoms/IconButton';
-
-import { formatAddress, formatDataSize, formatDate } from 'helpers/utils';
-import * as urls from 'helpers/urls';
-import { LANGUAGE } from 'helpers/language';
 import { ASSETS } from 'helpers/config';
-import { IProps } from './types';
+import { LANGUAGE } from 'helpers/language';
+import * as urls from 'helpers/urls';
+import { formatAddress, formatDataSize, formatDate } from 'helpers/utils';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function ArtifactDetailSingle(props: IProps) {
 	const [viewRaw, setViewRaw] = React.useState<boolean>(false);
@@ -34,9 +34,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 						<S.DataWrapper>
 							<S.DataLine>
 								<S.DataHeader>{LANGUAGE.archivist}:&nbsp;</S.DataHeader>
-								<Link to={`${urls.libraryAll(props.data.owner!)}`}>
-									{formatAddress(props.data.owner, false)}
-								</Link>
+								<Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
 							</S.DataLine>
 						</S.DataWrapper>
 					</S.InfoData>

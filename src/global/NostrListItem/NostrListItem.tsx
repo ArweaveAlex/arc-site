@@ -1,16 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
-import { Link } from 'react-router-dom';
 
-import { formatNostrData } from 'helpers/utils';
-import { formatDate, formatAddress } from 'helpers/utils';
+import { ASSETS, STORAGE } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { STORAGE, ASSETS } from 'helpers/config';
-
 import * as urls from 'helpers/urls';
-import { IProps } from './types';
+import { formatAddress, formatDate, formatNostrData } from 'helpers/utils';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 // TODO: Nostr Icon
 export default function NostrListItem(props: IProps) {
@@ -66,9 +65,7 @@ export default function NostrListItem(props: IProps) {
 								<>
 									<S.ALink>
 										<span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
-										<Link to={artifactLink}>
-											{props.data ? formatAddress(props.data.artifactId, false) : null}
-										</Link>
+										<Link to={artifactLink}>{props.data ? formatAddress(props.data.artifactId, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>
 										<Link to={artifactLink} target={'_blank'} tabIndex={-1}>
@@ -83,9 +80,7 @@ export default function NostrListItem(props: IProps) {
 								<>
 									<S.ALink>
 										<span>{`${LANGUAGE.owner}:`}&nbsp;</span>
-										<Link to={ownerLink}>
-											{props.data ? formatAddress(props.data.owner, false) : null}
-										</Link>
+										<Link to={ownerLink}>{props.data ? formatAddress(props.data.owner, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>
 										<Link to={ownerLink} target={'_blank'} tabIndex={-1}>
@@ -101,9 +96,7 @@ export default function NostrListItem(props: IProps) {
 					<S.Message>
 						<p>{parse(formatNostrData(jsonData))}</p>
 					</S.Message>
-					{jsonData.post.created_at && (
-						<S.PostDate>{formatDate(jsonData.post.created_at * 1000, 'iso')}</S.PostDate>
-					)}
+					{jsonData.post.created_at && <S.PostDate>{formatDate(jsonData.post.created_at * 1000, 'iso')}</S.PostDate>}
 				</S.LIBody>
 			</S.LIContent>
 		</S.LIWrapper>

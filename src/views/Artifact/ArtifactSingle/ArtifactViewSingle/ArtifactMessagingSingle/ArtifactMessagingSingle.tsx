@@ -1,8 +1,8 @@
+import { Loader } from 'components/atoms/Loader';
 import { MessagingListItem } from 'global/MessagingListItem';
 
-import { Loader } from 'components/atoms/Loader';
-
 import { IProps } from '../../types';
+
 import * as S from './styles';
 
 export default function ArtifactMessagingSingle(props: IProps) {

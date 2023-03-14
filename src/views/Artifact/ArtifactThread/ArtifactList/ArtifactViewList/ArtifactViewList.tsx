@@ -1,12 +1,11 @@
+import { ArtifactEnum } from 'helpers/types';
 import { useQuery } from 'hooks/useQuery';
+import { Query } from 'wrappers/Query';
+
+import { IProps } from '../types';
 
 import { ArtifactMessagingList } from './ArtifactMessagingList';
 import { ArtifactNostrList } from './ArtifactNostrList';
-
-import { Query } from 'wrappers/Query';
-
-import { ArtifactEnum } from 'helpers/types';
-import { IProps } from '../types';
 import * as S from './styles';
 
 export default function ArtifactViewList(props: IProps) {

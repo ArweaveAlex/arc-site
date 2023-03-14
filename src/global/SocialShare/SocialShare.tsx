@@ -1,13 +1,13 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg';
 import { TwitterShareButton } from 'react-share';
+import { ReactSVG } from 'react-svg';
 
 import { IconButton } from 'components/atoms/IconButton';
-
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { IProps } from './types';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function SocialShare(props: IProps) {
 	const [copied, setCopied] = React.useState<boolean>(false);
