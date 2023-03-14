@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { IconButton } from 'components/atoms/IconButton';
-import { WalletConnect } from 'wallet/WalletConnect';
-
 import { ASSETS } from 'helpers/config';
+import { NAV_PATHS } from 'helpers/paths';
 import * as urls from 'helpers/urls';
 import { checkDesktop, checkWindowResize, hideDocumentBody, showDocumentBody } from 'helpers/window';
-import { NAV_PATHS } from 'helpers/paths';
+import { WalletConnect } from 'wallet/WalletConnect';
+
 import * as S from './styles';
 
 export default function Header() {

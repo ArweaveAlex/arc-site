@@ -19,9 +19,7 @@ export const Primary = styled.div<{
 }>`
 	position: relative;
 	background: ${(props) =>
-		props.active
-			? props.theme.colors.button.primary.active.background
-			: props.theme.colors.button.primary.background};
+		props.active ? props.theme.colors.button.primary.active.background : props.theme.colors.button.primary.background};
 	border: 1.5px solid ${(props) => props.theme.colors.button.primary.border};
 	height: ${STYLING.dimensions.buttonHeight};
 	min-width: ${(props) => (props.noMinWidth ? 'none' : STYLING.dimensions.buttonWidth)};
@@ -128,15 +126,13 @@ export const Alt2 = styled(Primary)`
 			props.active ? props.theme.colors.button.alt2.active.background : props.theme.colors.button.alt2.border};
 	&:hover {
 		border: 1.25px solid
-			${(props) =>
-				props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.border};
+			${(props) => (props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.border)};
 		background: ${(props) =>
 			props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.hover};
 	}
 	&:focus {
 		border: 1.25px solid
-			${(props) =>
-				props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.border};
+			${(props) => (props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.border)};
 		background: ${(props) =>
 			props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.hover};
 	}

@@ -1,15 +1,13 @@
 import React from 'react';
-
-import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { ArweaveClient } from 'clients/arweave';
 
-import { StampWidget } from 'global/StampWidget';
-
 import { Button } from 'components/atoms/Button';
-
+import { StampWidget } from 'global/StampWidget';
 import { LANGUAGE } from 'helpers/language';
-import { IProps } from './types';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function ArtifactActionsSingle(props: IProps) {
 	const arClient = new ArweaveClient();

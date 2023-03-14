@@ -1,20 +1,18 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-
-import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { ArweaveClient } from 'clients/arweave';
-import { ContributionResultType } from 'helpers/types';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
-import { Modal } from 'components/molecules/Modal';
 import { Notification } from 'components/atoms/Notification';
-
-import { ValidationType } from 'helpers/types';
+import { Modal } from 'components/molecules/Modal';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { IProps } from './types';
+import { ContributionResultType, ValidationType } from 'helpers/types';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function PoolContribute(props: IProps) {
 	const arProvider = useArweaveProvider();
@@ -31,9 +29,7 @@ export default function PoolContribute(props: IProps) {
 		if (arProvider.availableBalance) {
 			e.preventDefault();
 			setLoading(true);
-			setContributionResult(
-				await arClient.handlePoolContribute(props.poolId, amount, arProvider.availableBalance)
-			);
+			setContributionResult(await arClient.handlePoolContribute(props.poolId, amount, arProvider.availableBalance));
 			setLoading(false);
 		}
 	}
@@ -99,12 +95,7 @@ export default function PoolContribute(props: IProps) {
 		(async function () {
 			if (arProvider.walletAddress) {
 				setReceivingPercent(
-					arClient.getReceivingPercent(
-						arProvider.walletAddress,
-						props.contributors,
-						props.totalContributions,
-						amount
-					)
+					arClient.getReceivingPercent(arProvider.walletAddress, props.contributors, props.totalContributions, amount)
 				);
 			}
 		})();
@@ -136,9 +127,7 @@ export default function PoolContribute(props: IProps) {
 									<FormField
 										type={'number'}
 										value={amount}
-										onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-											setAmount(parseFloat(e.target.value))
-										}
+										onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
 										disabled={loading || !arProvider.walletAddress}
 										invalid={getInvalidForm()}
 										endText={LANGUAGE.arTokens}

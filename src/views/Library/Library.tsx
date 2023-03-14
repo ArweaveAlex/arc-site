@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 
 import { Button } from 'components/atoms/Button';
 import { URLTabs } from 'components/organisms/URLTabs';
-
-import { formatAddress } from 'helpers/utils';
-import { LANGUAGE } from 'helpers/language';
 import { ASSETS, URLS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import { formatAddress } from 'helpers/utils';
+
 import * as S from './styles';
 
 export default function Library() {

@@ -1,6 +1,6 @@
+import { ArweaveClient } from 'clients/arweave';
 import { InjectedArweaveSigner } from 'warp-contracts-plugin-deploy';
 
-import { ArweaveClient } from 'clients/arweave';
 import { getGQLData } from 'gql';
 import { TAGS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';

@@ -1,7 +1,7 @@
 import { ASSETS } from 'helpers/config';
 
-import { IProps } from './types';
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function Checkbox(props: IProps) {
 	return (

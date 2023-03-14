@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { open, fadeIn2 } from 'helpers/animations';
+import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
@@ -16,7 +16,7 @@ export const Content = styled.div`
 	width: 100%;
 	max-width: ${STYLING.cutoffs.max};
 	margin: calc(${STYLING.dimensions.navHeight} + 20px) auto 0 auto;
-	padding: 0 30px 7.5px 30px;
+	padding: 0 30px;
 	display: flex;
 	align-items: center;
 	animation: ${open} ${fadeIn2};

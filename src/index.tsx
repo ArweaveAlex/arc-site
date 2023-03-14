@@ -1,19 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ThemeProvider } from 'styled-components';
+
 import { App } from 'app';
-
-import { Loader } from 'components/atoms/Loader';
-
 import { GlobalStyle } from 'app/styles';
+import { Loader } from 'components/atoms/Loader';
 import { defaultTheme } from 'helpers/themes';
-
-import { store, persistor } from 'state/store';
+import { persistor, store } from 'state/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+if ('serviceWorker' in navigator) {
+	window.addEventListener('load', () => {
+		navigator.serviceWorker
+			.register('/service-worker.js')
+	});
+}
 
 root.render(
 	<Provider store={store}>

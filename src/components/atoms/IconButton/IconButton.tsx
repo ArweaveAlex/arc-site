@@ -35,8 +35,24 @@ export default function IconButton(props: IProps) {
 		}
 	}
 
+	function getAction() {
+		return (
+			<StyledButton
+				title={props.tooltip ? props.tooltip : null}
+				onClick={props.handlePress}
+				disabled={props.disabled}
+				sm={props.sm}
+				warning={props.warning}
+				data-testid={props.testingCtx}
+				dimensions={props.dimensions}
+			>
+				<ReactSVG src={props.src} />
+			</StyledButton>
+		);
+	}
+
 	function getButton() {
-		if (props.info) {
+		if (props.info || props.tooltip) {
 			return (
 				<S.Wrapper>
 					{props.info && (
@@ -44,31 +60,11 @@ export default function IconButton(props: IProps) {
 							<p>{props.info}</p>
 						</S.InfoWrapper>
 					)}
-					<StyledButton
-						onClick={props.handlePress}
-						disabled={props.disabled}
-						sm={props.sm}
-						warning={props.warning}
-						data-testid={props.testingCtx}
-						dimensions={props.dimensions}
-					>
-						<ReactSVG src={props.src} />
-					</StyledButton>
+					{getAction()}
 				</S.Wrapper>
 			);
 		} else {
-			return (
-				<StyledButton
-					onClick={props.handlePress}
-					disabled={props.disabled}
-					sm={props.sm}
-					warning={props.warning}
-					data-testid={props.testingCtx}
-					dimensions={props.dimensions}
-				>
-					<ReactSVG src={props.src} />
-				</StyledButton>
-			);
+			return <>{getAction()}</>;
 		}
 	}
 

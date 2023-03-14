@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { getBalanceEndpoint } from 'helpers/endpoints';
 import { AR_WALLETS, WALLET_PERMISSIONS } from 'helpers/config';
+import { getBalanceEndpoint } from 'helpers/endpoints';
 
 interface ArweaveContextState {
 	wallets: { name: string; logo: string }[];
@@ -29,9 +29,7 @@ const DEFAULT_CONTEXT = {
 	},
 	walletModalVisible: false,
 	setWalletModalVisible(_open: boolean) {
-		console.error(
-			`Make sure to render ArweaveProvider as an ancestor of the component that uses ARContext.Provider`
-		);
+		console.error(`Make sure to render ArweaveProvider as an ancestor of the component that uses ARContext.Provider`);
 	},
 };
 

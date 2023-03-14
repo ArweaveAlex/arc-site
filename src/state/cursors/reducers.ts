@@ -1,7 +1,8 @@
-import { CursorObjectKeyType, CursorEnum, ReduxActionType } from 'helpers/types';
-import { CursorsType } from './types';
-import { SET_CURSORS, CLEAR_CURSORS } from './constants';
 import { REDUX_TABLES } from 'helpers/redux';
+import { CursorEnum, CursorObjectKeyType, ReduxActionType } from 'helpers/types';
+
+import { CLEAR_CURSORS, SET_CURSORS } from './constants';
+import { CursorsType } from './types';
 
 export const initStateCursors: CursorsType = {
 	gql: {
@@ -80,11 +81,7 @@ export function cursorsReducer(state: CursorsType = initStateCursors, action: Re
 					[REDUX_TABLES.accountAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.accountAll)
 						? action.payload.gql[REDUX_TABLES.accountAll]
 						: state.gql[REDUX_TABLES.accountAll],
-					[REDUX_TABLES.accountBookmarks]: checkPayload(
-						action.payload,
-						CursorEnum.GQL,
-						REDUX_TABLES.accountBookmarks
-					)
+					[REDUX_TABLES.accountBookmarks]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.accountBookmarks)
 						? action.payload.gql[REDUX_TABLES.accountBookmarks]
 						: state.gql[REDUX_TABLES.accountBookmarks],
 					[REDUX_TABLES.poolAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.poolAll)
@@ -93,11 +90,7 @@ export function cursorsReducer(state: CursorsType = initStateCursors, action: Re
 					[REDUX_TABLES.libraryAll]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.libraryAll)
 						? action.payload.gql[REDUX_TABLES.libraryAll]
 						: state.gql[REDUX_TABLES.libraryAll],
-					[REDUX_TABLES.libraryBookmarks]: checkPayload(
-						action.payload,
-						CursorEnum.GQL,
-						REDUX_TABLES.libraryBookmarks
-					)
+					[REDUX_TABLES.libraryBookmarks]: checkPayload(action.payload, CursorEnum.GQL, REDUX_TABLES.libraryBookmarks)
 						? action.payload.gql[REDUX_TABLES.libraryBookmarks]
 						: state.gql[REDUX_TABLES.libraryBookmarks],
 				},

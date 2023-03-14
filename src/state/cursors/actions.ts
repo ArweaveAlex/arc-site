@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 
-import { SET_CURSORS, CLEAR_CURSORS } from './constants';
+import { CLEAR_CURSORS, SET_CURSORS } from './constants';
 import { CursorsType } from './types';
 
 export function setCursors(payload: CursorsType) {

@@ -26,7 +26,7 @@ export const LANGUAGE = {
 		title: `Title`,
 	},
 	arTokens: `$AR`,
-	assertOnPermafacts: `Assert on Permafacts`,
+	attachFactMarket: `Attach Fact Market`,
 	availableBalance: `Available Balance`,
 	banner: {
 		header1: `Preserving`,
@@ -106,6 +106,7 @@ export const LANGUAGE = {
 	noContributions: `No Contributions`,
 	ofArtifactsCreated: `of new Artifacts created`,
 	openInNewTab: `Open in New Tab`,
+	oppose: `Oppose`,
 	owner: `Owner`,
 	pageNotFound: `Page Not Found`,
 	paths: {
@@ -151,6 +152,8 @@ export const LANGUAGE = {
 	sortBy: `Sort By`,
 	stamp: `STAMP`,
 	stamps: `Stamps`,
+	stampCount: `STAMP Count`,
+	superStamp: `Super STAMP`,
 	steps: {
 		header1: `A New Way to Get Involved in the Human Story`,
 		header2: `Alex. offers a unique way for everyone to participate and "own" a piece of the human story. By supporting the participating archival institutions, you are helping protect our history from edits, omissions, narratives, & malicious intent. <b>Here&#8217;s how.</b>`,
@@ -163,6 +166,7 @@ export const LANGUAGE = {
 		],
 	},
 	submit: `Submit`,
+	support: `Support`,
 	title: `Title`,
 	topic: `Topic`,
 	total: `Total`,

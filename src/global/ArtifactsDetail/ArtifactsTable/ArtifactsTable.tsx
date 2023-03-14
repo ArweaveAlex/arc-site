@@ -1,27 +1,23 @@
 import React from 'react';
-import parse from 'html-react-parser';
-import { ReactSVG } from 'react-svg';
 import { Link } from 'react-router-dom';
-
+import { ReactSVG } from 'react-svg';
 import Stamps from '@permaweb/stampjs';
 import { ArweaveClient } from 'clients/arweave';
-
-import { ArtifactsSearch } from '../ArtifactsSearch';
-import { ArtifactsTableActionDropdown } from './ArtifactsTableActionDropdown';
+import parse from 'html-react-parser';
 
 import { Checkbox } from 'components/atoms/Checkbox';
 import { Table } from 'components/organisms/Table';
-
+import { ARTIFACT_TYPES, ASSETS, PAGINATOR, STORAGE, TAGS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { ASSETS, PAGINATOR, STORAGE, TAGS, ARTIFACT_TYPES } from 'helpers/config';
-
 import { AlignType, ArtifactTableRowType, GQLResponseType, KeyValueType, TableHeaderType } from 'helpers/types';
-
-import { formatDate, formatMessagingText, getTagValue, checkMedia, checkAssociation } from 'helpers/utils';
-
 import * as urls from 'helpers/urls';
-import { IProps } from './types';
+import { checkAssociation, checkMedia, formatDate, formatMessagingText, getTagValue } from 'helpers/utils';
+
+import { ArtifactsSearch } from '../ArtifactsSearch';
+
+import { ArtifactsTableActionDropdown } from './ArtifactsTableActionDropdown';
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function ArtifactsTable(props: IProps) {
 	const [data, setData] = React.useState<{ data: ArtifactTableRowType; active: boolean; viewed: boolean }[] | null>(
@@ -142,9 +138,7 @@ export default function ArtifactsTable(props: IProps) {
 				</S.ALinkWrapper>
 				<S.Icons>
 					<S.Icon>{checkMedia(tags) && <ReactSVG src={ASSETS.media} />}</S.Icon>
-					<S.AssociationIcon>
-						{checkAssociation(tags) && <ReactSVG src={ASSETS.association} />}
-					</S.AssociationIcon>
+					<S.AssociationIcon>{checkAssociation(tags) && <ReactSVG src={ASSETS.association} />}</S.AssociationIcon>
 				</S.Icons>
 			</S.LinkWrapper>
 		);
@@ -247,10 +241,7 @@ export default function ArtifactsTable(props: IProps) {
 
 							row.type = getType(getTagValue(element.node.tags, TAGS.keys.artifactType));
 							row.title = getArtifactLink(element.node.id, element.node.tags);
-							row.dateCreated = formatDate(
-								getTagValue(element.node.tags, TAGS.keys.dateCreated),
-								'epoch'
-							);
+							row.dateCreated = formatDate(getTagValue(element.node.tags, TAGS.keys.dateCreated), 'epoch');
 
 							if (props.showPoolIds) {
 								row.pool = getPoolLink(

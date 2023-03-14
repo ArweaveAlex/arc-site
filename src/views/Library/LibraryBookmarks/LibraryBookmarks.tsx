@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-
 import { getArtifactsByBookmarks } from 'gql/artifacts';
 import { REDUX_TABLES } from 'helpers/redux';
 import { CursorEnum } from 'helpers/types';

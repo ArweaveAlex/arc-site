@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { open, fadeIn2 } from 'helpers/animations';
-import { STYLING, getImageShadow } from 'helpers/styling';
+import { fadeIn2, loadingSlide,open } from 'helpers/animations';
+import { getImageShadow, STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	width: 100%;
@@ -116,4 +116,23 @@ export const PCWrapper = styled.div`
 		width: 90vw;
 		margin: 0 0 40px 0;
 	}
+`;
+
+export const Placeholder = styled.div`
+	height: 100%;
+	width: 100%;
+	position: relative;
+	background: linear-gradient(
+			to right,
+			${(props) => props.theme.colors.table.placeholder.backgroundStart},
+			${(props) => props.theme.colors.table.placeholder.backgroundSlide} 50%,
+			${(props) => props.theme.colors.table.placeholder.backgroundEnd} 80%
+		),
+		${(props) => props.theme.colors.table.placeholder.background};
+	background-repeat: repeat-y;
+	background-size: 50px 500px;
+	background-position: 0 0;
+	animation: ${loadingSlide} 1.25s infinite;
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;

@@ -1,13 +1,13 @@
-import { applyMiddleware, combineReducers, legacy_createStore as createStore, compose } from 'redux';
-import thunk from 'redux-thunk';
-import storage from 'redux-persist/lib/storage';
+import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore } from 'redux';
 import { createLogger } from 'redux-logger';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
 
 import { bookmarksReducer } from './artifacts/reducers';
 import { cursorsReducer } from './cursors/reducers';
 import { poolsReducer } from './pools/reducers';
-import { searchIdsReducer, searchTermReducer, searchIndecesReducer } from './search/reducers';
+import { searchIdsReducer, searchIndecesReducer, searchTermReducer } from './search/reducers';
 
 declare const window: any;
 

@@ -1,12 +1,12 @@
-import { OwnerCollectionsList } from './OwnerCollectionsList';
-
-import { IProps } from './types';
-import * as S from './styles';
 import React from 'react';
-import { CollectionType } from 'helpers/types';
 
 import { getCollectionsByOwner } from 'collections/collections';
+import { CollectionType } from 'helpers/types';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
+
+import { OwnerCollectionsList } from './OwnerCollectionsList';
+import * as S from './styles';
+import { IProps } from './types';
 
 export default function OwnerCollections(props: IProps) {
 	const [ownerCollections, setOwnerCollections] = React.useState<CollectionType[]>([]);

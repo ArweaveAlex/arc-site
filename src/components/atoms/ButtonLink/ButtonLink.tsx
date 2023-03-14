@@ -1,9 +1,10 @@
-import { ReactSVG } from 'react-svg';
 import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 import { LANGUAGE } from 'helpers/language';
-import { IProps } from './types';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function ButtonLink(props: IProps) {
 	const buttonStyle = getType();

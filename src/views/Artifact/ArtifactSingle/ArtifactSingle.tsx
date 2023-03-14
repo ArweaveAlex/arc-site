@@ -1,16 +1,15 @@
 import React from 'react';
 
-import { ArtifactHeaderSingle } from './ArtifactHeaderSingle';
+import { Loader } from 'components/atoms/Loader';
+import { ARTIFACT_TABS, ARTIFACT_TYPES, TAB_OPTIONS, TAGS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import { ArtifactDetailType } from 'helpers/types';
+import { checkNullValues } from 'helpers/utils';
+
 import { ArtifactActionsSingle } from './ArtifactActionsSingle';
 import { ArtifactDetailSingle } from './ArtifactDetailSingle';
+import { ArtifactHeaderSingle } from './ArtifactHeaderSingle';
 import { ArtifactViewSingle } from './ArtifactViewSingle';
-
-import { Loader } from 'components/atoms/Loader';
-
-import { ARTIFACT_TABS, ARTIFACT_TYPES, TAB_OPTIONS, TAGS } from 'helpers/config';
-import { checkNullValues } from 'helpers/utils';
-import { ArtifactDetailType } from 'helpers/types';
-import { LANGUAGE } from 'helpers/language';
 import * as S from './styles';
 import { IProps } from './types';
 

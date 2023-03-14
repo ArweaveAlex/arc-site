@@ -1,6 +1,7 @@
 import { ReduxActionType } from 'helpers/types';
-import { PoolsType, PoolsSearchIndexType } from './types';
+
 import { SET_POOLS, SET_POOLS_INDEX_SEARCH } from './constants';
+import { PoolsSearchIndexType, PoolsType } from './types';
 
 export const initStatePools: PoolsType = {
 	data: null,

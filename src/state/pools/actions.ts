@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 
 import { SET_POOLS, SET_POOLS_INDEX_SEARCH } from './constants';
-import { PoolsType, PoolsSearchIndexType } from './types';
+import { PoolsSearchIndexType, PoolsType } from './types';
 
 export function setPools(payload: PoolsType) {
 	return (dispatch: Dispatch) => {

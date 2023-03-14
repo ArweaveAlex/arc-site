@@ -1,21 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
-
-import { getPoolById } from 'gql/pools';
-import { getArtifactById } from 'gql/artifacts';
 import { sortByAssociationSequence } from 'filters/artifacts';
-import { ArtifactDetailType, PoolType } from 'helpers/types';
-import { formatAddress, formatDate } from 'helpers/utils';
-import { LANGUAGE } from 'helpers/language';
-import * as urls from 'helpers/urls';
-import { IProps } from '../../types';
-import * as S from './styles';
-
 import { MessagingListItem } from 'global/MessagingListItem';
+import { getArtifactById } from 'gql/artifacts';
+import { getPoolById } from 'gql/pools';
+import { LANGUAGE } from 'helpers/language';
+import { ArtifactDetailType, PoolType } from 'helpers/types';
+import * as urls from 'helpers/urls';
+import { formatAddress, formatDate } from 'helpers/utils';
+
+import { IProps } from '../../types';
+
+import * as S from './styles';
 
 export default function ArtifactMessagingList(props: IProps) {
 	const { id } = useParams();
@@ -126,11 +125,7 @@ export default function ArtifactMessagingList(props: IProps) {
 							</S.Subheader1>
 							&nbsp;
 							<S.Subheader2>
-								<p>
-									{headerData.state.timestamp
-										? formatDate(headerData.state.timestamp, 'epoch')
-										: null}
-								</p>
+								<p>{headerData.state.timestamp ? formatDate(headerData.state.timestamp, 'epoch') : null}</p>
 							</S.Subheader2>
 						</S.SubheaderContainer>
 					</S.SubheaderFlex>

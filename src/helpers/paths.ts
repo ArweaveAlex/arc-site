@@ -1,6 +1,7 @@
-import * as urls from './urls';
 import { ASSETS } from 'helpers/config';
+
 import { LANGUAGE } from './language';
+import * as urls from './urls';
 
 export const NAV_PATHS = [
 	{

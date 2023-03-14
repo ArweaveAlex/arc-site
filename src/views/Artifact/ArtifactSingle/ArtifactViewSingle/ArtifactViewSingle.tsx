@@ -1,12 +1,12 @@
+import { Loader } from 'components/atoms/Loader';
+import { ArtifactEnum } from 'helpers/types';
+
+import { IProps } from '../types';
+
 import { ArtifactMessagingSingle } from './ArtifactMessagingSingle';
 import { ArtifactNostrSingle } from './ArtifactNostrSingle';
-import { ArtifactWebpageSingle } from './ArtifactWebpageSingle';
 import { ArtifactRedditSingle } from './ArtifactRedditSingle';
-
-import { Loader } from 'components/atoms/Loader';
-
-import { ArtifactEnum } from 'helpers/types';
-import { IProps } from '../types';
+import { ArtifactWebpageSingle } from './ArtifactWebpageSingle';
 import * as S from './styles';
 
 export default function ArtifactViewSingle(props: IProps) {

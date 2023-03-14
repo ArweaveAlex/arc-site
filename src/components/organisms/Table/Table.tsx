@@ -2,13 +2,12 @@ import React from 'react';
 
 import { TableLoader } from 'components/atoms/TableLoader';
 import { Paginator } from 'components/molecules/Paginator';
-
-import { TableRowType } from 'helpers/types';
-
-import { IProps } from './types';
-import * as S from './styles';
 import { PAGINATOR } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
+import { TableRowType } from 'helpers/types';
+
+import * as S from './styles';
+import { IProps } from './types';
 
 export default function Table(props: IProps) {
 	const scrollRef = React.useRef(null);
@@ -60,11 +59,7 @@ export default function Table(props: IProps) {
 									<S.Row key={index} active={element.active} viewed={element.viewed}>
 										{Object.keys(element.data).map((row: string, rowIndex: number) => {
 											const rowData =
-												typeof element.data[row] === 'object' ? (
-													element.data[row]
-												) : (
-													<p>{element.data[row]}</p>
-												);
+												typeof element.data[row] === 'object' ? element.data[row] : <p>{element.data[row]}</p>;
 											return (
 												<S.TData
 													key={rowIndex}

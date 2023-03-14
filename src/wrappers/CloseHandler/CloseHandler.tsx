@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { IProps } from './types';
 import { RefType } from 'helpers/types';
 
 import * as S from './styles';
+import { IProps } from './types';
 
 function useCloseHandler(ref: RefType, callback: () => void) {
 	React.useEffect(() => {

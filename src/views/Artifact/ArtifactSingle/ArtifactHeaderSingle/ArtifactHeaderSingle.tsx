@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { SocialShare } from 'global/SocialShare';
-
 import { Tabs } from 'components/organisms/Tabs';
-
-import { formatAddress, formatDate, formatArtifactType } from 'helpers/utils';
-import { LANGUAGE } from 'helpers/language';
+import { SocialShare } from 'global/SocialShare';
 import { ARTIFACT_TABS, ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
-import { IProps } from './types';
+import { formatAddress, formatArtifactType, formatDate } from 'helpers/utils';
+
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function ArtifactHeaderSingle(props: IProps) {
 	return props.data && props.type ? (
@@ -36,9 +35,7 @@ export default function ArtifactHeaderSingle(props: IProps) {
 						<S.InfoOwner>
 							<>
 								<ReactSVG src={ASSETS.owner} />
-								<Link to={`${urls.libraryAll(props.data.owner!)}`}>
-									{formatAddress(props.data.owner, false)}
-								</Link>
+								<Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
 							</>
 						</S.InfoOwner>
 						<S.InfoPools>

@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { LandingHeader } from './LandingHeader';
-import { LandingPools } from './LandingPools';
-import { LandingInfo } from './LandingInfo';
-import { LandingSteps } from './LandingSteps';
-
 import * as windowUtils from 'helpers/window';
 
+import { LandingHeader } from './LandingHeader';
+import { LandingInfo } from './LandingInfo';
+import { LandingPools } from './LandingPools';
+import { LandingSteps } from './LandingSteps';
 import * as S from './styles';
 
 export default function Landing() {

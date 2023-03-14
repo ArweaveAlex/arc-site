@@ -1,22 +1,20 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
-import { RootState } from 'state/store';
-import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
-
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 
 import { Loader } from 'components/atoms/Loader';
 import { Carousel } from 'components/molecules/Carousel';
-
 import { sortByMostContributed } from 'filters/pools';
+import { FALLBACK_IMAGE } from 'helpers/config';
 import { getTxEndpoint } from 'helpers/endpoints';
-import * as urls from 'helpers/urls';
 import { LANGUAGE } from 'helpers/language';
 import { PoolType } from 'helpers/types';
+import * as urls from 'helpers/urls';
+import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
+import { RootState } from 'state/store';
+
 import * as S from './styles';
-import { FALLBACK_IMAGE } from 'helpers/config';
 
 function PoolCard(props: PoolType) {
 	const [poolUrl, setPoolsUrl] = React.useState<string | null>(null);
@@ -75,9 +73,24 @@ export default function LandingPools() {
 			return <Carousel title={LANGUAGE.activePools} data={getPools()} />;
 		} else {
 			return (
-				<S.LoadingContainer>
-					<Loader sm />
-				</S.LoadingContainer>
+				<S.PCWrapper>
+					<S.C1>
+						<S.C1Content>
+							<S.TP>
+								<Loader placeholder />
+							</S.TP>
+							<S.DP>
+								<Loader placeholder />
+							</S.DP>
+						</S.C1Content>
+						<S.LP>
+							<Loader placeholder />
+						</S.LP>
+					</S.C1>
+					<S.C2P>
+						<Loader placeholder />
+					</S.C2P>
+				</S.PCWrapper>
 			);
 		}
 	}

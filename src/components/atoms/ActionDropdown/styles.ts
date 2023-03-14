@@ -44,9 +44,7 @@ export const LI = styled.li<{ disabled: boolean }>`
 	border: 1px solid
 		${(props) => (props.disabled ? props.theme.colors.button.alt2.disabled.border : props.theme.colors.transparent)};
 	background: ${(props) =>
-		props.disabled
-			? props.theme.colors.button.alt2.disabled.background
-			: props.theme.colors.button.alt2.background};
+		props.disabled ? props.theme.colors.button.alt2.disabled.background : props.theme.colors.button.alt2.background};
 	padding: 0 15px;
 	&:hover {
 		background: ${(props) =>

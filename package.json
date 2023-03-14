@@ -7,15 +7,16 @@
 	"license": "ISC",
 	"scripts": {
 		"start": "webpack serve --port 3000 --mode development",
-		"format": "npx prettier --write .",
-		"test": "react-scripts test",
+		"format": "eslint --fix . && npx prettier --write .",
+		"test": "npm test",
 		"test:verbose": "npm test -- --verbose",
 		"test:coverage": "CI=true npm test -- --env=jsdom --coverage",
 		"build": "webpack --mode production",
-		"deploy": "npm run build && node src/actions/deploy.mjs"
+		"deploy": "npm run build && node src/workers/deploy.mjs"
 	},
 	"dependencies": {
 		"@bundlr-network/client": "^0.9.11",
+		"@facts-kit/facts-sdk": "^0.0.45",
 		"@permaweb/stampjs": "0.0.14",
 		"@types/react-router-dom": "^5.3.3",
 		"arweave": "^1.11.6",
@@ -28,7 +29,7 @@
 		"react-redux": "^7.2.9",
 		"react-responsive-carousel": "^3.2.23",
 		"react-router-dom": "^6.4.2",
-		"react-scripts": "5.0.1",
+		"react-scripts": "^5.0.1",
 		"react-share": "^4.4.1",
 		"react-svg": "^15.1.11",
 		"redux-logger": "^3.0.6",
@@ -50,6 +51,9 @@
 		"babel-loader": "^9.1.2",
 		"copy-webpack-plugin": "^11.0.0",
 		"css-loader": "^6.7.3",
+		"eslint": "^8.35.0",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"html-webpack-plugin": "^5.5.0",
 		"prettier": "^2.8.3",
 		"terser-webpack-plugin": "^5.3.6",
@@ -58,6 +62,7 @@
 		"typescript": "^4.9.4",
 		"url-loader": "^4.1.1",
 		"webpack": "^5.75.0",
-		"webpack-cli": "^5.0.1"
+		"webpack-cli": "^5.0.1",
+		"webpack-dev-server": "^4.12.0"
 	}
 }

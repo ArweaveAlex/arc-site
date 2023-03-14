@@ -1,4 +1,4 @@
-import { STORAGE, SEARCH, TAGS } from 'helpers/config';
+import { SEARCH, STORAGE, TAGS } from 'helpers/config';
 import { DateType, KeyValueType } from 'helpers/types';
 
 export function getHashUrl(url: string) {

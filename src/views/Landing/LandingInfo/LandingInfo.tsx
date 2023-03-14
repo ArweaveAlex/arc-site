@@ -1,9 +1,9 @@
 import parse from 'html-react-parser';
 
 import landingInfoAsset from 'assets/info-graphic.png';
-
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
+
 import * as S from './styles';
 
 export default function LandingInfo() {

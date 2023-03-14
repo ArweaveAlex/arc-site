@@ -1,19 +1,17 @@
-import { Buffer } from 'buffer';
 import Arweave from 'arweave';
+import { Buffer } from 'buffer';
 // @ts-ignore
-import { WarpFactory, defaultCacheOptions } from 'warp-contracts/web';
-import { DeployPlugin } from 'warp-contracts-plugin-deploy';
+import { defaultCacheOptions, WarpFactory } from 'warp-contracts/web';
 
-import { store } from 'state/store';
-import * as poolActions from 'state/pools/actions';
 import { getGQLData } from 'gql';
-import { getPools } from 'gql/pools';
 import { getArtifactsByUser } from 'gql/artifacts';
-
-import { PoolType, ContributionType, ContributionResultType, GQLResponseType } from 'helpers/types';
-import { LANGUAGE } from 'helpers/language';
+import { getPools } from 'gql/pools';
 import { TAGS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import { ContributionResultType, ContributionType, GQLResponseType, PoolType } from 'helpers/types';
 import { getTagValue } from 'helpers/utils';
+import * as poolActions from 'state/pools/actions';
+import { store } from 'state/store';
 
 const GET_ENDPOINT = 'arweave-search.goldsky.com';
 const POST_ENDPOINT = 'arweave.net';
@@ -130,12 +128,7 @@ export default class ArweaveClient {
 		return contributionMap;
 	}
 
-	getReceivingPercent(
-		userWallet: string,
-		contributors: any,
-		totalContributions: string,
-		activeAmount: number
-	): string {
+	getReceivingPercent(userWallet: string, contributors: any, totalContributions: string, activeAmount: number): string {
 		if (userWallet && contributors && totalContributions) {
 			let amount: number = 0;
 			if (!isNaN(activeAmount)) {

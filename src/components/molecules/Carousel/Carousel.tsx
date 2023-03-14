@@ -1,8 +1,9 @@
 import { Carousel } from 'react-responsive-carousel';
+
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import { IProps } from './types';
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function _Carousel(props: IProps) {
 	return props.data ? (

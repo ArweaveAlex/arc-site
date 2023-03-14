@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import { Loader } from 'components/atoms/Loader';
 
 import { IProps } from '../../types';
+
 import * as S from './styles';
 
 export default function ArtifactWebpageSingle(props: IProps) {

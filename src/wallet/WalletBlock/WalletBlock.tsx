@@ -1,8 +1,7 @@
+import { Button } from 'components/atoms/Button';
+import { LANGUAGE } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
-import { Button } from 'components/atoms/Button';
-
-import { LANGUAGE } from 'helpers/language';
 import * as S from './styles';
 
 export default function WalletBlock() {

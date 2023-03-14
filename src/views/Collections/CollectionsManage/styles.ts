@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { open, fadeIn2 } from 'helpers/animations';
+import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 const WRAPPER_HEIGHT = '550px';

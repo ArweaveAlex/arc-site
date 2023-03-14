@@ -1,11 +1,8 @@
-import { ArweaveProvider } from 'providers/ArweaveProvider';
-
-import { Header } from 'navigation/header';
-import { Footer } from 'navigation/footer';
-
-import { Routes } from 'routes';
-
 import { APP, DOM } from 'helpers/config';
+import { Footer } from 'navigation/footer';
+import { Header } from 'navigation/header';
+import { ArweaveProvider } from 'providers/ArweaveProvider';
+import { Routes } from 'routes';
 
 export default function Root() {
 	if (!localStorage.getItem(APP.key) || localStorage.getItem(APP.key) !== APP.version) {

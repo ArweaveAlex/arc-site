@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { LANGUAGE } from 'helpers/language';
 import { useQuery } from 'hooks/useQuery';
 
-import { LANGUAGE } from 'helpers/language';
-import { IProps } from './types';
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function Query(props: IProps) {
 	const query = useQuery();

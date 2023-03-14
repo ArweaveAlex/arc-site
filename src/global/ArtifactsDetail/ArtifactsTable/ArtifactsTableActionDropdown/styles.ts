@@ -36,3 +36,9 @@ export const StampWidgetContainer = styled(SubComponentContainer)`
 	width: fit-content;
 	top: 36.5px;
 `;
+
+export const FactWidgetContainer = styled(SubComponentContainer)`
+	min-height: 0;
+	width: fit-content;
+	top: 69.5px;
+`;
