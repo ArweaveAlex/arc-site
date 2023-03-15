@@ -16,7 +16,7 @@
 	},
 	"dependencies": {
 		"@bundlr-network/client": "^0.9.11",
-		"@facts-kit/facts-sdk": "^0.0.45",
+		"@facts-kit/facts-sdk": "^0.0.47",
 		"@permaweb/stampjs": "0.0.14",
 		"@types/react-router-dom": "^5.3.3",
 		"arweave": "^1.11.6",
