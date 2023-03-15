@@ -220,7 +220,7 @@ export default function StampWidget(props: IProps) {
 									handlePress={null}
 									disabled={true}
 									info={count.vouched.toString()}
-									tooltip={LANGUAGE.stampCount}
+									tooltip={LANGUAGE.stampsVouched}
 								/>
 							</S.Action>
 						</S.WidgetContainer>

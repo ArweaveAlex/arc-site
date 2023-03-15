@@ -151,7 +151,7 @@ export const LANGUAGE = {
 	sortBy: `Sort By`,
 	stamp: `STAMP`,
 	stamps: `Stamps`,
-	stampCount: `STAMP Count`,
+	stampsVouched: `Vouched Stamps`,
 	superStamp: `Super STAMP`,
 	steps: {
 		header1: `A New Way to Get Involved in the Human Story`,
