@@ -25,7 +25,7 @@ export const WidgetContainer = styled.div`
 `;
 
 export const Action = styled.div`
-	margin: 0;
+	margin: auto;
 `;
 
 export const LoadingContainer = styled.div`

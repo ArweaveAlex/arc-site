@@ -131,7 +131,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	function getPreview() {
 		return {
 			node: (
-				<Preview artifactId={props.artifactId} useModal={props.usePreviewModal} handleClose={() => handleCallback()} />
+				<Preview artifactId={props.artifactId} useModal={props.usePreviewModal} handleClose={() => handlePreviewCallback()} />
 			),
 			active: showPreview,
 		};
@@ -207,6 +207,11 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		setDropdownOpen(!dropdownOpen);
 		setShowPreview(false);
 		setShowStampWidget(false);
+		setShowFactWidget(false);
+	}
+
+	function handlePreviewCallback() {
+		setShowPreview(false);
 	}
 
 	function handleBookmarkCallback() {
@@ -240,14 +245,14 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				disabled: false,
 				loading: false,
 			},
-			// {
-			// 	fn: handleShowFactWidget,
-			// 	closeOnAction: false,
-			// 	subComponent: getFactWidget(),
-			// 	label: showFactWidget ? LANGUAGE.close : LANGUAGE.attachFactMarket,
-			// 	disabled: false,
-			// 	loading: false,
-			// },
+			{
+				fn: handleShowFactWidget,
+				closeOnAction: false,
+				subComponent: getFactWidget(),
+				label: showFactWidget ? LANGUAGE.close : LANGUAGE.factMarket,
+				disabled: false,
+				loading: false,
+			},
 			{
 				fn: copyArtifactId,
 				closeOnAction: false,

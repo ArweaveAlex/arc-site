@@ -136,13 +136,9 @@ export default function StampWidget(props: IProps) {
 		async (amount?: number) => {
 			if (props.txId) {
 				setStampCheckLoading(true);
-				let stamp: any;
-				if (amount) {
-					stamp = await stamps.stamp(props.txId, amount, [{ name: '', value: '' }]);
-				} else {
-					stamp = await stamps.stamp(props.txId, 0, [{ name: '', value: '' }]);
-				}
+				let stamp: any = await stamps.stamp(props.txId, amount ? amount : 0, [{ name: '', value: '' }]);
 				const stampSuccess = stamp && stamp.bundlrResponse && stamp.bundlrResponse.id;
+
 				setStampCheckLoading(false);
 				setStampDisabled(true);
 				setUpdateCount(!updateCount);
@@ -167,6 +163,8 @@ export default function StampWidget(props: IProps) {
 	}
 
 	function getWidget() {
+		const disabled = stampDisabled || stampCheckLoading || !props.walletAddress || !props.txId;
+
 		if (showWalletConnect) {
 			return (
 				<S.WalletConnectWrapper>
@@ -196,7 +194,7 @@ export default function StampWidget(props: IProps) {
 									type={'alt1'}
 									src={ASSETS.stamp.default}
 									handlePress={() => handleStamp()}
-									disabled={stampDisabled || stampCheckLoading || !props.walletAddress}
+									disabled={disabled}
 									info={count.total.toString()}
 									tooltip={LANGUAGE.stamp}
 								/>
@@ -206,9 +204,7 @@ export default function StampWidget(props: IProps) {
 									type={'alt1'}
 									src={ASSETS.stamp.super}
 									handlePress={() => setShowStampAction(!showStampAction)}
-									disabled={
-										balance <= 0 || stampDisabled || stampCheckLoading || showStampAction || !props.walletAddress
-									}
+									disabled={disabled || balance <= 0 || showStampAction}
 									info={count.super.toString()}
 									tooltip={LANGUAGE.superStamp}
 								/>

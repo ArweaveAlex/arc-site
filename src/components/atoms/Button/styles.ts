@@ -171,6 +171,14 @@ export const Success = styled(Alt1)`
 	&:focus {
 		background: ${(props) => props.theme.colors.button.success.hover};
 	}
+	&:disabled {
+		background: ${(props) => props.theme.colors.button.alt1.disabled.background};
+		color: ${(props) => props.theme.colors.button.alt1.disabled.label};
+		border: 1.25px solid ${(props) => props.theme.colors.button.alt1.disabled.border};
+		span {
+			color: ${(props) => props.theme.colors.button.alt1.disabled.label};
+		}
+	}
 `;
 
 export const Warning = styled(Alt1)`
@@ -180,5 +188,13 @@ export const Warning = styled(Alt1)`
 	}
 	&:focus {
 		background: ${(props) => props.theme.colors.button.warning.hover};
+	}
+	&:disabled {
+		background: ${(props) => props.theme.colors.button.alt1.disabled.background};
+		color: ${(props) => props.theme.colors.button.alt1.disabled.label};
+		border: 1.25px solid ${(props) => props.theme.colors.button.alt1.disabled.border};
+		span {
+			color: ${(props) => props.theme.colors.button.alt1.disabled.label};
+		}
 	}
 `;

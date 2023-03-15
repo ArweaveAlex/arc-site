@@ -89,6 +89,7 @@ export const InfoData = styled.div`
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
+		max-width: 185px;
 	}
 	p {
 		line-height: 16px;
