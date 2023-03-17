@@ -132,7 +132,7 @@ export default function CollectionsCreate() {
 				timestamp: Date.now().toString(),
 			};
 
-			const collectionContractId = await createCollection(collectionState, topic, arProvider.walletAddress);
+			const collectionContractId = await createCollection(collectionState, arProvider.walletAddress);
 			console.log(collectionContractId);
 		}
 	}

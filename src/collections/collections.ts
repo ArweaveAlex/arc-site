@@ -18,13 +18,13 @@ let collectionInitState = {
 	owner: null,
 };
 
-export async function createCollection(collection: CollectionStateType, topic: string, walletAddress: string) {
+export async function createCollection(collection: CollectionStateType, walletAddress: string) {
 	const tags = [
 		{ name: TAGS.keys.appType, value: TAGS.values.collectionAppType },
 		{ name: TAGS.keys.collectionName, value: collection.title },
 		{ name: TAGS.keys.collectionDescription, value: collection.description },
 		{ name: TAGS.keys.ansTitle, value: collection.title },
-		{ name: `${TAGS.keys.ansTopic}:${topic}`, value: topic },
+		{ name: `${TAGS.keys.ansTopic}:${collection.topic}`, value: collection.topic },
 		{ name: TAGS.keys.ansDescription, value: collection.description },
 		{ name: TAGS.keys.ansType, value: TAGS.values.ansType },
 		{ name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
