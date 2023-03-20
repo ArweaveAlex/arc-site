@@ -70,8 +70,6 @@ export function useArweaveProvider(): ArweaveContextState {
 }
 
 function WalletList(props: { handleConnect: () => void }) {
-	const arProvider = useArweaveProvider();
-
 	return (
 		<WalletListContainer>
 			{AR_WALLETS.map((wallet, index) => (
