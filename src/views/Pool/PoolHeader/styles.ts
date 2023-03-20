@@ -119,8 +119,11 @@ export const Image = styled.div<{ image: string }>`
 	background-image: ${(props) => `url("${props.image}")`};
 	background-size: cover;
 	background-position: center;
+	background-repeat: no-repeat;
+	background-color: ${(props) => props.theme.colors.container.alt5.background};
 	box-shadow: ${(props) => getImageShadow(props.theme)};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border: 2px solid ${(props) => props.theme.colors.border.primary};
 `;
 
 export const ImageLoading = styled.div`

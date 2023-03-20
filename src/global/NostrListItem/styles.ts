@@ -209,7 +209,7 @@ export const Metric = styled.div`
 `;
 
 export const SingleWrapper = styled.div`
-	width: ${STYLING.dimensions.threadDetailWidth};
+	width: ${STYLING.dimensions.listDetailWidth};
 	position: absolute;
 	right: 0;
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {

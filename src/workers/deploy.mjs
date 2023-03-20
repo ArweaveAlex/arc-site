@@ -1,6 +1,6 @@
 import Bundlr from '@bundlr-network/client';
 import Arweave from 'arweave';
-import { defaultCacheOptions,WarpFactory } from 'warp-contracts';
+import { defaultCacheOptions, WarpFactory } from 'warp-contracts';
 
 (async () => {
 	const DEPLOY_FOLDER = './dist';

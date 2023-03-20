@@ -65,9 +65,4 @@ export const URLCopied = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 		white-space: nowrap;
 	}
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		bottom: auto;
-		right: auto;
-		left: 82.5px;
-	}
 `;

@@ -9,7 +9,7 @@ import { LANGUAGE } from 'helpers/language';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: Search Fix
+// TODO: Search Fix - disabled={props.disabled}
 export default function Search(props: IProps) {
 	return (
 		<S.Wrapper>
@@ -23,7 +23,6 @@ export default function Search(props: IProps) {
 					value={props.value}
 					onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.handleChange(e.target.value)}
 					onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => props.handleSearch(e)}
-					// disabled={props.disabled}
 					disabled={true}
 				/>
 				<S.ClearWrapper>

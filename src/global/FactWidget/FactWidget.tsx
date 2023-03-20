@@ -11,7 +11,6 @@ import { WalletBlock } from 'wallet/WalletBlock';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: Check if already attached
 export default function FactWidget(props: IProps) {
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [showWalletConnect, setShowWalletConnect] = React.useState<boolean>(false);
@@ -26,6 +25,8 @@ export default function FactWidget(props: IProps) {
 	React.useEffect(() => {
 		if (!props.walletAddress && props.showWalletConnect) {
 			setShowWalletConnect(true);
+		} else {
+			setShowWalletConnect(false);
 		}
 	}, [props.walletAddress, props.showWalletConnect]);
 
@@ -43,7 +44,7 @@ export default function FactWidget(props: IProps) {
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [updateFactCheck, props.txId]);
+	}, [props.txId, updateFactCheck, props.walletAddress]);
 
 	React.useEffect(() => {
 		if (!factCheckLoading) {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ArweaveClient } from 'clients/arweave';
 
+import { ArweaveClient } from 'clients/arweave';
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
 import { getArtifactById, getBookmarkIds, setBookmarkIds } from 'gql/artifacts';
-import { STORAGE, TAGS } from 'helpers/config';
+import { DOM, STORAGE, TAGS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { ArtifactDetailType, NotificationResponseType } from 'helpers/types';
 import * as urls from 'helpers/urls';
@@ -34,12 +34,12 @@ function Preview(props: { artifactId: string; useModal: boolean; handleClose: ()
 
 	return props.useModal ? (
 		<Modal header={null} handleClose={() => props.handleClose()}>
-			<S.ModalPreviewContainer>
+			<S.ModalPreviewContainer id={DOM.preview}>
 				<ArtifactViewSingle data={data} />
 			</S.ModalPreviewContainer>
 		</Modal>
 	) : (
-		<S.PreviewContainer>
+		<S.PreviewContainer id={DOM.preview}>
 			<ArtifactViewSingle data={data} />
 		</S.PreviewContainer>
 	);
@@ -131,7 +131,11 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	function getPreview() {
 		return {
 			node: (
-				<Preview artifactId={props.artifactId} useModal={props.usePreviewModal} handleClose={() => handlePreviewCallback()} />
+				<Preview
+					artifactId={props.artifactId}
+					useModal={props.usePreviewModal}
+					handleClose={() => handlePreviewCallback()}
+				/>
 			),
 			active: showPreview,
 		};
@@ -144,7 +148,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 					<StampWidget
 						txId={props.artifactId}
 						walletAddress={arProvider.walletAddress}
-						setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
 						showWalletConnect={true}
 						warp={arClient.warp}
 						handleStampCallback={() => props.handleStampCallback()}
@@ -159,12 +162,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		return {
 			node: (
 				<S.FactWidgetContainer>
-					<FactWidget
-						txId={props.artifactId}
-						walletAddress={arProvider.walletAddress}
-						setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
-						showWalletConnect={true}
-					/>
+					<FactWidget txId={props.artifactId} walletAddress={arProvider.walletAddress} showWalletConnect={true} />
 				</S.FactWidgetContainer>
 			),
 			active: showFactWidget,

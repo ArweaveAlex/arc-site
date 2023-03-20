@@ -75,3 +75,18 @@ export const Indicator = styled.button<{ selected: boolean }>`
 					props.selected ? props.theme.colors.indicator.active.hover : props.theme.colors.indicator.inactive.hover};
     }
 `;
+
+export const NextAction = styled.div`
+	position: absolute;
+	top: -37.5px;
+	right: 0;
+	height: fit-content;
+	width: fit-content;
+	margin: 0;
+	text-align: left;
+	display: flex;
+`;
+
+export const PrevAction = styled(NextAction)`
+	right: 35px;
+`;

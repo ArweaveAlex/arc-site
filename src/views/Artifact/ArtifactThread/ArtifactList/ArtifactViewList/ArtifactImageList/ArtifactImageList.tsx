@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
+import { Carousel } from 'components/molecules/Carousel';
 import { sortByAssociationSequence } from 'filters/artifacts';
-import { NostrListItem } from 'global/NostrListItem';
+import { ImageListItem } from 'global/ImageListItem';
 import { getArtifactById } from 'gql/artifacts';
 import { getPoolById } from 'gql/pools';
 import { LANGUAGE } from 'helpers/language';
@@ -16,7 +16,7 @@ import { IProps } from '../../types';
 
 import * as S from './styles';
 
-export default function ArtifactNostrList(props: IProps) {
+export default function ArtifactImageList(props: IProps) {
 	const { id } = useParams();
 
 	const [listData, setThreadData] = React.useState<ArtifactDetailType[]>(null);
@@ -55,29 +55,67 @@ export default function ArtifactNostrList(props: IProps) {
 		props.updateSequence();
 	}
 
-	function getAction() {
-		if (props.loading) {
-			return <Loader sm />;
+	function getSortedList() {
+		if (detailData) {
+			let mergedList = [detailData, ...listData];
+			const existingArtifact = listData.find((artifact: any) => artifact.artifactId === detailData.artifactId);
+			if (existingArtifact) {
+				const index = listData.findIndex((artifact: any) => artifact.artifactId === detailData.artifactId);
+				if (index !== -1) {
+					mergedList = [detailData, ...listData.splice(index, 1)];
+				}
+			}
+			return mergedList;
+		} else {
+			return listData;
 		}
-		if (showAction) {
+	}
+
+	function getArtifactList() {
+		const sortedList = getSortedList();
+		return sortedList.map((artifact: ArtifactDetailType, index: number) => {
 			return (
-				<Button
-					type={'alt2'}
-					label={LANGUAGE.showMoreReplies}
-					handlePress={() => updateSequence()}
-					disabled={props.updateDisabled}
+				<ImageListItem
+					key={index}
+					data={artifact}
+					isListItem={true}
+					active={detailData ? detailData.artifactId === artifact.artifactId : false}
+					showArtifactLink={true}
+					showOwnerLink={true}
+				/>
+			);
+		});
+	}
+
+	function getListData() {
+		if (!listData) {
+			return <Loader />;
+		} else {
+			return (
+				<Carousel
+					title={LANGUAGE.artifactGroup}
+					data={getArtifactList()}
+					callback={{ fn: updateSequence, disabled: props.updateDisabled || !showAction }}
 				/>
 			);
 		}
-		return null;
 	}
 
 	function getHeaderData() {
 		if (!headerData) {
-			return <Loader sm />;
+			return (
+				<S.HContainer>
+					<S.TP>
+						<Loader placeholder />
+					</S.TP>
+					<S.DP>
+						<Loader placeholder />
+					</S.DP>
+				</S.HContainer>
+			);
 		} else {
 			return (
-				<S.HeaderContent>
+				<S.HContainer>
 					<Link to={`${urls.pool}${headerData.id}`}>{headerData.state.title}</Link>
 					<S.SubheaderFlex>
 						<S.SubheaderContainer>
@@ -101,64 +139,23 @@ export default function ArtifactNostrList(props: IProps) {
 							</S.Subheader2>
 						</S.SubheaderContainer>
 					</S.SubheaderFlex>
-				</S.HeaderContent>
-			);
-		}
-	}
-
-	function getDetailData() {
-		if (!detailData) {
-			return <Loader sm />;
-		} else {
-			return (
-				<NostrListItem
-					data={detailData}
-					isListItem={false}
-					active={true}
-					showArtifactLink={true}
-					showOwnerLink={true}
-				/>
-			);
-		}
-	}
-
-	function getListData() {
-		if (!listData) {
-			return (
-				<S.LoadingContainerInit>
-					<Loader sm />
-				</S.LoadingContainerInit>
-			);
-		} else {
-			return (
-				<>
-					{listData.map((artifact: ArtifactDetailType, index: number) => {
-						return (
-							<NostrListItem
-								key={index}
-								data={artifact}
-								isListItem={true}
-								active={detailData ? detailData.artifactId === artifact.artifactId : false}
-								showArtifactLink={true}
-								showOwnerLink={true}
-							/>
-						);
-					})}
-					<S.ActionContainer>{getAction()}</S.ActionContainer>
-				</>
+				</S.HContainer>
 			);
 		}
 	}
 
 	return (
 		<S.Wrapper>
-			<S.ListWrapper>{getListData()}</S.ListWrapper>
 			<S.HDWrapper>
-				<S.HDContent>
-					<S.HeaderWrapper>{getHeaderData()}</S.HeaderWrapper>
-					<S.DetailWrapper>{getDetailData()}</S.DetailWrapper>
-				</S.HDContent>
+				<S.HDContentWrapper>
+					<S.HDContent>
+						<S.HeaderWrapper>
+							<S.HeaderContent>{getHeaderData()}</S.HeaderContent>
+						</S.HeaderWrapper>
+					</S.HDContent>
+				</S.HDContentWrapper>
 			</S.HDWrapper>
+			<S.ListWrapper>{getListData()}</S.ListWrapper>
 		</S.Wrapper>
 	);
 }

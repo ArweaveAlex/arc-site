@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArweaveClient } from 'clients/arweave';
 
+import { ArweaveClient } from 'clients/arweave';
 import { Loader } from 'components/atoms/Loader';
 import { LANGUAGE } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';

@@ -1,10 +1,11 @@
 import React from 'react';
 
 export enum ArtifactEnum {
+	Image = 'Alex-Image',
 	Messaging = 'Alex-Messaging',
-	Webpage = 'Alex-Webpage',
-	Reddit = 'Alex-Reddit-Thread',
 	Nostr = 'Alex-Nostr-Event',
+	Reddit = 'Alex-Reddit-Thread',
+	Webpage = 'Alex-Webpage',
 }
 
 export enum CursorEnum {
@@ -27,7 +28,7 @@ export type GQLResponseType = {
 export interface ArtifactDetailType {
 	artifactId: NStringType;
 	artifactName: NStringType;
-	artifactType: ArtifactEnum.Messaging | ArtifactEnum.Webpage | ArtifactEnum.Reddit | ArtifactEnum.Nostr;
+	artifactType: ArtifactEnum;
 	associationId: NStringType;
 	associationSequence: NStringType;
 	profileImagePath: NStringType;
@@ -82,6 +83,7 @@ export interface PoolStateType {
 	totalContributions: string;
 	totalSupply: string;
 	balance: string;
+	ownerMaintained?: boolean;
 }
 
 export interface CollectionType {

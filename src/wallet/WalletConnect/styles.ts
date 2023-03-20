@@ -9,33 +9,6 @@ export const Wrapper = styled.div`
 	justify-content: center;
 `;
 
-export const WalletListContainer = styled.div`
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-`;
-
-export const WalletListItem = styled.button`
-	height: 55px;
-	width: 100%;
-	text-align: left;
-	padding: 0 20px;
-	display: flex;
-	align-items: center;
-	&:hover {
-		background: ${(props) => props.theme.colors.container.primary.hover};
-	}
-	img {
-		width: 30px;
-		margin: 0 15px 0 0;
-	}
-	span {
-		font-size: ${(props) => props.theme.typography.size.small};
-		margin-top: 2.5px;
-	}
-`;
-
 export const WalletDropdown = styled.ul`
 	width: 225px;
 	padding: 10px 0;

@@ -14,7 +14,6 @@ export const Wrapper = styled.div`
 export const IconWrapper = styled.div`
     height 375px;
     width: 375px;
-    background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.primary};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     position: relative;
@@ -75,7 +74,7 @@ export const ContentLine = styled.div`
 	width: 100%;
 	margin: 0 0 15px 0;
 	padding: 17.5px;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;
@@ -97,6 +96,7 @@ export const InfoData = styled.div`
 	code,
 	a {
 		font-size: ${(props) => props.theme.typography.size.xSmall};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 		line-height: 18px;
 	}
@@ -183,13 +183,13 @@ export const WrapElement = styled(DataLine)`
 `;
 
 export const DataHeader = styled.p`
+	font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 	color: ${(props) => props.theme.colors.font.primary.alt4} !important;
 `;
 
 export const LinkWrapper = styled.div`
 	width: 100%;
 	padding: 17.5px 0 0 0;
-	background: ${(props) => props.theme.colors.container.primary.background};
 	svg {
 		width: 25px;
 		margin: 0 17.5px 0 0;
@@ -205,9 +205,7 @@ export const LinkWrapper = styled.div`
 	}
 `;
 
-export const LinkWrapperAlt = styled(LinkWrapper)`
-	background: ${(props) => props.theme.colors.view.background};
-`;
+export const LinkWrapperAlt = styled(LinkWrapper)``;
 
 export const Tags = styled.div`
 	margin: 15px 0 0 0;

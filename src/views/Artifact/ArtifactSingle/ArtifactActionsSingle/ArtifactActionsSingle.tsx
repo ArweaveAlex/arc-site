@@ -1,10 +1,12 @@
 import React from 'react';
-import { ArweaveClient } from 'clients/arweave';
 
+import { ArweaveClient } from 'clients/arweave';
 import { Button } from 'components/atoms/Button';
+import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
 import { LANGUAGE } from 'helpers/language';
+import { checkDesktop } from 'helpers/window';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';
@@ -28,12 +30,43 @@ export default function ArtifactActionsSingle(props: IProps) {
 
 	function handleShowStampWidget() {
 		setShowFactWidget(false);
-		setShowStampWidget(!showStampWidget)
+		setShowStampWidget(!showStampWidget);
 	}
-	
+
 	function handleShowFactWidget() {
 		setShowStampWidget(false);
-		setShowFactWidget(!showFactWidget)
+		setShowFactWidget(!showFactWidget);
+	}
+
+	const stampWidget = () => {
+		return (
+			<StampWidget
+				txId={props.data.artifactId}
+				walletAddress={arProvider.walletAddress}
+				warp={arClient.warp}
+				handleStampCallback={() => setShowStampWidget(false)}
+				showWalletConnect={true}
+			/>
+		);
+	};
+
+	const factWidget = () => {
+		return (
+			<FactWidget txId={props.data.artifactId} walletAddress={arProvider.walletAddress} showWalletConnect={true} />
+		);
+	};
+
+	function getWidget(widget: any, container: any, handleClose: () => void) {
+		if (checkDesktop()) {
+			const Container = container;
+			return <Container>{widget()}</Container>;
+		} else {
+			return (
+				<Modal header={null} handleClose={() => handleClose()}>
+					<S.MobileWidget>{widget()}</S.MobileWidget>
+				</Modal>
+			);
+		}
 	}
 
 	return props.data ? (
@@ -41,14 +74,14 @@ export default function ArtifactActionsSingle(props: IProps) {
 			<S.ButtonsContainer>
 				<S.ButtonContainer>
 					<Button
-						type={'alt2'}
+						type={'primary'}
 						label={copied ? LANGUAGE.copied : LANGUAGE.copyArtifactId}
 						handlePress={copyArtifactId}
 					/>
 				</S.ButtonContainer>
 				<S.ButtonContainer>
 					<Button
-						type={'alt2'}
+						type={'primary'}
 						label={showStampWidget ? LANGUAGE.close : LANGUAGE.stamp}
 						handlePress={handleShowStampWidget}
 						width={100}
@@ -56,35 +89,15 @@ export default function ArtifactActionsSingle(props: IProps) {
 				</S.ButtonContainer>
 				<S.ButtonContainer>
 					<Button
-						type={'alt2'}
+						type={'primary'}
 						label={showFactWidget ? LANGUAGE.close : LANGUAGE.factMarket}
 						handlePress={handleShowFactWidget}
 						width={110}
 					/>
 				</S.ButtonContainer>
 			</S.ButtonsContainer>
-			{showStampWidget && (
-				<S.StampWidgetContainer>
-					<StampWidget
-						txId={props.data.artifactId}
-						walletAddress={arProvider.walletAddress}
-						setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
-						warp={arClient.warp}
-						handleStampCallback={null}
-						showWalletConnect={false}
-					/>
-				</S.StampWidgetContainer>
-			)}
-			{showFactWidget && (
-				<S.FactWidgetContainer>
-					<FactWidget
-						txId={props.data.artifactId}
-						walletAddress={arProvider.walletAddress}
-						setWalletModalVisible={() => arProvider.setWalletModalVisible(true)}
-						showWalletConnect={false}
-					/>
-				</S.FactWidgetContainer>
-			)}
+			{showStampWidget && getWidget(stampWidget, S.StampWidgetContainer, () => setShowStampWidget(false))}
+			{showFactWidget && getWidget(factWidget, S.FactWidgetContainer, () => setShowFactWidget(false))}
 		</S.Wrapper>
 	) : null;
 }

@@ -21,6 +21,7 @@ module.exports = {
 								'^(@|actions)(/.*|$)',
 								'^(@|app)(/.*|$)',
 								'^(@|assets)(/.*|$)',
+								'^(@|clients)(/.*|$)',
 								'^(@|collections)(/.*|$)',
 								'^(@|components)(/.*|$)',
 								'^(@|filters)(/.*|$)',

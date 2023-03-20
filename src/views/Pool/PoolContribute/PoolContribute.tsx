@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import { ArweaveClient } from 'clients/arweave';
 
+import { ArweaveClient } from 'clients/arweave';
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { Notification } from 'components/atoms/Notification';
@@ -152,7 +152,7 @@ export default function PoolContribute(props: IProps) {
 					</S.ModalWrapper>
 				</Modal>
 			)}
-			<S.Wrapper onClick={() => setShowModal(true)}>
+			<S.Wrapper onClick={() => setShowModal(true)} disabled={props.disabled}>
 				<S.Label>
 					<ReactSVG src={ASSETS.logoAltActive} />
 					<span>{LANGUAGE.contribute}</span>

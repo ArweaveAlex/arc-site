@@ -1,5 +1,6 @@
 export const LANGUAGE = {
 	about: `About`,
+	artifactDetails: `Artifact Details`,
 	artifactsCreated: `of Artifacts Created`,
 	accept: `Accept`,
 	account: {
@@ -15,6 +16,7 @@ export const LANGUAGE = {
 	addtoBookmarks: `Add to Bookmarks`,
 	amountExceedsBalance: `Amount exceeds Balance`,
 	artifact: `Artifact`,
+	artifactGroup: `Artifact Group`,
 	artifactPreview: `Artifact Preview`,
 	artifactStamped: `Artifact Stamped`,
 	artifacts: `Artifacts`,
@@ -38,7 +40,7 @@ export const LANGUAGE = {
 	close: `Close`,
 	closePreview: `Close Preview`,
 	collection: {
-		subheader1: `Bookmark`,
+		subheader1: `Collection`,
 		success: `Collection saved!`,
 		failure: `Collection failed to save.`,
 	},
@@ -91,6 +93,7 @@ export const LANGUAGE = {
 		bookmarks: { title: `Bookmarks` },
 	},
 	loading: `Loading`,
+	loadMore: `Load more`,
 	manageCollection: `Manage Collection`,
 	mediaCaution: `Caution: Media may contain inappropriate content.`,
 	messaging: {
@@ -99,7 +102,6 @@ export const LANGUAGE = {
 		name: `Name`,
 		originalPostDate: `Original Post Date`,
 	},
-	minted: `Minted`,
 	name: `Name`,
 	next: `Next`,
 	noArtifacts: `No Artifacts`,

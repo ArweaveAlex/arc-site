@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.footer`
-	height: 50px;
+	height: ${STYLING.dimensions.footerHeight};
 	width: 100%;
 	position: relative;
 	z-index: 2;
@@ -14,7 +14,7 @@ export const Container = styled.div`
 	width: 100%;
 	max-width: ${STYLING.cutoffs.max};
 	margin: 0 auto;
-	height: 50px;
+	height: ${STYLING.dimensions.footerHeight};
 	padding: 0 25px;
 	display: flex;
 	justify-content: space-between;

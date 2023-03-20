@@ -1,34 +1,31 @@
-self.addEventListener('fetch', event => {
-  if (event.request.url.startsWith('chrome-extension://')) {
-    return;
-  }
-  
-  if (event.request.url.includes('bundle.js')) {
-    return;
-  }
+self.addEventListener('fetch', (event) => {
+	if (event.request.url.startsWith('chrome-extension://')) {
+		return;
+	}
 
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;
-        }
+	if (event.request.url.includes('bundle.js')) {
+		return;
+	}
 
-        return fetch(event.request)
-          .then(response => {
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
+	event.respondWith(
+		caches.match(event.request).then((response) => {
+			if (response) {
+				return response;
+			}
 
-            const responseToCache = response.clone();
+			return fetch(event.request).then((response) => {
+				if (!response || response.status !== 200 || response.type !== 'basic') {
+					return response;
+				}
 
-            caches.open('alex-cache')
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
+				const responseToCache = response.clone();
 
-            return response;
-          });
-      })
-  );
+				caches.open('alex-cache').then((cache) => {
+					cache.put(event.request, responseToCache);
+				});
+
+				return response;
+			});
+		})
+	);
 });

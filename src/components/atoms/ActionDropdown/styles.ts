@@ -19,9 +19,10 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div``;
 
-export const Dropdown = styled.ul<{ openDown: boolean; height: number }>`
+export const Dropdown = styled.ul<{ open: boolean; openDown: boolean; height: number }>`
 	width: 225px;
 	padding: 10px 0;
+	display: ${(props) => (props.open ? 'block' : 'none')};
 	position: absolute;
 	top: ${(props) => (props.openDown ? `26.5px` : `-${props.height.toString()}px`)};
 	right: 45%;

@@ -24,3 +24,7 @@ export const Wrapper = styled.div`
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
 `;
+
+export const WCWrapper = styled.div`
+	height: auto;
+`;

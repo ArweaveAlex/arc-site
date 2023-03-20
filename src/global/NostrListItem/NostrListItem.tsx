@@ -11,7 +11,6 @@ import { formatAddress, formatDate, formatNostrData } from 'helpers/utils';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: Nostr Icon
 export default function NostrListItem(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
 
