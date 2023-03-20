@@ -5,6 +5,7 @@ import { getRedstoneSrcTxEndpoint } from 'helpers/endpoints';
 import { GQLResponseType, PoolSearchIndexType, PoolType } from 'helpers/types';
 import { getTagValue } from 'helpers/utils';
 
+// TODO: Get from Pool Index
 export async function getPoolIds() {
 	const pools: GQLResponseType[] = await getGQLData({
 		ids: null,
