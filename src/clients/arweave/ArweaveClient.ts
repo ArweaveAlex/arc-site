@@ -24,6 +24,19 @@ const TIMEOUT = 40000;
 const LOGGING = false;
 
 export default class ArweaveClient {
+
+	constructor(getEndpoint?: string){
+		if(getEndpoint) {
+			this.arweaveGet = Arweave.init({
+				host: getEndpoint,
+				port: PORT,
+				protocol: PROTOCOL,
+				timeout: TIMEOUT,
+				logging: LOGGING,
+			});
+		}
+	}
+
 	arweaveGet: any = Arweave.init({
 		host: GET_ENDPOINT,
 		port: PORT,

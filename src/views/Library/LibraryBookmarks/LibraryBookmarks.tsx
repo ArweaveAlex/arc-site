@@ -20,6 +20,7 @@ export default function LibraryBookmark() {
 			bookmarksDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
+			disabledSelectedCallbackIds={null}
 			cursorObject={{
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.libraryBookmarks,

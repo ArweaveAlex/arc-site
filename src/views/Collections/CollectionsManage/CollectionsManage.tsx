@@ -159,6 +159,7 @@ export default function CollectionsManage() {
 			collectionInitState.description = description;
 			collectionInitState.owner = arProvider.walletAddress;
 			collectionInitState.ids = selectedIds;
+			collectionInitState.timestamp = Date.now().toString();
 
 			const collectionContract = await createCollection(collectionInitState);
 
@@ -188,7 +189,7 @@ export default function CollectionsManage() {
 				state: collectionState
 			}
 
-			await saveCollection(collectionSave, arProvider.walletAddress);
+			await saveCollection(collectionSave);
 
 			setIsLoading(false);
 		}
@@ -249,6 +250,7 @@ export default function CollectionsManage() {
 							bookmarksDisabled={false}
 							selectCallback={(id: string) => handleIdUpdate(id)}
 							selectedCallbackIds={selectedIds}
+							disabledSelectedCallbackIds={null}
 							cursorObject={{
 								key: CursorEnum.Search,
 								value: tableType.cursorType,

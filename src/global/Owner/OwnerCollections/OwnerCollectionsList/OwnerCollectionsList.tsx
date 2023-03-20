@@ -53,7 +53,7 @@ export default function OwnerCollectionsList(props: IProps) {
 							{props.data.map((collection: any, index: number) => {
 								return (
 									<S.Link key={index}>
-										<Link to={'#'}>
+										<Link to={`${urls.collectionsManage}?owner=${props.owner}&contractId=${collection.id}`}>
 											<S.ListItemWrapper>
 												<S.LIHeaderContainer>
 													<S.LIHeader1>{collection.state.title}</S.LIHeader1>

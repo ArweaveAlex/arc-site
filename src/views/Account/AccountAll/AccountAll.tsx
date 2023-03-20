@@ -18,6 +18,7 @@ export default function AccountAll() {
 			showSearch={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
+			disabledSelectedCallbackIds={null}
 			bookmarksDisabled={false}
 			cursorObject={{
 				key: CursorEnum.Search,

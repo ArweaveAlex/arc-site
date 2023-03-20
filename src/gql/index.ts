@@ -13,9 +13,10 @@ export async function getGQLData(args: {
 	cursor: string | null;
 	reduxCursor: string | null;
 	cursorObject: CursorObjectKeyType;
+	gateway?: string;
 }): Promise<GQLResponseType[]> {
 	let nextCursor: string | null;
-	const arClient = new ArweaveClient();
+	const arClient = new ArweaveClient(args.gateway ? args.gateway : null);
 	const data: GQLResponseType[] = [];
 
 	if (args.ids && args.ids.length <= 0) {

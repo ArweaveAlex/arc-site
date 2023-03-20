@@ -20,6 +20,7 @@ export default function LibraryAll() {
 			bookmarksDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
+			disabledSelectedCallbackIds={null}
 			cursorObject={{
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.libraryAll,

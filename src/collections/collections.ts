@@ -1,10 +1,16 @@
-import { ArweaveClient } from 'clients/arweave';
-import { TAGS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
-import { CollectionStateType, CollectionType } from 'helpers/types';
 import { InjectedArweaveSigner } from 'warp-contracts-plugin-deploy';
 
-const arClient = new ArweaveClient();
+import { ArweaveClient } from 'clients/arweave';
+import { getGQLData } from 'gql';
+import { TAGS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import { 
+	CollectionStateType, 
+	CollectionType, 
+	GQLResponseType 
+} from 'helpers/types';
+
+const arClient = new ArweaveClient("arweave.net");
 
 export function initCollection() : CollectionStateType {
 	return { 
@@ -41,6 +47,7 @@ export async function createCollection(collectionState: CollectionStateType) {
 		{ name: TAGS.keys.ansDescription, value: collectionState.description },
 		{ name: TAGS.keys.ansType, value: TAGS.values.ansType },
 		{ name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
+		{ name: TAGS.keys.initialOwner, value: collectionState.owner },
 	];
 
 	const collectionContract = await arClient.warp.createContract.deploy({
@@ -56,7 +63,7 @@ export async function createCollection(collectionState: CollectionStateType) {
 	};
 }
 
-export async function saveCollection(collection: CollectionType, _walletAddress: string) {
+export async function saveCollection(collection: CollectionType) {
 	const arClient = new ArweaveClient();
 
 	const warpContract = arClient.warp.contract(collection.id).connect('use_wallet').setEvaluationOptions({
@@ -97,6 +104,37 @@ export async function getContractById(contractId: string): Promise<CollectionTyp
 
 export async function getCollection(collectionContractId: string): Promise<CollectionType> {
 	return await getContractById(collectionContractId);
+}
+
+export async function getCollectionsByOwner(walletAddress: string) {
+	let collectionsByOwner: CollectionType[] = [];
+
+	const collections: GQLResponseType[] = await getGQLData({
+		ids: null,
+		tagFilters: [
+			{
+				name: TAGS.keys.appType,
+				values: [TAGS.values.collectionAppType],
+			},
+			{
+				name: TAGS.keys.initialOwner,
+				values: [walletAddress],
+			},
+		],
+		uploader: null,
+		cursor: null,
+		reduxCursor: null,
+		cursorObject: null,
+	});
+
+	collectionsByOwner = await Promise.all(
+		collections.map(async (collection: GQLResponseType) => {
+			let contract = await getContractById(collection.node.id);
+			return contract;
+		})
+	);
+
+	return collectionsByOwner;
 }
 
 export const COLLECTION_CONTRACT = `

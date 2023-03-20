@@ -20,6 +20,7 @@ export default function PoolDetail(props: IProps) {
 			bookmarksDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
+			disabledSelectedCallbackIds={null}
 			owner={null}
 			uploader={props.uploader}
 			usePreviewModal={true}

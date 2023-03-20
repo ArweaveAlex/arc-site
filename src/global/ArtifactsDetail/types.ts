@@ -16,6 +16,7 @@ export interface IProps {
 	owner: string | null;
 	uploader: string | null;
 	selectedCallbackIds: string[] | null;
+	disabledSelectedCallbackIds: string[] | null;
 	usePreviewModal: boolean;
 	action?: React.ReactNode;
 }
