@@ -243,7 +243,7 @@ export const URLS: IURLView = {
 			index: 1,
 			label: LANGUAGE.account.collections.title,
 			icon: ASSETS.collections,
-			disabled: true,
+			disabled: false,
 			url: urls.accountCollections,
 			view: AccountCollections,
 		},

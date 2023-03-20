@@ -8,23 +8,42 @@ import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { TextArea } from 'components/atoms/TextArea';
+import { Loader } from 'components/atoms/Loader';
 
 import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql/artifacts';
 import { REDUX_TABLES } from 'helpers/redux';
 import { LANGUAGE } from 'helpers/language';
 import { URLS } from 'helpers/config';
-import { CollectionStateType, CursorEnum, ArtifactArgsType, ArtifactResponseType } from 'helpers/types';
-import { createCollection } from 'collections/collections';
+import {
+	CollectionStateType, 
+	CollectionType, 
+	CursorEnum, ArtifactArgsType, 
+	ArtifactResponseType 
+} from 'helpers/types';
+import { 
+	initCollection, 
+	createCollection, 
+	saveCollection, 
+	getCollection 
+} from 'collections/collections';
 import * as S from './styles';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 // TODO: Cancel Action
 // TODO: Cache Selected Ids
-export default function CollectionsCreate() {
+export default function CollectionsManage() {
 	const query = useQuery();
 	const arProvider = useArweaveProvider();
-
+	const [title, setTitle] = React.useState<string>('');
+	const [topic, setTopic] = React.useState<string>('');
+	const [description, setDescription] = React.useState<string>('');
+	const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
+	const [isLoading, setIsLoading] = React.useState<boolean>(false);
 	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
+	const [contractId, setContractId] = React.useState<string>(null);
+	const [contract, setContract] = React.useState<CollectionType>(null);
+
+
 	const [tableType, setTableType] = React.useState<{
 		fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
 		cursorType: string;
@@ -41,10 +60,21 @@ export default function CollectionsCreate() {
 		}, 200);
 	}, [arProvider.walletAddress]);
 
-	const [title, setTitle] = React.useState<string>('');
-	const [topic, setTopic] = React.useState<string>('');
-	const [description, setDescription] = React.useState<string>('');
-	const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
+	React.useEffect(() => {
+		let collectionContractId = query.get('contractId');
+		if(collectionContractId) {
+			console.log("fouind quewry")
+			console.log(collectionContractId)
+			setContractId(collectionContractId);
+			getCollection(collectionContractId).then((contract: CollectionType) => {
+				setContract(contract);
+				setSelectedIds(contract.state.ids);
+				setTitle(contract.state.title);
+				setTopic(contract.state.topic);
+				setDescription(contract.state.description);
+			});
+		}
+	}, []);
 
 	function handleIdUpdate(id: string) {
 		let idList = [];
@@ -58,10 +88,6 @@ export default function CollectionsCreate() {
 			idList.push(id);
 		}
 		setSelectedIds(idList);
-	}
-
-	function getSubmitDisabled() {
-		return !title || getInvalidTitle().status || !topic || !description || selectedIds.length <= 0;
 	}
 
 	function getInvalidTitle() {
@@ -122,19 +148,81 @@ export default function CollectionsCreate() {
 		);
 	}
 
-	async function handleSubmit() {
+	async function handleCreate() {
 		if (arProvider.walletAddress) {
-			const collectionState: CollectionStateType = {
-				ids: selectedIds,
-				title: title,
-				topic: topic,
-				description: description,
-				timestamp: Date.now().toString(),
-			};
+			setIsLoading(true);
 
-			const collectionContractId = await createCollection(collectionState, arProvider.walletAddress);
-			console.log(collectionContractId);
+			let collectionInitState: CollectionStateType = initCollection();
+			collectionInitState.title = title;
+			collectionInitState.name = title;
+			collectionInitState.topic = topic;
+			collectionInitState.description = description;
+			collectionInitState.owner = arProvider.walletAddress;
+			collectionInitState.ids = selectedIds;
+
+			const collectionContract = await createCollection(collectionInitState);
+
+			setContractId(collectionContract.id);
+			setContract(collectionContract);
+			setIsLoading(false);
+
+			const currentUrl = window.location.href;
+			let newUrl = currentUrl + "&contractId=" + collectionContract.id;
+			window.history.replaceState(null, null, newUrl.toString());
 		}
+	}
+
+	async function handleSave() {
+		if (arProvider.walletAddress) {
+			setIsLoading(true);
+
+			let collectionState: CollectionStateType = contract.state;
+			collectionState.title = title;
+			collectionState.name = title;
+			collectionState.description = description;
+			collectionState.topic = topic;
+			collectionState.ids = selectedIds;
+
+			let collectionSave: CollectionType = {
+				id: contractId,
+				state: collectionState
+			}
+
+			await saveCollection(collectionSave, arProvider.walletAddress);
+
+			setIsLoading(false);
+		}
+	}
+
+	function getSubmitDisabled() {
+		return !title || getInvalidTitle().status || !topic || !description || selectedIds.length <= 0;
+	}
+
+	function getButton() {
+
+		let lang: string;
+		let func: () => void;
+		let disabled: boolean;
+
+		if(contractId) {
+			lang = LANGUAGE.save;
+			func = () => handleSave();
+			disabled = getSubmitDisabled();
+		} else {
+			lang = LANGUAGE.create;
+			func = () => handleCreate();
+			disabled = getSubmitDisabled();
+		}
+
+		return(
+			<Button
+				type={'alt1'}
+				label={lang}
+				handlePress={func}
+				disabled={disabled}
+				noMinWidth
+			/>
+		)
 	}
 
 	function getData() {
@@ -144,7 +232,7 @@ export default function CollectionsCreate() {
 					<S.HeaderContent>
 						<S.HeaderContentFixed>
 							<S.Header1Wrapper>
-								<S.Header1>{LANGUAGE.createCollection}</S.Header1>
+								<S.Header1>{LANGUAGE.manageCollection}</S.Header1>
 							</S.Header1Wrapper>
 						</S.HeaderContentFixed>
 					</S.HeaderContent>
@@ -199,13 +287,7 @@ export default function CollectionsCreate() {
 										disabled={false}
 									/>
 									<S.SubmitContainer>
-										<Button
-											type={'alt1'}
-											label={LANGUAGE.submit}
-											handlePress={() => handleSubmit()}
-											disabled={getSubmitDisabled()}
-											noMinWidth
-										/>
+										{ getButton() }
 									</S.SubmitContainer>
 								</S.Form>
 							</S.FormFixedContainer>
@@ -216,10 +298,22 @@ export default function CollectionsCreate() {
 		);
 	}
 
+	function getPage() {
+		if(isLoading) {
+			return <Loader sm />;
+		} else {
+			return (
+				<Query value={'owner'} check={[arProvider.walletAddress]}>
+					{getData()}
+				</Query>
+			);
+		}
+	}
+
 	return arProvider.walletAddress ? (
-		<Query value={'owner'} check={[arProvider.walletAddress]}>
-			{getData()}
-		</Query>
+		<>
+			{getPage()}
+		</>
 	) : (
 		showWalletBlock && <WalletBlock />
 	);

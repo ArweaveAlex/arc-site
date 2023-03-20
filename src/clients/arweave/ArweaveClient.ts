@@ -2,6 +2,7 @@ import { Buffer } from 'buffer';
 import Arweave from 'arweave';
 // @ts-ignore
 import { WarpFactory, defaultCacheOptions } from 'warp-contracts/web';
+import { DeployPlugin } from 'warp-contracts-plugin-deploy';
 
 import { store } from 'state/store';
 import * as poolActions from 'state/pools/actions';
@@ -39,7 +40,7 @@ export default class ArweaveClient {
 		logging: LOGGING,
 	});
 
-	warp = WarpFactory.forMainnet({ ...defaultCacheOptions, inMemory: true });
+	warp = WarpFactory.forMainnet({ ...defaultCacheOptions, inMemory: true }).use(new DeployPlugin());
 
 	async getUserContributions(userWallet: string) {
 		const poolsReducer = store.getState().poolsReducer;

@@ -9,7 +9,7 @@ import { Artifact } from 'views/Artifact';
 import { ArtifactThread } from 'views/Artifact/ArtifactThread';
 import { Account } from 'views/Account';
 import { Library } from 'views/Library';
-import { CollectionsCreate } from 'views/Collections/CollectionsCreate';
+import { CollectionsManage } from 'views/Collections/CollectionsManage';
 import { NotFound } from 'views/NotFound';
 
 import * as urls from 'helpers/urls';
@@ -74,10 +74,10 @@ export default function _Routes() {
 				}
 			/>
 			<Route
-				path={urls.collectionsCreate}
+				path={urls.collectionsManage}
 				element={
 					<View>
-						<CollectionsCreate />
+						<CollectionsManage />
 					</View>
 				}
 			/>

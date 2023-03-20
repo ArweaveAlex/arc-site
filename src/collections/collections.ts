@@ -1,51 +1,102 @@
 import { ArweaveClient } from 'clients/arweave';
 import { TAGS } from 'helpers/config';
-import { CollectionStateType } from 'helpers/types';
+import { LANGUAGE } from 'helpers/language';
+import { CollectionStateType, CollectionType } from 'helpers/types';
+import { InjectedArweaveSigner } from 'warp-contracts-plugin-deploy';
 
 const arClient = new ArweaveClient();
 
-let collectionInitState = {
-	title: null,
-	name: null,
-	description: null,
-	ticker: 'ALEXCOLLECTION',
-	balances: {},
-	maxSupply: 1,
-	transferable: true,
-	lockTime: 0,
-	lastTransferTimestamp: null,
-	ids: [],
-	owner: null,
-};
+export function initCollection() : CollectionStateType {
+	return { 
+		title: "",
+		name: "",
+		description: "",
+		ticker: 'ALEXCOLLECTION',
+		balances: {},
+		maxSupply: 1,
+		transferable: true,
+		lockTime: 0,
+		lastTransferTimestamp: "",
+		ids: [],
+		owner: "",
+		phase: "INPROGRESS",
+		topic: "",
+		timestamp: ""
+	};
+}
 
-export async function createCollection(collection: CollectionStateType, walletAddress: string) {
+export async function createCollection(collectionState: CollectionStateType) {
+	if (window.arweaveWallet) {
+		await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION', 'ACCESS_PUBLIC_KEY', 'SIGNATURE']);
+	}
+	const userSigner = new InjectedArweaveSigner(window.arweaveWallet);
+	await userSigner.setPublicKey();
+
 	const tags = [
 		{ name: TAGS.keys.appType, value: TAGS.values.collectionAppType },
-		{ name: TAGS.keys.collectionName, value: collection.title },
-		{ name: TAGS.keys.collectionDescription, value: collection.description },
-		{ name: TAGS.keys.ansTitle, value: collection.title },
-		{ name: `${TAGS.keys.ansTopic}:${collection.topic}`, value: collection.topic },
-		{ name: TAGS.keys.ansDescription, value: collection.description },
+		{ name: TAGS.keys.collectionName, value: collectionState.title },
+		{ name: TAGS.keys.collectionDescription, value: collectionState.description },
+		{ name: TAGS.keys.ansTitle, value: collectionState.title },
+		{ name: `${TAGS.keys.ansTopic}:${collectionState.topic}`, value: collectionState.topic },
+		{ name: TAGS.keys.ansDescription, value: collectionState.description },
 		{ name: TAGS.keys.ansType, value: TAGS.values.ansType },
 		{ name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
 	];
 
-	collectionInitState.title = collection.title;
-	collectionInitState.name = collection.title;
-	collectionInitState.description = collection.description;
-	collectionInitState.owner = walletAddress;
-	collectionInitState.ids = collection.ids;
-
 	const collectionContract = await arClient.warp.createContract.deploy({
 		src: COLLECTION_CONTRACT,
-		initState: JSON.stringify(collectionInitState),
-		wallet: 'use_wallet',
+		initState: JSON.stringify(collectionState),
+		wallet: userSigner,
 		tags: tags,
 	});
 
-	console.log(collectionContract.contractTxId);
+	return { 
+		id: collectionContract.contractTxId,
+		state: collectionState
+	};
+}
 
-	return collectionContract.contractTxId;
+export async function saveCollection(collection: CollectionType, _walletAddress: string) {
+	const arClient = new ArweaveClient();
+
+	const warpContract = arClient.warp.contract(collection.id).connect('use_wallet').setEvaluationOptions({
+		waitForConfirmation: false,
+	});
+
+	const result = await warpContract.writeInteraction(
+		{ 
+			function: 'add',
+			ids: collection.state.ids,
+			title: collection.state.title,
+			name: collection.state.name,
+			description: collection.state.description,
+			topic: collection.state.topic
+		}
+	);
+
+	if(result) {
+		return { status: true, message: LANGUAGE.collection.success };
+	}
+
+	return { status: true, message: LANGUAGE.collection.failure };
+}
+
+export async function getContractById(contractId: string): Promise<CollectionType | null> {
+	const arClient = new ArweaveClient();
+	try {
+		const contract = arClient.warp.contract(contractId).setEvaluationOptions({ allowBigInt: true });
+		return {
+			id: contractId,
+			state: ((await contract.readState()) as any).cachedValue.state,
+		};
+	} catch (error: any) {
+		console.error(error);
+		return null;
+	}
+}
+
+export async function getCollection(collectionContractId: string): Promise<CollectionType> {
+	return await getContractById(collectionContractId);
 }
 
 export const COLLECTION_CONTRACT = `
@@ -66,6 +117,11 @@ async function handle(state, action) {
 
 			state.ids = finalIds;
 
+			state.title = input.title ? input.title : state.title;
+			state.name = input.name ? input.name : state.name;
+			state.topic = input.topic ? input.topic : state.topic;
+			state.description = input.description ? input.description : state.description;
+
 			return { state };
 		}
 		case 'remove': {
@@ -80,6 +136,11 @@ async function handle(state, action) {
 			});
 
 			state.ids = finalIds;
+
+			state.title = input.title ? input.title : state.title;
+			state.name = input.name ? input.name : state.name;
+			state.topic = input.topic ? input.topic : state.topic;
+			state.description = input.description ? input.description : state.description;
 
 			return { state };
 		}

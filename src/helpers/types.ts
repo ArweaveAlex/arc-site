@@ -93,8 +93,17 @@ export interface CollectionStateType {
 	ids: string[];
 	title: string;
 	topic: string;
+	name: string;
+	ticker: string;
+	balances: any;
+	maxSupply: number;
+	transferable: boolean;
+	owner: string;
+	phase: string;
 	description: string;
 	timestamp: string;
+	lockTime: number;
+	lastTransferTimestamp: string;
 }
 
 export interface PoolSearchIndexType {

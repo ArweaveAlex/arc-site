@@ -27,7 +27,7 @@ export default function OwnerCollectionsList(props: IProps) {
 							<ButtonLink
 								type={'alt2'}
 								label={LANGUAGE.create}
-								href={`${urls.collectionsCreate}?owner=${props.owner}`}
+								href={`${urls.collectionsManage}?owner=${props.owner}`}
 								noMinWidth
 							/>
 						</S.ELink>
@@ -43,7 +43,7 @@ export default function OwnerCollectionsList(props: IProps) {
 									<ButtonLink
 										type={'alt1'}
 										label={LANGUAGE.create}
-										href={`${urls.collectionsCreate}?owner=${props.owner}`}
+										href={`${urls.collectionsManage}?owner=${props.owner}`}
 										noMinWidth
 									/>
 								)}
