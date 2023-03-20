@@ -1,7 +1,6 @@
 import { APP, DOM } from 'helpers/config';
 import { Footer } from 'navigation/footer';
 import { Header } from 'navigation/header';
-import { ArweaveProvider } from 'providers/ArweaveProvider';
 import { Routes } from 'routes';
 
 export default function Root() {
@@ -12,13 +11,13 @@ export default function Root() {
 	}
 
 	return (
-		<ArweaveProvider>
+		<>
 			<div id={DOM.loader} />
 			<div id={DOM.modal} />
 			<div id={DOM.notification} />
 			<Header />
 			<Routes />
 			<Footer />
-		</ArweaveProvider>
+		</>
 	);
 }

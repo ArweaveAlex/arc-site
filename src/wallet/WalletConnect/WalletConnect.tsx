@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'components/atoms/Button';
-import { Modal } from 'components/molecules/Modal';
 import { URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { formatAddress } from 'helpers/utils';
@@ -11,22 +10,7 @@ import { CloseHandler } from 'wrappers/CloseHandler';
 
 import * as S from './styles';
 
-function WalletList() {
-	const arProvider = useArweaveProvider();
-
-	return (
-		<S.WalletListContainer>
-			{arProvider.wallets.map((wallet, index) => (
-				<S.WalletListItem key={index} onClick={() => arProvider.handleConnect()}>
-					<img src={`${wallet.logo}`} alt={''} />
-					<span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
-				</S.WalletListItem>
-			))}
-		</S.WalletListContainer>
-	);
-}
-
-export default function WalletConnect(props: { callback: () => void }) {
+export default function WalletConnect(props: { callback?: () => void }) {
 	const navigate = useNavigate();
 
 	const arProvider = useArweaveProvider();
@@ -60,17 +44,14 @@ export default function WalletConnect(props: { callback: () => void }) {
 	function handleViewAccount() {
 		navigate(URLS.account[0]!.url);
 		setShowDropdown(false);
-		props.callback();
+		if (props.callback) {
+			props.callback();
+		}
 	}
 
 	return (
 		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown} disabled={false}>
 			<S.Wrapper>
-				{arProvider.walletModalVisible && (
-					<Modal header={LANGUAGE.connectWallet} handleClose={() => arProvider.setWalletModalVisible(false)}>
-						<WalletList />
-					</Modal>
-				)}
 				<Button
 					type={'alt2'}
 					label={arProvider.walletAddress ? formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet}

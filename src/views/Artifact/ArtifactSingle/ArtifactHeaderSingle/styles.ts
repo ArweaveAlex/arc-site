@@ -35,9 +35,8 @@ export const ContentWrapper = styled.div`
 
 export const Content = styled.div`
 	height: 100%;
-	width: calc(100% - 110px);
-	max-width: ${STYLING.cutoffs.max};
 	width: 100%;
+	max-width: ${STYLING.cutoffs.max};
 	background: ${(props) => props.theme.colors.container.alt3.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};

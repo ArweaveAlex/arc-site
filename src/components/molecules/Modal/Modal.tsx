@@ -52,9 +52,7 @@ export default function Modal(props: IProps) {
 				</S.Container>
 				{!props.header && (
 					<S.CloseTextContainer>
-						<S.CloseButtonContainer onClick={() => props.handleClose()}>
-							{`${LANGUAGE.close} (ESC)`}
-						</S.CloseButtonContainer>
+						<S.CloseButtonContainer onClick={() => props.handleClose()}>{LANGUAGE.close}</S.CloseButtonContainer>
 					</S.CloseTextContainer>
 				)}
 			</S.Wrapper>

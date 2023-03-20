@@ -48,10 +48,27 @@ export const ButtonContainer = styled.div`
 export const WidgetContainer = styled.div`
 	position: absolute;
 	right: 100px;
+	&:after {
+		display: block;
+		content: ' ';
+		position: absolute;
+		top: 10.5px;
+		left: 100%;
+		border-width: 5px;
+		border-style: solid;
+		border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent}
+			${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.border.primary};
+	}
 `;
 
 export const StampWidgetContainer = styled(WidgetContainer)`
 	right: 228.5px;
+`;
+
+export const MobileWidget = styled.div`
+	width: fit-content;
+	margin: 0 auto;
+	position: relative;
 `;
 
 export const FactWidgetContainer = styled(WidgetContainer)``;

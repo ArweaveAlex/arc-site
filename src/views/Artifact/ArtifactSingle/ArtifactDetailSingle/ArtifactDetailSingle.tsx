@@ -43,7 +43,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 					<S.InfoData>
 						<S.DataWrapper>
 							<S.DataLine>
-								<S.DataHeader>{LANGUAGE.minted}:&nbsp;</S.DataHeader>
+								<S.DataHeader>{LANGUAGE.createdOn}:&nbsp;</S.DataHeader>
 								<p>{formatDate(props.data.minted, 'epoch')}</p>
 							</S.DataLine>
 							<S.WrapElement>

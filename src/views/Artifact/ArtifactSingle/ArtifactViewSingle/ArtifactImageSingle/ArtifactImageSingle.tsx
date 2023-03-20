@@ -1,20 +1,20 @@
 import { Loader } from 'components/atoms/Loader';
-import { NostrListItem } from 'global/NostrListItem';
+import { ImageListItem } from 'global/ImageListItem';
 
 import { IProps } from '../../types';
 
 import * as S from './styles';
 
-export default function ArtifactNostrSingle(props: IProps) {
+export default function ArtifactImageSingle(props: IProps) {
 	function getDetailData() {
 		if (!props.data) {
 			return <Loader sm />;
 		} else {
 			return (
-				<NostrListItem
+				<ImageListItem
 					data={props.data}
 					isListItem={false}
-					active={true}
+					active={false}
 					showArtifactLink={false}
 					showOwnerLink={false}
 				/>

@@ -4,6 +4,7 @@ import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
 import arrowNextSVG from 'assets/arrow-next.svg';
 import arrowPreviousSVG from 'assets/arrow-previous.svg';
 import artifactSVG from 'assets/artifact.svg';
+import imageArtifactTypeSVG from 'assets/artifact-types/image.svg';
 import nostrEventArtifactTypeSVG from 'assets/artifact-types/nostr.svg';
 import redditThreadArtifactTypeSVG from 'assets/artifact-types/reddit-thread.svg';
 import messagingArtifactTypeSVG from 'assets/artifact-types/twitter.svg';
@@ -66,6 +67,52 @@ export const APP = {
 	version: '1.1.1',
 };
 
+export const TAGS = {
+	keys: {
+		alexPoolId: 'Alex-Pool-Id',
+		ansTitle: 'Title',
+		ansDescription: 'Description',
+		ansTopic: 'Topic',
+		ansType: 'Type',
+		ansImplements: 'Implements',
+		appType: 'App-Type',
+		artifactName: 'Artifact-Name',
+		artifactType: 'Artifact-Type',
+		associationId: 'Association-Id',
+		associationSequence: 'Association-Sequence',
+		childAssets: 'Child-Assets',
+		bookmarkIds: 'Bookmark-Ids-Tag',
+		bookmarkSearch: 'Alex-Bookmark-Search',
+		dateCreated: 'Date-Created',
+		keywords: 'Keywords',
+		initialOwner: 'Initial-Owner',
+		poolId: 'Pool-Id',
+		profileImage: 'Profile-Image',
+		uploaderTxId: 'Uploader-Tx-Id',
+		contractSrc: 'Contract-Src',
+		mediaIds: 'Media-Ids',
+		timestamp: 'Timestamp',
+		collectionName: 'Collection-Name',
+		collectionDescription: 'Collection-Description',
+	},
+	values: {
+		defaultArtifactType: 'Alex-Default',
+		imageArtifactType: 'Alex-Image',
+		messagingArtifactType: 'Alex-Messaging',
+		nostrEventArtifactType: 'Alex-Nostr-Event',
+		redditThreadArtifactType: 'Alex-Reddit-Thread',
+		webpageArtifactType: 'Alex-Webpage',
+		poolVersions: {
+			'1.2': 'Alex-Archiving-Pool-v1.2',
+			'1.4': 'Alex-Archiving-Pool-v1.4',
+		},
+		searchIndex: 'Alex-Search-Index-v0',
+		collectionAppType: 'Alex-Collection-v0',
+		ansVersion: 'ANS-110',
+		ansType: 'token',
+	},
+};
+
 export const ASSETS = {
 	all: allSVG,
 	arrowNext: arrowNextSVG,
@@ -73,6 +120,7 @@ export const ASSETS = {
 	artifact: artifactSVG,
 	artifactTypes: {
 		default: defaultArtifactTypeSVG,
+		image: imageArtifactTypeSVG,
 		messaging: messagingArtifactTypeSVG,
 		nostrEvent: nostrEventArtifactTypeSVG,
 		redditThread: redditThreadArtifactTypeSVG,
@@ -130,48 +178,30 @@ export const ASSETS = {
 	},
 };
 
-export const TAGS = {
-	keys: {
-		alexPoolId: 'Alex-Pool-Id',
-		ansTitle: 'Title',
-		ansDescription: 'Description',
-		ansTopic: 'Topic',
-		ansType: 'Type',
-		ansImplements: 'Implements',
-		appType: 'App-Type',
-		artifactName: 'Artifact-Name',
-		artifactType: 'Artifact-Type',
-		associationId: 'Association-Id',
-		associationSequence: 'Association-Sequence',
-		childAssets: 'Child-Assets',
-		bookmarkIds: 'Bookmark-Ids-Tag',
-		bookmarkSearch: 'Alex-Bookmark-Search',
-		dateCreated: 'Date-Created',
-		keywords: 'Keywords',
-		initialOwner: 'Initial-Owner',
-		poolId: 'Pool-Id',
-		profileImage: 'Profile-Image',
-		uploaderTxId: 'Uploader-Tx-Id',
-		contractSrc: 'Contract-Src',
-		mediaIds: 'Media-Ids',
-		timestamp: 'Timestamp',
-		collectionName: 'Collection-Name',
-		collectionDescription: 'Collection-Description',
+export const ARTIFACT_TYPES = {
+	[TAGS.values.defaultArtifactType]: {
+		label: LANGUAGE.default,
+		icon: ASSETS.artifactTypes.default,
 	},
-	values: {
-		defaultArtifactType: 'Alex-Default',
-		messagingArtifactType: 'Alex-Messaging',
-		nostrEventArtifactType: 'Alex-Nostr-Event',
-		redditThreadArtifactType: 'Alex-Reddit-Thread',
-		webpageArtifactType: 'Alex-Webpage',
-		poolVersions: {
-			'1.2': 'Alex-Archiving-Pool-v1.2',
-			'1.4': 'Alex-Archiving-Pool-v1.4',
-		},
-		searchIndex: 'Alex-Search-Index-v0',
-		collectionAppType: 'Alex-Collection-v0',
-		ansVersion: 'ANS-110',
-		ansType: 'token',
+	[TAGS.values.imageArtifactType]: {
+		label: TAGS.values.imageArtifactType,
+		icon: ASSETS.artifactTypes.image,
+	},
+	[TAGS.values.messagingArtifactType]: {
+		label: TAGS.values.messagingArtifactType,
+		icon: ASSETS.artifactTypes.messaging,
+	},
+	[TAGS.values.nostrEventArtifactType]: {
+		label: TAGS.values.nostrEventArtifactType,
+		icon: ASSETS.artifactTypes.nostrEvent,
+	},
+	[TAGS.values.redditThreadArtifactType]: {
+		label: TAGS.values.redditThreadArtifactType,
+		icon: ASSETS.artifactTypes.redditThread,
+	},
+	[TAGS.values.webpageArtifactType]: {
+		label: TAGS.values.webpageArtifactType,
+		icon: ASSETS.artifactTypes.webpage,
 	},
 };
 
@@ -193,33 +223,11 @@ export const ARTIFACT_TABS = [
 	},
 ];
 
-export const ARTIFACT_TYPES = {
-	[TAGS.values.defaultArtifactType]: {
-		label: LANGUAGE.default,
-		icon: ASSETS.artifactTypes.default,
-	},
-	[TAGS.values.messagingArtifactType]: {
-		label: TAGS.values.messagingArtifactType,
-		icon: ASSETS.artifactTypes.messaging,
-	},
-	[TAGS.values.nostrEventArtifactType]: {
-		label: TAGS.values.nostrEventArtifactType,
-		icon: ASSETS.artifactTypes.nostrEvent,
-	},
-	[TAGS.values.redditThreadArtifactType]: {
-		label: TAGS.values.redditThreadArtifactType,
-		icon: ASSETS.artifactTypes.redditThread,
-	},
-	[TAGS.values.webpageArtifactType]: {
-		label: TAGS.values.webpageArtifactType,
-		icon: ASSETS.artifactTypes.webpage,
-	},
-};
-
 export const DOM = {
 	loader: 'loader',
 	modal: 'modal',
 	notification: 'notification',
+	preview: 'preview',
 };
 
 export const URLS: IURLView = {

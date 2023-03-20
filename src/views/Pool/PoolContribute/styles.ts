@@ -17,6 +17,10 @@ export const Wrapper = styled.button`
 	&:focus {
 		background: ${(props) => props.theme.colors.button.alt1.hover};
 	}
+	&:disabled {
+		background: ${(props) => props.theme.colors.button.disabled};
+		border: 1px solid ${(props) => props.theme.colors.button.disabled};
+	}
 `;
 
 export const Label = styled.div`

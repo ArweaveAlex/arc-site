@@ -15,6 +15,7 @@ export default function WalletBlock() {
 				label={LANGUAGE.connect}
 				handlePress={() => arProvider.setWalletModalVisible(true)}
 				useMaxWidth
+				active={true}
 			/>
 		</S.Wrapper>
 	);

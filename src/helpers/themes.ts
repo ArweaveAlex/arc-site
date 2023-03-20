@@ -102,6 +102,7 @@ export const defaultTheme: DefaultTheme = {
 				background: DEFAULT.contrast,
 				hover: DEFAULT.contrastHover,
 			},
+			disabled: DEFAULT.neutral4,
 		},
 		checkbox: {
 			active: {

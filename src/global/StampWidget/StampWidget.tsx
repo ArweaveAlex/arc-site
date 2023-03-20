@@ -83,6 +83,8 @@ export default function StampWidget(props: IProps) {
 	React.useEffect(() => {
 		if (!props.walletAddress && props.showWalletConnect) {
 			setShowWalletConnect(true);
+		} else {
+			setShowWalletConnect(false);
 		}
 	}, [props.walletAddress, props.showWalletConnect]);
 
@@ -108,11 +110,11 @@ export default function StampWidget(props: IProps) {
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.txId, updateCount]);
+	}, [props.txId, updateCount, props.walletAddress]);
 
 	React.useEffect(() => {
 		(async function () {
-			if (props.txId) {
+			if (props.txId && props.walletAddress) {
 				setStampCheckLoading(true);
 				const hasStamped = await stamps.hasStamped(props.walletAddress, props.txId);
 				setStampCheckLoading(false);
@@ -122,7 +124,7 @@ export default function StampWidget(props: IProps) {
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.txId]);
+	}, [props.txId, props.walletAddress]);
 
 	React.useEffect(() => {
 		if (count && !stampCheckLoading) {
@@ -130,7 +132,7 @@ export default function StampWidget(props: IProps) {
 		} else {
 			setLoading(true);
 		}
-	}, [count, stampCheckLoading]);
+	}, [count, stampCheckLoading, props.walletAddress]);
 
 	const handleStamp = React.useCallback(
 		async (amount?: number) => {

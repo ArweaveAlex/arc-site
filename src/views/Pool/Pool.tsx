@@ -73,11 +73,15 @@ export default function Pool() {
 				count={count}
 				totalContributions={headerData.state.totalContributions}
 				contributors={headerData.state.contributors}
+				ownerMaintained={headerData.state.ownerMaintained ? headerData.state.ownerMaintained : false}
 			/>
 		);
 	}
 
 	function getPoolStatistics() {
+		if (headerData && headerData.state.ownerMaintained) {
+			return null;
+		}
 		return <PoolStatistics headerData={headerData} />;
 	}
 

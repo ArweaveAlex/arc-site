@@ -1,7 +1,37 @@
 import React from 'react';
+import styled from 'styled-components';
 
+import { Modal } from 'components/molecules/Modal';
 import { AR_WALLETS, WALLET_PERMISSIONS } from 'helpers/config';
 import { getBalanceEndpoint } from 'helpers/endpoints';
+import { LANGUAGE } from 'helpers/language';
+
+export const WalletListContainer = styled.div`
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+`;
+
+export const WalletListItem = styled.button`
+	height: 55px;
+	width: 100%;
+	text-align: left;
+	padding: 0 20px;
+	display: flex;
+	align-items: center;
+	&:hover {
+		background: ${(props) => props.theme.colors.container.primary.hover};
+	}
+	img {
+		width: 30px;
+		margin: 0 15px 0 0;
+	}
+	span {
+		font-size: ${(props) => props.theme.typography.size.small};
+		margin-top: 2.5px;
+	}
+`;
 
 interface ArweaveContextState {
 	wallets: { name: string; logo: string }[];
@@ -37,6 +67,21 @@ const ARContext = React.createContext<ArweaveContextState>(DEFAULT_CONTEXT);
 
 export function useArweaveProvider(): ArweaveContextState {
 	return React.useContext(ARContext);
+}
+
+function WalletList(props: { handleConnect: () => void }) {
+	const arProvider = useArweaveProvider();
+
+	return (
+		<WalletListContainer>
+			{AR_WALLETS.map((wallet, index) => (
+				<WalletListItem key={index} onClick={() => props.handleConnect()}>
+					<img src={`${wallet.logo}`} alt={''} />
+					<span>{wallet.name.charAt(0).toUpperCase() + wallet.name.slice(1)}</span>
+				</WalletListItem>
+			))}
+		</WalletListContainer>
+	);
 }
 
 export function ArweaveProvider(props: ArweaveProviderProps) {
@@ -90,18 +135,25 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 	});
 
 	return (
-		<ARContext.Provider
-			value={{
-				walletAddress,
-				availableBalance,
-				handleConnect,
-				handleDisconnect,
-				wallets,
-				walletModalVisible,
-				setWalletModalVisible,
-			}}
-		>
-			{props.children}
-		</ARContext.Provider>
+		<>
+			{walletModalVisible && (
+				<Modal header={LANGUAGE.connectWallet} handleClose={() => setWalletModalVisible(false)}>
+					<WalletList handleConnect={handleConnect} />
+				</Modal>
+			)}
+			<ARContext.Provider
+				value={{
+					walletAddress,
+					availableBalance,
+					handleConnect,
+					handleDisconnect,
+					wallets,
+					walletModalVisible,
+					setWalletModalVisible,
+				}}
+			>
+				{props.children}
+			</ARContext.Provider>
+		</>
 	);
 }

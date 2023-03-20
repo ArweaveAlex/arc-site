@@ -1,7 +1,7 @@
 import React from 'react';
-import { ArweaveClient } from 'clients/arweave';
 import parse from 'html-react-parser';
 
+import { ArweaveClient } from 'clients/arweave';
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { SocialShare } from 'global/SocialShare';
@@ -120,6 +120,7 @@ export default function PoolHeader(props: IProps) {
 						subheader={getSubheader()}
 						totalContributions={props.totalContributions ? props.totalContributions : null}
 						contributors={props.contributors ? props.contributors : null}
+						disabled={props.ownerMaintained}
 					/>
 				</S.ContributeTile>
 			</S.FlexTiles>

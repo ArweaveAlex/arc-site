@@ -1,11 +1,21 @@
 import { Carousel } from 'react-responsive-carousel';
 
+import { IconButton } from 'components/atoms/IconButton';
+import { ASSETS } from 'helpers/config';
+
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import * as S from './styles';
 import { IProps } from './types';
 
 export default function _Carousel(props: IProps) {
+	function handleClick(onClickHandler: any) {
+		if (props.callback && !props.callback.disabled) {
+			props.callback.fn();
+		}
+		onClickHandler();
+	}
+
 	return props.data ? (
 		<S.Content>
 			<S.Header>
@@ -15,7 +25,7 @@ export default function _Carousel(props: IProps) {
 				<Carousel
 					autoPlay={false}
 					interval={0}
-					showArrows={false}
+					showArrows={true}
 					showStatus={false}
 					showThumbs={false}
 					infiniteLoop={false}
@@ -25,15 +35,30 @@ export default function _Carousel(props: IProps) {
 					swipeable={true}
 					emulateTouch={true}
 					preventMovementUntilSwipeScrollTolerance={true}
-					renderIndicator={(onClickHandler, isSelected, index) => {
+					renderArrowPrev={(onClickHandler, hasPrevious) => {
 						return (
-							<S.Indicator
-								onClick={onClickHandler}
-								onKeyDown={onClickHandler}
-								selected={isSelected}
-								value={index}
-								key={index}
-							/>
+							<S.PrevAction>
+								<IconButton
+									src={ASSETS.arrowPrevious}
+									type={'alt1'}
+									handlePress={onClickHandler}
+									dimensions={{ wrapper: 25, icon: 11 }}
+									disabled={!hasPrevious}
+								/>
+							</S.PrevAction>
+						);
+					}}
+					renderArrowNext={(onClickHandler, hasNext) => {
+						return (
+							<S.NextAction>
+								<IconButton
+									src={ASSETS.arrowNext}
+									type={'alt1'}
+									handlePress={() => handleClick(onClickHandler)}
+									dimensions={{ wrapper: 25, icon: 11 }}
+									disabled={!hasNext}
+								/>
+							</S.NextAction>
 						);
 					}}
 				>

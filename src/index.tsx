@@ -9,10 +9,12 @@ import { App } from 'app';
 import { GlobalStyle } from 'app/styles';
 import { Loader } from 'components/atoms/Loader';
 import { defaultTheme } from 'helpers/themes';
+import { ArweaveProvider } from 'providers/ArweaveProvider';
 import { persistor, store } from 'state/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
+// TODO: Production bundle not working
 // if ('serviceWorker' in navigator) {
 // 	window.addEventListener('load', () => {
 // 		navigator.serviceWorker
@@ -24,12 +26,14 @@ root.render(
 	<Provider store={store}>
 		<PersistGate loading={<Loader />} persistor={persistor}>
 			<ThemeProvider theme={defaultTheme}>
-				<React.StrictMode>
-					<HashRouter>
-						<GlobalStyle />
-						<App />
-					</HashRouter>
-				</React.StrictMode>
+				<ArweaveProvider>
+					<React.StrictMode>
+						<HashRouter>
+							<GlobalStyle />
+							<App />
+						</HashRouter>
+					</React.StrictMode>
+				</ArweaveProvider>
 			</ThemeProvider>
 		</PersistGate>
 	</Provider>

@@ -19,7 +19,7 @@ import * as S from './styles';
 export default function ArtifactMessagingList(props: IProps) {
 	const { id } = useParams();
 
-	const [threadData, setThreadData] = React.useState<ArtifactDetailType[]>(null);
+	const [listData, setThreadData] = React.useState<ArtifactDetailType[]>(null);
 	const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
 	const [detailData, setDetailData] = React.useState<ArtifactDetailType | null>(null);
 
@@ -72,34 +72,6 @@ export default function ArtifactMessagingList(props: IProps) {
 		return null;
 	}
 
-	function getThreadData() {
-		if (!threadData) {
-			return (
-				<S.LoadingContainerInit>
-					<Loader sm />
-				</S.LoadingContainerInit>
-			);
-		} else {
-			return (
-				<>
-					{threadData.map((artifact: ArtifactDetailType, index: number) => {
-						return (
-							<MessagingListItem
-								key={index}
-								data={artifact}
-								isListItem={true}
-								active={detailData ? detailData.artifactId === artifact.artifactId : false}
-								showArtifactLink={true}
-								showOwnerLink={true}
-							/>
-						);
-					})}
-					<S.ActionContainer>{getAction()}</S.ActionContainer>
-				</>
-			);
-		}
-	}
-
 	function getHeaderData() {
 		if (!headerData) {
 			return <Loader sm />;
@@ -150,9 +122,37 @@ export default function ArtifactMessagingList(props: IProps) {
 		}
 	}
 
+	function getListData() {
+		if (!listData) {
+			return (
+				<S.LoadingContainerInit>
+					<Loader sm />
+				</S.LoadingContainerInit>
+			);
+		} else {
+			return (
+				<>
+					{listData.map((artifact: ArtifactDetailType, index: number) => {
+						return (
+							<MessagingListItem
+								key={index}
+								data={artifact}
+								isListItem={true}
+								active={detailData ? detailData.artifactId === artifact.artifactId : false}
+								showArtifactLink={true}
+								showOwnerLink={true}
+							/>
+						);
+					})}
+					<S.ActionContainer>{getAction()}</S.ActionContainer>
+				</>
+			);
+		}
+	}
+
 	return (
 		<S.Wrapper>
-			<S.ListWrapper>{getThreadData()}</S.ListWrapper>
+			<S.ListWrapper>{getListData()}</S.ListWrapper>
 			<S.HDWrapper>
 				<S.HDContent>
 					<S.HeaderWrapper>{getHeaderData()}</S.HeaderWrapper>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { fadeIn2, loadingSlide,open } from 'helpers/animations';
+import { fadeIn2, loadingSlide, open } from 'helpers/animations';
 import { getImageShadow, STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`

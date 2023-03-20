@@ -1,5 +1,4 @@
 import { ArweaveClient } from 'clients/arweave';
-
 import { getGQLData } from 'gql';
 import { CURSORS, STORAGE, TAGS } from 'helpers/config';
 import { getTxEndpoint } from 'helpers/endpoints';

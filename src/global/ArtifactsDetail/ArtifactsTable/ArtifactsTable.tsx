@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import Stamps from '@permaweb/stampjs';
-import { ArweaveClient } from 'clients/arweave';
 import parse from 'html-react-parser';
 
+import { ArweaveClient } from 'clients/arweave';
 import { Checkbox } from 'components/atoms/Checkbox';
 import { Table } from 'components/organisms/Table';
 import { ARTIFACT_TYPES, ASSETS, PAGINATOR, STORAGE, TAGS } from 'helpers/config';

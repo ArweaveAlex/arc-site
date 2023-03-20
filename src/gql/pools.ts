@@ -1,5 +1,4 @@
 import { ArweaveClient } from 'clients/arweave';
-
 import { getGQLData } from 'gql';
 import { POOL_INDEX_CONTRACT_ID, TAGS } from 'helpers/config';
 import { getRedstoneSrcTxEndpoint } from 'helpers/endpoints';

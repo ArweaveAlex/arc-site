@@ -7,4 +7,5 @@ export interface IProps {
 	count: number | null;
 	totalContributions: string | null;
 	contributors: any | null;
+	ownerMaintained: boolean;
 }

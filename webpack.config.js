@@ -68,7 +68,7 @@ module.exports = {
 					},
 					'url-loader',
 				],
-			}
+			},
 		],
 	},
 	plugins: [

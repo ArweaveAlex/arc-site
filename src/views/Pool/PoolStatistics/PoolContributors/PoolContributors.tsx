@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArweaveClient } from 'clients/arweave';
 
+import { ArweaveClient } from 'clients/arweave';
 import { TableLoader } from 'components/atoms/TableLoader';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';

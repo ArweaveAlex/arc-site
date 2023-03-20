@@ -6,4 +6,5 @@ export interface IProps {
 	subheader: React.ReactNode;
 	totalContributions: string | null;
 	contributors: any | null;
+	disabled: boolean;
 }
