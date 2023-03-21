@@ -2,6 +2,7 @@ import Arweave from 'arweave';
 import { Buffer } from 'buffer';
 // @ts-ignore
 import { defaultCacheOptions, WarpFactory } from 'warp-contracts/web';
+import { DeployPlugin } from 'warp-contracts-plugin-deploy';
 
 import { getGQLData } from 'gql';
 import { getArtifactsByUser } from 'gql/artifacts';
