@@ -10,6 +10,7 @@ import * as urls from 'helpers/urls';
 import * as S from './styles';
 import { IProps } from './types';
 
+// TODO: Image Zoom
 export default function ImageListItem(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
 
