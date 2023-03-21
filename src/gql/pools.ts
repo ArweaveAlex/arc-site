@@ -87,5 +87,5 @@ export async function getPoolSearchIndexById(poolSearchIndexId: string): Promise
 export async function getPoolCount(nftContractSrc: string): Promise<number> {
 	let redstoneContracts = await fetch(getRedstoneSrcTxEndpoint(nftContractSrc, 1));
 	let redstoneJson = await redstoneContracts.json();
-	return parseInt(redstoneJson.paging.total);
+	return parseInt(redstoneJson.paging.total) - 1;
 }
