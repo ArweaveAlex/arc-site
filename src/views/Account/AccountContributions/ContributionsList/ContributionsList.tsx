@@ -17,8 +17,7 @@ export default function ContributionsList(props: { data: any }) {
 						<p>{LANGUAGE.noContributions}</p>
 					</S.NoContributionsContainer>
 				);
-			}
-			else {
+			} else {
 				return (
 					<>
 						{props.data.map((pool: any, index: number) => {
