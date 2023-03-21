@@ -77,8 +77,9 @@ export const Title = styled.div<{ column: boolean }>`
 		border: 1px solid ${(props) => props.theme.colors.border.primary};
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 		padding: 17.5px;
-		p, a {
-			font-size: clamp(16px,3vw,22px);
+		p,
+		a {
+			font-size: clamp(16px, 3vw, 22px);
 		}
 	}
 `;

@@ -52,7 +52,7 @@ export default function ImageListItem(props: IProps) {
 		if (imageLoaded) {
 			setImageZoomed(!imageZoomed);
 		}
-	  }
+	}
 
 	function getColumnDisplay() {
 		if (document.getElementById(DOM.preview)) {
@@ -90,8 +90,7 @@ export default function ImageListItem(props: IProps) {
 					<S.Image src={imageUrl} onLoad={handleImageLoaded} loaded={imageLoaded} column={getColumnDisplay()} />
 				</S.ImageWrapper>
 			);
-		}
-		else {
+		} else {
 			return (
 				<Modal header={null} handleClose={() => setImageZoomed(false)} noContainer>
 					{(!imageUrl || !imageLoaded) && <Loader placeholder />}
