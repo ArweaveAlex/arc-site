@@ -75,6 +75,11 @@ export const Body = styled.div`
 	width: 100%;
 `;
 
+export const BodyAlt = styled(Body)`
+	height: 100%;
+	background: black;
+`;
+
 export const CloseTextContainer = styled.div`
 	width: 600px;
 	max-width: 87.5vw;
@@ -85,6 +90,12 @@ export const CloseTextContainer = styled.div`
 	top: 22.5px;
 	left: 50%;
 	transform: translate(-50%, 0);
+`;
+
+export const CloseTextContainerAlt = styled.div`
+	position: fixed;
+	top: 20px;
+	right: 20px;
 `;
 
 export const CloseButtonContainer = styled.button`

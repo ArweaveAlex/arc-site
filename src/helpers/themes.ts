@@ -178,7 +178,7 @@ export const defaultTheme: DefaultTheme = {
 				},
 			},
 			alt1: {
-				fill: DEFAULT.alt1,
+				fill: DEFAULT.primary,
 			},
 			alt2: {
 				fill: DEFAULT.neutral4,

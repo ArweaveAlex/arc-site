@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Loader } from 'components/atoms/Loader';
+import { Modal } from 'components/molecules/Modal';
 import { DOM, FALLBACK_IMAGE } from 'helpers/config';
 import { getTxEndpoint } from 'helpers/endpoints';
 import { LANGUAGE } from 'helpers/language';
@@ -10,7 +11,6 @@ import * as urls from 'helpers/urls';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: Image Zoom
 export default function ImageListItem(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
 
@@ -22,6 +22,8 @@ export default function ImageListItem(props: IProps) {
 
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
 	const [imageLoaded, setImageLoaded] = React.useState<boolean>(false);
+	const [imageZoomed, setImageZoomed] = React.useState(false);
+
 	const [metadata, setMetadata] = React.useState<any>(null);
 
 	React.useEffect(() => {
@@ -45,6 +47,12 @@ export default function ImageListItem(props: IProps) {
 			}
 		})();
 	}, [jsonData]);
+
+	function handleImageZoom() {
+		if (imageLoaded) {
+			setImageZoomed(!imageZoomed);
+		}
+	  }
 
 	function getColumnDisplay() {
 		if (document.getElementById(DOM.preview)) {
@@ -75,12 +83,22 @@ export default function ImageListItem(props: IProps) {
 	}
 
 	function getImage() {
-		return (
-			<>
-				{(!imageUrl || !imageLoaded) && <Loader placeholder />}
-				<S.Image src={imageUrl} onLoad={handleImageLoaded} loaded={imageLoaded} column={getColumnDisplay()} />
-			</>
-		);
+		if (!imageZoomed) {
+			return (
+				<S.ImageWrapper column={getColumnDisplay()} onClick={() => handleImageZoom()}>
+					{(!imageUrl || !imageLoaded) && <Loader placeholder />}
+					<S.Image src={imageUrl} onLoad={handleImageLoaded} loaded={imageLoaded} column={getColumnDisplay()} />
+				</S.ImageWrapper>
+			);
+		}
+		else {
+			return (
+				<Modal header={null} handleClose={() => setImageZoomed(false)} noContainer>
+					{(!imageUrl || !imageLoaded) && <Loader placeholder />}
+					<S.Image src={imageUrl} onLoad={handleImageLoaded} loaded={imageLoaded} column={getColumnDisplay()} />
+				</Modal>
+			);
+		}
 	}
 
 	function getBody() {
@@ -119,7 +137,7 @@ export default function ImageListItem(props: IProps) {
 			<S.C1 column={getColumnDisplay()}>
 				<S.C1Content column={getColumnDisplay()}>
 					<S.Title column={getColumnDisplay()}>{getTitle()}</S.Title>
-					<S.ImageWrapper column={getColumnDisplay()}>{getImage()}</S.ImageWrapper>
+					{getImage()}
 				</S.C1Content>
 			</S.C1>
 			<S.C2 column={getColumnDisplay()}>

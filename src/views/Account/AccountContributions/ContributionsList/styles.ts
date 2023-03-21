@@ -72,6 +72,12 @@ export const ListItemWrapper = styled.li`
 	}
 `;
 
+export const LIP = styled.div`
+	height: 115px;
+	width: 100%;
+	margin: 0 0 20px 0;
+`;
+
 export const LIHeaderContainer = styled.div`
 	height: 100%;
 	width: 50%;
@@ -183,5 +189,11 @@ export const LIButton = styled.button`
 		&:hover {
 			fill: ${(props) => props.theme.colors.font.primary.active.hover};
 		}
+	}
+`;
+
+export const NoContributionsContainer = styled.div`
+	p {
+		color: ${(props) => props.theme.colors.warning};
 	}
 `;

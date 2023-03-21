@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { ArweaveClient } from 'clients/arweave';
-import { Loader } from 'components/atoms/Loader';
-import { LANGUAGE } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import { ContributionsList } from './ContributionsList';
@@ -28,26 +26,12 @@ export default function AccountContributions() {
 	}, [arProvider.walletAddress]);
 
 	function getData() {
-		if (data && data.length > 0) {
-			return (
-				<S.Wrapper>
-					<ContributionsList data={data} />
-				</S.Wrapper>
-			);
-		} else {
-			return (
-				<S.NoContributionsContainer>
-					<p>{LANGUAGE.noContributions}</p>
-				</S.NoContributionsContainer>
-			);
-		}
+		return (
+			<S.Wrapper>
+				<ContributionsList data={data} />
+			</S.Wrapper>
+		);
 	}
 
-	return data ? (
-		<>{getData()}</>
-	) : (
-		<S.LoadingContainer>
-			<Loader sm />
-		</S.LoadingContainer>
-	);
+	return getData();
 }

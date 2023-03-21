@@ -34,28 +34,45 @@ export default function Modal(props: IProps) {
 		};
 	}, [escFunction]);
 
+	function getBody() {
+		if (props.noContainer) {
+			return (
+				<>
+					<S.BodyAlt>{props.children}</S.BodyAlt>
+					<S.CloseTextContainerAlt>
+						<S.CloseButtonContainer onClick={() => props.handleClose()}>{LANGUAGE.close}</S.CloseButtonContainer>
+					</S.CloseTextContainerAlt>
+				</>
+			);
+		} else {
+			return (
+				<>
+					<S.Container noHeader={!props.header}>
+						{props.header && (
+							<S.Header>
+								<S.LT>
+									<S.Title>{props.header}</S.Title>
+								</S.LT>
+								<S.Close>
+									<IconButton type={'primary'} sm warning src={ASSETS.close} handlePress={() => props.handleClose()} />
+								</S.Close>
+							</S.Header>
+						)}
+						<S.Body>{props.children}</S.Body>
+					</S.Container>
+					{!props.header && (
+						<S.CloseTextContainer>
+							<S.CloseButtonContainer onClick={() => props.handleClose()}>{LANGUAGE.close}</S.CloseButtonContainer>
+						</S.CloseTextContainer>
+					)}
+				</>
+			);
+		}
+	}
+
 	return (
 		<Portal node={DOM.modal}>
-			<S.Wrapper top={window ? (window as any).pageYOffset : 0}>
-				<S.Container noHeader={!props.header}>
-					{props.header && (
-						<S.Header>
-							<S.LT>
-								<S.Title>{props.header}</S.Title>
-							</S.LT>
-							<S.Close>
-								<IconButton type={'primary'} sm warning src={ASSETS.close} handlePress={() => props.handleClose()} />
-							</S.Close>
-						</S.Header>
-					)}
-					<S.Body>{props.children}</S.Body>
-				</S.Container>
-				{!props.header && (
-					<S.CloseTextContainer>
-						<S.CloseButtonContainer onClick={() => props.handleClose()}>{LANGUAGE.close}</S.CloseButtonContainer>
-					</S.CloseTextContainer>
-				)}
-			</S.Wrapper>
+			<S.Wrapper top={window ? (window as any).pageYOffset : 0}>{getBody()}</S.Wrapper>
 		</Portal>
 	);
 }

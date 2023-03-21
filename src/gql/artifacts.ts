@@ -105,7 +105,7 @@ export async function getArtifactById(artifactId: string): Promise<ArtifactDetai
 }
 
 export async function getArtifact(artifact: GQLResponseType): Promise<ArtifactDetailType | null> {
-	let pool: PoolType | null = await getPoolById(getTagValue(artifact.node.tags, TAGS.keys.poolId));
+	const pool: PoolType | null = await getPoolById(getTagValue(artifact.node.tags, TAGS.keys.poolId));
 
 	try {
 		const response = await fetch(getTxEndpoint(artifact.node.id));

@@ -15,7 +15,7 @@ export default function LibraryAll() {
 			fetch={getArtifactsByUser}
 			showActions={true}
 			showPoolIds={true}
-			showSearch={true}
+			showSearch={false}
 			bookmarksDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}

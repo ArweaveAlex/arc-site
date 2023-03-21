@@ -14,7 +14,7 @@ export default function AccountAll() {
 			fetch={getArtifactsByUser}
 			showActions={true}
 			showPoolIds={true}
-			showSearch={true}
+			showSearch={false}
 			selectCallback={null}
 			selectedCallbackIds={null}
 			disabledSelectedCallbackIds={null}
