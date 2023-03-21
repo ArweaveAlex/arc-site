@@ -13,9 +13,9 @@ export default function OwnerCollections(props: IProps) {
 	const arProvider = useArweaveProvider();
 
 	React.useEffect(() => {
-		if(arProvider.walletAddress){
+		if (arProvider.walletAddress) {
 			getCollectionsByOwner(arProvider.walletAddress).then((collectionsByOwner: CollectionType[]) => {
-				if(collectionsByOwner.length > 0) {
+				if (collectionsByOwner.length > 0) {
 					setOwnerCollections(collectionsByOwner);
 				}
 			});
@@ -24,7 +24,11 @@ export default function OwnerCollections(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<OwnerCollectionsList owner={props.owner} data={ownerCollections} showCreateCollections={props.showCreateCollections} />
+			<OwnerCollectionsList
+				owner={props.owner}
+				data={ownerCollections}
+				showCreateCollections={props.showCreateCollections}
+			/>
 		</S.Wrapper>
 	);
 }

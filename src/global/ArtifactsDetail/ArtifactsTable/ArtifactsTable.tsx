@@ -187,7 +187,9 @@ export default function ArtifactsTable(props: IProps) {
 			<S.CheckboxContainer>
 				<Checkbox
 					checked={selectedCallbackIdsState.includes(id)}
-					disabled={props.disabledSelectedCallbackIds ? props.disabledSelectedCallbackIds.includes(id) : false}
+					disabled={
+						props.disabledSelectedCallbackIds ? props.disabledSelectedCallbackIds.includes(id) : false
+					}
 					handleSelect={() => props.selectCallback(id)}
 				/>
 			</S.CheckboxContainer>

@@ -4,30 +4,26 @@ import { ArweaveClient } from 'clients/arweave';
 import { getGQLData } from 'gql';
 import { TAGS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { 
-	CollectionStateType, 
-	CollectionType, 
-	GQLResponseType 
-} from 'helpers/types';
+import { CollectionStateType, CollectionType, GQLResponseType } from 'helpers/types';
 
-const arClient = new ArweaveClient("arweave.net");
+const arClient = new ArweaveClient('arweave.net');
 
-export function initCollection() : CollectionStateType {
-	return { 
-		title: "",
-		name: "",
-		description: "",
+export function initCollection(): CollectionStateType {
+	return {
+		title: '',
+		name: '',
+		description: '',
 		ticker: 'ALEXCOLLECTION',
 		balances: {},
 		maxSupply: 1,
 		transferable: true,
 		lockTime: 0,
-		lastTransferTimestamp: "",
+		lastTransferTimestamp: '',
 		ids: [],
-		owner: "",
-		phase: "INPROGRESS",
-		topic: "",
-		timestamp: ""
+		owner: '',
+		phase: 'INPROGRESS',
+		topic: '',
+		timestamp: '',
 	};
 }
 
@@ -57,9 +53,9 @@ export async function createCollection(collectionState: CollectionStateType) {
 		tags: tags,
 	});
 
-	return { 
+	return {
 		id: collectionContract.contractTxId,
-		state: collectionState
+		state: collectionState,
 	};
 }
 
@@ -70,18 +66,16 @@ export async function saveCollection(collection: CollectionType) {
 		waitForConfirmation: false,
 	});
 
-	const result = await warpContract.writeInteraction(
-		{ 
-			function: 'add',
-			ids: collection.state.ids,
-			title: collection.state.title,
-			name: collection.state.name,
-			description: collection.state.description,
-			topic: collection.state.topic
-		}
-	);
+	const result = await warpContract.writeInteraction({
+		function: 'add',
+		ids: collection.state.ids,
+		title: collection.state.title,
+		name: collection.state.name,
+		description: collection.state.description,
+		topic: collection.state.topic,
+	});
 
-	if(result) {
+	if (result) {
 		return { status: true, message: LANGUAGE.collection.success };
 	}
 

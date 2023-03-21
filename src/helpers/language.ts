@@ -42,7 +42,7 @@ export const LANGUAGE = {
 	collection: {
 		subheader1: `Bookmark`,
 		success: `Collection saved!`,
-		failure: `Collection failed to save.`
+		failure: `Collection failed to save.`,
 	},
 	collectionNameAlreadyExists: `Collection Name already exists`,
 	collections: `Collections`,

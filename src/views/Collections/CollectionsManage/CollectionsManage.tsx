@@ -14,18 +14,8 @@ import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql/artifacts';
 import { REDUX_TABLES } from 'helpers/redux';
 import { LANGUAGE } from 'helpers/language';
 import { URLS } from 'helpers/config';
-import {
-	CollectionStateType, 
-	CollectionType, 
-	CursorEnum, ArtifactArgsType, 
-	ArtifactResponseType 
-} from 'helpers/types';
-import { 
-	initCollection, 
-	createCollection, 
-	saveCollection, 
-	getCollection 
-} from 'collections/collections';
+import { CollectionStateType, CollectionType, CursorEnum, ArtifactArgsType, ArtifactResponseType } from 'helpers/types';
+import { initCollection, createCollection, saveCollection, getCollection } from 'collections/collections';
 import * as S from './styles';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
@@ -42,7 +32,6 @@ export default function CollectionsManage() {
 	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
 	const [contractId, setContractId] = React.useState<string>(null);
 	const [contract, setContract] = React.useState<CollectionType>(null);
-
 
 	const [tableType, setTableType] = React.useState<{
 		fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
@@ -62,7 +51,7 @@ export default function CollectionsManage() {
 
 	React.useEffect(() => {
 		let collectionContractId = query.get('contractId');
-		if(collectionContractId) {
+		if (collectionContractId) {
 			setContractId(collectionContractId);
 			getCollection(collectionContractId).then((contract: CollectionType) => {
 				setContract(contract);
@@ -166,7 +155,7 @@ export default function CollectionsManage() {
 			setIsLoading(false);
 
 			const currentUrl = window.location.href;
-			let newUrl = currentUrl + "&contractId=" + collectionContract.id;
+			let newUrl = currentUrl + '&contractId=' + collectionContract.id;
 			window.history.replaceState(null, null, newUrl.toString());
 		}
 	}
@@ -184,8 +173,8 @@ export default function CollectionsManage() {
 
 			let collectionSave: CollectionType = {
 				id: contractId,
-				state: collectionState
-			}
+				state: collectionState,
+			};
 
 			await saveCollection(collectionSave);
 
@@ -198,12 +187,11 @@ export default function CollectionsManage() {
 	}
 
 	function getButton() {
-
 		let lang: string;
 		let func: () => void;
 		let disabled: boolean;
 
-		if(contractId) {
+		if (contractId) {
 			lang = LANGUAGE.save;
 			func = () => handleSave();
 			disabled = getSubmitDisabled();
@@ -213,15 +201,7 @@ export default function CollectionsManage() {
 			disabled = getSubmitDisabled();
 		}
 
-		return(
-			<Button
-				type={'alt1'}
-				label={lang}
-				handlePress={func}
-				disabled={disabled}
-				noMinWidth
-			/>
-		)
+		return <Button type={'alt1'} label={lang} handlePress={func} disabled={disabled} noMinWidth />;
 	}
 
 	function getData() {
@@ -286,9 +266,7 @@ export default function CollectionsManage() {
 										invalid={{ status: false, message: null }}
 										disabled={false}
 									/>
-									<S.SubmitContainer>
-										{ getButton() }
-									</S.SubmitContainer>
+									<S.SubmitContainer>{getButton()}</S.SubmitContainer>
 								</S.Form>
 							</S.FormFixedContainer>
 						</S.FormContainer>
@@ -299,7 +277,7 @@ export default function CollectionsManage() {
 	}
 
 	function getPage() {
-		if(isLoading) {
+		if (isLoading) {
 			return <Loader sm />;
 		} else {
 			return (
@@ -310,11 +288,5 @@ export default function CollectionsManage() {
 		}
 	}
 
-	return arProvider.walletAddress ? (
-		<>
-			{getPage()}
-		</>
-	) : (
-		showWalletBlock && <WalletBlock />
-	);
+	return arProvider.walletAddress ? <>{getPage()}</> : showWalletBlock && <WalletBlock />;
 }
