@@ -62,7 +62,7 @@ export const HeaderWrapper = styled.div`
 	height: 100%;
 	width: 100%;
 	position: relative;
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	padding: 20px 20px 15px 20px;
@@ -166,7 +166,7 @@ export const TP = styled.div`
 `;
 
 export const DP = styled.div`
-	height: 20px;
+	height: 24.5px;
 	width: 500px;
 	max-width: 100%;
 	margin: 10px 0 0 0;

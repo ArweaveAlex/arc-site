@@ -136,6 +136,9 @@ export const InfoTitle = styled(InfoData)`
 	width: 27.5%;
 	padding: 0 10px 0 0;
 	justify-content: start;
+	p {
+		max-width: 98.5%;
+	}
 `;
 
 export const InfoType = styled(InfoStyled)`

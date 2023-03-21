@@ -5,38 +5,14 @@ import { getRedstoneSrcTxEndpoint } from 'helpers/endpoints';
 import { GQLResponseType, PoolSearchIndexType, PoolType } from 'helpers/types';
 import { getTagValue } from 'helpers/utils';
 
-// TODO: Get from Pool Index
-export async function getPoolIds() {
-	const pools: GQLResponseType[] = await getGQLData({
-		ids: null,
-		tagFilters: [
-			{
-				name: TAGS.keys.appType,
-				values: [TAGS.values.poolVersions['1.2'], TAGS.values.poolVersions['1.4']],
-			},
-		],
-		uploader: null,
-		cursor: null,
-		reduxCursor: null,
-		cursorObject: null,
-	});
-
-	return pools.map((pool: GQLResponseType) => {
-		switch (getTagValue(pool.node.tags, TAGS.keys.appType)) {
-			case TAGS.values.poolVersions['1.2']:
-				return pool.node.id;
-			case TAGS.values.poolVersions['1.4']:
-				return getTagValue(pool.node.tags, TAGS.keys.uploaderTxId);
-			default:
-				return getTagValue(pool.node.tags, TAGS.keys.uploaderTxId);
-		}
-	});
-}
-
 export async function getPools(): Promise<PoolType[]> {
 	const arClient = new ArweaveClient();
 	const contract = arClient.warp.contract(POOL_INDEX_CONTRACT_ID).setEvaluationOptions({ allowBigInt: true });
 	return ((await contract.readState()) as any).cachedValue.state.pools;
+}
+
+export async function getPoolIds() {
+	return (await getPools()).map((pool: PoolType) => pool.id);
 }
 
 export async function getPoolById(poolId: string): Promise<PoolType | null> {

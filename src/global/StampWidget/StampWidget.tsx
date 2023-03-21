@@ -148,7 +148,6 @@ export default function StampWidget(props: IProps) {
 					status: stampSuccess ? 200 : 500,
 					message: stampSuccess ? LANGUAGE.artifactStamped : LANGUAGE.errorOccurred,
 				});
-				props.handleStampCallback();
 			}
 		},
 		[stamps, updateCount, props]

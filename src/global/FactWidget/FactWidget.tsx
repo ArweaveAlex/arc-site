@@ -54,7 +54,7 @@ export default function FactWidget(props: IProps) {
 		}
 	}, [factCheckLoading]);
 
-	const handlefactMarket = React.useCallback(
+	const handleFactMarketAssertion = React.useCallback(
 		async (position: string) => {
 			if (props.txId) {
 				setLoading(true);
@@ -100,7 +100,7 @@ export default function FactWidget(props: IProps) {
 						<Button
 							type={'success'}
 							label={LANGUAGE.support}
-							handlePress={() => handlefactMarket('support')}
+							handlePress={() => handleFactMarketAssertion('support')}
 							disabled={disabled}
 							noMinWidth
 						/>
@@ -109,7 +109,7 @@ export default function FactWidget(props: IProps) {
 						<Button
 							type={'warning'}
 							label={LANGUAGE.oppose}
-							handlePress={() => handlefactMarket('oppose')}
+							handlePress={() => handleFactMarketAssertion('oppose')}
 							disabled={disabled}
 							noMinWidth
 						/>

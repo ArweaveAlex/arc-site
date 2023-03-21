@@ -18,6 +18,7 @@ export const ICWrapper = styled.div<{ column: boolean }>`
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
+		height: auto;
 		flex-direction: column;
 		max-height: none;
 	}
@@ -71,34 +72,37 @@ export const Title = styled.div<{ column: boolean }>`
 		}
 	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
-		height: auto;
+		height: 125px;
+		background: ${(props) => props.theme.colors.container.primary.background};
+		border: 1px solid ${(props) => props.theme.colors.border.primary};
+		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+		padding: 17.5px;
+		p, a {
+			font-size: clamp(16px,3vw,22px);
+		}
 	}
 `;
 
 export const ImageWrapper = styled.div<{ column: boolean }>`
-	height: ${(props) => (props.column ? 'auto' : 'calc(100% - 100px)')};
-	min-height: 200px;
+	height: ${(props) => (props.column ? '300px' : 'calc(100% - 100px)')};
 	width: 100%;
 	margin: ${(props) => (props.column ? '20px 0 40px 0' : '0')};
 	background: ${(props) => props.theme.colors.container.alt5.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: ${(props) => getImageShadow(props.theme)};
+	cursor: zoom-in;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
-		height: auto;
+		height: 300px;
 		margin: 20px 0 40px 0;
 	}
 `;
 
 export const Image = styled.img<{ loaded: boolean; column: boolean }>`
-	height: ${(props) => (props.column ? '200px' : '100%')};
+	height: 100%;
 	width: 100%;
-	margin: ${(props) => (props.column ? '10px 0 0 0' : '0')};
+	margin: 0;
 	object-fit: contain;
 	display: ${(props) => (props.loaded ? 'block' : 'none')} !important;
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		height: 200px;
-		margin: 10px 0 0 0;
-	}
 `;
 
 export const C2 = styled.div<{ column: boolean }>`
@@ -173,7 +177,7 @@ export const InfoData = styled.div`
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
-		line-height: 18px;
+		line-height: 22px;
 	}
 	span,
 	p,
@@ -187,11 +191,11 @@ export const InfoData = styled.div`
 	p,
 	span,
 	a {
-		line-height: 18px;
+		line-height: 22px;
 		text-align: left;
 	}
 	overflow: hidden;
-	overflow-wrap: break-word;
+	overflow-wrap: anywhere;
 `;
 
 export const BodyData = styled.p`

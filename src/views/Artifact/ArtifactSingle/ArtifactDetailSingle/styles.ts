@@ -98,7 +98,7 @@ export const InfoData = styled.div`
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
-		line-height: 18px;
+		line-height: 22px;
 	}
 	span,
 	p,
@@ -113,7 +113,7 @@ export const InfoData = styled.div`
 		fill: ${(props) => props.theme.colors.font.primary.alt5};
 	}
 	overflow: hidden;
-	overflow-wrap: break-word;
+	overflow-wrap: anywhere;
 `;
 
 export const BodyData = styled.p`
@@ -198,7 +198,7 @@ export const LinkWrapper = styled.div`
 	span,
 	p,
 	a {
-		line-height: 18px;
+		line-height: 22px;
 		text-overflow: ellipsis;
 		overflow: visible;
 		white-space: normal;
