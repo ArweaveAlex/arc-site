@@ -70,6 +70,7 @@ export const C2 = styled.div<{ image: string }>`
 `;
 
 export const Info = styled.div`
+	max-width: 75%;
 	position: absolute;
 	top: 10px;
 	right: 12.5px;
