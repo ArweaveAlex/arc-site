@@ -63,8 +63,6 @@ export default function CollectionsManage() {
 	React.useEffect(() => {
 		let collectionContractId = query.get('contractId');
 		if(collectionContractId) {
-			console.log("fouind quewry")
-			console.log(collectionContractId)
 			setContractId(collectionContractId);
 			getCollection(collectionContractId).then((contract: CollectionType) => {
 				setContract(contract);
