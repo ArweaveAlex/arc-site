@@ -1,16 +1,24 @@
 import React from 'react';
 
+import {
+	ArtifactArgsType,
+	ArtifactResponseType,
+	CollectionStateType,
+	CollectionType,
+	CursorEnum,
+	getArtifactsByBookmarks,
+	getArtifactsByUser,
+} from 'arcframework';
+
 import { createCollection, getCollection, initCollection, saveCollection } from 'collections/collections';
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { Loader } from 'components/atoms/Loader';
 import { TextArea } from 'components/atoms/TextArea';
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql/artifacts';
 import { URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
-import { ArtifactArgsType, ArtifactResponseType, CollectionStateType, CollectionType, CursorEnum } from 'helpers/types';
 import { useQuery } from 'hooks/useQuery';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { WalletBlock } from 'wallet/WalletBlock';

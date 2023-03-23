@@ -4,14 +4,23 @@ import { ReactSVG } from 'react-svg';
 import Stamps from '@permaweb/stampjs';
 import parse from 'html-react-parser';
 
-import { ArweaveClient } from 'clients/arweave';
+import {
+	ArweaveClient,
+	formatDate,
+	formatKeywordString,
+	getTagValue,
+	GQLResponseType,
+	PAGINATOR,
+	STORAGE,
+	TAGS,
+} from 'arcframework';
+
 import { Checkbox } from 'components/atoms/Checkbox';
 import { Table } from 'components/organisms/Table';
-import { ARTIFACT_TYPES, ASSETS, PAGINATOR, STORAGE, TAGS } from 'helpers/config';
+import { ARTIFACT_TYPES, ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { AlignType, ArtifactTableRowType, GQLResponseType, KeyValueType, TableHeaderType } from 'helpers/types';
+import { AlignType, ArtifactTableRowType, TableHeaderType } from 'helpers/types';
 import * as urls from 'helpers/urls';
-import { checkAssociation, checkMedia, formatDate, formatMessagingText, getTagValue } from 'helpers/utils';
 
 import { ArtifactsSearch } from '../ArtifactsSearch';
 
@@ -105,8 +114,8 @@ export default function ArtifactsTable(props: IProps) {
 		);
 	}
 
-	function getArtifactLinkLabel(tags: KeyValueType[]) {
-		return parse(formatMessagingText(getTagValue(tags, TAGS.keys.artifactName)));
+	function getArtifactLinkLabel(tags: { [key: string]: any }[]) {
+		return parse(formatKeywordString(getTagValue(tags, TAGS.keys.artifactName), '@'));
 	}
 
 	function handleView(id: string) {
@@ -116,7 +125,7 @@ export default function ArtifactsTable(props: IProps) {
 		}
 	}
 
-	function getArtifactLink(id: string, tags: KeyValueType[]) {
+	function getArtifactLink(id: string, tags: { [key: string]: any }[]) {
 		let redirect: string;
 		const associationId = getTagValue(tags, TAGS.keys.associationId);
 		const artifactType = getTagValue(tags, TAGS.keys.artifactType);
@@ -162,7 +171,7 @@ export default function ArtifactsTable(props: IProps) {
 		);
 	}
 
-	function getActionDropdown(artifactId: string, tags: KeyValueType[]) {
+	function getActionDropdown(artifactId: string, tags: { [key: string]: any }[]) {
 		return (
 			<ArtifactsTableActionDropdown
 				artifactId={artifactId}
@@ -181,9 +190,7 @@ export default function ArtifactsTable(props: IProps) {
 			<S.CheckboxContainer>
 				<Checkbox
 					checked={selectedCallbackIdsState.includes(id)}
-					disabled={
-						props.disabledSelectedCallbackIds ? props.disabledSelectedCallbackIds.includes(id) : false
-					}
+					disabled={props.disabledSelectedCallbackIds ? props.disabledSelectedCallbackIds.includes(id) : false}
 					handleSelect={() => props.selectCallback(id)}
 				/>
 			</S.CheckboxContainer>
@@ -302,5 +309,22 @@ export default function ArtifactsTable(props: IProps) {
 			cursors={props.cursors}
 			showNoResults={props.showNoResults}
 		/>
+	);
+}
+
+function checkMedia(tags: { [key: string]: any }[]) {
+	return (
+		(getTagValue(tags, TAGS.keys.mediaIds) !== '{}' &&
+			getTagValue(tags, TAGS.keys.mediaIds) !== '[]' &&
+			getTagValue(tags, TAGS.keys.mediaIds) !== STORAGE.none &&
+			getTagValue(tags, TAGS.keys.mediaIds) !== '' &&
+			getTagValue(tags, TAGS.keys.mediaIds) !== `{"":""}`) ||
+		getTagValue(tags, TAGS.keys.artifactType) === TAGS.values.imageArtifactType
+	);
+}
+
+function checkAssociation(tags: { [key: string]: any }[]) {
+	return (
+		getTagValue(tags, TAGS.keys.associationId) !== '' && getTagValue(tags, TAGS.keys.associationId) !== STORAGE.none
 	);
 }

@@ -1,11 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+import { formatAddress } from 'arcframework';
+
 import { Button } from 'components/atoms/Button';
 import { URLTabs } from 'components/organisms/URLTabs';
 import { ASSETS, URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { formatAddress } from 'helpers/utils';
 
 import * as S from './styles';
 

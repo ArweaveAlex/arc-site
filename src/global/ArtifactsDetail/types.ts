@@ -1,4 +1,4 @@
-import { ArtifactArgsType, ArtifactResponseType, CursorObjectType, TableIdType } from 'helpers/types';
+import { ArtifactArgsType, ArtifactResponseType, CursorObjectType, TableIdType } from 'arcframework';
 
 export interface IProps {
 	id: TableIdType;

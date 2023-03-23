@@ -1,4 +1,4 @@
-import { ArtifactArgsType, ArtifactResponseType, CursorObjectType } from 'helpers/types';
+import { ArtifactArgsType, ArtifactResponseType, CursorObjectType } from 'arcframework';
 
 export interface IProps {
 	owner: string | null;

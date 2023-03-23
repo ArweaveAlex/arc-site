@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 
+import { formatAddress, formatDate } from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
-import { formatAddress, formatDate } from 'helpers/utils';
 
 import * as S from './styles';
 

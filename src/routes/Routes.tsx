@@ -1,4 +1,4 @@
-import { Route,Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import * as urls from 'helpers/urls';
 import { Account } from 'views/Account';

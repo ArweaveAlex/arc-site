@@ -1,14 +1,14 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { ArweaveClient } from 'clients/arweave';
+import { ArweaveClient, ContributionResultType, ValidationType } from 'arcframework';
+
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { ContributionResultType, ValidationType } from 'helpers/types';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';

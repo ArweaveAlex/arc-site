@@ -19,6 +19,7 @@
 		"@facts-kit/facts-sdk": "^0.0.47",
 		"@permaweb/stampjs": "0.0.14",
 		"@types/react-router-dom": "^5.3.3",
+		"arcframework": "file:.yalc/arcframework",
 		"arweave": "^1.11.6",
 		"axios": "^0.26.1",
 		"constants-browserify": "^1.0.0",
@@ -38,7 +39,7 @@
 		"styled-components": "^5.3.6",
 		"typescript": "^4.8.4",
 		"warp-contracts": "^1.2.56",
-		"warp-contracts-plugin-deploy": "^1.0.0"
+		"warp-contracts-plugin-deploy": "^1.0.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.12",
@@ -55,6 +56,7 @@
 		"eslint-plugin-import": "^2.27.5",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"html-webpack-plugin": "^5.5.0",
+		"husky": "^8.0.3",
 		"prettier": "^2.8.3",
 		"terser-webpack-plugin": "^5.3.6",
 		"ts-loader": "^9.4.2",
@@ -64,5 +66,10 @@
 		"webpack": "^5.75.0",
 		"webpack-cli": "^5.0.1",
 		"webpack-dev-server": "^4.12.0"
+	},
+	"husky": {
+		"hooks": {
+			"pre-push": "npm run format"
+		}
 	}
 }

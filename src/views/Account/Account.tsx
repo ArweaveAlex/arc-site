@@ -1,11 +1,12 @@
 import React from 'react';
 
+import { formatAddress, getHashUrl } from 'arcframework';
+
 import { Button } from 'components/atoms/Button';
 import { URLTabs } from 'components/organisms/URLTabs';
 import { ASSETS, URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
-import { formatAddress, getHashUrl } from 'helpers/utils';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { WalletBlock } from 'wallet/WalletBlock';
 

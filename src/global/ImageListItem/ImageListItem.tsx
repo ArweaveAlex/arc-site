@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { FALLBACK_IMAGE, getTxEndpoint } from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
 import { Modal } from 'components/molecules/Modal';
-import { DOM, FALLBACK_IMAGE } from 'helpers/config';
-import { getTxEndpoint } from 'helpers/endpoints';
+import { DOM } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
 

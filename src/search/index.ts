@@ -1,9 +1,14 @@
 import axios from 'axios';
 
-import { getLatestPoolSearchIndexTxId, getPoolSearchIndexById } from 'gql/pools';
-import { SEARCH, TAGS } from 'helpers/config';
-import { getTxEndpoint } from 'helpers/endpoints';
-import { getTagValue, stripSearch } from 'helpers/utils';
+import {
+	getLatestPoolSearchIndexTxId,
+	getPoolSearchIndexById,
+	getTagValue,
+	getTxEndpoint,
+	SEARCH,
+	stripSearch,
+	TAGS,
+} from 'arcframework';
 
 let processedIndeces = 0;
 let poolIndecesLength = 0;

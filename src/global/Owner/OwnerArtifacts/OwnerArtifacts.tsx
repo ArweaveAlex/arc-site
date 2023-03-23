@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { ArweaveClient } from 'clients/arweave';
+import { ArweaveClient } from 'arcframework';
+
 import { ArtifactsDetail } from 'global/ArtifactsDetail';
 
 import { IProps } from './types';
@@ -13,8 +14,8 @@ export default function OwnerArtifacts(props: IProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (props.owner) {
-				let contributions = await arClient.getUserContributions(props.owner);
-				let ids = contributions.map((contribution) => {
+				const contributions = await arClient.getUserContributions(props.owner);
+				const ids = contributions.map((contribution) => {
 					return contribution.id;
 				});
 				setPoolIds(ids);

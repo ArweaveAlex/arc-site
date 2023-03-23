@@ -14,14 +14,6 @@ import { persistor, store } from 'state/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
-// TODO: Production bundle not working
-// if ('serviceWorker' in navigator) {
-// 	window.addEventListener('load', () => {
-// 		navigator.serviceWorker
-// 			.register('/service-worker.js')
-// 	});
-// }
-
 root.render(
 	<Provider store={store}>
 		<PersistGate loading={<Loader />} persistor={persistor}>

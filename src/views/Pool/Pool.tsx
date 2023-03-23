@@ -1,14 +1,21 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+import {
+	CursorEnum,
+	FALLBACK_IMAGE,
+	formatDate,
+	getArtifactsByPool,
+	getPoolById,
+	getPoolCount,
+	getTagValue,
+	getTxEndpoint,
+	PoolType,
+	TAGS,
+} from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
-import { getArtifactsByPool } from 'gql/artifacts';
-import { getPoolById, getPoolCount } from 'gql/pools';
-import { FALLBACK_IMAGE, TAGS } from 'helpers/config';
-import { getTxEndpoint } from 'helpers/endpoints';
 import { REDUX_TABLES } from 'helpers/redux';
-import { CursorEnum, PoolType } from 'helpers/types';
-import { formatDate, getTagValue } from 'helpers/utils';
 
 import { PoolDetail } from './PoolDetail';
 import { PoolHeader } from './PoolHeader';
@@ -34,7 +41,7 @@ export default function Pool() {
 	React.useEffect(() => {
 		(async function () {
 			if (id && headerData) {
-				let detailData = await getArtifactsByPool({
+				const detailData = await getArtifactsByPool({
 					ids: [id],
 					owner: null,
 					uploader: headerData.state.owner,

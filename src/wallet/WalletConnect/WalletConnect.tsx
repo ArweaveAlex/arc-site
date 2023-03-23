@@ -1,10 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { formatAddress } from 'arcframework';
+
 import { Button } from 'components/atoms/Button';
 import { URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { formatAddress } from 'helpers/utils';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { CloseHandler } from 'wrappers/CloseHandler';
 

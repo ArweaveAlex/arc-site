@@ -1,5 +1,7 @@
+import { CursorEnum, CursorObjectKeyType } from 'arcframework';
+
 import { REDUX_TABLES } from 'helpers/redux';
-import { CursorEnum, CursorObjectKeyType, ReduxActionType } from 'helpers/types';
+import { ReduxActionType } from 'helpers/types';
 
 import { CLEAR_CURSORS, SET_CURSORS } from './constants';
 import { CursorsType } from './types';

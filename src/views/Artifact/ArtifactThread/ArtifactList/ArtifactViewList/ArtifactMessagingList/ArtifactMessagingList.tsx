@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+import { ArtifactDetailType, formatAddress, formatDate, getArtifactById, getPoolById, PoolType } from 'arcframework';
+
 import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
 import { sortByAssociationSequence } from 'filters/artifacts';
 import { MessagingListItem } from 'global/MessagingListItem';
-import { getArtifactById } from 'gql/artifacts';
-import { getPoolById } from 'gql/pools';
 import { LANGUAGE } from 'helpers/language';
-import { ArtifactDetailType, PoolType } from 'helpers/types';
 import * as urls from 'helpers/urls';
-import { formatAddress, formatDate } from 'helpers/utils';
 
 import { IProps } from '../../types';
 

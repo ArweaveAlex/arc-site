@@ -19,6 +19,12 @@ module.exports = {
 		],
 		usedExports: true,
 	},
+	ignoreWarnings: [
+		{
+			message:
+				/Critical dependency: require function is used in a way in which dependencies cannot be statically extracted/,
+		},
+	],
 	module: {
 		rules: [
 			{
@@ -108,12 +114,10 @@ module.exports = {
 			process: 'process/browser',
 			app: path.resolve(__dirname, 'src/app/'),
 			assets: path.resolve(__dirname, 'src/assets/'),
-			clients: path.resolve(__dirname, 'src/clients/'),
 			collections: path.resolve(__dirname, 'src/collections/'),
 			components: path.resolve(__dirname, 'src/components/'),
 			filters: path.resolve(__dirname, 'src/filters/'),
 			global: path.resolve(__dirname, 'src/global/'),
-			gql: path.resolve(__dirname, 'src/gql/'),
 			helpers: path.resolve(__dirname, 'src/helpers/'),
 			hooks: path.resolve(__dirname, 'src/hooks/'),
 			navigation: path.resolve(__dirname, 'src/navigation/'),

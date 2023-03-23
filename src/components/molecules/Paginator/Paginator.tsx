@@ -1,6 +1,8 @@
+import { CURSORS } from 'arcframework';
+
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
-import { ASSETS, CURSORS } from 'helpers/config';
+import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 
 import * as S from './styles';

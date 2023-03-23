@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+import { formatAddress, formatDate } from 'arcframework';
+
 import { ButtonLink } from 'components/atoms/ButtonLink';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
-import { formatAddress, formatDate } from 'helpers/utils';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -53,9 +54,7 @@ export default function OwnerCollectionsList(props: IProps) {
 							{props.data.map((collection: any, index: number) => {
 								return (
 									<S.Link key={index}>
-										<Link
-											to={`${urls.collectionsManage}?owner=${props.owner}&contractId=${collection.id}`}
-										>
+										<Link to={`${urls.collectionsManage}?owner=${props.owner}&contractId=${collection.id}`}>
 											<S.ListItemWrapper>
 												<S.LIHeaderContainer>
 													<S.LIHeader1>{collection.state.title}</S.LIHeader1>

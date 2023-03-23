@@ -1,4 +1,4 @@
-import { PoolSearchIndexType, PoolType } from 'helpers/types';
+import { PoolSearchIndexType, PoolType } from 'arcframework';
 
 export type PoolsType = {
 	data: PoolType[] | null;

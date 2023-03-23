@@ -1,7 +1,7 @@
+import { CursorEnum, getArtifactsByUser } from 'arcframework';
+
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-import { getArtifactsByUser } from 'gql/artifacts';
 import { REDUX_TABLES } from 'helpers/redux';
-import { CursorEnum } from 'helpers/types';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 export default function AccountAll() {

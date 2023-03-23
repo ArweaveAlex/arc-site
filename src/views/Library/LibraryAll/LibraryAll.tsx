@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 
+import { CursorEnum, getArtifactsByUser } from 'arcframework';
+
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-import { getArtifactsByUser } from 'gql/artifacts';
 import { REDUX_TABLES } from 'helpers/redux';
-import { CursorEnum } from 'helpers/types';
 
 export default function LibraryAll() {
 	const { id } = useParams();

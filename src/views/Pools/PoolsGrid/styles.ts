@@ -88,7 +88,7 @@ export const InfoTitle = styled.div`
 	p {
 		text-overflow: ellipsis;
 		overflow: hidden;
-		line-height: 16px;
+		line-height: 20px;
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}

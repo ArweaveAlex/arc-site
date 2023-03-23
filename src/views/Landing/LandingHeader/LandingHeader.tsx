@@ -1,7 +1,8 @@
 import { ReactSVG } from 'react-svg';
 
-import { ASSETS, OPERATOR_LINK } from 'helpers/config';
+import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
+import { OPERATOR_LINK } from 'helpers/paths';
 
 import * as S from './styles';
 

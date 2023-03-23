@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { CursorType } from 'helpers/types';
+import { CursorType } from 'arcframework';
 
 export interface IProps {
 	nPages: number;

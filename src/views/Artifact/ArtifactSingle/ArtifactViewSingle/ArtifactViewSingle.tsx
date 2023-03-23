@@ -1,5 +1,6 @@
+import { ArtifactEnum } from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
-import { ArtifactEnum } from 'helpers/types';
 
 import { IProps } from '../types';
 

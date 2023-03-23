@@ -1,8 +1,6 @@
-import { KeyValueType } from 'helpers/types';
-
 export interface IProps {
 	artifactId: string;
-	tags: KeyValueType[];
+	tags: { [key: string]: any }[];
 	owner: string | null;
 	bookmarksDisabled: boolean;
 	handleStampCallback: () => void;

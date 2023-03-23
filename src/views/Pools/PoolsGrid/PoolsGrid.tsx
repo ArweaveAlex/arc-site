@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { FALLBACK_IMAGE, getTxEndpoint, PoolFilterType, PoolType } from 'arcframework';
+
 import { Select } from 'components/atoms/Select';
-import { FALLBACK_IMAGE, POOL_FILTERS } from 'helpers/config';
-import { getTxEndpoint } from 'helpers/endpoints';
+import { POOL_FILTERS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { PoolFilterType, PoolType } from 'helpers/types';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';

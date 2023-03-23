@@ -1,18 +1,27 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ArweaveClient } from 'clients/arweave';
+import {
+	ArtifactDetailType,
+	ArweaveClient,
+	getArtifactById,
+	getBookmarkIds,
+	getHashUrl,
+	getTagValue,
+	NotificationResponseType,
+	setBookmarkIds,
+	STORAGE,
+	TAGS,
+} from 'arcframework';
+
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
-import { getArtifactById, getBookmarkIds, setBookmarkIds } from 'gql/artifacts';
-import { DOM, STORAGE, TAGS } from 'helpers/config';
+import { DOM } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { ArtifactDetailType, NotificationResponseType } from 'helpers/types';
 import * as urls from 'helpers/urls';
-import { getHashUrl, getTagValue } from 'helpers/utils';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import * as artifactActions from 'state/artifacts/actions';
 import { RootState } from 'state/store';

@@ -1,4 +1,4 @@
-import { CollectionType } from 'helpers/types';
+import { CollectionType } from 'arcframework';
 
 export interface IProps {
 	owner: string | null;

@@ -18,7 +18,6 @@ module.exports = {
 							['^react', '^@?\\w'],
 							['^(@|arcframework)(/.*|$)'],
 							[
-								'^(@|actions)(/.*|$)',
 								'^(@|app)(/.*|$)',
 								'^(@|assets)(/.*|$)',
 								'^(@|clients)(/.*|$)',
@@ -37,6 +36,7 @@ module.exports = {
 								'^(@|state)(/.*|$)',
 								'^(@|views)(/.*|$)',
 								'^(@|wallet)(/.*|$)',
+								'^(@|workers)(/.*|$)',
 								'^(@|wrappers)(/.*|$)',
 							],
 							['^\\u0000'],

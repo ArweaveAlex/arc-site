@@ -1,5 +1,6 @@
+import { getArtifactsByPool } from 'arcframework';
+
 import { ArtifactsDetail } from 'global/ArtifactsDetail';
-import { getArtifactsByPool } from 'gql/artifacts';
 
 import { IProps } from './types';
 

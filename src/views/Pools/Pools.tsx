@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import { PoolType } from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
 import { POOL_FILTERS } from 'helpers/config';
-import { PoolType } from 'helpers/types';
 import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
 import { RootState } from 'state/store';
 

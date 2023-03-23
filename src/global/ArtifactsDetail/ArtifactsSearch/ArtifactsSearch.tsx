@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { PAGINATOR, SEARCH, splitArray } from 'arcframework';
+
 import { Search } from 'components/molecules/Search';
-import { PAGINATOR, SEARCH } from 'helpers/config';
-import { splitArray } from 'helpers/utils';
 import { runSearch } from 'search';
 import * as cursorActions from 'state/cursors/actions';
 import * as searchActions from 'state/search/actions';

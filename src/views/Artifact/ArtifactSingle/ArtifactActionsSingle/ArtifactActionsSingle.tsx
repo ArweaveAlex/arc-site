@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { ArweaveClient } from 'clients/arweave';
+import { ArweaveClient } from 'arcframework';
+
 import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';

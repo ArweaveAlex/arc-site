@@ -1,12 +1,12 @@
-import { InjectedArweaveSigner } from 'warp-contracts-plugin-deploy';
+// import { InjectedArweaveSigner } from 'warp-contracts-plugin-deploy';
 
-import { ArweaveClient } from 'clients/arweave';
-import { getGQLData } from 'gql';
-import { TAGS } from 'helpers/config';
+import { ArweaveClient, CollectionStateType, CollectionType } from 'arcframework';
+
+// import { getGQLData } from 'arcframework';
+// import { TAGS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { CollectionStateType, CollectionType, GQLResponseType } from 'helpers/types';
 
-const arClient = new ArweaveClient('arweave.net');
+// const arClient = new ArweaveClient('arweave.net');
 
 export function initCollection(): CollectionStateType {
 	return {
@@ -28,34 +28,56 @@ export function initCollection(): CollectionStateType {
 }
 
 export async function createCollection(collectionState: CollectionStateType) {
-	if (window.arweaveWallet) {
-		await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION', 'ACCESS_PUBLIC_KEY', 'SIGNATURE']);
-	}
-	const userSigner = new InjectedArweaveSigner(window.arweaveWallet);
-	await userSigner.setPublicKey();
+	// if (window.arweaveWallet) {
+	// 	await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION', 'ACCESS_PUBLIC_KEY', 'SIGNATURE']);
+	// }
+	// const userSigner = new InjectedArweaveSigner(window.arweaveWallet);
+	// await userSigner.setPublicKey();
 
-	const tags = [
-		{ name: TAGS.keys.appType, value: TAGS.values.collectionAppType },
-		{ name: TAGS.keys.collectionName, value: collectionState.title },
-		{ name: TAGS.keys.collectionDescription, value: collectionState.description },
-		{ name: TAGS.keys.ansTitle, value: collectionState.title },
-		{ name: `${TAGS.keys.ansTopic}:${collectionState.topic}`, value: collectionState.topic },
-		{ name: TAGS.keys.ansDescription, value: collectionState.description },
-		{ name: TAGS.keys.ansType, value: TAGS.values.ansType },
-		{ name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
-		{ name: TAGS.keys.initialOwner, value: collectionState.owner },
-	];
+	console.log(collectionState);
 
-	const collectionContract = await arClient.warp.createContract.deploy({
-		src: COLLECTION_CONTRACT,
-		initState: JSON.stringify(collectionState),
-		wallet: userSigner,
-		tags: tags,
-	});
+	// const tags = [
+	// 	{ name: TAGS.keys.appType, value: TAGS.values.collectionAppType },
+	// 	{ name: TAGS.keys.collectionName, value: collectionState.title },
+	// 	{ name: TAGS.keys.collectionDescription, value: collectionState.description },
+	// 	{ name: TAGS.keys.ansTitle, value: collectionState.title },
+	// 	{ name: `${TAGS.keys.ansTopic}:${collectionState.topic}`, value: collectionState.topic },
+	// 	{ name: TAGS.keys.ansDescription, value: collectionState.description },
+	// 	{ name: TAGS.keys.ansType, value: TAGS.values.ansType },
+	// 	{ name: TAGS.keys.ansImplements, value: TAGS.values.ansVersion },
+	// 	{ name: TAGS.keys.initialOwner, value: collectionState.owner },
+	// ];
 
+	// TODO: Integrate with arcframework
+	// const collectionContract = await arClient.warp.createContract.deploy({
+	// 	src: COLLECTION_CONTRACT,
+	// 	initState: JSON.stringify(collectionState),
+	// 	wallet: userSigner,
+	// 	tags: tags,
+	// });
+
+	// return {
+	// 	id: collectionContract.contractTxId,
+	// 	state: collectionState,
+	// };
 	return {
-		id: collectionContract.contractTxId,
-		state: collectionState,
+		id: 'Temp',
+		state: {
+			ids: ['string[]'],
+			title: 'string',
+			topic: 'string',
+			name: 'string',
+			ticker: 'string',
+			balances: 'any',
+			maxSupply: 1,
+			transferable: false,
+			owner: 'string',
+			phase: 'string',
+			description: 'string',
+			timestamp: 'string',
+			lockTime: 1,
+			lastTransferTimestamp: 'string',
+		},
 	};
 }
 
@@ -101,32 +123,33 @@ export async function getCollection(collectionContractId: string): Promise<Colle
 }
 
 export async function getCollectionsByOwner(walletAddress: string) {
+	console.log(walletAddress);
 	let collectionsByOwner: CollectionType[] = [];
 
-	const collections: GQLResponseType[] = await getGQLData({
-		ids: null,
-		tagFilters: [
-			{
-				name: TAGS.keys.appType,
-				values: [TAGS.values.collectionAppType],
-			},
-			{
-				name: TAGS.keys.initialOwner,
-				values: [walletAddress],
-			},
-		],
-		uploader: null,
-		cursor: null,
-		reduxCursor: null,
-		cursorObject: null,
-	});
+	// const collections: ArcGQLResponseType = await getGQLData({
+	// 	ids: null,
+	// 	tagFilters: [
+	// 		{
+	// 			name: TAGS.keys.appType,
+	// 			values: [TAGS.values.collectionAppType],
+	// 		},
+	// 		{
+	// 			name: TAGS.keys.initialOwner,
+	// 			values: [walletAddress],
+	// 		},
+	// 	],
+	// 	uploader: null,
+	// 	cursor: null,
+	// 	reduxCursor: null,
+	// 	cursorObject: null,
+	// });
 
-	collectionsByOwner = await Promise.all(
-		collections.map(async (collection: GQLResponseType) => {
-			let contract = await getContractById(collection.node.id);
-			return contract;
-		})
-	);
+	// collectionsByOwner = await Promise.all(
+	// 	collections.data.map(async (collection: GQLResponseType) => {
+	// 		let contract = await getContractById(collection.node.id);
+	// 		return contract;
+	// 	})
+	// );
 
 	return collectionsByOwner;
 }

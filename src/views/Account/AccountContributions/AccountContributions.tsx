@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { ArweaveClient } from 'clients/arweave';
+import { ArweaveClient } from 'arcframework';
+
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import { ContributionsList } from './ContributionsList';
