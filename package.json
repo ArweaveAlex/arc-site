@@ -70,7 +70,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "npm run format && git add ."
+			"pre-commit": "npm run format"
 		}
 	}
 }
