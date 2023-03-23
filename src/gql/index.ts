@@ -9,7 +9,23 @@ export async function getArtifactsByPool(
     return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByPool(args), ArcFramework.CursorEnum.GQL);
 }
 
-function getArtifactsResponseObject(args: ArcFramework.ArtifactArgsType, artifactsResponse: ArcFramework.ArtifactResponseType, cursorObject: ArcFramework.CursorEnum.GQL | ArcFramework.CursorEnum.Search): ArcFramework.ArtifactResponseType {
+export async function getArtifactsByUser(
+    args: ArcFramework.ArtifactArgsType
+): Promise<ArcFramework.ArtifactResponseType> {
+    return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByUser(args), ArcFramework.CursorEnum.GQL);
+}
+
+export async function getArtifactsByIds(
+    args: ArcFramework.ArtifactArgsType
+): Promise<ArcFramework.ArtifactResponseType> {
+    return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByIds(args), ArcFramework.CursorEnum.Search);
+}
+
+function getArtifactsResponseObject(
+    args: ArcFramework.ArtifactArgsType,
+    artifactsResponse: ArcFramework.ArtifactResponseType,
+    cursorObject: ArcFramework.CursorEnum.GQL | ArcFramework.CursorEnum.Search
+): ArcFramework.ArtifactResponseType {
     handleCursors(args.cursor, args.reduxCursor, cursorObject, artifactsResponse.nextCursor);
 
     let cursorState: any;
@@ -24,7 +40,7 @@ function getArtifactsResponseObject(args: ArcFramework.ArtifactArgsType, artifac
         nextCursor: nextCursor,
         previousCursor: previousCursor,
         contracts: artifactsResponse.contracts,
-    }
+    };
 }
 
 function handleCursors(

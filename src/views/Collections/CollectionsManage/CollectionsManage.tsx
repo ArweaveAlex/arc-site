@@ -6,8 +6,7 @@ import {
 	CollectionStateType,
 	CollectionType,
 	CursorEnum,
-	getArtifactsByBookmarks,
-	getArtifactsByUser,
+	getArtifactsByBookmarks
 } from 'arcframework';
 
 import { createCollection, getCollection, initCollection, saveCollection } from 'collections/collections';
@@ -16,6 +15,7 @@ import { FormField } from 'components/atoms/FormField';
 import { Loader } from 'components/atoms/Loader';
 import { TextArea } from 'components/atoms/TextArea';
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
+import { getArtifactsByUser } from 'gql';
 import { URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
