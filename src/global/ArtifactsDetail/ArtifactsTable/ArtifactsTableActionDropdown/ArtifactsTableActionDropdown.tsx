@@ -9,7 +9,6 @@ import {
 	getHashUrl,
 	getTagValue,
 	NotificationResponseType,
-	setBookmarkIds,
 	STORAGE,
 	TAGS,
 } from 'arcframework';
@@ -19,6 +18,7 @@ import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
+import { setBookmarkIds } from 'gql';
 import { DOM } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
@@ -99,7 +99,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				} else {
 					const bookmarkIdsState = await getBookmarkIds(props.owner);
 					dispatch(
-						artifactActions.setBookmark({
+						artifactActions.setBookmarks({
 							owner: props.owner,
 							ids: bookmarkIdsState,
 						})

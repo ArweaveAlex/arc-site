@@ -1,6 +1,6 @@
 import { ReduxActionType } from 'helpers/types';
 
-import { SET_COLLECTION } from './constants';
+import { SET_BOOKMARKS } from './constants';
 import { BookmarksType } from './types';
 
 export const initStateBookmarks: BookmarksType = {
@@ -10,7 +10,7 @@ export const initStateBookmarks: BookmarksType = {
 
 export function bookmarksReducer(state: BookmarksType = initStateBookmarks, action: ReduxActionType) {
 	switch (action.type) {
-		case SET_COLLECTION:
+		case SET_BOOKMARKS:
 			return Object.assign({}, state, {
 				owner: action.payload.owner ?? state.owner,
 				ids: action.payload.ids ?? state.ids,

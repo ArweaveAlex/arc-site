@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ArweaveClient, formatAddress } from 'arcframework';
 
-import { TableLoader } from 'components/atoms/TableLoader';
+import { Placeholder } from 'components/atoms/Placeholder';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
@@ -64,7 +64,7 @@ export default function PoolContributors(props: IProps) {
 			}
 			return <S.Body>{getBody(contributorList)}</S.Body>;
 		} else {
-			return <TableLoader rowCount={ROW_COUNT} />;
+			return <Placeholder rowCount={ROW_COUNT} />;
 		}
 	}
 
@@ -90,7 +90,7 @@ export default function PoolContributors(props: IProps) {
 			}
 			return <S.Body>{getBody(contributorList)}</S.Body>;
 		} else {
-			return <TableLoader rowCount={ROW_COUNT} />;
+			return <Placeholder rowCount={ROW_COUNT} />;
 		}
 	}
 

@@ -10,7 +10,6 @@ import * as S from './styles';
 
 export default function ContributionsList(props: { data: any }) {
 	function getData() {
-		console.log(props.data);
 		if (props.data) {
 			if (props.data.length <= 0) {
 				return (

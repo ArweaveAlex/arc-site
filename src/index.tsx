@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
@@ -19,12 +18,10 @@ root.render(
 		<PersistGate loading={<Loader />} persistor={persistor}>
 			<ThemeProvider theme={defaultTheme}>
 				<ArweaveProvider>
-					<React.StrictMode>
-						<HashRouter>
-							<GlobalStyle />
-							<App />
-						</HashRouter>
-					</React.StrictMode>
+					<HashRouter>
+						<GlobalStyle />
+						<App />
+					</HashRouter>
 				</ArweaveProvider>
 			</ThemeProvider>
 		</PersistGate>

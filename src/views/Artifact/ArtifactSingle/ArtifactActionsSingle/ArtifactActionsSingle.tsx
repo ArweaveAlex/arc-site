@@ -78,6 +78,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 						type={'primary'}
 						label={copied ? LANGUAGE.copied : LANGUAGE.copyArtifactId}
 						handlePress={copyArtifactId}
+						width={130}
 					/>
 				</S.ButtonContainer>
 				<S.ButtonContainer>

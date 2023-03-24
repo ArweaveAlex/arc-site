@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 
-import { CursorEnum, getArtifactsByBookmarks } from 'arcframework';
+import { CursorEnum } from 'arcframework';
 
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
+import { getArtifactsByBookmarks } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
 
 export default function LibraryBookmark() {

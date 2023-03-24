@@ -10,15 +10,33 @@ module.exports = {
 		path: `${__dirname}/dist`,
 		filename: 'bundle.js',
 	},
-	optimization: {
-		minimize: true,
-		minimizer: [
-			new TerserPlugin({
-				extractComments: false,
-			}),
-		],
-		usedExports: true,
+	devtool: 'eval',
+	mode: process.env.NODE_ENV || 'development',
+	devServer: {
+		static: {
+			directory: path.join(__dirname, 'dist'),
+		},
+		hot: true,
+		historyApiFallback: true,
+		port: 3000,
+		open: false,
+		compress: true,
+		client: {
+			overlay: true,
+		},
 	},
+	optimization:
+		process.env.NODE_ENV === 'production'
+			? {
+					minimize: true,
+					minimizer: [
+						new TerserPlugin({
+							extractComments: false,
+						}),
+					],
+					usedExports: true,
+			  }
+			: {},
 	ignoreWarnings: [
 		{
 			message:
@@ -28,21 +46,18 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.ts$|tsx/,
-				use: [
-					{
-						loader: 'ts-loader',
-						options: {
-							compilerOptions: { noEmit: false },
-						},
+				test: /\.(ts|tsx)$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: [
+							'@babel/preset-env',
+							['@babel/preset-react', { runtime: 'automatic' }],
+							'@babel/preset-typescript',
+						],
 					},
-				],
-				exclude: /node_modules/,
-			},
-			{
-				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
-				use: 'babel-loader',
+				},
 			},
 			{
 				test: /\.css$/,
@@ -54,12 +69,40 @@ module.exports = {
 					fullySpecified: false,
 				},
 			},
+			// {
+			// 	test: /\.(png|jpg|gif)$/,
+			// 	use: [
+			// 		{
+			// 			loader: 'url-loader',
+			// 			options: {},
+			// 		},
+			// 	],
+			// },
 			{
 				test: /\.(png|jpg|gif)$/,
 				use: [
+					'url-loader',
 					{
-						loader: 'url-loader',
-						options: {},
+						loader: 'image-webpack-loader',
+						options: {
+							mozjpeg: {
+								progressive: true,
+								quality: 65,
+							},
+							optipng: {
+								enabled: false,
+							},
+							pngquant: {
+								quality: [0.65, 0.9],
+								speed: 4,
+							},
+							gifsicle: {
+								interlaced: false,
+							},
+							webp: {
+								quality: 75,
+							},
+						},
 					},
 				],
 			},

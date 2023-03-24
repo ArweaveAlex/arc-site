@@ -9,7 +9,6 @@ import * as windowUtils from 'helpers/window';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: mobile alt preview container cutoff
 export default function Modal(props: IProps) {
 	React.useEffect(() => {
 		windowUtils.hideDocumentBody();

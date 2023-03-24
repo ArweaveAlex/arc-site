@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PAGINATOR } from 'arcframework';
 
-import { TableLoader } from 'components/atoms/TableLoader';
+import { Placeholder } from 'components/atoms/Placeholder';
 import { Paginator } from 'components/molecules/Paginator';
 import { LANGUAGE } from 'helpers/language';
 import { TableRowType } from 'helpers/types';
@@ -23,7 +23,7 @@ export default function Table(props: IProps) {
 
 	function getTable() {
 		if (!currentRecords) {
-			return <TableLoader rowCount={PAGINATOR} />;
+			return <Placeholder rowCount={PAGINATOR} />;
 		} else {
 			if (currentRecords.length <= 0) {
 				if (props.showNoResults) {
