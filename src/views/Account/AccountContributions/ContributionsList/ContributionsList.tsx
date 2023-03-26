@@ -1,15 +1,26 @@
 import { Link } from 'react-router-dom';
 
+<<<<<<< HEAD
 import { Loader } from 'components/atoms/Loader';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { formatAddress, formatDate } from 'helpers/utils';
+=======
+import { formatAddress, formatDate } from 'arcframework';
+
+import { Loader } from 'components/atoms/Loader';
+import { LANGUAGE } from 'helpers/language';
+import * as urls from 'helpers/urls';
+>>>>>>> dev
 
 import * as S from './styles';
 
 export default function ContributionsList(props: { data: any }) {
 	function getData() {
+<<<<<<< HEAD
 		console.log(props.data);
+=======
+>>>>>>> dev
 		if (props.data) {
 			if (props.data.length <= 0) {
 				return (

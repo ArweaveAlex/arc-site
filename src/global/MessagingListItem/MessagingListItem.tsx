@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
+<<<<<<< HEAD
 
 import { Loader } from 'components/atoms/Loader';
 import { Carousel } from 'components/molecules/Carousel';
@@ -12,6 +13,26 @@ import { LANGUAGE } from 'helpers/language';
 import { ArtifactDetailType } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { formatAddress, formatDate, formatMessagingData, formatMetric, getUsername } from 'helpers/utils';
+=======
+
+import {
+	ArtifactDetailType,
+	formatAddress,
+	formatDate,
+	formatKeywordString,
+	formatMetric,
+	getArtifactById,
+	getTxEndpoint,
+	MEDIA_TYPES,
+	STORAGE,
+} from 'arcframework';
+
+import { Loader } from 'components/atoms/Loader';
+import { Carousel } from 'components/molecules/Carousel';
+import { ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import * as urls from 'helpers/urls';
+>>>>>>> dev
 
 import * as S from './styles';
 import { IMProps, IProps } from './types';
@@ -237,4 +258,23 @@ export default function MessagingListItem(props: IProps) {
 			</S.LIContent>
 		</S.LIWrapper>
 	) : null;
+}
+
+function getUsername(data: any) {
+	if (data && data.user) {
+		if (data.user.username) return `@${data.user.username}`;
+		else if (data.user.screen_name) return `@${data.user.screen_name}`;
+		else return STORAGE.none;
+	} else {
+		return STORAGE.none;
+	}
+}
+
+export function formatMessagingData(data: any) {
+	if (data && (data.text || data.full_text)) {
+		const tweetText = data.text ? data.text : data.full_text;
+		return formatKeywordString(tweetText, '@');
+	} else {
+		return STORAGE.none;
+	}
 }

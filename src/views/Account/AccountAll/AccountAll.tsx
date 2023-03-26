@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
 import { getArtifactsByUser } from 'gql/artifacts';
 import { REDUX_TABLES } from 'helpers/redux';
 import { CursorEnum } from 'helpers/types';
+=======
+import { CursorEnum } from 'arcframework';
+
+import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
+import { getArtifactsByUser } from 'gql';
+import { REDUX_TABLES } from 'helpers/redux';
+>>>>>>> dev
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 export default function AccountAll() {
@@ -17,6 +25,7 @@ export default function AccountAll() {
 			showSearch={false}
 			selectCallback={null}
 			selectedCallbackIds={null}
+			disabledSelectedCallbackIds={null}
 			bookmarksDisabled={false}
 			cursorObject={{
 				key: CursorEnum.Search,

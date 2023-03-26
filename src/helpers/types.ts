@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 
 export enum ArtifactEnum {
@@ -110,6 +111,8 @@ export interface PoolSearchIndexStateType {
 	searchIndeces: string[];
 }
 
+=======
+>>>>>>> dev
 export type ButtonType = 'primary' | 'alt1' | 'alt2' | 'alt3' | 'success' | 'warning';
 export type FormFieldType = 'number' | 'password';
 export type NotificationType = 'success' | 'warning' | 'neutral';
@@ -125,8 +128,6 @@ export type CursorType = {
 	next: string | null;
 	previous: string | null;
 };
-export type NStringType = string | null;
-export type NStringListType = string[] | null;
 
 export type URLViewType = {
 	index: number;
@@ -147,12 +148,11 @@ export type ValidationType = {
 	message: string | null;
 };
 
-export type KeyValueType = { [key: string]: string | React.ReactNode };
 export type TableHeaderType = {
 	[key: string]: { width: string; align: AlignType; display: string | null };
 };
 export type TableRowType = {
-	data: KeyValueType;
+	data: { [key: string]: any };
 	active: boolean;
 	viewed: boolean;
 };
@@ -172,21 +172,6 @@ export type ReduxActionType = {
 	payload: any;
 };
 
-export type NotificationResponseType = {
-	status: number | null;
-	message: string | null;
-};
-
-export type TableIdType = {
-	value: string;
-	type: 'poolId' | 'ownerId';
-};
-
-export type TagFilterType = { name: string; values: string[] };
-export type ContributionType = { timestamp: string; qty: string };
-export type PoolFilterType = { title: string; fn: (data: any) => any };
-export type CursorObjectKeyType = CursorEnum.GQL | CursorEnum.Search | null;
-export type CursorObjectType = { key: CursorObjectKeyType; value: string };
 export type ActionDropdownType = {
 	fn: () => void;
 	closeOnAction: boolean;
@@ -195,4 +180,3 @@ export type ActionDropdownType = {
 	disabled: boolean;
 	loading: boolean;
 };
-export type SequenceType = { start: number; end: number };

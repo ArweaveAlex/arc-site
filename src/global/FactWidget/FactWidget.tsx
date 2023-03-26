@@ -1,11 +1,19 @@
 import React from 'react';
 import * as facts from '@facts-kit/facts-sdk';
 
+<<<<<<< HEAD
+=======
+import { NotificationResponseType } from 'arcframework';
+
+>>>>>>> dev
 import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { LANGUAGE } from 'helpers/language';
+<<<<<<< HEAD
 import { NotificationResponseType } from 'helpers/types';
+=======
+>>>>>>> dev
 import { WalletBlock } from 'wallet/WalletBlock';
 
 import * as S from './styles';

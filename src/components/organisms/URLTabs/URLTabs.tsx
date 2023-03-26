@@ -2,7 +2,10 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from 'components/atoms/Button';
+<<<<<<< HEAD
 import { NotFound } from 'views/NotFound';
+=======
+>>>>>>> dev
 
 import * as S from './styles';
 import { ICProps, ITProps, IUProps } from './types';
@@ -31,7 +34,7 @@ function Tab(props: ITProps) {
 
 function TabContent(props: ICProps) {
 	const { id, active } = useParams() as { id: string; active: string };
-	let TabView: React.ComponentType = NotFound;
+	let TabView: React.ComponentType = null;
 	for (let i = 0; i < props.tabs.length; i++) {
 		const url = typeof props.tabs[i].url === 'function' ? props.tabs[i].url(id) : props.tabs[i].url;
 		if (url.includes(active)) {

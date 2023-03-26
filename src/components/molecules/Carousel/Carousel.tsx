@@ -16,6 +16,28 @@ export default function _Carousel(props: IProps) {
 		onClickHandler();
 	}
 
+<<<<<<< HEAD
+=======
+	function getAction(step: 'prev' | 'next', clickHandler: any, disabled: boolean) {
+		const Action = step === 'prev' ? S.PrevAction : S.NextAction;
+		if (props.data && props.data.length > 1) {
+			return (
+				<Action>
+					<IconButton
+						src={step === 'prev' ? ASSETS.arrowPrevious : ASSETS.arrowNext}
+						type={'alt1'}
+						handlePress={() => handleClick(clickHandler)}
+						dimensions={{ wrapper: 25, icon: 11 }}
+						disabled={disabled}
+					/>
+				</Action>
+			);
+		} else {
+			return null;
+		}
+	}
+
+>>>>>>> dev
 	return props.data ? (
 		<S.Content>
 			<S.Header>
@@ -36,6 +58,7 @@ export default function _Carousel(props: IProps) {
 					emulateTouch={true}
 					preventMovementUntilSwipeScrollTolerance={true}
 					renderArrowPrev={(onClickHandler, hasPrevious) => {
+<<<<<<< HEAD
 						return (
 							<S.PrevAction>
 								<IconButton
@@ -60,6 +83,12 @@ export default function _Carousel(props: IProps) {
 								/>
 							</S.NextAction>
 						);
+=======
+						return getAction('prev', onClickHandler, !hasPrevious);
+					}}
+					renderArrowNext={(onClickHandler, hasNext) => {
+						return getAction('next', onClickHandler, !hasNext);
+>>>>>>> dev
 					}}
 				>
 					{props.data}
@@ -67,4 +96,16 @@ export default function _Carousel(props: IProps) {
 			</S.Body>
 		</S.Content>
 	) : null;
+}
+
+{
+	/* <S.NextAction>
+	<IconButton
+		src={ASSETS.arrowNext}
+		type={'alt1'}
+		handlePress={() => handleClick(onClickHandler)}
+		dimensions={{ wrapper: 25, icon: 11 }}
+		disabled={!hasNext}
+	/>
+</S.NextAction> */
 }

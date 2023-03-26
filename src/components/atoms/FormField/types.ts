@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { FormFieldType, ValidationType } from 'helpers/types';
+import { ValidationType } from 'arcframework';
+
+import { FormFieldType } from 'helpers/types';
 
 export interface IProps {
 	label?: string;

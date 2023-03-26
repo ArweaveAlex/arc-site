@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
+<<<<<<< HEAD
 import { ASSETS, STORAGE } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
@@ -11,6 +12,17 @@ import { formatAddress, formatDate, formatNostrData } from 'helpers/utils';
 import * as S from './styles';
 import { IProps } from './types';
 
+=======
+import { formatAddress, formatDate, STORAGE } from 'arcframework';
+
+import { ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import * as urls from 'helpers/urls';
+
+import * as S from './styles';
+import { IProps } from './types';
+
+>>>>>>> dev
 export default function NostrListItem(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
 
@@ -100,4 +112,12 @@ export default function NostrListItem(props: IProps) {
 			</S.LIContent>
 		</S.LIWrapper>
 	) : null;
+}
+
+function formatNostrData(data: any) {
+	if (data && (data.post || data.post.content)) {
+		return data.post.content;
+	} else {
+		return STORAGE.none;
+	}
 }

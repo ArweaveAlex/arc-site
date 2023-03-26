@@ -22,3 +22,6 @@ export const SOCIAL_PATHS = [
 		svg: ASSETS.social.discord,
 	},
 ];
+
+export const OPERATOR_LINK = 'https://alex-operator-guide.arweave.dev/';
+export const TWITTER_ACCOUNT_REDIRECT = (user: string) => `https://twitter.com/${user}`;

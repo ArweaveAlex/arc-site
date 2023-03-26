@@ -1,6 +1,11 @@
 import React from 'react';
 
+<<<<<<< HEAD
 import { ArweaveClient } from 'clients/arweave';
+=======
+import { ArweaveClient } from 'arcframework';
+
+>>>>>>> dev
 import { ArtifactsDetail } from 'global/ArtifactsDetail';
 
 import { IProps } from './types';
@@ -13,8 +18,8 @@ export default function OwnerArtifacts(props: IProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (props.owner) {
-				let contributions = await arClient.getUserContributions(props.owner);
-				let ids = contributions.map((contribution) => {
+				const contributions = await arClient.getUserContributions(props.owner);
+				const ids = contributions.map((contribution) => {
 					return contribution.id;
 				});
 				setPoolIds(ids);
@@ -40,6 +45,7 @@ export default function OwnerArtifacts(props: IProps) {
 			uploader={null}
 			selectCallback={props.selectCallback}
 			selectedCallbackIds={props.selectedCallbackIds}
+			disabledSelectedCallbackIds={props.disabledSelectedCallbackIds}
 			usePreviewModal={props.usePreviewModal}
 			action={props.action}
 		/>

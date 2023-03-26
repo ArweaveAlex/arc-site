@@ -1,4 +1,4 @@
-import { PoolType } from 'helpers/types';
+import { PoolType } from 'arcframework';
 
 export function sortByAll(pools: PoolType[], amount: number | null): PoolType[] {
 	if (amount) {

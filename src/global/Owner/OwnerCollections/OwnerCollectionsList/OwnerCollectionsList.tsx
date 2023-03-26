@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+<<<<<<< HEAD
+=======
+import { formatAddress, formatDate } from 'arcframework';
+
+>>>>>>> dev
 import { ButtonLink } from 'components/atoms/ButtonLink';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
+<<<<<<< HEAD
 import { formatAddress, formatDate } from 'helpers/utils';
+=======
+>>>>>>> dev
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -27,7 +35,7 @@ export default function OwnerCollectionsList(props: IProps) {
 							<ButtonLink
 								type={'alt2'}
 								label={LANGUAGE.create}
-								href={`${urls.collectionsCreate}?owner=${props.owner}`}
+								href={`${urls.collectionsManage}?owner=${props.owner}`}
 								noMinWidth
 							/>
 						</S.ELink>
@@ -43,7 +51,7 @@ export default function OwnerCollectionsList(props: IProps) {
 									<ButtonLink
 										type={'alt1'}
 										label={LANGUAGE.create}
-										href={`${urls.collectionsCreate}?owner=${props.owner}`}
+										href={`${urls.collectionsManage}?owner=${props.owner}`}
 										noMinWidth
 									/>
 								)}
@@ -53,7 +61,7 @@ export default function OwnerCollectionsList(props: IProps) {
 							{props.data.map((collection: any, index: number) => {
 								return (
 									<S.Link key={index}>
-										<Link to={'#'}>
+										<Link to={`${urls.collectionsManage}?owner=${props.owner}&contractId=${collection.id}`}>
 											<S.ListItemWrapper>
 												<S.LIHeaderContainer>
 													<S.LIHeader1>{collection.state.title}</S.LIHeader1>

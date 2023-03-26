@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { ArtifactArgsType, ArtifactResponseType, CursorObjectType, TableIdType } from 'helpers/types';
+=======
+import { ArtifactArgsType, ArtifactResponseType, CursorObjectType, TableIdType } from 'arcframework';
+>>>>>>> dev
 
 export interface IProps {
 	id: TableIdType;
@@ -16,6 +20,7 @@ export interface IProps {
 	owner: string | null;
 	uploader: string | null;
 	selectedCallbackIds: string[] | null;
+	disabledSelectedCallbackIds: string[] | null;
 	usePreviewModal: boolean;
 	action?: React.ReactNode;
 }

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { ArtifactResponseType, CursorObjectType, CursorType, TableIdType } from 'helpers/types';
+=======
+import { ArtifactResponseType, CursorObjectType, CursorType, TableIdType } from 'arcframework';
+>>>>>>> dev
 
 export interface IProps {
 	id: TableIdType;
@@ -16,6 +20,7 @@ export interface IProps {
 	bookmarksDisabled: boolean;
 	selectCallback: ((id: string) => void) | null;
 	selectedCallbackIds: string[] | null;
+	disabledSelectedCallbackIds: string[] | null;
 	usePreviewModal: boolean;
 	action?: React.ReactNode;
 }

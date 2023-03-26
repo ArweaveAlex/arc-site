@@ -1,10 +1,18 @@
 import React from 'react';
 
+<<<<<<< HEAD
 import { Loader } from 'components/atoms/Loader';
 import { ARTIFACT_TABS, ARTIFACT_TYPES, TAB_OPTIONS, TAGS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { ArtifactDetailType } from 'helpers/types';
 import { checkNullValues } from 'helpers/utils';
+=======
+import { ArtifactDetailType, checkNullValues, TAGS } from 'arcframework';
+
+import { Loader } from 'components/atoms/Loader';
+import { ARTIFACT_TABS, ARTIFACT_TYPES, TAB_OPTIONS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+>>>>>>> dev
 
 import { ArtifactActionsSingle } from './ArtifactActionsSingle';
 import { ArtifactDetailSingle } from './ArtifactDetailSingle';

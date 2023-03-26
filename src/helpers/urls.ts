@@ -13,4 +13,4 @@ export const library = `${base}library/`;
 export const libraryAll = (id: string) => `${library}${id}/all/`;
 export const libraryBookmarks = (id: string) => `${library}${id}/collections/`;
 export const collections = `${base}collections/`;
-export const collectionsCreate = `${collections}create`;
+export const collectionsManage = `${collections}manage`;

@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
 import { getArtifactsByBookmarks } from 'gql/artifacts';
 import { REDUX_TABLES } from 'helpers/redux';
 import { CursorEnum } from 'helpers/types';
+=======
+import { CursorEnum } from 'arcframework';
+
+import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
+import { getArtifactsByBookmarks } from 'gql';
+import { REDUX_TABLES } from 'helpers/redux';
+>>>>>>> dev
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 export default function AccountBookmark() {
@@ -18,6 +26,7 @@ export default function AccountBookmark() {
 			bookmarksDisabled={false}
 			selectCallback={null}
 			selectedCallbackIds={null}
+			disabledSelectedCallbackIds={null}
 			cursorObject={{
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.accountBookmarks,

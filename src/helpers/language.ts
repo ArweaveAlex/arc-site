@@ -41,6 +41,11 @@ export const LANGUAGE = {
 	closePreview: `Close Preview`,
 	collection: {
 		subheader1: `Collection`,
+<<<<<<< HEAD
+=======
+		success: `Collection saved!`,
+		failure: `Collection failed to save.`,
+>>>>>>> dev
 	},
 	collectionNameAlreadyExists: `Collection Name already exists`,
 	collections: `Collections`,
@@ -61,7 +66,6 @@ export const LANGUAGE = {
 	copyAddress: `Copy Address`,
 	copyArtifactId: `Copy Artifact ID`,
 	create: `Create`,
-	createCollection: `Create Collection`,
 	createFirstCollection: `Create your first collection`,
 	createdOn: `Created on`,
 	dateCreated: `Date Created`,
@@ -93,6 +97,10 @@ export const LANGUAGE = {
 	},
 	loading: `Loading`,
 	loadMore: `Load more`,
+<<<<<<< HEAD
+=======
+	manageCollection: `Manage Collection`,
+>>>>>>> dev
 	mediaCaution: `Caution: Media may contain inappropriate content.`,
 	messaging: {
 		handle: `Handle`,
@@ -136,6 +144,7 @@ export const LANGUAGE = {
 	receiving: `Receiving`,
 	redditAuthor: `Posted by u/`,
 	removeFromBookmarks: `Remove from Bookmarks`,
+	save: `Save`,
 	searchInitializing: `Initializing search`,
 	select: `Select`,
 	share: `Share`,

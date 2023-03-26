@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 import { NStringListType, NStringType } from 'helpers/types';
 
+=======
+>>>>>>> dev
 export type BookmarksType = {
-	owner: NStringType;
-	ids: NStringListType;
+	owner: string | null;
+	ids: string[] | null;
 };

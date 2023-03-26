@@ -1,4 +1,4 @@
-import { ArtifactDetailType } from 'helpers/types';
+import { ArtifactDetailType } from 'arcframework';
 
 export function sortByAssociationSequence(data: ArtifactDetailType[]) {
 	const sortedData: ArtifactDetailType[] = data.sort(function (a, b) {

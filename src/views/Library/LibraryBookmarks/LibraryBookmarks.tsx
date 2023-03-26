@@ -1,9 +1,15 @@
 import { useParams } from 'react-router-dom';
 
+<<<<<<< HEAD
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
 import { getArtifactsByBookmarks } from 'gql/artifacts';
+=======
+import { CursorEnum } from 'arcframework';
+
+import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
+import { getArtifactsByBookmarks } from 'gql';
+>>>>>>> dev
 import { REDUX_TABLES } from 'helpers/redux';
-import { CursorEnum } from 'helpers/types';
 
 export default function LibraryBookmark() {
 	const { id } = useParams();
@@ -19,6 +25,7 @@ export default function LibraryBookmark() {
 			bookmarksDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
+			disabledSelectedCallbackIds={null}
 			cursorObject={{
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.libraryBookmarks,

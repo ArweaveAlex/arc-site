@@ -1,18 +1,40 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+<<<<<<< HEAD
 import { ArweaveClient } from 'clients/arweave';
+=======
+import {
+	ArtifactDetailType,
+	ArweaveClient,
+	getArtifactById,
+	getBookmarkIds,
+	getHashUrl,
+	getTagValue,
+	NotificationResponseType,
+	STORAGE,
+	TAGS,
+} from 'arcframework';
+
+>>>>>>> dev
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
+<<<<<<< HEAD
 import { getArtifactById, getBookmarkIds, setBookmarkIds } from 'gql/artifacts';
 import { DOM, STORAGE, TAGS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { ArtifactDetailType, NotificationResponseType } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { getHashUrl, getTagValue } from 'helpers/utils';
+=======
+import { setBookmarkIds } from 'gql';
+import { DOM } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import * as urls from 'helpers/urls';
+>>>>>>> dev
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import * as artifactActions from 'state/artifacts/actions';
 import { RootState } from 'state/store';
@@ -90,7 +112,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				} else {
 					const bookmarkIdsState = await getBookmarkIds(props.owner);
 					dispatch(
-						artifactActions.setBookmark({
+						artifactActions.setBookmarks({
 							owner: props.owner,
 							ids: bookmarkIdsState,
 						})

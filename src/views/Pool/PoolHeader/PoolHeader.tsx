@@ -1,13 +1,21 @@
 import React from 'react';
 import parse from 'html-react-parser';
 
+<<<<<<< HEAD
 import { ArweaveClient } from 'clients/arweave';
+=======
+import { ArweaveClient, formatAddress, formatCount } from 'arcframework';
+
+>>>>>>> dev
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { SocialShare } from 'global/SocialShare';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
+<<<<<<< HEAD
 import { formatAddress, formatCount } from 'helpers/utils';
+=======
+>>>>>>> dev
 
 import { PoolContribute } from '../PoolContribute';
 

@@ -1,16 +1,26 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+<<<<<<< HEAD
+=======
+import { ArtifactDetailType, formatAddress, formatDate, getArtifactById, getPoolById, PoolType } from 'arcframework';
+
+>>>>>>> dev
 import { Loader } from 'components/atoms/Loader';
 import { Carousel } from 'components/molecules/Carousel';
 import { sortByAssociationSequence } from 'filters/artifacts';
 import { ImageListItem } from 'global/ImageListItem';
+<<<<<<< HEAD
 import { getArtifactById } from 'gql/artifacts';
 import { getPoolById } from 'gql/pools';
 import { LANGUAGE } from 'helpers/language';
 import { ArtifactDetailType, PoolType } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { formatAddress, formatDate } from 'helpers/utils';
+=======
+import { LANGUAGE } from 'helpers/language';
+import * as urls from 'helpers/urls';
+>>>>>>> dev
 
 import { IProps } from '../../types';
 

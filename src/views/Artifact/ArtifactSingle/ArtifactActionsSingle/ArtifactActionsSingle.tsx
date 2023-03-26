@@ -1,6 +1,11 @@
 import React from 'react';
 
+<<<<<<< HEAD
 import { ArweaveClient } from 'clients/arweave';
+=======
+import { ArweaveClient } from 'arcframework';
+
+>>>>>>> dev
 import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';
@@ -77,6 +82,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 						type={'primary'}
 						label={copied ? LANGUAGE.copied : LANGUAGE.copyArtifactId}
 						handlePress={copyArtifactId}
+						width={130}
 					/>
 				</S.ButtonContainer>
 				<S.ButtonContainer>

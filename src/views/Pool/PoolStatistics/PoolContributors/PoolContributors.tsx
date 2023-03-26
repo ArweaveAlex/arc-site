@@ -1,11 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+<<<<<<< HEAD
 import { ArweaveClient } from 'clients/arweave';
 import { TableLoader } from 'components/atoms/TableLoader';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { formatAddress } from 'helpers/utils';
+=======
+import { ArweaveClient, formatAddress } from 'arcframework';
+
+import { Placeholder } from 'components/atoms/Placeholder';
+import { LANGUAGE } from 'helpers/language';
+import * as urls from 'helpers/urls';
+>>>>>>> dev
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -64,7 +72,7 @@ export default function PoolContributors(props: IProps) {
 			}
 			return <S.Body>{getBody(contributorList)}</S.Body>;
 		} else {
-			return <TableLoader rowCount={ROW_COUNT} />;
+			return <Placeholder rowCount={ROW_COUNT} />;
 		}
 	}
 
@@ -90,7 +98,7 @@ export default function PoolContributors(props: IProps) {
 			}
 			return <S.Body>{getBody(contributorList)}</S.Body>;
 		} else {
-			return <TableLoader rowCount={ROW_COUNT} />;
+			return <Placeholder rowCount={ROW_COUNT} />;
 		}
 	}
 

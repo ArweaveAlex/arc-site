@@ -1,9 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+<<<<<<< HEAD:src/views/Pools/Pools.tsx
 import { Loader } from 'components/atoms/Loader';
 import { POOL_FILTERS } from 'helpers/config';
 import { PoolType } from 'helpers/types';
+=======
+import { PoolType } from 'arcframework';
+
+import { Loader } from 'components/atoms/Loader';
+import { POOL_FILTERS } from 'helpers/config';
+>>>>>>> dev:src/views/Pools/index.tsx
 import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
 import { RootState } from 'state/store';
 

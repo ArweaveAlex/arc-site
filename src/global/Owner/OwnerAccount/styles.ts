@@ -40,6 +40,88 @@ export const HeaderContent = styled.div`
 
 export const HeaderContainer = styled.div``;
 
+export const FlexHeader = styled.div`
+	display: flex;
+	align-items: center;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		flex-wrap: wrap;
+	}
+`;
+
+export const ProfileWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+`;
+
+export const ProfileFlex = styled.div`
+	display: flex;
+	align-items: center;
+`;
+
+export const SocialLinks = styled.div`
+	display: flex;
+	align-items: center;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		margin: 20px 0 0 0;
+	}
+`;
+
+export const SocialLink = styled.div`
+	margin: 0 10px 0 0;
+	display: flex;
+	position: relative;
+	p {
+		font-size: 12px;
+		color: ${(props) => props.theme.colors.font.primary.alt4};
+		white-space: nowrap;
+	}
+`;
+
+export const AvatarWrapper = styled.div`
+	height: 60px;
+	width: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1.5px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: 50%;
+	svg {
+		height: 32.5px;
+		width: 32.5px;
+		stroke: ${(props) => props.theme.colors.icon.alt1.fill};
+	}
+`;
+
+export const Avatar = styled.img`
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
+`;
+
+export const Info = styled.div`
+	display: flex;
+	margin: 0 25px;
+	p,
+	span {
+		font-size: clamp(16px, 2.5vw, 24px);
+		font-family: ${(props) => props.theme.typography.family.primary};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+	}
+	p {
+		color: ${(props) => props.theme.colors.font.primary.active.base};
+	}
+	span {
+		color: ${(props) => props.theme.colors.font.primary.alt4};
+	}
+	@media (max-width: ${STYLING.cutoffs.secondary}) {
+		flex-direction: column;
+	}
+`;
+
 export const ShareWrapper = styled.div`
 	height: 100%;
 	width: fit-content;
@@ -68,17 +150,14 @@ export const URLCopied = styled.div`
 	}
 `;
 
+export const DiscordHandleCopied = styled(URLCopied)`
+	top: -25.5px;
+	left: 32.5px;
+`;
+
 export const TabsWrapper = styled.div`
 	height: calc(100% - 200px);
 	width: 100%;
-`;
-
-export const FlexHeader = styled.div`
-	display: flex;
-	align-items: center;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		flex-wrap: wrap;
-	}
 `;
 
 export const H1 = styled.h1`

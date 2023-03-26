@@ -1,10 +1,18 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 
+<<<<<<< HEAD
 import { Loader } from 'components/atoms/Loader';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { formatCount, formatDate, formatMetric, sortCommentTree, traverseCommentTree } from 'helpers/utils';
+=======
+import { formatCount, formatDate, formatMetric } from 'arcframework';
+
+import { Loader } from 'components/atoms/Loader';
+import { ASSETS } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+>>>>>>> dev
 
 import { IProps } from '../../types';
 
@@ -127,4 +135,51 @@ export default function ArtifactRedditSingle(props: IProps) {
 			<Loader sm />
 		</S.LoadingContainer>
 	);
+}
+
+async function traverseCommentTree(callBackFields: string[], obj: any, callBack: any) {
+	for (let key in obj) {
+		if (obj.hasOwnProperty(key)) {
+			if (callBackFields.includes(key)) {
+				await callBack(obj);
+			} else if (typeof obj[key] === 'object' && obj[key] !== null) {
+				await traverseCommentTree(callBackFields, obj[key], callBack);
+			}
+		}
+	}
+}
+
+function sortCommentTree(data: any[]) {
+	const reversedData = [...data].reverse();
+	const bodyListData = reversedData.map((element) => element.body);
+	let groupedData: any[] = [];
+	const finalData: any[] = [];
+
+	for (let i = 0; i < reversedData.length; i++) {
+		if (reversedData[i].depth === 0) {
+			let j = bodyListData.indexOf(reversedData[i].body);
+			let commentTraversed = false;
+			const subList: any[] = [];
+			subList.push(reversedData[j]);
+			j++;
+			while (!commentTraversed) {
+				if (reversedData[j]) {
+					if (reversedData[j].depth === 0) {
+						commentTraversed = true;
+					} else {
+						subList.push(reversedData[j]);
+					}
+					j++;
+				} else {
+					commentTraversed = true;
+				}
+			}
+			groupedData.push(subList);
+		}
+	}
+	groupedData = groupedData.reverse();
+	for (let i = 0; i < groupedData.length; i++) {
+		finalData.push(groupedData[i]);
+	}
+	return finalData;
 }

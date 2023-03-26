@@ -66,6 +66,7 @@ export const C2 = styled.div<{ image: string }>`
 	background-image: ${(props) => `url("${props.image}")`};
 	background-size: cover;
 	background-position: center;
+	border: 1.5px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadius};
 `;
 
@@ -88,7 +89,7 @@ export const InfoTitle = styled.div`
 	p {
 		text-overflow: ellipsis;
 		overflow: hidden;
-		line-height: 16px;
+		line-height: 20px;
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}

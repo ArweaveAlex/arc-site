@@ -228,7 +228,7 @@ export const defaultTheme: DefaultTheme = {
 		},
 		table: {
 			placeholder: {
-				background: DEFAULT.neutral2,
+				background: DEFAULT.neutral9,
 				backgroundStart: DEFAULT.transparent,
 				backgroundSlide: DEFAULT.semiTransparent,
 				backgroundEnd: DEFAULT.transparent,

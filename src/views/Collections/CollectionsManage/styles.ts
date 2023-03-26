@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
+const WRAPPER_HEIGHT = '550px';
+
 export const Wrapper = styled.div`
 	width: 100%;
 	padding: 0 20px 20px 20px;
@@ -177,3 +179,14 @@ export const ActionContainer = styled.div`
 `;
 
 export const ActionButtonContainer = styled.div``;
+
+export const LoadingContainer = styled.div`
+	height: 100%;
+	height: ${WRAPPER_HEIGHT};
+	width: 100%;
+	position: relative;
+	margin: 40px 0 0 0;
+	background: ${(props) => props.theme.colors.container.alt3.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+`;

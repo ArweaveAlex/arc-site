@@ -1,4 +1,4 @@
-import { PoolType } from 'helpers/types';
+import { PoolType } from 'arcframework';
 
 export interface IProps {
 	headerData: PoolType;

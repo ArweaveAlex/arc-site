@@ -1,4 +1,4 @@
-import { ArtifactArgsType, ArtifactResponseType, CursorObjectType } from 'helpers/types';
+import { ArtifactArgsType, ArtifactResponseType, CursorObjectType } from 'arcframework';
 
 export interface IProps {
 	owner: string | null;
@@ -11,6 +11,7 @@ export interface IProps {
 	cursorObject: CursorObjectType;
 	selectCallback: ((id: string) => void) | null;
 	selectedCallbackIds: string[] | null;
+	disabledSelectedCallbackIds: string[] | null;
 	usePreviewModal: boolean;
 	action?: React.ReactNode;
 }

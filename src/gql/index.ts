@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ArweaveClient } from 'clients/arweave';
 import { CURSORS, PAGINATOR, SEARCH } from 'helpers/config';
 import { CursorEnum, CursorObjectKeyType, GQLResponseType, TagFilterType } from 'helpers/types';
@@ -16,88 +17,101 @@ export async function getGQLData(args: {
 	let nextCursor: string | null;
 	const arClient = new ArweaveClient();
 	const data: GQLResponseType[] = [];
+=======
+import * as ArcFramework from 'arcframework';
 
-	if (args.ids && args.ids.length <= 0) {
-		return data;
-	}
+import * as artifactActions from 'state/artifacts/actions';
+import * as cursorActions from 'state/cursors/actions';
+import { store } from 'state/store';
 
-	let ids = args.ids ? JSON.stringify(args.ids) : null;
-	let tags = args.tagFilters ? unquoteJsonKeys(args.tagFilters) : null;
-	let owners = args.uploader ? JSON.stringify([args.uploader]) : null;
+export async function getArtifactsByPool(
+	args: ArcFramework.ArtifactArgsType
+): Promise<ArcFramework.ArtifactResponseType> {
+	return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByPool(args), ArcFramework.CursorEnum.GQL);
+}
 
-	let cursor = args.cursor ? `"${args.cursor}"` : null;
+export async function getArtifactsByUser(
+	args: ArcFramework.ArtifactArgsType
+): Promise<ArcFramework.ArtifactResponseType> {
+	return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByUser(args), ArcFramework.CursorEnum.GQL);
+}
+>>>>>>> dev
 
-	if (args.reduxCursor && args.cursorObject && args.cursorObject === CursorEnum.Search) {
-		let i: number;
-		let cursor: string;
+export async function getArtifactsByIds(
+	args: ArcFramework.ArtifactArgsType
+): Promise<ArcFramework.ArtifactResponseType> {
+	return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByIds(args), ArcFramework.CursorEnum.Search);
+}
 
-		if (args.cursor && args.cursor !== CURSORS.p1 && args.cursor !== CURSORS.end && !checkGqlCursor(args.cursor)) {
-			i = Number(args.cursor.slice(-1));
-			cursor = args.cursor;
+export async function getArtifactsByBookmarks(
+	args: ArcFramework.ArtifactArgsType
+): Promise<ArcFramework.ArtifactResponseType> {
+	let bookmarkIds: string[];
+	const bookmarksReducer = store.getState().bookmarksReducer;
+
+	if (bookmarksReducer.owner === args.owner) {
+		bookmarkIds = bookmarksReducer.ids;
+	} else {
+		if (args.owner) {
+			bookmarkIds = await ArcFramework.getBookmarkIds(args.owner);
 		} else {
-			i = 0;
-			cursor = `${SEARCH.cursorPrefix}-${i}`;
-		}
-
-		if (store.getState().searchIdsReducer[args.reduxCursor][i]) {
-			ids = JSON.stringify(store.getState().searchIdsReducer[args.reduxCursor][i][cursor]);
-			nextCursor = JSON.parse(ids).length < PAGINATOR ? CURSORS.end : `${SEARCH.cursorPrefix}-${++i}`;
+			bookmarkIds = [];
 		}
 	}
 
-	const operation = {
-		query: `
-                query {
-                    transactions(
-                        ids: ${ids},
-                        tags: ${tags},
-                        owners: ${owners},
-                        first: ${PAGINATOR}, 
-                        after: ${cursor}
-                    ){
-                    edges {
-                        cursor
-                        node {
-                            id
-                            tags {
-                                name 
-                                value 
-                            }
-                            data {
-                                size
-                                type
-                            }
-                        }
-                    }
-                }
-            }
-        `,
+	const reduxArgs = {
+		ids: bookmarkIds,
+		owner: args.owner,
+		uploader: args.uploader,
+		cursor: args.cursor,
+		reduxCursor: args.reduxCursor,
 	};
+	return getArtifactsResponseObject(
+		reduxArgs,
+		await ArcFramework.getArtifactsByBookmarks(reduxArgs),
+		ArcFramework.CursorEnum.GQL
+	);
+}
 
-	const response = await arClient.arweaveGet.api.post('/graphql', operation);
-	if (response.data.data) {
-		const responseData = response.data.data.transactions.edges;
-		if (responseData.length > 0) {
-			data.push(...responseData);
-			if (args.cursorObject && args.cursorObject === CursorEnum.GQL) {
-				if (responseData.length < PAGINATOR) {
-					nextCursor = CURSORS.end;
-				} else {
-					nextCursor = responseData[responseData.length - 1].cursor;
-				}
-			}
-		}
+export async function setBookmarkIds(owner: string, ids: string[]): Promise<ArcFramework.NotificationResponseType> {
+	const response = await ArcFramework.setBookmarkIds(owner, ids);
+	if (response.status === 200) {
+		store.dispatch(
+			artifactActions.setBookmarks({
+				owner: owner,
+				ids: ids,
+			})
+		);
+	}
+	return response;
+}
+
+function getArtifactsResponseObject(
+	args: ArcFramework.ArtifactArgsType,
+	artifactsResponse: ArcFramework.ArtifactResponseType,
+	cursorObject: ArcFramework.CursorEnum.GQL | ArcFramework.CursorEnum.Search
+): ArcFramework.ArtifactResponseType {
+	handleCursors(args.cursor, args.reduxCursor, cursorObject, artifactsResponse.nextCursor);
+
+	let cursorState: any;
+	if (args.reduxCursor) {
+		cursorState = store.getState().cursorsReducer[cursorObject][args.reduxCursor];
 	}
 
-	handleCursors(args.cursor, args.reduxCursor, args.cursorObject, nextCursor);
+	let nextCursor: string | null = cursorState ? cursorState.next : null;
+	let previousCursor: string | null = cursorState ? cursorState.previous : null;
 
-	return data;
+	return {
+		nextCursor: nextCursor,
+		previousCursor: previousCursor,
+		contracts: artifactsResponse.contracts,
+	};
 }
 
 function handleCursors(
 	cursor: string | null,
 	reduxCursor: string | null,
-	cursorObject: CursorObjectKeyType,
+	cursorObject: ArcFramework.CursorObjectKeyType,
 	nextCursor: string | null
 ) {
 	let cursorState: any;
@@ -141,7 +155,7 @@ function handleCursors(
 			}
 			if (cursorList.length === 2) {
 				cursorState.next = cursorList[1];
-				cursorState.previous = CURSORS.p1;
+				cursorState.previous = ArcFramework.CURSORS.p1;
 				tempCursorList.push(cursorState.previous);
 				for (let i = 0; i < cursorList.length; i++) {
 					tempCursorList[i + 1] = cursorList[i];
@@ -151,7 +165,7 @@ function handleCursors(
 		}
 
 		if (cursor) {
-			if (cursor === CURSORS.p1) {
+			if (cursor === ArcFramework.CURSORS.p1) {
 				cursorState.next = nextCursor;
 				cursorState.previous = null;
 				cursorList = [nextCursor];

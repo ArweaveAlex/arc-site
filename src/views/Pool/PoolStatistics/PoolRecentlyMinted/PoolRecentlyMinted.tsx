@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+<<<<<<< HEAD
 import { ARTIFACT_TYPES, STORAGE, TAGS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { GQLResponseType, KeyValueType } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { formatArtifactType, getTagValue } from 'helpers/utils';
+=======
+import { formatArtifactType, getTagValue, GQLResponseType, STORAGE, TAGS } from 'arcframework';
+
+import { ARTIFACT_TYPES } from 'helpers/config';
+import { LANGUAGE } from 'helpers/language';
+import * as urls from 'helpers/urls';
+>>>>>>> dev
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -20,7 +28,7 @@ export default function PoolRecentlyMinted(props: IProps) {
 		}
 	}
 
-	function getArtifactLink(id: string, tags: KeyValueType[]) {
+	function getArtifactLink(id: string, tags: { [key: string]: any }[]) {
 		let redirect: string;
 		const associationId = getTagValue(tags, TAGS.keys.associationId);
 		const artifactType = getTagValue(tags, TAGS.keys.artifactType);

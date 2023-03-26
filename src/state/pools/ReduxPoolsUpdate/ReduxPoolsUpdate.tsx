@@ -1,7 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+<<<<<<< HEAD
 import { getPools } from 'gql/pools';
+=======
+import { getPools } from 'arcframework';
+
+>>>>>>> dev
 import * as poolActions from 'state/pools/actions';
 import { RootState } from 'state/store';
 
