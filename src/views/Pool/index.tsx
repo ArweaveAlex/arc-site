@@ -11,7 +11,8 @@ import {
 	getTagValue,
 	getTxEndpoint,
 	PoolType,
-	TAGS} from 'arcframework';
+	TAGS,
+} from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { REDUX_TABLES } from 'helpers/redux';

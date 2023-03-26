@@ -7,10 +7,12 @@ import {
 	CollectionType,
 	createCollection,
 	CursorEnum,
-	getArtifactsByBookmarks, getArtifactsByUser, 
+	getArtifactsByBookmarks,
+	getArtifactsByUser,
 	getCollection,
 	initCollection,
-	saveCollection} from 'arcframework';
+	saveCollection,
+} from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';

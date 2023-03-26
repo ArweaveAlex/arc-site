@@ -11,7 +11,8 @@ import {
 	NotificationResponseType,
 	setBookmarkIds,
 	STORAGE,
-	TAGS} from 'arcframework';
+	TAGS,
+} from 'arcframework';
 
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
