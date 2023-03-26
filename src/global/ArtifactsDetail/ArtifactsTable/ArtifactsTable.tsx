@@ -4,16 +4,6 @@ import { ReactSVG } from 'react-svg';
 import Stamps from '@permaweb/stampjs';
 import parse from 'html-react-parser';
 
-<<<<<<< HEAD
-import { ArweaveClient } from 'clients/arweave';
-import { Checkbox } from 'components/atoms/Checkbox';
-import { Table } from 'components/organisms/Table';
-import { ARTIFACT_TYPES, ASSETS, PAGINATOR, STORAGE, TAGS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
-import { AlignType, ArtifactTableRowType, GQLResponseType, KeyValueType, TableHeaderType } from 'helpers/types';
-import * as urls from 'helpers/urls';
-import { checkAssociation, checkMedia, formatDate, formatMessagingText, getTagValue } from 'helpers/utils';
-=======
 import {
 	ArweaveClient,
 	formatDate,
@@ -31,7 +21,6 @@ import { ARTIFACT_TYPES, ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { AlignType, ArtifactTableRowType, TableHeaderType } from 'helpers/types';
 import * as urls from 'helpers/urls';
->>>>>>> dev
 
 import { ArtifactsSearch } from '../ArtifactsSearch';
 

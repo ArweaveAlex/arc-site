@@ -2,10 +2,7 @@ import { ReactSVG } from 'react-svg';
 
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-<<<<<<< HEAD
-=======
 import { OPERATOR_LINK } from 'helpers/paths';
->>>>>>> dev
 
 import * as S from './styles';
 

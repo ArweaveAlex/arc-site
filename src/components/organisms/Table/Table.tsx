@@ -1,15 +1,9 @@
 import React from 'react';
 
-<<<<<<< HEAD
-import { TableLoader } from 'components/atoms/TableLoader';
-import { Paginator } from 'components/molecules/Paginator';
-import { PAGINATOR } from 'helpers/config';
-=======
 import { PAGINATOR } from 'arcframework';
 
 import { Placeholder } from 'components/atoms/Placeholder';
 import { Paginator } from 'components/molecules/Paginator';
->>>>>>> dev
 import { LANGUAGE } from 'helpers/language';
 import { TableRowType } from 'helpers/types';
 

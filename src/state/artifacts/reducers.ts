@@ -1,10 +1,6 @@
 import { ReduxActionType } from 'helpers/types';
 
-<<<<<<< HEAD
-import { SET_COLLECTION } from './constants';
-=======
 import { SET_BOOKMARKS } from './constants';
->>>>>>> dev
 import { BookmarksType } from './types';
 
 export const initStateBookmarks: BookmarksType = {

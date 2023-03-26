@@ -1,18 +1,11 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 
-<<<<<<< HEAD
-import { Loader } from 'components/atoms/Loader';
-import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
-import { formatCount, formatDate, formatMetric, sortCommentTree, traverseCommentTree } from 'helpers/utils';
-=======
 import { formatCount, formatDate, formatMetric } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
->>>>>>> dev
 
 import { IProps } from '../../types';
 

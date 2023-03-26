@@ -2,19 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-<<<<<<< HEAD
-=======
 import { formatAddress, formatDataSize, formatDate } from 'arcframework';
 
->>>>>>> dev
 import { IconButton } from 'components/atoms/IconButton';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
-<<<<<<< HEAD
-import { formatAddress, formatDataSize, formatDate } from 'helpers/utils';
-=======
->>>>>>> dev
 
 import * as S from './styles';
 import { IProps } from './types';

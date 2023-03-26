@@ -1,32 +1,20 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-<<<<<<< HEAD:src/views/Pool/Pool.tsx
-import { Loader } from 'components/atoms/Loader';
-import { getArtifactsByPool } from 'gql/artifacts';
-import { getPoolById, getPoolCount } from 'gql/pools';
-import { FALLBACK_IMAGE, TAGS } from 'helpers/config';
-import { getTxEndpoint } from 'helpers/endpoints';
-import { REDUX_TABLES } from 'helpers/redux';
-import { CursorEnum, PoolType } from 'helpers/types';
-import { formatDate, getTagValue } from 'helpers/utils';
-=======
 import {
 	CursorEnum,
 	FALLBACK_IMAGE,
 	formatDate,
+	getArtifactsByPool,
 	getPoolById,
 	getPoolCount,
 	getTagValue,
 	getTxEndpoint,
 	PoolType,
-	TAGS,
-} from 'arcframework';
+	TAGS} from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
-import { getArtifactsByPool } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
->>>>>>> dev:src/views/Pool/index.tsx
 
 import { PoolDetail } from './PoolDetail';
 import { PoolHeader } from './PoolHeader';

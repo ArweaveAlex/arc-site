@@ -41,11 +41,8 @@ export const LANGUAGE = {
 	closePreview: `Close Preview`,
 	collection: {
 		subheader1: `Collection`,
-<<<<<<< HEAD
-=======
 		success: `Collection saved!`,
 		failure: `Collection failed to save.`,
->>>>>>> dev
 	},
 	collectionNameAlreadyExists: `Collection Name already exists`,
 	collections: `Collections`,
@@ -97,10 +94,7 @@ export const LANGUAGE = {
 	},
 	loading: `Loading`,
 	loadMore: `Load more`,
-<<<<<<< HEAD
-=======
 	manageCollection: `Manage Collection`,
->>>>>>> dev
 	mediaCaution: `Caution: Media may contain inappropriate content.`,
 	messaging: {
 		handle: `Handle`,

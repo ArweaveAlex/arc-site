@@ -26,19 +26,10 @@ root.render(
 		<PersistGate loading={<Loader />} persistor={persistor}>
 			<ThemeProvider theme={defaultTheme}>
 				<ArweaveProvider>
-<<<<<<< HEAD
-					<React.StrictMode>
-						<HashRouter>
-							<GlobalStyle />
-							<App />
-						</HashRouter>
-					</React.StrictMode>
-=======
 					<HashRouter>
 						<GlobalStyle />
 						<App />
 					</HashRouter>
->>>>>>> dev
 				</ArweaveProvider>
 			</ThemeProvider>
 		</PersistGate>

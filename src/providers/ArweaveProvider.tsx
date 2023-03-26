@@ -1,16 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-<<<<<<< HEAD
-import { Modal } from 'components/molecules/Modal';
-import { AR_WALLETS, WALLET_PERMISSIONS } from 'helpers/config';
-import { getBalanceEndpoint } from 'helpers/endpoints';
-=======
 import { getBalanceEndpoint } from 'arcframework';
 
 import { Modal } from 'components/molecules/Modal';
 import { AR_WALLETS, WALLET_PERMISSIONS } from 'helpers/config';
->>>>>>> dev
 import { LANGUAGE } from 'helpers/language';
 
 export const WalletListContainer = styled.div`

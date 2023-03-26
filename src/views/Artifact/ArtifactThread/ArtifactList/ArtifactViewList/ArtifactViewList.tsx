@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { ArtifactEnum } from 'helpers/types';
-=======
 import { ArtifactEnum } from 'arcframework';
 
->>>>>>> dev
 import { useQuery } from 'hooks/useQuery';
 import { Query } from 'wrappers/Query';
 

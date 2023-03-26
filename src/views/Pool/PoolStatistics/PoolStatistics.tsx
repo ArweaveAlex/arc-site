@@ -1,18 +1,15 @@
 import React from 'react';
 
-<<<<<<< HEAD
-import { getArtifactsByIds, getArtifactsByPool } from 'gql/artifacts';
-import { TAGS } from 'helpers/config';
-import { getRedstoneDescEndpoint } from 'helpers/endpoints';
-import { REDUX_TABLES } from 'helpers/redux';
-import { ArtifactResponseType } from 'helpers/types';
-import { getTagValue } from 'helpers/utils';
-=======
-import { ArtifactResponseType, getArtifactsByIds, getRedstoneDescEndpoint, getTagValue, TAGS } from 'arcframework';
+import {
+	ArtifactResponseType,
+	getArtifactsByIds,
+	getArtifactsByPool,
+	getRedstoneDescEndpoint,
+	getTagValue,
+	TAGS,
+} from 'arcframework';
 
-import { getArtifactsByPool } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
->>>>>>> dev
 
 import { PoolContributors } from './PoolContributors';
 import { PoolRecentlyMinted } from './PoolRecentlyMinted';

@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-import { Route, Routes } from 'react-router-dom';
-
-import * as urls from 'helpers/urls';
-import { Account } from 'views/Account';
-import { Artifact } from 'views/Artifact';
-import { ArtifactThread } from 'views/Artifact/ArtifactThread';
-import { CollectionsCreate } from 'views/Collections/CollectionsCreate';
-import { Landing } from 'views/Landing';
-import { Library } from 'views/Library';
-import { NotFound } from 'views/NotFound';
-import { Pool } from 'views/Pool';
-import { Pools } from 'views/Pools';
-import { View } from 'wrappers/View';
-=======
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -29,7 +14,6 @@ const Library = getLazyImport('Library');
 const NotFound = getLazyImport('NotFound');
 const Pool = getLazyImport('Pool');
 const Pools = getLazyImport('Pools');
->>>>>>> dev
 
 export default function _Routes() {
 	return (

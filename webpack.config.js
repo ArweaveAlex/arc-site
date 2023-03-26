@@ -69,15 +69,6 @@ module.exports = {
 					fullySpecified: false,
 				},
 			},
-			// {
-			// 	test: /\.(png|jpg|gif)$/,
-			// 	use: [
-			// 		{
-			// 			loader: 'url-loader',
-			// 			options: {},
-			// 		},
-			// 	],
-			// },
 			{
 				test: /\.(png|jpg|gif)$/,
 				use: [
@@ -160,7 +151,6 @@ module.exports = {
 			components: path.resolve(__dirname, 'src/components/'),
 			filters: path.resolve(__dirname, 'src/filters/'),
 			global: path.resolve(__dirname, 'src/global/'),
-			gql: path.resolve(__dirname, 'src/gql/'),
 			helpers: path.resolve(__dirname, 'src/helpers/'),
 			hooks: path.resolve(__dirname, 'src/hooks/'),
 			navigation: path.resolve(__dirname, 'src/navigation/'),

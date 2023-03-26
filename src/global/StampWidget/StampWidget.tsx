@@ -2,11 +2,8 @@ import React from 'react';
 import { ReactSVG } from 'react-svg';
 import Stamps from '@permaweb/stampjs';
 
-<<<<<<< HEAD
-=======
 import { formatFloat, NotificationResponseType } from 'arcframework';
 
->>>>>>> dev
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
@@ -14,11 +11,6 @@ import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-<<<<<<< HEAD
-import { NotificationResponseType } from 'helpers/types';
-import { formatFloat } from 'helpers/utils';
-=======
->>>>>>> dev
 import { WalletBlock } from 'wallet/WalletBlock';
 
 import * as S from './styles';

@@ -8,14 +8,7 @@ import { FALLBACK_IMAGE, getTxEndpoint, PoolType } from 'arcframework';
 import { Loader } from 'components/atoms/Loader';
 import { Carousel } from 'components/molecules/Carousel';
 import { sortByMostContributed } from 'filters/pools';
-<<<<<<< HEAD
-import { FALLBACK_IMAGE } from 'helpers/config';
-import { getTxEndpoint } from 'helpers/endpoints';
 import { LANGUAGE } from 'helpers/language';
-import { PoolType } from 'helpers/types';
-=======
-import { LANGUAGE } from 'helpers/language';
->>>>>>> dev
 import * as urls from 'helpers/urls';
 import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
 import { RootState } from 'state/store';

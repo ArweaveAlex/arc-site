@@ -2,18 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
-<<<<<<< HEAD
-
-import { Loader } from 'components/atoms/Loader';
-import { Carousel } from 'components/molecules/Carousel';
-import { getArtifactById } from 'gql/artifacts';
-import { ASSETS, MEDIA_TYPES, STORAGE } from 'helpers/config';
-import { getTxEndpoint } from 'helpers/endpoints';
-import { LANGUAGE } from 'helpers/language';
-import { ArtifactDetailType } from 'helpers/types';
-import * as urls from 'helpers/urls';
-import { formatAddress, formatDate, formatMessagingData, formatMetric, getUsername } from 'helpers/utils';
-=======
 
 import {
 	ArtifactDetailType,
@@ -32,7 +20,6 @@ import { Carousel } from 'components/molecules/Carousel';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
->>>>>>> dev
 
 import * as S from './styles';
 import { IMProps, IProps } from './types';

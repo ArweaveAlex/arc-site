@@ -1,11 +1,7 @@
 import React from 'react';
 
-<<<<<<< HEAD
-import { ArweaveClient } from 'clients/arweave';
-=======
 import { ArweaveClient } from 'arcframework';
 
->>>>>>> dev
 import { ArtifactsDetail } from 'global/ArtifactsDetail';
 
 import { IProps } from './types';

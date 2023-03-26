@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 import { PoolType, TAGS } from 'arcframework';
 
->>>>>>> dev
 import menuActionSVG from 'assets/action-menu.svg';
 import allSVG from 'assets/all.svg';
 import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
@@ -58,19 +55,11 @@ import twitterSocialSVG from 'assets/twitter.svg';
 import userSVG from 'assets/user.svg';
 import * as filters from 'filters/pools';
 import { LANGUAGE } from 'helpers/language';
-<<<<<<< HEAD
-import { IURLView, PoolType } from 'helpers/types';
-import * as urls from 'helpers/urls';
-import { AccountAll } from 'views/Account/AccountAll';
-import { AccountBookmarks } from 'views/Account/AccountBookmarks';
-import { AccountCollections } from 'views/Account/AccountCollections';
-=======
 import { IURLView } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { AccountAll } from 'views/Account/AccountAll';
 import { AccountBookmarks } from 'views/Account/AccountBookmarks';
 // import { AccountCollections } from 'views/Account/AccountCollections';
->>>>>>> dev
 import { AccountContributions } from 'views/Account/AccountContributions';
 import { LibraryAll } from 'views/Library/LibraryAll';
 import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
@@ -78,55 +67,6 @@ import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
 export const APP = {
 	key: 'appVersion',
 	version: '1.1.1',
-<<<<<<< HEAD
-};
-
-export const TAGS = {
-	keys: {
-		alexPoolId: 'Alex-Pool-Id',
-		ansTitle: 'Title',
-		ansDescription: 'Description',
-		ansTopic: 'Topic',
-		ansType: 'Type',
-		ansImplements: 'Implements',
-		appType: 'App-Type',
-		artifactName: 'Artifact-Name',
-		artifactType: 'Artifact-Type',
-		associationId: 'Association-Id',
-		associationSequence: 'Association-Sequence',
-		childAssets: 'Child-Assets',
-		bookmarkIds: 'Bookmark-Ids-Tag',
-		bookmarkSearch: 'Alex-Bookmark-Search',
-		dateCreated: 'Date-Created',
-		keywords: 'Keywords',
-		initialOwner: 'Initial-Owner',
-		poolId: 'Pool-Id',
-		profileImage: 'Profile-Image',
-		uploaderTxId: 'Uploader-Tx-Id',
-		contractSrc: 'Contract-Src',
-		mediaIds: 'Media-Ids',
-		timestamp: 'Timestamp',
-		collectionName: 'Collection-Name',
-		collectionDescription: 'Collection-Description',
-	},
-	values: {
-		defaultArtifactType: 'Alex-Default',
-		imageArtifactType: 'Alex-Image',
-		messagingArtifactType: 'Alex-Messaging',
-		nostrEventArtifactType: 'Alex-Nostr-Event',
-		redditThreadArtifactType: 'Alex-Reddit-Thread',
-		webpageArtifactType: 'Alex-Webpage',
-		poolVersions: {
-			'1.2': 'Alex-Archiving-Pool-v1.2',
-			'1.4': 'Alex-Archiving-Pool-v1.4',
-		},
-		searchIndex: 'Alex-Search-Index-v0',
-		collectionAppType: 'Alex-Collection-v0',
-		ansVersion: 'ANS-110',
-		ansType: 'token',
-	},
-=======
->>>>>>> dev
 };
 
 export const ASSETS = {
@@ -315,18 +255,3 @@ export const POOL_FILTERS = [
 		fn: (data: PoolType[]) => filters.sortByAll(data, null),
 	},
 ];
-<<<<<<< HEAD
-
-export const FALLBACK_IMAGE = '8HqSqy_nNRSTPv-q-j7_iHGTp6lEA5K77TP4BPuXGyA';
-
-export const SEARCH = {
-	cursorPrefix: 'searchCursor',
-	idTerm: '`*',
-	ownerTerm: '`%',
-};
-
-export const POOL_INDEX_CONTRACT_ID = 'G2j_YAD1GQcdtXZEwUIE7VDs8Y0UuWx85inKI-kXajY';
-
-export const OPERATOR_LINK = 'https://alex-operator-guide.arweave.dev/';
-=======
->>>>>>> dev

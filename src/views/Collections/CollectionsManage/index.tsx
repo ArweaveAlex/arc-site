@@ -1,8 +1,5 @@
 import React from 'react';
 
-<<<<<<< HEAD:src/views/Collections/CollectionsCreate/CollectionsCreate.tsx
-import { createCollection } from 'collections/collections';
-=======
 import {
 	ArtifactArgsType,
 	ArtifactResponseType,
@@ -10,29 +7,19 @@ import {
 	CollectionType,
 	createCollection,
 	CursorEnum,
+	getArtifactsByBookmarks, getArtifactsByUser, 
 	getCollection,
 	initCollection,
-	saveCollection,
-} from 'arcframework';
+	saveCollection} from 'arcframework';
 
->>>>>>> dev:src/views/Collections/CollectionsManage/index.tsx
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { Loader } from 'components/atoms/Loader';
 import { TextArea } from 'components/atoms/TextArea';
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-<<<<<<< HEAD:src/views/Collections/CollectionsCreate/CollectionsCreate.tsx
-import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql/artifacts';
 import { URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
-import { ArtifactArgsType, ArtifactResponseType, CollectionStateType, CursorEnum } from 'helpers/types';
-=======
-import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql';
-import { URLS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
-import { REDUX_TABLES } from 'helpers/redux';
->>>>>>> dev:src/views/Collections/CollectionsManage/index.tsx
 import { useQuery } from 'hooks/useQuery';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { WalletBlock } from 'wallet/WalletBlock';

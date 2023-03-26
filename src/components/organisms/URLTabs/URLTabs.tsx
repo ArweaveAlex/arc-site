@@ -2,10 +2,6 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from 'components/atoms/Button';
-<<<<<<< HEAD
-import { NotFound } from 'views/NotFound';
-=======
->>>>>>> dev
 
 import * as S from './styles';
 import { ICProps, ITProps, IUProps } from './types';

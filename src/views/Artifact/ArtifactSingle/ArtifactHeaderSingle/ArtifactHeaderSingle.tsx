@@ -1,20 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-<<<<<<< HEAD
-=======
 import { formatAddress, formatArtifactType, formatDate } from 'arcframework';
 
->>>>>>> dev
 import { Tabs } from 'components/organisms/Tabs';
 import { SocialShare } from 'global/SocialShare';
 import { ARTIFACT_TABS, ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
-<<<<<<< HEAD
-import { formatAddress, formatArtifactType, formatDate } from 'helpers/utils';
-=======
->>>>>>> dev
 
 import * as S from './styles';
 import { IProps } from './types';
