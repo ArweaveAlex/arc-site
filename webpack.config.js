@@ -157,7 +157,6 @@ module.exports = {
 			process: 'process/browser',
 			app: path.resolve(__dirname, 'src/app/'),
 			assets: path.resolve(__dirname, 'src/assets/'),
-			collections: path.resolve(__dirname, 'src/collections/'),
 			components: path.resolve(__dirname, 'src/components/'),
 			filters: path.resolve(__dirname, 'src/filters/'),
 			global: path.resolve(__dirname, 'src/global/'),

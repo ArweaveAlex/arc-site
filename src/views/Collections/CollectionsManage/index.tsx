@@ -1,8 +1,17 @@
 import React from 'react';
 
-import { ArtifactArgsType, ArtifactResponseType, CollectionStateType, CollectionType, CursorEnum } from 'arcframework';
+import {
+	ArtifactArgsType,
+	ArtifactResponseType,
+	CollectionStateType,
+	CollectionType,
+	createCollection,
+	CursorEnum,
+	getCollection,
+	initCollection,
+	saveCollection,
+} from 'arcframework';
 
-import { createCollection, getCollection, initCollection, saveCollection } from 'collections/collections';
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { Loader } from 'components/atoms/Loader';

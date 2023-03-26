@@ -66,6 +66,7 @@ export const C2 = styled.div<{ image: string }>`
 	background-image: ${(props) => `url("${props.image}")`};
 	background-size: cover;
 	background-position: center;
+	border: 1.5px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadius};
 `;
 

@@ -8,7 +8,7 @@ import { View } from 'wrappers/View';
 const Account = getLazyImport('Account');
 const Artifact = getLazyImport('Artifact');
 const ArtifactThread = getLazyImport('Artifact/ArtifactThread');
-const CollectionsManage = getLazyImport('CollectionsManage');
+const CollectionsManage = getLazyImport('Collections/CollectionsManage');
 const Landing = getLazyImport('Landing');
 const Library = getLazyImport('Library');
 const NotFound = getLazyImport('NotFound');

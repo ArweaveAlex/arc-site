@@ -24,3 +24,4 @@ export const SOCIAL_PATHS = [
 ];
 
 export const OPERATOR_LINK = 'https://alex-operator-guide.arweave.dev/';
+export const TWITTER_ACCOUNT_REDIRECT = (user: string) => `https://twitter.com/${user}`;

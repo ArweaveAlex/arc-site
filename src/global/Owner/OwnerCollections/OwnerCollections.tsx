@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { CollectionType } from 'arcframework';
+import { CollectionType, getCollectionsByOwner } from 'arcframework';
 
-import { getCollectionsByOwner } from 'collections/collections';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import { OwnerCollectionsList } from './OwnerCollectionsList';
