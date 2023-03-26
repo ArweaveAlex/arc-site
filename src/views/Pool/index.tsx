@@ -5,7 +5,6 @@ import {
 	CursorEnum,
 	FALLBACK_IMAGE,
 	formatDate,
-	getArtifactsByPool,
 	getPoolById,
 	getPoolCount,
 	getTagValue,
@@ -15,6 +14,7 @@ import {
 } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
+import { getArtifactsByPool } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
 
 import { PoolDetail } from './PoolDetail';

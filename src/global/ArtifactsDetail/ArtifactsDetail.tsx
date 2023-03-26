@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ArtifactResponseType, getArtifactsByIds } from 'arcframework';
+import { ArtifactResponseType } from 'arcframework';
 
 import { ArtifactsTable } from 'global/ArtifactsDetail/ArtifactsTable';
+import { getArtifactsByIds } from 'gql';
 import * as windowUtils from 'helpers/window';
 import { clearCursors } from 'state/cursors/actions';
 import { RootState } from 'state/store';

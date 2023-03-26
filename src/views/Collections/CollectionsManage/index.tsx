@@ -7,8 +7,6 @@ import {
 	CollectionType,
 	createCollection,
 	CursorEnum,
-	getArtifactsByBookmarks,
-	getArtifactsByUser,
 	getCollection,
 	initCollection,
 	saveCollection,
@@ -19,6 +17,7 @@ import { FormField } from 'components/atoms/FormField';
 import { Loader } from 'components/atoms/Loader';
 import { TextArea } from 'components/atoms/TextArea';
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
+import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql';
 import { URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
