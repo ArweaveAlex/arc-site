@@ -49,75 +49,75 @@ export const FlexHeader = styled.div`
 `;
 
 export const ProfileWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    @media (max-width: ${STYLING.cutoffs.tablet}) {
+	display: flex;
+	align-items: center;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
-        align-items: flex-start;
+		align-items: flex-start;
 	}
 `;
 
 export const ProfileFlex = styled.div`
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 `;
 
-
 export const SocialLinks = styled.div`
-    display: flex;
-    align-items: center;
-    @media (max-width: ${STYLING.cutoffs.tablet}) {
+	display: flex;
+	align-items: center;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		margin: 20px 0 0 0;
 	}
 `;
 
 export const SocialLink = styled.div`
-    margin: 0 10px 0 0;
-    display: flex;
-    position: relative;
-    p {
-        font-size: 12px;
+	margin: 0 10px 0 0;
+	display: flex;
+	position: relative;
+	p {
+		font-size: 12px;
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 		white-space: nowrap;
-    }
+	}
 `;
 
 export const AvatarWrapper = styled.div`
-    height: 60px;
-    width: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1.5px solid ${(props) => props.theme.colors.border.primary};
-    border-radius: 50%;
-    svg {
-        height: 32.5px;
-        width: 32.5px;
-        stroke: ${(props) => props.theme.colors.icon.alt1.fill};
-    }
+	height: 60px;
+	width: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1.5px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: 50%;
+	svg {
+		height: 32.5px;
+		width: 32.5px;
+		stroke: ${(props) => props.theme.colors.icon.alt1.fill};
+	}
 `;
 
 export const Avatar = styled.img`
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
 `;
 
 export const Info = styled.div`
-    display: flex;
-    margin: 0 25px;
-    p, span {
-        font-size: clamp(16px, 2.5vw, 24px);
-        font-family: ${(props) => props.theme.typography.family.primary};
-        font-weight: ${(props) => props.theme.typography.weight.medium};
-    }
-    p {
-        color: ${(props) => props.theme.colors.font.primary.active.base};
-    }
-    span {
-        color: ${(props) => props.theme.colors.font.primary.alt4};
-    }
-    @media (max-width: ${STYLING.cutoffs.secondary}) {
+	display: flex;
+	margin: 0 25px;
+	p,
+	span {
+		font-size: clamp(16px, 2.5vw, 24px);
+		font-family: ${(props) => props.theme.typography.family.primary};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+	}
+	p {
+		color: ${(props) => props.theme.colors.font.primary.active.base};
+	}
+	span {
+		color: ${(props) => props.theme.colors.font.primary.alt4};
+	}
+	@media (max-width: ${STYLING.cutoffs.secondary}) {
 		flex-direction: column;
 	}
 `;
@@ -151,8 +151,8 @@ export const URLCopied = styled.div`
 `;
 
 export const DiscordHandleCopied = styled(URLCopied)`
-    top: -25.5px;
-    left: 32.5px;
+	top: -25.5px;
+	left: 32.5px;
 `;
 
 export const TabsWrapper = styled.div`

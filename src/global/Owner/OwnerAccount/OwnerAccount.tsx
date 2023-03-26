@@ -75,24 +75,24 @@ export default function OwnerAccount(props: IProps) {
 							&nbsp; &nbsp;
 							<span>{formatAddress(props.walletAddress, true)}</span>
 						</S.Info>
-                        </S.ProfileFlex>
-						<S.SocialLinks>
-							{arProfile.profile.links && arProfile.profile.links.twitter && (
-								<S.SocialLink>
-									<IconButton type={'alt1'} src={ASSETS.social.twitter} handlePress={() => handleTwitterAction()} />
-								</S.SocialLink>
-							)}
-							{arProfile.profile.links && arProfile.profile.links.discord && (
-								<S.SocialLink>
-									{discordHandleCopied && (
-										<S.DiscordHandleCopied>
-											<p>{LANGUAGE.copied}</p>
-										</S.DiscordHandleCopied>
-									)}
-									<IconButton type={'alt1'} src={ASSETS.social.discord} handlePress={() => handleDiscordAction()} />
-								</S.SocialLink>
-							)}
-						</S.SocialLinks>
+					</S.ProfileFlex>
+					<S.SocialLinks>
+						{arProfile.profile.links && arProfile.profile.links.twitter && (
+							<S.SocialLink>
+								<IconButton type={'alt1'} src={ASSETS.social.twitter} handlePress={() => handleTwitterAction()} />
+							</S.SocialLink>
+						)}
+						{arProfile.profile.links && arProfile.profile.links.discord && (
+							<S.SocialLink>
+								{discordHandleCopied && (
+									<S.DiscordHandleCopied>
+										<p>{LANGUAGE.copied}</p>
+									</S.DiscordHandleCopied>
+								)}
+								<IconButton type={'alt1'} src={ASSETS.social.discord} handlePress={() => handleDiscordAction()} />
+							</S.SocialLink>
+						)}
+					</S.SocialLinks>
 				</S.ProfileWrapper>
 			);
 		} else {
