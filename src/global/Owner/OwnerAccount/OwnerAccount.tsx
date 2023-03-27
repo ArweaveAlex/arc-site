@@ -5,6 +5,7 @@ import { formatAddress, getHashUrl, getProfile, getTxEndpoint, ProfileType } fro
 
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
+import { Loader } from 'components/atoms/Loader';
 import { URLTabs } from 'components/organisms/URLTabs';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
@@ -18,6 +19,7 @@ import { IProps } from './types';
 export default function OwnerAccount(props: IProps) {
 	const [arProfile, setArProfile] = React.useState<ProfileType | null>(null);
 
+	const [loading, setLoading] = React.useState<boolean>(true);
 	const [urlCopied, setUrlCopied] = React.useState<boolean>(false);
 	const [discordHandleCopied, setDiscordHandleCopied] = React.useState<boolean>(false);
 
@@ -28,6 +30,7 @@ export default function OwnerAccount(props: IProps) {
 				if (profile) {
 					setArProfile(profile);
 				}
+				setLoading(false);
 			}
 		})();
 	}, [props.walletAddress]);
@@ -55,52 +58,60 @@ export default function OwnerAccount(props: IProps) {
 	}, [arProfile]);
 
 	function getHeader() {
-		if (arProfile) {
+		if (loading) {
 			return (
-				<S.ProfileWrapper>
-					<S.ProfileFlex>
-						<S.AvatarWrapper>
-							{arProfile.avatar === 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA' ? (
-								<ReactSVG src={ASSETS.user} />
-							) : (
-								<S.Avatar src={getTxEndpoint(arProfile.avatar.substring(4))} />
-							)}
-						</S.AvatarWrapper>
-						<S.Info>
-							<p>{arProfile.handle}</p>
-							&nbsp; &nbsp;
-							<span>{formatAddress(props.walletAddress, true)}</span>
-						</S.Info>
-					</S.ProfileFlex>
-					<S.SocialLinks>
-						{arProfile.twitter && (
-							<S.SocialLink>
-								<IconButton type={'alt1'} src={ASSETS.social.twitter} handlePress={() => handleTwitterAction()} />
-							</S.SocialLink>
-						)}
-						{arProfile.discord && (
-							<S.SocialLink>
-								{discordHandleCopied && (
-									<S.DiscordHandleCopied>
-										<p>{LANGUAGE.copied}</p>
-									</S.DiscordHandleCopied>
-								)}
-								<IconButton type={'alt1'} src={ASSETS.social.discord} handlePress={() => handleDiscordAction()} />
-							</S.SocialLink>
-						)}
-					</S.SocialLinks>
-				</S.ProfileWrapper>
+				<S.LP>
+					<Loader placeholder />
+				</S.LP>
 			);
 		} else {
-			return (
-				<S.FlexHeader>
-					<S.Header1>{props.header}</S.Header1>
-					&nbsp; &nbsp;
-					<S.Header2Container>
-						<S.Header2>{formatAddress(props.walletAddress, true)}</S.Header2>
-					</S.Header2Container>
-				</S.FlexHeader>
-			);
+			if (arProfile) {
+				return (
+					<S.ProfileWrapper>
+						<S.ProfileFlex>
+							<S.AvatarWrapper>
+								{arProfile.avatar === 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA' ? (
+									<ReactSVG src={ASSETS.user} />
+								) : (
+									<S.Avatar src={getTxEndpoint(arProfile.avatar.substring(4))} />
+								)}
+							</S.AvatarWrapper>
+							<S.Info>
+								<p>{arProfile.handle}</p>
+								&nbsp; &nbsp;
+								<span>{formatAddress(props.walletAddress, true)}</span>
+							</S.Info>
+						</S.ProfileFlex>
+						<S.SocialLinks>
+							{arProfile.twitter && (
+								<S.SocialLink>
+									<IconButton type={'alt1'} src={ASSETS.social.twitter} handlePress={() => handleTwitterAction()} />
+								</S.SocialLink>
+							)}
+							{arProfile.discord && (
+								<S.SocialLink>
+									{discordHandleCopied && (
+										<S.DiscordHandleCopied>
+											<p>{LANGUAGE.copied}</p>
+										</S.DiscordHandleCopied>
+									)}
+									<IconButton type={'alt1'} src={ASSETS.social.discord} handlePress={() => handleDiscordAction()} />
+								</S.SocialLink>
+							)}
+						</S.SocialLinks>
+					</S.ProfileWrapper>
+				);
+			} else {
+				return (
+					<S.FlexHeader>
+						<S.Header1>{props.header}</S.Header1>
+						&nbsp; &nbsp;
+						<S.Header2Container>
+							<S.Header2>{formatAddress(props.walletAddress, true)}</S.Header2>
+						</S.Header2Container>
+					</S.FlexHeader>
+				);
+			}
 		}
 	}
 
