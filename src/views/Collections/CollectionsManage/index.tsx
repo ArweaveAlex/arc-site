@@ -1,12 +1,9 @@
 import React from 'react';
 
 import {
-	ArtifactArgsType,
-	ArtifactResponseType,
 	CollectionStateType,
 	CollectionType,
 	createCollection,
-	CursorEnum,
 	getCollection,
 	initCollection,
 	saveCollection,
@@ -16,39 +13,27 @@ import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { Loader } from 'components/atoms/Loader';
 import { TextArea } from 'components/atoms/TextArea';
-import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql';
-import { URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { REDUX_TABLES } from 'helpers/redux';
 import { useQuery } from 'hooks/useQuery';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { WalletBlock } from 'wallet/WalletBlock';
 import { Query } from 'wrappers/Query';
 
+import { CollectionsManageArtifacts } from './CollectionsManageArtifacts';
+import { CollectionsManageHeader } from './CollectionsManageHeader';
 import * as S from './styles';
 
-// TODO: Cancel Action
-// TODO: Cache Selected Ids
 export default function CollectionsManage() {
 	const query = useQuery();
 	const arProvider = useArweaveProvider();
 	const [title, setTitle] = React.useState<string>('');
 	const [topic, setTopic] = React.useState<string>('');
 	const [description, setDescription] = React.useState<string>('');
-	const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
+
 	const [isLoading, setIsLoading] = React.useState<boolean>(false);
 	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
 	const [contractId, setContractId] = React.useState<string>(null);
 	const [contract, setContract] = React.useState<CollectionType>(null);
-
-	const [tableType, setTableType] = React.useState<{
-		fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
-		cursorType: string;
-	}>({
-		fn: getArtifactsByUser,
-		cursorType: REDUX_TABLES.accountAll,
-	});
 
 	React.useEffect(() => {
 		setTimeout(() => {
@@ -64,7 +49,7 @@ export default function CollectionsManage() {
 			setContractId(collectionContractId);
 			getCollection(collectionContractId).then((contract: CollectionType) => {
 				setContract(contract);
-				setSelectedIds(contract.state.ids);
+
 				setTitle(contract.state.title);
 				setTopic(contract.state.topic);
 				setDescription(contract.state.description);
@@ -72,76 +57,9 @@ export default function CollectionsManage() {
 		}
 	}, []);
 
-	function handleIdUpdate(id: string) {
-		let idList = [];
-		for (let i = 0; i < selectedIds.length; i++) {
-			idList.push(selectedIds[i]);
-		}
-		const index = idList.indexOf(id);
-		if (index > -1) {
-			idList.splice(index, 1);
-		} else {
-			idList.push(id);
-		}
-		setSelectedIds(idList);
-	}
-
 	function getInvalidTitle() {
 		return { status: false, message: null };
 		// return { status: true, message: LANGUAGE.collectionNameAlreadyExists };
-	}
-
-	function getAccountTab(urls: any[], label: string) {
-		for (let i = 0; i < urls.length; i++) {
-			if (urls[i].label === label) {
-				return urls[i];
-			}
-		}
-		return urls[0];
-	}
-
-	const allAction = getAccountTab(URLS.account, LANGUAGE.account.all.title);
-	const bookmarksAction = getAccountTab(URLS.account, LANGUAGE.account.bookmarks.title);
-
-	function getAction() {
-		return (
-			<S.ActionContainer>
-				<S.ActionButtonContainer>
-					<Button
-						type={'alt2'}
-						label={allAction.label}
-						handlePress={() =>
-							setTableType({
-								fn: getArtifactsByUser,
-								cursorType: REDUX_TABLES.accountAll,
-							})
-						}
-						active={tableType.cursorType === REDUX_TABLES.accountAll}
-						icon={allAction.icon}
-						iconLeftAlign
-						disabled={false}
-						noMinWidth
-					/>
-				</S.ActionButtonContainer>
-				<S.ActionButtonContainer>
-					<Button
-						type={'alt2'}
-						label={bookmarksAction.label}
-						handlePress={() =>
-							setTableType({
-								fn: getArtifactsByBookmarks,
-								cursorType: REDUX_TABLES.accountBookmarks,
-							})
-						}
-						active={tableType.cursorType === REDUX_TABLES.accountBookmarks}
-						icon={bookmarksAction.icon}
-						iconLeftAlign
-						disabled={false}
-						noMinWidth
-					/>
-				</S.ActionButtonContainer>
-			</S.ActionContainer>
-		);
 	}
 
 	async function handleCreate() {
@@ -154,7 +72,7 @@ export default function CollectionsManage() {
 			collectionInitState.topic = topic;
 			collectionInitState.description = description;
 			collectionInitState.owner = arProvider.walletAddress;
-			collectionInitState.ids = selectedIds;
+			// collectionInitState.ids = selectedIds;
 			collectionInitState.timestamp = Date.now().toString();
 
 			const collectionContract = await createCollection(collectionInitState);
@@ -178,7 +96,7 @@ export default function CollectionsManage() {
 			collectionState.name = title;
 			collectionState.description = description;
 			collectionState.topic = topic;
-			collectionState.ids = selectedIds;
+			// collectionState.ids = selectedIds;
 
 			let collectionSave: CollectionType = {
 				id: contractId,
@@ -192,7 +110,8 @@ export default function CollectionsManage() {
 	}
 
 	function getSubmitDisabled() {
-		return !title || getInvalidTitle().status || !topic || !description || selectedIds.length <= 0;
+		// return !title || getInvalidTitle().status || !topic || !description || selectedIds.length <= 0;
+		return !title || getInvalidTitle().status || !topic || !description;
 	}
 
 	function getButton() {
@@ -217,34 +136,11 @@ export default function CollectionsManage() {
 		return (
 			<S.Wrapper>
 				<S.HeaderWrapper>
-					<S.HeaderContent>
-						<S.HeaderContentFixed>
-							<S.Header1Wrapper>
-								<S.Header1>{LANGUAGE.manageCollection}</S.Header1>
-							</S.Header1Wrapper>
-						</S.HeaderContentFixed>
-					</S.HeaderContent>
+					<CollectionsManageHeader />
 				</S.HeaderWrapper>
 				<S.ContentWrapper>
 					<S.ArtifactsWrapper>
-						<OwnerArtifacts
-							owner={query.get('owner')}
-							fetch={tableType.fn}
-							reduxCursor={tableType.cursorType}
-							showActions={true}
-							showPoolIds={true}
-							showSearch={false}
-							bookmarksDisabled={false}
-							selectCallback={(id: string) => handleIdUpdate(id)}
-							selectedCallbackIds={selectedIds}
-							disabledSelectedCallbackIds={null}
-							cursorObject={{
-								key: CursorEnum.Search,
-								value: tableType.cursorType,
-							}}
-							usePreviewModal={true}
-							action={getAction()}
-						/>
+						<CollectionsManageArtifacts owner={query.get('owner')} />
 					</S.ArtifactsWrapper>
 					<S.FormWrapper>
 						<S.FormContainer>
