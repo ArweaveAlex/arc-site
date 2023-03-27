@@ -1,8 +1,7 @@
 import React from 'react';
-import Account from 'arweave-account';
 import styled from 'styled-components';
 
-import { getBalanceEndpoint } from 'arcframework';
+import { getBalanceEndpoint, getProfile, ProfileType } from 'arcframework';
 
 import { Modal } from 'components/molecules/Modal';
 import { AR_WALLETS, WALLET_PERMISSIONS } from 'helpers/config';
@@ -88,12 +87,11 @@ function WalletList(props: { handleConnect: () => void }) {
 
 export function ArweaveProvider(props: ArweaveProviderProps) {
 	const wallets = AR_WALLETS;
-	const account = new Account();
 
 	const [walletModalVisible, setWalletModalVisible] = React.useState<boolean>(false);
 	const [walletAddress, setWalletAddress] = React.useState<string | null>(null);
 	const [availableBalance, setAvailableBalance] = React.useState<number | null>(null);
-	const [arProfile, setArProfile] = React.useState<any>(null);
+	const [arProfile, setArProfile] = React.useState<ProfileType | null>(null);
 
 	async function handleConnect() {
 		await global.window?.arweaveWallet
@@ -141,8 +139,8 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (walletAddress) {
-				const profile = await account.get(walletAddress);
-				if (profile && profile.txid) {
+				const profile = await getProfile(walletAddress);
+				if (profile) {
 					setArProfile(profile);
 				}
 			}

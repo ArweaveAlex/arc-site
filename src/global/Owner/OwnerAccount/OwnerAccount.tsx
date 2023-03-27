@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { formatAddress, getHashUrl } from 'arcframework';
+import { formatAddress, getHashUrl, getProfile, getTxEndpoint, ProfileType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
@@ -10,30 +10,26 @@ import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { TWITTER_ACCOUNT_REDIRECT } from 'helpers/paths';
 import * as urls from 'helpers/urls';
-import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';
 import { IProps } from './types';
 
-const AR_PROFILE_CONFIG = {
-	avatar: 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA',
-};
-
 export default function OwnerAccount(props: IProps) {
-	const arProvider = useArweaveProvider();
-
-	const [arProfile, setArProfile] = React.useState<any>(null);
+	const [arProfile, setArProfile] = React.useState<ProfileType | null>(null);
 
 	const [urlCopied, setUrlCopied] = React.useState<boolean>(false);
 	const [discordHandleCopied, setDiscordHandleCopied] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
 		(async function () {
-			if (arProvider.arProfile) {
-				setArProfile(arProvider.arProfile);
+			if (props.walletAddress) {
+				const profile = await getProfile(props.walletAddress);
+				if (profile) {
+					setArProfile(profile);
+				}
 			}
 		})();
-	}, [arProvider.arProfile]);
+	}, [props.walletAddress]);
 
 	const copyUrl = React.useCallback(async () => {
 		if (props.walletAddress) {
@@ -46,16 +42,14 @@ export default function OwnerAccount(props: IProps) {
 	}, [props.walletAddress]);
 
 	function handleTwitterAction() {
-		window.open(TWITTER_ACCOUNT_REDIRECT(arProfile.profile.links.twitter), '_blank');
+		window.open(TWITTER_ACCOUNT_REDIRECT(arProfile.twitter), '_blank');
 	}
 
 	const handleDiscordAction = React.useCallback(async () => {
-		if (arProfile) {
-			if (arProfile.profile.links && arProfile.profile.links.discord) {
-				await navigator.clipboard.writeText(arProfile.profile.links.discord);
-				setDiscordHandleCopied(true);
-				setTimeout(() => setDiscordHandleCopied(false), 2000);
-			}
+		if (arProfile && arProfile.discord) {
+			await navigator.clipboard.writeText(arProfile.discord);
+			setDiscordHandleCopied(true);
+			setTimeout(() => setDiscordHandleCopied(false), 2000);
 		}
 	}, [arProfile]);
 
@@ -65,25 +59,25 @@ export default function OwnerAccount(props: IProps) {
 				<S.ProfileWrapper>
 					<S.ProfileFlex>
 						<S.AvatarWrapper>
-							{arProfile.profile.avatar === AR_PROFILE_CONFIG.avatar ? (
+							{arProfile.avatar === 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA' ? (
 								<ReactSVG src={ASSETS.user} />
 							) : (
-								<S.Avatar src={arProfile.profile.avatarURL} />
+								<S.Avatar src={getTxEndpoint(arProfile.avatar.substring(4))} />
 							)}
 						</S.AvatarWrapper>
 						<S.Info>
-							<p>{arProfile.profile.handleName}</p>
+							<p>{arProfile.handle}</p>
 							&nbsp; &nbsp;
 							<span>{formatAddress(props.walletAddress, true)}</span>
 						</S.Info>
 					</S.ProfileFlex>
 					<S.SocialLinks>
-						{arProfile.profile.links && arProfile.profile.links.twitter && (
+						{arProfile.twitter && (
 							<S.SocialLink>
 								<IconButton type={'alt1'} src={ASSETS.social.twitter} handlePress={() => handleTwitterAction()} />
 							</S.SocialLink>
 						)}
-						{arProfile.profile.links && arProfile.profile.links.discord && (
+						{arProfile.discord && (
 							<S.SocialLink>
 								{discordHandleCopied && (
 									<S.DiscordHandleCopied>

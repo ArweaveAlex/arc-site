@@ -53,7 +53,7 @@ export default function WalletConnect(props: { callback?: () => void }) {
 	function getWalletLabel() {
 		if (arProvider.walletAddress) {
 			if (arProvider.arProfile) {
-				return arProvider.arProfile.profile.handleName;
+				return arProvider.arProfile.handle;
 			} else {
 				return formatAddress(arProvider.walletAddress, false);
 			}
