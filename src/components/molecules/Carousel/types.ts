@@ -4,7 +4,7 @@ export interface IProps {
 	title: string;
 	data: React.ReactElement[] | null;
 	callback?: {
-		fn: () => void;
+		fn: any;
 		disabled: boolean;
 	};
 }

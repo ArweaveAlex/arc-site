@@ -16,10 +16,10 @@ export const Wrapper = styled.div<{ top: number }>`
 	animation: ${open} ${fadeIn1};
 `;
 
-export const Container = styled.div<{ noHeader: boolean }>`
+export const Container = styled.div<{ noHeader: boolean; useMax: boolean | undefined }>`
 	height: 600px;
 	max-height: calc(100vh - 100px);
-	width: 600px;
+	width: ${(props) => (props.useMax ? STYLING.cutoffs.max : '600px')};
 	max-width: 87.5vw;
 	background: ${(props) =>
 		props.noHeader ? props.theme.colors.transparent : props.theme.colors.container.primary.background};
@@ -60,7 +60,7 @@ export const Logo = styled.div`
 `;
 
 export const Title = styled.p`
-	color: ${(props) => props.theme.colors.font.primary.alt1};
+	color: ${(props) => props.theme.colors.font.primary.active.base};
 	font-family: ${(props) => props.theme.typography.family.primary};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 `;
@@ -75,13 +75,13 @@ export const Body = styled.div`
 	width: 100%;
 `;
 
-export const BodyAlt = styled(Body)`
+export const BodyAlt = styled(Body)<{ zoom: boolean }>`
 	height: 100%;
-	background: black;
+	background: ${(props) => (props.zoom ? props.theme.colors.container.alt5.background : 'inherit')};
 `;
 
-export const CloseTextContainer = styled.div`
-	width: 600px;
+export const CloseTextContainer = styled.div<{ useMax: boolean | undefined }>`
+	width: ${(props) => (props.useMax ? STYLING.cutoffs.max : '600px')};
 	max-width: 87.5vw;
 	display: flex;
 	justify-content: end;

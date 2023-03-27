@@ -1,14 +1,5 @@
 import React from 'react';
 
-// import {
-// 	CollectionStateType,
-// 	CollectionType,
-// 	createCollection,
-// 	getCollection,
-// 	initCollection,
-// 	saveCollection,
-// } from 'arcframework';
-// import { Loader } from 'components/atoms/Loader';
 import { useQuery } from 'hooks/useQuery';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { WalletBlock } from 'wallet/WalletBlock';
@@ -23,10 +14,17 @@ export default function CollectionsManage() {
 	const query = useQuery();
 	const arProvider = useArweaveProvider();
 
-	// const [isLoading, setIsLoading] = React.useState<boolean>(false);
 	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
-	// const [contractId, setContractId] = React.useState<string>(null);
-	// const [contract, setContract] = React.useState<CollectionType>(null);
+
+	// TODO: selectedIds []
+	const [selectedIds, setSelectedIds] = React.useState<string[]>([
+		'lFO2qdhjBpMG13-Zamz3vW7E7FFbJT9NgPhgdgDUVQc',
+		'6R2dVcktecT0dbezgHq8eHrmzRpnl8JrtaDXT-ZZ69s',
+		'9hUxb7MCMmMJ61oWJAKbGMczUDVYvPjmLs_xSLsppF4',
+		'FRRpmc0_e4--5c_Lsg9yNpqsu9aIQLg920GUKo6JjPo',
+		'PsNTVxx6LauegIamlK4ju92-noWpFxc8fTTmtiEHuAU',
+		'qERJuxaUy2Vs9VwjCZSu5Lt0Tk1ssox2o0hRlHb7WkY',
+	]);
 
 	React.useEffect(() => {
 		setTimeout(() => {
@@ -36,76 +34,19 @@ export default function CollectionsManage() {
 		}, 200);
 	}, [arProvider.walletAddress]);
 
-	// React.useEffect(() => {
-	// 	let collectionContractId = query.get('contractId');
-	// 	if (collectionContractId) {
-	// 		setContractId(collectionContractId);
-	// 		getCollection(collectionContractId).then((contract: CollectionType) => {
-	// 			setContract(contract);
-
-	// 			// setTitle(contract.state.title);
-	// 			// setTopic(contract.state.topic);
-	// 			// setDescription(contract.state.description);
-	// 		});
-	// 	}
-	// }, []);
-
-	// async function handleCreate() {
-	// 	if (arProvider.walletAddress) {
-	// 		setIsLoading(true);
-
-	// 		let collectionInitState: CollectionStateType = initCollection();
-	// 		// collectionInitState.title = title;
-	// 		// collectionInitState.name = title;
-	// 		// collectionInitState.topic = topic;
-	// 		// collectionInitState.description = description;
-	// 		collectionInitState.owner = arProvider.walletAddress;
-	// 		// collectionInitState.ids = selectedIds;
-	// 		collectionInitState.timestamp = Date.now().toString();
-
-	// 		const collectionContract = await createCollection(collectionInitState);
-
-	// 		setContractId(collectionContract.id);
-	// 		setContract(collectionContract);
-	// 		setIsLoading(false);
-
-	// 		const currentUrl = window.location.href;
-	// 		let newUrl = currentUrl + '&contractId=' + collectionContract.id;
-	// 		window.history.replaceState(null, null, newUrl.toString());
-	// 	}
-	// }
-
-	// async function handleSave() {
-	// 	if (arProvider.walletAddress) {
-	// 		setIsLoading(true);
-
-	// 		let collectionState: CollectionStateType = contract.state;
-	// 		// collectionState.title = title;
-	// 		// collectionState.name = title;
-	// 		// collectionState.description = description;
-	// 		// collectionState.topic = topic;
-	// 		// collectionState.ids = selectedIds;
-
-	// 		let collectionSave: CollectionType = {
-	// 			id: contractId,
-	// 			state: collectionState,
-	// 		};
-
-	// 		await saveCollection(collectionSave);
-
-	// 		setIsLoading(false);
-	// 	}
-	// }
-
 	function getData() {
 		return (
 			<S.Wrapper>
 				<S.HeaderWrapper>
-					<CollectionsManageHeader />
+					<CollectionsManageHeader selectedIds={selectedIds} />
 				</S.HeaderWrapper>
 				<S.ContentWrapper>
 					<S.ArtifactsWrapper>
-						<CollectionsManageArtifacts owner={query.get('owner')} />
+						<CollectionsManageArtifacts
+							owner={query.get('owner')}
+							selectedIds={selectedIds}
+							setSelectedIds={(ids: string[]) => setSelectedIds(ids)}
+						/>
 					</S.ArtifactsWrapper>
 					<S.FormWrapper>
 						<CollectionsManageForm />
@@ -114,18 +55,6 @@ export default function CollectionsManage() {
 			</S.Wrapper>
 		);
 	}
-
-	// function getPage() {
-	// 	if (isLoading) {
-	// 		return <Loader sm />;
-	// 	} else {
-	// 		return (
-	// 			<Query value={'owner'} check={[arProvider.walletAddress]}>
-	// 				{getData()}
-	// 			</Query>
-	// 		);
-	// 	}
-	// }
 
 	return arProvider.walletAddress ? (
 		<Query value={'owner'} check={[arProvider.walletAddress]}>

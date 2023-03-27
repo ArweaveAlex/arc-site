@@ -2,6 +2,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { ASSETS } from 'helpers/config';
+import { StepType } from 'helpers/types';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -9,14 +10,14 @@ import * as S from './styles';
 import { IProps } from './types';
 
 export default function _Carousel(props: IProps) {
-	function handleClick(onClickHandler: any) {
+	function handleClick(onClickHandler: any, action: StepType) {
 		if (props.callback && !props.callback.disabled) {
-			props.callback.fn();
+			props.callback.fn(action);
 		}
 		onClickHandler();
 	}
 
-	function getAction(step: 'prev' | 'next', clickHandler: any, disabled: boolean) {
+	function getAction(step: StepType, clickHandler: any, disabled: boolean) {
 		const Action = step === 'prev' ? S.PrevAction : S.NextAction;
 		if (props.data && props.data.length > 1) {
 			return (
@@ -24,7 +25,7 @@ export default function _Carousel(props: IProps) {
 					<IconButton
 						src={step === 'prev' ? ASSETS.arrowPrevious : ASSETS.arrowNext}
 						type={'alt1'}
-						handlePress={() => handleClick(clickHandler)}
+						handlePress={() => handleClick(clickHandler, step === 'prev' ? 'prev' : 'next')}
 						dimensions={{ wrapper: 25, icon: 11 }}
 						disabled={disabled}
 					/>

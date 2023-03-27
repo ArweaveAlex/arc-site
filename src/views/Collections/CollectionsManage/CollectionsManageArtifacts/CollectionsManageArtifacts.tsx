@@ -17,8 +17,6 @@ import { IProps } from './types';
 // TODO: Preview selected
 // TODO: Edit selected
 export default function CollectionsManageArtifacts(props: IProps) {
-	const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
-
 	const [tableType, setTableType] = React.useState<{
 		fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
 		cursorType: string;
@@ -29,8 +27,8 @@ export default function CollectionsManageArtifacts(props: IProps) {
 
 	function handleIdUpdate(id: string) {
 		let idList = [];
-		for (let i = 0; i < selectedIds.length; i++) {
-			idList.push(selectedIds[i]);
+		for (let i = 0; i < props.selectedIds.length; i++) {
+			idList.push(props.selectedIds[i]);
 		}
 		const index = idList.indexOf(id);
 		if (index > -1) {
@@ -38,7 +36,7 @@ export default function CollectionsManageArtifacts(props: IProps) {
 		} else {
 			idList.push(id);
 		}
-		setSelectedIds(idList);
+		props.setSelectedIds(idList);
 	}
 
 	function getAccountTab(urls: any[], label: string) {
@@ -104,7 +102,7 @@ export default function CollectionsManageArtifacts(props: IProps) {
 			showSearch={false}
 			bookmarksDisabled={false}
 			selectCallback={(id: string) => handleIdUpdate(id)}
-			selectedCallbackIds={selectedIds}
+			selectedCallbackIds={props.selectedIds}
 			disabledSelectedCallbackIds={null}
 			cursorObject={{
 				key: CursorEnum.Search,
