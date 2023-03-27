@@ -105,7 +105,7 @@ export const Avatar = styled.img`
 
 export const Info = styled.div`
 	display: flex;
-	margin: 0 25px;
+	margin: 0 25px 0 15px;
 	p,
 	span {
 		font-size: clamp(16px, 2.5vw, 24px);

@@ -54,6 +54,7 @@ export const Header1Wrapper = styled.div`
 	padding: 20px;
 	margin: 20px 0;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
+		background: ${(props) => props.theme.colors.container.primary.background};
 		border: none;
 		box-shadow: none;
 	}

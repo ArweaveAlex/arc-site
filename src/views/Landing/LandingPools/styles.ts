@@ -30,6 +30,12 @@ export const PCWrapper = styled.div`
 	}
 `;
 
+export const CarouselLoader = styled.div`
+	height: 100%;
+	width: 100%;
+	padding: 0 0 40px 0;
+`;
+
 export const C1 = styled.div`
 	height: 100%;
 	width: 35%;
@@ -130,6 +136,11 @@ export const TP = styled.div`
 		width: 100%;
 	}
 `;
+
+export const CP = styled(TP)`
+	height: 50px;
+	width: 100%;
+`
 
 export const DP = styled.div`
 	height: 175px;

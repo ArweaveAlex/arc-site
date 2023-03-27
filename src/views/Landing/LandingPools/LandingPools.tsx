@@ -72,24 +72,29 @@ export default function LandingPools() {
 			return <Carousel title={LANGUAGE.activePools} data={getPools()} />;
 		} else {
 			return (
-				<S.PCWrapper>
-					<S.C1>
-						<S.C1Content>
-							<S.TP>
-								<Loader placeholder />
-							</S.TP>
-							<S.DP>
-								<Loader placeholder />
-							</S.DP>
-						</S.C1Content>
-						<S.LP>
-							<Loader placeholder />
-						</S.LP>
-					</S.C1>
-					<S.C2P>
+				<S.CarouselLoader>
+					<S.CP>
 						<Loader placeholder />
-					</S.C2P>
-				</S.PCWrapper>
+					</S.CP>
+					<S.PCWrapper>
+						<S.C1>
+							<S.C1Content>
+								<S.TP>
+									<Loader placeholder />
+								</S.TP>
+								<S.DP>
+									<Loader placeholder />
+								</S.DP>
+							</S.C1Content>
+							<S.LP>
+								<Loader placeholder />
+							</S.LP>
+						</S.C1>
+						<S.C2P>
+							<Loader placeholder />
+						</S.C2P>
+					</S.PCWrapper>
+				</S.CarouselLoader>
 			);
 		}
 	}

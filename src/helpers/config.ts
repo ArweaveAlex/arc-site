@@ -59,7 +59,7 @@ import { IURLView } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { AccountAll } from 'views/Account/AccountAll';
 import { AccountBookmarks } from 'views/Account/AccountBookmarks';
-// import { AccountCollections } from 'views/Account/AccountCollections';
+import { AccountCollections } from 'views/Account/AccountCollections';
 import { AccountContributions } from 'views/Account/AccountContributions';
 import { LibraryAll } from 'views/Library/LibraryAll';
 import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
@@ -196,14 +196,14 @@ export const URLS: IURLView = {
 			url: urls.accountAll,
 			view: AccountAll,
 		},
-		// {
-		// 	index: 1,
-		// 	label: LANGUAGE.account.collections.title,
-		// 	icon: ASSETS.collections,
-		// 	disabled: true,
-		// 	url: urls.accountCollections,
-		// 	view: AccountCollections,
-		// },
+		{
+			index: 1,
+			label: LANGUAGE.account.collections.title,
+			icon: ASSETS.collections,
+			disabled: false,
+			url: urls.accountCollections,
+			view: AccountCollections,
+		},
 		{
 			index: 2,
 			label: LANGUAGE.account.bookmarks.title,

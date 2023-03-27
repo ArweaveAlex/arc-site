@@ -1,4 +1,5 @@
 import React from 'react';
+import Account from 'arweave-account';
 import styled from 'styled-components';
 
 import { getBalanceEndpoint } from 'arcframework';
@@ -42,6 +43,7 @@ interface ArweaveContextState {
 	handleDisconnect: () => void;
 	walletModalVisible: boolean;
 	setWalletModalVisible: (open: boolean) => void;
+	arProfile: any;
 }
 
 interface ArweaveProviderProps {
@@ -62,6 +64,7 @@ const DEFAULT_CONTEXT = {
 	setWalletModalVisible(_open: boolean) {
 		console.error(`Make sure to render ArweaveProvider as an ancestor of the component that uses ARContext.Provider`);
 	},
+	arProfile: null
 };
 
 const ARContext = React.createContext<ArweaveContextState>(DEFAULT_CONTEXT);
@@ -85,10 +88,12 @@ function WalletList(props: { handleConnect: () => void }) {
 
 export function ArweaveProvider(props: ArweaveProviderProps) {
 	const wallets = AR_WALLETS;
+	const account = new Account();
 
 	const [walletModalVisible, setWalletModalVisible] = React.useState<boolean>(false);
 	const [walletAddress, setWalletAddress] = React.useState<string | null>(null);
 	const [availableBalance, setAvailableBalance] = React.useState<number | null>(null);
+	const [arProfile, setArProfile] = React.useState<any>(null);
 
 	async function handleConnect() {
 		await global.window?.arweaveWallet
@@ -133,6 +138,17 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 		};
 	});
 
+	React.useEffect(() => {
+		(async function () {
+			if (walletAddress) {
+				const profile = await account.get(walletAddress);
+				if (profile && profile.txid) {
+					setArProfile(profile);
+				}
+			}
+		})();
+	}, [walletAddress]);
+
 	return (
 		<>
 			{walletModalVisible && (
@@ -149,6 +165,7 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 					wallets,
 					walletModalVisible,
 					setWalletModalVisible,
+					arProfile
 				}}
 			>
 				{props.children}

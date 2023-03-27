@@ -1,6 +1,5 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import Account from 'arweave-account';
 
 import { formatAddress, getHashUrl } from 'arcframework';
 
@@ -11,28 +10,30 @@ import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { TWITTER_ACCOUNT_REDIRECT } from 'helpers/paths';
 import * as urls from 'helpers/urls';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';
 import { IProps } from './types';
 
-export default function OwnerAccount(props: IProps) {
-	const [arProfile, setArProfile] = React.useState<any>(null);
+const AR_PROFILE_CONFIG = {
+	avatar: 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA',
+};
 
-	const account = new Account();
+export default function OwnerAccount(props: IProps) {
+	const arProvider = useArweaveProvider();
+
+	const [arProfile, setArProfile] = React.useState<any>(null);
 
 	const [urlCopied, setUrlCopied] = React.useState<boolean>(false);
 	const [discordHandleCopied, setDiscordHandleCopied] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
 		(async function () {
-			if (props.walletAddress) {
-				const profile = await account.get(props.walletAddress);
-				if (profile && profile.txid) {
-					setArProfile(profile);
-				}
+			if (arProvider.arProfile) {
+				setArProfile(arProvider.arProfile);
 			}
 		})();
-	}, []);
+	}, [arProvider.arProfile]);
 
 	const copyUrl = React.useCallback(async () => {
 		if (props.walletAddress) {
@@ -64,14 +65,14 @@ export default function OwnerAccount(props: IProps) {
 				<S.ProfileWrapper>
 					<S.ProfileFlex>
 						<S.AvatarWrapper>
-							{arProfile.profile.avatar === 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA' ? (
+							{arProfile.profile.avatar === AR_PROFILE_CONFIG.avatar ? (
 								<ReactSVG src={ASSETS.user} />
 							) : (
 								<S.Avatar src={arProfile.profile.avatarURL} />
 							)}
 						</S.AvatarWrapper>
 						<S.Info>
-							<p>{`@${arProfile.profile.handleName}`}</p>
+							<p>{arProfile.profile.handleName}</p>
 							&nbsp; &nbsp;
 							<span>{formatAddress(props.walletAddress, true)}</span>
 						</S.Info>

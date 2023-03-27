@@ -50,12 +50,26 @@ export default function WalletConnect(props: { callback?: () => void }) {
 		}
 	}
 
+	function getWalletLabel() {
+		if (arProvider.walletAddress) {
+			if (arProvider.arProfile) {
+				return arProvider.arProfile.profile.handleName;
+			}
+			else {
+				return formatAddress(arProvider.walletAddress, false);
+			}
+		}
+		else {
+			return LANGUAGE.connectWallet;
+		}
+	}
+
 	return (
 		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown} disabled={false}>
 			<S.Wrapper>
 				<Button
 					type={'alt2'}
-					label={arProvider.walletAddress ? formatAddress(arProvider.walletAddress, false) : LANGUAGE.connectWallet}
+					label={getWalletLabel()}
 					handlePress={handlePress}
 					useMaxWidth
 					active={true}
