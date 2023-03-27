@@ -5,8 +5,7 @@ import { STYLING } from 'helpers/styling';
 function getHeight(height: number | undefined) {
 	if (height) {
 		return `${height.toString()}px`;
-	}
-	else {
+	} else {
 		return STYLING.dimensions.buttonHeight;
 	}
 }
