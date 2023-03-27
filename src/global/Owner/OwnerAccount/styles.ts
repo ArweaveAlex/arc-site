@@ -21,7 +21,7 @@ export const HeaderWrapper = styled.div`
 export const HeaderContent = styled.div`
 	height: 100%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
@@ -87,7 +87,7 @@ export const AvatarWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1.5px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: 50%;
 	svg {
@@ -184,4 +184,10 @@ export const Header2 = styled(Header1)`
 	font-family: ${(props) => props.theme.typography.family.primary};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 	color: ${(props) => props.theme.colors.font.primary.alt4};
+`;
+
+export const LP = styled.div`
+	height: 50px;
+	width: 500px;
+	max-width: 75vw;
 `;
