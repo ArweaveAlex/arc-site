@@ -196,14 +196,14 @@ export const URLS: IURLView = {
 			url: urls.accountAll,
 			view: AccountAll,
 		},
-		{
-			index: 1,
-			label: LANGUAGE.account.collections.title,
-			icon: ASSETS.collections,
-			disabled: false,
-			url: urls.accountCollections,
-			view: AccountCollections,
-		},
+		// {
+		// 	index: 1,
+		// 	label: LANGUAGE.account.collections.title,
+		// 	icon: ASSETS.collections,
+		// 	disabled: false,
+		// 	url: urls.accountCollections,
+		// 	view: AccountCollections,
+		// },
 		{
 			index: 2,
 			label: LANGUAGE.account.bookmarks.title,

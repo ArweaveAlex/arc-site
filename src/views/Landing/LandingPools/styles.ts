@@ -140,7 +140,7 @@ export const TP = styled.div`
 export const CP = styled(TP)`
 	height: 50px;
 	width: 100%;
-`
+`;
 
 export const DP = styled.div`
 	height: 175px;

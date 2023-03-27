@@ -64,7 +64,7 @@ const DEFAULT_CONTEXT = {
 	setWalletModalVisible(_open: boolean) {
 		console.error(`Make sure to render ArweaveProvider as an ancestor of the component that uses ARContext.Provider`);
 	},
-	arProfile: null
+	arProfile: null,
 };
 
 const ARContext = React.createContext<ArweaveContextState>(DEFAULT_CONTEXT);
@@ -165,7 +165,7 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 					wallets,
 					walletModalVisible,
 					setWalletModalVisible,
-					arProfile
+					arProfile,
 				}}
 			>
 				{props.children}

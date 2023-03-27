@@ -54,12 +54,10 @@ export default function WalletConnect(props: { callback?: () => void }) {
 		if (arProvider.walletAddress) {
 			if (arProvider.arProfile) {
 				return arProvider.arProfile.profile.handleName;
-			}
-			else {
+			} else {
 				return formatAddress(arProvider.walletAddress, false);
 			}
-		}
-		else {
+		} else {
 			return LANGUAGE.connectWallet;
 		}
 	}
@@ -67,13 +65,7 @@ export default function WalletConnect(props: { callback?: () => void }) {
 	return (
 		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown} disabled={false}>
 			<S.Wrapper>
-				<Button
-					type={'alt2'}
-					label={getWalletLabel()}
-					handlePress={handlePress}
-					useMaxWidth
-					active={true}
-				/>
+				<Button type={'alt2'} label={getWalletLabel()} handlePress={handlePress} useMaxWidth active={true} />
 				{showDropdown && (
 					<S.WalletDropdown>
 						<li onClick={handleViewAccount}>{LANGUAGE.viewAccount}</li>
