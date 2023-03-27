@@ -62,9 +62,8 @@ export default function OwnerAccount(props: IProps) {
 				<S.LP>
 					<Loader placeholder />
 				</S.LP>
-			)
-		}
-		else {
+			);
+		} else {
 			if (arProfile) {
 				return (
 					<S.ProfileWrapper>
