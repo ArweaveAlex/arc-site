@@ -16,5 +16,6 @@ export interface IProps {
 	useMaxWidth?: boolean;
 	noMinWidth?: boolean;
 	width?: number;
+	height?: number;
 	testingCtx?: string;
 }

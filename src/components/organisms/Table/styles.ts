@@ -33,7 +33,7 @@ export const HeaderFlex = styled.div`
 `;
 
 export const H2 = styled.h2`
-	font-size: 28px;
+	font-size: 24px;
 	font-family: ${(props) => props.theme.typography.family.alt1};
 	color: ${(props) => props.theme.colors.font.primary.alt4};
 	@media (max-width: ${STYLING.cutoffs.tablet}) {

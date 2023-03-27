@@ -2,12 +2,21 @@ import styled from 'styled-components';
 
 import { STYLING } from 'helpers/styling';
 
+function getHeight(height: number | undefined) {
+	if (height) {
+		return `${height.toString()}px`;
+	}
+	else {
+		return STYLING.dimensions.buttonHeight;
+	}
+}
+
 function getWidth(noMinWidth: boolean | undefined, width: number | undefined) {
 	if (width) {
 		return `${width.toString()}px`;
 	} else {
 		if (noMinWidth) {
-			return 'none';
+			return 'fit-content';
 		} else {
 			return STYLING.dimensions.buttonWidth;
 		}
@@ -18,15 +27,16 @@ export const Primary = styled.button<{
 	useMaxWidth: boolean | undefined;
 	noMinWidth: boolean | undefined;
 	width: number | undefined;
+	height: number | undefined;
 	active: boolean | undefined;
 }>`
 	position: relative;
 	background: ${(props) =>
 		props.active ? props.theme.colors.button.primary.active.background : props.theme.colors.button.primary.background};
 	border: 1.25px solid ${(props) => props.theme.colors.button.primary.border};
-	height: ${STYLING.dimensions.buttonHeight};
+	height: ${(props) => getHeight(props.height)};
 	min-width: ${(props) => getWidth(props.noMinWidth, props.width)};
-	max-width: ${(props) => (props.useMaxWidth ? STYLING.dimensions.buttonWidth : 'none')};
+	max-width: ${(props) => (props.useMaxWidth ? STYLING.dimensions.buttonWidth : '100%')};
 	overflow: hidden;
 	text-overflow: ellipsis;
 	padding: 0 15px;

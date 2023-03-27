@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const Header = styled.div`
 	h2 {
-		font-size: 32px;
+		font-size: 24px;
 		font-family: ${(props) => props.theme.typography.family.alt1};
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 	}

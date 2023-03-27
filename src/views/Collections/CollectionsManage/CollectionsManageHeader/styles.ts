@@ -13,6 +13,9 @@ export const HeaderWrapper = styled.div`
 
 export const HeaderContent = styled.div`
 	position: absolute;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		position: relative;
+	}
 `;
 
 export const HeaderContentFixed = styled.div`
@@ -20,9 +23,6 @@ export const HeaderContentFixed = styled.div`
 	max-width: calc(${STYLING.cutoffs.max} - 40px);
 	background: ${(props) => props.theme.colors.container.primary.background};
 	margin: 0 0 40px 0;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 	position: fixed;
 	z-index: 2;
 	top: ${STYLING.dimensions.navHeight};
@@ -30,10 +30,15 @@ export const HeaderContentFixed = styled.div`
 	transform: translate(-50%, 0);
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;
+		position: relative;
+		top: auto;
+		left: auto;
+		transform: translate(0, 0);
+		margin: 0;
 	}
 `;
 
-export const Header1Wrapper = styled.div`
+export const Header = styled.div`
 	width: 100%;
 	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
@@ -45,9 +50,8 @@ export const Header1Wrapper = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
-		background: ${(props) => props.theme.colors.container.primary.background};
-		border: none;
-		box-shadow: none;
+		flex-direction: column;
+		align-items: flex-start;
 	}
 `;
 
@@ -62,4 +66,21 @@ export const H2 = styled.h2`
 export const Header1 = styled(H2)`
 	color: ${(props) => props.theme.colors.font.primary.active.base};
 	font-family: ${(props) => props.theme.typography.family.alt1};
+	font-weight: ${(props) => props.theme.typography.weight.regular};
+`;
+
+export const Actions = styled.div`
+	display: flex;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		margin: 20px 0 0 0;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+`;
+
+export const Action = styled.div`
+	margin: 0 0 0 20px;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		margin: 0;
+	}
 `;

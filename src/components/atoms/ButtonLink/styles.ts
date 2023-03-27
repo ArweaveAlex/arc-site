@@ -30,7 +30,7 @@ export const Primary = styled.div<{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: ${STYLING.dimensions.borderRadiusField};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	&:hover {
 		border: 1.5px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.primary.border)};
 		background: ${(props) =>

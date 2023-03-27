@@ -24,7 +24,7 @@ const DEFAULT = {
 	alt1: '#DAA520',
 	alt2: '#FFD877',
 	overlay1: 'rgba(255, 255, 255, 0.75)',
-	contrast: '#EE3C3C',
+	contrast: '#D24646',
 	contrastHover: '#F26969',
 	contrastShadow: '#F27979',
 	success: '#2DA44E',

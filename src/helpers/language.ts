@@ -37,6 +37,7 @@ export const LANGUAGE = {
 	basicInformation: `Basic Information`,
 	bookmarks: `Bookmarks`,
 	bookmarksUpdated: `Bookmarks Updated`,
+	cancel: `Cancel`,
 	close: `Close`,
 	closePreview: `Close Preview`,
 	collection: {
@@ -70,6 +71,7 @@ export const LANGUAGE = {
 	details: `Details`,
 	description: `Description`,
 	disconnect: `Disconnect`,
+	editSelectedArtifacts: `Edit Selected Artifacts`,
 	errorFetchingArtifact: `Error Fetching Artifact`,
 	errorOccurred: `Error Occurred`,
 	factMarket: `Fact Market`,
@@ -133,6 +135,7 @@ export const LANGUAGE = {
 		},
 	},
 	previewArtifact: `Preview Artifact`,
+	previewCollection: `Preview Collection`,
 	previous: `Previous`,
 	recentlyMintedArtifacts: `Recently Minted Artifacts`,
 	receiving: `Receiving`,
