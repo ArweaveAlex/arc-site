@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { ArtifactArgsType, ArtifactResponseType,CursorEnum } from 'arcframework';
+import { ArtifactArgsType, ArtifactResponseType, CursorEnum } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-import { getArtifactsByBookmarks , getArtifactsByUser } from 'gql';
+import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql';
 import { URLS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
@@ -17,9 +17,9 @@ import { IProps } from './types';
 // TODO: Preview selected
 // TODO: Edit selected
 export default function CollectionsManageArtifacts(props: IProps) {
-    const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
-    
-    const [tableType, setTableType] = React.useState<{
+	const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
+
+	const [tableType, setTableType] = React.useState<{
 		fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
 		cursorType: string;
 	}>({
@@ -27,7 +27,7 @@ export default function CollectionsManageArtifacts(props: IProps) {
 		cursorType: REDUX_TABLES.accountAll,
 	});
 
-    function handleIdUpdate(id: string) {
+	function handleIdUpdate(id: string) {
 		let idList = [];
 		for (let i = 0; i < selectedIds.length; i++) {
 			idList.push(selectedIds[i]);
@@ -41,7 +41,7 @@ export default function CollectionsManageArtifacts(props: IProps) {
 		setSelectedIds(idList);
 	}
 
-    function getAccountTab(urls: any[], label: string) {
+	function getAccountTab(urls: any[], label: string) {
 		for (let i = 0; i < urls.length; i++) {
 			if (urls[i].label === label) {
 				return urls[i];
