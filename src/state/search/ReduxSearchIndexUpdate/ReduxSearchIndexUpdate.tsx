@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { initSearch, TableIdType  } from 'arcframework';
+import { initSearch, TableIdType } from 'arcframework';
 
 import * as searchActions from 'state/search/actions';
 import { RootState } from 'state/store';

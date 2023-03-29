@@ -24,10 +24,14 @@ export async function getArtifactsByIds(
 		owner: null,
 		uploader: null,
 		cursor: null,
-		reduxCursor: null
-	}
-	
-	return getArtifactsResponseObject(finalArgs, await ArcFramework.getArtifactsByIds(finalArgs), ArcFramework.CursorEnum.Search);
+		reduxCursor: null,
+	};
+
+	return getArtifactsResponseObject(
+		finalArgs,
+		await ArcFramework.getArtifactsByIds(finalArgs),
+		ArcFramework.CursorEnum.Search
+	);
 }
 
 export async function getArtifactsByBookmarks(

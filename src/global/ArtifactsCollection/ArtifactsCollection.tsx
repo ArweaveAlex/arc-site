@@ -37,7 +37,7 @@ export default function ArtifactsCollection(props: IProps) {
 		setCurrentId(action === 'prev' ? props.selectedIds[currentIndex - 1] : props.selectedIds[currentIndex + 1]);
 	}
 
-    function getArtifactList() {
+	function getArtifactList() {
 		return props.selectedIds.map((id: string) => {
 			return (
 				<S.ArtifactPreviewContainer id={DOM.preview} key={id}>

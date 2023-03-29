@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-    animation: ${open} ${fadeIn2};
+	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		height: auto;
 		flex-direction: column;

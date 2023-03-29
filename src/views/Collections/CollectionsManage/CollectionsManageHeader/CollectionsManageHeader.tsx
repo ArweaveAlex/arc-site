@@ -17,9 +17,7 @@ import { IAProps, IProps } from './types';
 function HeaderAction(props: IAProps) {
 	return (
 		<Modal header={props.header} handleClose={() => props.handleClose()} useMax>
-			<S.ModalContainer>
-				{props.component}
-			</S.ModalContainer>
+			<S.ModalContainer>{props.component}</S.ModalContainer>
 		</Modal>
 	);
 }
