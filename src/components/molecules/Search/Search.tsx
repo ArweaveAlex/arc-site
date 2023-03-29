@@ -9,7 +9,6 @@ import { LANGUAGE } from 'helpers/language';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: Search Fix - disabled={props.disabled}
 export default function Search(props: IProps) {
 	return (
 		<S.Wrapper>

@@ -5,4 +5,6 @@ export interface IProps {
 	handleClose: () => void;
 	children: React.ReactNode;
 	noContainer?: boolean;
+	zoom?: boolean | undefined;
+	useMax?: boolean | undefined;
 }

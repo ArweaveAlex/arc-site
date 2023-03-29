@@ -15,7 +15,6 @@ import * as urls from 'helpers/urls';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: Loader
 export default function OwnerAccount(props: IProps) {
 	const [arProfile, setArProfile] = React.useState<ProfileType | null>(null);
 

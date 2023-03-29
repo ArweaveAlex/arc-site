@@ -12,7 +12,7 @@ export default function FormField(props: IProps) {
 
 	return (
 		<S.Wrapper sm={props.sm}>
-			{props.label && <label>{props.label}</label>}
+			{props.label && <S.Label>{props.label}</S.Label>}
 			<S.Input
 				type={props.type ? props.type : 'text'}
 				value={getValue()}

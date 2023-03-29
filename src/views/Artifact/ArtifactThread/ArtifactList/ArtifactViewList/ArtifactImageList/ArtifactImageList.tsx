@@ -17,7 +17,7 @@ import * as S from './styles';
 export default function ArtifactImageList(props: IProps) {
 	const { id } = useParams();
 
-	const [listData, setThreadData] = React.useState<ArtifactDetailType[]>(null);
+	const [listData, setListData] = React.useState<ArtifactDetailType[]>(null);
 	const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
 	const [detailData, setDetailData] = React.useState<ArtifactDetailType | null>(null);
 
@@ -25,7 +25,7 @@ export default function ArtifactImageList(props: IProps) {
 
 	React.useEffect(() => {
 		if (props.data) {
-			setThreadData(sortByAssociationSequence(props.data));
+			setListData(sortByAssociationSequence(props.data));
 			setTimeout(() => {
 				setShowAction(true);
 			}, 100);

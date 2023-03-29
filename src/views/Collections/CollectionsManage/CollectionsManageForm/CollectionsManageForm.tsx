@@ -1,30 +1,26 @@
 import React from 'react';
 
+import { ANSTopicEnum } from 'arcframework';
+
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
+import { Select } from 'components/atoms/Select';
 import { TextArea } from 'components/atoms/TextArea';
 import { LANGUAGE } from 'helpers/language';
 
 import * as S from './styles';
+import { IProps } from './types';
 
-export default function CollectionsManageForm() {
-	const [title, setTitle] = React.useState<string>('');
-	const [topic, setTopic] = React.useState<string>('');
-	const [description, setDescription] = React.useState<string>('');
-
+export default function CollectionsManageForm(props: IProps) {
 	function getInvalidTitle() {
 		return { status: false, message: null };
 		// return { status: true, message: LANGUAGE.collectionNameAlreadyExists };
 	}
 
-	// function getSubmitDisabled() {
-	// 	// return !title || getInvalidTitle().status || !topic || !description || selectedIds.length <= 0;
-	// 	// return !title || getInvalidTitle().status || !topic || !description;
-	// 	return true;
-	// }
-
-	function handleSave() {
-		console.log('Save');
+	function getSubmitDisabled() {
+		return (
+			!props.title || getInvalidTitle().status || !props.topic || !props.description || props.selectedIds.length <= 0
+		);
 	}
 
 	function getAction() {
@@ -50,8 +46,8 @@ export default function CollectionsManageForm() {
 			<Button
 				type={'alt1'}
 				label={LANGUAGE.save}
-				handlePress={() => handleSave()}
-				disabled={false}
+				handlePress={() => props.handleSave()}
+				disabled={getSubmitDisabled()}
 				height={52.5}
 				width={350}
 			/>
@@ -68,24 +64,23 @@ export default function CollectionsManageForm() {
 					<S.Fields>
 						<FormField
 							label={LANGUAGE.title}
-							value={title}
-							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+							value={props.title}
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setTitle(e.target.value as any)}
 							invalid={getInvalidTitle()}
 							disabled={false}
 							sm
 						/>
-						<FormField
-							label={LANGUAGE.topic}
-							value={topic}
-							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTopic(e.target.value)}
-							invalid={{ status: false, message: null }}
+						<Select
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setTopic(e.target.value as any)}
+							display={LANGUAGE.topic}
+							value={props.topic}
+							options={Object.keys(ANSTopicEnum).map((topic: string) => topic)}
 							disabled={false}
-							sm
 						/>
 						<TextArea
 							label={LANGUAGE.description}
-							value={description}
-							onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
+							value={props.description}
+							onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => props.setDescription(e.target.value as any)}
 							invalid={{ status: false, message: null }}
 							disabled={false}
 						/>

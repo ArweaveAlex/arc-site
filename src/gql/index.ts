@@ -19,7 +19,15 @@ export async function getArtifactsByUser(
 export async function getArtifactsByIds(
 	args: ArcFramework.ArtifactArgsType
 ): Promise<ArcFramework.ArtifactResponseType> {
-	return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByIds(args), ArcFramework.CursorEnum.Search);
+	const finalArgs = {
+		ids: args.ids,
+		owner: null,
+		uploader: null,
+		cursor: null,
+		reduxCursor: null
+	}
+	
+	return getArtifactsResponseObject(finalArgs, await ArcFramework.getArtifactsByIds(finalArgs), ArcFramework.CursorEnum.Search);
 }
 
 export async function getArtifactsByBookmarks(
@@ -38,7 +46,7 @@ export async function getArtifactsByBookmarks(
 		}
 	}
 
-	const reduxArgs = {
+	const finalArgs = {
 		ids: bookmarkIds,
 		owner: args.owner,
 		uploader: args.uploader,
@@ -46,8 +54,8 @@ export async function getArtifactsByBookmarks(
 		reduxCursor: args.reduxCursor,
 	};
 	return getArtifactsResponseObject(
-		reduxArgs,
-		await ArcFramework.getArtifactsByBookmarks(reduxArgs),
+		finalArgs,
+		await ArcFramework.getArtifactsByBookmarks(finalArgs),
 		ArcFramework.CursorEnum.GQL
 	);
 }

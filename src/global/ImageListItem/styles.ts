@@ -132,7 +132,7 @@ export const C2Header = styled.div`
 		line-height: 1.5;
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 		font-weight: ${(props) => props.theme.typography.weight.regular};
-		font-size: 18px;
+		font-size: 20px;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		word-break: break-word;
@@ -142,6 +142,14 @@ export const C2Header = styled.div`
 export const C2Body = styled.div<{ column: boolean }>`
 	height: ${(props) => (props.column ? 'auto' : 'calc(100% - 40px)')};
 	width: 100%;
+	> * {
+		&:not(:last-child) {
+			margin: 0 0 15px 0;
+		}
+		&:last-child {
+			margin: 0;
+		}
+	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: auto;
 	}
@@ -149,7 +157,6 @@ export const C2Body = styled.div<{ column: boolean }>`
 
 export const ContentLine = styled.div`
 	width: 100%;
-	margin: 0 0 15px 0;
 	padding: 17.5px;
 	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};

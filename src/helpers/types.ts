@@ -65,3 +65,5 @@ export type ActionDropdownType = {
 	disabled: boolean;
 	loading: boolean;
 };
+
+export type StepType = 'prev' | 'next';

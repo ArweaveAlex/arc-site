@@ -2,6 +2,7 @@ import { ArtifactArgsType, ArtifactResponseType, CursorObjectType } from 'arcfra
 
 export interface IProps {
 	owner: string | null;
+	ids?: string[];
 	reduxCursor: string;
 	fetch: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
 	showActions: boolean;

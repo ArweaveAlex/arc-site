@@ -31,7 +31,7 @@ export const Select = styled.select`
 	box-sizing: border-box;
 	background-color: ${(props) => props.theme.colors.form.background};
 	border: 1px solid ${(props) => props.theme.colors.form.border};
-	border-radius: ${STYLING.dimensions.borderRadiusField};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 
 	color: ${(props) =>
 		props.disabled ? props.theme.colors.font.primary.invalid : props.theme.colors.font.primary.alt1};

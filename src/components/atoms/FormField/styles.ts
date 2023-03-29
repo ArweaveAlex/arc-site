@@ -8,12 +8,14 @@ export const Wrapper = styled.div<{ sm: boolean | undefined }>`
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	label {
-		color: ${(props) => props.theme.colors.font.primary.alt1};
-	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		max-width: none;
 	}
+`;
+
+export const Label = styled.label`
+	font-size: ${(props) => props.theme.typography.size.xSmall};
+	color: ${(props) => props.theme.colors.font.primary.alt1};
 `;
 
 export const Input = styled.input<{
@@ -22,7 +24,7 @@ export const Input = styled.input<{
 	invalid: boolean;
 }>`
 	height: ${(props) => (props.sm ? STYLING.dimensions.formHeightSm : STYLING.dimensions.formHeightMax)};
-	color: ${(props) => props.theme.colors.font.primary.active.base};
+	color: ${(props) => props.theme.colors.font.primary.alt1};
 	font-size: ${(props) => (props.sm ? props.theme.typography.size.small : '19px')};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 	margin: 7.5px 0 0 0;

@@ -38,7 +38,7 @@ export default function Modal(props: IProps) {
 		if (props.noContainer) {
 			return (
 				<>
-					<S.BodyAlt>{props.children}</S.BodyAlt>
+					<S.BodyAlt zoom={props.zoom}>{props.children}</S.BodyAlt>
 					<S.CloseTextContainerAlt>
 						<S.CloseButtonContainer onClick={() => props.handleClose()}>{LANGUAGE.close}</S.CloseButtonContainer>
 					</S.CloseTextContainerAlt>
@@ -47,7 +47,7 @@ export default function Modal(props: IProps) {
 		} else {
 			return (
 				<>
-					<S.Container noHeader={!props.header}>
+					<S.Container noHeader={!props.header} useMax={props.useMax}>
 						{props.header && (
 							<S.Header>
 								<S.LT>
@@ -61,7 +61,7 @@ export default function Modal(props: IProps) {
 						<S.Body>{props.children}</S.Body>
 					</S.Container>
 					{!props.header && (
-						<S.CloseTextContainer>
+						<S.CloseTextContainer useMax={props.useMax}>
 							<S.CloseButtonContainer onClick={() => props.handleClose()}>{LANGUAGE.close}</S.CloseButtonContainer>
 						</S.CloseTextContainer>
 					)}

@@ -15,12 +15,12 @@ export const FormContainer = styled.div`
 `;
 
 export const Header = styled.div`
-    margin: 0 0 20px 0;
-    p {
-        font-size: clamp(18px, 20px, 22px);
-        font-weight: ${(props) => props.theme.typography.weight.medium};
-        color: ${(props) => props.theme.colors.font.primary.active.base};
-    }
+	margin: 0 0 20px 0;
+	p {
+		font-size: clamp(18px, 20px, 22px);
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		color: ${(props) => props.theme.colors.font.primary.active.base};
+	}
 `;
 
 export const FormContent = styled.div`
@@ -50,7 +50,7 @@ export const Form = styled.form`
 `;
 
 export const Fields = styled.div`
-    padding: 20px 20px 0 20px;
+	padding: 20px 20px 0 20px;
 	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
@@ -58,8 +58,8 @@ export const Fields = styled.div`
 `;
 
 export const SubmitContainer = styled.div`
-    margin: 20px 0 0 0;
+	margin: 20px 0 0 0;
 	width: 100%;
-    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-    overflow: hidden;
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	overflow: hidden;
 `;

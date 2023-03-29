@@ -31,7 +31,7 @@ export default function OwnerArtifacts(props: IProps) {
 			cursorObject={props.cursorObject}
 			defaultFetch={{
 				fn: props.fetch,
-				ids: null,
+				ids: props.ids ? props.ids : null,
 			}}
 			showActions={props.showActions}
 			showPoolIds={props.showPoolIds}

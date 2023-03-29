@@ -84,3 +84,14 @@ export const Action = styled.div`
 		margin: 0;
 	}
 `;
+
+export const ModalContainer = styled.div`
+	height: 100%;
+	width: 100%;
+	padding: 0 20px 20px 20px;
+	overflow: auto;
+	scrollbar-width: none;
+	::-webkit-scrollbar {
+		width: 0px;
+	}
+`;

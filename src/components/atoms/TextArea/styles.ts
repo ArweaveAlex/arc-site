@@ -16,12 +16,17 @@ export const Wrapper = styled.div`
 	}
 `;
 
+export const Label = styled.label`
+	font-size: ${(props) => props.theme.typography.size.xSmall};
+	color: ${(props) => props.theme.colors.font.primary.alt1};
+`;
+
 export const TextArea = styled.textarea<{
 	disabled: boolean;
 	invalid: boolean;
 }>`
 	height: 165px;
-	color: ${(props) => props.theme.colors.font.primary.active.base};
+	color: ${(props) => props.theme.colors.font.primary.alt1};
 	font-size: ${(props) => props.theme.typography.size.small};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 	margin: 7.5px 0 0 0;

@@ -93,7 +93,7 @@ export default function ImageListItem(props: IProps) {
 			);
 		} else {
 			return (
-				<Modal header={null} handleClose={() => setImageZoomed(false)} noContainer>
+				<Modal header={null} handleClose={() => setImageZoomed(false)} noContainer zoom>
 					{(!imageUrl || !imageLoaded) && <Loader placeholder />}
 					<S.Image src={imageUrl} onLoad={handleImageLoaded} loaded={imageLoaded} column={getColumnDisplay()} />
 				</Modal>
