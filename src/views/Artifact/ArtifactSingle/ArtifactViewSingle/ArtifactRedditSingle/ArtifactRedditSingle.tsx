@@ -11,7 +11,6 @@ import { IProps } from '../../types';
 
 import * as S from './styles';
 
-// TODO: mobile view
 export default function ArtifactRedditSingle(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
 	const [data, setData] = React.useState<any>([]);
