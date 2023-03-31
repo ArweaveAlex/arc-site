@@ -5,10 +5,12 @@ import { Loader } from 'components/atoms/Loader';
 import * as urls from 'helpers/urls';
 import { View } from 'wrappers/View';
 
+// const About = getLazyImport('About');
 const Account = getLazyImport('Account');
 const Artifact = getLazyImport('Artifact');
 const ArtifactThread = getLazyImport('Artifact/ArtifactThread');
 const CollectionsManage = getLazyImport('Collections/CollectionsManage');
+// const Create = getLazyImport('Create');
 const Landing = getLazyImport('Landing');
 const Library = getLazyImport('Library');
 const NotFound = getLazyImport('NotFound');
@@ -80,6 +82,22 @@ export default function _Routes() {
 					element={
 						<View>
 							<CollectionsManage />
+						</View>
+					}
+				/>
+				<Route
+					path={urls.about}
+					element={
+						<View>
+							<NotFound />
+						</View>
+					}
+				/>
+				<Route
+					path={urls.create}
+					element={
+						<View>
+							<NotFound />
 						</View>
 					}
 				/>

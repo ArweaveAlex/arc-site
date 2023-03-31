@@ -79,6 +79,7 @@ export const LANGUAGE = {
 	exit: `Exit`,
 	factMarket: `Fact Market`,
 	factMarketCreated: `Fact Market Created`,
+	fetching: `Fetching`,
 	fetchingBalance: `Fetching balance`,
 	fetchingCount: `Fetching count`,
 	fetchingReceivingPercentage: `Fetching receiving amount`,
@@ -116,6 +117,8 @@ export const LANGUAGE = {
 	owner: `Sponsor`,
 	pageNotFound: `Page Not Found`,
 	paths: {
+		about: `About`,
+		create: `Create`,
 		pools: `Pools`,
 	},
 	pool: {

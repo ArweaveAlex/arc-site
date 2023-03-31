@@ -58,31 +58,33 @@ export default function WalletConnect(props: { callback?: () => void }) {
 	}
 
 	function getWalletLabel() {
-		if (arProvider.walletAddress) {
-			if (arProvider.arProfile) {
-				return arProvider.arProfile.handle;
-			} else {
-				return formatAddress(arProvider.walletAddress, false);
-			}
+		if (!showWallet) {
+			return `${LANGUAGE.fetching} ...`;
 		} else {
-			return LANGUAGE.connectWallet;
+			if (arProvider.walletAddress) {
+				if (arProvider.arProfile) {
+					return arProvider.arProfile.handle;
+				} else {
+					return formatAddress(arProvider.walletAddress, false);
+				}
+			} else {
+				return LANGUAGE.connectWallet;
+			}
 		}
 	}
 
 	return (
 		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown} disabled={false}>
-			{showWallet && (
-				<S.Wrapper>
-					<Button type={'alt2'} label={getWalletLabel()} handlePress={handlePress} useMaxWidth active={true} />
-					{showDropdown && (
-						<S.WalletDropdown>
-							<li onClick={handleViewAccount}>{LANGUAGE.viewAccount}</li>
-							<li onClick={copyAddress}>{copied ? LANGUAGE.copied : LANGUAGE.copyAddress}</li>
-							<li onClick={handleDisconnect}>{LANGUAGE.disconnect}</li>
-						</S.WalletDropdown>
-					)}
-				</S.Wrapper>
-			)}
+			<S.Wrapper>
+				<Button type={'alt2'} label={getWalletLabel()} handlePress={handlePress} useMaxWidth active={true} />
+				{showDropdown && (
+					<S.WalletDropdown>
+						<li onClick={handleViewAccount}>{LANGUAGE.viewAccount}</li>
+						<li onClick={copyAddress}>{copied ? LANGUAGE.copied : LANGUAGE.copyAddress}</li>
+						<li onClick={handleDisconnect}>{LANGUAGE.disconnect}</li>
+					</S.WalletDropdown>
+				)}
+			</S.Wrapper>
 		</CloseHandler>
 	);
 }

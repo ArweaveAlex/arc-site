@@ -60,7 +60,7 @@ export const LogoContent = styled.div`
 
 export const NC = styled.div`
 	height: 100%;
-	width: 260px;
+	width: fit-content;
 	max-width: 77.5vw;
 	right: 0;
 	position: absolute;
@@ -86,8 +86,6 @@ export const SC = styled.div`
 	height: 100%;
 	display: flex;
 	align-items: center;
-	position: absolute;
-	right: 0;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		position: relative;
 		right: auto;

@@ -4,10 +4,18 @@ import { LANGUAGE } from './language';
 import * as urls from './urls';
 
 export const NAV_PATHS = [
+	// {
+	// 	name: LANGUAGE.paths.about,
+	// 	href: urls.about,
+	// },
 	{
 		name: LANGUAGE.paths.pools,
 		href: urls.pools,
 	},
+	// {
+	// 	name: LANGUAGE.paths.create,
+	// 	href: urls.create,
+	// },
 ];
 
 export const SOCIAL_PATHS = [
