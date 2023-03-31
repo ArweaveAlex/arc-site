@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
@@ -7,6 +8,7 @@ export const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	animation: ${open} ${fadeIn2};
 `;
 
 export const WalletDropdown = styled.ul`

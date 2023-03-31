@@ -139,6 +139,7 @@ export const LANGUAGE = {
 	previewArtifact: `Preview Artifact`,
 	previewCollection: `Preview Collection`,
 	previous: `Previous`,
+	publish: `Publish`,
 	recentlyMintedArtifacts: `Recently Minted Artifacts`,
 	receiving: `Receiving`,
 	redditAuthor: `Posted by u/`,

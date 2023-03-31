@@ -109,6 +109,15 @@ export default function CollectionsManageHeader(props: IProps) {
 								/>
 							</S.Action>
 							<S.Action>
+								<Button
+									type={'success'}
+									label={LANGUAGE.publish}
+									handlePress={() => console.log('Publish')}
+									noMinWidth
+									disabled={true}
+								/>
+							</S.Action>
+							<S.Action>
 								<Button type={'warning'} label={LANGUAGE.exit} handlePress={() => navigate(-1)} noMinWidth />
 							</S.Action>
 						</S.Actions>

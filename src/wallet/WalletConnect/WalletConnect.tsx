@@ -16,8 +16,15 @@ export default function WalletConnect(props: { callback?: () => void }) {
 
 	const arProvider = useArweaveProvider();
 
+	const [showWallet, setShowWallet] = React.useState<boolean>(false);
 	const [showDropdown, setShowDropdown] = React.useState<boolean>(false);
 	const [copied, setCopied] = React.useState<boolean>(false);
+
+	React.useEffect(() => {
+		setTimeout(() => {
+			setShowWallet(true);
+		}, 400);
+	}, [arProvider.walletAddress]);
 
 	function handlePress() {
 		if (arProvider.walletAddress) {
@@ -64,16 +71,18 @@ export default function WalletConnect(props: { callback?: () => void }) {
 
 	return (
 		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown} disabled={false}>
-			<S.Wrapper>
-				<Button type={'alt2'} label={getWalletLabel()} handlePress={handlePress} useMaxWidth active={true} />
-				{showDropdown && (
-					<S.WalletDropdown>
-						<li onClick={handleViewAccount}>{LANGUAGE.viewAccount}</li>
-						<li onClick={copyAddress}>{copied ? LANGUAGE.copied : LANGUAGE.copyAddress}</li>
-						<li onClick={handleDisconnect}>{LANGUAGE.disconnect}</li>
-					</S.WalletDropdown>
-				)}
-			</S.Wrapper>
+			{showWallet && (
+				<S.Wrapper>
+					<Button type={'alt2'} label={getWalletLabel()} handlePress={handlePress} useMaxWidth active={true} />
+					{showDropdown && (
+						<S.WalletDropdown>
+							<li onClick={handleViewAccount}>{LANGUAGE.viewAccount}</li>
+							<li onClick={copyAddress}>{copied ? LANGUAGE.copied : LANGUAGE.copyAddress}</li>
+							<li onClick={handleDisconnect}>{LANGUAGE.disconnect}</li>
+						</S.WalletDropdown>
+					)}
+				</S.Wrapper>
+			)}
 		</CloseHandler>
 	);
 }
