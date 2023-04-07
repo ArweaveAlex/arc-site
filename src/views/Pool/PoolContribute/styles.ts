@@ -161,3 +161,12 @@ export const Message = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 	}
 `;
+
+export const Warning = styled(Message)`
+	text-align: left;
+	margin: 12.5px 0 0 0;
+	p {
+		font-weight: ${(props) => props.theme.typography.weight.bold};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+	}
+`;

@@ -120,6 +120,11 @@ export default function PoolContribute(props: IProps) {
 							</S.HeaderFlex>
 							{props.subheader}
 							<S.BalanceWrapper>{getAvailableBalance()}</S.BalanceWrapper>
+							{props.contribPercent && (
+								<S.Warning>
+									<p>{LANGUAGE.contributionPercentage(props.contribPercent)}</p>
+								</S.Warning>
+							)}
 						</S.Header>
 						<S.Form onSubmit={(e) => handlePoolContribute(e)}>
 							<S.FormWrapper>

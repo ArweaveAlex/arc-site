@@ -159,6 +159,7 @@ export const defaultTheme: DefaultTheme = {
 					hover: DEFAULT.primary3,
 				},
 				invalid: DEFAULT.contrast,
+				warning: DEFAULT.contrast,
 			},
 		},
 		form: {

@@ -7,4 +7,5 @@ export interface IProps {
 	totalContributions: string | null;
 	contributors: any | null;
 	disabled: boolean;
+	contribPercent: string | null;
 }

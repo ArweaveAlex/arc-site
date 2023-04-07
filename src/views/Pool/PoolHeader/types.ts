@@ -8,4 +8,5 @@ export interface IProps {
 	totalContributions: string | null;
 	contributors: any | null;
 	ownerMaintained: boolean;
+	contribPercent: string | null;
 }

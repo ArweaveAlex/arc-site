@@ -121,6 +121,7 @@ export default function PoolHeader(props: IProps) {
 						totalContributions={props.totalContributions ? props.totalContributions : null}
 						contributors={props.contributors ? props.contributors : null}
 						disabled={props.ownerMaintained}
+						contribPercent={props.contribPercent ? props.contribPercent : null}
 					/>
 				</S.ContributeTile>
 			</S.FlexTiles>

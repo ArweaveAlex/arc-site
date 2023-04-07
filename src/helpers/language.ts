@@ -100,6 +100,8 @@ export const LANGUAGE = {
 	contribute: `Contribute`,
 	contributeTo: `Contribute to`,
 	contributionMessage: `Your contribution totals will be adjusted once your transfer has settled on the Arweave network.`,
+	contributionPercentage: (percentage: string) =>
+		`* This Pool Operator will claim ${percentage}% of the contribution as a reward fee.`,
 	contributions: `Contributions`,
 	contributors: {
 		recent: `Recent Contributors`,

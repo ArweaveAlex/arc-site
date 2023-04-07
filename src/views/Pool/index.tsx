@@ -81,6 +81,7 @@ export default function Pool() {
 				totalContributions={headerData.state.totalContributions}
 				contributors={headerData.state.contributors}
 				ownerMaintained={headerData.state.ownerMaintained ? headerData.state.ownerMaintained : false}
+				contribPercent={headerData.state.contribPercent ? headerData.state.contribPercent : null}
 			/>
 		);
 	}
