@@ -26,7 +26,7 @@ export const LANGUAGE = {
 				footer: 'Artifacts are deployed as assets to Arweave and distributed to the contributors who support the pool.',
 			},
 		},
-		infoDescription1: `<b>Archiving is important.</b> Archives allow people to look back at history to ensure better decisions are made for the future of society. Unfortunately, the current model for archiving is insufficiently incentivized. The person that stores the data, which others can later access without charge, is the person that has to pay. Alex changes this by allowing the public to sponsor the archiving of digital content.`,
+		infoDescription1: `<b>Archiving is important.</b> Archives allow people to look back at history to ensure better decisions are made for the future of society. Unfortunately, the current model for archiving is insufficiently incentivized. The person that stores the data, which others can later access without charge, is the person that has to pay. Alex. changes this by allowing the public to sponsor the archiving of digital content.`,
 		infoDescription2: `Currently, historical archives are often controlled by a single centralized entity. This means that data can be manipulated or censored to benefit special interests. Therefore <b>Alex. uses Arweave to preserve important historical and cultural information</b> that may otherwise be lost, tampered with, or held hostage in a centralized server.`,
 		infoHeader1: `Decentralized Archiving`,
 		stepsHeader1: `How it works`,
