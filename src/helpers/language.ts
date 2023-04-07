@@ -231,7 +231,7 @@ export const LANGUAGE = {
 			},
 			{
 				header: `Collect Artifacts`,
-				description: `Contributors will be made the sponsor of an equal percentage of their $AR contribution (relative to the total $AR contributed) of digital artifacts.`,
+				description: `Contributors will be made the sponsor of an amount of digital artifacts equal to the percentage of their $AR contribution (relative to the total $AR contributed).`,
 			},
 		],
 	},
