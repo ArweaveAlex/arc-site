@@ -2,6 +2,26 @@ import styled from 'styled-components';
 
 import { STYLING } from 'helpers/styling';
 
+function getHeight(height: number | undefined) {
+	if (height) {
+		return `${height.toString()}px`;
+	} else {
+		return STYLING.dimensions.buttonHeight;
+	}
+}
+
+function getWidth(noMinWidth: boolean | undefined, width: number | undefined) {
+	if (width) {
+		return `${width.toString()}px`;
+	} else {
+		if (noMinWidth) {
+			return 'fit-content';
+		} else {
+			return STYLING.dimensions.buttonWidth;
+		}
+	}
+}
+
 export const Wrapper = styled.div`
 	a {
 		font-size: ${(props) => props.theme.typography.size.xSmall};
@@ -15,15 +35,17 @@ export const Wrapper = styled.div`
 export const Primary = styled.div<{
 	useMaxWidth: boolean | undefined;
 	noMinWidth: boolean | undefined;
+	width: number | undefined;
+	height: number | undefined;
 	active: boolean | undefined;
 }>`
 	position: relative;
 	background: ${(props) =>
 		props.active ? props.theme.colors.button.primary.active.background : props.theme.colors.button.primary.background};
 	border: 1.5px solid ${(props) => props.theme.colors.button.primary.border};
-	height: ${STYLING.dimensions.buttonHeight};
-	min-width: ${(props) => (props.noMinWidth ? 'none' : STYLING.dimensions.buttonWidth)};
-	max-width: ${(props) => (props.useMaxWidth ? STYLING.dimensions.buttonWidth : 'none')};
+	height: ${(props) => getHeight(props.height)};
+	min-width: ${(props) => getWidth(props.noMinWidth, props.width)};
+	max-width: ${(props) => (props.useMaxWidth ? STYLING.dimensions.buttonWidth : '100%')};
 	overflow: hidden;
 	text-overflow: ellipsis;
 	padding: 0 15px;
@@ -49,9 +71,7 @@ export const Primary = styled.div<{
 			color: ${(props) => props.theme.colors.button.primary.disabled.label};
 		}
 	}
-	a,
 	span {
-		width: 100%;
 		text-overflow: ellipsis;
 		overflow: hidden;
 		font-size: ${(props) => props.theme.typography.size.xSmall};
@@ -121,17 +141,17 @@ export const IconSecondary = styled(IconPrimary)`
 export const Alt2 = styled(Primary)`
 	background: ${(props) =>
 		props.active ? props.theme.colors.button.alt2.active.background : props.theme.colors.button.alt2.background};
-	border: 1.25px solid
+	border: 1.5px solid
 		${(props) =>
 			props.active ? props.theme.colors.button.alt2.active.background : props.theme.colors.button.alt2.border};
 	&:hover {
-		border: 1.25px solid
+		border: 1.5px solid
 			${(props) => (props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.border)};
 		background: ${(props) =>
 			props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.hover};
 	}
 	&:focus {
-		border: 1.25px solid
+		border: 1.5px solid
 			${(props) => (props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.border)};
 		background: ${(props) =>
 			props.active ? props.theme.colors.button.alt2.active.hover : props.theme.colors.button.alt2.hover};
@@ -139,7 +159,7 @@ export const Alt2 = styled(Primary)`
 	&:disabled {
 		background: ${(props) => props.theme.colors.button.alt2.disabled.background};
 		color: ${(props) => props.theme.colors.button.alt2.disabled.label};
-		border: 1.25px solid ${(props) => props.theme.colors.button.alt2.disabled.border};
+		border: 1.5px solid ${(props) => props.theme.colors.button.alt2.disabled.border};
 		span {
 			color: ${(props) => props.theme.colors.button.alt2.disabled.label};
 		}

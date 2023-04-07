@@ -22,3 +22,10 @@ export function scrollTo(x: number, y: number, behavior?: 'smooth') {
 		window.scrollTo(obj);
 	}, 0);
 }
+
+export function scrollIntoView(elementId) {
+	const element = document.getElementById(elementId);
+	if (element) {
+		element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
+}

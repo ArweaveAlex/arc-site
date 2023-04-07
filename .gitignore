@@ -1,6 +1,6 @@
 **/node_modules
 **/build
-**/dist
+**/dist*
 **/coverage
 **/.vscode
 **/.DS_Store

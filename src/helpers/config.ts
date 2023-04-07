@@ -1,5 +1,12 @@
 import { PoolType, TAGS } from 'arcframework';
 
+import aboutHeaderLogoSVG from 'assets/about-header-logo.svg';
+import aboutInfoLogo1SVG from 'assets/about-info-logo-1.svg';
+import aboutInfoLogo2SVG from 'assets/about-info-logo-2.svg';
+import aboutStepsLogo1SVG from 'assets/about-steps-logo-1.svg';
+import aboutStepsLogo2SVG from 'assets/about-steps-logo-2.svg';
+import aboutStepsLogo3SVG from 'assets/about-steps-logo-3.svg';
+import aboutStepsLogo4SVG from 'assets/about-steps-logo-4.svg';
 import menuActionSVG from 'assets/action-menu.svg';
 import allSVG from 'assets/all.svg';
 import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
@@ -11,6 +18,7 @@ import nostrEventArtifactTypeSVG from 'assets/artifact-types/nostr.svg';
 import redditThreadArtifactTypeSVG from 'assets/artifact-types/reddit-thread.svg';
 import messagingArtifactTypeSVG from 'assets/artifact-types/twitter.svg';
 import defaultArtifactTypeSVG from 'assets/artifact-types/webpage.svg';
+import webpageArtifactTypeSVG from 'assets/artifact-types/wikipedia.svg';
 import associationSVG from 'assets/association.svg';
 import bookmarkSVG from 'assets/bookmark.svg';
 import bookmarkSelectedSVG from 'assets/bookmark-selected.svg';
@@ -26,6 +34,8 @@ import disconnectSVG from 'assets/disconnect.svg';
 import discordSocialSVG from 'assets/discord.svg';
 import dropdownSVG from 'assets/dropdown.svg';
 import favoriteSVG from 'assets/favorite.svg';
+import fileSVG from 'assets/file.svg';
+import historicalSVG from 'assets/historical-icon.svg';
 import impressionsSVG from 'assets/impressions.svg';
 import infoGraphicPNG from 'assets/info-graphic.png';
 import linkSVG from 'assets/link.svg';
@@ -52,6 +62,7 @@ import superStampSVG from 'assets/stamp-super.svg';
 import vouchedStampSVG from 'assets/stamp-vouched.svg';
 import starSVG from 'assets/star.svg';
 import twitterSocialSVG from 'assets/twitter.svg';
+import universitySVG from 'assets/university-icon.svg';
 import userSVG from 'assets/user.svg';
 import * as filters from 'filters/pools';
 import { LANGUAGE } from 'helpers/language';
@@ -70,6 +81,13 @@ export const APP = {
 };
 
 export const ASSETS = {
+	aboutHeaderLogo: aboutHeaderLogoSVG,
+	aboutInfoLogo1: aboutInfoLogo1SVG,
+	aboutInfoLogo2: aboutInfoLogo2SVG,
+	aboutStepsLogo1: aboutStepsLogo1SVG,
+	aboutStepsLogo2: aboutStepsLogo2SVG,
+	aboutStepsLogo3: aboutStepsLogo3SVG,
+	aboutStepsLogo4: aboutStepsLogo4SVG,
 	all: allSVG,
 	arrowNext: arrowNextSVG,
 	arrowPrevious: arrowPreviousSVG,
@@ -80,7 +98,7 @@ export const ASSETS = {
 		messaging: messagingArtifactTypeSVG,
 		nostrEvent: nostrEventArtifactTypeSVG,
 		redditThread: redditThreadArtifactTypeSVG,
-		webpage: defaultArtifactTypeSVG,
+		webpage: webpageArtifactTypeSVG,
 	},
 	association: associationSVG,
 	bookmark: bookmarkSVG,
@@ -96,6 +114,8 @@ export const ASSETS = {
 	disconnect: disconnectSVG,
 	dropdown: dropdownSVG,
 	favorite: favoriteSVG,
+	file: fileSVG,
+	historical: historicalSVG,
 	impressions: impressionsSVG,
 	infoGraphic: infoGraphicPNG,
 	link: linkSVG,
@@ -128,6 +148,7 @@ export const ASSETS = {
 		vouched: vouchedStampSVG,
 	},
 	star: starSVG,
+	university: universitySVG,
 	user: userSVG,
 	wallets: {
 		arconnect: arconnectWalletPNG,
@@ -161,6 +182,36 @@ export const ARTIFACT_TYPES = {
 	},
 };
 
+export const ARTIFACT_TYPES_DISPLAY = {
+	archives: [
+		{ value: null, display: LANGUAGE.artifactTypesDisplay.files, icon: ASSETS.file },
+		{ value: null, display: LANGUAGE.artifactTypesDisplay.universities, icon: ASSETS.university },
+		{ value: null, display: LANGUAGE.artifactTypesDisplay.historical, icon: ASSETS.historical },
+	],
+	platforms: [
+		{
+			value: TAGS.values.redditThreadArtifactType,
+			display: LANGUAGE.artifactTypesDisplay.reddit,
+			icon: ARTIFACT_TYPES[TAGS.values.redditThreadArtifactType].icon,
+		},
+		{
+			value: TAGS.values.messagingArtifactType,
+			display: LANGUAGE.artifactTypesDisplay.messaging,
+			icon: ARTIFACT_TYPES[TAGS.values.messagingArtifactType].icon,
+		},
+		{
+			value: TAGS.values.webpageArtifactType,
+			display: LANGUAGE.artifactTypesDisplay.webpage,
+			icon: ARTIFACT_TYPES[TAGS.values.webpageArtifactType].icon,
+		},
+		{
+			value: TAGS.values.nostrEventArtifactType,
+			display: LANGUAGE.artifactTypesDisplay.nostr,
+			icon: ARTIFACT_TYPES[TAGS.values.nostrEventArtifactType].icon,
+		},
+	],
+};
+
 export const AR_WALLETS = [{ name: 'arconnect', logo: ASSETS.wallets.arconnect }];
 
 export const WALLET_PERMISSIONS = ['ACCESS_ADDRESS', 'ACCESS_PUBLIC_KEY', 'SIGN_TRANSACTION', 'DISPATCH'];
@@ -180,10 +231,18 @@ export const ARTIFACT_TABS = [
 ];
 
 export const DOM = {
+	about: {
+		contributing: 'about-contributing',
+		creatingAPool: 'about-creating-a-pool',
+		decentralization: 'about-decentralization',
+		header: 'about-header',
+		howItWorks: 'about-how-it-works',
+	},
 	loader: 'loader',
 	modal: 'modal',
 	notification: 'notification',
 	preview: 'preview',
+	subheader: 'subheader',
 };
 
 export const URLS: IURLView = {

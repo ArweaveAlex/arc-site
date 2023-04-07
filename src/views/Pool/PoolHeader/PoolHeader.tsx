@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 
-import { ArweaveClient, formatAddress, formatCount } from 'arcframework';
+import { formatAddress, formatCount, PoolClient } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
@@ -15,7 +15,7 @@ import * as S from './styles';
 import { IProps } from './types';
 
 export default function PoolHeader(props: IProps) {
-	const arClient = new ArweaveClient();
+	const poolClient = new PoolClient();
 
 	const [copied, setCopied] = React.useState<boolean>(false);
 
@@ -101,7 +101,7 @@ export default function PoolHeader(props: IProps) {
 						<p>{LANGUAGE.totalContributed}</p>
 					</S.TileTitle>
 					<S.TileData>
-						<p>{props.totalContributions ? arClient.getARAmount(props.totalContributions) : null}</p>
+						<p>{props.totalContributions ? poolClient.getARAmount(props.totalContributions) : null}</p>
 						<S.TContainer>
 							<p>{LANGUAGE.arTokens}</p>
 						</S.TContainer>

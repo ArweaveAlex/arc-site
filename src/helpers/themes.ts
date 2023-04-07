@@ -21,7 +21,7 @@ const DEFAULT = {
 	primary2: '#265F85',
 	primary3: '#4C8CB8',
 	primary4: '#A4CCE9',
-	alt1: '#DAA520',
+	alt1: '#FFB600',
 	alt2: '#FFD877',
 	overlay1: 'rgba(255, 255, 255, 0.75)',
 	contrast: '#D24646',
@@ -133,6 +133,12 @@ export const defaultTheme: DefaultTheme = {
 			alt5: {
 				background: DEFAULT.neutral11,
 			},
+			alt6: {
+				background: DEFAULT.neutral5,
+			},
+			alt7: {
+				background: DEFAULT.neutral2,
+			},
 		},
 		font: {
 			primary: {
@@ -146,6 +152,8 @@ export const defaultTheme: DefaultTheme = {
 				alt7: DEFAULT.neutral8,
 				alt8: DEFAULT.neutral11,
 				alt9: DEFAULT.neutral15,
+				alt10: DEFAULT.neutral5,
+				alt11: DEFAULT.primary2,
 				active: {
 					base: DEFAULT.primary,
 					hover: DEFAULT.primary3,
@@ -175,6 +183,9 @@ export const defaultTheme: DefaultTheme = {
 				hover: DEFAULT.neutral6,
 				alt1: {
 					fill: DEFAULT.neutral7,
+				},
+				alt2: {
+					fill: DEFAULT.primary2,
 				},
 			},
 			alt1: {
@@ -243,6 +254,9 @@ export const defaultTheme: DefaultTheme = {
 		tabs: {
 			active: DEFAULT.primary,
 			inactive: DEFAULT.transparent,
+			alt1: {
+				active: DEFAULT.alt1,
+			},
 		},
 		transparent: DEFAULT.transparent,
 		view: {
@@ -253,7 +267,7 @@ export const defaultTheme: DefaultTheme = {
 	typography: {
 		family: {
 			primary: `'Fira Sans', sans-serif`,
-			alt1: `'Fira Sans', sans-serif`,
+			alt1: `'calluna', serif`,
 		},
 		size: {
 			h1: '48px',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { ArweaveClient, ContributionResultType, ValidationType } from 'arcframework';
+import { ContributionResultType, PoolClient, ValidationType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
@@ -16,7 +16,7 @@ import { IProps } from './types';
 
 export default function PoolContribute(props: IProps) {
 	const arProvider = useArweaveProvider();
-	const arClient = new ArweaveClient();
+	const poolClient = new PoolClient();
 
 	const [showModal, setShowModal] = React.useState(false);
 	const [amount, setAmount] = React.useState<number>(0);
@@ -29,7 +29,7 @@ export default function PoolContribute(props: IProps) {
 		if (arProvider.availableBalance) {
 			e.preventDefault();
 			setLoading(true);
-			setContributionResult(await arClient.handlePoolContribute(props.poolId, amount, arProvider.availableBalance));
+			setContributionResult(await poolClient.handlePoolContribute(props.poolId, amount, arProvider.availableBalance));
 			setLoading(false);
 		}
 	}
@@ -95,7 +95,7 @@ export default function PoolContribute(props: IProps) {
 		(async function () {
 			if (arProvider.walletAddress) {
 				setReceivingPercent(
-					arClient.getReceivingPercent(arProvider.walletAddress, props.contributors, props.totalContributions, amount)
+					poolClient.getReceivingPercent(arProvider.walletAddress, props.contributors, props.totalContributions, amount)
 				);
 			}
 		})();

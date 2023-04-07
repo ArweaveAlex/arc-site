@@ -10,7 +10,7 @@ export const STYLING = {
 	dimensions: {
 		borderRadius: '10px',
 		borderRadiusField: '2.25px',
-		borderRadiusWrapper: '5px',
+		borderRadiusWrapper: '4.25px',
 		buttonHeight: '33.5px',
 		buttonWidth: '150px',
 		listWidth: '600px',

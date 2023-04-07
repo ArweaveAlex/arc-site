@@ -22,10 +22,8 @@ export default function LandingSteps() {
 					<S.StepList>
 						{stepList.map((step, index) => (
 							<S.Step key={index}>
-								<S.StepHeader>
-									{LANGUAGE.steps.display} {index + 1}
-								</S.StepHeader>
-								<S.StepBody>{parse(step)}</S.StepBody>
+								<S.StepHeader>{step.header}</S.StepHeader>
+								<S.StepBody>{parse(step.description)}</S.StepBody>
 							</S.Step>
 						))}
 					</S.StepList>

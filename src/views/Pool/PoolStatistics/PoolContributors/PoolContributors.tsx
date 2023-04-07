@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ArweaveClient, formatAddress } from 'arcframework';
+import { formatAddress, PoolClient } from 'arcframework';
 
 import { Placeholder } from 'components/atoms/Placeholder';
 import { LANGUAGE } from 'helpers/language';
@@ -13,7 +13,7 @@ import { IProps } from './types';
 const ROW_COUNT = 3;
 
 export default function PoolContributors(props: IProps) {
-	const arClient = new ArweaveClient();
+	const poolClient = new PoolClient();
 
 	function getBody(list: React.ReactNode[]) {
 		if (list.length <= 0) {
@@ -39,7 +39,8 @@ export default function PoolContributors(props: IProps) {
 			const sortedKeys: any = Object.keys(contributors)
 				.sort(function (a, b) {
 					return (
-						Number(arClient.calcContributions(contributors[a])) - Number(arClient.calcContributions(contributors[b]))
+						Number(poolClient.calcContributions(contributors[a])) -
+						Number(poolClient.calcContributions(contributors[b]))
 					);
 				})
 				.reverse();
@@ -54,7 +55,9 @@ export default function PoolContributors(props: IProps) {
 							<Link to={`${urls.libraryAll(sortedKeys[i])}`}>{formatAddress(sortedKeys[i], false)}</Link>
 						</S.Owner>
 						<S.Amount>
-							<p>{arClient.getARAmount(arClient.calcContributions(props.data.state.contributors[sortedKeys[i]]))}</p>
+							<p>
+								{poolClient.getARAmount(poolClient.calcContributions(props.data.state.contributors[sortedKeys[i]]))}
+							</p>
 							&nbsp;
 							<span>{`${LANGUAGE.arTokens} ${LANGUAGE.total}`}</span>
 						</S.Amount>
@@ -80,7 +83,9 @@ export default function PoolContributors(props: IProps) {
 						</S.RecentOwner>
 						<S.Amount>
 							<p>
-								{arClient.getARAmount(arClient.calcContributions(props.data.state.contributors[contributorKeys[i]]))}
+								{poolClient.getARAmount(
+									poolClient.calcContributions(props.data.state.contributors[contributorKeys[i]])
+								)}
 							</p>
 							&nbsp;
 							<span>{`${LANGUAGE.arTokens}`}</span>

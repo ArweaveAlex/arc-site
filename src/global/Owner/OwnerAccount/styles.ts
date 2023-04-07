@@ -187,7 +187,7 @@ export const Header2 = styled(Header1)`
 `;
 
 export const LP = styled.div`
-	height: 50px;
+	height: 60px;
 	width: 500px;
 	max-width: 75vw;
 `;

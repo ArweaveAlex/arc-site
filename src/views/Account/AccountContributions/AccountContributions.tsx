@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ArweaveClient } from 'arcframework';
+import { PoolClient } from 'arcframework';
 
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
@@ -9,7 +9,7 @@ import * as S from './styles';
 
 export default function AccountContributions() {
 	const arProvider = useArweaveProvider();
-	const arClient = new ArweaveClient();
+	const poolClient = new PoolClient();
 
 	const [data, setData] = React.useState<any>(null);
 
@@ -17,7 +17,7 @@ export default function AccountContributions() {
 		if (arProvider.walletAddress) {
 			(async function () {
 				setData(
-					(await arClient.getUserContributions(arProvider.walletAddress!)).map((element: any) => {
+					(await poolClient.getUserContributions(arProvider.walletAddress!)).map((element: any) => {
 						return element;
 					})
 				);

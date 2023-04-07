@@ -119,6 +119,7 @@ export const Menu = styled.div`
 	left: 50%;
 	transform: translate(-50%, -50%);
 	margin-top: 2.5px;
+	padding: 0 3.5px 0 0;
 `;
 
 export const Link = styled.div`
@@ -150,14 +151,16 @@ export const Link = styled.div`
 	}
 `;
 
-export const OpenContainer = styled.div`
+export const OpenContainer = styled.div<{ hasSubheader: boolean }>`
 	position: absolute;
 	height: calc(100vh - ${STYLING.dimensions.navHeight});
 	overflow: auto;
 	width: 100vw;
 	z-index: 4;
 	padding: 0 20px;
-	margin: ${STYLING.dimensions.navHeight} 0 0 0;
+	margin: ${(props) =>
+			props.hasSubheader ? `calc(${STYLING.dimensions.navHeight} * 2)` : STYLING.dimensions.navHeight}
+		0 0 0;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	animation: ${open} ${fadeIn1};
 `;

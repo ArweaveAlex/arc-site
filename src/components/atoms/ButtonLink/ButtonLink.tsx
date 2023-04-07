@@ -65,6 +65,8 @@ export default function ButtonLink(props: IProps) {
 					active={props.active}
 					useMaxWidth={props.useMaxWidth}
 					noMinWidth={props.noMinWidth}
+					width={props.width}
+					height={props.height}
 					data-testid={props.testingCtx}
 				>
 					{props.loading ? `${LANGUAGE.loading} ...` : getLabel()}

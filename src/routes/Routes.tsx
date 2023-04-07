@@ -5,7 +5,7 @@ import { Loader } from 'components/atoms/Loader';
 import * as urls from 'helpers/urls';
 import { View } from 'wrappers/View';
 
-// const About = getLazyImport('About');
+const About = getLazyImport('About');
 const Account = getLazyImport('Account');
 const Artifact = getLazyImport('Artifact');
 const ArtifactThread = getLazyImport('Artifact/ArtifactThread');
@@ -89,7 +89,7 @@ export default function _Routes() {
 					path={urls.about}
 					element={
 						<View>
-							<NotFound />
+							<About />
 						</View>
 					}
 				/>

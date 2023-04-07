@@ -54,6 +54,7 @@ export const FlexHeader = styled.div`
 
 export const H1 = styled.h1`
 	font-size: 44px;
+	font-weight: ${(props) => props.theme.typography.weight.bold};
 	line-height: 1.25;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		font-size: 40px;

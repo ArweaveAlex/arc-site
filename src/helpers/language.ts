@@ -1,6 +1,51 @@
 export const LANGUAGE = {
 	about: `About`,
+	aboutView: {
+		header1: `Preserving`,
+		header2: `Human History.`,
+		subHeader1: `<p>Inspired by the Great Library of Alexandria, the mission of Alex. is to <span>preserve important historical artifacts</span> for the enrichment of all people.</p>`,
+		subHeader2: `In order for humanity to move forward, we need to clearly see our past.`,
+		detail: {
+			artifactTypes: `Artifacts are currently being preserved from:`,
+			action: `Learn How to Create`,
+			section1: {
+				header: 'Alex.',
+				description: 'A decentralized archival platform that preserves human history and culture digitally. ',
+				footer:
+					'Alex. leverages the immutable and permanent data storage of Arweave. Institutions and creators are incentivized to publicly archive digital content by allowing anyone to become sponsors of their digital <b>artifacts</b>. Artifacts are grouped together into <b>pools</b>.',
+			},
+			section2: {
+				header: 'What is a Pool?',
+				description: 'A pool is a topic, event, or idea that can be digitally and publicly archived.',
+				footer: 'Anyone can create a pool and earn rewards.',
+			},
+			section3: {
+				header: 'What is an Artifact?',
+				description:
+					'An aritfact is a permanently preserved piece of digital content, including <b>documents</b>, <b>books</b>, <b>images</b>, <b>audio</b>, or <b>videos</b>.',
+				footer: 'Artifacts are deployed as assets to Arweave and distributed to the contributors who support the pool.',
+			},
+		},
+		infoDescription1: `<b>Archiving is important.</b> Archives allow people to look back at history to ensure better decisions are made for the future of society. Unfortunately, the current model for archiving is insufficiently incentivized. The person that stores the data, which others can later access without charge, is the person that has to pay. Alex changes this by allowing the public to sponsor the archiving of digital content.`,
+		infoDescription2: `Currently, historical archives are often controlled by a single centralized entity. This means that data can be manipulated or censored to benefit special interests. Therefore <b>Alex. uses Arweave to preserve important historical and cultural information</b> that may otherwise be lost, tampered with, or held hostage in a centralized server.`,
+		infoHeader1: `Decentralized Archiving`,
+		stepsHeader1: `How it works`,
+		subnav: {
+			decentralization: 'Decentralization',
+			header: 'Alex. Ecosystem',
+			howItWorks: 'How it works',
+		},
+	},
 	artifactDetails: `Artifact Details`,
+	artifactTypesDisplay: {
+		files: `Personal Archives`,
+		historical: `Historical Organizations`,
+		nostr: `Nostr`,
+		messaging: `Twitter`,
+		reddit: `Reddit`,
+		universities: `Universities`,
+		webpage: `Wikipedia`,
+	},
 	artifactsCreated: `of Artifacts Created`,
 	accept: `Accept`,
 	account: {
@@ -49,7 +94,6 @@ export const LANGUAGE = {
 	collectionNameAlreadyExists: `Collection Name already exists`,
 	collections: `Collections`,
 	comments: `Comments`,
-	companyTitle: `Alex.`,
 	connect: `Connect`,
 	connectWallet: `Connect Wallet`,
 	connectionError: `Connection Error`,
@@ -156,6 +200,7 @@ export const LANGUAGE = {
 	shareUrlLabel: `Share (Copy URL)`,
 	showing: `Showing`,
 	showMoreReplies: `Show more replies`,
+	siteTitle: `Alex.`,
 	social: {
 		discord: `Discord`,
 		twitter: `Twitter`,
@@ -170,10 +215,22 @@ export const LANGUAGE = {
 		header2: `Alex. offers a unique way for everyone to participate and "own" a piece of the human story. By supporting the participating archival institutions, you are helping protect our history from edits, omissions, narratives, & malicious intent. <b>Here&#8217;s how.</b>`,
 		display: `Step`,
 		list: [
-			`<b>Contributors</b> send $AR tokens to any participating <b>Archival Institution.</b> There is no limit on how many or how few a contributor may send.`,
-			`These tokens are used to pay for the storage costs on <b>Arweave.</b> Using blockweave technology, Arweave is the only place where files cannot be changed or deleted once they are uploaded. <span>There are no reccuring costs.</span> Pay once, store forever.`,
-			`Documents, books, images, audio clips, videos, etc. within the institution&#8217;s pool are uploaded to Arweave. We refer to these files as <b>Artifacts</b>.`,
-			`<b>These Artifacts are randomly sent to participating contributor&#8217;s wallets.</b> Contributors will receive an equal percentage of their $AR contribution (relative to the total $AR contributed) in digital artifacts. For example: If John contributed 10 $AR tokens and the total amount contributed was 100 $AR tokens, John will receive 10% of the Artifacts into his wallet.`,
+			{
+				header: `Creating Pools`,
+				description: `An operator creates a pool. A pool operator can be a historical institution, or anyone that is interested in preserving a topic. <a target="_blank" href="https://alex-operator-guide.arweave.dev/">For more information on how to create a pool…</a>`,
+			},
+			{
+				header: `Contributing to Pools`,
+				description: `Users contribute Arweave tokens ($AR) to pools that they find valuable. These contributions pay for the storage space on Arweave.`,
+			},
+			{
+				header: `Preserve Artifacts`,
+				description: `Pool operators can now collect artifacts. Documents, books, images, audio clips, videos, etc. within the pool are uploaded to Arweave. Since the artifacts are stored on Arweave, they cannot be changed or removed by anyone.`,
+			},
+			{
+				header: `Collect Artifacts`,
+				description: `Contributors will be made the sponsor of an equal percentage of their $AR contribution (relative to the total $AR contributed) of digital artifacts.`,
+			},
 		],
 	},
 	submit: `Submit`,

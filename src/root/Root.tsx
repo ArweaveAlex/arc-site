@@ -16,6 +16,7 @@ export default function Root() {
 			<div id={DOM.modal} />
 			<div id={DOM.notification} />
 			<Header />
+			<div id={DOM.subheader} />
 			<Routes />
 			<Footer />
 		</>

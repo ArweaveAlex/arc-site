@@ -12,7 +12,7 @@ export default function LandingHeader() {
 			<S.Content>
 				<S.HeaderWrapper>
 					<S.FlexHeader>
-						<S.Header3>{LANGUAGE.companyTitle}</S.Header3>
+						<S.Header3>{LANGUAGE.siteTitle}</S.Header3>
 						&nbsp; &nbsp;
 						<S.Header2Container>
 							<S.Header2>{LANGUAGE.banner.header1}</S.Header2>

@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { IconButton } from 'components/atoms/IconButton';
-import { ASSETS } from 'helpers/config';
+import { ASSETS, DOM } from 'helpers/config';
 import { NAV_PATHS } from 'helpers/paths';
 import * as urls from 'helpers/urls';
 import { checkDesktop, checkWindowResize, hideDocumentBody, showDocumentBody } from 'helpers/window';
+import { useMutation } from 'hooks/useMutation';
 import { WalletConnect } from 'wallet/WalletConnect';
 
 import * as S from './styles';
 
 export default function Header() {
+	const hasSubheader = useMutation(DOM.subheader);
+
 	const [open, setOpen] = React.useState(checkDesktop());
 	const [desktop, setDesktop] = React.useState(checkDesktop());
 
@@ -80,7 +83,7 @@ export default function Header() {
 							</S.Menu>
 						</S.MenuContainer>
 					</S.NCMobile>
-					{open && <S.OpenContainer>{navList()}</S.OpenContainer>}
+					{open && <S.OpenContainer hasSubheader={hasSubheader}>{navList()}</S.OpenContainer>}
 				</>
 			);
 		}
