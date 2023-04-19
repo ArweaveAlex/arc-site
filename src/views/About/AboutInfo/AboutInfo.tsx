@@ -6,7 +6,6 @@ import { LANGUAGE } from 'helpers/language';
 
 import * as S from './styles';
 
-// TODO: Final copy
 export default function AboutInfo() {
 	return (
 		<S.Wrapper>
