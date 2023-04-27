@@ -9,7 +9,6 @@ import { AboutDetail } from './AboutDetail';
 import { AboutHeader } from './AboutHeader';
 import { AboutInfo } from './AboutInfo';
 import { AboutSteps } from './AboutSteps';
-import * as S from './styles';
 
 export default function About() {
 	React.useEffect(() => {
@@ -23,18 +22,18 @@ export default function About() {
 	];
 
 	return (
-		<S.Wrapper>
+		<>
 			<Subheader nodes={subnavigation} />
-			<S.IDRef id={DOM.about.header}>
+			<div className={'id-ref-140'} id={DOM.about.header}>
 				<AboutHeader />
 				<AboutDetail />
-			</S.IDRef>
-			<S.IDRef id={DOM.about.decentralization}>
+			</div>
+			<div className={'id-ref-140'} id={DOM.about.decentralization}>
 				<AboutInfo />
-			</S.IDRef>
-			<S.IDRef id={DOM.about.howItWorks}>
+			</div>
+			<div className={'id-ref-140'} id={DOM.about.howItWorks}>
 				<AboutSteps />
-			</S.IDRef>
-		</S.Wrapper>
+			</div>
+		</>
 	);
 }

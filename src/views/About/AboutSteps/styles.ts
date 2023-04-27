@@ -35,11 +35,8 @@ export const Content = styled.div`
 	padding: 40px 0 0 0;
 `;
 
-export const Header = styled.h1`
-	font-size: clamp(38px, 4.5vw, 62px);
-	font-family: ${(props) => props.theme.typography.family.alt1};
-	font-weight: ${(props) => props.theme.typography.weight.bold};
-	color: ${(props) => props.theme.colors.font.primary.base};
+export const HeaderWrapper = styled.div`
+	text-align: center;
 	margin: 20px 0 0 0;
 `;
 

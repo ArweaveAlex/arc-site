@@ -1,10 +1,10 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg';
 
-import { ContributionResultType, PoolClient, ValidationType } from 'arcframework';
+import { ContributionResultType, formatAddress, PoolClient, ValidationType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
+import { IconButton } from 'components/atoms/IconButton';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { ASSETS } from 'helpers/config';
@@ -18,12 +18,23 @@ export default function PoolContribute(props: IProps) {
 	const arProvider = useArweaveProvider();
 	const poolClient = new PoolClient();
 
-	const [showModal, setShowModal] = React.useState(false);
 	const [amount, setAmount] = React.useState<number>(0);
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [receivingPercent, setReceivingPercent] = React.useState<string | null>(null);
 
 	const [contributionResult, setContributionResult] = React.useState<ContributionResultType | null>(null);
+
+	const [copied, setCopied] = React.useState<boolean>(false);
+
+	const copyAddress = React.useCallback(async () => {
+		if (props.poolId) {
+			if (props.poolId.length > 0) {
+				await navigator.clipboard.writeText(props.poolId);
+				setCopied(true);
+				setTimeout(() => setCopied(false), 2000);
+			}
+		}
+	}, [props.poolId]);
 
 	async function handlePoolContribute(e: any) {
 		if (arProvider.availableBalance) {
@@ -91,6 +102,38 @@ export default function PoolContribute(props: IProps) {
 		return getInvalidForm().status || loading || !arProvider.walletAddress || isNaN(amount) || amount <= 0;
 	}
 
+	function getSubheader() {
+		return (
+			<S.SubheaderFlex>
+				<S.SubheaderContainer>
+					<S.Subheader1>
+						<p>{LANGUAGE.pool.subheader1}</p>
+					</S.Subheader1>
+					&nbsp;
+					<S.ID>
+						<p>{props.poolId ? formatAddress(props.poolId, false) : null}</p>
+						<IconButton type={'primary'} src={ASSETS.copy} handlePress={copyAddress} sm />
+						{copied && (
+							<S.IDCopied>
+								<p>{LANGUAGE.copied}</p>
+							</S.IDCopied>
+						)}
+					</S.ID>
+				</S.SubheaderContainer>
+				&nbsp; &nbsp;
+				<S.SubheaderContainer>
+					<S.Subheader1>
+						<p>{LANGUAGE.createdOn}</p>
+					</S.Subheader1>
+					&nbsp;
+					<S.Subheader2>
+						<p>{props.dateCreated ? props.dateCreated : null}</p>
+					</S.Subheader2>
+				</S.SubheaderContainer>
+			</S.SubheaderFlex>
+		);
+	}
+
 	React.useEffect(() => {
 		(async function () {
 			if (arProvider.walletAddress) {
@@ -111,58 +154,51 @@ export default function PoolContribute(props: IProps) {
 					callback={() => setContributionResult(null)}
 				/>
 			)}
-			{showModal && (
-				<Modal header={LANGUAGE.contributeTo} handleClose={() => setShowModal(false)}>
-					<S.ModalWrapper>
-						<S.Header>
-							<S.HeaderFlex>
-								<S.Header1>{props.header}</S.Header1>
-							</S.HeaderFlex>
-							{props.subheader}
-							<S.BalanceWrapper>{getAvailableBalance()}</S.BalanceWrapper>
-							{props.contribPercent && (
-								<S.Warning>
-									<p>{LANGUAGE.contributionPercentage(props.contribPercent)}</p>
-								</S.Warning>
-							)}
-						</S.Header>
-						<S.Form onSubmit={(e) => handlePoolContribute(e)}>
-							<S.FormWrapper>
-								<S.FormContainer>
-									<FormField
-										type={'number'}
-										value={amount}
-										onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
-										disabled={loading || !arProvider.walletAddress}
-										invalid={getInvalidForm()}
-										endText={LANGUAGE.arTokens}
-									/>
-								</S.FormContainer>
-								{arProvider.walletAddress && <S.RPWrapper>{getReceivingPercent()}</S.RPWrapper>}
-							</S.FormWrapper>
-							<S.Message>
-								<p>{LANGUAGE.contributionMessage}</p>
-							</S.Message>
-							<S.SubmitWrapper>
-								<Button
-									label={LANGUAGE.submit}
-									type={'alt1'}
-									handlePress={(e) => handlePoolContribute(e)}
-									disabled={getDisabledSubmit()}
-									loading={loading}
-									formSubmit
+
+			<Modal header={LANGUAGE.contributeTo} handleClose={() => props.handleShowModal()}>
+				<S.ModalWrapper>
+					<S.Header>
+						<S.HeaderFlex>
+							<S.Header1>{props.header}</S.Header1>
+						</S.HeaderFlex>
+						{getSubheader()}
+						<S.BalanceWrapper>{getAvailableBalance()}</S.BalanceWrapper>
+						{props.contribPercent && (
+							<S.Warning>
+								<p>{LANGUAGE.contributionPercentage(props.contribPercent)}</p>
+							</S.Warning>
+						)}
+					</S.Header>
+					<S.Form onSubmit={(e) => handlePoolContribute(e)}>
+						<S.FormWrapper>
+							<S.FormContainer>
+								<FormField
+									type={'number'}
+									value={amount}
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
+									disabled={loading || !arProvider.walletAddress}
+									invalid={getInvalidForm()}
+									endText={LANGUAGE.arTokens}
 								/>
-							</S.SubmitWrapper>
-						</S.Form>
-					</S.ModalWrapper>
-				</Modal>
-			)}
-			<S.Wrapper onClick={() => setShowModal(true)} disabled={props.disabled}>
-				<S.Label>
-					<ReactSVG src={ASSETS.logoAltActive} />
-					<span>{LANGUAGE.contribute}</span>
-				</S.Label>
-			</S.Wrapper>
+							</S.FormContainer>
+							{arProvider.walletAddress && <S.RPWrapper>{getReceivingPercent()}</S.RPWrapper>}
+						</S.FormWrapper>
+						<S.Message>
+							<p>{LANGUAGE.contributionMessage}</p>
+						</S.Message>
+						<S.SubmitWrapper>
+							<Button
+								label={LANGUAGE.submit}
+								type={'alt1'}
+								handlePress={(e) => handlePoolContribute(e)}
+								disabled={getDisabledSubmit()}
+								loading={loading}
+								formSubmit
+							/>
+						</S.SubmitWrapper>
+					</S.Form>
+				</S.ModalWrapper>
+			</Modal>
 		</>
 	);
 }

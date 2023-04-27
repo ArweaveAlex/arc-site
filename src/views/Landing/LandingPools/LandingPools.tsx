@@ -1,107 +1,71 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import parse from 'html-react-parser';
 
-import { FALLBACK_IMAGE, getTxEndpoint, PoolType } from 'arcframework';
+import { PoolType } from 'arcframework';
 
+import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
-import { Carousel } from 'components/molecules/Carousel';
-import { sortByMostContributed } from 'filters/pools';
+import { PoolsGrid } from 'global/PoolsGrid';
+import { POOL_FILTERS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import * as urls from 'helpers/urls';
 import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
 import { RootState } from 'state/store';
 
 import * as S from './styles';
 
-function PoolCard(props: PoolType) {
-	const [poolUrl, setPoolsUrl] = React.useState<string | null>(null);
-	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
+const FETCH_COUNT = 9;
 
-	React.useEffect(() => {
-		setPoolsUrl(`${urls.pool}${props.id}`);
-	}, [props.id]);
-
-	React.useEffect(() => {
-		(async function () {
-			const imageResponse = await fetch(
-				getTxEndpoint(props.state.image.length > 0 ? props.state.image : FALLBACK_IMAGE)
-			);
-			setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
-		})();
-	});
-
-	return poolUrl && imageUrl ? (
-		<S.PCWrapper>
-			<S.C1>
-				<S.C1Content>
-					<S.Title>{props.state.title}</S.Title>
-					<S.Description>{parse(props.state.briefDescription)}</S.Description>
-				</S.C1Content>
-				<Link to={poolUrl}>
-					<S.LinkContainer>
-						<span>{LANGUAGE.viewPool}</span>
-					</S.LinkContainer>
-				</Link>
-			</S.C1>
-			<S.C2 image={imageUrl} />
-		</S.PCWrapper>
-	) : null;
-}
-
+// TODO: Get featured pool
+// TODO: Limit FETCH_COUNT - browse all
 export default function LandingPools() {
 	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 
 	const [data, setData] = React.useState<PoolType[] | null>(null);
+	const [count, setCount] = React.useState<number | null>(FETCH_COUNT);
+	const [currentFilter, setCurrentFilter] = React.useState<any>(POOL_FILTERS[0]);
 
 	React.useEffect(() => {
 		if (poolsReducer.data) {
-			setData(sortByMostContributed(poolsReducer.data, 5));
+			setData(poolsReducer.data);
 		}
 	}, [poolsReducer.data]);
 
-	function getPools() {
-		return data.map((pool: PoolType) => {
-			return <PoolCard {...pool} key={pool.id} />;
-		});
+	function getPoolFilter(option: string) {
+		for (let i = 0; i < POOL_FILTERS.length; i++) {
+			if (POOL_FILTERS[i].title === option) {
+				return POOL_FILTERS[i];
+			}
+		}
 	}
 
 	function getData() {
 		if (data) {
-			return <Carousel title={LANGUAGE.activePools} data={getPools()} />;
-		} else {
 			return (
-				<S.CarouselLoader>
-					<S.CP>
-						<Loader placeholder />
-					</S.CP>
-					<S.PCWrapper>
-						<S.C1>
-							<S.C1Content>
-								<S.TP>
-									<Loader placeholder />
-								</S.TP>
-								<S.DP>
-									<Loader placeholder />
-								</S.DP>
-							</S.C1Content>
-							<S.LP>
-								<Loader placeholder />
-							</S.LP>
-						</S.C1>
-						<S.C2P>
-							<Loader placeholder />
-						</S.C2P>
-					</S.PCWrapper>
-				</S.CarouselLoader>
+				<div className={'view-wrapper max-cutoff'}>
+					<S.Wrapper>
+						<PoolsGrid
+							data={currentFilter.fn(data!, count)}
+							title={currentFilter.title}
+							setCurrentFilter={(option: string) => setCurrentFilter(getPoolFilter(option))}
+						/>
+						{data && data.length > count && (
+							<S.Action>
+								<Button
+									type={'primary'}
+									label={LANGUAGE.exploreMore}
+									handlePress={() => setCount(count + FETCH_COUNT)}
+									height={52.5}
+									width={275}
+								/>
+							</S.Action>
+						)}
+					</S.Wrapper>
+				</div>
 			);
+		} else {
+			return <Loader />;
 		}
 	}
 
-	return (
-		<ReduxPoolsUpdate>
-			<S.Wrapper>{getData()}</S.Wrapper>
-		</ReduxPoolsUpdate>
-	);
+	return <ReduxPoolsUpdate>{getData()}</ReduxPoolsUpdate>;
 }

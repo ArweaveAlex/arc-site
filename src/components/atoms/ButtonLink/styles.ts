@@ -52,14 +52,15 @@ export const Primary = styled.div<{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border-radius: 25px;
+	transition: background 0.075s;
 	&:hover {
-		border: 1.5px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.primary.border)};
+		border: 1.5px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.primary.hover)};
 		background: ${(props) =>
 			props.active ? props.theme.colors.button.primary.active.hover : props.theme.colors.button.primary.hover};
 	}
 	&:focus {
-		border: 1.5px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.primary.border)};
+		border: 1.5px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.primary.hover)};
 		background: ${(props) =>
 			props.active ? props.theme.colors.button.primary.active.hover : props.theme.colors.button.primary.hover};
 	}

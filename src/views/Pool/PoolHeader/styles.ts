@@ -3,59 +3,35 @@ import styled from 'styled-components';
 import { fadeIn2, open } from 'helpers/animations';
 import { getImageShadow, STYLING } from 'helpers/styling';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div``;
+
+export const HeaderWrapper = styled.div`
 	width: 100%;
-	animation: ${open} ${fadeIn2};
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
+	margin: 0 auto;
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		height: auto;
 	}
 `;
 
-export const Header = styled.div`
+export const HeaderContent = styled.div`
+	height: 100%;
 	width: 100%;
-	margin: 0 0 20px 0;
 	display: flex;
-	flex-direction: column;
-	background: ${(props) => props.theme.colors.container.alt3.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
-	padding: 20px;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		height: auto;
-		margin: 0 0 20px 0;
-	}
-`;
-
-export const HeaderFlex = styled.div`
-	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		width: fit-content;
 		flex-direction: column;
-		margin: 0 0 20px 0;
-	}
-`;
-
-export const H2 = styled.h2`
-	font-size: 28px;
-	line-height: 1.25;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		font-size: 24px;
-	}
-`;
-
-export const Header1 = styled(H2)`
-	color: ${(props) => props.theme.colors.font.primary.active.base};
-	font-family: ${(props) => props.theme.typography.family.alt1};
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		margin: 0 0 20px 0;
+		align-items: start;
+		h2 {
+			margin: 0 0 10px 0;
+		}
 	}
 `;
 
 export const SubheaderFlex = styled.div`
 	display: flex;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		margin: 20px 0 0 0;
 		flex-direction: column;
 	}
 `;
@@ -102,7 +78,7 @@ export const ImageContainer = styled.div`
 	position: relative;
 	height: 0;
 	padding: 0 0 43.25% 0;
-	margin: 0 0 20px 0;
+	margin: 30px 0 20px 0;
 	animation: ${open} ${fadeIn2};
 	border-radius: ${STYLING.dimensions.borderRadius};
 	@media (max-width: ${STYLING.cutoffs.secondary}) {
@@ -127,12 +103,11 @@ export const Image = styled.div<{ image: string }>`
 `;
 
 export const ImageLoading = styled.div`
-	height: 425px;
+	height: 590px;
 	width: 100%;
-	margin: 0 0 20px 0;
+	margin: 30px 0 20px 0;
 	position: relative;
-	background: ${(props) => props.theme.colors.container.alt3.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 `;
@@ -149,7 +124,7 @@ export const FlexTiles = styled.div`
 export const Tile = styled.div`
 	height: 100px;
 	width: 32.5%;
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
@@ -165,6 +140,42 @@ export const ContributeTile = styled(Tile)`
 	padding: 0;
 	background: none;
 	border: none;
+`;
+
+export const ContributeAction = styled.button`
+	height: 100%;
+	width: 100%;
+	background: ${(props) => props.theme.colors.button.alt1.background};
+	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&:hover {
+		background: ${(props) => props.theme.colors.button.alt1.hover};
+	}
+	&:focus {
+		background: ${(props) => props.theme.colors.button.alt1.hover};
+	}
+	&:disabled {
+		background: ${(props) => props.theme.colors.button.disabled};
+		border: 1px solid ${(props) => props.theme.colors.button.disabled};
+	}
+`;
+
+export const ContributeLabel = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	svg {
+		width: 30px;
+		margin: 0 20px 0 0;
+	}
+	span {
+		font-size: 24px;
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		color: ${(props) => props.theme.colors.font.primary.base};
+	}
 `;
 
 export const TileTitle = styled.div`
@@ -216,7 +227,7 @@ export const LDHeader = styled.div`
 export const LDBody = styled.div`
 	margin: 20px 0;
 	padding: 15px;
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
@@ -240,7 +251,7 @@ export const IDCopied = styled.div`
 	bottom: 100%;
 	left: 100%;
 	z-index: 5;
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	padding: 3.5px 12.5px 2.5px 17.5px;
 	p {

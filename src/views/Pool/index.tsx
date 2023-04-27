@@ -20,7 +20,6 @@ import { REDUX_TABLES } from 'helpers/redux';
 import { PoolDetail } from './PoolDetail';
 import { PoolHeader } from './PoolHeader';
 import { PoolStatistics } from './PoolStatistics';
-import * as S from './styles';
 
 export default function Pool() {
 	const { id } = useParams();
@@ -107,13 +106,11 @@ export default function Pool() {
 	}
 
 	return headerData ? (
-		<>
-			<S.Wrapper>
-				{getPoolHeader()}
-				{getPoolStatistics()}
-				{getPoolDetail()}
-			</S.Wrapper>
-		</>
+		<div className={'view-wrapper max-cutoff'}>
+			{getPoolHeader()}
+			{getPoolStatistics()}
+			{getPoolDetail()}
+		</div>
 	) : (
 		<Loader />
 	);

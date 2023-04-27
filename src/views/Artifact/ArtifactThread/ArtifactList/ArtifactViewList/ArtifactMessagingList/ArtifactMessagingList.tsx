@@ -150,13 +150,13 @@ export default function ArtifactMessagingList(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<S.ListWrapper>{getListData()}</S.ListWrapper>
 			<S.HDWrapper>
 				<S.HDContent>
 					<S.HeaderWrapper>{getHeaderData()}</S.HeaderWrapper>
 					<S.DetailWrapper>{getDetailData()}</S.DetailWrapper>
 				</S.HDContent>
 			</S.HDWrapper>
+			<S.ListWrapper>{getListData()}</S.ListWrapper>
 		</S.Wrapper>
 	);
 }

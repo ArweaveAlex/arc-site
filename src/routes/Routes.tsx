@@ -10,13 +10,15 @@ const Account = getLazyImport('Account');
 const Artifact = getLazyImport('Artifact');
 const ArtifactThread = getLazyImport('Artifact/ArtifactThread');
 const CollectionsManage = getLazyImport('Collections/CollectionsManage');
-// const Create = getLazyImport('Create');
+const Contribute = getLazyImport('Contribute');
+const Create = getLazyImport('Create');
 const Landing = getLazyImport('Landing');
 const Library = getLazyImport('Library');
 const NotFound = getLazyImport('NotFound');
 const Pool = getLazyImport('Pool');
 const Pools = getLazyImport('Pools');
 
+// TODO: layout library account artifact artifact-thread
 export default function _Routes() {
 	return (
 		<Suspense fallback={<Loader />}>
@@ -94,10 +96,18 @@ export default function _Routes() {
 					}
 				/>
 				<Route
+					path={urls.contribute}
+					element={
+						<View>
+							<Contribute />
+						</View>
+					}
+				/>
+				<Route
 					path={urls.create}
 					element={
 						<View>
-							<NotFound />
+							<Create />
 						</View>
 					}
 				/>

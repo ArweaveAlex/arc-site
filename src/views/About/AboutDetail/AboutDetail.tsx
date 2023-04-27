@@ -4,10 +4,11 @@ import parse from 'html-react-parser';
 import { Button } from 'components/atoms/Button';
 import { ARTIFACT_TYPES_DISPLAY } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { OPERATOR_LINK } from 'helpers/paths';
+import { OPERATOR_REDIRECT } from 'helpers/paths';
 
 import * as S from './styles';
 
+// TODO: CTA to /create
 export default function AboutDetail() {
 	return (
 		<>
@@ -31,9 +32,9 @@ export default function AboutDetail() {
 							<S.Footer>{parse(LANGUAGE.aboutView.detail.section2.footer)}</S.Footer>
 							<S.Action>
 								<Button
-									type={'alt2'}
+									type={'primary'}
 									label={LANGUAGE.aboutView.detail.action}
-									handlePress={() => window.open(OPERATOR_LINK, '_blank')}
+									handlePress={() => window.open(OPERATOR_REDIRECT, '_blank')}
 									height={52.5}
 									width={275}
 								/>

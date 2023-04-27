@@ -6,12 +6,16 @@ import { LANGUAGE } from 'helpers/language';
 
 import * as S from './styles';
 
+// TODO: For more info ... link to /create
+// Link from Contributing to Pools to /contribute
 export default function AboutSteps() {
 	return (
 		<S.Wrapper>
 			<S.Container>
 				<S.Content>
-					<S.Header>{LANGUAGE.aboutView.stepsHeader1}</S.Header>
+					<S.HeaderWrapper>
+						<h2 className={'h2-alt-2'}>{LANGUAGE.aboutView.stepsHeader1}</h2>
+					</S.HeaderWrapper>
 					{LANGUAGE.steps.list.map((step: any, index: number) => (
 						<S.Section key={index} even={index % 2 === 0}>
 							<S.StepWrapper>

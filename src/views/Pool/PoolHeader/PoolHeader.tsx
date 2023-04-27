@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
 import { formatAddress, formatCount, PoolClient } from 'arcframework';
@@ -9,7 +10,7 @@ import { SocialShare } from 'global/SocialShare';
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 
-import { PoolContribute } from '../PoolContribute';
+import { PoolContribute } from '../../../global/PoolContribute';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -18,6 +19,7 @@ export default function PoolHeader(props: IProps) {
 	const poolClient = new PoolClient();
 
 	const [copied, setCopied] = React.useState<boolean>(false);
+	const [showContributeModal, setShowContributeModal] = React.useState<boolean>(false);
 
 	const copyAddress = React.useCallback(async () => {
 		if (props.id) {
@@ -79,7 +81,7 @@ export default function PoolHeader(props: IProps) {
 		} else {
 			return (
 				<S.ImageLoading>
-					<Loader sm />
+					<Loader placeholder />
 				</S.ImageLoading>
 			);
 		}
@@ -87,13 +89,13 @@ export default function PoolHeader(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<S.Header>
-				<S.HeaderFlex>
-					<S.Header1>{props.title ? props.title : null}</S.Header1>
-					<SocialShare type={'primary'} href={window.location.href} title={LANGUAGE.sharePools} />
-				</S.HeaderFlex>
+			<S.HeaderWrapper>
+				<S.HeaderContent>
+					<h2>{props.title ? props.title : null}</h2>
+					<SocialShare type={'primary'} href={window.location.href} title={LANGUAGE.sharePool} />
+				</S.HeaderContent>
 				{getSubheader()}
-			</S.Header>
+			</S.HeaderWrapper>
 			{getImage()}
 			<S.FlexTiles>
 				<S.Tile>
@@ -114,15 +116,25 @@ export default function PoolHeader(props: IProps) {
 					<S.TileData>{getCount()}</S.TileData>
 				</S.Tile>
 				<S.ContributeTile>
-					<PoolContribute
-						poolId={props.id ? props.id : null}
-						header={props.title ? props.title : null}
-						subheader={getSubheader()}
-						totalContributions={props.totalContributions ? props.totalContributions : null}
-						contributors={props.contributors ? props.contributors : null}
-						disabled={props.ownerMaintained}
-						contribPercent={props.contribPercent ? props.contribPercent : null}
-					/>
+					<S.ContributeAction onClick={() => setShowContributeModal(true)} disabled={props.ownerMaintained}>
+						<S.ContributeLabel>
+							<S.ContributeLabel>
+								<ReactSVG src={ASSETS.logoAltActive} />
+								<span>{LANGUAGE.contribute}</span>
+							</S.ContributeLabel>
+						</S.ContributeLabel>
+					</S.ContributeAction>
+					{showContributeModal && (
+						<PoolContribute
+							poolId={props.id ? props.id : null}
+							header={props.title ? props.title : null}
+							dateCreated={props.dateCreated ? props.dateCreated : null}
+							totalContributions={props.totalContributions ? props.totalContributions : null}
+							contributors={props.contributors ? props.contributors : null}
+							contribPercent={props.contribPercent ? props.contribPercent : null}
+							handleShowModal={() => setShowContributeModal(false)}
+						/>
+					)}
 				</S.ContributeTile>
 			</S.FlexTiles>
 			<S.LongDescription>

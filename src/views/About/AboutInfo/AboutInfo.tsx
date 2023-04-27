@@ -11,7 +11,9 @@ export default function AboutInfo() {
 		<S.Wrapper>
 			<S.Container>
 				<S.Content>
-					<S.Header>{LANGUAGE.aboutView.infoHeader1}</S.Header>
+					<S.HeaderWrapper>
+						<h2 className={'h2-alt-1'}>{LANGUAGE.aboutView.infoHeader1}</h2>
+					</S.HeaderWrapper>
 					<S.SectionsWrapper>
 						<S.Section>
 							<S.Asset>

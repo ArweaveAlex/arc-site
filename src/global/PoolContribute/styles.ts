@@ -2,42 +2,6 @@ import styled from 'styled-components';
 
 import { STYLING } from 'helpers/styling';
 
-export const Wrapper = styled.button`
-	height: 100%;
-	width: 100%;
-	background: ${(props) => props.theme.colors.button.alt1.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	&:hover {
-		background: ${(props) => props.theme.colors.button.alt1.hover};
-	}
-	&:focus {
-		background: ${(props) => props.theme.colors.button.alt1.hover};
-	}
-	&:disabled {
-		background: ${(props) => props.theme.colors.button.disabled};
-		border: 1px solid ${(props) => props.theme.colors.button.disabled};
-	}
-`;
-
-export const Label = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	svg {
-		width: 30px;
-		margin: 0 20px 0 0;
-	}
-	span {
-		font-size: 24px;
-		font-weight: ${(props) => props.theme.typography.weight.medium};
-		color: ${(props) => props.theme.colors.font.primary.base};
-	}
-`;
-
 export const ModalWrapper = styled.div`
 	height: 100%;
 	width: 100%;
@@ -168,5 +132,65 @@ export const Warning = styled(Message)`
 	p {
 		font-weight: ${(props) => props.theme.typography.weight.bold};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
+	}
+`;
+
+export const SubheaderFlex = styled.div`
+	display: flex;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		flex-direction: column;
+	}
+`;
+
+export const SubheaderContainer = styled.div`
+	display: flex;
+	margin: 10px 0 0 0;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		margin: 0 0 7.5px 0;
+	}
+`;
+
+export const Subheader1 = styled.div`
+	p {
+		font-size: ${(props) => props.theme.typography.size.base};
+		line-height: 20px;
+		color: ${(props) => props.theme.colors.font.primary.alt6};
+	}
+`;
+
+export const Subheader2 = styled.div`
+	p {
+		font-size: ${(props) => props.theme.typography.size.base};
+		line-height: 20px;
+		color: ${(props) => props.theme.colors.font.primary.alt4};
+		overflow-x: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	@media (max-width: ${STYLING.cutoffs.secondary}) {
+		max-width: 67.5%;
+	}
+`;
+
+export const ID = styled(Subheader2)`
+	display: flex;
+	position: relative;
+	p {
+		margin: 0 7.5px 0 0;
+	}
+`;
+
+export const IDCopied = styled.div`
+	position: absolute;
+	bottom: 100%;
+	left: 100%;
+	z-index: 5;
+	background: ${(props) => props.theme.colors.container.alt3.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	padding: 3.5px 12.5px 2.5px 17.5px;
+	p {
+		font-size: 12px;
+		color: ${(props) => props.theme.colors.font.primary.alt4};
+		white-space: nowrap;
 	}
 `;

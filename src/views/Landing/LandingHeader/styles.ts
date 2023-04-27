@@ -1,113 +1,26 @@
 import styled from 'styled-components';
 
-import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
-export const Wrapper = styled.div`
-	height: 150px;
-	width: 100%;
-	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 50px)) {
-		height: auto;
-	}
-`;
-
-export const Content = styled.div`
-	height: 100%;
-	width: 100%;
-	max-width: ${STYLING.cutoffs.max};
-	margin: calc(${STYLING.dimensions.navHeight} + 20px) auto 0 auto;
-	padding: 0 30px;
-	display: flex;
-	align-items: center;
-	animation: ${open} ${fadeIn2};
-	background: ${(props) => props.theme.colors.container.alt3.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
-	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 50px)) {
-		flex-direction: column;
-		align-items: start;
-		padding: 20px;
-	}
-`;
-
 export const HeaderWrapper = styled.div`
-	height: 100%;
-	width: 700px;
 	display: flex;
-	align-items: center;
-	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 50px)) {
-		width: auto;
-		margin: 0 0 20px 0;
-	}
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		margin: 0;
-	}
 `;
 
 export const FlexHeader = styled.div`
+	width: 700px;
 	display: flex;
+	flex-direction: column;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-wrap: wrap;
 	}
 `;
 
-export const H1 = styled.h1`
-	font-size: 44px;
-	font-weight: ${(props) => props.theme.typography.weight.bold};
-	line-height: 1.25;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		font-size: 40px;
-	}
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		font-size: 7.5vw;
-	}
-`;
-
-export const Header1 = styled(H1)`
-	color: ${(props) => props.theme.colors.font.primary.active.base};
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		margin: 10px 0;
-	}
-`;
-
-export const Header2Container = styled.div`
-	width: fit-content;
-	position: relative;
-`;
-
-export const Header2 = styled(Header1)`
-	position: relative;
-	z-index: 1;
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		margin: 0;
-	}
-`;
-
-export const Header3 = styled(H1)`
-	color: ${(props) => props.theme.colors.font.primary.alt2};
-`;
-
-export const Highlight = styled.div`
-	height: 24.5px;
-	width: 100%;
-	background: ${(props) => props.theme.colors.container.alt2.background};
-	background: transparent;
-	position: absolute;
-	bottom: 0;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		height: 17.5px;
-	}
-`;
-
 export const SubheaderWrapper = styled.div`
-	height: 100%;
-	width: calc(100% - 700px);
-	min-width: 460px;
 	display: flex;
 	align-items: center;
-	justify-content: end;
+	margin: 20px 0 0 0;
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 50px)) {
+		margin: 0;
 		width: auto;
 		min-width: 0;
 	}
@@ -152,7 +65,6 @@ export const Subheader2 = styled.div`
 	text-align: right;
 	display: flex;
 	align-items: center;
-	justify-content: end;
 	p {
 		font-size: 17px;
 		line-height: 1.5;
@@ -187,5 +99,19 @@ export const Link = styled.div`
 		a {
 			font-size: ${(props) => props.theme.typography.size.xSmall};
 		}
+	}
+`;
+
+export const GraphicWrapper = styled.div`
+	margin: auto;
+	width: calc(100% - 700px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		width: 100%;
+	}
+	img {
+		margin: auto;
 	}
 `;

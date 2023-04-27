@@ -25,8 +25,6 @@ export const Container = styled.div<{ noHeader: boolean; useMax: boolean | undef
 		props.noHeader ? props.theme.colors.transparent : props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => (props.noHeader ? props.theme.colors.transparent : props.theme.colors.border.primary)};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px
-		${(props) => (props.noHeader ? props.theme.colors.transparent : props.theme.colors.shadow.primary)};
 	margin: 50px auto;
 	overflow-y: auto;
 	scrollbar-width: none;

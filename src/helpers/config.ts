@@ -26,8 +26,10 @@ import bookmarksSVG from 'assets/bookmarks.svg';
 import checkmarkSVG from 'assets/checkmark.svg';
 import closeSVG from 'assets/close.svg';
 import collectionsSVG from 'assets/collections.svg';
+import contributeHeaderLogoPNG from 'assets/contribute-header-logo.png';
 import contributionsSVG from 'assets/contributions.svg';
 import copySVG from 'assets/copy.svg';
+import createHeaderLogoSVG from 'assets/create-header-logo.svg';
 import cyclePNG from 'assets/cycle.png';
 import dataSVG from 'assets/data.svg';
 import disconnectSVG from 'assets/disconnect.svg';
@@ -37,7 +39,7 @@ import favoriteSVG from 'assets/favorite.svg';
 import fileSVG from 'assets/file.svg';
 import historicalSVG from 'assets/historical-icon.svg';
 import impressionsSVG from 'assets/impressions.svg';
-import infoGraphicPNG from 'assets/info-graphic.png';
+import landingGraphicPNG from 'assets/landing-graphic.png';
 import linkSVG from 'assets/link.svg';
 import logoSVG from 'assets/logo.svg';
 import logoAltSVG from 'assets/logo-alt.svg';
@@ -109,6 +111,8 @@ export const ASSETS = {
 	collections: collectionsSVG,
 	contributions: contributionsSVG,
 	copy: copySVG,
+	contributeHeaderLogo: contributeHeaderLogoPNG,
+	createHeaderLogo: createHeaderLogoSVG,
 	cycle: cyclePNG,
 	data: dataSVG,
 	disconnect: disconnectSVG,
@@ -117,7 +121,7 @@ export const ASSETS = {
 	file: fileSVG,
 	historical: historicalSVG,
 	impressions: impressionsSVG,
-	infoGraphic: infoGraphicPNG,
+	landingGraphic: landingGraphicPNG,
 	link: linkSVG,
 	logo: logoSVG,
 	logoAlt: logoAltSVG,
@@ -303,14 +307,10 @@ export const URLS: IURLView = {
 export const POOL_FILTERS = [
 	{
 		title: LANGUAGE.pools.gridTitles.mostContributed,
-		fn: (data: PoolType[]) => filters.sortByMostContributed(data, null),
+		fn: (data: PoolType[], count: number | null) => filters.sortByMostContributed(data, count),
 	},
 	{
 		title: LANGUAGE.pools.gridTitles.newest,
-		fn: (data: PoolType[]) => filters.sortByNewest(data, null),
-	},
-	{
-		title: LANGUAGE.pools.gridTitles.all,
-		fn: (data: PoolType[]) => filters.sortByAll(data, null),
+		fn: (data: PoolType[], count: number | null) => filters.sortByNewest(data, count),
 	},
 ];

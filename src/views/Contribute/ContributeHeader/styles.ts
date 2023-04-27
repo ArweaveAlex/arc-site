@@ -55,9 +55,10 @@ export const Subheader1 = styled.div`
 `;
 
 export const Logo = styled.div`
-	svg {
-		height: 400px;
+	img {
+		width: 400px;
 		max-width: 85vw;
+		margin: 40px 0;
 	}
 `;
 

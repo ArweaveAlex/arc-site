@@ -9,6 +9,7 @@ export const accountContributions = `${account}contributions/`;
 export const artifact = `${base}artifact/`;
 export const collections = `${base}collections/`;
 export const collectionsManage = `${collections}manage`;
+export const contribute = `${base}contribute/`;
 export const create = `${base}create/`;
 export const library = `${base}library/`;
 export const libraryAll = (id: string) => `${library}${id}/all/`;

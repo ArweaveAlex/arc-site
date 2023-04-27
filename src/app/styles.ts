@@ -1,5 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { fadeIn2, open } from 'helpers/animations';
+import { STYLING } from 'helpers/styling';
+
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -21,7 +24,6 @@ export const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
   }
 
-  /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
@@ -30,6 +32,13 @@ export const GlobalStyle = createGlobalStyle`
   body {
     line-height: 1;
     background: ${(props) => props.theme.colors.view.background};
+  }
+
+  * {
+    box-sizing: border-box;
+    &:focus {
+      outline: 0;
+    }
   }
 
   ol, ul {
@@ -61,20 +70,36 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  * {
-    box-sizing: border-box;
-    &:focus {
-      outline: 0;
-    }
-  }
-
   h1 {
     font-size: ${(props) => props.theme.typography.size.h1};
     font-family: ${(props) => props.theme.typography.family.alt1};
+    font-weight: ${(props) => props.theme.typography.weight.bold};
+    color: ${(props) => props.theme.colors.font.primary.active.base};
+    line-height: 1.25;
+  }
+
+  .h1-alt {
+    color: ${(props) => props.theme.colors.font.primary.alt2};
   }
 
   h2 {
     font-size: ${(props) => props.theme.typography.size.h2};
+    font-family: ${(props) => props.theme.typography.family.alt1};
+    font-weight: ${(props) => props.theme.typography.weight.bold};
+    color: ${(props) => props.theme.colors.font.primary.active.base};
+    line-height: 1.25;
+  }
+
+  .h2-alt-1 {
+    color: ${(props) => props.theme.colors.font.primary.alt11};
+  }
+
+  .h2-alt-2 {
+    color: ${(props) => props.theme.colors.font.primary.base};
+  }
+
+  .h2-alt-3 {
+    color: ${(props) => props.theme.colors.font.primary.alt8};
   }
 
   b {
@@ -123,6 +148,10 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  button, select {
+    transition: background .075s;
+  }
+
   input, textarea {
     box-shadow: none;
     -webkit-appearance: none;
@@ -151,4 +180,28 @@ export const GlobalStyle = createGlobalStyle`
     height: 170px;
   }
 
+  .id-ref-140 {
+    scroll-margin-top: 140px;
+  }
+
+  .view-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    animation: ${open} ${fadeIn2};
+    padding: 20px;
+  }
+
+  .max-cutoff {
+    width: 100%;
+    max-width: ${STYLING.cutoffs.max};
+    margin: 0 auto;
+  }
+
+  .border-wrapper {
+    background: ${(props) => props.theme.colors.container.primary.background};
+    border: 1px solid ${(props) => props.theme.colors.border.primary};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
+    padding: 20px;
+  }
 `;

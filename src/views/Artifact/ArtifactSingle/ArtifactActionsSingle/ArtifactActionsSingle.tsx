@@ -75,7 +75,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 			<S.ButtonsContainer>
 				<S.ButtonContainer>
 					<Button
-						type={'primary'}
+						type={'alt2'}
 						label={copied ? LANGUAGE.copied : LANGUAGE.copyArtifactId}
 						handlePress={copyArtifactId}
 						width={130}
@@ -83,7 +83,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 				</S.ButtonContainer>
 				<S.ButtonContainer>
 					<Button
-						type={'primary'}
+						type={'alt2'}
 						label={showStampWidget ? LANGUAGE.close : LANGUAGE.stamp}
 						handlePress={handleShowStampWidget}
 						width={100}
@@ -91,7 +91,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 				</S.ButtonContainer>
 				<S.ButtonContainer>
 					<Button
-						type={'primary'}
+						type={'alt2'}
 						label={showFactWidget ? LANGUAGE.close : LANGUAGE.factMarket}
 						handlePress={handleShowFactWidget}
 						width={110}

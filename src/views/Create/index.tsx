@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as windowUtils from 'helpers/window';
 
-import * as S from './styles';
+import { CreateHeader } from './CreateHeader';
 
 export default function Create() {
 	React.useEffect(() => {
@@ -10,8 +10,8 @@ export default function Create() {
 	}, []);
 
 	return (
-		<S.Wrapper>
-			<p>Create</p>
-		</S.Wrapper>
+		<>
+			<CreateHeader />
+		</>
 	);
 }

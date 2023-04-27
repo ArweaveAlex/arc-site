@@ -23,7 +23,8 @@ const DEFAULT = {
 	primary4: '#A4CCE9',
 	alt1: '#FFB600',
 	alt2: '#FFD877',
-	overlay1: 'rgba(255, 255, 255, 0.75)',
+	overlay1: 'rgba(100, 100, 100, 0.75)',
+	overlay2: 'rgba(32, 32, 32, 0.75)',
 	contrast: '#D24646',
 	contrastHover: '#F26969',
 	contrastShadow: '#F27979',
@@ -47,10 +48,10 @@ export const defaultTheme: DefaultTheme = {
 		},
 		button: {
 			primary: {
-				background: DEFAULT.neutral1,
-				border: DEFAULT.primary,
-				hover: DEFAULT.neutral9,
-				label: DEFAULT.primary,
+				background: DEFAULT.neutral2,
+				border: DEFAULT.neutral2,
+				hover: DEFAULT.neutral5,
+				label: DEFAULT.neutral11,
 				active: {
 					background: DEFAULT.primary,
 					hover: DEFAULT.primary2,
@@ -102,7 +103,11 @@ export const defaultTheme: DefaultTheme = {
 				background: DEFAULT.contrast,
 				hover: DEFAULT.contrastHover,
 			},
-			disabled: DEFAULT.neutral4,
+			neutral: {
+				background: DEFAULT.neutral2,
+				hover: DEFAULT.neutral5,
+			},
+			disabled: DEFAULT.neutral7,
 		},
 		checkbox: {
 			active: {
@@ -134,10 +139,10 @@ export const defaultTheme: DefaultTheme = {
 				background: DEFAULT.neutral11,
 			},
 			alt6: {
-				background: DEFAULT.neutral5,
+				background: DEFAULT.neutral2,
 			},
 			alt7: {
-				background: DEFAULT.neutral2,
+				background: DEFAULT.neutral5,
 			},
 		},
 		font: {
@@ -176,6 +181,11 @@ export const defaultTheme: DefaultTheme = {
 			disabled: {
 				background: DEFAULT.neutral2,
 				label: DEFAULT.neutral7,
+			},
+			alt1: {
+				background: DEFAULT.neutral2,
+				border: DEFAULT.neutral2,
+				hover: DEFAULT.neutral5,
 			},
 		},
 		icon: {
@@ -234,9 +244,10 @@ export const defaultTheme: DefaultTheme = {
 		},
 		overlay: {
 			primary: DEFAULT.overlay1,
+			alt1: DEFAULT.overlay2,
 		},
 		shadow: {
-			primary: DEFAULT.neutral9,
+			primary: DEFAULT.neutral5,
 		},
 		table: {
 			placeholder: {
@@ -271,8 +282,8 @@ export const defaultTheme: DefaultTheme = {
 			alt1: `'calluna', serif`,
 		},
 		size: {
-			h1: '48px',
-			h2: '24px',
+			h1: 'clamp(38px, 4.5vw, 62px)',
+			h2: 'clamp(32px, 3.75vw, 44px)',
 			base: '16px',
 			small: '15px',
 			xSmall: '14px',

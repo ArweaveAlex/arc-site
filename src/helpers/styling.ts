@@ -28,5 +28,5 @@ export const STYLING = {
 };
 
 export function getImageShadow(theme: any) {
-	return `0 0 5px ${theme.colors.transparent};`;
+	return `0 0 5px ${theme.colors.shadow.primary};`;
 }

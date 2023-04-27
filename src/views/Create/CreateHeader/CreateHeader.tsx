@@ -11,13 +11,12 @@ export default function AboutHeader() {
 		<S.Wrapper>
 			<S.Container>
 				<S.Content>
-					<h1>{LANGUAGE.aboutView.header1}</h1>
-					<h1>{LANGUAGE.aboutView.header2}</h1>
-					<S.Subheader1>{parse(LANGUAGE.aboutView.subHeader1)}</S.Subheader1>
+					<h1>{LANGUAGE.createView.header1}</h1>
+					<S.Subheader1>{parse(LANGUAGE.createView.subHeader1)}</S.Subheader1>
 					<S.Logo>
-						<ReactSVG src={ASSETS.aboutHeaderLogo} />
+						<ReactSVG src={ASSETS.createHeaderLogo} />
 					</S.Logo>
-					<S.Subheader2>{LANGUAGE.aboutView.subHeader2}</S.Subheader2>
+					<S.Subheader2>{parse(LANGUAGE.createView.subHeader2)}</S.Subheader2>
 				</S.Content>
 			</S.Container>
 		</S.Wrapper>

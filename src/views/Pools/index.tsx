@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 import { PoolType } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
+import { PoolsGrid } from 'global/PoolsGrid';
 import { POOL_FILTERS } from 'helpers/config';
 import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
 import { RootState } from 'state/store';
 
-import { PoolsGrid } from './PoolsGrid';
 import { PoolsHeader } from './PoolsHeader';
-import * as S from './styles';
 
+// TODO: Layout / Header
 export default function Pools() {
 	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 
@@ -35,14 +35,14 @@ export default function Pools() {
 	function getData() {
 		if (data) {
 			return (
-				<S.Wrapper>
+				<div className={'view-wrapper max-cutoff'}>
 					<PoolsHeader />
 					<PoolsGrid
-						data={currentFilter.fn(data!)}
+						data={currentFilter.fn(data!, null)}
 						title={currentFilter.title}
 						setCurrentFilter={(option: string) => setCurrentFilter(getPoolFilter(option))}
 					/>
-				</S.Wrapper>
+				</div>
 			);
 		} else {
 			return <Loader />;

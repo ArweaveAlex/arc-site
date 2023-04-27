@@ -8,8 +8,8 @@ export const Wrapper = styled.div`
 	position: fixed;
 	top: ${STYLING.dimensions.navHeight};
 	z-index: 4;
-	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.navigation.header.background};
+	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
 `;
 
 export const Container = styled.div`

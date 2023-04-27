@@ -9,13 +9,17 @@ export const NAV_PATHS = [
 		href: urls.about,
 	},
 	{
+		name: LANGUAGE.paths.contribute,
+		href: urls.contribute,
+	},
+	{
+		name: LANGUAGE.paths.create,
+		href: urls.create,
+	},
+	{
 		name: LANGUAGE.paths.pools,
 		href: urls.pools,
 	},
-	// {
-	// 	name: LANGUAGE.paths.create,
-	// 	href: urls.create,
-	// },
 ];
 
 export const SOCIAL_PATHS = [
@@ -31,5 +35,6 @@ export const SOCIAL_PATHS = [
 	},
 ];
 
-export const OPERATOR_LINK = 'https://alex-operator-guide.arweave.dev/';
+export const OPERATOR_REDIRECT = 'https://alex-operator-guide.arweave.dev/';
 export const TWITTER_ACCOUNT_REDIRECT = (user: string) => `https://twitter.com/${user}`;
+export const WALLET_INFO_REDIRECT = 'https://cookbook.arweave.dev/concepts/keyfiles-and-wallets.html';

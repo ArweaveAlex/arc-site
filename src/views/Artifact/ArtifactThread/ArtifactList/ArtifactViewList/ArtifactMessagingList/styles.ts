@@ -13,10 +13,12 @@ export const Wrapper = styled.div`
     display flex;
     justify-content: space-between;
     @media(max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
-        flex-direction: column-reverse;
+		padding: 0 0 20px 0;
+        flex-direction: column;
     }
     @media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
-        flex-direction: column-reverse;
+		padding: 0 0 20px 0;
+        flex-direction: column;
     }
 `;
 
@@ -28,6 +30,7 @@ export const ListWrapper = styled.div`
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	padding: 0 0 300px 0;
+	margin: 0 0 0 auto;
 	animation: ${open} ${fadeIn2};
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		width: ${STYLING.dimensions.wrapWidth};
@@ -42,7 +45,6 @@ export const ListWrapper = styled.div`
 export const HDWrapper = styled.div`
 	width: ${STYLING.dimensions.listDetailWidth};
 	position: absolute;
-	right: 0;
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;

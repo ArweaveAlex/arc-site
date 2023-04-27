@@ -1,4 +1,3 @@
-import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
 import { ASSETS } from 'helpers/config';
@@ -11,13 +10,12 @@ export default function AboutHeader() {
 		<S.Wrapper>
 			<S.Container>
 				<S.Content>
-					<h1>{LANGUAGE.aboutView.header1}</h1>
-					<h1>{LANGUAGE.aboutView.header2}</h1>
-					<S.Subheader1>{parse(LANGUAGE.aboutView.subHeader1)}</S.Subheader1>
+					<h1>{LANGUAGE.contributeView.header1}</h1>
+					<S.Subheader1>{parse(LANGUAGE.contributeView.subHeader1)}</S.Subheader1>
 					<S.Logo>
-						<ReactSVG src={ASSETS.aboutHeaderLogo} />
+						<img src={ASSETS.contributeHeaderLogo} />
 					</S.Logo>
-					<S.Subheader2>{LANGUAGE.aboutView.subHeader2}</S.Subheader2>
+					<S.Subheader2>{parse(LANGUAGE.contributeView.subHeader2)}</S.Subheader2>
 				</S.Content>
 			</S.Container>
 		</S.Wrapper>

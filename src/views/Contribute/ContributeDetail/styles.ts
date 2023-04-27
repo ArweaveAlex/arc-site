@@ -22,6 +22,8 @@ export const WrapperAlt2 = styled(Wrapper)`
 	background: ${(props) => props.theme.colors.container.alt2.background};
 `;
 
+export const WrapperAlt3 = styled(Wrapper)``;
+
 export const Container = styled.div`
 	height: 100%;
 	width: 100%;
@@ -110,70 +112,8 @@ export const FooterAlt = styled(Footer)`
 `;
 
 export const Action = styled.div`
-	margin: 40px auto 0 auto;
+	margin: 20px auto 40px auto;
 	span {
 		font-size: ${(props) => props.theme.typography.size.base} !important;
-	}
-`;
-
-export const ATWrapper = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background: ${(props) => props.theme.colors.container.alt2.background};
-	padding: 0 20px 80px 20px;
-`;
-
-export const ATHeader = styled.p`
-	font-size: clamp(22px, 2.75vw, 32px);
-	font-family: ${(props) => props.theme.typography.family.alt1};
-	font-weight: ${(props) => props.theme.typography.weight.bold};
-	line-height: 1.25;
-	text-align: center;
-	color: ${(props) => props.theme.colors.font.primary.base};
-	margin: 0 0 30px 0;
-`;
-
-export const ATListContainer = styled.div`
-	width: 100%;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		display: flex;
-	}
-`;
-
-export const ATList = styled.div`
-	width: 100%;
-	max-width: 600px;
-	margin: 0 auto 40px auto;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		flex-direction: column;
-	}
-`;
-
-export const ATContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 0 0 20px 0;
-	svg {
-		height: 50px;
-		width: 50px;
-		fill: ${(props) => props.theme.colors.icon.primary.fill};
-	}
-	p {
-		margin: 12.5px 0 0 0;
-		color: ${(props) => props.theme.colors.font.primary.base};
-		font-size: clamp(14px, 1.5vw, 16px);
-	}
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		svg {
-			height: 40px;
-			width: 40px;
-		}
 	}
 `;

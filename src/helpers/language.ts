@@ -2,7 +2,7 @@ export const LANGUAGE = {
 	about: `About`,
 	aboutView: {
 		header1: `Preserving`,
-		header2: `Human History.`,
+		header2: `Human History`,
 		subHeader1: `<p>Inspired by the Great Library of Alexandria, the mission of Alex. is to <span>preserve important historical artifacts</span> for the enrichment of all people.</p>`,
 		subHeader2: `In order for humanity to move forward, we need to clearly see our past.`,
 		detail: {
@@ -99,6 +99,44 @@ export const LANGUAGE = {
 	connectionError: `Connection Error`,
 	contribute: `Contribute`,
 	contributeTo: `Contribute to`,
+	contributeView: {
+		header1: `Contribute to a pool`,
+		subHeader1: `<p>Anyone can contribute to a pool, which pays for the storage costs of its <span>aritfacts</span>.`,
+		subHeader2: `<b>Archiving is a public good</b>. Allowing people access to information about the past enables them to make higher
+		quality decisions in the present. Currently, however, archiving is insufficiently incentivized: The person 
+		that stores the data, which other's can later access without charge, is the person that has to pay.
+		<b>Alex. changes this</b>. By allowing its community to become micro-sponsors of digital artifacts, an incentive is
+		created for developers and creators to publically archive great digital works on Arweave.`,
+		detail: {
+			artifactTypes: `Artifacts are currently being preserved from:`,
+			action: `Learn about Wallets`,
+			section1: {
+				header: 'What does it mean?',
+				description:
+					'Contributing means to send a portion of your ($AR) to a pool. Contributions are used to pay for the storage costs of artifacts stored on Arweave. A portion of contributions also go to pool operators for their work.',
+				footer: 'Artifacts are deployed as assets to Arweave and distributed to the contributors who support the pool.',
+			},
+			section2: {
+				header: 'How to Contribute?',
+				description1:
+					'First, users will need an Arweave wallet with some <b>($AR)</b> in it to contribute. You can connect your wallet in Alex. by selecting <b>Connect Wallet</b> in the navigation menu.',
+				description2:
+					'Next, you can select the <b>Contribute</b> button in any of the open pool pages. A window will appear which allows you to select the amount to contribute. This also shows the percentage of artifacts you will receive for contributing based on the amount of <b>($AR)</b> that you send.',
+				description3:
+					'After the contribution is received and the pool operator continues to mine artifacts, you will then be able to see your artifacts in your account.',
+			},
+			section3: {
+				header: 'Why sponsor artifacts?',
+				description:
+					'Artifact sponsoring creates a new incentive for users to contribute to permanent archiving of digital content. <b>Anyone can contribute to pools and earn artifacts</b>. These artifacts can never be modified or removed as they are permanently stored on Arweave. Artifacts come in the form of documents, books, images, audio, videos, and more.',
+			},
+		},
+		subnav: {
+			decentralization: 'Decentralization',
+			header: 'Alex. Ecosystem',
+			howItWorks: 'How it works',
+		},
+	},
 	contributionMessage: `Your contribution totals will be adjusted once your transfer has settled on the Arweave network.`,
 	contributionPercentage: (percentage: string) =>
 		`* This Pool Operator will claim ${percentage}% of the contribution as a reward fee.`,
@@ -113,6 +151,16 @@ export const LANGUAGE = {
 	create: `Create`,
 	createCollection: `Create a Collection`,
 	createFirstCollection: `Create your first collection`,
+	createView: {
+		header1: `Create with Alex.`,
+		subHeader1: `<p>If you have an idea, topic or event that you would like to preserve forever, you can create a pool and earn <span>($AR)</span> for it.</p>`,
+		subHeader2: `Anyone can create a pool with Alex. for any given topic/event. An operator creates a pool and mines artifacts into it. These artifacts are deployed as assets to Arweave and distributed to the contributors based on the amount of <b>$AR</b> contributed.`,
+		subnav: {
+			decentralization: 'Decentralization',
+			header: 'Alex. Ecosystem',
+			howItWorks: 'How it works',
+		},
+	},
 	createdOn: `Created on`,
 	dateCreated: `Date Created`,
 	default: `Default`,
@@ -123,20 +171,24 @@ export const LANGUAGE = {
 	errorFetchingArtifact: `Error Fetching Artifact`,
 	errorOccurred: `Error Occurred`,
 	exit: `Exit`,
+	exploreMore: `Explore More`,
 	factMarket: `Fact Market`,
 	factMarketCreated: `Fact Market Created`,
 	fetching: `Fetching`,
 	fetchingBalance: `Fetching balance`,
 	fetchingCount: `Fetching count`,
 	fetchingReceivingPercentage: `Fetching receiving amount`,
-	info: {
-		header1: `What is Alex. & How Does it Work?`,
-		header2: `Those who cannot remember the past are condemned to repeat it.`,
-		subheader: `<b>Alex.</b> The new fireproof Library of Alexandria`,
-		content: `In 48 BC, humanity lost one of the greatest troves of human knowledge to a fire. We will never know the full extent of the culture, knowledge or history lost when the Library of Alexandria was destroyed, but we can learn from the past to better prepare for the future.<br><br>We’ve come a long way from centrally storing vast amounts of information on highly combustible mediums, but we still face a lot of the same challenges from antiquity; the manipulation, corruption or deletion of important information.<br><br>Alex. is a decentralized archival platform that leverages the immutable and permanent data storage of Arweave and includes a mechanism that encourages end user participation.<br><br>Users contribute to pools and they receive “artifacts” back into their wallet as they are minted. Artifacts are pieces of information the pool is storing. Since the artifacts are stored on Arweave, they cannot be changed or removed in any way by anyone.<br><br>This is the continuation of the dream that was the Great Library of Alexandria. In order for us to move forward and continue making better decisions we need the ability to clearly see our past.<br><br><b>Alex.</b><br><br>Always accessible. Never changing. Never deleted.`,
-		assetSrc: `A 19th century illustration of the burning of the Library of Alexandria. Heritage Images/Getty Images.`,
-	},
 	invalidQuery: `Invalid Query`,
+	landingView: {
+		infoHeader1: `Contribute to a pool`,
+		infoSubheader1: `Anyone can become a sponsor of artifacts.`,
+		infoDescription1: `Pools are topics, events or ideas that are preserved digitally on Arweave. By contributing <b>($AR)</b> to pools, you pay for the storage space, and earn a stake in the artifacts mined into pools.`,
+		infoAction1: `Learn How to Contribute`,
+		infoHeader2: `Create a pool`,
+		infoSubheader2: `Anyone can start preserving artifacts.`,
+		infoDescription2: `Anyone can start their own pool on any topic or idea they choose and earn <b>($AR)</b> for archiving. As the pool operator you can control what artifacts are mined and how much you earn.`,
+		infoAction2: `Learn How to Create`,
+	},
 	lastContribution: `Last Contribution`,
 	library: {
 		header1: `Library`,
@@ -164,6 +216,7 @@ export const LANGUAGE = {
 	pageNotFound: `Page Not Found`,
 	paths: {
 		about: `About`,
+		contribute: `Contribute`,
 		create: `Create`,
 		pools: `Pools`,
 	},
@@ -180,9 +233,8 @@ export const LANGUAGE = {
 	pools: {
 		header1: `Pools`,
 		gridTitles: {
-			all: `All`,
 			mostContributed: `Most Active`,
-			newest: `Newest`,
+			newest: `Recently Added`,
 		},
 	},
 	previewArtifact: `Preview Artifact`,
@@ -198,9 +250,9 @@ export const LANGUAGE = {
 	select: `Select`,
 	share: `Share`,
 	shareArtifact: `Check out this Alex. Artifact !`,
-	sharePools: `Check out this Alex. Pool !`,
+	sharePool: `Check out this Alex. Pool !`,
+	sharePools: `Check out these Alex. Pools !`,
 	shareUrlLabel: `Share (Copy URL)`,
-	showing: `Showing`,
 	showMoreReplies: `Show more replies`,
 	siteTitle: `Alex.`,
 	social: {

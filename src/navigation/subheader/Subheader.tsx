@@ -8,6 +8,7 @@ import * as windowUtils from 'helpers/window';
 import * as S from './styles';
 import { IProps } from './types';
 
+// TODO: Subheader on scroll change to active
 export default function Subheader(props: IProps) {
 	const [activeNode, setActiveNode] = React.useState<{ id: string; display: string } | null>(null);
 
