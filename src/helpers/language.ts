@@ -1,8 +1,41 @@
+const ARCONNECT_REDIRECT = 'https://www.arconnect.io/';
+const ARWEAVE_APP_REDIRECT = 'https://arweave.app/welcome';
+const DISCORD_REDIRECT = 'https://discord.gg/r3fj9m5AU5';
+const OPERATOR_REDIRECT = 'https://alex-operator-guide.arweave.dev/';
+
 export const LANGUAGE = {
 	about: `About`,
 	aboutView: {
 		header1: `Preserving`,
 		header2: `Human History`,
+		steps: {
+			list: [
+				{
+					header: `Creating Pools`,
+					description: `An operator creates a pool. A pool operator can be a historical institution, or anyone that is interested in preserving a topic.`,
+					action: {
+						label: `Learn About Creating`,
+						href: `/create/`,
+					},
+				},
+				{
+					header: `Contributing to Pools`,
+					description: `Users contribute Arweave tokens ($AR) to pools that they find valuable. These contributions pay for the storage space on Arweave.`,
+					action: {
+						label: `Learn About Contributing`,
+						href: `/contribute/`,
+					},
+				},
+				{
+					header: `Preserve Artifacts`,
+					description: `Pool operators can now collect artifacts. Documents, books, images, audio clips, videos, etc. within the pool are uploaded to Arweave. Since the artifacts are stored on Arweave, they cannot be changed or removed by anyone.`,
+				},
+				{
+					header: `Collect Artifacts`,
+					description: `Contributors will be made the sponsor of an amount of digital artifacts equal to the percentage of their $AR contribution (relative to the total $AR contributed).`,
+				},
+			],
+		},
 		subHeader1: `<p>Inspired by the Great Library of Alexandria, the mission of Alex. is to <span>preserve important historical artifacts</span> for the enrichment of all people.</p>`,
 		subHeader2: `In order for humanity to move forward, we need to clearly see our past.`,
 		detail: {
@@ -75,8 +108,7 @@ export const LANGUAGE = {
 	arTokens: `$AR`,
 	availableBalance: `Available Balance`,
 	banner: {
-		header1: `Preserving`,
-		header2: `Human History`,
+		header1: `A decentralized archival platform that preserves human history and culture digitally.`,
 		subheader1: `Archives are permanently stored on`,
 		subheader2: `Pools are created with the`,
 	},
@@ -118,8 +150,7 @@ export const LANGUAGE = {
 			},
 			section2: {
 				header: 'How to Contribute?',
-				description1:
-					'First, users will need an Arweave wallet with some <b>($AR)</b> in it to contribute. You can connect your wallet in Alex. by selecting <b>Connect Wallet</b> in the navigation menu.',
+				description1: `First, users will need an Arweave wallet with some <b>($AR)</b> in it to contribute. You can create a wallet at <a target="_blank" href=${ARCONNECT_REDIRECT}>arconnect.io</a> or <a target="_blank" href=${ARWEAVE_APP_REDIRECT}>arweave.app</a>. You can connect your wallet in Alex. by selecting <b>Connect Wallet</b> in the navigation menu.`,
 				description2:
 					'Next, you can select the <b>Contribute</b> button in any of the open pool pages. A window will appear which allows you to select the amount to contribute. This also shows the percentage of artifacts you will receive for contributing based on the amount of <b>($AR)</b> that you send.',
 				description3:
@@ -132,8 +163,7 @@ export const LANGUAGE = {
 			},
 		},
 		subnav: {
-			decentralization: 'Decentralization',
-			header: 'Alex. Ecosystem',
+			header: `Contributing`,
 			howItWorks: 'How it works',
 		},
 	},
@@ -153,12 +183,43 @@ export const LANGUAGE = {
 	createFirstCollection: `Create your first collection`,
 	createView: {
 		header1: `Create with Alex.`,
+		steps: {
+			header1: `How to create a pool`,
+			header2: `For full documentation, please visit our Docs`,
+			display: `Step`,
+			list: [
+				{
+					header: `Think of a topic to archive`,
+					description: `This can be a <span>historical event, current event, cultural topic, innovation, or anything that can be digitally preserved.</span> Once you have your topic, you must decide where you will mine the artifacts from. It can be from social media <span>(Twitter, Reddit, Nostr), websites (Wikipedia),</span> or your own <span>personal archive.</span>`,
+				},
+				{
+					header: `Initiate the pool`,
+					description: `By following our <a target="_blank" href=${OPERATOR_REDIRECT}>pool operator guide</a> you will have all of the steps needed to start the pool. This must be done via a CLI on a local machine because we aim to keep Alex. decentralized with no user data stored on our platform. If you do not have much experience with CLI’s or have any questions our dev team can assist you in our <a target="_blank" href=${DISCORD_REDIRECT}>Discord server</a>.`,
+				},
+				{
+					header: `Configure the pool`,
+					description: `This is where you will include all necessary information to display the pool on the pools page and start mining. This includes writing a description of the pool, including a header image, keywords, and determining the percentage of <span>($AR)</span> that will be collected from contributors. If social media channels will be mined, this step will also require inputting API keys.`,
+				},
+				{
+					header: `Fund the pool`,
+					description: `Once a pool is configured and created, <span>($AR)</span> is needed to store the artifacts and run the mining processes. Contributors are encouraged to send a portion of their <span>($AR)</span> to pools to become sponsors of artifacts.`,
+					action: {
+						label: `Learn About Contributing`,
+						href: `/contribute/`,
+					},
+				},
+				{
+					header: `Start mining`,
+					description: `If you are mining from social media, you can use the commands from the <a target="_blank" href=${OPERATOR_REDIRECT}>pool operator guide</a> to mine specific platforms and parameters. On the pools page you will start to see the artifact count grow. <span>The key to running a good pool that users want to contribute to is consistent and accurate mining based on the pool topic.</span>`,
+				},
+			],
+		},
+		stepsHeader1: `How it works`,
 		subHeader1: `<p>If you have an idea, topic or event that you would like to preserve forever, you can create a pool and earn <span>($AR)</span> for it.</p>`,
 		subHeader2: `Anyone can create a pool with Alex. for any given topic/event. An operator creates a pool and mines artifacts into it. These artifacts are deployed as assets to Arweave and distributed to the contributors based on the amount of <b>$AR</b> contributed.`,
 		subnav: {
-			decentralization: 'Decentralization',
-			header: 'Alex. Ecosystem',
-			howItWorks: 'How it works',
+			header: `Create with Alex.`,
+			howItWorks: `How it works`,
 		},
 	},
 	createdOn: `Created on`,
@@ -264,29 +325,6 @@ export const LANGUAGE = {
 	stamps: `Stamps`,
 	stampsVouched: `Vouched Stamps`,
 	superStamp: `Super STAMP`,
-	steps: {
-		header1: `A New Way to Get Involved in the Human Story`,
-		header2: `Alex. offers a unique way for everyone to participate and "own" a piece of the human story. By supporting the participating archival institutions, you are helping protect our history from edits, omissions, narratives, & malicious intent. <b>Here&#8217;s how.</b>`,
-		display: `Step`,
-		list: [
-			{
-				header: `Creating Pools`,
-				description: `An operator creates a pool. A pool operator can be a historical institution, or anyone that is interested in preserving a topic. <a target="_blank" href="https://alex-operator-guide.arweave.dev/">For more information on how to create a pool…</a>`,
-			},
-			{
-				header: `Contributing to Pools`,
-				description: `Users contribute Arweave tokens ($AR) to pools that they find valuable. These contributions pay for the storage space on Arweave.`,
-			},
-			{
-				header: `Preserve Artifacts`,
-				description: `Pool operators can now collect artifacts. Documents, books, images, audio clips, videos, etc. within the pool are uploaded to Arweave. Since the artifacts are stored on Arweave, they cannot be changed or removed by anyone.`,
-			},
-			{
-				header: `Collect Artifacts`,
-				description: `Contributors will be made the sponsor of an amount of digital artifacts equal to the percentage of their $AR contribution (relative to the total $AR contributed).`,
-			},
-		],
-	},
 	submit: `Submit`,
 	support: `Support`,
 	title: `Title`,

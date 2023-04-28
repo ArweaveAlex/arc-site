@@ -110,3 +110,15 @@ export const StepDescription = styled.div`
 		max-width: 100%;
 	}
 `;
+
+export const Action = styled.div`
+	width: fit-content;
+	margin: 40px 0 0 0;
+	a,
+	span {
+		font-size: ${(props) => props.theme.typography.size.base} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
+		text-decoration: none !important;
+		overflow: visible !important;
+	}
+`;

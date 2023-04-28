@@ -6,9 +6,10 @@ export const Wrapper = styled.div`
 	width: 100%;
 	margin: 0 auto;
 	animation: ${open} ${fadeIn2};
+	padding: 0 0 20px 0;
 `;
 
 export const Action = styled.div`
 	width: fit-content;
-	margin: 40px auto 0px auto;
+	margin: 40px auto 0 auto;
 `;

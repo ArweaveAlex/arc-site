@@ -75,12 +75,21 @@ export const Description = styled.p`
 	line-height: 1.5;
 	margin: 20px 0 40px 0;
 	text-align: center;
-	b {
+	b,
+	a {
 		color: ${(props) => props.theme.colors.font.primary.alt8};
 		font-size: clamp(17px, 2.35vw, 22px);
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		line-height: 1.5;
 		text-align: center;
+	}
+	a {
+		color: ${(props) => props.theme.colors.font.primary.active.base};
+		font-weight: ${(props) => props.theme.typography.weight.regular};
+		text-decoration: underline;
+		&:hover {
+			color: ${(props) => props.theme.colors.font.primary.active.hover};
+		}
 	}
 `;
 

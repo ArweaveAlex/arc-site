@@ -4,7 +4,7 @@ import { STYLING } from 'helpers/styling';
 
 export const HeaderWrapper = styled.div`
 	width: 100%;
-	margin: 0 auto;
+	margin: 0 auto 20px auto;
 	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		height: auto;
 	}

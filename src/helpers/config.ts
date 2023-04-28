@@ -39,7 +39,7 @@ import favoriteSVG from 'assets/favorite.svg';
 import fileSVG from 'assets/file.svg';
 import historicalSVG from 'assets/historical-icon.svg';
 import impressionsSVG from 'assets/impressions.svg';
-import landingGraphicPNG from 'assets/landing-graphic.png';
+import landingGraphicSVG from 'assets/landing-graphic.svg';
 import linkSVG from 'assets/link.svg';
 import logoSVG from 'assets/logo.svg';
 import logoAltSVG from 'assets/logo-alt.svg';
@@ -121,7 +121,7 @@ export const ASSETS = {
 	file: fileSVG,
 	historical: historicalSVG,
 	impressions: impressionsSVG,
-	landingGraphic: landingGraphicPNG,
+	landingGraphic: landingGraphicSVG,
 	link: linkSVG,
 	logo: logoSVG,
 	logoAlt: logoAltSVG,
@@ -236,11 +236,17 @@ export const ARTIFACT_TABS = [
 
 export const DOM = {
 	about: {
-		contributing: 'about-contributing',
-		creatingAPool: 'about-creating-a-pool',
 		decentralization: 'about-decentralization',
 		header: 'about-header',
 		howItWorks: 'about-how-it-works',
+	},
+	contribute: {
+		header: `contribute-header`,
+		howItWorks: `contribute-how-it-works`,
+	},
+	create: {
+		header: `create-header`,
+		howItWorks: `create-how-it-works`,
 	},
 	loader: 'loader',
 	modal: 'modal',

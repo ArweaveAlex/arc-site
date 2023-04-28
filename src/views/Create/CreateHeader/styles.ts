@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 	background: ${(props) => props.theme.colors.container.primary.background};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: auto;
+		padding: 10px 20px 0 20px;
 	}
 `;
 

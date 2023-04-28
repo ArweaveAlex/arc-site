@@ -4,114 +4,110 @@ import { STYLING } from 'helpers/styling';
 
 export const HeaderWrapper = styled.div`
 	display: flex;
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
+		flex-direction: column;
+	}
 `;
 
 export const FlexHeader = styled.div`
-	width: 700px;
+	width: calc(100% - 700px);
 	display: flex;
 	flex-direction: column;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		flex-wrap: wrap;
+	padding: 0px;
+	p {
+		font-size: clamp(24px, 2.75vw, 32px);
+		font-family: ${(props) => props.theme.typography.family.alt1};
+		color: ${(props) => props.theme.colors.font.primary.alt8};
+		line-height: 1.5;
+		margin: 10px 0 0 0;
+	}
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
+		width: 100%;
+		h1,
+		p {
+			text-align: center;
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		p {
+			margin: 20px auto 0 auto;
+		}
 	}
 `;
 
 export const SubheaderWrapper = styled.div`
 	display: flex;
 	align-items: center;
-	margin: 20px 0 0 0;
-	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 50px)) {
+	margin: 50px 0 0 0;
+	p {
+		font-size: clamp(18px, 2vw, 20px);
+		font-family: ${(props) => props.theme.typography.family.primary};
+		font-weight: ${(props) => props.theme.typography.weight.regular};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
 		margin: 0;
-		width: auto;
-		min-width: 0;
+	}
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
+		margin: 20px auto 40px auto;
 	}
 `;
 
-export const SubheaderContainer = styled.div``;
+export const SubheaderContainer = styled.div`
+	p,
+	a {
+		font-size: clamp(14px, 2vw, 20px);
+		font-weight: ${(props) => props.theme.typography.weight.regular};
+	}
+	p {
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+	}
+	p > a {
+		color: ${(props) => props.theme.colors.font.primary.alt4};
+	}
+`;
 
 export const FlexSubheader = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: end;
-	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 50px)) {
-		justify-content: start;
-	}
-`;
-
-export const Subheader1 = styled.p`
-	font-size: 18px;
-	color: ${(props) => props.theme.colors.font.primary.alt1};
-	font-weight: ${(props) => props.theme.typography.weight.medium};
 	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		font-size: ${(props) => props.theme.typography.size.xSmall};
+		flex-direction: column;
+		justify-content: center;
 	}
 `;
 
 export const Logo = styled.div`
-	margin: 0 0 0 7.5px;
+	margin: 2.5px 0 0 8.5px;
 	svg {
-		width: 100px;
+		width: 85px;
 	}
 	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		margin: 0 0 0 5px;
 		svg {
-			width: 55px;
-			padding: 2.5px 0 0 0;
-		}
-	}
-`;
-
-export const Subheader2 = styled.div`
-	margin: 10px 0 0 auto;
-	text-align: right;
-	display: flex;
-	align-items: center;
-	p {
-		font-size: 17px;
-		line-height: 1.5;
-		color: ${(props) => props.theme.colors.font.primary.alt1};
-		font-weight: ${(props) => props.theme.typography.weight.medium};
-	}
-	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 50px)) {
-		margin: 0;
-		text-align: left;
-		justify-content: start;
-	}
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		p {
-			font-size: ${(props) => props.theme.typography.size.xSmall};
-		}
-	}
-`;
-
-export const Link = styled.div`
-	width: fit-content;
-	a {
-		font-size: 17px;
-		line-height: 1.5;
-		color: ${(props) => props.theme.colors.font.primary.alt4};
-		font-weight: ${(props) => props.theme.typography.weight.medium};
-	}
-	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 50px)) {
-		margin: 0;
-		text-align: left;
-	}
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		a {
-			font-size: ${(props) => props.theme.typography.size.xSmall};
+			width: 65px;
+			margin: 0 0 10px 0;
 		}
 	}
 `;
 
 export const GraphicWrapper = styled.div`
 	margin: auto;
-	width: calc(100% - 700px);
+	width: 675px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		width: 100%;
+	svg {
+		width: 675px;
+		margin: -30px 0 -15px 50px;
 	}
-	img {
-		margin: auto;
+	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
+		width: 100%;
+		svg {
+			height: 400px;
+			width: 100%;
+			margin: auto;
+		}
+	}
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		svg {
+			height: auto;
+		}
 	}
 `;
