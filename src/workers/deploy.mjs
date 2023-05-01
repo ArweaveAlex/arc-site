@@ -2,6 +2,8 @@ import Bundlr from '@bundlr-network/client';
 import Arweave from 'arweave';
 import { defaultCacheOptions, WarpFactory } from 'warp-contracts';
 
+// TODO: Add writeInteraction
+// TODO: Update ALEX_ANT_CONTRACT set to to prod url
 (async () => {
 	const DEPLOY_FOLDER = './dist';
 	const BUNDLR_NODE = 'https://node2.bundlr.network';
@@ -24,11 +26,11 @@ import { defaultCacheOptions, WarpFactory } from 'warp-contracts';
 
 	await new Promise((r) => setTimeout(r, 1000));
 
-	await contract.writeInteraction({
-		function: 'setRecord',
-		subDomain: '@',
-		transactionId: result.id,
-	});
+	// await contract.writeInteraction({
+	// 	function: 'setRecord',
+	// 	subDomain: '@',
+	// 	transactionId: result.id,
+	// });
 
 	console.log(`[ ${result.id} ]`);
 })();
