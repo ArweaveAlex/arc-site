@@ -7,8 +7,6 @@ import { LANGUAGE } from 'helpers/language';
 
 import * as S from './styles';
 
-// TODO: For more info ... link to /create
-// Link from Contributing to Pools to /contribute
 export default function AboutSteps() {
 	return (
 		<S.Wrapper>

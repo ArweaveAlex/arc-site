@@ -18,7 +18,6 @@ const NotFound = getLazyImport('NotFound');
 const Pool = getLazyImport('Pool');
 const Pools = getLazyImport('Pools');
 
-// TODO: layout library account artifact artifact-thread
 export default function _Routes() {
 	return (
 		<Suspense fallback={<Loader />}>

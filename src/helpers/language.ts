@@ -141,11 +141,11 @@ export const LANGUAGE = {
 		created for developers and creators to publically archive great digital works on Arweave.`,
 		detail: {
 			artifactTypes: `Artifacts are currently being preserved from:`,
-			action: `Learn about Wallets`,
+			action: `Learn About Wallets`,
 			section1: {
 				header: 'What does it mean?',
 				description:
-					'Contributing means to send a portion of your ($AR) to a pool. Contributions are used to pay for the storage costs of artifacts stored on Arweave. A portion of contributions also go to pool operators for their work.',
+					'Contributing means to send a portion of your <b>($AR)</b> to a pool. Contributions are used to pay for the storage costs of artifacts stored on Arweave. A portion of contributions also go to pool operators for their work.',
 				footer: 'Artifacts are deployed as assets to Arweave and distributed to the contributors who support the pool.',
 			},
 			section2: {

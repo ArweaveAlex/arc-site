@@ -4,7 +4,6 @@ import { ReactSVG } from 'react-svg';
 
 import { FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolType } from 'arcframework';
 
-import { Loader } from 'components/atoms/Loader';
 import { Select } from 'components/atoms/Select';
 import { PoolContribute } from 'global/PoolContribute';
 import { ASSETS, POOL_FILTERS } from 'helpers/config';
@@ -53,7 +52,7 @@ function PoolTile(props: PoolType) {
 				</>
 			);
 		} else {
-			return <Loader placeholder />;
+			return <S.LP />;
 		}
 	}
 

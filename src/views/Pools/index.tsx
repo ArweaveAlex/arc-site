@@ -11,7 +11,6 @@ import { RootState } from 'state/store';
 
 import { PoolsHeader } from './PoolsHeader';
 
-// TODO: Layout / Header
 export default function Pools() {
 	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 

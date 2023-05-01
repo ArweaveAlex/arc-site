@@ -8,9 +8,8 @@ import * as windowUtils from 'helpers/window';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: Subheader on scroll change to active
 export default function Subheader(props: IProps) {
-	const [activeNode, setActiveNode] = React.useState<{ id: string; display: string } | null>(null);
+	const [activeNode, setActiveNode] = React.useState<{ id: string; display: string; top?: number } | null>(null);
 
 	const [desktop, setDesktop] = React.useState(windowUtils.checkDesktop());
 
@@ -30,9 +29,52 @@ export default function Subheader(props: IProps) {
 		}
 	}, [props.nodes]);
 
+	React.useEffect(() => {
+		window.addEventListener('wheel', handleScroll);
+		window.addEventListener('keydown', handleKeyDown);
+
+		return () => {
+			window.removeEventListener('wheel', handleScroll);
+			window.addEventListener('keydown', handleKeyDown);
+		};
+	}, [props.nodes]);
+
 	function handleClick(node: { id: string; display: string }) {
 		windowUtils.scrollIntoView(node.id);
 		setActiveNode(node);
+	}
+
+	function handleKeyDown(event: KeyboardEvent) {
+		const key = event.key;
+		switch (key) {
+			case 'ArrowUp':
+			case 'ArrowDown':
+			case 'PageUp':
+			case 'PageDown':
+			case 'Home':
+			case 'End':
+				handleScroll();
+				break;
+			default:
+				break;
+		}
+	}
+
+	function handleScroll() {
+		const threshold = 0.2;
+		const nodes = props.nodes.map((node: { id: string; display: string }) => {
+			const element = document.getElementById(node.id);
+			const top = element?.getBoundingClientRect().top || 0;
+			const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+			const relativeTop = top / viewportHeight;
+			return { id: node.id, display: node.display, top: top, relativeTop: relativeTop };
+		});
+
+		const activeIndex = nodes.findIndex((node) => node.relativeTop >= 0 && node.relativeTop <= threshold);
+
+		if (activeIndex !== -1) {
+			setActiveNode(nodes[activeIndex]);
+		}
 	}
 
 	function handleEvent(e: any) {

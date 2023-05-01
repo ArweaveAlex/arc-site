@@ -15,8 +15,6 @@ import * as S from './styles';
 
 const FETCH_COUNT = 9;
 
-// TODO: Get featured pool
-// TODO: Limit FETCH_COUNT - browse all
 export default function LandingPools() {
 	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 

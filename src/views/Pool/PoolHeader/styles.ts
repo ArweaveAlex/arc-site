@@ -99,7 +99,7 @@ export const Image = styled.div<{ image: string }>`
 	background-color: ${(props) => props.theme.colors.container.alt5.background};
 	box-shadow: ${(props) => getImageShadow(props.theme)};
 	border-radius: ${STYLING.dimensions.borderRadius};
-	border: 2px solid ${(props) => props.theme.colors.border.primary};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 `;
 
 export const ImageLoading = styled.div`
