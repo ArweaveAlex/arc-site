@@ -18,7 +18,7 @@ module.exports = {
 		},
 		hot: true,
 		historyApiFallback: true,
-		port: 3000,
+		port: 3002,
 		open: false,
 		compress: true,
 		client: {
@@ -45,6 +45,10 @@ module.exports = {
 	],
 	module: {
 		rules: [
+			{
+				test: /\.md$/,
+				use: 'raw-loader',
+			},
 			{
 				test: /\.(ts|tsx)$/,
 				exclude: /node_modules/,

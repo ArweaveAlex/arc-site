@@ -12,6 +12,7 @@ const ArtifactThread = getLazyImport('Artifact/ArtifactThread');
 const CollectionsManage = getLazyImport('Collections/CollectionsManage');
 const Contribute = getLazyImport('Contribute');
 const Create = getLazyImport('Create');
+const Docs = getLazyImport('Docs');
 const Landing = getLazyImport('Landing');
 const Library = getLazyImport('Library');
 const NotFound = getLazyImport('NotFound');
@@ -107,6 +108,22 @@ export default function _Routes() {
 					element={
 						<View>
 							<Create />
+						</View>
+					}
+				/>
+				<Route
+					path={`${urls.docs}:active/*`}
+					element={
+						<View>
+							<Docs />
+						</View>
+					}
+				/>
+				<Route
+					path={urls.docs}
+					element={
+						<View>
+							<Docs />
 						</View>
 					}
 				/>

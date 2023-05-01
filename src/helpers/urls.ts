@@ -11,6 +11,7 @@ export const collections = `${base}collections/`;
 export const collectionsManage = `${collections}manage`;
 export const contribute = `${base}contribute/`;
 export const create = `${base}create/`;
+export const docs = `${base}docs/`;
 export const library = `${base}library/`;
 export const libraryAll = (id: string) => `${library}${id}/all/`;
 export const libraryBookmarks = (id: string) => `${library}${id}/collections/`;

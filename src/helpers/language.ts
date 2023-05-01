@@ -228,6 +228,7 @@ export const LANGUAGE = {
 	details: `Details`,
 	description: `Description`,
 	disconnect: `Disconnect`,
+	docs: `Docs`,
 	editSelectedArtifacts: `Edit Selected Artifacts`,
 	errorFetchingArtifact: `Error Fetching Artifact`,
 	errorOccurred: `Error Occurred`,
@@ -279,6 +280,7 @@ export const LANGUAGE = {
 		about: `About`,
 		contribute: `Contribute`,
 		create: `Create`,
+		docs: `Docs`,
 		pools: `Pools`,
 	},
 	pool: {

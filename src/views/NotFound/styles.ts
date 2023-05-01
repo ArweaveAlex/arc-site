@@ -19,6 +19,9 @@ export const Content = styled.div`
 
 export const Header = styled.h2`
 	font-size: 28px;
+	color: ${(props) => props.theme.colors.font.primary.alt1};
+	font-family: ${(props) => props.theme.typography.family.primary};
+	font-weight: ${(props) => props.theme.typography.weight.regular};
 `;
 
 export const Divider = styled.div`
