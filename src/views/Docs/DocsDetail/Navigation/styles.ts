@@ -4,9 +4,8 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const NWrapper = styled.div`
-	height: 100%;
-	width: 250px;
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	height: auto;
+	width: 300px;
 	backdrop-filter: blur(2px);
 	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
@@ -17,28 +16,29 @@ export const NWrapper = styled.div`
 
 export const NContent = styled.div`
 	height: 100%;
+	max-height: 700px;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-left: 1px solid ${(props) => props.theme.colors.border.primary};
+	overflow: auto;
+	background: ${(props) => props.theme.colors.container.alt3.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	padding: 20px 20px 10px 20px;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		padding: 0;
+		max-height: none;
+	}
 `;
 
 export const NTitle = styled.div`
-	height: 50px;
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	margin: 0 0 20px 0;
 	p {
-		font-size: ${(props) => props.theme.typography.size.xSmall} !important;
-		font-weight: ${(props) => props.theme.typography.weight.bold} !important;
-		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+		font-size: 22px !important;
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 	}
 `;
 
@@ -49,10 +49,6 @@ export const NTitleMobile = styled.button`
 	justify-content: flex-start;
 	align-items: center;
 	padding: 0 15px;
-	background: ${(props) => props.theme.colors.container.alt6.background};
-	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	&:hover {
 		cursor: pointer;
 		background-color: ${(props) => props.theme.colors.form.alt1.hover};
@@ -78,7 +74,6 @@ export const NTitleMobile = styled.button`
 `;
 
 export const NList = styled.ul`
-	height: calc(100% - 50px);
 	width: 100%;
 	overflow: auto;
 	a {
@@ -91,21 +86,21 @@ export const NList = styled.ul`
 	}
 `;
 
-export const NListItem = styled.li<{ disabled: boolean }>`
+export const NListItem = styled.li<{ disabled: boolean; active: boolean }>`
 	pointer-events: ${(props) => (props.disabled ? 'none' : 'default')};
 	text-align: center;
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-	font-size: 13px;
-	line-height: 1.35;
-	color: ${(props) => props.theme.colors.font.primary.alt1};
+	font-size: ${(props) => props.theme.typography.size.small};
+	color: ${(props) => (props.active ? props.theme.colors.font.primary.base : props.theme.colors.font.primary.alt1)};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
-	border-bottom: 1px solid
-		${(props) => (props.disabled ? props.theme.colors.button.alt2.disabled.border : props.theme.colors.border.primary)};
-	background: ${(props) =>
-		props.disabled ? props.theme.colors.button.alt2.disabled.background : props.theme.colors.button.alt2.background};
 	padding: 10px 15px;
+	margin: 0 0 7.5px 0;
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	background: ${(props) =>
+		props.active ? props.theme.colors.button.alt2.active.background : props.theme.colors.transparent};
+
 	&:hover {
 		background: ${(props) =>
 			props.disabled
@@ -113,12 +108,24 @@ export const NListItem = styled.li<{ disabled: boolean }>`
 				: props.theme.colors.button.alt2.active.background};
 		color: ${(props) => props.theme.colors.font.primary.base};
 	}
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		margin: 15px;
+	}
 `;
 
 export const NSubHeader = styled(NTitle)`
 	height: auto;
 	justify-content: flex-start;
+	font-size: ${(props) => props.theme.typography.size.small};
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 	padding: 10px 15px;
+	margin: 0 0 7.5px 0;
+	p {
+		font-size: ${(props) => props.theme.typography.size.base} !important;
+	}
 `;
 
-export const NSubList = styled.div``;
+export const NSubList = styled.div`
+	padding: 0 0 0 20px;
+`;

@@ -39,6 +39,5 @@ export const SOCIAL_PATHS = [
 	},
 ];
 
-export const OPERATOR_REDIRECT = 'https://alex-operator-guide.arweave.dev/';
 export const TWITTER_ACCOUNT_REDIRECT = (user: string) => `https://twitter.com/${user}`;
 export const WALLET_INFO_REDIRECT = 'https://cookbook.arweave.dev/concepts/keyfiles-and-wallets.html';

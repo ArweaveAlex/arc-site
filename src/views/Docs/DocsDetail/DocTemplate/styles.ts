@@ -4,8 +4,8 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
-	width: calc(100% - 250px);
-	padding: 0 20px;
+	width: calc(100% - 300px);
+	padding: 0 0 0 30px;
 	animation: ${open} ${fadeIn2};
 
 	@media (max-width: ${STYLING.cutoffs.initial}) {
@@ -112,5 +112,9 @@ export const Wrapper = styled.div`
 			border-radius: 0 !important;
 			line-height: 1.5 !important;
 		}
+	}
+
+	img {
+		width: 100%;
 	}
 `;

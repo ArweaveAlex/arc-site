@@ -1,50 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { LANGUAGE } from 'helpers/language';
+import * as urls from 'helpers/urls';
 import * as windowUtils from 'helpers/window';
 
-import { getDocTree } from '../load-docs';
+import { docsOrder } from '../order-docs';
 
 import * as S from './styles';
 
-function renderNavItems(dir: any, path = '') {
+function renderNavItems(path = '', docs: any = docsOrder) {
+	const location = useLocation();
+	const basePath = urls.docs;
+	const active = location.pathname.replace(basePath, '');
+
 	const items = [];
-
-	if (dir.files) {
-		items.push(
-			...dir.files.map((file: any, index: any) => {
-				const fullPath = `${path}/${file}`;
-				return (
-					<Link to={`/docs${fullPath}`} key={`file-${index}`}>
-						<S.NListItem disabled={false}>{file}</S.NListItem>
-					</Link>
-				);
-			})
-		);
-	}
-
-	const subdirs = Object.keys(dir).filter((key) => key !== 'files');
-	items.push(
-		...subdirs.map((subdir, index) => {
-			const subPath = `${path}/${subdir}`;
-			return (
-				<div key={`dir-${index}`}>
-					<S.NSubHeader>
-						<p>{subdir}</p>
-					</S.NSubHeader>
-					<S.NSubList>{renderNavItems(dir[subdir], subPath)}</S.NSubList>
-				</div>
+	for (let i = 0; i < docs.length; i++) {
+		if (docs[i].path && !docs[i].children) {
+			const fullPath = `${path ? path + '/' : path}${docs[i].path}`;
+			console.log(fullPath);
+			items.push(
+				<Link to={`${urls.docs}${fullPath}`} key={`file-${docs[i].path}`}>
+					<S.NListItem disabled={false} active={fullPath === active}>
+						{docs[i].name}
+					</S.NListItem>
+				</Link>
 			);
-		})
-	);
+		} else {
+			if (docs[i].children) {
+				items.push(
+					<div key={`dir-${docs[i].name}`}>
+						<S.NSubHeader>
+							<p>{docs[i].name}</p>
+						</S.NSubHeader>
+						<S.NSubList>{renderNavItems(docs[i].path, docs[i].children)}</S.NSubList>
+					</div>
+				);
+			}
+		}
+	}
 
 	return items;
 }
 
 export default function Navigation() {
-	const docTree = getDocTree();
-
 	const [open, setOpen] = React.useState(windowUtils.checkDesktop());
 	const [desktop, setDesktop] = React.useState(windowUtils.checkDesktop());
 
@@ -67,9 +66,11 @@ export default function Navigation() {
 			<S.NWrapper>
 				<S.NContent>
 					<Title onClick={desktop ? () => {} : () => setOpen(!open)}>
-						<p>{LANGUAGE.docs}</p>
+						<p>
+							{LANGUAGE.siteTitle} {LANGUAGE.docsTitle}
+						</p>
 					</Title>
-					<S.NList>{open && renderNavItems(docTree)}</S.NList>
+					<S.NList>{open && renderNavItems()}</S.NList>
 				</S.NContent>
 			</S.NWrapper>
 		);

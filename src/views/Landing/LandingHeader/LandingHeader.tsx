@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { ASSETS } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
-import { OPERATOR_REDIRECT } from 'helpers/paths';
+import * as urls from 'helpers/urls';
 
 import * as S from './styles';
 
@@ -26,9 +27,7 @@ export default function LandingHeader() {
 							<div>
 								<p>
 									{LANGUAGE.banner.subheader2}&nbsp;
-									<a target={'_blank'} href={OPERATOR_REDIRECT} rel={'noreferrer'}>
-										{LANGUAGE.poolOperator}
-									</a>
+									<Link to={`${urls.docs}creating-a-pool/getting-started`}>{LANGUAGE.poolOperator}</Link>
 								</p>
 							</div>
 						</S.SubheaderContainer>

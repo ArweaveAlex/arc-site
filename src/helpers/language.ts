@@ -1,7 +1,6 @@
 const ARCONNECT_REDIRECT = 'https://www.arconnect.io/';
 const ARWEAVE_APP_REDIRECT = 'https://arweave.app/welcome';
 const DISCORD_REDIRECT = 'https://discord.gg/r3fj9m5AU5';
-const OPERATOR_REDIRECT = 'https://alex-operator-guide.arweave.dev/';
 
 export const LANGUAGE = {
 	about: `About`,
@@ -155,6 +154,7 @@ export const LANGUAGE = {
 					'Next, you can select the <b>Contribute</b> button in any of the open pool pages. A window will appear which allows you to select the amount to contribute. This also shows the percentage of artifacts you will receive for contributing based on the amount of <b>($AR)</b> that you send.',
 				description3:
 					'After the contribution is received and the pool operator continues to mine artifacts, you will then be able to see your artifacts in your account.',
+				description4: 'Learn more about how contributing works in our documentation.',
 			},
 			section3: {
 				header: 'Why sponsor artifacts?',
@@ -194,7 +194,11 @@ export const LANGUAGE = {
 				},
 				{
 					header: `Initiate the pool`,
-					description: `By following our <a target="_blank" href=${OPERATOR_REDIRECT}>pool operator guide</a> you will have all of the steps needed to start the pool. This must be done via a CLI on a local machine because we aim to keep Alex. decentralized with no user data stored on our platform. If you do not have much experience with CLI’s or have any questions our dev team can assist you in our <a target="_blank" href=${DISCORD_REDIRECT}>Discord server</a>.`,
+					description: `By following our documentation you will have all of the steps needed to start the pool. This must be done via a CLI on a local machine because we aim to keep Alex. decentralized with no user data stored on our platform. If you do not have much experience with CLI’s or have any questions our dev team can assist you in our <a target="_blank" href=${DISCORD_REDIRECT}>Discord server</a>.`,
+					action: {
+						label: `Visit Pool Configuration`,
+						href: `/docs/creating-a-pool/getting-started`,
+					},
 				},
 				{
 					header: `Configure the pool`,
@@ -205,12 +209,16 @@ export const LANGUAGE = {
 					description: `Once a pool is configured and created, <span>($AR)</span> is needed to store the artifacts and run the mining processes. Contributors are encouraged to send a portion of their <span>($AR)</span> to pools to become sponsors of artifacts.`,
 					action: {
 						label: `Learn About Contributing`,
-						href: `/contribute/`,
+						href: `/docs/contributing`,
 					},
 				},
 				{
 					header: `Start mining`,
-					description: `If you are mining from social media, you can use the commands from the <a target="_blank" href=${OPERATOR_REDIRECT}>pool operator guide</a> to mine specific platforms and parameters. On the pools page you will start to see the artifact count grow. <span>The key to running a good pool that users want to contribute to is consistent and accurate mining based on the pool topic.</span>`,
+					description: `If you are mining from social media, you can use the commands from the mining section of the documentation to see specific platforms and parameters. On the pools page you will start to see the artifact count grow. <span>The key to running a good pool that users want to contribute to is consistent and accurate mining based on the pool topic.</span>`,
+					action: {
+						label: `Visit Mining Configuration`,
+						href: `/docs/creating-a-pool/mining-artifacts`,
+					},
 				},
 			],
 		},
@@ -228,7 +236,7 @@ export const LANGUAGE = {
 	details: `Details`,
 	description: `Description`,
 	disconnect: `Disconnect`,
-	docs: `Docs`,
+	docsTitle: `Documentation`,
 	editSelectedArtifacts: `Edit Selected Artifacts`,
 	errorFetchingArtifact: `Error Fetching Artifact`,
 	errorOccurred: `Error Occurred`,
@@ -341,6 +349,7 @@ export const LANGUAGE = {
 	viewOnArweave: `View on Arweave`,
 	viewOnPermafacts: `View on Permafacts`,
 	viewPool: `View Pool`,
+	visitDocs: `Visit Documentation`,
 	walletNotConnected: `Connect a wallet to continue`,
 	willBeReceiving: `You will be receiving`,
 };

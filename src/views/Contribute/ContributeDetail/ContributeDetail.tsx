@@ -1,8 +1,10 @@
 import parse from 'html-react-parser';
 
 import { Button } from 'components/atoms/Button';
+import { ButtonLink } from 'components/atoms/ButtonLink';
 import { LANGUAGE } from 'helpers/language';
 import { WALLET_INFO_REDIRECT } from 'helpers/paths';
+import * as urls from 'helpers/urls';
 
 import * as S from './styles';
 
@@ -37,6 +39,16 @@ export default function AboutDetail() {
 							</S.Action>
 							<S.Description>{parse(LANGUAGE.contributeView.detail.section2.description2)}</S.Description>
 							<S.Description>{parse(LANGUAGE.contributeView.detail.section2.description3)}</S.Description>
+							<S.Description>{parse(LANGUAGE.contributeView.detail.section2.description4)}</S.Description>
+							<S.Action>
+								<ButtonLink
+									type={'primary'}
+									label={LANGUAGE.visitDocs}
+									href={`${urls.docs}contributing`}
+									height={52.5}
+									width={275}
+								/>
+							</S.Action>
 						</S.Section>
 					</S.Content>
 				</S.Container>

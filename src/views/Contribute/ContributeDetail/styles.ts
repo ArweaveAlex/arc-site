@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
 `;
 
 export const WrapperAlt1 = styled(Wrapper)`
+	padding: 60px 20px 20px 20px;
 	background: ${(props) => props.theme.colors.container.primary.background};
 `;
 
