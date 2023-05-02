@@ -132,7 +132,7 @@ export const LANGUAGE = {
 	contributeTo: `Contribute to`,
 	contributeView: {
 		header1: `Contribute to a pool`,
-		subHeader1: `<p>Anyone can contribute to a pool, which pays for the storage costs of its <span>aritfacts</span>.`,
+		subHeader1: `<p>Anyone can contribute to a pool, which pays for the storage costs of its <span>artifacts</span>.`,
 		subHeader2: `<b>Archiving is a public good</b>. Allowing people access to information about the past enables them to make higher
 		quality decisions in the present. Currently, however, archiving is insufficiently incentivized: The person 
 		that stores the data, which other's can later access without charge, is the person that has to pay.
