@@ -7,10 +7,12 @@ export const Wrapper = styled.div`
 	width: calc(100% - 300px);
 	padding: 0 0 0 30px;
 	animation: ${open} ${fadeIn2};
+	margin: 0 0 0 auto;
 
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;
 		padding: 0;
+		margin: 0;
 	}
 
 	h1,
@@ -39,12 +41,12 @@ export const Wrapper = styled.div`
 		font-size: clamp(22px, 3.05vw, 34px) !important;
 	}
 	h3 {
-		font-size: clamp(14px, 2.05vw, 20px) !important;
+		font-size: clamp(18px, 2.05vw, 24px) !important;
 	}
 	h4,
 	h5,
 	h6 {
-		font-size: clamp(14px, 2.05vw, 20px) !important;
+		font-size: clamp(13px, 1.95vw, 18px) !important;
 	}
 
 	strong,
@@ -62,24 +64,42 @@ export const Wrapper = styled.div`
 		font-family: ${(props) => props.theme.typography.family.primary} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 		line-height: 1.5 !important;
-		// background: ${(props) => props.theme.colors.container.primary.background};
-		// border: 1px solid ${(props) => props.theme.colors.border.primary};
-		// border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-		// box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
-		// padding: 20px;
 		margin: 20px 0;
 	}
 
-	li {
-		list-style-type: none;
-		padding-left: 1em;
-		position: relative;
+	a {
+		font-size: ${(props) => props.theme.typography.size.base} !important;
+	}
 
-		&::before {
-			content: '\u2022';
-			position: absolute;
-			left: 0;
-			text-align: center;
+	ul {
+		li {
+			list-style-type: none;
+			padding-left: 1em;
+			position: relative;
+
+			&::before {
+				content: '\u2022';
+				position: absolute;
+				left: 0;
+				text-align: center;
+			}
+		}
+	}
+
+	ol {
+		counter-reset: my-counter;
+		li {
+			list-style-type: none;
+			padding-left: 1em;
+			position: relative;
+
+			&::before {
+				counter-increment: my-counter;
+				content: counter(my-counter) '. ';
+				position: absolute;
+				left: 0;
+				text-align: center;
+			}
 		}
 	}
 
@@ -95,7 +115,9 @@ export const Wrapper = styled.div`
 		background: ${(props) => props.theme.colors.container.alt3.background} !important;
 		border: 1px solid ${(props) => props.theme.colors.border.primary} !important;
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper} !important;
+		color: ${(props) => props.theme.colors.font.primary.active.base} !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		font-size: ${(props) => props.theme.typography.size.small} !important;
 	}
 
 	pre {
@@ -108,7 +130,9 @@ export const Wrapper = styled.div`
 			padding: 0 !important;
 			background: ${(props) => props.theme.colors.transparent} !important;
 			border: 1px solid ${(props) => props.theme.colors.transparent} !important;
+			color: ${(props) => props.theme.colors.font.primary.active.base} !important;
 			font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+			font-size: ${(props) => props.theme.typography.size.small} !important;
 			border-radius: 0 !important;
 			line-height: 1.5 !important;
 		}
@@ -116,5 +140,38 @@ export const Wrapper = styled.div`
 
 	img {
 		width: 100%;
+		max-width: 700px;
+		background: ${(props) => props.theme.colors.container.primary.background};
+		border: 1px solid ${(props) => props.theme.colors.border.primary};
+		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+		box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
+	}
+`;
+
+export const CodeBlock = styled.div`
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	margin: 0 !important;
+
+	pre,
+	code {
+		padding: 0 !important;
+		margin: 0 !important;
+		background: ${(props) => props.theme.colors.transparent} !important;
+		border: 1px solid ${(props) => props.theme.colors.transparent} !important;
+		color: ${(props) => props.theme.colors.font.primary.active.base} !important;
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		font-size: ${(props) => props.theme.typography.size.small} !important;
+		border-radius: 0 !important;
+		line-height: 1.5 !important;
+	}
+
+	div {
+		margin: 0 !important;
+	}
+
+	button {
+		margin: 1.5px 0 0 0 !important;
 	}
 `;

@@ -1,8 +1,25 @@
 # Mining artifacts
 
-> **Before Mining:** double check the `keywords` in the `pools.json` to prevent unwanted artifacts in your pool.
+### Configure Twitter API Keys
 
-The mining process can begin in the directory containing the `pools.json` by running these commands.
+- Get Twitter API credentials [here](https://developer.twitter.com/en/docs/authentication/oauth-1-0a/api-key-and-secret). (Get elevated access for better mining, but not mandatory)
+- Enter credentials into **twitterApiKeys**
+  - **consumer_key** = **API key** in the Twitter developer platform
+  - **consumer_secret** = **Secret** in the Twitter developer platform
+  - **token** = **Access Token** in the Twitter developer platform
+  - **token_secret** = **Access Token Secret** in the Twitter developer platform
+  - **bearer_token** = **Bearer Token** in the Twitter developer platform
+  - **clarifaiApiKey** if you plan to use content moderation on tweets in the mining process, you can get an api key from [Clarifai](https://www.clarifai.com/) and put it here. This will filter out explicit content from being mined into the pool. This is a bit expensive and unnecessary in most situations but if you are finding a lot of explicit content in the pool it may be of value to you.
+
+### Configure Reddit API Keys
+
+- **redditApiKeys** login or create a Reddit account and then get API access [here](https://www.reddit.com/prefs/apps)
+- Use **username** and **password** from Reddit
+- Insert **appId** and **appSecret** received from Reddit
+
+> **Before Mining:** double check the **keywords** in the **pools.json** to prevent unwanted artifacts in your pool.
+
+The mining process can begin in the directory containing the **pools.json** by running these commands.
 
 ### Twitter
 
@@ -72,9 +89,9 @@ After a few minutes of mining you can navigate back to your pool on Alex and see
 
 ## Daemon mode mining
 
-If you wish to continually run a mining process, use daemon mode by passing the `--d` flag to any of the above mining commands. Daemon mode is built on top of pm2.
+If you wish to continually run a mining process, use daemon mode by passing the **--d** flag to any of the above mining commands. Daemon mode is built on top of pm2.
 
-#### Mine tweets into the pool from above, still runs for 20 seconds but the daemon mode will continue restarting the program infinetly. Note the `--d` flag.
+#### Mine tweets into the pool from above, still runs for 20 seconds but the daemon mode will continue restarting the program infinetly. Note the **--d** flag.
 
 ```sh
 arcpool mine POOL_NAME --source twitter --d
@@ -86,10 +103,9 @@ arcpool mine POOL_NAME --source twitter --d
 arcpool dlist
 ```
 
-**Output will look similar to:**
+Expected Output:
 
-    daemon processes -
-    pid: 0    pm_id: 0    name: POOL_NAME    status: running
+![](https://arweave.net/jPx7l8816lKYpf4sstSKRtKVUV7cAXWFqlIglIjcFJQ)
 
 **Stop a pools daemon process by name:**
 

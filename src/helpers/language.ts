@@ -196,7 +196,7 @@ export const LANGUAGE = {
 					header: `Initiate the pool`,
 					description: `By following our documentation you will have all of the steps needed to start the pool. This must be done via a CLI on a local machine because we aim to keep Alex. decentralized with no user data stored on our platform. If you do not have much experience with CLI’s or have any questions our dev team can assist you in our <a target="_blank" href=${DISCORD_REDIRECT}>Discord server</a>.`,
 					action: {
-						label: `Visit Pool Configuration`,
+						label: `Visit Pool Documentation`,
 						href: `/docs/creating-a-pool/getting-started`,
 					},
 				},
@@ -216,7 +216,7 @@ export const LANGUAGE = {
 					header: `Start mining`,
 					description: `If you are mining from social media, you can use the commands from the mining section of the documentation to see specific platforms and parameters. On the pools page you will start to see the artifact count grow. <span>The key to running a good pool that users want to contribute to is consistent and accurate mining based on the pool topic.</span>`,
 					action: {
-						label: `Visit Mining Configuration`,
+						label: `Visit Mining Documentation`,
 						href: `/docs/creating-a-pool/mining-artifacts`,
 					},
 				},

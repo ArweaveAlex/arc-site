@@ -16,8 +16,8 @@ export const docsOrder = [
 				path: 'getting-started',
 			},
 			{
-				name: 'Pool Configuration',
-				path: 'pool-configuration',
+				name: 'Pool Creation',
+				path: 'pool-creation',
 			},
 			{
 				name: 'Mining Artifacts',
@@ -37,22 +37,4 @@ export const docsOrder = [
 		name: 'Interacting with Artifacts',
 		path: 'interact-with-artifacts',
 	},
-	// {
-	//   name: 'Create a pool',
-	//   children: [
-	//     {
-	//       name: 'Guide1',
-	//       files: ['Part1.md', 'Part2.md', 'Part3.md'],
-	//     },
-	//     {
-	//       name: 'Guide2',
-	//       files: ['Part1.md', 'Part2.md'],
-	//     },
-	//     'Guide3.md',
-	//   ],
-	// },
-	// {
-	//   name: 'Reference',
-	//   files: ['API.md', 'Components.md'],
-	// },
 ];

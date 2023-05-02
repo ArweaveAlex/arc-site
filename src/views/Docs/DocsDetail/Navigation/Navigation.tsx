@@ -76,5 +76,5 @@ export default function Navigation() {
 		);
 	}
 
-	return <div>{getNav() as any}</div>;
+	return getNav();
 }

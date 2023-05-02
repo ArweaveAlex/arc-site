@@ -6,11 +6,13 @@ import { STYLING } from 'helpers/styling';
 export const NWrapper = styled.div`
 	height: auto;
 	width: 300px;
+	position: fixed;
 	backdrop-filter: blur(2px);
 	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;
 		margin: 0 0 20px 0;
+		position: relative;
 	}
 `;
 
@@ -19,9 +21,10 @@ export const NContent = styled.div`
 	max-height: 700px;
 	width: 100%;
 	overflow: auto;
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 20px 20px 10px 20px;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		padding: 0;
@@ -38,7 +41,7 @@ export const NTitle = styled.div`
 	p {
 		font-size: 22px !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
-		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	}
 `;
 
@@ -98,6 +101,7 @@ export const NListItem = styled.li<{ disabled: boolean; active: boolean }>`
 	padding: 10px 15px;
 	margin: 0 0 7.5px 0;
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	transition: background 0.075s;
 	background: ${(props) =>
 		props.active ? props.theme.colors.button.alt2.active.background : props.theme.colors.transparent};
 
@@ -123,6 +127,7 @@ export const NSubHeader = styled(NTitle)`
 	margin: 0 0 7.5px 0;
 	p {
 		font-size: ${(props) => props.theme.typography.size.base} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	}
 `;
 
