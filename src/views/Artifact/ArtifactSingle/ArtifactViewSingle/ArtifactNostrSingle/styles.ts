@@ -5,13 +5,13 @@ import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
     display: flex;
-    width: ${STYLING.dimensions.mediumWrapper};
+    width: ${STYLING.dimensions.rendererWrapper};
     max-width: 100%;
     margin: 0 auto;
     position: relative;
     display flex;
     justify-content: space-between;
-    @media(max-width: ${STYLING.dimensions.mediumWrapper}) {
+    @media(max-width: ${STYLING.dimensions.rendererWrapper}) {
         width: auto;
     }
 `;

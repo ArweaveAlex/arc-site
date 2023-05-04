@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
 `;
 
 export const ListWrapper = styled.div`
-	width: ${STYLING.dimensions.mediumWrapper};
+	width: ${STYLING.dimensions.rendererWrapper};
 	max-width: 100%;
 	margin: 0 auto;
 	background: ${(props) => props.theme.colors.container.primary.background};

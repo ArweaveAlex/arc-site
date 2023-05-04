@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
 
 export const ListWrapper = styled.div`
 	min-height: 100vh;
-	width: ${STYLING.dimensions.mediumWrapper};
+	width: ${STYLING.dimensions.rendererWrapper};
 	max-width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
@@ -43,7 +43,7 @@ export const ListWrapper = styled.div`
 `;
 
 export const HDWrapper = styled.div`
-	width: ${STYLING.dimensions.listMediumWrapper};
+	width: ${STYLING.dimensions.listRendererWrapper};
 	position: absolute;
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		width: ${STYLING.dimensions.wrapWidth};
