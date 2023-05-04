@@ -4,13 +4,13 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
-    width: ${STYLING.dimensions.listWidth};
+    width: ${STYLING.dimensions.mediumWrapper};
     max-width: 100%;
     margin: 0 auto;
     position: relative;
     display flex;
     justify-content: space-between;
-    @media(max-width: ${STYLING.dimensions.listWidth}) {
+    @media(max-width: ${STYLING.dimensions.mediumWrapper}) {
         width: auto;
     }
 `;

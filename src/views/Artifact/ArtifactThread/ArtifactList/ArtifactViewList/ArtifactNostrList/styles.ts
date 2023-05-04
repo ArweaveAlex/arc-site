@@ -13,35 +13,38 @@ export const Wrapper = styled.div`
     display flex;
     justify-content: space-between;
     @media(max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
-        flex-direction: column-reverse;
+		padding: 0 0 20px 0;
+        flex-direction: column;
     }
-    @media(max-height: 600px) {
-        flex-direction: column-reverse;
+    @media(max-height: ${STYLING.cutoffs.mobileLandscape}) {
+		padding: 0 0 20px 0;
+        flex-direction: column;
     }
 `;
 
 export const ListWrapper = styled.div`
 	min-height: 100vh;
-	width: ${STYLING.dimensions.listWidth};
+	width: ${STYLING.dimensions.mediumWrapper};
 	max-width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	padding: 0 0 300px 0;
+	margin: 0 0 0 auto;
+	animation: ${open} ${fadeIn2};
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		width: ${STYLING.dimensions.wrapWidth};
 		margin: 0 auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		width: ${STYLING.dimensions.wrapWidth};
 		margin: 0 auto;
 	}
 `;
 
 export const HDWrapper = styled.div`
-	width: ${STYLING.dimensions.listDetailWidth};
+	width: ${STYLING.dimensions.listMediumWrapper};
 	position: absolute;
-	right: 0;
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
@@ -49,7 +52,7 @@ export const HDWrapper = styled.div`
 		right: auto;
 		margin: 0 auto 20px auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
 		position: relative;
@@ -79,7 +82,7 @@ export const HDContent = styled.div`
 		position: relative;
 		top: auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		height: auto;
 		width: ${STYLING.dimensions.wrapWidth};
 		max-width: 100%;
@@ -100,7 +103,8 @@ export const HeaderWrapper = styled.div`
 	a {
 		font-size: 22px;
 		font-weight: 500;
-		white-space: nowrap;
+		white-space: pre-wrap;
+		line-height: 1.5;
 		&:hover {
 			text-decoration-thickness: 1.5px;
 		}
@@ -108,7 +112,7 @@ export const HeaderWrapper = styled.div`
 	@media (max-width: calc(${STYLING.cutoffs.initialWrapper} + 25px)) {
 		margin: 20px 0;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: ${STYLING.cutoffs.mobileLandscape}) {
 		margin: 20px 0;
 	}
 `;

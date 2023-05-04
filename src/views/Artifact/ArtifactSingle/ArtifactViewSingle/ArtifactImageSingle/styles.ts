@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     position: relative;
     display flex;
     justify-content: space-between;
-    @media(max-width: ${STYLING.dimensions.listWidth}) {
+    @media(max-width: ${STYLING.dimensions.mediumWrapper}) {
         width: auto;
     }
 `;

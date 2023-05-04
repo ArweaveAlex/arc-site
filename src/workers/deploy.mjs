@@ -2,7 +2,6 @@ import Bundlr from '@bundlr-network/client';
 import Arweave from 'arweave';
 import { defaultCacheOptions, WarpFactory } from 'warp-contracts';
 
-// TODO: Update ALEX_ANT_CONTRACT set to to prod url
 (async () => {
 	const DEPLOY_FOLDER = './dist';
 	const BUNDLR_NODE = 'https://node2.bundlr.network';
