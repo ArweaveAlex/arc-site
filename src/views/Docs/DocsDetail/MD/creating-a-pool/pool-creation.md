@@ -60,7 +60,22 @@ Below is a screenshot of the **pools.json** file that has been initiated that no
 - **state.description**: A long description of your pool. This description will appear on the [pool details](https://alex.arweave.dev/#/pool/zIZXNTl-GtTDbO8eP8LpkHks5S5WhB4j82YX-N2RuGw) page of Alex., under the 'About' header. It can contain text and/or HTML.
 - **state.briefDescription**: A brief description of your pool. This description will appear on the [home page](https://alex.arweave.dev) of Alex.
 - **keywords**: A list of the main keywords to track in the mining process. This is the core driving data that instructs the mining programs of what to pull from mining sources such as Twitter, Wikipedia, Reddit, or Nostr
-- **topics** A list of more general topics the pool fits into these generate ANS110 Topic tags in the data. Examples: history, funny, humor, science.
+- **topics** A list of one or more of the following topics
+  - **History**
+  - **Philosophy**
+  - **International**
+  - **Culture**
+  - **Art**
+  - **Music**
+  - **News**
+  - **Faith**
+  - **Science**
+  - **Spirituality**
+  - **Sports**
+  - **Business**
+  - **Technology**
+  - **Politics**
+  - **Other**
 - **controller.contribPercent**: A reward percentage of the contributions. This value can be from 0 - 100 and represents the total percentage of contributions that go to your control wallet for mining. If the value of **controller.contribPercent** is **10**, then **10%** of all contributions will go to your control wallet as a reward. This percentage will appear in the user interface to let contributors know how much of their contribution will go to the operator.
 - **controller.pubkey**: The public key for the control wallet that the percentage of contributions declared in **controller.contribPercent** will be sent to.
 
