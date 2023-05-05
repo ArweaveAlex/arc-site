@@ -186,7 +186,7 @@ export const NList = styled.ul`
 
 export const NListItem = styled.li<{ disabled: boolean }>`
 	pointer-events: ${(props) => (props.disabled ? 'none' : 'default')};
-	text-align: center;
+	text-align: left;
 	display: flex;
 	align-items: center;
 	cursor: pointer;

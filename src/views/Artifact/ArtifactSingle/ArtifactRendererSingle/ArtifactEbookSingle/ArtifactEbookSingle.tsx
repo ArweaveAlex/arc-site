@@ -277,7 +277,7 @@ export default function ArtifactEbookSingle(props: IProps) {
 					<Loader />
 				)}
 			</S.Wrapper>
-			{/* {getBody()} */}
+			{getBody()}
 		</>
 	);
 }

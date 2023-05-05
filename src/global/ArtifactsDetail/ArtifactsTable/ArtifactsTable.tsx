@@ -130,7 +130,7 @@ export default function ArtifactsTable(props: IProps) {
 		const associationId = getTagValue(tags, TAGS.keys.associationId);
 		const artifactType = getTagValue(tags, TAGS.keys.artifactType);
 
-		if (associationId && associationId !== STORAGE.none) {
+		if (associationId && associationId !== STORAGE.none && artifactType !== TAGS.values.ebookArtifactType) {
 			redirect = `${urls.thread}${associationId}/${id}?type=${artifactType}`;
 		} else {
 			redirect = `${urls.artifact}${id}`;
