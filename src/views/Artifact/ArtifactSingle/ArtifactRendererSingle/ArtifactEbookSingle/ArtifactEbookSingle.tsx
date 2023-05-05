@@ -54,7 +54,7 @@ export default function ArtifactEbookSingle(props: IProps) {
 	}, [txData.fileUrl]);
 
 	React.useEffect(() => {
-		if (!book || !bookRef.current) return;
+		if (!book || !bookRef.current || !bookTitle) return;
 
 		const rendition = book.renderTo(bookRef.current, {
 			width: '100%',
@@ -71,7 +71,7 @@ export default function ArtifactEbookSingle(props: IProps) {
 		});
 
 		setRenditionState(rendition);
-		const savedLocation = window.localStorage.getItem('epubLocation');
+		const savedLocation = window.localStorage.getItem(`epubLocation-${bookTitle}`);
 		if (savedLocation) {
 			rendition.display(savedLocation);
 		} else {
@@ -81,11 +81,11 @@ export default function ArtifactEbookSingle(props: IProps) {
 		return () => {
 			rendition.destroy();
 		};
-	}, [book]);
+	}, [book, bookTitle]);
 
 	React.useEffect(() => {
-		if (renditionState) {
-			const savedLocation = window.localStorage.getItem('epubLocation');
+		if (renditionState && bookTitle) {
+			const savedLocation = window.localStorage.getItem(`epubLocation-${bookTitle}`);
 			if (savedLocation) {
 				renditionState.display(savedLocation);
 			}
@@ -104,7 +104,7 @@ export default function ArtifactEbookSingle(props: IProps) {
 				}
 				const updatedCfi = updatedLocation ? updatedLocation.start.cfi : null;
 				if (updatedCfi) {
-					window.localStorage.setItem('epubLocation', updatedCfi);
+					window.localStorage.setItem(`epubLocation-${bookTitle}`, updatedCfi);
 				}
 			};
 
@@ -114,7 +114,7 @@ export default function ArtifactEbookSingle(props: IProps) {
 				renditionState.off('locationChanged', handleLocationChanged);
 			};
 		}
-	}, [renditionState]);
+	}, [renditionState, bookTitle]);
 
 	React.useEffect(() => {
 		window.addEventListener('keydown', handleKeyDown);
