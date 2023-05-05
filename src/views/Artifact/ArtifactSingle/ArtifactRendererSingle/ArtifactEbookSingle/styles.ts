@@ -7,6 +7,7 @@ export const Wrapper = styled.div<{ fullScreen: boolean }>`
 	height: 665px;
 	width: 100%;
 	animation: ${open} ${fadeIn2};
+	position: relative;
 	${(props) =>
 		props.fullScreen &&
 		css`
