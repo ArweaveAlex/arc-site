@@ -9,7 +9,7 @@ import { LANGUAGE } from 'helpers/language';
 import { ArtifactActionsSingle } from './ArtifactActionsSingle';
 import { ArtifactDetailSingle } from './ArtifactDetailSingle';
 import { ArtifactHeaderSingle } from './ArtifactHeaderSingle';
-import { ArtifactViewSingle } from './ArtifactViewSingle';
+import { ArtifactRendererSingle } from './ArtifactRendererSingle';
 import * as S from './styles';
 import { IProps } from './types';
 
@@ -44,7 +44,7 @@ export default function ArtifactSingle(props: IProps) {
 		if (data) {
 			switch (currentTab) {
 				case TAB_OPTIONS.view:
-					return <ArtifactViewSingle data={data} />;
+					return <ArtifactRendererSingle data={data} />;
 				case TAB_OPTIONS.details:
 					return <ArtifactDetailSingle data={data} type={getArtifactType()} />;
 				default:

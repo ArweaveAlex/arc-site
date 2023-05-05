@@ -39,6 +39,7 @@ export const Icon = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	background: ${(props) => props.theme.colors.container.alt1.background};
 	svg {
 		width: 57.5%;

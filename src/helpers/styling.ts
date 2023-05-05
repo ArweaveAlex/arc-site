@@ -9,8 +9,8 @@ export const STYLING = {
 	},
 	dimensions: {
 		borderRadius: '10px',
-		borderRadiusField: '2.25px',
-		borderRadiusWrapper: '4.25px',
+		borderRadiusField: '4.25px',
+		borderRadiusWrapper: '10px',
 		buttonHeight: '33.5px',
 		buttonWidth: '150px',
 		rendererWrapper: '600px',

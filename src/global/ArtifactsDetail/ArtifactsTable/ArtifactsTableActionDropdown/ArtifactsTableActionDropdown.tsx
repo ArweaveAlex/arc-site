@@ -25,7 +25,7 @@ import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import * as artifactActions from 'state/artifacts/actions';
 import { RootState } from 'state/store';
-import { ArtifactViewSingle } from 'views/Artifact/ArtifactSingle/ArtifactViewSingle';
+import { ArtifactRendererSingle } from 'views/Artifact/ArtifactSingle/ArtifactRendererSingle';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -44,12 +44,12 @@ function Preview(props: { artifactId: string; useModal: boolean; handleClose: ()
 	return props.useModal ? (
 		<Modal header={null} handleClose={() => props.handleClose()}>
 			<S.ModalPreviewContainer id={DOM.preview}>
-				<ArtifactViewSingle data={data} />
+				<ArtifactRendererSingle data={data} />
 			</S.ModalPreviewContainer>
 		</Modal>
 	) : (
 		<S.PreviewContainer id={DOM.preview}>
-			<ArtifactViewSingle data={data} />
+			<ArtifactRendererSingle data={data} />
 		</S.PreviewContainer>
 	);
 }

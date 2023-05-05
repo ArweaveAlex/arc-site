@@ -6,7 +6,7 @@ import { Carousel } from 'components/molecules/Carousel';
 import { DOM } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import { StepType } from 'helpers/types';
-import { ArtifactViewSingle } from 'views/Artifact/ArtifactSingle/ArtifactViewSingle';
+import { ArtifactRendererSingle } from 'views/Artifact/ArtifactSingle/ArtifactRendererSingle';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -41,7 +41,7 @@ export default function ArtifactsCollection(props: IProps) {
 		return props.selectedIds.map((id: string) => {
 			return (
 				<S.ArtifactPreviewContainer id={DOM.preview} key={id}>
-					<ArtifactViewSingle data={currentData} />
+					<ArtifactRendererSingle data={currentData} />
 				</S.ArtifactPreviewContainer>
 			);
 		});

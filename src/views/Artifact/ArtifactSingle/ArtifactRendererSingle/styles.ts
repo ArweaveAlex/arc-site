@@ -8,6 +8,12 @@ export const Wrapper = styled.div`
 	position: relative;
 `;
 
+export const Frame = styled.iframe`
+	height: 100%;
+	width: 100%;
+	border: 1px solid red;
+`;
+
 export const LoadingContainer = styled.div`
 	min-height: 141.5px;
 	height: 100%;

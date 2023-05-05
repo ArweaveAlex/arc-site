@@ -11,7 +11,16 @@ import { ArtifactRedditSingle } from './ArtifactRedditSingle';
 import { ArtifactWebpageSingle } from './ArtifactWebpageSingle';
 import * as S from './styles';
 
-export default function ArtifactViewSingle(props: IProps) {
+// const renderWith = data.data.transaction.tags.find(t => t.name === 'Render-With')?.value
+// if (renderWith && renderWith.length === 43) {
+// 	return `https://arweave.dev/${renderWith}/?tx=${tx}`
+// } else if (renderWith) {
+// 	return `https://${renderWith}.${host}/?tx=${tx}`
+// } else {
+// 	return `https://arweave.dev/${tx}`
+// }
+
+export default function ArtifactRendererSingle(props: IProps) {
 	function getArtifact() {
 		if (props.data) {
 			switch (props.data.artifactType) {
