@@ -102,7 +102,9 @@ export default function ArtifactAudioSingle(props: IProps) {
 			};
 			audioRef.current.addEventListener('loadedmetadata', handleMetadataLoaded);
 			return () => {
-				audioRef.current.removeEventListener('loadedmetadata', handleMetadataLoaded);
+				if (audioRef.current) {
+					audioRef.current.removeEventListener('loadedmetadata', handleMetadataLoaded);
+				}
 			};
 		}
 	}, [audioRef.current]);
