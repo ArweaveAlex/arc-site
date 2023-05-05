@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { ArtifactDetailType, formatAddress, formatDate, getArtifactById, getPoolById, PoolType } from 'arcframework';
 
@@ -22,6 +22,15 @@ export default function ArtifactImageList(props: IProps) {
 	const [detailData, setDetailData] = React.useState<ArtifactDetailType | null>(null);
 
 	const [showAction, setShowAction] = React.useState<boolean>(false);
+
+	// TODO: fix carousel
+	const navigate = useNavigate();
+	React.useEffect(() => {
+		if (id) {
+			navigate(`${urls.artifact}${id}`);
+			// redirect artifact single
+		}
+	}, [id]);
 
 	React.useEffect(() => {
 		if (props.data) {

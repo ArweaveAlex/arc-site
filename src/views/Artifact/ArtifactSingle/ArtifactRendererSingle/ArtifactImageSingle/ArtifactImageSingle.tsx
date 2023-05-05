@@ -8,7 +8,7 @@ import * as S from './styles';
 export default function ArtifactImageSingle(props: IProps) {
 	function getDetailData() {
 		if (!props.data) {
-			return <Loader sm />;
+			return <Loader />;
 		} else {
 			return (
 				<ImageListItem

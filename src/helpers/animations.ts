@@ -10,12 +10,12 @@ export const open = keyframes`
 `;
 
 export const openLeft = keyframes`
-    from {
-        left: -100rem;
-    }
-    to {
-        left: 0;
-    }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 `;
 
 export const loaderKeyFrame = keyframes`

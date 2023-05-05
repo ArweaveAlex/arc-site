@@ -1,5 +1,71 @@
 # Mining artifacts
 
+### Files and Documents
+
+**Mine a file**
+
+```sh
+arcpool mine <POOL_ID> --source files --path examplefile.jpg
+```
+
+**Mine a directory of files**
+
+```sh
+arcpool mine <POOL_ID> --source files --path ./exampledirectory
+```
+
+**Optionally you can add metadata to your files by creating a metadata file that contains a JSON array with entries as follows, name this file whatever you want it will be passed as an argument**
+
+```json
+[
+	{
+		"FileName": "examplefile.jpg",
+		"ArtifactName": "test name",
+		"ArtifactGroup": "Group1",
+		"ArtifactGroupSequence": "1",
+		"MetaData": {
+			"ExampleMetaDataField1(whatever you want for example AddressWherePictureTaken)": "Here is some metadata about the file",
+			"ExampleMetaDataField2": "Here is some more metadata about the file"
+		}
+	},
+	{
+		"FileName": "examplefile2.jpg",
+		"ArtifactName": "test name 2",
+		"ArtifactGroup": "Group2",
+		"ArtifactGroupSequence": "1",
+		"MetaData": {
+			"ExampleMetaDataField1(whatever you want for example AddressWherePictureTaken)": "Here is some metadata about the file",
+			"ExampleMetaDataField2": "Here is some more metadata about the file"
+		}
+	}
+]
+```
+
+- Fill out the metadata file as follows
+  - **FileName**: the only mandatory field which ties this entry in the file to the filename being mined
+  - **ArtifactName**: an optional name for the artifact that will show up in Alex
+  - **ArtifactGroup**: an optional grouping for the artifact, if multiple files have the same group they will be grouped together
+  - **ArtifactGroupSequence**: an ordering within the group, the lower numbers will display first in Alex
+  - **MetaData**: can be any data fields you want to be stored alongside the file.
+
+**Mine a file with a metadata config**
+
+```sh
+arcpool mine <POOL_ID> --source files --path examplefile.jpg --meta-file ./metafile.json
+```
+
+**Mine a directory of files with a metadata config**
+
+```sh
+arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./metafile.json
+```
+
+**Lastly, when sending a directory, arcpool will store a list of files already sent and not send duplicates, to send all files again, use the --clear option**
+
+```sh
+arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./metafile.json --clear
+```
+
 ### Configure Twitter API Keys
 
 - Get Twitter API credentials [here](https://developer.twitter.com/en/docs/authentication/oauth-1-0a/api-key-and-secret). (Get elevated access for better mining, but not mandatory)
@@ -26,7 +92,7 @@ The mining process can begin in the directory containing the **pools.json** by r
 **Mine tweets (runs 100 tweets at a time)**
 
 ```sh
-arcpool mine POOL_NAME --source twitter
+arcpool mine <POOL_ID> --source twitter
 ```
 
 **Mine all tweets based on user and tag**
@@ -34,7 +100,7 @@ arcpool mine POOL_NAME --source twitter
 For example: mine all tweets with "@thealexarchive #TOPIC"
 
 ```sh
-arcpool mine POOL_NAME --source twitter --method mention --mention-tag "@thealexarchive #TOPIC"
+arcpool mine <POOL_ID> --source twitter --method mention --mention-tag "@thealexarchive #TOPIC"
 ```
 
 **Mine all tweets ever from a particular user**
@@ -44,7 +110,7 @@ For example: mine all tweets from SBF_FTX
 - Do not include the @ in the **--username value**
 
 ```sh
-arcpool mine POOL_NAME --source twitter --method user --username SBF_FTX
+arcpool mine <POOL_ID> --source twitter --method user --username SBF_FTX
 ```
 
 ### Wikipedia
@@ -52,7 +118,7 @@ arcpool mine POOL_NAME --source twitter --method user --username SBF_FTX
 **Mine a single Wikipedia article related to the given `keywords` in config**
 
 ```sh
-arcpool mine POOL_NAME --source wikipedia
+arcpool mine <POOL_ID> --source wikipedia
 ```
 
 ### Reddit
@@ -94,7 +160,7 @@ If you wish to continually run a mining process, use daemon mode by passing the 
 #### Mine tweets into the pool from above, still runs for 20 seconds but the daemon mode will continue restarting the program infinetly. Note the **--d** flag.
 
 ```sh
-arcpool mine POOL_NAME --source twitter --d
+arcpool mine <POOL_ID> --source twitter --d
 ```
 
 **To view all the daemon mode mining processes:**
@@ -110,7 +176,7 @@ Expected Output:
 **Stop a pools daemon process by name:**
 
 ```sh
-arcpool dstop --dname POOL_NAME
+arcpool dstop --dname <POOL_ID>
 ```
 
 **To view logs for the mining processes install pm2:**

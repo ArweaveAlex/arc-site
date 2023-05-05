@@ -31,6 +31,7 @@ export const Header1 = styled.h2`
 export const Body = styled.div`
 	height: calc(100% - 50px);
 	width: 100%;
+	overflow: auto;
 	.carousel-root {
 		height: 100%;
 	}

@@ -13,7 +13,7 @@ import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
 import arrowNextSVG from 'assets/arrow-next.svg';
 import arrowPreviousSVG from 'assets/arrow-previous.svg';
 import artifactSVG from 'assets/artifact.svg';
-import imageArtifactTypeSVG from 'assets/artifact-types/image.svg';
+import fileArtifactTypeSVG from 'assets/artifact-types/file.svg';
 import nostrEventArtifactTypeSVG from 'assets/artifact-types/nostr.svg';
 import redditThreadArtifactTypeSVG from 'assets/artifact-types/reddit-thread.svg';
 import messagingArtifactTypeSVG from 'assets/artifact-types/twitter.svg';
@@ -37,6 +37,7 @@ import discordSocialSVG from 'assets/discord.svg';
 import dropdownSVG from 'assets/dropdown.svg';
 import favoriteSVG from 'assets/favorite.svg';
 import fileSVG from 'assets/file.svg';
+import fullScreenSVG from 'assets/full-screen.svg';
 import historicalSVG from 'assets/historical-icon.svg';
 import impressionsSVG from 'assets/impressions.svg';
 import landingGraphicSVG from 'assets/landing-graphic.svg';
@@ -47,6 +48,8 @@ import logoAlt1SVG from 'assets/logo-alt-1.svg';
 import logoAlt2SVG from 'assets/logo-alt-2.svg';
 import logoAltActiveSVG from 'assets/logo-alt-active.svg';
 import mediaSVG from 'assets/media.svg';
+import mediaPauseSVG from 'assets/media-pause.svg';
+import mediaPlaySVG from 'assets/media-play.svg';
 import menuSVG from 'assets/menu.svg';
 import mintSVG from 'assets/mint.svg';
 import newTabSVG from 'assets/new-tab.svg';
@@ -96,7 +99,7 @@ export const ASSETS = {
 	artifact: artifactSVG,
 	artifactTypes: {
 		default: defaultArtifactTypeSVG,
-		image: imageArtifactTypeSVG,
+		file: fileArtifactTypeSVG,
 		messaging: messagingArtifactTypeSVG,
 		nostrEvent: nostrEventArtifactTypeSVG,
 		redditThread: redditThreadArtifactTypeSVG,
@@ -118,6 +121,7 @@ export const ASSETS = {
 	disconnect: disconnectSVG,
 	dropdown: dropdownSVG,
 	favorite: favoriteSVG,
+	fullScreen: fullScreenSVG,
 	file: fileSVG,
 	historical: historicalSVG,
 	impressions: impressionsSVG,
@@ -129,6 +133,8 @@ export const ASSETS = {
 	logoAlt1: logoAlt1SVG,
 	logoAlt2: logoAlt2SVG,
 	media: mediaSVG,
+	mediaPause: mediaPauseSVG,
+	mediaPlay: mediaPlaySVG,
 	menu: menuSVG,
 	menuAction: menuActionSVG,
 	mint: mintSVG,
@@ -164,13 +170,29 @@ export const ARTIFACT_TYPES = {
 		label: LANGUAGE.default,
 		icon: ASSETS.artifactTypes.default,
 	},
-	[TAGS.values.imageArtifactType]: {
-		label: TAGS.values.imageArtifactType,
-		icon: ASSETS.artifactTypes.image,
-	},
 	[TAGS.values.messagingArtifactType]: {
 		label: TAGS.values.messagingArtifactType,
 		icon: ASSETS.artifactTypes.messaging,
+	},
+	[TAGS.values.imageArtifactType]: {
+		label: TAGS.values.imageArtifactType,
+		icon: ASSETS.artifactTypes.file,
+	},
+	[TAGS.values.documentArtifactType]: {
+		label: TAGS.values.documentArtifactType,
+		icon: ASSETS.artifactTypes.file,
+	},
+	[TAGS.values.audioArtifactType]: {
+		label: TAGS.values.audioArtifactType,
+		icon: ASSETS.artifactTypes.file,
+	},
+	[TAGS.values.videoArtifactType]: {
+		label: TAGS.values.videoArtifactType,
+		icon: ASSETS.artifactTypes.file,
+	},
+	[TAGS.values.ebookArtifactType]: {
+		label: TAGS.values.ebookArtifactType,
+		icon: ASSETS.artifactTypes.file,
 	},
 	[TAGS.values.nostrEventArtifactType]: {
 		label: TAGS.values.nostrEventArtifactType,

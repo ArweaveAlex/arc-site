@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-	ArtifactDetailType,
+	// ArtifactDetailType,
 	ArweaveClient,
-	getArtifactById,
+	// getArtifactById,
 	getBookmarkIds,
 	getHashUrl,
 	getTagValue,
@@ -16,43 +16,43 @@ import {
 
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
-import { Modal } from 'components/molecules/Modal';
+// import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
-import { DOM } from 'helpers/config';
+// import { DOM } from 'helpers/config';
 import { LANGUAGE } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import * as artifactActions from 'state/artifacts/actions';
 import { RootState } from 'state/store';
-import { ArtifactRendererSingle } from 'views/Artifact/ArtifactSingle/ArtifactRendererSingle';
 
+// import { ArtifactRendererSingle } from 'views/Artifact/ArtifactSingle/ArtifactRendererSingle';
 import * as S from './styles';
 import { IProps } from './types';
 
-function Preview(props: { artifactId: string; useModal: boolean; handleClose: () => void }) {
-	const [data, setData] = React.useState<ArtifactDetailType | null>(null);
+// function Preview(props: { artifactId: string; useModal: boolean; handleClose: () => void }) {
+// 	const [data, setData] = React.useState<ArtifactDetailType | null>(null);
 
-	React.useEffect(() => {
-		(async function () {
-			if (props.artifactId && !data) {
-				setData(await getArtifactById(props.artifactId));
-			}
-		})();
-	}, [props.artifactId, data]);
+// 	React.useEffect(() => {
+// 		(async function () {
+// 			if (props.artifactId && !data) {
+// 				setData(await getArtifactById(props.artifactId));
+// 			}
+// 		})();
+// 	}, [props.artifactId, data]);
 
-	return props.useModal ? (
-		<Modal header={null} handleClose={() => props.handleClose()}>
-			<S.ModalPreviewContainer id={DOM.preview}>
-				<ArtifactRendererSingle data={data} />
-			</S.ModalPreviewContainer>
-		</Modal>
-	) : (
-		<S.PreviewContainer id={DOM.preview}>
-			<ArtifactRendererSingle data={data} />
-		</S.PreviewContainer>
-	);
-}
+// 	return props.useModal ? (
+// 		<Modal header={null} handleClose={() => props.handleClose()}>
+// 			<S.ModalPreviewContainer id={DOM.preview}>
+// 				<ArtifactRendererSingle data={data} />
+// 			</S.ModalPreviewContainer>
+// 		</Modal>
+// 	) : (
+// 		<S.PreviewContainer id={DOM.preview}>
+// 			<ArtifactRendererSingle data={data} />
+// 		</S.PreviewContainer>
+// 	);
+// }
 
 export default function ArtifactsTableActionDropdown(props: IProps) {
 	const dispatch = useDispatch();
@@ -137,18 +137,18 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		redirect = `${getHashUrl(window.location.origin)}${urls.artifact}${props.artifactId}`;
 	}
 
-	function getPreview() {
-		return {
-			node: (
-				<Preview
-					artifactId={props.artifactId}
-					useModal={props.usePreviewModal}
-					handleClose={() => handlePreviewCallback()}
-				/>
-			),
-			active: showPreview,
-		};
-	}
+	// function getPreview() {
+	// 	return {
+	// 		node: (
+	// 			<Preview
+	// 				artifactId={props.artifactId}
+	// 				useModal={props.usePreviewModal}
+	// 				handleClose={() => handlePreviewCallback()}
+	// 			/>
+	// 		),
+	// 		active: showPreview,
+	// 	};
+	// }
 
 	function getStampWidget() {
 		return {
@@ -185,12 +185,12 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		}
 	}
 
-	function handleShowPreview() {
-		setShowPreview(!showPreview);
-		setShowStampWidget(false);
-		setShowFactWidget(false);
-		handleView();
-	}
+	// function handleShowPreview() {
+	// 	setShowPreview(!showPreview);
+	// 	setShowStampWidget(false);
+	// 	setShowFactWidget(false);
+	// 	handleView();
+	// }
 
 	function handleShowStampWidget() {
 		setShowStampWidget(!showStampWidget);
@@ -217,9 +217,9 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		setShowFactWidget(false);
 	}
 
-	function handlePreviewCallback() {
-		setShowPreview(false);
-	}
+	// function handlePreviewCallback() {
+	// 	setShowPreview(false);
+	// }
 
 	function handleBookmarkCallback() {
 		setBookmarkNotification(null);
@@ -236,14 +236,14 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	function getActions() {
 		return [
-			{
-				fn: handleShowPreview,
-				closeOnAction: false,
-				subComponent: getPreview(),
-				label: showPreview ? LANGUAGE.closePreview : LANGUAGE.previewArtifact,
-				disabled: false,
-				loading: false,
-			},
+			// {
+			// 	fn: handleShowPreview,
+			// 	closeOnAction: false,
+			// 	subComponent: getPreview(),
+			// 	label: showPreview ? LANGUAGE.closePreview : LANGUAGE.previewArtifact,
+			// 	disabled: false,
+			// 	loading: false,
+			// },
 			{
 				fn: handleShowStampWidget,
 				closeOnAction: false,

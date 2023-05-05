@@ -33,6 +33,7 @@ const DEFAULT = {
 	neutral: '#FFB600',
 	transparent: 'rgba(255, 255, 255, 0)',
 	semiTransparent: 'rgba(255, 255, 255, 0.5)',
+	semiTransparentAlt1: 'rgba(0, 0, 0, 0.5)',
 	backdropShadow1: '#c4c4c4b0',
 	backdropShadow2: '#dadadaba',
 };
@@ -106,6 +107,9 @@ export const defaultTheme: DefaultTheme = {
 			neutral: {
 				background: DEFAULT.neutral2,
 				hover: DEFAULT.neutral5,
+			},
+			overlay: {
+				background: DEFAULT.semiTransparentAlt1,
 			},
 			disabled: DEFAULT.neutral7,
 		},

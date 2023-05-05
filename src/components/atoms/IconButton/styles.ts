@@ -91,16 +91,17 @@ export const Alt2 = styled(Primary)`
 `;
 
 export const Alt3 = styled(Alt1)`
-	background: ${(props) => props.theme.colors.container.alt3.background} !important;
-	border: 1px solid ${(props) => props.theme.colors.icon.inactive} !important;
+	background: ${(props) => props.theme.colors.container.alt3.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	&:hover {
-		cursor: default;
+		background: ${(props) => props.theme.colors.button.alt1.background};
+		border: 1px solid ${(props) => props.theme.colors.button.alt1.background};
+		svg {
+			fill: ${(props) => props.theme.colors.button.alt1.label};
+		}
 	}
 	svg {
-		fill: ${(props) => props.theme.colors.icon.inactive} !important;
-		&:hover {
-			cursor: default;
-		}
+		fill: ${(props) => props.theme.colors.icon.inactive};
 	}
 `;
 

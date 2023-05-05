@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
@@ -202,6 +202,71 @@ export const GlobalStyle = createGlobalStyle`
     border: 1px solid ${(props) => props.theme.colors.border.primary};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
-    padding: 20px;
   }
+`;
+
+export const RangeBar = styled.input.attrs({ type: 'range' })`
+	border: none !important;
+	padding: 0 !important;
+	background: transparent !important;
+
+	&::-webkit-slider-runnable-track {
+		background: ${(props) => props.theme.colors.container.alt3.background};
+		border: 1px solid ${(props) => props.theme.colors.border.primary};
+		border-radius: ${STYLING.dimensions.borderRadius};
+		transitin: background 0.75s;
+		&:hover {
+			cursor: pointer;
+			border: 1px solid ${(props) => props.theme.colors.border.alt2};
+		}
+	}
+
+	&::-moz-range-track {
+		height: 15px;
+		background: ${(props) => props.theme.colors.container.alt3.background};
+		border: 1px solid ${(props) => props.theme.colors.border.primary};
+		border-radius: ${STYLING.dimensions.borderRadius};
+		&:hover {
+			cursor: pointer;
+			border: 1px solid ${(props) => props.theme.colors.border.alt2};
+		}
+	}
+
+	&::-ms-track {
+		background: ${(props) => props.theme.colors.container.alt3.background};
+		border: 1px solid ${(props) => props.theme.colors.border.primary};
+		border-radius: ${STYLING.dimensions.borderRadius};
+		&:hover {
+			cursor: pointer;
+			border: 1px solid ${(props) => props.theme.colors.border.alt2};
+		}
+	}
+
+	&.custom-range::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		height: 15px;
+		width: 15px;
+		border-radius: 50%;
+		background: ${(props) => props.theme.colors.button.alt1.background};
+		cursor: pointer;
+	}
+
+	&.custom-range::-moz-range-thumb {
+		-webkit-appearance: none;
+		border: none !important;
+		height: 15px;
+		width: 15px;
+		border-radius: 50%;
+		background: ${(props) => props.theme.colors.button.alt1.background};
+		cursor: pointer;
+	}
+
+	&.custom-range::-ms-thumb {
+		-webkit-appearance: none;
+		height: 15px;
+		width: 15px;
+		border-radius: 50%;
+		background: ${(props) => props.theme.colors.button.alt1.background};
+		cursor: pointer;
+	}
 `;
