@@ -2,7 +2,7 @@ import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 
@@ -12,7 +12,7 @@ export default function AboutInfo() {
 			<S.Container>
 				<S.Content>
 					<S.HeaderWrapper>
-						<h2 className={'h2-alt-1'}>{LANGUAGE.aboutView.infoHeader1}</h2>
+						<h2 className={'h2-alt-1'}>{language.aboutView.infoHeader1}</h2>
 					</S.HeaderWrapper>
 					<S.SectionsWrapper>
 						<S.Section>
@@ -20,7 +20,7 @@ export default function AboutInfo() {
 								<ReactSVG src={ASSETS.aboutInfoLogo1} />
 							</S.Asset>
 							<S.Description>
-								<p>{parse(LANGUAGE.aboutView.infoDescription1)}</p>
+								<p>{parse(language.aboutView.infoDescription1)}</p>
 							</S.Description>
 						</S.Section>
 						<S.Section>
@@ -28,7 +28,7 @@ export default function AboutInfo() {
 								<ReactSVG src={ASSETS.aboutInfoLogo2} />
 							</S.Asset>
 							<S.Description>
-								<p>{parse(LANGUAGE.aboutView.infoDescription2)}</p>
+								<p>{parse(language.aboutView.infoDescription2)}</p>
 							</S.Description>
 						</S.Section>
 					</S.SectionsWrapper>

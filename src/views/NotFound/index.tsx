@@ -1,4 +1,4 @@
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 
@@ -8,7 +8,7 @@ export default function NotFound() {
 			<S.Content>
 				<S.Header>404</S.Header>
 				<S.Divider />
-				<S.Message>{LANGUAGE.pageNotFound}</S.Message>
+				<S.Message>{language.pageNotFound}</S.Message>
 			</S.Content>
 		</S.Wrapper>
 	);

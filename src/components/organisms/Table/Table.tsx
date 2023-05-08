@@ -4,7 +4,7 @@ import { PAGINATOR } from 'arcframework';
 
 import { Placeholder } from 'components/atoms/Placeholder';
 import { Paginator } from 'components/molecules/Paginator';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { TableRowType } from 'helpers/types';
 
 import * as S from './styles';
@@ -30,7 +30,7 @@ export default function Table(props: IProps) {
 					return (
 						<S.Body>
 							<S.NoArtifactsContainer>
-								<p>{LANGUAGE.noArtifacts}</p>
+								<p>{language.noArtifacts}</p>
 							</S.NoArtifactsContainer>
 						</S.Body>
 					);
@@ -83,7 +83,7 @@ export default function Table(props: IProps) {
 					return (
 						<S.Body>
 							<S.NoArtifactsContainer>
-								<p>{LANGUAGE.noArtifacts}</p>
+								<p>{language.noArtifacts}</p>
 							</S.NoArtifactsContainer>
 						</S.Body>
 					);

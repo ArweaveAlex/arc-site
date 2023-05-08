@@ -8,7 +8,7 @@ import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { SocialShare } from 'global/SocialShare';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import { PoolContribute } from '../../../global/PoolContribute';
 
@@ -36,7 +36,7 @@ export default function PoolHeader(props: IProps) {
 			<S.SubheaderFlex>
 				<S.SubheaderContainer>
 					<S.Subheader1>
-						<p>{LANGUAGE.pool.subheader1}</p>
+						<p>{language.pool.subheader1}</p>
 					</S.Subheader1>
 					&nbsp;
 					<S.ID>
@@ -44,7 +44,7 @@ export default function PoolHeader(props: IProps) {
 						<IconButton type={'primary'} src={ASSETS.copy} handlePress={copyAddress} sm />
 						{copied && (
 							<S.IDCopied>
-								<p>{LANGUAGE.copied}</p>
+								<p>{language.copied}</p>
 							</S.IDCopied>
 						)}
 					</S.ID>
@@ -52,7 +52,7 @@ export default function PoolHeader(props: IProps) {
 				&nbsp; &nbsp;
 				<S.SubheaderContainer>
 					<S.Subheader1>
-						<p>{LANGUAGE.createdOn}</p>
+						<p>{language.createdOn}</p>
 					</S.Subheader1>
 					&nbsp;
 					<S.Subheader2>
@@ -92,7 +92,7 @@ export default function PoolHeader(props: IProps) {
 			<S.HeaderWrapper>
 				<S.HeaderContent>
 					<h2>{props.title ? props.title : null}</h2>
-					<SocialShare type={'primary'} href={window.location.href} title={LANGUAGE.sharePool} />
+					<SocialShare type={'primary'} href={window.location.href} title={language.sharePool} />
 				</S.HeaderContent>
 				{getSubheader()}
 			</S.HeaderWrapper>
@@ -100,18 +100,18 @@ export default function PoolHeader(props: IProps) {
 			<S.FlexTiles>
 				<S.Tile>
 					<S.TileTitle>
-						<p>{LANGUAGE.totalContributed}</p>
+						<p>{language.totalContributed}</p>
 					</S.TileTitle>
 					<S.TileData>
 						<p>{props.totalContributions ? poolClient.getARAmount(props.totalContributions) : null}</p>
 						<S.TContainer>
-							<p>{LANGUAGE.arTokens}</p>
+							<p>{language.arTokens}</p>
 						</S.TContainer>
 					</S.TileData>
 				</S.Tile>
 				<S.Tile>
 					<S.TileTitle>
-						<p>{LANGUAGE.pool.artifactsCreated}</p>
+						<p>{language.pool.artifactsCreated}</p>
 					</S.TileTitle>
 					<S.TileData>{getCount()}</S.TileData>
 				</S.Tile>
@@ -120,7 +120,7 @@ export default function PoolHeader(props: IProps) {
 						<S.ContributeLabel>
 							<S.ContributeLabel>
 								<ReactSVG src={ASSETS.logoAltActive} />
-								<span>{LANGUAGE.contribute}</span>
+								<span>{language.contribute}</span>
 							</S.ContributeLabel>
 						</S.ContributeLabel>
 					</S.ContributeAction>
@@ -139,7 +139,7 @@ export default function PoolHeader(props: IProps) {
 			</S.FlexTiles>
 			<S.LongDescription>
 				<S.LDHeader>
-					<h2>{LANGUAGE.about}</h2>
+					<h2>{language.about}</h2>
 				</S.LDHeader>
 				<S.LDBody>{props.description ? parse(props.description) : null}</S.LDBody>
 			</S.LongDescription>

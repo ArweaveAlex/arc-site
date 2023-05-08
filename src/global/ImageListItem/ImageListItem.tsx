@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { FALLBACK_IMAGE, formatAddress, getTxEndpoint } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { Modal } from 'components/molecules/Modal';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
+import * as urls from 'helpers/urls';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -58,7 +60,13 @@ export default function ImageListItem(props: IProps) {
 		if (props.data) {
 			return (
 				<>
-					<S.Name>{props.data.artifactName}</S.Name>
+					<S.Name>
+						{props.isListItem ? (
+							<Link to={`${urls.artifact}${props.data.artifactId}`}>{props.data.artifactName}</Link>
+						) : (
+							<p>{props.data.artifactName}</p>
+						)}
+					</S.Name>
 					<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
 				</>
 			);
@@ -97,7 +105,7 @@ export default function ImageListItem(props: IProps) {
 		return (
 			<S.C2>
 				<S.C2Header>
-					<p>{LANGUAGE.artifactDetails}</p>
+					<p>{language.artifactDetails}</p>
 				</S.C2Header>
 				<S.C2Body>{body}</S.C2Body>
 			</S.C2>

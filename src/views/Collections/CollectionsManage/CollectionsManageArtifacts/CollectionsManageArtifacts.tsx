@@ -6,7 +6,7 @@ import { Button } from 'components/atoms/Button';
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
 import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql';
 import { URLS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
 
 import * as S from './styles';
@@ -44,8 +44,8 @@ export default function CollectionsManageArtifacts(props: IProps) {
 		return urls[0];
 	}
 
-	const allAction = getAccountTab(URLS.account, LANGUAGE.account.all.title);
-	const bookmarksAction = getAccountTab(URLS.account, LANGUAGE.account.bookmarks.title);
+	const allAction = getAccountTab(URLS.account, language.account.all.title);
+	const bookmarksAction = getAccountTab(URLS.account, language.account.bookmarks.title);
 
 	function getAction() {
 		return (

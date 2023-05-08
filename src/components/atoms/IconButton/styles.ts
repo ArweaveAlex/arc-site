@@ -47,7 +47,7 @@ export const Alt1 = styled(Primary)<{
 	dimensions: { wrapper: number; icon: number } | undefined;
 }>`
 	height: ${(props) => (props.dimensions ? `${props.dimensions.wrapper.toString()}px` : `32.5px`)};
-	width: ${(props) => (props.dimensions ? `${props.dimensions.wrapper.toString()}px` : `32.5px`)};
+	min-width: ${(props) => (props.dimensions ? `${props.dimensions.wrapper.toString()}px` : `32.5px`)};
 	display: flex;
 	justify-content: center;
 	align-items: center;

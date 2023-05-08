@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { useQuery } from 'hooks/useQuery';
 
 import * as S from './styles';
@@ -22,7 +22,7 @@ export default function Query(props: IProps) {
 
 	return invalid ? (
 		<S.InvalidWrapper>
-			<p>{LANGUAGE.invalidQuery}</p>
+			<p>{language.invalidQuery}</p>
 		</S.InvalidWrapper>
 	) : (
 		<>{props.children}</>

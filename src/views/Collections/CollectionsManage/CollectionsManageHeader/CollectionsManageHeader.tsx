@@ -8,7 +8,7 @@ import { Modal } from 'components/molecules/Modal';
 import { ArtifactsCollection } from 'global/ArtifactsCollection';
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
 import { getArtifactsByIds } from 'gql';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
 
 import * as S from './styles';
@@ -54,7 +54,7 @@ export default function CollectionsManageHeader(props: IProps) {
 							description={props.description}
 						/>
 					}
-					header={LANGUAGE.previewCollection}
+					header={language.previewCollection}
 					handleClose={() => setShowPreview(false)}
 				/>
 			)}
@@ -81,19 +81,19 @@ export default function CollectionsManageHeader(props: IProps) {
 							action={null}
 						/>
 					}
-					header={LANGUAGE.editSelectedArtifacts}
+					header={language.editSelectedArtifacts}
 					handleClose={() => setShowEdit(false)}
 				/>
 			)}
 			<S.HeaderContent>
 				<S.HeaderContentFixed>
 					<S.Header>
-						<S.Header1>{LANGUAGE.createCollection}</S.Header1>
+						<S.Header1>{language.createCollection}</S.Header1>
 						<S.Actions>
 							<S.Action>
 								<Button
 									type={'alt1'}
-									label={LANGUAGE.previewCollection}
+									label={language.previewCollection}
 									handlePress={() => setShowPreview(!showPreview)}
 									noMinWidth
 									disabled={props.selectedIds.length <= 0}
@@ -102,7 +102,7 @@ export default function CollectionsManageHeader(props: IProps) {
 							<S.Action>
 								<Button
 									type={'alt1'}
-									label={LANGUAGE.editSelectedArtifacts}
+									label={language.editSelectedArtifacts}
 									handlePress={() => setShowEdit(!showEdit)}
 									noMinWidth
 									disabled={props.selectedIds.length <= 0}
@@ -111,14 +111,14 @@ export default function CollectionsManageHeader(props: IProps) {
 							<S.Action>
 								<Button
 									type={'success'}
-									label={LANGUAGE.publish}
+									label={language.publish}
 									handlePress={() => console.log('Publish')}
 									noMinWidth
 									disabled={true}
 								/>
 							</S.Action>
 							<S.Action>
-								<Button type={'warning'} label={LANGUAGE.exit} handlePress={() => navigate(-1)} noMinWidth />
+								<Button type={'warning'} label={language.exit} handlePress={() => navigate(-1)} noMinWidth />
 							</S.Action>
 						</S.Actions>
 					</S.Header>

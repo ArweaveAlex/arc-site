@@ -2,7 +2,7 @@ const ARCONNECT_REDIRECT = 'https://www.arconnect.io/';
 const ARWEAVE_APP_REDIRECT = 'https://arweave.app/welcome';
 const DISCORD_REDIRECT = 'https://discord.gg/r3fj9m5AU5';
 
-export const LANGUAGE = {
+export const language = {
 	about: `About`,
 	aboutView: {
 		header1: `Preserving`,

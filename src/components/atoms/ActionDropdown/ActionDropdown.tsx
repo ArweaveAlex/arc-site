@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { CloseHandler } from 'wrappers/CloseHandler';
 
 import * as S from './styles';
@@ -71,7 +71,7 @@ export default function ActionDropdown(props: IProps) {
 									disabled={action.disabled || action.loading}
 									onClick={() => runAction(action.fn, action.closeOnAction)}
 								>
-									{action.loading ? `${LANGUAGE.loading} ...` : action.label}
+									{action.loading ? `${language.loading} ...` : action.label}
 								</S.LI>
 							</S.Container>
 						);

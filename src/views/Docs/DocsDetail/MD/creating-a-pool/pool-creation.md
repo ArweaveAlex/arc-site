@@ -2,10 +2,10 @@
 
 To create a pool you must complete the following steps:
 
-1. Initiate the pool
-2. Configure the pool
-3. Create the pool
-4. Fund the pool
+1. **Initiate the pool**
+2. **Configure the pool**
+3. **Create the pool**
+4. **Fund the pool**
 
 ### 1. Initiate the pool
 

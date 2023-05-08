@@ -20,7 +20,7 @@ import { Notification } from 'components/atoms/Notification';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
 // import { DOM } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import * as artifactActions from 'state/artifacts/actions';
@@ -240,7 +240,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 			// 	fn: handleShowPreview,
 			// 	closeOnAction: false,
 			// 	subComponent: getPreview(),
-			// 	label: showPreview ? LANGUAGE.closePreview : LANGUAGE.previewArtifact,
+			// 	label: showPreview ? language.closePreview : language.previewArtifact,
 			// 	disabled: false,
 			// 	loading: false,
 			// },
@@ -248,7 +248,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				fn: handleShowStampWidget,
 				closeOnAction: false,
 				subComponent: getStampWidget(),
-				label: showStampWidget ? LANGUAGE.close : LANGUAGE.stamp,
+				label: showStampWidget ? language.close : language.stamp,
 				disabled: false,
 				loading: false,
 			},
@@ -256,7 +256,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				fn: handleShowFactWidget,
 				closeOnAction: false,
 				subComponent: getFactWidget(),
-				label: showFactWidget ? LANGUAGE.close : LANGUAGE.factMarket,
+				label: showFactWidget ? language.close : language.factMarket,
 				disabled: false,
 				loading: false,
 			},
@@ -264,7 +264,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				fn: copyArtifactId,
 				closeOnAction: false,
 				subComponent: null,
-				label: copied ? LANGUAGE.copied : LANGUAGE.copyArtifactId,
+				label: copied ? language.copied : language.copyArtifactId,
 				disabled: false,
 				loading: false,
 			},
@@ -272,7 +272,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				fn: handleViewRedirect,
 				closeOnAction: true,
 				subComponent: null,
-				label: LANGUAGE.openInNewTab,
+				label: language.openInNewTab,
 				disabled: false,
 				loading: false,
 			},
@@ -280,7 +280,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				fn: () => handleBookmarkStateUpdate(props.artifactId),
 				closeOnAction: false,
 				subComponent: null,
-				label: bookmarkIdsState.includes(props.artifactId) ? LANGUAGE.removeFromBookmarks : LANGUAGE.addtoBookmarks,
+				label: bookmarkIdsState.includes(props.artifactId) ? language.removeFromBookmarks : language.addtoBookmarks,
 				disabled: props.bookmarksDisabled,
 				loading: false,
 			},

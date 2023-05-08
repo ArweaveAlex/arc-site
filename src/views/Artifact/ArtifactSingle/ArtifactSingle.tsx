@@ -4,7 +4,7 @@ import { ArtifactDetailType, checkNullValues, TAGS } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { ARTIFACT_TABS, ARTIFACT_TYPES, TAB_OPTIONS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import { ArtifactActionsSingle } from './ArtifactActionsSingle';
 import { ArtifactDetailSingle } from './ArtifactDetailSingle';
@@ -83,7 +83,7 @@ export default function ArtifactSingle(props: IProps) {
 		} else {
 			return (
 				<S.MessageContainer>
-					<p>{LANGUAGE.errorFetchingArtifact}</p>
+					<p>{language.errorFetchingArtifact}</p>
 				</S.MessageContainer>
 			);
 		}

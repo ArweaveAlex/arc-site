@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { formatAddress, formatDate } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -14,7 +14,7 @@ export default function ContributionsList(props: { data: any }) {
 			if (props.data.length <= 0) {
 				return (
 					<S.NoContributionsContainer>
-						<p>{LANGUAGE.noContributions}</p>
+						<p>{language.noContributions}</p>
 					</S.NoContributionsContainer>
 				);
 			} else {
@@ -30,7 +30,7 @@ export default function ContributionsList(props: { data: any }) {
 												<S.SubheaderFlex>
 													<S.SubheaderContainer>
 														<S.Subheader1>
-															<p>{LANGUAGE.pool.subheader1}</p>
+															<p>{language.pool.subheader1}</p>
 														</S.Subheader1>
 														&nbsp;
 														<S.ID>
@@ -40,7 +40,7 @@ export default function ContributionsList(props: { data: any }) {
 													&nbsp;
 													<S.SubheaderContainer>
 														<S.Subheader1>
-															<p>{LANGUAGE.createdOn}</p>
+															<p>{language.createdOn}</p>
 														</S.Subheader1>
 														&nbsp;
 														<S.Date>
@@ -51,15 +51,15 @@ export default function ContributionsList(props: { data: any }) {
 											</S.LIHeaderContainer>
 											<S.LIBodyContainer>
 												<S.LIBodyFlex>
-													<S.LIBodyHeader>{LANGUAGE.totalContributed}:</S.LIBodyHeader>
+													<S.LIBodyHeader>{language.totalContributed}:</S.LIBodyHeader>
 													&nbsp;
-													<S.LIBodyData>{`${pool.totalContributed} ${LANGUAGE.arTokens}`}</S.LIBodyData>
+													<S.LIBodyData>{`${pool.totalContributed} ${language.arTokens}`}</S.LIBodyData>
 												</S.LIBodyFlex>
 												<S.LIBodyFlex>
-													<S.LIBodyHeader>{LANGUAGE.receiving}:</S.LIBodyHeader>
+													<S.LIBodyHeader>{language.receiving}:</S.LIBodyHeader>
 													&nbsp;
 													<S.LIBodyData>
-														{pool.receivingPercent}% {LANGUAGE.artifactsCreated}
+														{pool.receivingPercent}% {language.artifactsCreated}
 													</S.LIBodyData>
 												</S.LIBodyFlex>
 											</S.LIBodyContainer>
@@ -90,7 +90,7 @@ export default function ContributionsList(props: { data: any }) {
 		<S.Wrapper>
 			<S.Header>
 				<S.HeaderFlex>
-					<S.H2>{LANGUAGE.contributions}</S.H2>
+					<S.H2>{language.contributions}</S.H2>
 				</S.HeaderFlex>
 			</S.Header>
 			<S.List>{getData()}</S.List>

@@ -172,6 +172,6 @@ export const CodeBlock = styled.div`
 	}
 
 	button {
-		margin: 1.5px 0 0 0 !important;
+		margin: 1.5px 0 0 10px !important;
 	}
 `;

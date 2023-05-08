@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -69,7 +69,7 @@ export default function ButtonLink(props: IProps) {
 					height={props.height}
 					data-testid={props.testingCtx}
 				>
-					{props.loading ? `${LANGUAGE.loading} ...` : getLabel()}
+					{props.loading ? `${language.loading} ...` : getLabel()}
 				</StyledButton>
 			</Link>
 		</S.Wrapper>

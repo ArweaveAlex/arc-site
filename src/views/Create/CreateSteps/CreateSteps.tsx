@@ -1,7 +1,7 @@
 import parse from 'html-react-parser';
 
 import { ButtonLink } from 'components/atoms/ButtonLink';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 
@@ -10,13 +10,13 @@ export default function CreateDetail() {
 		<S.Wrapper>
 			<div className={'view-wrapper max-cutoff'}>
 				<S.HeaderWrapper>
-					<h2 className={'h2-alt-2'}>{LANGUAGE.createView.stepsHeader1}</h2>
+					<h2 className={'h2-alt-2'}>{language.createView.stepsHeader1}</h2>
 				</S.HeaderWrapper>
-				{LANGUAGE.createView.steps.list.map((step: any, index: number) => (
+				{language.createView.steps.list.map((step: any, index: number) => (
 					<S.Section key={index}>
 						<S.StepWrapper>
 							<S.StepHeader>
-								<span>{`${LANGUAGE.createView.steps.display} ${index + 1}:`}</span>
+								<span>{`${language.createView.steps.display} ${index + 1}:`}</span>
 								<p>{step.header}</p>
 							</S.StepHeader>
 							<S.StepDescription>{parse(step.description)}</S.StepDescription>

@@ -5,7 +5,7 @@ import { getBalanceEndpoint, getProfile, ProfileType } from 'arcframework';
 
 import { Modal } from 'components/molecules/Modal';
 import { AR_WALLETS, WALLET_PERMISSIONS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 export const WalletListContainer = styled.div`
 	height: 100%;
@@ -150,7 +150,7 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 	return (
 		<>
 			{walletModalVisible && (
-				<Modal header={LANGUAGE.connectWallet} handleClose={() => setWalletModalVisible(false)}>
+				<Modal header={language.connectWallet} handleClose={() => setWalletModalVisible(false)}>
 					<WalletList handleConnect={handleConnect} />
 				</Modal>
 			)}

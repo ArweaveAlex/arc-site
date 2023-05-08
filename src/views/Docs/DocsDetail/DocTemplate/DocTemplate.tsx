@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { IconButton } from 'components/atoms/IconButton';
+import { Loader } from 'components/atoms/Loader';
 import { ASSETS } from 'helpers/config';
 import * as urls from 'helpers/urls';
 
@@ -64,7 +65,7 @@ export default function DocTemplate() {
 		}
 	}, [active]);
 
-	return (
+	return markdown ? (
 		<S.Wrapper>
 			<ReactMarkdown
 				children={markdown}
@@ -73,5 +74,7 @@ export default function DocTemplate() {
 				}}
 			/>
 		</S.Wrapper>
+	) : (
+		<Loader />
 	);
 }

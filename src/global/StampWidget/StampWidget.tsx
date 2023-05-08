@@ -10,7 +10,7 @@ import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { WalletBlock } from 'wallet/WalletBlock';
 
 import * as S from './styles';
@@ -41,7 +41,7 @@ function StampAction(props: { balance: number; handleSubmit: (amount: number) =>
 						disabled={false}
 						invalid={{
 							status: invalid,
-							message: invalid ? LANGUAGE.amountExceedsBalance : null,
+							message: invalid ? language.amountExceedsBalance : null,
 						}}
 						sm
 					/>
@@ -146,7 +146,7 @@ export default function StampWidget(props: IProps) {
 				setUpdateCount(!updateCount);
 				setStampNotification({
 					status: stampSuccess ? 200 : 500,
-					message: stampSuccess ? LANGUAGE.artifactStamped : LANGUAGE.errorOccurred,
+					message: stampSuccess ? language.artifactStamped : language.errorOccurred,
 				});
 			}
 		},
@@ -197,7 +197,7 @@ export default function StampWidget(props: IProps) {
 									handlePress={() => handleStamp()}
 									disabled={disabled}
 									info={count.total.toString()}
-									tooltip={LANGUAGE.stamp}
+									tooltip={language.stamp}
 								/>
 							</S.Action>
 							<S.Action>
@@ -207,7 +207,7 @@ export default function StampWidget(props: IProps) {
 									handlePress={() => setShowStampAction(!showStampAction)}
 									disabled={disabled || balance <= 0 || showStampAction}
 									info={count.super.toString()}
-									tooltip={LANGUAGE.superStamp}
+									tooltip={language.superStamp}
 								/>
 							</S.Action>
 							<S.Action>
@@ -217,7 +217,7 @@ export default function StampWidget(props: IProps) {
 									handlePress={null}
 									disabled={true}
 									info={count.vouched.toString()}
-									tooltip={LANGUAGE.stampsVouched}
+									tooltip={language.stampsVouched}
 								/>
 							</S.Action>
 						</S.WidgetContainer>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { DOM } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as windowUtils from 'helpers/window';
 import { Subheader } from 'navigation/subheader';
 
@@ -16,9 +16,9 @@ export default function About() {
 	}, []);
 
 	const subnavigation = [
-		{ id: DOM.about.header, display: LANGUAGE.aboutView.subnav.header },
-		{ id: DOM.about.decentralization, display: LANGUAGE.aboutView.subnav.decentralization },
-		{ id: DOM.about.howItWorks, display: LANGUAGE.aboutView.subnav.howItWorks },
+		{ id: DOM.about.header, display: language.aboutView.subnav.header },
+		{ id: DOM.about.decentralization, display: language.aboutView.subnav.decentralization },
+		{ id: DOM.about.howItWorks, display: language.aboutView.subnav.howItWorks },
 	];
 
 	return (

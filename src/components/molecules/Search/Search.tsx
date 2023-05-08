@@ -4,7 +4,7 @@ import { ReactSVG } from 'react-svg';
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -18,7 +18,7 @@ export default function Search(props: IProps) {
 				</S.SearchIcon>
 				<S.SearchInput
 					type={'text'}
-					placeholder={props.loading ? `${LANGUAGE.searchInitializing} ...` : null}
+					placeholder={props.loading ? `${language.searchInitializing} ...` : null}
 					value={props.value}
 					onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.handleChange(e.target.value)}
 					onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => props.handleSearch(e)}

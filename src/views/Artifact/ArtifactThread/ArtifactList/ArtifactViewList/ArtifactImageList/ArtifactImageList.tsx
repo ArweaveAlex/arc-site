@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { ArtifactDetailType, formatAddress, formatDate, getArtifactById, getPoolById, PoolType } from 'arcframework';
 
@@ -7,7 +7,7 @@ import { Loader } from 'components/atoms/Loader';
 import { Carousel } from 'components/molecules/Carousel';
 import { sortByAssociationSequence } from 'filters/artifacts';
 import { ImageListItem } from 'global/ImageListItem';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import { IProps } from '../../types';
@@ -22,15 +22,6 @@ export default function ArtifactImageList(props: IProps) {
 	const [detailData, setDetailData] = React.useState<ArtifactDetailType | null>(null);
 
 	const [showAction, setShowAction] = React.useState<boolean>(false);
-
-	// TODO: fix carousel
-	const navigate = useNavigate();
-	React.useEffect(() => {
-		if (id) {
-			navigate(`${urls.artifact}${id}`);
-			// redirect artifact single
-		}
-	}, [id]);
 
 	React.useEffect(() => {
 		if (props.data) {
@@ -100,7 +91,7 @@ export default function ArtifactImageList(props: IProps) {
 		} else {
 			return (
 				<Carousel
-					title={LANGUAGE.artifactGroup}
+					title={language.artifactGroup}
 					data={getArtifactList()}
 					callback={{ fn: updateSequence, disabled: props.updateDisabled || !showAction }}
 				/>
@@ -127,7 +118,7 @@ export default function ArtifactImageList(props: IProps) {
 					<S.SubheaderFlex>
 						<S.SubheaderContainer>
 							<S.Subheader1>
-								<p>{LANGUAGE.pool.subheader1}</p>
+								<p>{language.pool.subheader1}</p>
 							</S.Subheader1>
 							&nbsp;
 							<S.ID>
@@ -138,7 +129,7 @@ export default function ArtifactImageList(props: IProps) {
 						</S.SubheaderContainer>
 						<S.SubheaderContainer>
 							<S.Subheader1>
-								<p>{LANGUAGE.createdOn}</p>
+								<p>{language.createdOn}</p>
 							</S.Subheader1>
 							&nbsp;
 							<S.Subheader2>

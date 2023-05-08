@@ -1,3 +1,4 @@
+import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 
 import { IconButton } from 'components/atoms/IconButton';
@@ -10,14 +11,24 @@ import * as S from './styles';
 import { IProps } from './types';
 
 export default function _Carousel(props: IProps) {
-	function handleClick(onClickHandler: any, action: StepType) {
+	const carouselRef = React.useRef<any>(null);
+
+	const [currentSlide, setCurrentSlide] = React.useState(0);
+
+	function handleClick(step: StepType) {
 		if (props.callback && !props.callback.disabled) {
-			props.callback.fn(action);
+			props.callback.fn(step);
 		}
-		onClickHandler();
+		if (carouselRef.current) {
+			step === 'prev' ? carouselRef.current.onClickPrev() : carouselRef.current.onClickNext();
+		}
 	}
 
-	function getAction(step: StepType, clickHandler: any, disabled: boolean) {
+	function handleSlideChange(newIndex: number) {
+		setCurrentSlide(newIndex);
+	}
+
+	function getAction(step: StepType, disabled: boolean) {
 		const Action = step === 'prev' ? S.PrevAction : S.NextAction;
 		if (props.data && props.data.length > 1) {
 			return (
@@ -25,7 +36,7 @@ export default function _Carousel(props: IProps) {
 					<IconButton
 						src={step === 'prev' ? ASSETS.arrowPrevious : ASSETS.arrowNext}
 						type={'alt1'}
-						handlePress={() => handleClick(clickHandler, step === 'prev' ? 'prev' : 'next')}
+						handlePress={() => handleClick(step === 'prev' ? 'prev' : 'next')}
 						dimensions={{ wrapper: 25, icon: 11 }}
 						disabled={disabled}
 					/>
@@ -40,9 +51,14 @@ export default function _Carousel(props: IProps) {
 		<S.Content>
 			<S.Header>
 				<S.Header1>{props.title}</S.Header1>
+				<S.Actions>
+					{getAction('prev', currentSlide === 0)}
+					{getAction('next', currentSlide === props.data.length - 1)}
+				</S.Actions>
 			</S.Header>
 			<S.Body>
 				<Carousel
+					ref={carouselRef}
 					autoPlay={false}
 					interval={0}
 					showArrows={true}
@@ -55,12 +71,8 @@ export default function _Carousel(props: IProps) {
 					swipeable={true}
 					emulateTouch={true}
 					preventMovementUntilSwipeScrollTolerance={true}
-					renderArrowPrev={(onClickHandler, hasPrevious) => {
-						return getAction('prev', onClickHandler, !hasPrevious);
-					}}
-					renderArrowNext={(onClickHandler, hasNext) => {
-						return getAction('next', onClickHandler, !hasNext);
-					}}
+					selectedItem={currentSlide}
+					onChange={handleSlideChange}
 				>
 					{props.data}
 				</Carousel>

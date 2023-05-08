@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { DOM } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as windowUtils from 'helpers/window';
 import { Subheader } from 'navigation/subheader';
 
@@ -14,8 +14,8 @@ export default function Contribute() {
 	}, []);
 
 	const subnavigation = [
-		{ id: DOM.contribute.header, display: LANGUAGE.contributeView.subnav.header },
-		{ id: DOM.contribute.howItWorks, display: LANGUAGE.contributeView.subnav.howItWorks },
+		{ id: DOM.contribute.header, display: language.contributeView.subnav.header },
+		{ id: DOM.contribute.howItWorks, display: language.contributeView.subnav.howItWorks },
 	];
 
 	return (

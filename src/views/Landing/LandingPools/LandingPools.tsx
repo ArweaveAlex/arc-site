@@ -7,7 +7,7 @@ import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
 import { PoolsGrid } from 'global/PoolsGrid';
 import { POOL_FILTERS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
 import { RootState } from 'state/store';
 
@@ -50,7 +50,7 @@ export default function LandingPools() {
 							<S.Action>
 								<Button
 									type={'primary'}
-									label={LANGUAGE.exploreMore}
+									label={language.exploreMore}
 									handlePress={() => setCount(count + FETCH_COUNT)}
 									height={52.5}
 									width={275}

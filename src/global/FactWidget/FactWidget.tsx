@@ -6,7 +6,7 @@ import { NotificationResponseType } from 'arcframework';
 import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { WalletBlock } from 'wallet/WalletBlock';
 
 import * as S from './styles';
@@ -67,7 +67,7 @@ export default function FactWidget(props: IProps) {
 				const factMarketSuccess = factMarket && factMarket.tx;
 				setFactNotification({
 					status: factMarketSuccess ? 200 : 500,
-					message: factMarketSuccess ? LANGUAGE.factMarketCreated : LANGUAGE.errorOccurred,
+					message: factMarketSuccess ? language.factMarketCreated : language.errorOccurred,
 				});
 				setUpdateFactCheck(!updateFactCheck);
 			}
@@ -87,7 +87,7 @@ export default function FactWidget(props: IProps) {
 				<S.Action>
 					<Button
 						type={'alt2'}
-						label={LANGUAGE.viewOnPermafacts}
+						label={language.viewOnPermafacts}
 						handlePress={() => window.open(existingFactMarket.link, '_blank')}
 						disabled={false}
 						noMinWidth
@@ -100,7 +100,7 @@ export default function FactWidget(props: IProps) {
 					<S.Action>
 						<Button
 							type={'success'}
-							label={LANGUAGE.support}
+							label={language.support}
 							handlePress={() => handleFactMarketAssertion('support')}
 							disabled={disabled}
 							noMinWidth
@@ -109,7 +109,7 @@ export default function FactWidget(props: IProps) {
 					<S.Action>
 						<Button
 							type={'warning'}
-							label={LANGUAGE.oppose}
+							label={language.oppose}
 							handlePress={() => handleFactMarketAssertion('oppose')}
 							disabled={disabled}
 							noMinWidth

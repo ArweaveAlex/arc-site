@@ -18,7 +18,7 @@ import {
 import { Loader } from 'components/atoms/Loader';
 import { Carousel } from 'components/molecules/Carousel';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -43,7 +43,7 @@ function MessagingMedia(props: IMProps) {
 				return (
 					<S.ArweaveLinkWrapper>
 						<S.ArweaveLink target={'_blank'} rel={'noreferrer'} href={url}>
-							{LANGUAGE.viewOnArweave}
+							{language.viewOnArweave}
 						</S.ArweaveLink>
 					</S.ArweaveLinkWrapper>
 				);
@@ -186,7 +186,7 @@ export default function MessagingListItem(props: IProps) {
 							{props.showArtifactLink && (
 								<>
 									<S.ALink>
-										<span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
+										<span>{`${language.artifact}:`}&nbsp;</span>
 										<Link to={artifactLink}>{props.data ? formatAddress(props.data.artifactId, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>
@@ -201,7 +201,7 @@ export default function MessagingListItem(props: IProps) {
 							{props.showOwnerLink && (
 								<>
 									<S.ALink>
-										<span>{`${LANGUAGE.owner}:`}&nbsp;</span>
+										<span>{`${language.owner}:`}&nbsp;</span>
 										<Link to={ownerLink}>{props.data ? formatAddress(props.data.owner, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>

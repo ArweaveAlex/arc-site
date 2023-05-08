@@ -3,19 +3,11 @@ import styled from 'styled-components';
 import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
-export const Wrapper = styled.div`
-	padding: 0 20px;
-`;
+export const Wrapper = styled.div``;
 
 export const HDWrapper = styled.div`
-	width: calc(100% - 40px);
-	position: fixed;
-	max-width: calc(${STYLING.cutoffs.max} - 40px);
-	z-index: 4;
 	height: 100px;
-	top: ${STYLING.dimensions.navHeight};
-	left: 50%;
-	transform: translate(-50%, 0);
+	width: 100%;
 	background: ${(props) => props.theme.colors.view.background};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: auto;
@@ -31,21 +23,17 @@ export const HDContentWrapper = styled.div`
 	height: 100px;
 	width: 100%;
 	display: flex;
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%);
+	max-width: ${STYLING.cutoffs.max};
+	padding: 0 20px;
+	margin: 0 auto;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: auto;
-		position: relative;
-		top: auto;
-		transform: translate(0, 0);
 	}
 `;
 
 export const HDContent = styled.div`
 	height: 100%;
 	width: 100%;
-	max-width: ${STYLING.cutoffs.max};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
@@ -122,14 +110,13 @@ export const Subheader2 = styled.div`
 export const ID = styled(Subheader2)``;
 
 export const ListWrapper = styled.div`
-	height: 600px;
 	width: 100%;
-	max-width: calc(${STYLING.cutoffs.max} - 40px);
-	margin: calc(${STYLING.dimensions.navHeight} + 120px) auto 0 auto;
+	max-width: ${STYLING.cutoffs.max};
+	padding: 0 20px;
+	margin: 20px auto 0 auto;
 	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: auto;
-		margin: 20px 0 0 0;
 	}
 `;
 

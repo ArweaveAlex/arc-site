@@ -18,7 +18,7 @@ import {
 import { Checkbox } from 'components/atoms/Checkbox';
 import { Table } from 'components/organisms/Table';
 import { ARTIFACT_TYPES, ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { AlignType, ArtifactTableRowType, TableHeaderType } from 'helpers/types';
 import * as urls from 'helpers/urls';
 
@@ -62,40 +62,40 @@ export default function ArtifactsTable(props: IProps) {
 		header.type = {
 			width: '5%',
 			align: 'center' as AlignType,
-			display: LANGUAGE.type,
+			display: language.type,
 		};
 
 		header.title = {
 			width: getTitleWidth(),
 			align: 'left' as AlignType,
-			display: LANGUAGE.name,
+			display: language.name,
 		};
 
 		header.dateCreated = {
 			width: '20%',
 			align: 'left' as AlignType,
-			display: LANGUAGE.dateCreated,
+			display: language.dateCreated,
 		};
 
 		if (props.showPoolIds) {
 			header.pool = {
 				width: '10%',
 				align: 'left' as AlignType,
-				display: LANGUAGE.pool.subheader1,
+				display: language.pool.subheader1,
 			};
 		}
 
 		header.stamps = {
 			width: '7.5%',
 			align: 'center' as AlignType,
-			display: LANGUAGE.stamps,
+			display: language.stamps,
 		};
 
 		if (props.showActions) {
 			header.actions = {
 				width: '10%',
 				align: 'center' as AlignType,
-				display: LANGUAGE.actions,
+				display: language.actions,
 			};
 		}
 
@@ -299,7 +299,7 @@ export default function ArtifactsTable(props: IProps) {
 
 	return (
 		<Table
-			title={LANGUAGE.artifacts}
+			title={language.artifacts}
 			action={getAction()}
 			header={getHeader()}
 			data={data}

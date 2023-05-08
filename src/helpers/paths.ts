@@ -1,39 +1,39 @@
 import { ASSETS } from 'helpers/config';
 
-import { LANGUAGE } from './language';
+import { language } from './language';
 import * as urls from './urls';
 
 export const NAV_PATHS = [
 	{
-		name: LANGUAGE.paths.about,
+		name: language.paths.about,
 		href: urls.about,
 	},
 	{
-		name: LANGUAGE.paths.contribute,
+		name: language.paths.contribute,
 		href: urls.contribute,
 	},
 	{
-		name: LANGUAGE.paths.create,
+		name: language.paths.create,
 		href: urls.create,
 	},
 	{
-		name: LANGUAGE.paths.docs,
+		name: language.paths.docs,
 		href: urls.docs,
 	},
 	{
-		name: LANGUAGE.paths.pools,
+		name: language.paths.pools,
 		href: urls.pools,
 	},
 ];
 
 export const SOCIAL_PATHS = [
 	{
-		name: LANGUAGE.social.twitter,
+		name: language.social.twitter,
 		href: 'https://twitter.com/thealexarchive',
 		svg: ASSETS.social.twitter,
 	},
 	{
-		name: LANGUAGE.social.discord,
+		name: language.social.discord,
 		href: 'https://discord.gg/r3fj9m5AU5',
 		svg: ASSETS.social.discord,
 	},

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -26,7 +26,7 @@ export default function Select(props: IProps) {
 				<>
 					{!value && (
 						<option hidden value="">
-							{LANGUAGE.select}
+							{language.select}
 						</option>
 					)}
 					{props.options.map((option: string, index: number) => {

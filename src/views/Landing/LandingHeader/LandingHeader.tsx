@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -13,21 +13,21 @@ export default function LandingHeader() {
 			<S.HeaderWrapper>
 				<S.FlexHeader>
 					<div>
-						<h1>{LANGUAGE.siteTitle}</h1>
-						<p>{LANGUAGE.banner.header1}</p>
+						<h1>{language.siteTitle}</h1>
+						<p>{language.banner.header1}</p>
 					</div>
 					<S.SubheaderWrapper>
 						<S.SubheaderContainer>
 							<S.FlexSubheader>
-								<p>{LANGUAGE.banner.subheader1}</p>
+								<p>{language.banner.subheader1}</p>
 								<S.Logo>
 									<ReactSVG src={ASSETS.logo} />
 								</S.Logo>
 							</S.FlexSubheader>
 							<div>
 								<p>
-									{LANGUAGE.banner.subheader2}&nbsp;
-									<Link to={`${urls.docs}creating-a-pool/getting-started`}>{LANGUAGE.poolOperator}</Link>
+									{language.banner.subheader2}&nbsp;
+									<Link to={`${urls.docs}creating-a-pool/getting-started`}>{language.poolOperator}</Link>
 								</p>
 							</div>
 						</S.SubheaderContainer>

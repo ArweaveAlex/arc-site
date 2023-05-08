@@ -1,5 +1,5 @@
 import { Button } from 'components/atoms/Button';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';
@@ -9,10 +9,10 @@ export default function WalletBlock() {
 
 	return (
 		<S.Wrapper>
-			<p>{LANGUAGE.walletNotConnected}</p>
+			<p>{language.walletNotConnected}</p>
 			<Button
 				type={'alt2'}
-				label={LANGUAGE.connect}
+				label={language.connect}
 				handlePress={() => arProvider.setWalletModalVisible(true)}
 				useMaxWidth
 				active={true}

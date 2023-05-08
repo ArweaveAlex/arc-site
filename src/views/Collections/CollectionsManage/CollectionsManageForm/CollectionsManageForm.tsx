@@ -6,7 +6,7 @@ import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { Select } from 'components/atoms/Select';
 import { TextArea } from 'components/atoms/TextArea';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -14,7 +14,7 @@ import { IProps } from './types';
 export default function CollectionsManageForm(props: IProps) {
 	function getInvalidTitle() {
 		return { status: false, message: null };
-		// return { status: true, message: LANGUAGE.collectionNameAlreadyExists };
+		// return { status: true, message: language.collectionNameAlreadyExists };
 	}
 
 	function getSubmitDisabled() {
@@ -28,16 +28,16 @@ export default function CollectionsManageForm(props: IProps) {
 		// let func: () => void;
 		// let disabled: boolean;
 
-		// lang = LANGUAGE.save;
+		// lang = language.save;
 		// func = () => handleSave();
 		// disabled = getSubmitDisabled();
 
 		// if (contractId) {
-		// 	lang = LANGUAGE.save;
+		// 	lang = language.save;
 		// 	func = () => handleSave();
 		// 	disabled = getSubmitDisabled();
 		// } else {
-		// 	lang = LANGUAGE.create;
+		// 	lang = language.create;
 		// 	func = () => handleCreate();
 		// 	disabled = getSubmitDisabled();
 		// }
@@ -45,7 +45,7 @@ export default function CollectionsManageForm(props: IProps) {
 		return (
 			<Button
 				type={'alt1'}
-				label={LANGUAGE.save}
+				label={language.save}
 				handlePress={() => props.handleSave()}
 				disabled={getSubmitDisabled()}
 				height={52.5}
@@ -57,13 +57,13 @@ export default function CollectionsManageForm(props: IProps) {
 	return (
 		<S.FormContainer>
 			<S.Header>
-				<p>{LANGUAGE.basicInformation}</p>
+				<p>{language.basicInformation}</p>
 			</S.Header>
 			<S.FormContent>
 				<S.Form>
 					<S.Fields>
 						<FormField
-							label={LANGUAGE.title}
+							label={language.title}
 							value={props.title}
 							onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setTitle(e.target.value as any)}
 							invalid={getInvalidTitle()}
@@ -72,13 +72,13 @@ export default function CollectionsManageForm(props: IProps) {
 						/>
 						<Select
 							onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setTopic(e.target.value as any)}
-							display={LANGUAGE.topic}
+							display={language.topic}
 							value={props.topic}
 							options={Object.keys(ANSTopicEnum).map((topic: string) => topic)}
 							disabled={false}
 						/>
 						<TextArea
-							label={LANGUAGE.description}
+							label={language.description}
 							value={props.description}
 							onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => props.setDescription(e.target.value as any)}
 							invalid={{ status: false, message: null }}

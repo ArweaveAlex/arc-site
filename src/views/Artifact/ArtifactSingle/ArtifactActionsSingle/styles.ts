@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
-	width: calc(100% - 40px);
-	position: fixed;
-	max-width: calc(${STYLING.cutoffs.max} - 40px);
-	z-index: 4;
+	width: 100%;
+	max-width: ${STYLING.cutoffs.max};
 	height: 55px;
 	padding: 20px 0 0 0;
 	top: calc(${STYLING.dimensions.navHeight} + 100px);
@@ -25,8 +23,6 @@ export const Wrapper = styled.div`
 export const ButtonsContainer = styled.div`
 	height: 100%;
 	display: flex;
-	position: absolute;
-	right: 0;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		position: relative;
 		top: auto;
@@ -39,7 +35,9 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-	margin: 0 0 0 20px;
+	position: relative;
+	display: flex;
+	margin: 0 20px 0 0;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		margin: 0;
 	}
@@ -47,22 +45,26 @@ export const ButtonContainer = styled.div`
 
 export const WidgetContainer = styled.div`
 	position: absolute;
-	right: 100px;
+	z-index: 1;
 	&:after {
 		display: block;
 		content: ' ';
 		position: absolute;
 		top: 10.5px;
-		left: 100%;
+		right: 100%;
 		border-width: 5px;
 		border-style: solid;
-		border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent}
-			${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.border.primary};
+		border-color: ${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.border.primary}
+			${(props) => props.theme.colors.transparent} ${(props) => props.theme.colors.transparent};
 	}
 `;
 
 export const StampWidgetContainer = styled(WidgetContainer)`
-	right: 228.5px;
+	left: 100px;
+`;
+
+export const FactWidgetContainer = styled(WidgetContainer)`
+	left: 110px;
 `;
 
 export const MobileWidget = styled.div`
@@ -70,5 +72,3 @@ export const MobileWidget = styled.div`
 	margin: 0 auto;
 	position: relative;
 `;
-
-export const FactWidgetContainer = styled(WidgetContainer)``;

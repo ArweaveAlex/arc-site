@@ -101,7 +101,6 @@ export const NListItem = styled.li<{ disabled: boolean; active: boolean }>`
 	padding: 10px 15px;
 	margin: 0 0 7.5px 0;
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	transition: background 0.075s;
 	background: ${(props) =>
 		props.active ? props.theme.colors.button.alt2.active.background : props.theme.colors.transparent};
 

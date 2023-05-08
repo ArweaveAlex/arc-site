@@ -6,7 +6,7 @@ import { formatAddress, formatDataSize, formatDate } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -34,7 +34,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 					<S.InfoData>
 						<S.DataWrapper>
 							<S.DataLine>
-								<S.DataHeader>{LANGUAGE.owner}:&nbsp;</S.DataHeader>
+								<S.DataHeader>{language.owner}:&nbsp;</S.DataHeader>
 								<Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
 							</S.DataLine>
 						</S.DataWrapper>
@@ -44,11 +44,11 @@ export default function ArtifactDetailSingle(props: IProps) {
 					<S.InfoData>
 						<S.DataWrapper>
 							<S.DataLine>
-								<S.DataHeader>{LANGUAGE.createdOn}:&nbsp;</S.DataHeader>
+								<S.DataHeader>{language.createdOn}:&nbsp;</S.DataHeader>
 								<p>{formatDate(props.data.minted, 'epoch')}</p>
 							</S.DataLine>
 							<S.WrapElement>
-								<S.DataHeader>{LANGUAGE.pool.subheader1}:&nbsp;</S.DataHeader>
+								<S.DataHeader>{language.pool.subheader1}:&nbsp;</S.DataHeader>
 								<Link to={`${urls.pool}${props.data.poolId}`}>{props.data.poolName}</Link>
 							</S.WrapElement>
 						</S.DataWrapper>
@@ -56,19 +56,19 @@ export default function ArtifactDetailSingle(props: IProps) {
 				</S.ContentLine>
 				<S.ContentLine>
 					<S.InfoData>
-						<span>{LANGUAGE.artifactDetail.title}</span>
+						<span>{language.artifactDetail.title}</span>
 						<S.BodyData>{props.data.ansTitle}</S.BodyData>
 					</S.InfoData>
 				</S.ContentLine>
 				<S.ContentLine>
 					{copied && (
 						<S.RawDataCopied>
-							<p>{LANGUAGE.copied}</p>
+							<p>{language.copied}</p>
 						</S.RawDataCopied>
 					)}
 					<S.InfoData>
 						<S.RawContainer>
-							<button onClick={() => setViewRaw(!viewRaw)}>{LANGUAGE.artifactDetail.viewRaw}</button>
+							<button onClick={() => setViewRaw(!viewRaw)}>{language.artifactDetail.viewRaw}</button>
 							<IconButton type={'primary'} src={ASSETS.copy} handlePress={copyRawData} />
 						</S.RawContainer>
 						{viewRaw && (
@@ -81,7 +81,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 				{JSON.parse(props.data.keywords).length > 1 && JSON.parse(props.data.keywords)[0] !== '' && (
 					<S.ContentLine>
 						<S.InfoData>
-							<span>{LANGUAGE.artifactDetail.tags}</span>
+							<span>{language.artifactDetail.tags}</span>
 							<S.Tags>
 								{JSON.parse(props.data.keywords!).map((keyword: string, index: number) => [
 									<S.Tag key={index}>
@@ -94,7 +94,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 				)}
 				<S.ContentLine>
 					<S.InfoData>
-						<span>{LANGUAGE.artifactDetail.fileInformation}</span>
+						<span>{language.artifactDetail.fileInformation}</span>
 						<S.LinkWrapper>
 							<S.DataLine>
 								<ReactSVG src={ASSETS.artifact} />

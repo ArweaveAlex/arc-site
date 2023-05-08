@@ -8,7 +8,7 @@ import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { URLTabs } from 'components/organisms/URLTabs';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { TWITTER_ACCOUNT_REDIRECT } from 'helpers/paths';
 import * as urls from 'helpers/urls';
 
@@ -91,7 +91,7 @@ export default function OwnerAccount(props: IProps) {
 								<S.SocialLink>
 									{discordHandleCopied && (
 										<S.DiscordHandleCopied>
-											<p>{LANGUAGE.copied}</p>
+											<p>{language.copied}</p>
 										</S.DiscordHandleCopied>
 									)}
 									<IconButton type={'alt1'} src={ASSETS.social.discord} handlePress={() => handleDiscordAction()} />
@@ -122,12 +122,12 @@ export default function OwnerAccount(props: IProps) {
 					<S.ShareWrapper>
 						{urlCopied && (
 							<S.URLCopied>
-								<p>{LANGUAGE.urlCopied}</p>
+								<p>{language.urlCopied}</p>
 							</S.URLCopied>
 						)}
 						<Button
 							type={'primary'}
-							label={LANGUAGE.shareUrlLabel}
+							label={language.shareUrlLabel}
 							handlePress={copyUrl}
 							icon={ASSETS.shareLink}
 							iconLeftAlign

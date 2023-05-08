@@ -2,7 +2,7 @@ import React from 'react';
 
 import { OwnerAccount } from 'global/Owner/OwnerAccount';
 import { URLS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { WalletBlock } from 'wallet/WalletBlock';
 
@@ -20,7 +20,7 @@ export default function Account() {
 	}, [arProvider.walletAddress]);
 
 	return arProvider.walletAddress ? (
-		<OwnerAccount walletAddress={arProvider.walletAddress} header={LANGUAGE.account.header1} tabs={URLS.account} />
+		<OwnerAccount walletAddress={arProvider.walletAddress} header={language.account.header1} tabs={URLS.account} />
 	) : (
 		showWalletBlock && <WalletBlock />
 	);

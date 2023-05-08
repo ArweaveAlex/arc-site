@@ -6,7 +6,7 @@ import { formatAddress, formatArtifactType, formatDate } from 'arcframework';
 import { Tabs } from 'components/organisms/Tabs';
 import { SocialShare } from 'global/SocialShare';
 import { ARTIFACT_TABS, ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -53,7 +53,7 @@ export default function ArtifactHeaderSingle(props: IProps) {
 								return <S.TabWrapper key={index} label={tab.label} />;
 							})}
 						</Tabs>
-						<SocialShare type={'alt1'} href={window.location.href} title={LANGUAGE.shareArtifact} />
+						<SocialShare type={'alt1'} href={window.location.href} title={language.shareArtifact} />
 					</S.Body>
 				</S.Content>
 			</S.ContentWrapper>

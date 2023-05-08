@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import * as windowUtils from 'helpers/window';
 
@@ -18,7 +18,6 @@ function renderNavItems(path = '', docs: any = docsOrder) {
 	for (let i = 0; i < docs.length; i++) {
 		if (docs[i].path && !docs[i].children) {
 			const fullPath = `${path ? path + '/' : path}${docs[i].path}`;
-			console.log(fullPath);
 			items.push(
 				<Link to={`${urls.docs}${fullPath}`} key={`file-${docs[i].path}`}>
 					<S.NListItem disabled={false} active={fullPath === active}>
@@ -67,7 +66,7 @@ export default function Navigation() {
 				<S.NContent>
 					<Title onClick={desktop ? () => {} : () => setOpen(!open)}>
 						<p>
-							{LANGUAGE.siteTitle} {LANGUAGE.docsTitle}
+							{language.siteTitle} {language.docsTitle}
 						</p>
 					</Title>
 					<S.NList>{open && renderNavItems()}</S.NList>

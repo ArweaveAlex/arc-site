@@ -4,7 +4,7 @@ import { ReactSVG } from 'react-svg';
 import { formatArtifactType, getTagValue, GQLResponseType, STORAGE, TAGS } from 'arcframework';
 
 import { ARTIFACT_TYPES } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -59,7 +59,7 @@ export default function PoolRecentlyMinted(props: IProps) {
 								</S.NodeWrapper>
 								<S.ALinkNT>
 									<Link to={getArtifactLink(element.node.id, element.node.tags)} target={'_blank'}>
-										{LANGUAGE.openInNewTab}
+										{language.openInNewTab}
 									</Link>
 								</S.ALinkNT>
 							</S.NLWrapper>
@@ -70,7 +70,7 @@ export default function PoolRecentlyMinted(props: IProps) {
 		} else if (props.data && props.data.contracts.length <= 0) {
 			return (
 				<S.NoArtifactsContainer>
-					<p>{LANGUAGE.noArtifacts}</p>
+					<p>{language.noArtifacts}</p>
 				</S.NoArtifactsContainer>
 			);
 		} else {
@@ -87,7 +87,7 @@ export default function PoolRecentlyMinted(props: IProps) {
 	return (
 		<S.Wrapper>
 			<S.Header>
-				<h2>{LANGUAGE.recentlyMintedArtifacts}</h2>
+				<h2>{language.recentlyMintedArtifacts}</h2>
 			</S.Header>
 			<S.Body>{getData()}</S.Body>
 		</S.Wrapper>

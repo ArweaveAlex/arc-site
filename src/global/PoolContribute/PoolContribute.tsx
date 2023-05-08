@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ContributionResultType, formatAddress, PoolClient, ValidationType } from 'arcframework';
+import { ContributionResultType, formatAddress, formatDate, PoolClient, ValidationType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
@@ -8,7 +8,7 @@ import { IconButton } from 'components/atoms/IconButton';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';
@@ -47,27 +47,27 @@ export default function PoolContribute(props: IProps) {
 
 	function getAvailableBalance() {
 		if (!arProvider.walletAddress) {
-			return <p>{LANGUAGE.walletNotConnected}</p>;
+			return <p>{language.walletNotConnected}</p>;
 		} else {
 			if (arProvider.availableBalance) {
 				return (
 					<>
-						<S.AvailableBalance>{LANGUAGE.availableBalance}:&nbsp;</S.AvailableBalance>
+						<S.AvailableBalance>{language.availableBalance}:&nbsp;</S.AvailableBalance>
 						<S.BalanceAmount>{arProvider.availableBalance.toFixed(3)}&nbsp;</S.BalanceAmount>
-						<S.ARTokens>{LANGUAGE.arTokens}</S.ARTokens>
+						<S.ARTokens>{language.arTokens}</S.ARTokens>
 					</>
 				);
 			} else {
 				if (arProvider.availableBalance === 0) {
 					return (
 						<>
-							<S.AvailableBalance>{LANGUAGE.availableBalance}:&nbsp;</S.AvailableBalance>
+							<S.AvailableBalance>{language.availableBalance}:&nbsp;</S.AvailableBalance>
 							<S.BalanceAmount>{0}&nbsp;</S.BalanceAmount>
-							<S.ARTokens>{LANGUAGE.arTokens}</S.ARTokens>
+							<S.ARTokens>{language.arTokens}</S.ARTokens>
 						</>
 					);
 				}
-				return <p>{LANGUAGE.fetchingBalance}&nbsp;...</p>;
+				return <p>{language.fetchingBalance}&nbsp;...</p>;
 			}
 		}
 	}
@@ -77,7 +77,7 @@ export default function PoolContribute(props: IProps) {
 			return { status: false, message: null };
 		} else {
 			if (amount > arProvider.availableBalance) {
-				return { status: true, message: LANGUAGE.amountExceedsBalance };
+				return { status: true, message: language.amountExceedsBalance };
 			}
 			return { status: false, message: null };
 		}
@@ -87,14 +87,14 @@ export default function PoolContribute(props: IProps) {
 		if (receivingPercent) {
 			return (
 				<S.RPWrapper>
-					<span>{LANGUAGE.willBeReceiving}:</span>
+					<span>{language.willBeReceiving}:</span>
 					<p>
-						~&nbsp;{receivingPercent}% {LANGUAGE.ofArtifactsCreated}.
+						~&nbsp;{receivingPercent}% {language.ofArtifactsCreated}.
 					</p>
 				</S.RPWrapper>
 			);
 		} else {
-			return <p>{LANGUAGE.fetchingReceivingPercentage}&nbsp;...</p>;
+			return <p>{language.fetchingReceivingPercentage}&nbsp;...</p>;
 		}
 	}
 
@@ -107,7 +107,7 @@ export default function PoolContribute(props: IProps) {
 			<S.SubheaderFlex>
 				<S.SubheaderContainer>
 					<S.Subheader1>
-						<p>{LANGUAGE.pool.subheader1}</p>
+						<p>{language.pool.subheader1}</p>
 					</S.Subheader1>
 					&nbsp;
 					<S.ID>
@@ -115,7 +115,7 @@ export default function PoolContribute(props: IProps) {
 						<IconButton type={'primary'} src={ASSETS.copy} handlePress={copyAddress} sm />
 						{copied && (
 							<S.IDCopied>
-								<p>{LANGUAGE.copied}</p>
+								<p>{language.copied}</p>
 							</S.IDCopied>
 						)}
 					</S.ID>
@@ -123,11 +123,11 @@ export default function PoolContribute(props: IProps) {
 				&nbsp; &nbsp;
 				<S.SubheaderContainer>
 					<S.Subheader1>
-						<p>{LANGUAGE.createdOn}</p>
+						<p>{language.createdOn}</p>
 					</S.Subheader1>
 					&nbsp;
 					<S.Subheader2>
-						<p>{props.dateCreated ? props.dateCreated : null}</p>
+						<p>{props.dateCreated ? formatDate(props.dateCreated, 'epoch') : null}</p>
 					</S.Subheader2>
 				</S.SubheaderContainer>
 			</S.SubheaderFlex>
@@ -155,7 +155,7 @@ export default function PoolContribute(props: IProps) {
 				/>
 			)}
 
-			<Modal header={LANGUAGE.contributeTo} handleClose={() => props.handleShowModal()}>
+			<Modal header={language.contributeTo} handleClose={() => props.handleShowModal()}>
 				<S.ModalWrapper>
 					<S.Header>
 						<S.HeaderFlex>
@@ -165,7 +165,7 @@ export default function PoolContribute(props: IProps) {
 						<S.BalanceWrapper>{getAvailableBalance()}</S.BalanceWrapper>
 						{props.contribPercent && (
 							<S.Warning>
-								<p>{LANGUAGE.contributionPercentage(props.contribPercent)}</p>
+								<p>{language.contributionPercentage(props.contribPercent)}</p>
 							</S.Warning>
 						)}
 					</S.Header>
@@ -178,17 +178,17 @@ export default function PoolContribute(props: IProps) {
 									onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
 									disabled={loading || !arProvider.walletAddress}
 									invalid={getInvalidForm()}
-									endText={LANGUAGE.arTokens}
+									endText={language.arTokens}
 								/>
 							</S.FormContainer>
 							{arProvider.walletAddress && <S.RPWrapper>{getReceivingPercent()}</S.RPWrapper>}
 						</S.FormWrapper>
 						<S.Message>
-							<p>{LANGUAGE.contributionMessage}</p>
+							<p>{language.contributionMessage}</p>
 						</S.Message>
 						<S.SubmitWrapper>
 							<Button
-								label={LANGUAGE.submit}
+								label={language.submit}
 								type={'alt1'}
 								handlePress={(e) => handlePoolContribute(e)}
 								disabled={getDisabledSubmit()}

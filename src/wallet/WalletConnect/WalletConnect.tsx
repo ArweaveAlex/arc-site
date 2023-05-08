@@ -5,7 +5,7 @@ import { formatAddress } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { URLS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { CloseHandler } from 'wrappers/CloseHandler';
 
@@ -59,7 +59,7 @@ export default function WalletConnect(props: { callback?: () => void }) {
 
 	function getWalletLabel() {
 		if (!showWallet) {
-			return `${LANGUAGE.fetching} ...`;
+			return `${language.fetching} ...`;
 		} else {
 			if (arProvider.walletAddress) {
 				if (arProvider.arProfile) {
@@ -68,7 +68,7 @@ export default function WalletConnect(props: { callback?: () => void }) {
 					return formatAddress(arProvider.walletAddress, false);
 				}
 			} else {
-				return LANGUAGE.connectWallet;
+				return language.connectWallet;
 			}
 		}
 	}
@@ -79,9 +79,9 @@ export default function WalletConnect(props: { callback?: () => void }) {
 				<Button type={'primary'} label={getWalletLabel()} handlePress={handlePress} useMaxWidth />
 				{showDropdown && (
 					<S.WalletDropdown>
-						<li onClick={handleViewAccount}>{LANGUAGE.viewAccount}</li>
-						<li onClick={copyAddress}>{copied ? LANGUAGE.copied : LANGUAGE.copyAddress}</li>
-						<li onClick={handleDisconnect}>{LANGUAGE.disconnect}</li>
+						<li onClick={handleViewAccount}>{language.viewAccount}</li>
+						<li onClick={copyAddress}>{copied ? language.copied : language.copyAddress}</li>
+						<li onClick={handleDisconnect}>{language.disconnect}</li>
 					</S.WalletDropdown>
 				)}
 			</S.Wrapper>

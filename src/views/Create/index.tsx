@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { DOM } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as windowUtils from 'helpers/window';
 import { Subheader } from 'navigation/subheader';
 
@@ -14,8 +14,8 @@ export default function Create() {
 	}, []);
 
 	const subnavigation = [
-		{ id: DOM.create.header, display: LANGUAGE.createView.subnav.header },
-		{ id: DOM.create.howItWorks, display: LANGUAGE.createView.subnav.howItWorks },
+		{ id: DOM.create.header, display: language.createView.subnav.header },
+		{ id: DOM.create.howItWorks, display: language.createView.subnav.howItWorks },
 	];
 
 	return (

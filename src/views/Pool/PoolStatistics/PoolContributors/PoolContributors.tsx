@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatAddress, PoolClient } from 'arcframework';
 
 import { Placeholder } from 'components/atoms/Placeholder';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -19,7 +19,7 @@ export default function PoolContributors(props: IProps) {
 		if (list.length <= 0) {
 			return (
 				<S.NoContributionsContainer>
-					<p>{LANGUAGE.noContributions}</p>
+					<p>{language.noContributions}</p>
 				</S.NoContributionsContainer>
 			);
 		} else {
@@ -59,7 +59,7 @@ export default function PoolContributors(props: IProps) {
 								{poolClient.getARAmount(poolClient.calcContributions(props.data.state.contributors[sortedKeys[i]]))}
 							</p>
 							&nbsp;
-							<span>{`${LANGUAGE.arTokens} ${LANGUAGE.total}`}</span>
+							<span>{`${language.arTokens} ${language.total}`}</span>
 						</S.Amount>
 						{/* <Count id={sortedKeys[i]} /> */}
 					</S.Row>
@@ -88,7 +88,7 @@ export default function PoolContributors(props: IProps) {
 								)}
 							</p>
 							&nbsp;
-							<span>{`${LANGUAGE.arTokens}`}</span>
+							<span>{`${language.arTokens}`}</span>
 						</S.Amount>
 					</S.Row>
 				);
@@ -103,13 +103,13 @@ export default function PoolContributors(props: IProps) {
 		<S.Wrapper>
 			<S.CWrapper>
 				<S.Header>
-					<h2>{LANGUAGE.contributors.top}</h2>
+					<h2>{language.contributors.top}</h2>
 				</S.Header>
 				{getTopContributors()}
 			</S.CWrapper>
 			<S.CWrapper>
 				<S.Header>
-					<h2>{LANGUAGE.contributors.recent}</h2>
+					<h2>{language.contributors.recent}</h2>
 				</S.Header>
 				{getRecentContributors()}
 			</S.CWrapper>

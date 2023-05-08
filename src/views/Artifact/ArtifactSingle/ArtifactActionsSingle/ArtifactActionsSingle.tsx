@@ -6,7 +6,7 @@ import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { checkDesktop } from 'helpers/window';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
@@ -76,30 +76,30 @@ export default function ArtifactActionsSingle(props: IProps) {
 				<S.ButtonContainer>
 					<Button
 						type={'alt2'}
-						label={copied ? LANGUAGE.copied : LANGUAGE.copyArtifactId}
+						label={copied ? language.copied : language.copyArtifactId}
 						handlePress={copyArtifactId}
-						width={130}
+						width={140}
 					/>
 				</S.ButtonContainer>
 				<S.ButtonContainer>
 					<Button
 						type={'alt2'}
-						label={showStampWidget ? LANGUAGE.close : LANGUAGE.stamp}
+						label={showStampWidget ? language.close : language.stamp}
 						handlePress={handleShowStampWidget}
 						width={100}
 					/>
+					{showStampWidget && getWidget(stampWidget, S.StampWidgetContainer, () => setShowStampWidget(false))}
 				</S.ButtonContainer>
 				<S.ButtonContainer>
 					<Button
 						type={'alt2'}
-						label={showFactWidget ? LANGUAGE.close : LANGUAGE.factMarket}
+						label={showFactWidget ? language.close : language.factMarket}
 						handlePress={handleShowFactWidget}
 						width={110}
 					/>
+					{showFactWidget && getWidget(factWidget, S.FactWidgetContainer, () => setShowFactWidget(false))}
 				</S.ButtonContainer>
 			</S.ButtonsContainer>
-			{showStampWidget && getWidget(stampWidget, S.StampWidgetContainer, () => setShowStampWidget(false))}
-			{showFactWidget && getWidget(factWidget, S.FactWidgetContainer, () => setShowFactWidget(false))}
 		</S.Wrapper>
 	) : null;
 }

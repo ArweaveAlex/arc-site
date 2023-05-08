@@ -51,15 +51,18 @@ export const Title = styled.div`
 	}
 `;
 
-export const Name = styled.p`
-	line-height: 1.5 !important;
-	color: ${(props) => props.theme.colors.font.primary.active.base} !important;
-	font-weight: ${(props) => props.theme.typography.weight.bold} !important;
-	font-family: ${(props) => props.theme.typography.family.alt1} !important;
-	font-size: clamp(22px, 2.25vw, 28px) !important;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-break: break-word;
+export const Name = styled.div`
+	a,
+	p {
+		line-height: 1.5 !important;
+		color: ${(props) => props.theme.colors.font.primary.active.base} !important;
+		font-weight: ${(props) => props.theme.typography.weight.bold} !important;
+		font-family: ${(props) => props.theme.typography.family.alt1} !important;
+		font-size: clamp(22px, 2.25vw, 28px) !important;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		word-break: break-word;
+	}
 `;
 
 export const ID = styled.p`

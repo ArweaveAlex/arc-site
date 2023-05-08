@@ -3,7 +3,7 @@ import React from 'react';
 import { IconButton } from 'components/atoms/IconButton';
 import { Portal } from 'components/atoms/Portal';
 import { ASSETS, DOM } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as windowUtils from 'helpers/window';
 
 import * as S from './styles';
@@ -40,7 +40,7 @@ export default function Modal(props: IProps) {
 				<>
 					<S.BodyAlt zoom={props.zoom}>{props.children}</S.BodyAlt>
 					<S.CloseTextContainerAlt>
-						<S.CloseButtonContainer onClick={() => props.handleClose()}>{LANGUAGE.close}</S.CloseButtonContainer>
+						<S.CloseButtonContainer onClick={() => props.handleClose()}>{language.close}</S.CloseButtonContainer>
 					</S.CloseTextContainerAlt>
 				</>
 			);
@@ -62,7 +62,7 @@ export default function Modal(props: IProps) {
 					</S.Container>
 					{!props.header && (
 						<S.CloseTextContainer useMax={props.useMax}>
-							<S.CloseButtonContainer onClick={() => props.handleClose()}>{LANGUAGE.close}</S.CloseButtonContainer>
+							<S.CloseButtonContainer onClick={() => props.handleClose()}>{language.close}</S.CloseButtonContainer>
 						</S.CloseTextContainer>
 					)}
 				</>

@@ -3,12 +3,9 @@ import styled from 'styled-components';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
-	width: calc(100% - 40px);
-	position: fixed;
-	max-width: calc(${STYLING.cutoffs.max} - 40px);
-	z-index: 4;
+	width: 100%;
+	max-width: ${STYLING.cutoffs.max}
 	height: 100px;
-	top: ${STYLING.dimensions.navHeight};
 	background: ${(props) => props.theme.colors.view.background};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: auto;
@@ -22,9 +19,6 @@ export const ContentWrapper = styled.div`
 	height: 100px;
 	width: 100%;
 	display: flex;
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%);
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: auto;
 		position: relative;

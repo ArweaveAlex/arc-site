@@ -3,7 +3,7 @@ import { CURSORS } from 'arcframework';
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -81,7 +81,7 @@ export default function Paginator(props: IProps) {
 		} else {
 			return (
 				<Button
-					label={LANGUAGE.previous}
+					label={language.previous}
 					type={'alt1'}
 					handlePress={handlePreviousPage}
 					disabled={!props.cursors.previous}
@@ -105,7 +105,7 @@ export default function Paginator(props: IProps) {
 		} else {
 			return (
 				<Button
-					label={LANGUAGE.next}
+					label={language.next}
 					type={'alt1'}
 					handlePress={handleNextPage}
 					disabled={!props.cursors.next || props.cursors.next === CURSORS.end}

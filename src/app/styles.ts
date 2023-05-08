@@ -148,7 +148,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  button, select {
+  button, select, li {
     transition: background .075s;
   }
 

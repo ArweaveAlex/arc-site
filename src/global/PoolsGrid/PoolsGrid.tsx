@@ -7,7 +7,7 @@ import { FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolType } f
 import { Select } from 'components/atoms/Select';
 import { PoolContribute } from 'global/PoolContribute';
 import { ASSETS, POOL_FILTERS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -42,7 +42,7 @@ function PoolTile(props: PoolType) {
 							<p>{props.state.title}</p>
 						</S.InfoTitle>
 						<S.InfoCA>
-							<p>{LANGUAGE.totalContributed}</p>
+							<p>{language.totalContributed}</p>
 							<span>
 								{poolClient.getARAmount(props.state.totalContributions)}
 								<ReactSVG src={ASSETS.logoAlt2} />
@@ -64,7 +64,7 @@ function PoolTile(props: PoolType) {
 					onClick={() => setShowContributeModal(true)}
 					disabled={props.state.ownerMaintained ? props.state.ownerMaintained : false}
 				>
-					<span>{LANGUAGE.contribute}</span>
+					<span>{language.contribute}</span>
 					<ReactSVG src={ASSETS.logoAlt} />
 				</S.Action>
 			</S.PCWrapper>

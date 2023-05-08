@@ -3,7 +3,7 @@ import parse from 'html-react-parser';
 
 import { ButtonLink } from 'components/atoms/ButtonLink';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 
@@ -13,9 +13,9 @@ export default function AboutSteps() {
 			<S.Container>
 				<S.Content>
 					<S.HeaderWrapper>
-						<h2 className={'h2-alt-2'}>{LANGUAGE.aboutView.stepsHeader1}</h2>
+						<h2 className={'h2-alt-2'}>{language.aboutView.stepsHeader1}</h2>
 					</S.HeaderWrapper>
-					{LANGUAGE.aboutView.steps.list.map((step: any, index: number) => (
+					{language.aboutView.steps.list.map((step: any, index: number) => (
 						<S.Section key={index} even={index % 2 === 0}>
 							<S.StepWrapper>
 								<S.StepHeader>{step.header}</S.StepHeader>

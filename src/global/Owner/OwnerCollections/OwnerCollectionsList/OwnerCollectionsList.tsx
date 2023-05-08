@@ -5,7 +5,7 @@ import { formatAddress, formatDate } from 'arcframework';
 
 import { ButtonLink } from 'components/atoms/ButtonLink';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -21,13 +21,13 @@ export default function OwnerCollectionsList(props: IProps) {
 							<ReactSVG src={ASSETS.collections} />
 						</S.ELogo>
 						<S.ETitle>
-							<S.H2>{LANGUAGE.collections}</S.H2>
+							<S.H2>{language.collections}</S.H2>
 						</S.ETitle>
-						<S.EInfo>{LANGUAGE.createFirstCollection}</S.EInfo>
+						<S.EInfo>{language.createFirstCollection}</S.EInfo>
 						<S.ELink>
 							<ButtonLink
 								type={'alt2'}
-								label={LANGUAGE.create}
+								label={language.create}
 								href={`${urls.collectionsManage}?owner=${props.owner}`}
 								noMinWidth
 							/>
@@ -39,11 +39,11 @@ export default function OwnerCollectionsList(props: IProps) {
 					<>
 						<S.Header>
 							<S.HeaderFlex>
-								<S.H2>{LANGUAGE.collections}</S.H2>
+								<S.H2>{language.collections}</S.H2>
 								{props.showCreateCollections && (
 									<ButtonLink
 										type={'alt1'}
-										label={LANGUAGE.create}
+										label={language.create}
 										href={`${urls.collectionsManage}?owner=${props.owner}`}
 										noMinWidth
 									/>
@@ -61,7 +61,7 @@ export default function OwnerCollectionsList(props: IProps) {
 													<S.SubheaderFlex>
 														<S.SubheaderContainer>
 															<S.Subheader1>
-																<p>{LANGUAGE.collection.subheader1}</p>
+																<p>{language.collection.subheader1}</p>
 															</S.Subheader1>
 															&nbsp;
 															<S.ID>
@@ -70,7 +70,7 @@ export default function OwnerCollectionsList(props: IProps) {
 														</S.SubheaderContainer>
 														<S.SubheaderContainer>
 															<S.Subheader1>
-																<p>{LANGUAGE.createdOn}</p>
+																<p>{language.createdOn}</p>
 															</S.Subheader1>
 															&nbsp;
 															<S.Date>
@@ -81,7 +81,7 @@ export default function OwnerCollectionsList(props: IProps) {
 												</S.LIHeaderContainer>
 												<S.LIBodyContainer>
 													<S.LIBodyFlex>
-														<S.LIBodyHeader>{LANGUAGE.description}</S.LIBodyHeader>
+														<S.LIBodyHeader>{language.description}</S.LIBodyHeader>
 														<S.LIBodyData>{collection.state.description}</S.LIBodyData>
 													</S.LIBodyFlex>
 												</S.LIBodyContainer>

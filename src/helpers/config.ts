@@ -70,7 +70,7 @@ import twitterSocialSVG from 'assets/twitter.svg';
 import universitySVG from 'assets/university-icon.svg';
 import userSVG from 'assets/user.svg';
 import * as filters from 'filters/pools';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import { IURLView } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { AccountAll } from 'views/Account/AccountAll';
@@ -167,7 +167,7 @@ export const ASSETS = {
 
 export const ARTIFACT_TYPES = {
 	[TAGS.values.defaultArtifactType]: {
-		label: LANGUAGE.default,
+		label: language.default,
 		icon: ASSETS.artifactTypes.default,
 	},
 	[TAGS.values.messagingArtifactType]: {
@@ -210,29 +210,29 @@ export const ARTIFACT_TYPES = {
 
 export const ARTIFACT_TYPES_DISPLAY = {
 	archives: [
-		{ value: null, display: LANGUAGE.artifactTypesDisplay.files, icon: ASSETS.file },
-		{ value: null, display: LANGUAGE.artifactTypesDisplay.universities, icon: ASSETS.university },
-		{ value: null, display: LANGUAGE.artifactTypesDisplay.historical, icon: ASSETS.historical },
+		{ value: null, display: language.artifactTypesDisplay.files, icon: ASSETS.file },
+		{ value: null, display: language.artifactTypesDisplay.universities, icon: ASSETS.university },
+		{ value: null, display: language.artifactTypesDisplay.historical, icon: ASSETS.historical },
 	],
 	platforms: [
 		{
 			value: TAGS.values.redditThreadArtifactType,
-			display: LANGUAGE.artifactTypesDisplay.reddit,
+			display: language.artifactTypesDisplay.reddit,
 			icon: ARTIFACT_TYPES[TAGS.values.redditThreadArtifactType].icon,
 		},
 		{
 			value: TAGS.values.messagingArtifactType,
-			display: LANGUAGE.artifactTypesDisplay.messaging,
+			display: language.artifactTypesDisplay.messaging,
 			icon: ARTIFACT_TYPES[TAGS.values.messagingArtifactType].icon,
 		},
 		{
 			value: TAGS.values.webpageArtifactType,
-			display: LANGUAGE.artifactTypesDisplay.webpage,
+			display: language.artifactTypesDisplay.webpage,
 			icon: ARTIFACT_TYPES[TAGS.values.webpageArtifactType].icon,
 		},
 		{
 			value: TAGS.values.nostrEventArtifactType,
-			display: LANGUAGE.artifactTypesDisplay.nostr,
+			display: language.artifactTypesDisplay.nostr,
 			icon: ARTIFACT_TYPES[TAGS.values.nostrEventArtifactType].icon,
 		},
 	],
@@ -243,8 +243,8 @@ export const AR_WALLETS = [{ name: 'arconnect', logo: ASSETS.wallets.arconnect }
 export const WALLET_PERMISSIONS = ['ACCESS_ADDRESS', 'ACCESS_PUBLIC_KEY', 'SIGN_TRANSACTION', 'DISPATCH'];
 
 export const TAB_OPTIONS = {
-	details: LANGUAGE.details,
-	view: LANGUAGE.view,
+	details: language.details,
+	view: language.view,
 };
 
 export const ARTIFACT_TABS = [
@@ -274,6 +274,7 @@ export const DOM = {
 	modal: 'modal',
 	notification: 'notification',
 	preview: 'preview',
+	renderer: 'renderer',
 	subheader: 'subheader',
 };
 
@@ -281,7 +282,7 @@ export const URLS: IURLView = {
 	account: [
 		{
 			index: 0,
-			label: LANGUAGE.account.all.title,
+			label: language.account.all.title,
 			icon: ASSETS.all,
 			disabled: false,
 			url: urls.accountAll,
@@ -289,7 +290,7 @@ export const URLS: IURLView = {
 		},
 		// {
 		// 	index: 1,
-		// 	label: LANGUAGE.account.collections.title,
+		// 	label: language.account.collections.title,
 		// 	icon: ASSETS.collections,
 		// 	disabled: false,
 		// 	url: urls.accountCollections,
@@ -297,7 +298,7 @@ export const URLS: IURLView = {
 		// },
 		{
 			index: 2,
-			label: LANGUAGE.account.bookmarks.title,
+			label: language.account.bookmarks.title,
 			icon: ASSETS.bookmarks,
 			disabled: false,
 			url: urls.accountBookmarks,
@@ -305,7 +306,7 @@ export const URLS: IURLView = {
 		},
 		{
 			index: 3,
-			label: LANGUAGE.account.contributions.title,
+			label: language.account.contributions.title,
 			icon: ASSETS.contributions,
 			disabled: false,
 			url: urls.accountContributions,
@@ -315,7 +316,7 @@ export const URLS: IURLView = {
 	library: [
 		{
 			index: 0,
-			label: LANGUAGE.library.all.title,
+			label: language.library.all.title,
 			icon: ASSETS.all,
 			disabled: false,
 			url: (id: string) => urls.libraryAll(id),
@@ -323,7 +324,7 @@ export const URLS: IURLView = {
 		},
 		{
 			index: 1,
-			label: LANGUAGE.library.bookmarks.title,
+			label: language.library.bookmarks.title,
 			icon: ASSETS.bookmarks,
 			disabled: false,
 			url: (id: string) => urls.libraryBookmarks(id),
@@ -334,11 +335,11 @@ export const URLS: IURLView = {
 
 export const POOL_FILTERS = [
 	{
-		title: LANGUAGE.pools.gridTitles.mostContributed,
+		title: language.pools.gridTitles.mostContributed,
 		fn: (data: PoolType[], count: number | null) => filters.sortByMostContributed(data, count),
 	},
 	{
-		title: LANGUAGE.pools.gridTitles.newest,
+		title: language.pools.gridTitles.newest,
 		fn: (data: PoolType[], count: number | null) => filters.sortByNewest(data, count),
 	},
 ];

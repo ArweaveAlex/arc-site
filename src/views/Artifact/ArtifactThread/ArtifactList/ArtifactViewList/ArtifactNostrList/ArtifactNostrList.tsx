@@ -7,7 +7,7 @@ import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
 import { sortByAssociationSequence } from 'filters/artifacts';
 import { NostrListItem } from 'global/NostrListItem';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import { IProps } from '../../types';
@@ -61,7 +61,7 @@ export default function ArtifactNostrList(props: IProps) {
 			return (
 				<Button
 					type={'alt2'}
-					label={LANGUAGE.showMoreReplies}
+					label={language.showMoreReplies}
 					handlePress={() => updateSequence()}
 					disabled={props.updateDisabled}
 				/>
@@ -80,7 +80,7 @@ export default function ArtifactNostrList(props: IProps) {
 					<S.SubheaderFlex>
 						<S.SubheaderContainer>
 							<S.Subheader1>
-								<p>{LANGUAGE.pool.subheader1}</p>
+								<p>{language.pool.subheader1}</p>
 							</S.Subheader1>
 							&nbsp;
 							<S.ID>
@@ -91,7 +91,7 @@ export default function ArtifactNostrList(props: IProps) {
 						</S.SubheaderContainer>
 						<S.SubheaderContainer>
 							<S.Subheader1>
-								<p>{LANGUAGE.createdOn}</p>
+								<p>{language.createdOn}</p>
 							</S.Subheader1>
 							&nbsp;
 							<S.Subheader2>

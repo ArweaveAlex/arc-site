@@ -4,7 +4,7 @@ import { ReactSVG } from 'react-svg';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -22,12 +22,12 @@ export default function SocialShare(props: IProps) {
 		<S.Wrapper>
 			<S.Info alt1={props.type === 'alt1'}>
 				{props.type === 'primary' && <ReactSVG src={ASSETS.shareLink} />}
-				<p>{LANGUAGE.share.toUpperCase()}</p>
+				<p>{language.share.toUpperCase()}</p>
 			</S.Info>
 			<S.Actions>
 				{copied && (
 					<S.URLCopied>
-						<p>{LANGUAGE.urlCopied}</p>
+						<p>{language.urlCopied}</p>
 					</S.URLCopied>
 				)}
 				<IconButton type={props.type === 'primary' ? 'alt1' : 'alt2'} src={ASSETS.link} handlePress={copyUrl} />

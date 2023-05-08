@@ -6,7 +6,7 @@ import parse from 'html-react-parser';
 import { formatAddress, formatDate, STORAGE } from 'arcframework';
 
 import { ASSETS } from 'helpers/config';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 
 import * as S from './styles';
@@ -64,7 +64,7 @@ export default function NostrListItem(props: IProps) {
 							{props.showArtifactLink && (
 								<>
 									<S.ALink>
-										<span>{`${LANGUAGE.artifact}:`}&nbsp;</span>
+										<span>{`${language.artifact}:`}&nbsp;</span>
 										<Link to={artifactLink}>{props.data ? formatAddress(props.data.artifactId, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>
@@ -79,7 +79,7 @@ export default function NostrListItem(props: IProps) {
 							{props.showOwnerLink && (
 								<>
 									<S.ALink>
-										<span>{`${LANGUAGE.owner}:`}&nbsp;</span>
+										<span>{`${language.owner}:`}&nbsp;</span>
 										<Link to={ownerLink}>{props.data ? formatAddress(props.data.owner, false) : null}</Link>
 									</S.ALink>
 									<S.ALinkNT>
