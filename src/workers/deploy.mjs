@@ -11,12 +11,12 @@ import { defaultCacheOptions, WarpFactory } from 'warp-contracts';
 		port: 443,
 		protocol: 'https',
 	});
-	const jwk = JSON.parse(Buffer.from(process.env.DEPLOY_KEY, 'base64').toString('utf-8'));
+	const jwk = JSON.parse(Buffer.from(process.env.ALEX_DEPLOY_KEY, 'base64').toString('utf-8'));
 
 	const bundlr = new Bundlr.default(BUNDLR_NODE, 'arweave', jwk);
 	const warp = WarpFactory.custom(arweave, defaultCacheOptions, 'mainnet').useArweaveGateway().build();
 
-	const contract = warp.contract(process.env.ANT_CONTRACT).connect(jwk);
+	const contract = warp.contract(process.env.ALEX_ANT_CONTRACT).connect(jwk);
 
 	const result = await bundlr.uploadFolder(DEPLOY_FOLDER, {
 		indexFile: 'index.html',

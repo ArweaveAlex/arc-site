@@ -16,5 +16,5 @@ jobs:
       - run: npm i
       - run: npm run deploy
         env:
-          DEPLOY_KEY: ${{ secrets.ALEX_DEPLOY_KEY }}
-          ANT_CONTRACT: ${{ secrets.ALEX_ANT_CONTRACT }}
+          ALEX_DEPLOY_KEY: ${{ secrets.ALEX_DEPLOY_KEY }}
+          ALEX_ANT_CONTRACT: ${{ secrets.ALEX_ANT_CONTRACT }}
