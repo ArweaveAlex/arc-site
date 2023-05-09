@@ -17,7 +17,7 @@
 		"check-packages": "node src/workers/check-packages.mjs"
 	},
 	"dependencies": {
-		"@bundlr-network/client": "^0.11.1",
+		"@bundlr-network/client": "^0.10.5",
 		"@facts-kit/facts-sdk": "^0.0.47",
 		"@permaweb/stampjs": "0.0.14",
 		"@types/react-router-dom": "^5.3.3",
