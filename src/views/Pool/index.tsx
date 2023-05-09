@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import {
 	CursorEnum,
 	FALLBACK_IMAGE,
-	formatDate,
 	getPoolById,
 	getPoolCount,
 	getTagValue,
@@ -75,7 +74,7 @@ export default function Pool() {
 				image={imageUrl}
 				title={headerData.state.title}
 				description={headerData.state.description}
-				dateCreated={formatDate(headerData.state.timestamp, 'epoch')}
+				dateCreated={headerData.state.timestamp}
 				count={count}
 				totalContributions={headerData.state.totalContributions}
 				contributors={headerData.state.contributors}

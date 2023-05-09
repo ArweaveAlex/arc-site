@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { FALLBACK_IMAGE, formatDate, getTxEndpoint, PoolClient, PoolFilterType, PoolType } from 'arcframework';
+import { FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolType } from 'arcframework';
 
 import { Select } from 'components/atoms/Select';
 import { PoolContribute } from 'global/PoolContribute';
@@ -73,7 +73,7 @@ function PoolTile(props: PoolType) {
 					poolId={props.id ? props.id : null}
 					header={props.state.title ? props.state.title : null}
 					totalContributions={props.state.totalContributions ? props.state.totalContributions : null}
-					dateCreated={props.state.timestamp ? formatDate(props.state.timestamp, 'epoch') : null}
+					dateCreated={props.state.timestamp ? props.state.timestamp : null}
 					contributors={props.state.contributors ? props.state.contributors : null}
 					contribPercent={props.state.contribPercent ? props.state.contribPercent : null}
 					handleShowModal={() => setShowContributeModal(false)}
