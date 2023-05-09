@@ -203,6 +203,21 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
   }
+
+  .wrapper-600 {
+    min-height: 141.5px;
+    width: ${STYLING.dimensions.rendererWrapper};
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+    animation: ${open} ${fadeIn2};
+    p {
+      font-weight: ${(props) => props.theme.typography.weight.medium};
+    }
+  }
 `;
 
 export const RangeBar = styled.input.attrs({ type: 'range' })`

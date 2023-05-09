@@ -35,12 +35,14 @@ export default function ArtifactViewList(props: IProps) {
 	return (
 		<Query value={'type'} check={[ArtifactEnum.Image, ArtifactEnum.Messaging, ArtifactEnum.Nostr]}>
 			<S.Wrapper>
-				<List
-					data={props.data}
-					loading={props.loading}
-					updateSequence={props.updateSequence}
-					updateDisabled={props.updateDisabled}
-				/>
+				{List ? (
+					<List
+						data={props.data}
+						loading={props.loading}
+						updateSequence={props.updateSequence}
+						updateDisabled={props.updateDisabled}
+					/>
+				) : null}
 			</S.Wrapper>
 		</Query>
 	);

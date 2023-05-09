@@ -22,7 +22,7 @@ export const Container = styled.div<{ noHeader: boolean; useMax: boolean | undef
 	width: ${(props) => (props.useMax ? STYLING.cutoffs.max : '600px')};
 	max-width: 87.5vw;
 	background: ${(props) =>
-		props.noHeader ? props.theme.colors.transparent : props.theme.colors.container.primary.background};
+		props.noHeader ? props.theme.colors.transparent : props.theme.colors.container.alt4.background};
 	border: 1px solid ${(props) => (props.noHeader ? props.theme.colors.transparent : props.theme.colors.border.primary)};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	margin: 50px auto;
@@ -58,7 +58,7 @@ export const Logo = styled.div`
 `;
 
 export const Title = styled.p`
-	color: ${(props) => props.theme.colors.font.primary.active.base};
+	color: ${(props) => props.theme.colors.font.primary.alt8};
 	font-family: ${(props) => props.theme.typography.family.primary};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 `;

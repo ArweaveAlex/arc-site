@@ -4,9 +4,8 @@ import { getRendererEndpoint, RENDER_WITH_VALUES } from 'arcframework';
 
 import { DOM } from 'helpers/config';
 
-import { IProps } from '../types';
-
 import * as S from './styles';
+import { IProps } from './types';
 
 export default function ArtifactRendererSingle(props: IProps) {
 	const iframeRef = React.useRef<HTMLIFrameElement | null>(null);
@@ -27,14 +26,14 @@ export default function ArtifactRendererSingle(props: IProps) {
 		};
 	}, []);
 
-	return (
+	return props.artifactId ? (
 		<S.Wrapper>
 			<S.Frame
 				id={DOM.renderer}
 				ref={iframeRef}
-				src={getRendererEndpoint(RENDER_WITH_VALUES[0], props.data.artifactId)}
+				src={getRendererEndpoint(RENDER_WITH_VALUES[0], props.artifactId)}
 				allowFullScreen
 			/>
 		</S.Wrapper>
-	);
+	) : null;
 }

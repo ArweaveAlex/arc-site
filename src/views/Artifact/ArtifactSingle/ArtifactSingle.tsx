@@ -44,7 +44,7 @@ export default function ArtifactSingle(props: IProps) {
 		if (data) {
 			switch (currentTab) {
 				case TAB_OPTIONS.view:
-					return <ArtifactRendererSingle data={data} />;
+					return <ArtifactRendererSingle artifactId={data.artifactId} />;
 				case TAB_OPTIONS.details:
 					return <ArtifactDetailSingle data={data} type={getArtifactType()} />;
 				default:
