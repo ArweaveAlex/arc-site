@@ -74,7 +74,7 @@ export default function PoolContributors(props: IProps) {
 	function getRecentContributors() {
 		if (props.data) {
 			const contributorList: React.ReactNode[] = [];
-			const contributorKeys = Object.keys(props.data.state.contributors);
+			const contributorKeys = Object.keys(props.data.state.contributors).reverse();
 			for (let i = 0; i < contributorKeys.length; i++) {
 				contributorList.push(
 					<S.Row key={i} isEnd={i !== 2}>
