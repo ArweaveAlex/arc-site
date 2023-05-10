@@ -12,12 +12,11 @@
 		"test:verbose": "npm test -- --verbose",
 		"test:coverage": "CI=true npm test -- --env=jsdom --coverage",
 		"build": "NODE_ENV=production webpack",
-		"deploy": "npm run build && node src/workers/deploy.mjs",
+		"deploy": "npm run build && ts-node src/workers/deploy.ts",
 		"prepare": "husky install",
 		"check-packages": "node src/workers/check-packages.mjs"
 	},
 	"dependencies": {
-		"@bundlr-network/client": "^0.10.5",
 		"@facts-kit/facts-sdk": "^0.0.47",
 		"@permaweb/stampjs": "0.0.14",
 		"@types/react-router-dom": "^5.3.3",
@@ -36,8 +35,7 @@
 		"redux-logger": "^3.0.6",
 		"redux-persist": "^6.0.0",
 		"redux-thunk": "^2.4.2",
-		"styled-components": "^5.3.6",
-		"warp-contracts": "^1.4.1"
+		"styled-components": "^5.3.6"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.12",
@@ -74,6 +72,7 @@
 		"stream-http": "^3.2.0",
 		"style-loader": "^3.3.2",
 		"terser-webpack-plugin": "^5.3.6",
+		"ts-node": "^10.9.1",
 		"url-loader": "^4.1.1",
 		"webpack": "^5.75.0",
 		"webpack-cli": "^5.0.1",
