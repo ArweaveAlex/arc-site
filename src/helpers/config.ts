@@ -343,3 +343,5 @@ export const POOL_FILTERS = [
 		fn: (data: PoolType[], count: number | null) => filters.sortByNewest(data, count),
 	},
 ];
+
+export const DEFAULT_POOL_FETCH_COUNT = 9;

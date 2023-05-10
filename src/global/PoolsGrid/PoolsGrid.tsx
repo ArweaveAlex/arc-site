@@ -1,16 +1,22 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolType } from 'arcframework';
 
+import { Button } from 'components/atoms/Button';
+import { Loader } from 'components/atoms/Loader';
 import { Select } from 'components/atoms/Select';
 import { PoolContribute } from 'global/PoolContribute';
-import { ASSETS, POOL_FILTERS } from 'helpers/config';
+import { ASSETS, DEFAULT_POOL_FETCH_COUNT, POOL_FILTERS } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
+import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
+import { RootState } from 'state/store';
 
 import * as S from './styles';
+import { IProps } from './types';
 
 function PoolTile(props: PoolType) {
 	const poolClient = new PoolClient();
@@ -83,25 +89,70 @@ function PoolTile(props: PoolType) {
 	) : null;
 }
 
-export default function PoolsGrid(props: { data: PoolType[]; title: string; setCurrentFilter: (filter: any) => void }) {
-	function getPools() {
-		return props.data.map((pool: PoolType) => {
-			return <PoolTile {...pool} key={pool.id} />;
-		});
+export default function PoolsGrid(props: IProps) {
+	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
+
+	const [data, setData] = React.useState<PoolType[] | null>(null);
+	const [count, setCount] = React.useState<number | null>(props.fetchCount);
+	const [currentFilter, setCurrentFilter] = React.useState<any>(POOL_FILTERS[0]);
+
+	React.useEffect(() => {
+		if (poolsReducer.data) {
+			setData(poolsReducer.data);
+		}
+	}, [poolsReducer.data]);
+
+	function getPoolFilter(option: string) {
+		for (let i = 0; i < POOL_FILTERS.length; i++) {
+			if (POOL_FILTERS[i].title === option) {
+				return POOL_FILTERS[i];
+			}
+		}
+	}
+
+	function getData() {
+		if (data) {
+			return currentFilter.fn(data, count).map((pool: PoolType) => {
+				return <PoolTile {...pool} key={pool.id} />;
+			});
+		} else {
+			return Array.from({ length: count ? count : DEFAULT_POOL_FETCH_COUNT }, (_, i) => i + 1).map(
+				(element: number) => {
+					return (
+						<S.PCWrapper key={element}>
+							<Loader placeholder />
+						</S.PCWrapper>
+					);
+				}
+			);
+		}
 	}
 
 	return (
-		<S.Wrapper>
-			<S.SubheaderFlex>
-				<Select
-					onChange={(e) => props.setCurrentFilter(e.target.value)}
-					display={null}
-					value={props.title}
-					options={POOL_FILTERS.map((filter: PoolFilterType) => filter.title)}
-					disabled={false}
-				/>
-			</S.SubheaderFlex>
-			<S.Body>{getPools()}</S.Body>
-		</S.Wrapper>
+		<ReduxPoolsUpdate>
+			<S.Wrapper>
+				<S.SubheaderFlex>
+					<Select
+						onChange={(e) => setCurrentFilter(getPoolFilter(e.target.value))}
+						display={null}
+						value={currentFilter.title}
+						options={POOL_FILTERS.map((filter: PoolFilterType) => filter.title)}
+						disabled={false}
+					/>
+				</S.SubheaderFlex>
+				<S.Body>{getData()}</S.Body>
+				{data && count && data.length > count && (
+					<S.FetchAction>
+						<Button
+							type={'primary'}
+							label={language.exploreMore}
+							handlePress={() => setCount(count + props.fetchCount)}
+							height={52.5}
+							width={275}
+						/>
+					</S.FetchAction>
+				)}
+			</S.Wrapper>
+		</ReduxPoolsUpdate>
 	);
 }

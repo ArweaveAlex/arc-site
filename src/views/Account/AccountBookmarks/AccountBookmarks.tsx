@@ -5,7 +5,7 @@ import { getArtifactsByBookmarks } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
-export default function AccountBookmark() {
+export default function AccountBookmarks() {
 	const arProvider = useArweaveProvider();
 
 	return arProvider.walletAddress ? (

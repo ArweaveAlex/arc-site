@@ -8,8 +8,3 @@ export const Wrapper = styled.div`
 	animation: ${open} ${fadeIn2};
 	padding: 0 0 20px 0;
 `;
-
-export const Action = styled.div`
-	width: fit-content;
-	margin: 40px auto 0 auto;
-`;

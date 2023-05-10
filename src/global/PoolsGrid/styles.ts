@@ -5,8 +5,6 @@ import { getImageShadow, STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	width: 100%;
-	margin: 0 auto;
-	overflow: hidden;
 `;
 
 export const SubheaderFlex = styled.div`
@@ -172,4 +170,9 @@ export const LP = styled.div`
 	animation: ${loadingSlide} 1.25s infinite;
 	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
+`;
+
+export const FetchAction = styled.div`
+	width: fit-content;
+	margin: 40px auto 0 auto;
 `;

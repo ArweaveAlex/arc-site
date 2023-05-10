@@ -111,7 +111,19 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 			updatedBookmarks.push(artifactId);
 		}
 
-		setBookmarkNotification(await setBookmarkIds(props.owner!, updatedBookmarks));
+		dispatch(
+			artifactActions.setBookmarks({
+				owner: props.owner,
+				ids: updatedBookmarks,
+			})
+		);
+
+		const bookmarkResponse = await setBookmarkIds(props.owner!, updatedBookmarks);
+
+		setBookmarkNotification({
+			status: bookmarkResponse.status,
+			message: bookmarkResponse.status === 200 ? language.bookmarksUpdated : language.errorOccurred,
+		});
 	}
 
 	let redirect: string;
