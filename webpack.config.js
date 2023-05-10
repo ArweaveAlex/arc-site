@@ -184,6 +184,7 @@ module.exports = {
 			wrappers: path.resolve(__dirname, 'src/wrappers/'),
 			'asn1.js': path.resolve(__dirname, 'node_modules/asn1.js'),
 			elliptic: path.resolve(__dirname, 'node_modules/elliptic'),
+			'@bundlr-network/client': '@bundlr-network/client/build/cjs/web/bundlr',
 		},
 	},
 	output: {
