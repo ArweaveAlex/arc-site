@@ -3,17 +3,21 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolType } from 'arcframework';
+import { ANSTopicEnum, FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
+import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
+import { Portal } from 'components/atoms/Portal';
 import { Select } from 'components/atoms/Select';
 import { PoolContribute } from 'global/PoolContribute';
-import { ASSETS, DEFAULT_POOL_FETCH_COUNT, POOL_FILTERS } from 'helpers/config';
+import { ASSETS, DEFAULT_POOL_FETCH_COUNT, DOM, EXISTING_POOLS_FILTER, POOL_SORT_OPTIONS } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
+import * as windowUtils from 'helpers/window';
 import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
 import { RootState } from 'state/store';
+import { CloseHandler } from 'wrappers/CloseHandler';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -48,7 +52,7 @@ function PoolTile(props: PoolType) {
 							<p>{props.state.title}</p>
 						</S.InfoTitle>
 						<S.InfoCA>
-							<p>{language.totalContributed}</p>
+							{/* <p>{language.totalContributed}</p> */}
 							<span>
 								{poolClient.getARAmount(props.state.totalContributions)}
 								<ReactSVG src={ASSETS.logoAlt2} />
@@ -94,27 +98,108 @@ export default function PoolsGrid(props: IProps) {
 
 	const [data, setData] = React.useState<PoolType[] | null>(null);
 	const [count, setCount] = React.useState<number | null>(props.fetchCount);
-	const [currentFilter, setCurrentFilter] = React.useState<any>(POOL_FILTERS[0]);
+	const [currentSort, setCurrentSort] = React.useState<any>(POOL_SORT_OPTIONS[0]);
+
+	const [currentFilter, setCurrentFilter] = React.useState<string>('All');
+	const [filterOpen, setFilterOpen] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
 		if (poolsReducer.data) {
-			setData(poolsReducer.data);
+			let filteredData: PoolType[] = [];
+			if (currentFilter !== 'All') {
+				const mergedPoolIds: string[] = EXISTING_POOLS_FILTER[currentFilter];
+				for (let i = 0; i < poolsReducer.data.length; i++) {
+					if (
+						poolsReducer.data[i].state.topics &&
+						poolsReducer.data[i].state.topics.includes(currentFilter) &&
+						!EXISTING_POOLS_FILTER[currentFilter].includes(poolsReducer.data[i].id)
+					) {
+						mergedPoolIds.push(poolsReducer.data[i].id);
+					}
+				}
+				filteredData = poolsReducer.data.filter((pool: PoolType) => mergedPoolIds.includes(pool.id));
+			} else {
+				filteredData = poolsReducer.data;
+			}
+			setData(filteredData);
 		}
-	}, [poolsReducer.data]);
+	}, [currentFilter, poolsReducer.data]);
 
-	function getPoolFilter(option: string) {
-		for (let i = 0; i < POOL_FILTERS.length; i++) {
-			if (POOL_FILTERS[i].title === option) {
-				return POOL_FILTERS[i];
+	React.useEffect(() => {
+		if (filterOpen) {
+			windowUtils.hideDocumentBody();
+		} else {
+			windowUtils.showDocumentBody();
+		}
+	}, [filterOpen]);
+
+	function getPoolSort(option: string) {
+		for (let i = 0; i < POOL_SORT_OPTIONS.length; i++) {
+			if (POOL_SORT_OPTIONS[i].title === option) {
+				return POOL_SORT_OPTIONS[i];
 			}
 		}
 	}
 
+	function getPoolFilter() {
+		return (
+			<S.FilterWrapper>
+				<Button
+					type={'alt2'}
+					label={language.filter}
+					icon={ASSETS.filter}
+					handlePress={() => setFilterOpen(!filterOpen)}
+					noMinWidth
+				/>
+				{currentFilter !== 'All' && (
+					<S.CurrentFilter>
+						<p>{`${language.topic}: ${currentFilter}`}</p>
+						<IconButton type={'primary'} sm warning src={ASSETS.close} handlePress={() => setCurrentFilter('All')} />
+					</S.CurrentFilter>
+				)}
+				{filterOpen && (
+					<Portal node={DOM.sideNavigation}>
+						<S.FOWrapper>
+							<S.FOContent>
+								<CloseHandler active={filterOpen} callback={() => setFilterOpen(false)} disabled={false}>
+									<S.FOTitle>
+										<p>{language.filterBy}</p>
+									</S.FOTitle>
+									<S.FOList>
+										{Object.keys({ All: 'All', ...ANSTopicEnum }).map((topic: string, index: number) => (
+											<S.FOListItem
+												key={index}
+												disabled={false}
+												onClick={() => (setCurrentFilter(topic), setFilterOpen(!filterOpen))}
+												active={currentFilter === topic}
+											>
+												{topic}
+											</S.FOListItem>
+										))}
+									</S.FOList>
+								</CloseHandler>
+							</S.FOContent>
+						</S.FOWrapper>
+					</Portal>
+				)}
+			</S.FilterWrapper>
+		);
+	}
+
 	function getData() {
 		if (data) {
-			return currentFilter.fn(data, count).map((pool: PoolType) => {
-				return <PoolTile {...pool} key={pool.id} />;
-			});
+			const sortedData = currentSort.fn(data, count);
+			if (sortedData.length > 0) {
+				return sortedData.map((pool: PoolType) => {
+					return <PoolTile {...pool} key={pool.id} />;
+				});
+			} else {
+				return (
+					<S.NoPoolsContainer>
+						<p>{language.noPools}</p>
+					</S.NoPoolsContainer>
+				);
+			}
 		} else {
 			return Array.from({ length: count ? count : DEFAULT_POOL_FETCH_COUNT }, (_, i) => i + 1).map(
 				(element: number) => {
@@ -132,11 +217,12 @@ export default function PoolsGrid(props: IProps) {
 		<ReduxPoolsUpdate>
 			<S.Wrapper>
 				<S.SubheaderFlex>
+					{getPoolFilter()}
 					<Select
-						onChange={(e) => setCurrentFilter(getPoolFilter(e.target.value))}
+						onChange={(e) => setCurrentSort(getPoolSort(e.target.value))}
 						display={null}
-						value={currentFilter.title}
-						options={POOL_FILTERS.map((filter: PoolFilterType) => filter.title)}
+						value={currentSort.title}
+						options={POOL_SORT_OPTIONS.map((filter: PoolFilterType) => filter.title)}
 						disabled={false}
 					/>
 				</S.SubheaderFlex>

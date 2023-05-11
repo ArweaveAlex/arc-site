@@ -14,6 +14,7 @@ export default function Root() {
 		<>
 			<div id={DOM.loader} />
 			<div id={DOM.modal} />
+			<div id={DOM.sideNavigation} />
 			<div id={DOM.notification} />
 			<Header />
 			<div id={DOM.subheader} />

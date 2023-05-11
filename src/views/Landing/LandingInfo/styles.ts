@@ -32,7 +32,7 @@ export const Content = styled.div`
 `;
 
 export const HeaderWrapper = styled.div`
-	margin: 20px 0 0 0;
+	margin: 30px 0 0 0;
 
 	h2 {
 		margin: 0 0 10px 0;
@@ -118,7 +118,7 @@ export const Asset = styled.div`
 
 export const Action = styled.div`
 	width: fit-content;
-	margin: 0 auto 20px auto;
+	margin: 0 auto 30px auto;
 	span {
 		font-size: ${(props) => props.theme.typography.size.base} !important;
 	}

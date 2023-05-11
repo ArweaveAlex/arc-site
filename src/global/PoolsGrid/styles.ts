@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { fadeIn2, loadingSlide, open } from 'helpers/animations';
+import { fadeIn2, loadingSlide, open, openLeft } from 'helpers/animations';
 import { getImageShadow, STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
@@ -9,16 +9,129 @@ export const Wrapper = styled.div`
 
 export const SubheaderFlex = styled.div`
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
 	margin: 0 0 20px 0;
 `;
 
+export const FilterWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	button {
+		svg {
+			height: 30px !important;
+			width: 20px !important;
+		}
+	}
+`;
+
+export const CurrentFilter = styled.div`
+	height: 33.5px;
+	width: fit-content;
+	padding: 0 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border-radius: 25px;
+	background: ${(props) => props.theme.colors.container.alt4.background};
+	p {
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-size: ${(props) => props.theme.typography.size.xSmall};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		margin: 0 10.5px 0 0;
+	}
+	button {
+		margin: 0;
+		padding: 1.5px 0 0 0;
+		svg {
+			height: 12.5px !important;
+			width: 12.5px !important;
+		}
+	}
+`;
+
+export const FOWrapper = styled.div`
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 6;
+	background: ${(props) => props.theme.colors.overlay.alt1};
+	backdrop-filter: blur(3px);
+`;
+
+export const FOContent = styled.div`
+	height: 100%;
+	width: 250px;
+	overflow: hidden;
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
+	animation: ${openLeft} 0.2s ease-out forwards;
+`;
+
+export const FOTitle = styled.div`
+	height: 50px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: ${(props) => props.theme.colors.container.alt6.background};
+	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
+	p {
+		font-size: ${(props) => props.theme.typography.size.xSmall} !important;
+		font-weight: ${(props) => props.theme.typography.weight.bold} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+	}
+`;
+
+export const FOList = styled.ul`
+	height: calc(100% - 50px);
+	width: 100%;
+	overflow: auto;
+`;
+
+export const FOListItem = styled.li<{ disabled: boolean; active: boolean }>`
+	pointer-events: ${(props) => (props.disabled ? 'none' : 'default')};
+	text-align: center;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	font-size: 13px;
+	line-height: 1.35;
+	color: ${(props) => (props.active ? props.theme.colors.font.primary.base : props.theme.colors.font.primary.alt1)};
+	font-weight: ${(props) => props.theme.typography.weight.medium};
+	border-bottom: 1px solid
+		${(props) => (props.disabled ? props.theme.colors.button.alt2.disabled.border : props.theme.colors.border.primary)};
+	background: ${(props) =>
+		props.disabled
+			? props.theme.colors.button.alt2.disabled.background
+			: props.active
+			? props.theme.colors.button.alt2.active.background
+			: props.theme.colors.button.alt2.background};
+	padding: 10px 15px;
+	&:hover {
+		background: ${(props) =>
+			props.disabled
+				? props.theme.colors.button.alt2.disabled.background
+				: props.theme.colors.button.alt2.active.background};
+		color: ${(props) => props.theme.colors.font.primary.base};
+	}
+`;
+
 export const Body = styled.div`
+	min-height: 500px;
 	width: calc(100% + 25px);
 	display: flex;
 	flex-wrap: wrap;
 	margin: -12.5px;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
+		width: 100%;
 		margin: 0;
 	}
 `;
@@ -71,11 +184,9 @@ export const Action = styled.button`
 export const Info = styled.div`
 	height: calc(100% - 42.5px);
 	width: 100%;
-	display: block;
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: ${(props) => props.theme.colors.overlay.alt1};
 	border-top-left-radius: ${STYLING.dimensions.borderRadius};
 	border-top-right-radius: ${STYLING.dimensions.borderRadius};
 	transition: background 0.1s;
@@ -83,6 +194,19 @@ export const Info = styled.div`
 	p {
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
+	}
+	p,
+	span {
+		color: ${(props) => props.theme.colors.font.primary.active.base};
+		background: ${(props) => props.theme.colors.overlay.alt1};
+		border-radius: 10px;
+		width: fit-content;
+	}
+	p {
+		padding: 6.5px 20px;
+	}
+	span {
+		padding: 4.5px 20px;
 	}
 	&:hover {
 		backdrop-filter: blur(2px);
@@ -123,7 +247,7 @@ export const InfoCA = styled(InfoTitle)`
 		svg {
 			height: 12.5px;
 			width: 15px;
-			margin: 5px 0 0 5px;
+			margin: 7.5px 0 0 10px;
 			fill: ${(props) => props.theme.colors.font.primary.base};
 		}
 	}
@@ -148,7 +272,7 @@ export const PCWrapper = styled.div`
 	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: 300px;
-		width: calc(100% - 25px);
+		width: 100%;
 		margin: 0 0 40px 0;
 	}
 `;
@@ -175,4 +299,12 @@ export const LP = styled.div`
 export const FetchAction = styled.div`
 	width: fit-content;
 	margin: 40px auto 0 auto;
+`;
+
+export const NoPoolsContainer = styled.div`
+	margin: 12.5px 15px;
+	height: fit-content;
+	p {
+		color: ${(props) => props.theme.colors.warning};
+	}
 `;

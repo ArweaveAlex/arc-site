@@ -11,8 +11,8 @@ export const Wrapper = styled.div<{ top: number }>`
 	z-index: 11;
 	top: ${(props) => `${props.top.toString()}px`};
 	left: 0;
-	background: ${(props) => props.theme.colors.overlay.primary};
-	backdrop-filter: blur(2px);
+	background: ${(props) => props.theme.colors.overlay.alt1};
+	backdrop-filter: blur(3px);
 	animation: ${open} ${fadeIn1};
 `;
 

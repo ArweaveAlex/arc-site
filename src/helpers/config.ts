@@ -37,6 +37,7 @@ import discordSocialSVG from 'assets/discord.svg';
 import dropdownSVG from 'assets/dropdown.svg';
 import favoriteSVG from 'assets/favorite.svg';
 import fileSVG from 'assets/file.svg';
+import filterSVG from 'assets/filter.svg';
 import fullScreenSVG from 'assets/full-screen.svg';
 import historicalSVG from 'assets/historical-icon.svg';
 import impressionsSVG from 'assets/impressions.svg';
@@ -123,6 +124,7 @@ export const ASSETS = {
 	favorite: favoriteSVG,
 	fullScreen: fullScreenSVG,
 	file: fileSVG,
+	filter: filterSVG,
 	historical: historicalSVG,
 	impressions: impressionsSVG,
 	landingGraphic: landingGraphicSVG,
@@ -275,6 +277,7 @@ export const DOM = {
 	notification: 'notification',
 	preview: 'preview',
 	renderer: 'renderer',
+	sideNavigation: 'side-navigation',
 	subheader: 'subheader',
 };
 
@@ -333,7 +336,7 @@ export const URLS: IURLView = {
 	],
 };
 
-export const POOL_FILTERS = [
+export const POOL_SORT_OPTIONS = [
 	{
 		title: language.pools.gridTitles.mostContributed,
 		fn: (data: PoolType[], count: number | null) => filters.sortByMostContributed(data, count),
@@ -345,3 +348,77 @@ export const POOL_FILTERS = [
 ];
 
 export const DEFAULT_POOL_FETCH_COUNT = 9;
+
+export const EXISTING_POOLS_FILTER = {
+	History: [
+		'XQm-tqqbfheF_nxQm91hiAQRkC3yGvl_Q5NOkFPDqQA',
+		'YB4In2J_zXh2qJxeyRCRj21hxiEjjBk7KAz9pos-PPc',
+		'zoljIRyzG5hp-R4EZV2q8kFI49OAoy23_B9YJ_yEEws',
+		'QUgrZ9e2h-DDQgUJoQjKu2_aSNWrGEu9v1V-6qsvGkQ',
+		'e9VFV5QC5wWRLpzPC6qfAXqaT0KSs3_VMiWe-OYK3jU',
+		'4bAcV86It1tF2f9Sp3qZm5EKXdI9BLeYo_DF8Q8mBrg',
+		'm-qVk5-Emy4mYsP3Sual4tN5gzH2EspdZU8d6MdIkw8',
+		'-z8TixEDiO3Ml_D-QsSAb0Xon8Mur830XNHsjaeoAnM',
+		'Ntjni_2sQ3XznM1Eof2lWE_mc8pP_3a64tBYkswiHyE',
+		'P53Hd6kSjNlBHLuuS9bPg2uI4tHEoD--GXnBZ37DIxg',
+		'1Mst1y_Di8Y5vqb1zUIypGL4zrjRJGrDS2eytgRzjNA',
+		'-CtT8CfBemYxjB1GWhUujghJqbY6mqqMPmLzsXozyYk',
+		'tzNoMg0qMKaeBfz8-I3vJ9WDy0iWOvkHRRToWR0SdW4',
+		'SAHauW5jIVPl2e6gJ8h77uHhunM2-5Rcpr1p--Nr7oU',
+	],
+	Philosophy: [],
+	International: [
+		'zoljIRyzG5hp-R4EZV2q8kFI49OAoy23_B9YJ_yEEws',
+		'e9VFV5QC5wWRLpzPC6qfAXqaT0KSs3_VMiWe-OYK3jU',
+		'm-qVk5-Emy4mYsP3Sual4tN5gzH2EspdZU8d6MdIkw8',
+		'-z8TixEDiO3Ml_D-QsSAb0Xon8Mur830XNHsjaeoAnM',
+		'P53Hd6kSjNlBHLuuS9bPg2uI4tHEoD--GXnBZ37DIxg',
+		'-CtT8CfBemYxjB1GWhUujghJqbY6mqqMPmLzsXozyYk',
+		'SAHauW5jIVPl2e6gJ8h77uHhunM2-5Rcpr1p--Nr7oU',
+	],
+	Culture: [
+		'aWr5_vW_1WgOQabfYCwFNMmbhNlCqzkb1Uz_DAZxCto',
+		'Y4TH_DV7zk-uyE2V2iPH2L-exC_I5No20Xi2yO70fqs',
+		'NTrE1WKisb0AsIY0NUSWcyWaBQTQH5c4DZ4XBXqCczk',
+		'EzG5UvHnylQiLyPKRulE0GxI-oVFT6C8y5D38Hhl5Pg',
+	],
+	Art: [],
+	Music: [],
+	News: [
+		'YB4In2J_zXh2qJxeyRCRj21hxiEjjBk7KAz9pos-PPc',
+		'zoljIRyzG5hp-R4EZV2q8kFI49OAoy23_B9YJ_yEEws',
+		'QUgrZ9e2h-DDQgUJoQjKu2_aSNWrGEu9v1V-6qsvGkQ',
+		'HvG-2dzOyzKBe3WCNxJYORmm6r6MgTN7Pv_KX0ae81Y',
+		'e9VFV5QC5wWRLpzPC6qfAXqaT0KSs3_VMiWe-OYK3jU',
+		'm-qVk5-Emy4mYsP3Sual4tN5gzH2EspdZU8d6MdIkw8',
+		'-z8TixEDiO3Ml_D-QsSAb0Xon8Mur830XNHsjaeoAnM',
+		'P53Hd6kSjNlBHLuuS9bPg2uI4tHEoD--GXnBZ37DIxg',
+		'SAHauW5jIVPl2e6gJ8h77uHhunM2-5Rcpr1p--Nr7oU',
+	],
+	Faith: [],
+	Science: [
+		'zIZXNTl-GtTDbO8eP8LpkHks5S5WhB4j82YX-N2RuGw',
+		'MGVO6tBBzLpQNVXB-Uk25n0iCQRPE4Hn057GGaQPneE',
+		'HvG-2dzOyzKBe3WCNxJYORmm6r6MgTN7Pv_KX0ae81Y',
+	],
+	Spirituality: [],
+	Sports: [],
+	Business: [],
+	Technology: [
+		'Y4TH_DV7zk-uyE2V2iPH2L-exC_I5No20Xi2yO70fqs',
+		'NTrE1WKisb0AsIY0NUSWcyWaBQTQH5c4DZ4XBXqCczk',
+		'p-k5wczzPAW-xqbxfrKxJw3RlmRI0mnkiOirR9PXpK4',
+		'0pvk47B0jPpp5ZAl_ONjWoEVYo8QFRvmYF0SbrVyBYM',
+		'1Mst1y_Di8Y5vqb1zUIypGL4zrjRJGrDS2eytgRzjNA',
+		'WdcJfRKf_keODGDJKgqQlU1MIio_GzVwmYHzpqYdySI',
+		'dZ5si3ANRal7rOpAhhdoViph2YGk2ULE2nKVmvq7SLI',
+		'rj9j8PXXtRbDAW6zM3pbjq9GnmIvr3aL9CjS5Kgapww',
+	],
+	Politics: ['YB4In2J_zXh2qJxeyRCRj21hxiEjjBk7KAz9pos-PPc', 'fgXcuK0fFh6UNphEgK7iJaV2VSekFDlbillL1zLKYB0'],
+	Other: [
+		'aWr5_vW_1WgOQabfYCwFNMmbhNlCqzkb1Uz_DAZxCto',
+		'HvG-2dzOyzKBe3WCNxJYORmm6r6MgTN7Pv_KX0ae81Y',
+		'EzG5UvHnylQiLyPKRulE0GxI-oVFT6C8y5D38Hhl5Pg',
+		'GdtUa5Nr4lfhSNUAMg-r8ocncMgoJiKtHrb56cnVq-0',
+	],
+};

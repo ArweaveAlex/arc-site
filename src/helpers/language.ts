@@ -249,6 +249,8 @@ export const language = {
 	fetchingBalance: `Fetching balance`,
 	fetchingCount: `Fetching count`,
 	fetchingReceivingPercentage: `Fetching receiving amount`,
+	filter: `Filter`,
+	filterBy: `Filter By`,
 	invalidQuery: `Invalid Query`,
 	landingView: {
 		infoHeader1: `Contribute to a pool`,
@@ -281,6 +283,7 @@ export const language = {
 	next: `Next`,
 	noArtifacts: `No Artifacts`,
 	noContributions: `No Contributions`,
+	noPools: `No Pools`,
 	ofArtifactsCreated: `of new Artifacts created`,
 	openInNewTab: `Open in New Tab`,
 	oppose: `Oppose`,

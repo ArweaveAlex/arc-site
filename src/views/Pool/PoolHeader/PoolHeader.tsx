@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
-import { formatAddress, formatCount, PoolClient } from 'arcframework';
+import { formatAddress, formatCount, formatDate, PoolClient } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
@@ -56,7 +56,7 @@ export default function PoolHeader(props: IProps) {
 					</S.Subheader1>
 					&nbsp;
 					<S.Subheader2>
-						<p>{props.dateCreated ? props.dateCreated : null}</p>
+						<p>{props.dateCreated ? formatDate(props.dateCreated, 'epoch') : null}</p>
 					</S.Subheader2>
 				</S.SubheaderContainer>
 			</S.SubheaderFlex>
