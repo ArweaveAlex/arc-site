@@ -52,7 +52,6 @@ function PoolTile(props: PoolType) {
 							<p>{props.state.title}</p>
 						</S.InfoTitle>
 						<S.InfoCA>
-							{/* <p>{language.totalContributed}</p> */}
 							<span>
 								{poolClient.getARAmount(props.state.totalContributions)}
 								<ReactSVG src={ASSETS.logoAlt2} />
