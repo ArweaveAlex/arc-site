@@ -1,7 +1,7 @@
-import { PoolSearchIndexType, PoolType } from 'arcframework';
+import { PoolIndexType, PoolSearchIndexType } from 'arcframework';
 
 export type PoolsType = {
-	data: PoolType[] | null;
+	data: PoolIndexType[] | null;
 };
 
 export type PoolsSearchIndexType = {

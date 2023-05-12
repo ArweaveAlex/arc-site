@@ -26,6 +26,17 @@ export default function PoolContribute(props: IProps) {
 
 	const [copied, setCopied] = React.useState<boolean>(false);
 
+	React.useEffect(() => {
+		(async function () {
+			if (arProvider.walletAddress && props.contributors) {
+				setReceivingPercent(
+					poolClient.getReceivingPercent(arProvider.walletAddress, props.contributors, props.totalContributions, amount)
+				);
+			}
+		})();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [arProvider, arProvider.walletAddress, props.poolId, props.contributors, props.totalContributions, amount]);
+
 	const copyAddress = React.useCallback(async () => {
 		if (props.poolId) {
 			if (props.poolId.length > 0) {
@@ -83,6 +94,7 @@ export default function PoolContribute(props: IProps) {
 		}
 	}
 
+	// TODO: fix from pools grid - no contributors prop
 	function getReceivingPercent() {
 		if (receivingPercent) {
 			return (
@@ -133,17 +145,6 @@ export default function PoolContribute(props: IProps) {
 			</S.SubheaderFlex>
 		);
 	}
-
-	React.useEffect(() => {
-		(async function () {
-			if (arProvider.walletAddress) {
-				setReceivingPercent(
-					poolClient.getReceivingPercent(arProvider.walletAddress, props.contributors, props.totalContributions, amount)
-				);
-			}
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [arProvider, arProvider.walletAddress, props.poolId, props.contributors, props.totalContributions, amount]);
 
 	return (
 		<>
