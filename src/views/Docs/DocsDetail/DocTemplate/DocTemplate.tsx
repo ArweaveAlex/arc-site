@@ -9,9 +9,6 @@ import * as urls from 'helpers/urls';
 
 import * as S from './styles';
 
-// TODO: Next - Prev links
-// TODO: Breadcrumbs
-
 function CodeBlock({ children }: { children: React.ReactNode }): React.ReactElement {
 	const codeRef = React.useRef<HTMLPreElement>(null);
 

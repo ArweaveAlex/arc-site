@@ -6,27 +6,11 @@
 
 **Any file type is supported for upload as an artifact, however the following types are supported by the User Interface. Any file types not in the following list can still be found in the site, however they will only be available for download.**
 
-- Images
-  - JPG
-  - BMP
-  - SVG
-  - WEBP
-  - PNG
-  - GIF
-- Ebooks
-  - EPUB
-- Audios
-  - WAV
-  - M4A
-  - MP3
-  - OGG
-  - FLAC
-- Videos
-  - MP4
-- Documents
-  - PDF
-  - CSV
-  - TXT
+- Images: **JPG, PNG, SVG, GIF, WEBP, BMP**
+- Ebooks: **EPUB**
+- Audio: **WAV, M4A, MP3, OFF, FLAC**
+- Videos: **MP4**
+- Documents: **PDF, CSV, TXT**
 
 **Mine a file**
 
