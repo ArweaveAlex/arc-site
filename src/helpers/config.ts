@@ -83,7 +83,7 @@ import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.1.1',
+	version: '1.1.2',
 };
 
 export const ASSETS = {
