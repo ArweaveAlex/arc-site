@@ -291,7 +291,7 @@ export default function ArtifactsTable(props: IProps) {
 		(async function () {
 			if (props.data && props.data.contracts.length > 0) {
 				const arClient = new ArweaveClient();
-				const stamps = Stamps.init({ warp: arClient.warp });
+				const stamps = Stamps.init({ warp: arClient.warpDefault });
 				setStamps(await stamps.counts(props.data.contracts.map((element: GQLResponseType) => element.node.id)));
 			}
 		})();
