@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { ContributionResultType, formatAddress, formatDate, PoolClient, ValidationType } from 'arcframework';
+import {
+	ContributionResultType,
+	formatAddress,
+	formatDate,
+	getPoolById,
+	PoolClient,
+	ValidationType,
+} from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
@@ -28,9 +35,18 @@ export default function PoolContribute(props: IProps) {
 
 	React.useEffect(() => {
 		(async function () {
-			if (arProvider.walletAddress && props.contributors) {
+			let contributors: any;
+			if (!props.contributors) {
+				contributors = (await getPoolById(props.poolId)).state.contributors;
+			}
+			if (arProvider.walletAddress && (props.contributors || contributors)) {
 				setReceivingPercent(
-					poolClient.getReceivingPercent(arProvider.walletAddress, props.contributors, props.totalContributions, amount)
+					poolClient.getReceivingPercent(
+						arProvider.walletAddress,
+						props.contributors ? props.contributors : contributors,
+						props.totalContributions,
+						amount
+					)
 				);
 			}
 		})();
@@ -94,7 +110,6 @@ export default function PoolContribute(props: IProps) {
 		}
 	}
 
-	// TODO: fix from pools grid - no contributors prop
 	function getReceivingPercent() {
 		if (receivingPercent) {
 			return (
