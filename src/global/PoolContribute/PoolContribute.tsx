@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { ContributionResultType, formatAddress, formatDate, PoolClient, ValidationType } from 'arcframework';
+import {
+	ContributionResultType,
+	formatAddress,
+	formatDate,
+	getPoolById,
+	PoolClient,
+	ValidationType,
+} from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
@@ -25,6 +32,26 @@ export default function PoolContribute(props: IProps) {
 	const [contributionResult, setContributionResult] = React.useState<ContributionResultType | null>(null);
 
 	const [copied, setCopied] = React.useState<boolean>(false);
+
+	React.useEffect(() => {
+		(async function () {
+			let contributors: any;
+			if (!props.contributors) {
+				contributors = (await getPoolById(props.poolId)).state.contributors;
+			}
+			if (arProvider.walletAddress && (props.contributors || contributors)) {
+				setReceivingPercent(
+					poolClient.getReceivingPercent(
+						arProvider.walletAddress,
+						props.contributors ? props.contributors : contributors,
+						props.totalContributions,
+						amount
+					)
+				);
+			}
+		})();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [arProvider, arProvider.walletAddress, props.poolId, props.contributors, props.totalContributions, amount]);
 
 	const copyAddress = React.useCallback(async () => {
 		if (props.poolId) {
@@ -133,17 +160,6 @@ export default function PoolContribute(props: IProps) {
 			</S.SubheaderFlex>
 		);
 	}
-
-	React.useEffect(() => {
-		(async function () {
-			if (arProvider.walletAddress) {
-				setReceivingPercent(
-					poolClient.getReceivingPercent(arProvider.walletAddress, props.contributors, props.totalContributions, amount)
-				);
-			}
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [arProvider, arProvider.walletAddress, props.poolId, props.contributors, props.totalContributions, amount]);
 
 	return (
 		<>

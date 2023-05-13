@@ -1,6 +1,6 @@
-import { PoolType } from 'arcframework';
+import { PoolIndexType } from 'arcframework';
 
-export function sortByAll(pools: PoolType[], amount: number | null): PoolType[] {
+export function sortByAll(pools: PoolIndexType[], amount: number | null): PoolIndexType[] {
 	if (amount) {
 		return pools.length <= amount ? pools : pools.slice(0, amount);
 	} else {
@@ -8,8 +8,8 @@ export function sortByAll(pools: PoolType[], amount: number | null): PoolType[] 
 	}
 }
 
-export function sortByNewest(pools: PoolType[], amount: number | null): PoolType[] {
-	const sortedPools: PoolType[] = pools
+export function sortByNewest(pools: PoolIndexType[], amount: number | null): PoolIndexType[] {
+	const sortedPools: PoolIndexType[] = pools
 		.sort(function (a, b) {
 			return parseFloat(a.state.timestamp) - parseFloat(b.state.timestamp);
 		})
@@ -21,8 +21,8 @@ export function sortByNewest(pools: PoolType[], amount: number | null): PoolType
 	}
 }
 
-export function sortByMostContributed(pools: PoolType[], amount: number | null): PoolType[] {
-	const sortedPools: PoolType[] = pools
+export function sortByMostContributed(pools: PoolIndexType[], amount: number | null): PoolIndexType[] {
+	const sortedPools: PoolIndexType[] = pools
 		.sort(function (a, b) {
 			return parseFloat(a.state.totalContributions) - parseFloat(b.state.totalContributions);
 		})
