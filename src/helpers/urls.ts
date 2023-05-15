@@ -17,4 +17,5 @@ export const libraryAll = (id: string) => `${library}${id}/all/`;
 export const libraryBookmarks = (id: string) => `${library}${id}/collections/`;
 export const pool = `${base}pool/`;
 export const pools = `${base}pools/`;
+export const poolsCreate = `${pools}create/`;
 export const thread = `${base}thread/`;

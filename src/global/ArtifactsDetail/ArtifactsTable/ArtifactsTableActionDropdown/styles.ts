@@ -26,10 +26,10 @@ export const PreviewContainer = styled(SubComponentContainer)``;
 
 export const ModalPreviewContainer = styled.div`
 	min-height: 141.5px;
-	height: auto;
+	height: 100%;
 	width: 100%;
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 0;
 `;
 
 export const StampWidgetContainer = styled(SubComponentContainer)`

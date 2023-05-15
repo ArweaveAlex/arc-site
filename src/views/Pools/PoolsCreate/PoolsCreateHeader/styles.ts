@@ -24,19 +24,3 @@ export const HeaderContent = styled.div`
 		}
 	}
 `;
-
-export const Actions = styled.div`
-	display: flex;
-	align-items: center;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		flex-direction: column;
-		align-items: start;
-	}
-`;
-
-export const CreateAction = styled.div`
-	margin: 0 0 0 40px;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		margin: 20px 0 0 0;
-	}
-`;

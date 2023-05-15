@@ -114,6 +114,7 @@ export const language = {
 	basicInformation: `Basic Information`,
 	bookmarks: `Bookmarks`,
 	bookmarksUpdated: `Bookmarks Updated`,
+	chooseTopics: `Choose Topics`,
 	close: `Close`,
 	closePreview: `Close Preview`,
 	collection: {
@@ -181,6 +182,7 @@ export const language = {
 	create: `Create`,
 	createCollection: `Create a Collection`,
 	createFirstCollection: `Create your first collection`,
+	createPool: `Create a Pool`,
 	createView: {
 		header1: `Create with Alex.`,
 		steps: {
@@ -347,6 +349,7 @@ export const language = {
 	tableOfContents: `Table of Contents`,
 	title: `Title`,
 	topic: `Topic`,
+	topics: `Topics`,
 	total: `Total`,
 	totalContributed: `Total Contributed`,
 	type: `Type`,

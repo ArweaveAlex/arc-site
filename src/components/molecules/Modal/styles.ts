@@ -22,7 +22,7 @@ export const Container = styled.div<{ noHeader: boolean; useMax: boolean | undef
 	width: ${(props) => (props.useMax ? STYLING.cutoffs.max : '600px')};
 	max-width: 87.5vw;
 	background: ${(props) =>
-		props.noHeader ? props.theme.colors.transparent : props.theme.colors.container.alt4.background};
+		props.noHeader ? props.theme.colors.transparent : props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => (props.noHeader ? props.theme.colors.transparent : props.theme.colors.border.primary)};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	margin: 50px auto;
