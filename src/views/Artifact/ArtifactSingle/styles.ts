@@ -24,10 +24,6 @@ export const ArtifactWrapper = styled.div`
 	min-height: calc(100vh - (165px + ${STYLING.dimensions.navHeight}));
 	width: 100%;
 	margin: 20px 0 0 0;
-
-	min-height: calc(100vh - (165px + -55px));
-	width: calc(100% + 40px);
-	margin: 0px -20px 0px -20px;
 `;
 
 export const MessageContainer = styled.div`
