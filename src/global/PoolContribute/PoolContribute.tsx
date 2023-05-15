@@ -181,7 +181,7 @@ export default function PoolContribute(props: IProps) {
 						<S.BalanceWrapper>{getAvailableBalance()}</S.BalanceWrapper>
 						{props.contribPercent && (
 							<S.Warning>
-								<p>{language.contributionPercentage(props.contribPercent)}</p>
+								<p>{language.contributionPercentageMessage(props.contribPercent)}</p>
 							</S.Warning>
 						)}
 					</S.Header>

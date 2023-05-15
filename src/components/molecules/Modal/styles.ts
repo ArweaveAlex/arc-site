@@ -8,8 +8,10 @@ export const Wrapper = styled.div<{ top: number }>`
 	height: 100%;
 	width: 100%;
 	position: absolute;
+	position: fixed;
 	z-index: 11;
 	top: ${(props) => `${props.top.toString()}px`};
+	top: 0;
 	left: 0;
 	background: ${(props) => props.theme.colors.overlay.alt1};
 	backdrop-filter: blur(3px);
@@ -17,7 +19,6 @@ export const Wrapper = styled.div<{ top: number }>`
 `;
 
 export const Container = styled.div<{ noHeader: boolean; useMax: boolean | undefined }>`
-	height: 600px;
 	max-height: calc(100vh - 100px);
 	width: ${(props) => (props.useMax ? STYLING.cutoffs.max : '600px')};
 	max-width: 87.5vw;
@@ -68,10 +69,8 @@ export const Close = styled.div`
 `;
 
 export const Body = styled.div`
-	height: calc(100% - 65px);
-	min-height: 500px;
 	width: 100%;
-	padding: 0 20px;
+	padding: 0 20px 20px 20px;
 `;
 
 export const BodyAlt = styled(Body)<{ zoom: boolean }>`

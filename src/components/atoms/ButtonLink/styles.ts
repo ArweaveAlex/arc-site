@@ -76,6 +76,7 @@ export const Primary = styled.div<{
 		text-overflow: ellipsis;
 		overflow: hidden;
 		font-size: ${(props) => props.theme.typography.size.xSmall};
+		line-height: 18px;
 		color: ${(props) =>
 			props.active ? props.theme.colors.button.primary.active.label : props.theme.colors.button.primary.label};
 	}

@@ -68,6 +68,7 @@ export const language = {
 			howItWorks: 'How it works',
 		},
 	},
+	address: `Address`,
 	artifactDetails: `Artifact Details`,
 	artifactTypesDisplay: {
 		files: `Personal Archives`,
@@ -169,8 +170,10 @@ export const language = {
 		},
 	},
 	contributionMessage: `Your contribution totals will be adjusted once your transfer has settled on the Arweave network.`,
-	contributionPercentage: (percentage: string) =>
+	contributionPercentage: `Contribution Percentage`,
+	contributionPercentageMessage: (percentage: string) =>
 		`* This Pool Operator will claim ${percentage}% of the contribution as a reward fee.`,
+	contributionPercentageTooltip: `This value represents a reward percentage of the contributions. This value can be from 0 - 100 and represents the total percentage of contributions that go to your control wallet for mining. If the value of Contribution Percentage is 10, then 10% of all contributions will go to your control wallet as a reward. This percentage will appear in the user interface to let contributors know how much of their contribution will go to the operator.`,
 	contributions: `Contributions`,
 	contributors: {
 		recent: `Recent Contributors`,
@@ -253,6 +256,9 @@ export const language = {
 	fetchingReceivingPercentage: `Fetching receiving amount`,
 	filter: `Filter`,
 	filterBy: `Filter By`,
+	handle: `Handle`,
+	headerImage: `Header Image`,
+	invalidContributionPercentage: `Invalid Contribution Percentage`,
 	invalidQuery: `Invalid Query`,
 	landingView: {
 		infoHeader1: `Contribute to a pool`,
@@ -265,6 +271,7 @@ export const language = {
 		infoAction2: `Learn How to Create`,
 	},
 	lastContribution: `Last Contribution`,
+	learnAboutCreating: `Learn About Creating`,
 	library: {
 		header1: `Library`,
 		all: { title: `All` },
@@ -290,6 +297,7 @@ export const language = {
 	openInNewTab: `Open in New Tab`,
 	oppose: `Oppose`,
 	owner: `Sponsor`,
+	ownerInfo: `Owner Information`,
 	pageNotFound: `Page Not Found`,
 	paths: {
 		about: `About`,
@@ -309,6 +317,7 @@ export const language = {
 			success: `Thank you for your contribution.`,
 		},
 	},
+	poolAlreadyExists: `This Pool Already Exists`,
 	poolOperator: `Alex. Pool Operator`,
 	pools: {
 		header1: `Pools`,
@@ -353,6 +362,7 @@ export const language = {
 	total: `Total`,
 	totalContributed: `Total Contributed`,
 	type: `Type`,
+	uploadImage: `Upload Image`,
 	upvoted: `Upvoted`,
 	urlCopied: `URL Copied!`,
 	view: `View`,

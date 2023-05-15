@@ -13,7 +13,7 @@ export default function PoolsHeader() {
 				<S.Actions>
 					<SocialShare type={'primary'} href={window.location.href} title={language.sharePools} />
 					{/* <S.CreateAction>
-						<ButtonLink type={'alt1'} label={language.createPool} href={urls.poolsCreate} />
+						<ButtonLink type={'alt1'} label={language.createPool} href={urls.poolsCreate} height={52.5} width={275} />
 					</S.CreateAction> */}
 				</S.Actions>
 			</S.HeaderContent>

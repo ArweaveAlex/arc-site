@@ -20,6 +20,11 @@ export const HeaderContent = styled.div`
 		flex-direction: column;
 		align-items: start;
 		h2 {
+			margin: 0 0 20px 0;
+		}
+		div {
+			min-width: 0 !important;
+			width: 100% !important;
 			margin: 0 0 10px 0;
 		}
 	}
