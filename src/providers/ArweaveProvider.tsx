@@ -6,6 +6,7 @@ import { getBalanceEndpoint, getProfile, ProfileType } from 'arcframework';
 import { Modal } from 'components/molecules/Modal';
 import { AR_WALLETS, WALLET_PERMISSIONS } from 'helpers/config';
 import { language } from 'helpers/language';
+import { STYLING } from 'helpers/styling';
 
 export const WalletListContainer = styled.div`
 	height: 100%;
@@ -21,6 +22,8 @@ export const WalletListItem = styled.button`
 	padding: 0 20px;
 	display: flex;
 	align-items: center;
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadius};
 	&:hover {
 		background: ${(props) => props.theme.colors.container.primary.hover};
 	}
@@ -94,6 +97,7 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 	const [arProfile, setArProfile] = React.useState<ProfileType | null>(null);
 
 	async function handleConnect() {
+		// @ts-ignore
 		await global.window?.arweaveWallet
 			?.connect(WALLET_PERMISSIONS as any)
 			.then(() => {
@@ -105,6 +109,7 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 	}
 
 	async function handleDisconnect() {
+		// @ts-ignore
 		await global.window?.arweaveWallet?.disconnect();
 		setWalletAddress(null);
 	}
@@ -119,6 +124,7 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 		async function handleWallet() {
 			let walletAddress: string | null = null;
 			try {
+				// @ts-ignore
 				walletAddress = await global.window.arweaveWallet.getActiveAddress();
 			} catch {}
 			if (walletAddress) {
