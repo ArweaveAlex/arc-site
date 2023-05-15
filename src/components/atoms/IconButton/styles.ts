@@ -100,6 +100,14 @@ export const Alt3 = styled(Alt1)`
 			fill: ${(props) => props.theme.colors.button.alt1.label};
 		}
 	}
+	&:disabled {
+		background: ${(props) => props.theme.colors.button.alt1.disabled.background};
+		border: 1px solid ${(props) => props.theme.colors.border.primary};
+		color: ${(props) => props.theme.colors.button.alt1.disabled.label};
+		svg {
+			fill: ${(props) => props.theme.colors.button.alt1.disabled.label};
+		}
+	}
 	svg {
 		fill: ${(props) => props.theme.colors.icon.inactive};
 	}
