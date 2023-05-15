@@ -14,34 +14,34 @@ import {
 
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
-// import { Modal } from 'components/molecules/Modal';
+import { Modal } from 'components/molecules/Modal';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
-// import { DOM } from 'helpers/config';
+import { DOM } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import * as artifactActions from 'state/artifacts/actions';
 import { RootState } from 'state/store';
+import { ArtifactRendererSingle } from 'views/Artifact/ArtifactSingle/ArtifactRendererSingle';
 
-// import { ArtifactRendererSingle } from 'views/Artifact/ArtifactSingle/ArtifactRendererSingle';
 import * as S from './styles';
 import { IProps } from './types';
 
-// function Preview(props: { artifactId: string; useModal: boolean; handleClose: () => void }) {
-// 	let renderer: any = null;
-// 	if (props.artifactId) {
-// 		renderer = <ArtifactRendererSingle artifactId={props.artifactId} />;
-// 	}
+function Preview(props: { artifactId: string; useModal: boolean; handleClose: () => void }) {
+	let renderer: any = null;
+	if (props.artifactId) {
+		renderer = <ArtifactRendererSingle artifactId={props.artifactId} />;
+	}
 
-// 	return props.useModal ? (
-// 		<Modal header={language.artifactPreview} handleClose={() => props.handleClose()}>
-// 			<S.ModalPreviewContainer id={DOM.preview}>{renderer}</S.ModalPreviewContainer>
-// 		</Modal>
-// 	) : (
-// 		<S.PreviewContainer id={DOM.preview}>{renderer}</S.PreviewContainer>
-// 	);
-// }
+	return props.useModal ? (
+		<Modal header={language.artifactPreview} handleClose={() => props.handleClose()}>
+			<S.ModalPreviewContainer id={DOM.preview}>{renderer}</S.ModalPreviewContainer>
+		</Modal>
+	) : (
+		<S.PreviewContainer id={DOM.preview}>{renderer}</S.PreviewContainer>
+	);
+}
 
 export default function ArtifactsTableActionDropdown(props: IProps) {
 	const dispatch = useDispatch();
@@ -138,18 +138,18 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		redirect = `${getHashUrl(window.location.origin)}${urls.artifact}${props.artifactId}`;
 	}
 
-	// function getPreview() {
-	// 	return {
-	// 		node: (
-	// 			<Preview
-	// 				artifactId={props.artifactId}
-	// 				useModal={props.usePreviewModal}
-	// 				handleClose={() => handlePreviewCallback()}
-	// 			/>
-	// 		),
-	// 		active: showPreview,
-	// 	};
-	// }
+	function getPreview() {
+		return {
+			node: (
+				<Preview
+					artifactId={props.artifactId}
+					useModal={props.usePreviewModal}
+					handleClose={() => handlePreviewCallback()}
+				/>
+			),
+			active: showPreview,
+		};
+	}
 
 	function getStampWidget() {
 		return {
@@ -186,12 +186,12 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		}
 	}
 
-	// function handleShowPreview() {
-	// 	setShowPreview(!showPreview);
-	// 	setShowStampWidget(false);
-	// 	setShowFactWidget(false);
-	// 	handleView();
-	// }
+	function handleShowPreview() {
+		setShowPreview(!showPreview);
+		setShowStampWidget(false);
+		setShowFactWidget(false);
+		handleView();
+	}
 
 	function handleShowStampWidget() {
 		setShowStampWidget(!showStampWidget);
@@ -218,9 +218,9 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		setShowFactWidget(false);
 	}
 
-	// function handlePreviewCallback() {
-	// 	setShowPreview(false);
-	// }
+	function handlePreviewCallback() {
+		setShowPreview(false);
+	}
 
 	function handleBookmarkCallback() {
 		setBookmarkNotification(null);
@@ -237,14 +237,14 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	function getActions() {
 		return [
-			// {
-			// 	fn: handleShowPreview,
-			// 	closeOnAction: false,
-			// 	subComponent: getPreview(),
-			// 	label: showPreview ? language.closePreview : language.previewArtifact,
-			// 	disabled: false,
-			// 	loading: false,
-			// },
+			{
+				fn: handleShowPreview,
+				closeOnAction: false,
+				subComponent: getPreview(),
+				label: showPreview ? language.closePreview : language.previewArtifact,
+				disabled: false,
+				loading: false,
+			},
 			{
 				fn: handleShowStampWidget,
 				closeOnAction: false,

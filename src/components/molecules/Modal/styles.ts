@@ -71,6 +71,7 @@ export const Body = styled.div`
 	height: calc(100% - 65px);
 	min-height: 500px;
 	width: 100%;
+	padding: 0 20px;
 `;
 
 export const BodyAlt = styled(Body)<{ zoom: boolean }>`
