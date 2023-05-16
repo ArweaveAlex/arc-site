@@ -5,7 +5,6 @@ import { STYLING } from 'helpers/styling';
 export const ModalWrapper = styled.div`
 	height: 100%;
 	width: 100%;
-	padding: 0 20px 20px 20px;
 `;
 
 export const Header = styled.div`
@@ -13,6 +12,7 @@ export const Header = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	margin: 0 0 20px 0;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		height: auto;
 	}
@@ -82,7 +82,7 @@ export const FormContainer = styled.div`
 `;
 
 export const SubmitWrapper = styled.div`
-	margin: 15px auto;
+	margin: 40px auto 15px auto;
 	button {
 		width: fit-content;
 		margin: 0 auto;
@@ -117,7 +117,7 @@ export const RPWrapper = styled.div`
 
 export const Message = styled.div`
 	width: 90%;
-	margin: 12.5px auto 0 auto;
+	margin: 40px auto 20px auto;
 	text-align: center;
 	p {
 		font-size: ${(props) => props.theme.typography.size.xSmall};
