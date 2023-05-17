@@ -11,4 +11,9 @@ export interface IProps {
 	setDescription: (e: any) => void;
 	handleSave: () => void;
 	loading: boolean;
+	invalidTitle: boolean;
+	poolCreateSuccess: boolean;
+	setPoolCreateSuccess: (success: boolean) => void;
+	poolCreateError: boolean;
+	setPoolCreateError: (error: boolean) => void;
 }

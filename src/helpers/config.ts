@@ -57,6 +57,7 @@ import mintSVG from 'assets/mint.svg';
 import newTabSVG from 'assets/new-tab.svg';
 import ownerSVG from 'assets/owner.svg';
 import poolSVG from 'assets/pool.svg';
+import poolsSVG from 'assets/pools.svg';
 import previewSVG from 'assets/preview.svg';
 import repliesSVG from 'assets/replies.svg';
 import retweetSVG from 'assets/retweet.svg';
@@ -73,14 +74,18 @@ import universitySVG from 'assets/university-icon.svg';
 import userSVG from 'assets/user.svg';
 import * as filters from 'filters/pools';
 import { language } from 'helpers/language';
-import { IURLView } from 'helpers/types';
+import { IURLView, NavigationComponentType } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { AccountAll } from 'views/Account/AccountAll';
 import { AccountBookmarks } from 'views/Account/AccountBookmarks';
 // import { AccountCollections } from 'views/Account/AccountCollections';
 import { AccountContributions } from 'views/Account/AccountContributions';
+import { AccountPools } from 'views/Account/AccountPools';
 import { LibraryAll } from 'views/Library/LibraryAll';
 import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
+import { PoolManageMine } from 'views/Pool/PoolManage/PoolManageMine';
+import { FileMiner } from 'views/Pool/PoolManage/PoolManageMine/Miners/FileMiner';
+import { PoolManageView } from 'views/Pool/PoolManage/PoolManageView';
 
 export const APP = {
 	key: 'appVersion',
@@ -145,6 +150,7 @@ export const ASSETS = {
 	newTab: newTabSVG,
 	owner: ownerSVG,
 	pool: poolSVG,
+	pools: poolsSVG,
 	preview: previewSVG,
 	replies: repliesSVG,
 	retweet: retweetSVG,
@@ -244,7 +250,7 @@ export const ARTIFACT_TYPES_DISPLAY = {
 
 export const AR_WALLETS = [{ name: 'arconnect', logo: ASSETS.wallets.arconnect }];
 
-export const WALLET_PERMISSIONS = ['ACCESS_ADDRESS', 'ACCESS_PUBLIC_KEY', 'SIGN_TRANSACTION', 'DISPATCH'];
+export const WALLET_PERMISSIONS = ['ACCESS_ADDRESS', 'ACCESS_PUBLIC_KEY', 'SIGN_TRANSACTION', 'DISPATCH', 'SIGNATURE'];
 
 export const TAB_OPTIONS = {
 	details: language.details,
@@ -293,8 +299,16 @@ export const URLS: IURLView = {
 			url: urls.accountAll,
 			view: AccountAll,
 		},
+		{
+			index: 1,
+			label: language.account.pools.title,
+			icon: ASSETS.pools,
+			disabled: false,
+			url: urls.accountPools,
+			view: AccountPools,
+		},
 		// {
-		// 	index: 1,
+		// 	index: 2,
 		// 	label: language.account.collections.title,
 		// 	icon: ASSETS.collections,
 		// 	disabled: false,
@@ -302,7 +316,7 @@ export const URLS: IURLView = {
 		// 	view: AccountCollections,
 		// },
 		{
-			index: 2,
+			index: 3,
 			label: language.account.bookmarks.title,
 			icon: ASSETS.bookmarks,
 			disabled: false,
@@ -310,7 +324,7 @@ export const URLS: IURLView = {
 			view: AccountBookmarks,
 		},
 		{
-			index: 3,
+			index: 4,
 			label: language.account.contributions.title,
 			icon: ASSETS.contributions,
 			disabled: false,
@@ -336,7 +350,29 @@ export const URLS: IURLView = {
 			view: LibraryBookmarks,
 		},
 	],
+	poolManage: [
+		{
+			index: 0,
+			label: language.poolManage.mine.title,
+			icon: null,
+			disabled: false,
+			url: (id: string) => urls.poolManageMine(id),
+			view: PoolManageMine,
+		},
+		{
+			index: 1,
+			label: language.poolManage.view.title,
+			icon: null,
+			disabled: false,
+			url: (id: string) => urls.poolManageView(id),
+			view: PoolManageView,
+		},
+	],
 };
+
+export const MINING_SOURCES: NavigationComponentType[] = [
+	{ label: language.miningSources.files, component: FileMiner },
+];
 
 export const POOL_SORT_OPTIONS = [
 	{

@@ -159,3 +159,42 @@ export const SubmitContainer = styled.div`
 		}
 	}
 `;
+
+export const SuccessModal = styled.div`
+	width: 100%;
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 40px;
+	h2,
+	p {
+		text-align: center;
+	}
+	p {
+		margin: 20px 0 80px 0;
+		line-height: 1.5;
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+	}
+`;
+
+export const ModalDataLine = styled(DataLine)`
+	margin: 40px 0 20px 0;
+	span,
+	p {
+		margin: 0;
+		line-height: 0;
+		font-size: ${(props) => props.theme.typography.size.base} !important;
+	}
+	span {
+		font-weight: ${(props) => props.theme.typography.weight.regular} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt4} !important;
+	}
+	p {
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		color: ${(props) => props.theme.colors.font.primary.active.base} !important;
+	}
+`;

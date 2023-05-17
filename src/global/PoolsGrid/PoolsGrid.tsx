@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { ANSTopicEnum, FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolType } from 'arcframework';
+import { ANSTopicEnum, FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolIndexType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
@@ -22,7 +22,8 @@ import { CloseHandler } from 'wrappers/CloseHandler';
 import * as S from './styles';
 import { IProps } from './types';
 
-function PoolTile(props: PoolType) {
+// TODO: PoolIndexType | PoolType
+function PoolTile(props: any) {
 	const poolClient = new PoolClient();
 
 	const [poolUrl, setPoolsUrl] = React.useState<string | null>(null);
@@ -95,7 +96,7 @@ function PoolTile(props: PoolType) {
 export default function PoolsGrid(props: IProps) {
 	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
 
-	const [data, setData] = React.useState<PoolType[] | null>(null);
+	const [data, setData] = React.useState<PoolIndexType[] | null>(null);
 	const [count, setCount] = React.useState<number | null>(props.fetchCount);
 	const [currentSort, setCurrentSort] = React.useState<any>(POOL_SORT_OPTIONS[0]);
 
@@ -104,7 +105,7 @@ export default function PoolsGrid(props: IProps) {
 
 	React.useEffect(() => {
 		if (poolsReducer.data) {
-			let filteredData: PoolType[] = [];
+			let filteredData: PoolIndexType[] = [];
 			if (currentFilter !== 'All') {
 				const mergedPoolIds: string[] = EXISTING_POOLS_FILTER[currentFilter];
 				for (let i = 0; i < poolsReducer.data.length; i++) {
@@ -116,7 +117,7 @@ export default function PoolsGrid(props: IProps) {
 						mergedPoolIds.push(poolsReducer.data[i].id);
 					}
 				}
-				filteredData = poolsReducer.data.filter((pool: PoolType) => mergedPoolIds.includes(pool.id));
+				filteredData = poolsReducer.data.filter((pool: PoolIndexType) => mergedPoolIds.includes(pool.id));
 			} else {
 				filteredData = poolsReducer.data;
 			}
@@ -189,7 +190,7 @@ export default function PoolsGrid(props: IProps) {
 		if (data) {
 			const sortedData = currentSort.fn(data, count);
 			if (sortedData.length > 0) {
-				return sortedData.map((pool: PoolType) => {
+				return sortedData.map((pool: PoolIndexType) => {
 					return <PoolTile {...pool} key={pool.id} />;
 				});
 			} else {

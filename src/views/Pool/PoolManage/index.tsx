@@ -4,14 +4,15 @@ import { useParams } from 'react-router-dom';
 import * as ArcFramework from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
-import { getArtifactsByPool } from 'gql';
+import { URLTabs } from 'components/organisms/URLTabs';
+import { URLS } from 'helpers/config';
 import { REDUX_TABLES } from 'helpers/redux';
 
-import { PoolDetail } from './PoolDetail';
-import { PoolHeader } from './PoolHeader';
-import { PoolStatistics } from './PoolStatistics';
+import { PoolManageHeader } from './PoolManageHeader';
 
-export default function Pool() {
+// TODO: wallet block
+// TODO: owner block
+export default function PoolManage() {
 	const { id } = useParams();
 
 	const [headerData, setHeaderData] = React.useState<ArcFramework.PoolType | null>(null);
@@ -30,7 +31,7 @@ export default function Pool() {
 	React.useEffect(() => {
 		(async function () {
 			if (id && headerData) {
-				const detailData = await getArtifactsByPool({
+				const detailData = await ArcFramework.getArtifactsByPool({
 					ids: [id],
 					owner: null,
 					uploader: headerData.state.owner,
@@ -66,9 +67,9 @@ export default function Pool() {
 		})();
 	}, [headerData]);
 
-	function getPoolHeader() {
+	function getPoolManageHeader() {
 		return (
-			<PoolHeader
+			<PoolManageHeader
 				id={headerData.id}
 				image={imageUrl}
 				title={headerData.state.title}
@@ -83,31 +84,10 @@ export default function Pool() {
 		);
 	}
 
-	function getPoolStatistics() {
-		if (headerData && headerData.state.ownerMaintained) {
-			return null;
-		}
-		return <PoolStatistics headerData={headerData} />;
-	}
-
-	function getPoolDetail() {
-		return (
-			<PoolDetail
-				id={{ value: id, type: 'poolId' }}
-				cursorObject={{
-					key: ArcFramework.CursorEnum.Search,
-					value: REDUX_TABLES.poolAll,
-				}}
-				uploader={headerData.state.owner}
-			/>
-		);
-	}
-
 	return headerData ? (
 		<div className={'view-wrapper max-cutoff'}>
-			{getPoolHeader()}
-			{getPoolStatistics()}
-			{getPoolDetail()}
+			{getPoolManageHeader()}
+			<URLTabs tabs={URLS.poolManage} activeUrl={URLS.poolManage[0]!.url} />
 		</div>
 	) : (
 		<Loader />

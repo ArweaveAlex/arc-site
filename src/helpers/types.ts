@@ -26,6 +26,7 @@ export type URLViewType = {
 export interface IURLView {
 	account: URLViewType[];
 	library: URLViewType[];
+	poolManage: URLViewType[];
 }
 
 export type ValidationType = {
@@ -64,6 +65,16 @@ export type ActionDropdownType = {
 	label: string;
 	disabled: boolean;
 	loading: boolean;
+};
+
+export type NavigationComponentType = {
+	label: string;
+	component: React.ComponentType;
+};
+
+export type FileMetadataType = {
+	file: any;
+	metadata: { [key: string]: string };
 };
 
 export type StepType = 'prev' | 'next';

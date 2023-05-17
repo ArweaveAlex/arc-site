@@ -48,7 +48,6 @@ export const Body = styled.div`
 	flex-direction: column;
 	overflow-x: auto;
 	overflow-y: hidden;
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${open} ${fadeIn2};
 	min-height: 66.5vh;
 `;
@@ -56,11 +55,11 @@ export const Body = styled.div`
 export const Table = styled.div`
 	height: 100%;
 	width: 100%;
-	border-left: 0.5px solid ${(props) => props.theme.colors.border.primary};
-	border-right: 0.5px solid ${(props) => props.theme.colors.border.primary};
-	border-bottom: 0.5px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	> * {
 		&:last-child {
+			border-bottom: none;
 			border-bottom-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
 			border-bottom-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
 		}
@@ -74,28 +73,28 @@ export const TableHeader = styled.div`
 	height: 40px;
 	display: flex;
 	align-items: center;
-	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-bottom: 0.5px solid ${(props) => props.theme.colors.border.primary};
-	border-left: 0.5px solid ${(props) => props.theme.colors.border.primary};
-	border-right: 0.5px solid ${(props) => props.theme.colors.border.primary};
+	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	overflow: hidden;
 `;
 
 function getRowStyle(theme: DefaultTheme, active: boolean, viewed: boolean) {
 	if (active) {
 		return `
 			background: ${theme.colors.table.row.active.background};
-			border: 0.5px solid ${theme.colors.table.row.active.border};
+			// border: 0.5px solid ${theme.colors.table.row.active.border};
 		`;
 	} else {
 		if (viewed) {
 			return `
 				background: ${theme.colors.container.primary.hover};
-				border: 0.5px solid ${theme.colors.border.primary};
+				// border: 0.5px solid ${theme.colors.border.primary};
 			`;
 		} else {
 			return `
 				background: ${theme.colors.container.primary.background};
-				border: 0.5px solid ${theme.colors.border.primary};
+				// border: 0.5px solid ${theme.colors.border.primary};
 			`;
 		}
 	}
@@ -105,12 +104,13 @@ export const Row = styled.div<{ active: boolean; viewed: boolean }>`
 	height: 40px;
 	display: flex;
 	align-items: center;
-	${(props) => getRowStyle(props.theme, props.active, props.viewed)}
+	${(props) => getRowStyle(props.theme, props.active, props.viewed)};
+	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 	&:hover {
 		background: ${(props) =>
 			props.active ? props.theme.colors.table.row.active.background : props.theme.colors.container.primary.hover};
-		border: 0.5px solid
-			${(props) => (props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.primary)};
+		// border: 0.5px solid
+		// 	${(props) => (props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.primary)};
 	}
 `;
 

@@ -1,8 +1,8 @@
-// import { ButtonLink } from 'components/atoms/ButtonLink';
+import { ButtonLink } from 'components/atoms/ButtonLink';
 import { SocialShare } from 'global/SocialShare';
 import { language } from 'helpers/language';
+import * as urls from 'helpers/urls';
 
-// import * as urls from 'helpers/urls';
 import * as S from './styles';
 
 export default function PoolsHeader() {
@@ -12,9 +12,9 @@ export default function PoolsHeader() {
 				<h2>{language.pools.header1}</h2>
 				<S.Actions>
 					<SocialShare type={'primary'} href={window.location.href} title={language.sharePools} />
-					{/* <S.CreateAction>
+					<S.CreateAction>
 						<ButtonLink type={'alt1'} label={language.createPool} href={urls.poolsCreate} height={52.5} width={275} />
-					</S.CreateAction> */}
+					</S.CreateAction>
 				</S.Actions>
 			</S.HeaderContent>
 		</S.HeaderWrapper>

@@ -79,7 +79,7 @@ export default function WalletConnect(props: { callback?: () => void }) {
 				<Button type={'primary'} label={getWalletLabel()} handlePress={handlePress} useMaxWidth />
 				{showDropdown && (
 					<S.WalletDropdown>
-						<li onClick={handleViewAccount}>{language.viewAccount}</li>
+						<li onClick={handleViewAccount}>{language.account.header1}</li>
 						<li onClick={copyAddress}>{copied ? language.copied : language.copyAddress}</li>
 						<li onClick={handleDisconnect}>{language.disconnect}</li>
 					</S.WalletDropdown>

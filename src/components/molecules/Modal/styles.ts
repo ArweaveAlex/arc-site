@@ -88,6 +88,7 @@ export const CloseTextContainer = styled.div<{ useMax: boolean | undefined }>`
 	top: 22.5px;
 	left: 50%;
 	transform: translate(-50%, 0);
+	padding: 0 20px;
 `;
 
 export const CloseTextContainerAlt = styled.div`
