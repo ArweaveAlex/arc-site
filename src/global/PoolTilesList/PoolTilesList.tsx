@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { formatAddress, formatDate, PoolAdditionalPropsType } from 'arcframework';
+import { formatAddress, formatDate, PoolAdditionalPropsType, PoolClient } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { language } from 'helpers/language';
@@ -9,6 +9,8 @@ import * as S from './styles';
 import { IProps } from './types';
 
 export default function ContributionsList(props: IProps) {
+	const poolClient = new PoolClient();
+
 	function getData() {
 		if (props.data) {
 			if (props.data.length <= 0) {
@@ -60,7 +62,9 @@ export default function ContributionsList(props: IProps) {
 													<S.LIBodyHeader>{language.totalContributed}:</S.LIBodyHeader>
 													&nbsp;
 													<S.LIBodyData>{`${
-														pool.totalContributed ? pool.totalContributed : pool.state.totalContributions
+														pool.totalContributed
+															? pool.totalContributed
+															: poolClient.getARAmount(pool.state.totalContributions)
 													} ${language.arTokens}`}</S.LIBodyData>
 												</S.LIBodyFlex>
 												{pool.receivingPercent && (

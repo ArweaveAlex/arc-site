@@ -1,10 +1,12 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
+import parse from 'html-react-parser';
 
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
+import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { Table } from 'components/organisms/Table';
 import { ASSETS } from 'helpers/config';
@@ -13,7 +15,6 @@ import { AlignType, FileMetadataType } from 'helpers/types';
 
 import * as S from './styles';
 
-// TODO: view metadata action
 function FileMinerDropdown(props: {
 	data: FileMetadataType;
 	handleAddMetadata: (fileName: string, metadata: { [key: string]: string }) => void;
@@ -32,6 +33,7 @@ function FileMinerDropdown(props: {
 		}, {});
 
 		props.handleAddMetadata(props.data.file.name, metadata);
+		setMetadataModalOpen(false);
 	}
 
 	function handleAddMetadataField() {
@@ -58,7 +60,7 @@ function FileMinerDropdown(props: {
 				fn: () => setMetadataModalOpen(true),
 				closeOnAction: true,
 				subComponent: null,
-				label: language.addMetadata,
+				label: language.updateMetadata,
 				disabled: false,
 				loading: false,
 			},
@@ -73,10 +75,29 @@ function FileMinerDropdown(props: {
 		];
 	}
 
+	function getDisabled() {
+		for (const element of metadataFields) {
+			if (!element.field || !element.value) {
+				return true;
+			}
+		}
+		const uniqueValues = new Set();
+		let hasDuplicate = false;
+
+		for (const element of metadataFields) {
+			if (uniqueValues.has(element.field)) {
+				hasDuplicate = true;
+				break;
+			}
+			uniqueValues.add(element.field);
+		}
+		return hasDuplicate;
+	}
+
 	return (
 		<>
 			{metadataModalOpen && (
-				<Modal header={language.addMetadata} handleClose={() => setMetadataModalOpen(false)}>
+				<Modal header={language.updateMetadata} handleClose={() => setMetadataModalOpen(false)}>
 					<S.MWrapper>
 						<S.MHeaderWrapper>
 							<S.MHeader>
@@ -87,9 +108,10 @@ function FileMinerDropdown(props: {
 							<Button type={'alt2'} label={language.addField} handlePress={() => handleAddMetadataField()} />
 						</S.MHeaderWrapper>
 						<S.MBodyWrapper>
-							{metadataFields.map((metadataField, index) => (
+							{metadataFields.map((metadataField: any, index: number) => (
 								<S.FieldsWrapper key={index}>
-									<S.RemoveAction>
+									<S.FieldsHeader>
+										<p>{`${language.metadataField} (${index + 1})`}</p>
 										<IconButton
 											type={'primary'}
 											sm
@@ -98,14 +120,17 @@ function FileMinerDropdown(props: {
 											handlePress={() => handleRemoveMetadataField(index)}
 											tooltip={language.removeField}
 										/>
-									</S.RemoveAction>
+									</S.FieldsHeader>
 									<FormField
 										label={language.field}
 										value={metadataField.field}
 										onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 											handleChangeMetadataField(index, 'field', e.target.value)
 										}
-										invalid={{ status: false, message: null }}
+										invalid={{
+											status: false,
+											message: null,
+										}}
 										disabled={false}
 										sm
 									/>
@@ -129,6 +154,7 @@ function FileMinerDropdown(props: {
 								handlePress={() => handleAddMetadata()}
 								height={52.5}
 								width={275}
+								disabled={getDisabled()}
 							/>
 						</S.MFooterWrapper>
 					</S.MWrapper>
@@ -151,6 +177,7 @@ export default function FileMiner() {
 
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [selectedData, setSelectedData] = React.useState<FileMetadataType[]>([]);
+	const [metadataUpdated, setMetadataUpdated] = React.useState<boolean>(false);
 
 	function handleFileChange(e: any) {
 		let newFiles = [...e.target.files].map((file: any) => {
@@ -174,6 +201,7 @@ export default function FileMiner() {
 				fileData.file.name === fileName ? { ...fileData, metadata: { ...fileData.metadata, ...newMetadata } } : fileData
 			)
 		);
+		setMetadataUpdated(true);
 	}
 
 	const handleUpload = async () => {
@@ -246,6 +274,10 @@ export default function FileMiner() {
 					<S.ELogo>
 						<ReactSVG src={ASSETS.file} />
 					</S.ELogo>
+					<S.ETitle>
+						<S.H2>{language.filesAndMetadata}</S.H2>
+					</S.ETitle>
+					<S.EInfo>{parse(language.selectChooseFiles)}</S.EInfo>
 					<S.EAction>
 						<Button
 							type={'alt2'}
@@ -260,34 +292,39 @@ export default function FileMiner() {
 	}
 
 	return (
-		<S.Wrapper>
-			<S.Header>
-				<S.DataWrapper>
-					<S.DataTitle>
-						<p>{`${language.filesSelected}:`}</p>
-					</S.DataTitle>
-					&nbsp;
-					<S.Data>
-						<p>{selectedData.length}</p>
-					</S.Data>
-				</S.DataWrapper>
-				<S.Actions>
-					<Button
-						type={'alt1'}
-						label={language.chooseFiles}
-						handlePress={() => fileInputRef.current.click()}
-						disabled={loading}
-					/>
-					<Button
-						type={'success'}
-						label={language.upload}
-						handlePress={handleUpload}
-						disabled={selectedData.length <= 0 || loading}
-					/>
-				</S.Actions>
-			</S.Header>
-			{getTable()}
-			<input ref={fileInputRef} type={'file'} multiple onChange={handleFileChange} />
-		</S.Wrapper>
+		<>
+			{metadataUpdated && (
+				<Notification type={'success'} message={language.metadataUpdated} callback={() => setMetadataUpdated(false)} />
+			)}
+			<S.Wrapper>
+				<S.Header>
+					<S.DataWrapper>
+						<S.DataTitle>
+							<p>{`${language.filesSelected}:`}</p>
+						</S.DataTitle>
+						&nbsp;
+						<S.Data>
+							<p>{selectedData.length}</p>
+						</S.Data>
+					</S.DataWrapper>
+					<S.Actions>
+						<Button
+							type={'alt1'}
+							label={language.chooseFiles}
+							handlePress={() => fileInputRef.current.click()}
+							disabled={loading}
+						/>
+						<Button
+							type={'success'}
+							label={language.upload}
+							handlePress={handleUpload}
+							disabled={selectedData.length <= 0 || loading}
+						/>
+					</S.Actions>
+				</S.Header>
+				{getTable()}
+				<input ref={fileInputRef} type={'file'} multiple onChange={handleFileChange} />
+			</S.Wrapper>
+		</>
 	);
 }

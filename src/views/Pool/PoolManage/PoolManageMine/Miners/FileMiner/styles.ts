@@ -86,8 +86,16 @@ export const ELogo = styled.div`
 	}
 `;
 
-export const EAction = styled.div`
+export const ETitle = styled.div`
 	margin: 30px 0;
+`;
+
+export const EInfo = styled.p`
+	margin: 0 0 30px 0;
+`;
+
+export const EAction = styled.div`
+	margin: 0 0 30px 0;
 `;
 
 export const MWrapper = styled.div`
@@ -133,6 +141,18 @@ export const FieldsWrapper = styled.div`
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	position: relative;
+`;
+
+export const FieldsHeader = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 0 20px 0;
+	p {
+		font-size: ${(props) => props.theme.typography.size.base};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		color: ${(props) => props.theme.colors.font.primary.alt4};
+	}
 `;
 
 export const RemoveAction = styled.div`
