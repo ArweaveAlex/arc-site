@@ -8,8 +8,10 @@ export const Wrapper = styled.div<{ top: number }>`
 	height: 100%;
 	width: 100%;
 	position: absolute;
+	position: fixed;
 	z-index: 11;
 	top: ${(props) => `${props.top.toString()}px`};
+	top: 0;
 	left: 0;
 	background: ${(props) => props.theme.colors.overlay.alt1};
 	backdrop-filter: blur(3px);
@@ -17,12 +19,11 @@ export const Wrapper = styled.div<{ top: number }>`
 `;
 
 export const Container = styled.div<{ noHeader: boolean; useMax: boolean | undefined }>`
-	height: 600px;
 	max-height: calc(100vh - 100px);
 	width: ${(props) => (props.useMax ? STYLING.cutoffs.max : '600px')};
 	max-width: 87.5vw;
 	background: ${(props) =>
-		props.noHeader ? props.theme.colors.transparent : props.theme.colors.container.alt4.background};
+		props.noHeader ? props.theme.colors.transparent : props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => (props.noHeader ? props.theme.colors.transparent : props.theme.colors.border.primary)};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	margin: 50px auto;
@@ -68,9 +69,8 @@ export const Close = styled.div`
 `;
 
 export const Body = styled.div`
-	height: calc(100% - 65px);
-	min-height: 500px;
 	width: 100%;
+	padding: 0 20px 20px 20px;
 `;
 
 export const BodyAlt = styled(Body)<{ zoom: boolean }>`
@@ -88,6 +88,7 @@ export const CloseTextContainer = styled.div<{ useMax: boolean | undefined }>`
 	top: 22.5px;
 	left: 50%;
 	transform: translate(-50%, 0);
+	padding: 0 20px;
 `;
 
 export const CloseTextContainerAlt = styled.div`

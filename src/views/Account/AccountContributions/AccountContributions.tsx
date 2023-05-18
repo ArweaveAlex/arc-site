@@ -1,38 +1,32 @@
 import React from 'react';
 
-import { PoolClient } from 'arcframework';
+import { PoolAdditionalPropsType, PoolClient } from 'arcframework';
 
+import { PoolTilesList } from 'global/PoolTilesList';
+import { language } from 'helpers/language';
+import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
-
-import { ContributionsList } from './ContributionsList';
-import * as S from './styles';
 
 export default function AccountContributions() {
 	const arProvider = useArweaveProvider();
 	const poolClient = new PoolClient();
 
-	const [data, setData] = React.useState<any>(null);
+	const [data, setData] = React.useState<PoolAdditionalPropsType[]>(null);
 
 	React.useEffect(() => {
 		if (arProvider.walletAddress) {
 			(async function () {
-				setData(
-					(await poolClient.getUserContributions(arProvider.walletAddress!)).map((element: any) => {
-						return element;
-					})
-				);
+				setData(await poolClient.getUserContributions(arProvider.walletAddress));
 			})();
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [arProvider.walletAddress]);
 
-	function getData() {
-		return (
-			<S.Wrapper>
-				<ContributionsList data={data} />
-			</S.Wrapper>
-		);
-	}
-
-	return getData();
+	return (
+		<PoolTilesList
+			header={language.contributions}
+			emptyDataMessage={language.noContributions}
+			data={data}
+			redirect={urls.pool}
+		/>
+	);
 }

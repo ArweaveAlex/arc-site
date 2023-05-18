@@ -44,7 +44,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 			<StampWidget
 				txId={props.data.artifactId}
 				walletAddress={arProvider.walletAddress}
-				warp={arClient.warp}
+				warp={arClient.warpDefault}
 				handleStampCallback={() => setShowStampWidget(false)}
 				showWalletConnect={true}
 			/>

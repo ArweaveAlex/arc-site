@@ -29,7 +29,6 @@ export default function OwnerCollectionsList(props: IProps) {
 								type={'alt2'}
 								label={language.create}
 								href={`${urls.collectionsManage}?owner=${props.owner}`}
-								noMinWidth
 							/>
 						</S.ELink>
 					</S.EWrapper>

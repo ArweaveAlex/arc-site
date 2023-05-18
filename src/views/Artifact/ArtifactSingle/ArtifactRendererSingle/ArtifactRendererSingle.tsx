@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { getRendererEndpoint, RENDER_WITH_VALUES } from 'arcframework';
-
+// import { getRendererEndpoint, RENDER_WITH_VALUES } from 'arcframework';
 import { DOM } from 'helpers/config';
 
 import * as S from './styles';
@@ -31,7 +30,8 @@ export default function ArtifactRendererSingle(props: IProps) {
 			<S.Frame
 				id={DOM.renderer}
 				ref={iframeRef}
-				src={getRendererEndpoint(RENDER_WITH_VALUES[0], props.artifactId)}
+				// src={getRendererEndpoint(RENDER_WITH_VALUES[0], props.artifactId)}
+				src={`https://arweave.net/fxYuggf1GYJZpIVOo_XBaRmvWQQDGPIXRgsqD2QLJEQ/?tx=${props.artifactId}`}
 				allowFullScreen
 			/>
 		</S.Wrapper>

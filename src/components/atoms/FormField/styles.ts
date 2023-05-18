@@ -13,9 +13,25 @@ export const Wrapper = styled.div<{ sm: boolean | undefined }>`
 	}
 `;
 
+export const TWrapper = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2.5px 0 0;
+`;
+
 export const Label = styled.label`
 	font-size: ${(props) => props.theme.typography.size.xSmall};
 	color: ${(props) => props.theme.colors.font.primary.alt1};
+`;
+
+export const Tooltip = styled.div`
+	p {
+		font-size: ${(props) => props.theme.typography.size.small};
+		line-height: 1.5;
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+	}
 `;
 
 export const Input = styled.input<{

@@ -58,11 +58,7 @@ export default function OwnerAccount(props: IProps) {
 
 	function getHeader() {
 		if (loading) {
-			return (
-				<S.LP>
-					<Loader placeholder />
-				</S.LP>
-			);
+			return <Loader />;
 		} else {
 			if (arProfile) {
 				return (
@@ -103,8 +99,6 @@ export default function OwnerAccount(props: IProps) {
 			} else {
 				return (
 					<S.FlexHeader>
-						<S.Header1>{props.header}</S.Header1>
-						&nbsp; &nbsp;
 						<S.Header2Container>
 							<S.Header2>{formatAddress(props.walletAddress, true)}</S.Header2>
 						</S.Header2Container>
@@ -116,9 +110,12 @@ export default function OwnerAccount(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<S.HeaderWrapper>
+			<S.HeaderWrapper className={'header-wrapper'}>
 				<S.HeaderContent>
-					<S.HeaderContainer>{getHeader()}</S.HeaderContainer>
+					<S.C1>
+						<h2>{language.account.header1}</h2>
+						{getHeader()}
+					</S.C1>
 					<S.ShareWrapper>
 						{urlCopied && (
 							<S.URLCopied>

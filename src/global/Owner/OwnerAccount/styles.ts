@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
@@ -10,9 +9,7 @@ export const Wrapper = styled.div`
 
 export const HeaderWrapper = styled.div`
 	width: 100%;
-	max-width: ${STYLING.cutoffs.max};
-	margin: calc(${STYLING.dimensions.navHeight} + 20px) auto 0 auto;
-	padding: 0 20px;
+	margin: 0 auto 20px auto;
 	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		height: auto;
 	}
@@ -21,24 +18,22 @@ export const HeaderWrapper = styled.div`
 export const HeaderContent = styled.div`
 	height: 100%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
-	padding: 30px 20px;
-	margin: 0 0 40px 0;
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
-	animation: ${open} ${fadeIn2};
-	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
 		align-items: start;
-		padding: 20px;
+		h2 {
+			margin: 0 0 10px 0;
+		}
 	}
 `;
 
-export const HeaderContainer = styled.div``;
+export const C1 = styled.div`
+	h2 {
+		margin: 0 0 20px 0;
+	}
+`;
 
 export const FlexHeader = styled.div`
 	display: flex;
@@ -136,7 +131,7 @@ export const URLCopied = styled.div`
 	position: absolute;
 	top: -25px;
 	left: -100px;
-	z-index: 3;
+	z-index: 5;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	padding: 6.5px 15px 5px 15px;
@@ -159,17 +154,15 @@ export const DiscordHandleCopied = styled(URLCopied)`
 export const TabsWrapper = styled.div`
 	height: calc(100% - 200px);
 	width: 100%;
+	margin: 40px 0 0 0;
 `;
 
-export const H1 = styled.h1`
-	font-size: 28px;
-	line-height: 1.25;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		font-size: 24px;
-	}
+export const H2 = styled.h2`
+	font-size: clamp(18px, 2.75vw, 26px);
+	margin: 0 !important;
 `;
 
-export const Header1 = styled(H1)`
+export const Header1 = styled(H2)`
 	color: ${(props) => props.theme.colors.font.primary.active.base};
 `;
 
@@ -184,10 +177,4 @@ export const Header2 = styled(Header1)`
 	font-family: ${(props) => props.theme.typography.family.primary};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
 	color: ${(props) => props.theme.colors.font.primary.alt4};
-`;
-
-export const LP = styled.div`
-	height: 60px;
-	width: 500px;
-	max-width: 75vw;
 `;

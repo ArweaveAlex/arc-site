@@ -35,11 +35,17 @@ export default function IconButton(props: IProps) {
 		}
 	}
 
+	function handlePress(e: React.MouseEvent) {
+		e.preventDefault();
+		e.stopPropagation();
+		props.handlePress();
+	}
+
 	function getAction() {
 		return (
 			<StyledButton
 				title={props.tooltip ? props.tooltip : null}
-				onClick={props.handlePress}
+				onClick={handlePress}
 				disabled={props.disabled}
 				sm={props.sm}
 				warning={props.warning}

@@ -1,16 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import {
-	CursorEnum,
-	FALLBACK_IMAGE,
-	getPoolById,
-	getPoolCount,
-	getTagValue,
-	getTxEndpoint,
-	PoolType,
-	TAGS,
-} from 'arcframework';
+import * as ArcFramework from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { getArtifactsByPool } from 'gql';
@@ -23,7 +14,7 @@ import { PoolStatistics } from './PoolStatistics';
 export default function Pool() {
 	const { id } = useParams();
 
-	const [headerData, setHeaderData] = React.useState<PoolType | null>(null);
+	const [headerData, setHeaderData] = React.useState<ArcFramework.PoolType | null>(null);
 
 	const [count, setCount] = React.useState<number | null>(null);
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
@@ -31,7 +22,7 @@ export default function Pool() {
 	React.useEffect(() => {
 		(async function () {
 			if (id) {
-				setHeaderData(await getPoolById(id));
+				setHeaderData(await ArcFramework.getPoolById(id));
 			}
 		})();
 	}, [id]);
@@ -48,7 +39,11 @@ export default function Pool() {
 				});
 
 				if (detailData && detailData.contracts.length > 0) {
-					setCount(await getPoolCount(getTagValue(detailData.contracts[0].node.tags, TAGS.keys.contractSrc)));
+					setCount(
+						await ArcFramework.getPoolCount(
+							ArcFramework.getTagValue(detailData.contracts[0].node.tags, ArcFramework.TAGS.keys.contractSrc)
+						)
+					);
 				} else {
 					setCount(0);
 				}
@@ -60,9 +55,13 @@ export default function Pool() {
 		(async function () {
 			if (headerData) {
 				const imageResponse = await fetch(
-					getTxEndpoint(headerData.state.image.length > 0 ? headerData.state.image : FALLBACK_IMAGE)
+					ArcFramework.getTxEndpoint(
+						headerData.state.image.length > 0 ? headerData.state.image : ArcFramework.FALLBACK_IMAGE
+					)
 				);
-				setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
+				setImageUrl(
+					imageResponse.status === 200 ? imageResponse.url : ArcFramework.getTxEndpoint(ArcFramework.FALLBACK_IMAGE)
+				);
 			}
 		})();
 	}, [headerData]);
@@ -96,7 +95,7 @@ export default function Pool() {
 			<PoolDetail
 				id={{ value: id, type: 'poolId' }}
 				cursorObject={{
-					key: CursorEnum.Search,
+					key: ArcFramework.CursorEnum.Search,
 					value: REDUX_TABLES.poolAll,
 				}}
 				uploader={headerData.state.owner}

@@ -143,7 +143,7 @@ export const LIBodyContainer = styled.div`
 	width: 45%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	padding: 10px 0;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: calc(100% - 20px);
 		margin: 20px 0 0 0;
@@ -153,6 +153,7 @@ export const LIBodyContainer = styled.div`
 export const LIBodyFlex = styled.div`
 	display: flex;
 	width: 100%;
+	margin: 0 0 20px 0;
 `;
 
 export const P = styled.p`
@@ -163,7 +164,7 @@ export const P = styled.p`
 `;
 
 export const LIBodyHeader = styled(P)`
-	color: ${(props) => props.theme.colors.font.primary.alt2};
+	color: ${(props) => props.theme.colors.font.primary.alt4};
 `;
 
 export const LIBodyData = styled(P)`

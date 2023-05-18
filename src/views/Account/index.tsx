@@ -20,7 +20,9 @@ export default function Account() {
 	}, [arProvider.walletAddress]);
 
 	return arProvider.walletAddress ? (
-		<OwnerAccount walletAddress={arProvider.walletAddress} header={language.account.header1} tabs={URLS.account} />
+		<div className={'view-wrapper max-cutoff'}>
+			<OwnerAccount walletAddress={arProvider.walletAddress} header={language.account.header1} tabs={URLS.account} />
+		</div>
 	) : (
 		showWalletBlock && <WalletBlock />
 	);

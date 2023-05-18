@@ -13,7 +13,6 @@ export const ListHeader = styled.div`
 `;
 
 export const List = styled.ol`
-	padding: 0 20px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -34,5 +33,4 @@ export const View = styled.div`
 	height: 100%;
 	width: 100%;
 	position: relative;
-	padding: 20px;
 `;
