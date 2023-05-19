@@ -89,7 +89,7 @@ import { PoolManageView } from 'views/Pool/PoolManage/PoolManageView';
 
 export const APP = {
 	key: 'appVersion',
-	version: '1.1.2',
+	version: '1.1.3',
 };
 
 export const ASSETS = {
