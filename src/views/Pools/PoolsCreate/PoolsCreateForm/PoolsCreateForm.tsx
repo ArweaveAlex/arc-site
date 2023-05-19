@@ -34,6 +34,17 @@ export default function PoolsCreateForm(props: IProps) {
 		if (file) {
 			reader.readAsDataURL(file);
 		}
+
+		const readerBuff = new FileReader();
+
+		readerBuff.onload = () => {
+			props.setImageBuffer(readerBuff.result);
+		};
+
+		if (file) {
+			readerBuff.readAsArrayBuffer(file);
+		}
+
 		setShowImageUploadAction(false);
 	}
 

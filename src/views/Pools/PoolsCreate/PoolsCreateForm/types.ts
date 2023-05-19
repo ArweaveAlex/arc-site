@@ -1,6 +1,8 @@
 export interface IProps {
 	image: any;
 	setImage: (e: any) => void;
+	imageBuffer: any;
+	setImageBuffer: (e: any) => void;
 	title: string | null;
 	setTitle: (e: any) => void;
 	contributionPercentage: number | null;

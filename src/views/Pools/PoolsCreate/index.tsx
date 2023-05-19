@@ -16,6 +16,7 @@ export default function PoolsCreate() {
 	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
 
 	const [image, setImage] = React.useState<any>(null);
+	const [imageBuffer, setImageBuffer] = React.useState<any>(null);
 	const [title, setTitle] = React.useState<string>('');
 	const [contributionPercentage, setContributionPercentage] = React.useState<number>(0);
 	const [topics, setTopics] = React.useState<string[]>([]);
@@ -49,8 +50,9 @@ export default function PoolsCreate() {
 				poolConfig.state.title = title;
 				poolConfig.state.description = description;
 				poolConfig.state.briefDescription = description;
-				poolConfig.state.image = image;
 				poolConfig.state.ownerMaintained = false;
+
+				const mimeType = image.split(',')[0].split(':')[1].split(';')[0];
 
 				poolConfig.state.owner.pubkey = arProvider.walletAddress;
 
@@ -60,6 +62,8 @@ export default function PoolsCreate() {
 
 				let poolClient = new ArcFramework.PoolCreateClient({
 					poolConfig,
+					img: imageBuffer,
+					imgFileType: mimeType,
 					controlWalletJwk,
 					signedControlWallet,
 					controlWalletAddress: arProvider.walletAddress,
@@ -87,6 +91,7 @@ export default function PoolsCreate() {
 			<PoolsCreateHeader />
 			<PoolsCreateForm
 				{...{ image, setImage }}
+				{...{ imageBuffer, setImageBuffer }}
 				title={title}
 				setTitle={handleTitleChange}
 				{...{ contributionPercentage, setContributionPercentage }}
