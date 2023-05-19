@@ -13,10 +13,11 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const HeaderContent = styled.div`
-	height: 100%;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 20px;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
 		align-items: start;
@@ -74,10 +75,30 @@ export const ID = styled(Subheader2)`
 	}
 `;
 
-export const FlexTiles = styled.div``;
+export const Actions = styled.div``;
+
+export const InfoWrapper = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		flex-direction: column;
+	}
+`;
+
+export const FlexTiles = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	height: fit-content;
+	width: fit-content;
+	margin: 40px 0;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		flex-direction: column;
+	}
+`;
 
 export const Tile = styled.div`
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
@@ -86,10 +107,10 @@ export const Tile = styled.div`
 	display: flex;
 	align-items: center;
 	width: fit-content;
-	margin: 0 0 10px auto;
-	@media (max-width: ${STYLING.cutoffs.tablet}) {
-		margin: 20px 0;
-	}
+`;
+
+export const TileAlt = styled(Tile)`
+	background: ${(props) => props.theme.colors.container.alt3.background};
 `;
 
 export const TileTitle = styled.div`

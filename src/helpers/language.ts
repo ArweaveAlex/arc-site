@@ -332,6 +332,7 @@ export const language = {
 			success: `Thank you for your contribution.`,
 		},
 	},
+	poolBalance: `Pool Balance`,
 	poolManage: {
 		mine: { title: 'Mine Artifacts' },
 		view: { title: 'View Artifacts' },
@@ -399,6 +400,7 @@ export const language = {
 	viewPool: `View Pool`,
 	visitDocs: `Visit Documentation`,
 	volume: `Volume`,
+	walletBalance: `Wallet Balance`,
 	walletNotConnected: `Connect a wallet to continue`,
 	willBeReceiving: `You will be receiving`,
 };

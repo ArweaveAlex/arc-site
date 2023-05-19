@@ -13,7 +13,11 @@ export const Header = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	margin: 0 0 20px 0;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		flex-direction: column;
+	}
 `;
 
 export const DataWrapper = styled.div`
@@ -40,6 +44,12 @@ export const Actions = styled.div`
 	display: flex;
 	button {
 		margin: 0 0 0 20px;
+	}
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		margin: 20px 0 0 0;
+		button {
+			margin: 0 20px 0 0;
+		}
 	}
 `;
 

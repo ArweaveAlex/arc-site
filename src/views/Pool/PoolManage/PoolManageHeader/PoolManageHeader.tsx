@@ -2,6 +2,7 @@ import React from 'react';
 
 import { formatAddress, formatCount, formatDate, PoolClient } from 'arcframework';
 
+import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { ASSETS } from 'helpers/config';
@@ -10,6 +11,8 @@ import { language } from 'helpers/language';
 import * as S from './styles';
 import { IProps } from './types';
 
+// TODO: get balances
+// TODO: eject
 export default function PoolManageHeader(props: IProps) {
 	const poolClient = new PoolClient();
 
@@ -73,15 +76,41 @@ export default function PoolManageHeader(props: IProps) {
 						<h2>{props.title ? `${language.managePool}: ${props.title}` : null}</h2>
 						{getSubheader()}
 					</S.Header>
+					<S.Actions>
+						<Button
+							type={'alt1'}
+							label={'Eject Pool Configuration'}
+							handlePress={() => console.log('Eject')}
+							height={52.5}
+							width={275}
+						/>
+					</S.Actions>
+				</S.HeaderContent>
+				<S.InfoWrapper>
 					<S.FlexTiles>
-						<S.Tile>
-							{(props.count || props.count === 0) && (
-								<S.TileTitle>
-									<p>{`${language.pool.artifactsCreated}:`}</p>
-								</S.TileTitle>
-							)}
+						<S.TileAlt>
+							<S.TileTitle>
+								<p>{`${language.poolBalance}:`}</p>
+							</S.TileTitle>
 							&nbsp;
-							<S.TileData>{getCount()}</S.TileData>
+							<S.TileData>
+								<p>{6.56}</p>
+								<S.TContainer>
+									<p>{language.arTokens}</p>
+								</S.TContainer>
+							</S.TileData>
+						</S.TileAlt>
+						<S.Tile>
+							<S.TileTitle>
+								<p>{`${language.walletBalance}:`}</p>
+							</S.TileTitle>
+							&nbsp;
+							<S.TileData>
+								<p>{10}</p>
+								<S.TContainer>
+									<p>{language.arTokens}</p>
+								</S.TContainer>
+							</S.TileData>
 						</S.Tile>
 						<S.Tile>
 							<S.TileTitle>
@@ -95,8 +124,17 @@ export default function PoolManageHeader(props: IProps) {
 								</S.TContainer>
 							</S.TileData>
 						</S.Tile>
+						<S.Tile>
+							{(props.count || props.count === 0) && (
+								<S.TileTitle>
+									<p>{`${language.pool.artifactsCreated}:`}</p>
+								</S.TileTitle>
+							)}
+							&nbsp;
+							<S.TileData>{getCount()}</S.TileData>
+						</S.Tile>
 					</S.FlexTiles>
-				</S.HeaderContent>
+				</S.InfoWrapper>
 			</S.HeaderWrapper>
 		</S.Wrapper>
 	);
