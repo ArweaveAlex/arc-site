@@ -210,7 +210,6 @@ export default function FileMiner() {
 
 	const handleUpload = async () => {
 		setLoading(true);
-		console.log(selectedData);
 		await uploadFiles(id, selectedData);
 		setLoading(false);
 	};

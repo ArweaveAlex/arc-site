@@ -53,7 +53,10 @@ export default function PoolsCreate() {
 				poolConfig.state.briefDescription = description;
 				poolConfig.state.ownerMaintained = false;
 
-				const mimeType = image.split(',')[0].split(':')[1].split(';')[0];
+				let mimeType = null;
+				if (image) {
+					mimeType = image.split(',')[0].split(':')[1].split(';')[0];
+				}
 
 				poolConfig.state.owner.pubkey = arProvider.walletAddress;
 

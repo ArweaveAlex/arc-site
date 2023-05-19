@@ -15,10 +15,8 @@ import { FileMetadataType } from 'helpers/types';
 export async function uploadFiles(poolId: string, files: FileMetadataType[]) {
 	let poolConfig = await initPoolConfigFromContract(poolId);
 	poolConfig.walletKey = window.arweaveWallet;
-	let poolClient = new PoolClient({ poolConfig, env: 'web' });
-	console.log(poolClient);
+	let poolClient = new PoolClient({ poolConfig });
 	await poolClient.bundlr.ready();
-	console.log(poolClient.bundlr);
 	for (let i = 0; i < files.length; i++) {
 		await uploadFile(poolClient, files[i]);
 	}
