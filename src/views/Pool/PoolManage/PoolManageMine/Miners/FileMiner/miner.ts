@@ -16,7 +16,7 @@ export async function uploadFiles(poolId: string, files: FileMetadataType[]) {
 	let poolConfig = await initPoolConfigFromContract(poolId);
 	poolConfig.walletKey = window.arweaveWallet;
 	let poolClient = new PoolClient({ poolConfig });
-	await poolClient.bundlr.ready();
+	await poolClient.arClient.bundlr.ready();
 	for (let i = 0; i < files.length; i++) {
 		await uploadFile(poolClient, files[i]);
 	}
@@ -30,7 +30,7 @@ async function uploadFile(poolClient: PoolClient, file: FileMetadataType) {
 
 	let fileTransactionId = await processFile(poolClient, file);
 
-	let metadataTx = poolClient.bundlr.createTransaction(JSON.stringify(file.metadata), {
+	let metadataTx = poolClient.arClient.bundlr.createTransaction(JSON.stringify(file.metadata), {
 		tags: [
 			{ name: TAGS.keys.application, value: TAGS.values.application },
 			{ name: TAGS.keys.contentType, value: CONTENT_TYPES.json },
@@ -74,7 +74,7 @@ async function processFile(poolClient: PoolClient, file: FileMetadataType) {
 	];
 	let actualFile = await toArrayBuffer(file.file);
 	console.log(actualFile);
-	const tx = poolClient.bundlr.createTransaction(actualFile, { tags: subTags });
+	const tx = poolClient.arClient.bundlr.createTransaction(actualFile, { tags: subTags });
 	await tx.sign();
 	const id = tx.id;
 	tx.upload();
