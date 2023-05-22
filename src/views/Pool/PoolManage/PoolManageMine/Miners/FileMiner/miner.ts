@@ -73,7 +73,6 @@ async function processFile(poolClient: PoolClient, file: FileMetadataType) {
 		{ name: TAGS.keys.contentType, value: mimeType },
 	];
 	let actualFile = await toArrayBuffer(file.file);
-	console.log(actualFile);
 	const tx = poolClient.arClient.bundlr.createTransaction(actualFile, { tags: subTags });
 	await tx.sign();
 	const id = tx.id;
