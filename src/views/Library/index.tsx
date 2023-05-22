@@ -7,5 +7,9 @@ import { language } from 'helpers/language';
 export default function Library() {
 	const { id } = useParams();
 
-	return <OwnerAccount walletAddress={id} header={language.library.header1} tabs={URLS.library} />;
+	return (
+		<div className={'view-wrapper max-cutoff'}>
+			<OwnerAccount walletAddress={id} header={language.library.header1} tabs={URLS.library} />
+		</div>
+	);
 }
