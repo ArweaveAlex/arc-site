@@ -80,7 +80,7 @@ import { AccountAll } from 'views/Account/AccountAll';
 import { AccountBookmarks } from 'views/Account/AccountBookmarks';
 // import { AccountCollections } from 'views/Account/AccountCollections';
 import { AccountContributions } from 'views/Account/AccountContributions';
-import { AccountPools } from 'views/Account/AccountPools';
+// import { AccountPools } from 'views/Account/AccountPools';
 import { LibraryAll } from 'views/Library/LibraryAll';
 import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
 import { PoolManageMine } from 'views/Pool/PoolManage/PoolManageMine';
@@ -299,14 +299,14 @@ export const URLS: IURLView = {
 			url: urls.accountAll,
 			view: AccountAll,
 		},
-		{
-			index: 1,
-			label: language.account.pools.title,
-			icon: ASSETS.pools,
-			disabled: false,
-			url: urls.accountPools,
-			view: AccountPools,
-		},
+		// {
+		// 	index: 1,
+		// 	label: language.account.pools.title,
+		// 	icon: ASSETS.pools,
+		// 	disabled: false,
+		// 	url: urls.accountPools,
+		// 	view: AccountPools,
+		// },
 		// {
 		// 	index: 2,
 		// 	label: language.account.collections.title,
