@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PoolAdditionalPropsType, PoolClient } from 'arcframework';
+import { PoolAdditionalPropsType, UserClient } from 'arcframework';
 
 import { PoolTilesList } from 'global/PoolTilesList';
 import { language } from 'helpers/language';
@@ -9,14 +9,15 @@ import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 export default function AccountContributions() {
 	const arProvider = useArweaveProvider();
-	const poolClient = new PoolClient();
 
 	const [data, setData] = React.useState<PoolAdditionalPropsType[]>(null);
 
 	React.useEffect(() => {
 		if (arProvider.walletAddress) {
+			let userClient = new UserClient(arProvider.walletAddress);
+
 			(async function () {
-				setData(await poolClient.getUserContributions(arProvider.walletAddress));
+				setData(await userClient.getUserContributions());
 			})();
 		}
 	}, [arProvider.walletAddress]);

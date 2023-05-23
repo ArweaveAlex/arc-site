@@ -6,6 +6,7 @@ import {
 	formatDate,
 	getPoolById,
 	PoolClient,
+	UserClient,
 	ValidationType,
 } from 'arcframework';
 
@@ -24,6 +25,7 @@ import { IProps } from './types';
 export default function PoolContribute(props: IProps) {
 	const arProvider = useArweaveProvider();
 	const poolClient = new PoolClient();
+	let userClient = new UserClient(arProvider.walletAddress);
 
 	const [amount, setAmount] = React.useState<number>(0);
 	const [loading, setLoading] = React.useState<boolean>(false);
@@ -41,7 +43,7 @@ export default function PoolContribute(props: IProps) {
 			}
 			if (arProvider.walletAddress && (props.contributors || contributors)) {
 				setReceivingPercent(
-					poolClient.getReceivingPercent(
+					userClient.getReceivingPercent(
 						arProvider.walletAddress,
 						props.contributors ? props.contributors : contributors,
 						props.totalContributions,
