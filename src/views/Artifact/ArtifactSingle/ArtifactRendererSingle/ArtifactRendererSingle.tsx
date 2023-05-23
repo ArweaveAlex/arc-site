@@ -31,7 +31,7 @@ export default function ArtifactRendererSingle(props: IProps) {
 				id={DOM.renderer}
 				ref={iframeRef}
 				// src={getRendererEndpoint(RENDER_WITH_VALUES[0], props.artifactId)}
-				src={`https://arweave.net/fxYuggf1GYJZpIVOo_XBaRmvWQQDGPIXRgsqD2QLJEQ/?tx=${props.artifactId}`}
+				src={`https://arweave.net/Gx1wLslTGv_julcgKvhqvtPCrsorGg2_lksrfMWX3KA/?tx=${props.artifactId}`}
 				allowFullScreen
 			/>
 		</S.Wrapper>
