@@ -1,0 +1,2 @@
+export const ADD_ACCOUNT_POOL = 'ADD_ACCOUNT_POOL';
+export const SET_ACCOUNT_POOLS = 'SET_ACCOUNT_POOLS';

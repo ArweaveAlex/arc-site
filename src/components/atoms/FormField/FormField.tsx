@@ -22,7 +22,7 @@ export default function FormField(props: IProps) {
 	return (
 		<>
 			{props.tooltip && showTooltip && (
-				<Modal header={props.label} handleClose={() => setShowTooltip(false)}>
+				<Modal header={props.tooltipLabel ? props.tooltipLabel : props.label} handleClose={() => setShowTooltip(false)}>
 					<S.Tooltip>
 						<p>{props.tooltip}</p>
 					</S.Tooltip>

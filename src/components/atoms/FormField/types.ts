@@ -17,4 +17,5 @@ export interface IProps {
 	sm?: boolean;
 	testingCtx?: string;
 	tooltip?: string;
+	tooltipLabel?: string;
 }

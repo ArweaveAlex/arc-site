@@ -75,7 +75,11 @@ export const ID = styled(Subheader2)`
 	}
 `;
 
-export const Actions = styled.div``;
+export const Actions = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+`;
 
 export const InfoWrapper = styled.div`
 	display: flex;
@@ -152,5 +156,17 @@ export const IDCopied = styled.div`
 		font-size: 12px;
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 		white-space: nowrap;
+	}
+`;
+
+export const TileInfo = styled.div`
+	margin: 2.5px 0 0 10px;
+`;
+
+export const PoolBalanceInfo = styled.div`
+	p {
+		font-size: ${(props) => props.theme.typography.size.small};
+		line-height: 1.5;
+		color: ${(props) => props.theme.colors.font.primary.alt1};
 	}
 `;

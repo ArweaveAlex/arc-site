@@ -8,7 +8,7 @@ import { language } from 'helpers/language';
 import * as S from './styles';
 import { IProps } from './types';
 
-export default function ContributionsList(props: IProps) {
+export default function PoolTilesList(props: IProps) {
 	const poolClient = new PoolClient();
 
 	function getData() {
@@ -105,6 +105,7 @@ export default function ContributionsList(props: IProps) {
 			<S.Header>
 				<S.HeaderFlex>
 					<S.H2>{props.header}</S.H2>
+					{props.action && <S.Action>{props.action}</S.Action>}
 				</S.HeaderFlex>
 			</S.Header>
 			<S.List>{getData()}</S.List>

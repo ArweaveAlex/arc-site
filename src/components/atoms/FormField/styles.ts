@@ -19,6 +19,9 @@ export const TWrapper = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 2.5px 0 0;
+	button {
+		margin: 0 !important;
+	}
 `;
 
 export const Label = styled.label`

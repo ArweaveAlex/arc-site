@@ -244,6 +244,8 @@ export const language = {
 	description: `Description`,
 	disconnect: `Disconnect`,
 	docsTitle: `Documentation`,
+	downloadPoolConfig: `Download Pool Configuration`,
+	downloadPoolConfigTooltip: `Download the necessary configuration file to operate this pool from the Alex. CLI`,
 	editSelectedArtifacts: `Edit Selected Artifacts`,
 	enterFullScreen: `Enter Full Screen`,
 	errorFetchingArtifact: `Error Fetching Artifact`,
@@ -268,6 +270,8 @@ export const language = {
 	invalidMetadataField: `Metadata fields must be unique`,
 	invalidQuery: `Invalid Query`,
 	invalidTitle: `Invalid Title`,
+	keywordTooltip: `Keywords are relevant values to a pool used to search through different platforms while mining artifacts, they also are attached to each artifact in a pool.`,
+	keywords: `Keywords`,
 	landingView: {
 		infoHeader1: `Contribute to a pool`,
 		infoSubheader1: `Anyone can become a sponsor of artifacts.`,
@@ -333,13 +337,14 @@ export const language = {
 		},
 	},
 	poolBalance: `Pool Balance`,
+	poolBalanceInfo: `This balance represents the funds currently available for mining use. The calculation of this value is based off of the total amount of contributions made to the pool, how recently those contributions were made, and the total overall balance of the wallet.`,
 	poolManage: {
 		mine: { title: 'Mine Artifacts' },
 		view: { title: 'View Artifacts' },
 	},
 	poolAlreadyExists: `This Pool Already Exists`,
 	poolCreated: `Success, Pool Created!`,
-	poolCreatedInfo: `Congratulations on starting a new pool! You will be able to start mining artifacts when the pool transaction has settled on the Arweave Network and a contribution to the pool has been made. You can find your pool from your account page.`,
+	poolCreatedInfo: `Congratulations on starting a new pool! You will be able to start mining artifacts when the pool transaction has settled on the Arweave Network and a contribution to the pool has been made. You can find your pool from the pools tab on your account page, and you can being managing your pool by clicking Manage Pool below.`,
 	poolOperator: `Alex. Pool Operator`,
 	pools: {
 		header1: `Pools`,

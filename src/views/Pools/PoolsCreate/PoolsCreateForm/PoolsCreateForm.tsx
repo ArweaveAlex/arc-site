@@ -5,10 +5,12 @@ import * as ArcFramework from 'arcframework';
 import { Button } from 'components/atoms/Button';
 import { ButtonLink } from 'components/atoms/ButtonLink';
 import { FormField } from 'components/atoms/FormField';
+import { IconButton } from 'components/atoms/IconButton';
 import { MultiSelect } from 'components/atoms/MultiSelect';
 import { Notification } from 'components/atoms/Notification';
 import { TextArea } from 'components/atoms/TextArea';
 import { Modal } from 'components/molecules/Modal';
+import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
@@ -26,25 +28,19 @@ export default function PoolsCreateForm(props: IProps) {
 	function handleImageUpload(event: any) {
 		const file = event.target.files[0];
 		const reader = new FileReader();
-
 		reader.onload = () => {
 			props.setImage(reader.result);
 		};
-
 		if (file) {
 			reader.readAsDataURL(file);
 		}
-
 		const readerBuff = new FileReader();
-
 		readerBuff.onload = () => {
 			props.setImageBuffer(readerBuff.result);
 		};
-
 		if (file) {
 			readerBuff.readAsArrayBuffer(file);
 		}
-
 		setShowImageUploadAction(false);
 	}
 
@@ -89,7 +85,7 @@ export default function PoolsCreateForm(props: IProps) {
 					callback={() => props.setPoolCreateError(false)}
 				/>
 			)}
-			{props.poolCreateSuccess && (
+			{props.createdPool && props.poolCreateSuccess && (
 				<Modal header={null} handleClose={() => props.setPoolCreateSuccess(false)}>
 					<S.SuccessModal>
 						<h2>{language.poolCreated}</h2>
@@ -101,8 +97,8 @@ export default function PoolsCreateForm(props: IProps) {
 						<p>{language.poolCreatedInfo}</p>
 						<ButtonLink
 							type={'primary'}
-							label={language.viewAccount}
-							href={urls.accountPools}
+							label={language.managePool}
+							href={urls.poolManageMine(props.createdPool.contracts.pool.id)}
 							height={52.5}
 							width={275}
 						/>
@@ -193,6 +189,47 @@ export default function PoolsCreateForm(props: IProps) {
 									disabled={props.loading}
 									invalid={{ status: false, message: null }}
 								/>
+								<S.KeywordsWrapper>
+									<S.KeywordsHeader>
+										<p>{language.keywords}</p>
+										<IconButton
+											type={'alt1'}
+											src={ASSETS.add}
+											handlePress={() => props.addKeyword()}
+											dimensions={{
+												icon: 10,
+												wrapper: 20,
+											}}
+										/>
+									</S.KeywordsHeader>
+									{props.keywords.map((keyword: string, index: number) => {
+										return (
+											<S.FlexField key={index}>
+												<FormField
+													label={`(${index + 1})`}
+													value={keyword}
+													onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+														props.setKeywords(e.target.value as any, index)
+													}
+													invalid={{ status: false, message: null }}
+													disabled={props.loading}
+													sm
+													tooltip={index < 1 ? language.keywordTooltip : null}
+													tooltipLabel={language.keywords}
+												/>
+												<IconButton
+													type={'alt1'}
+													src={ASSETS.remove}
+													handlePress={() => props.removeKeyword(index)}
+													dimensions={{
+														icon: 10,
+														wrapper: 20,
+													}}
+												/>
+											</S.FlexField>
+										);
+									})}
+								</S.KeywordsWrapper>
 								<TextArea
 									label={language.description}
 									value={props.description}

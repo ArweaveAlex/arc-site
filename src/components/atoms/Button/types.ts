@@ -17,5 +17,6 @@ export interface IProps {
 	noMinWidth?: boolean;
 	width?: number;
 	height?: number;
+	tooltip?: string;
 	testingCtx?: string;
 }

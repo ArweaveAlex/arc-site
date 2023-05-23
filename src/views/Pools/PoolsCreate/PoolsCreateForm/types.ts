@@ -1,3 +1,5 @@
+import * as ArcFramework from 'arcframework';
+
 export interface IProps {
 	image: any;
 	setImage: (e: any) => void;
@@ -9,6 +11,10 @@ export interface IProps {
 	setContributionPercentage: (e: any) => void;
 	topics: string[] | null;
 	setTopics: (e: any) => void;
+	keywords: string[] | null;
+	setKeywords: (e: any, index: number) => void;
+	addKeyword: () => void;
+	removeKeyword: (index: number) => void;
 	description: string | null;
 	setDescription: (e: any) => void;
 	handleSave: () => void;
@@ -18,4 +24,5 @@ export interface IProps {
 	setPoolCreateSuccess: (success: boolean) => void;
 	poolCreateError: boolean;
 	setPoolCreateError: (error: boolean) => void;
+	createdPool: ArcFramework.PoolConfigType | null;
 }

@@ -1,9 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import * as ArcFramework from 'arcframework';
 
 import * as windowUtils from 'helpers/window';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
+import * as accountActions from 'state/account/actions';
 import { WalletBlock } from 'wallet/WalletBlock';
 
 import { PoolsCreateForm } from './PoolsCreateForm';
@@ -11,6 +13,8 @@ import { PoolsCreateHeader } from './PoolsCreateHeader';
 
 // TODO: remove testMode
 export default function PoolsCreate() {
+	const dispatch = useDispatch();
+
 	const arProvider = useArweaveProvider();
 
 	const [loading, setLoading] = React.useState<boolean>(false);
@@ -21,11 +25,13 @@ export default function PoolsCreate() {
 	const [title, setTitle] = React.useState<string>('');
 	const [contributionPercentage, setContributionPercentage] = React.useState<number>(0);
 	const [topics, setTopics] = React.useState<string[]>([]);
+	const [keywords, setKeywords] = React.useState<string[]>(['']);
 	const [description, setDescription] = React.useState<string>('');
 
 	const [invalidTitle, setInvalidTitle] = React.useState<boolean>(false);
 
 	const [poolCreateSuccess, setPoolCreateSuccess] = React.useState<boolean>(false);
+	const [createdPool, setCreatedPool] = React.useState<ArcFramework.PoolConfigType | null>(null);
 	const [poolCreateError, setPoolCreateError] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
@@ -51,9 +57,11 @@ export default function PoolsCreate() {
 				poolConfig.state.title = title;
 				poolConfig.state.description = description;
 				poolConfig.state.briefDescription = description;
+				poolConfig.topics = topics;
+				poolConfig.keywords = keywords;
 				poolConfig.state.ownerMaintained = false;
 
-				const mimeType = image.split(',')[0].split(':')[1].split(';')[0];
+				const mimeType = image ? image.split(',')[0].split(':')[1].split(';')[0] : null;
 
 				poolConfig.state.owner.pubkey = arProvider.walletAddress;
 
@@ -63,16 +71,20 @@ export default function PoolsCreate() {
 
 				let poolClient = new ArcFramework.PoolCreateClient({
 					poolConfig,
-					img: imageBuffer,
+					img: imageBuffer ? imageBuffer : null,
 					imgFileType: mimeType,
 					controlWalletJwk,
 					signedControlWallet,
 					controlWalletAddress: arProvider.walletAddress,
 				});
 
+				setCreatedPool(poolConfig);
+
 				await poolClient.createPool();
+				dispatch(accountActions.addAccountPool(fromPoolConfigType(poolConfig)));
 				setPoolCreateSuccess(true);
 			} catch (e: any) {
+				console.log(e);
 				setPoolCreateError(true);
 			}
 		} else {
@@ -87,6 +99,24 @@ export default function PoolsCreate() {
 		setInvalidTitle(false);
 	};
 
+	const handleKeywordChange = (keyword: string, index: number) => {
+		if (index >= 0 && index < keywords.length) {
+			const newKeywords = [...keywords];
+			newKeywords[index] = keyword;
+			setKeywords(newKeywords);
+		}
+	};
+
+	const addKeyword = () => {
+		setKeywords((prevKeywords) => [...prevKeywords, '']);
+	};
+
+	const removeKeyword = (index: number) => {
+		if (index >= 0 && index < keywords.length) {
+			setKeywords((prevKeywords) => prevKeywords.filter((_, i) => i !== index));
+		}
+	};
+
 	return arProvider.walletAddress ? (
 		<div className={'view-wrapper max-cutoff'}>
 			<PoolsCreateHeader />
@@ -97,15 +127,40 @@ export default function PoolsCreate() {
 				setTitle={handleTitleChange}
 				{...{ contributionPercentage, setContributionPercentage }}
 				{...{ topics, setTopics }}
+				keywords={keywords}
+				setKeywords={handleKeywordChange}
+				addKeyword={addKeyword}
+				removeKeyword={removeKeyword}
 				{...{ description, setDescription }}
 				handleSave={() => handleSave()}
 				loading={loading}
 				invalidTitle={invalidTitle}
 				{...{ poolCreateSuccess, setPoolCreateSuccess }}
 				{...{ poolCreateError, setPoolCreateError }}
+				createdPool={createdPool}
 			/>
 		</div>
 	) : (
 		showWalletBlock && <WalletBlock />
 	);
+}
+
+function fromPoolConfigType(poolConfig: ArcFramework.PoolConfigType): ArcFramework.PoolType {
+	return {
+		id: poolConfig.contracts.pool.id,
+		state: {
+			title: poolConfig.state.title,
+			image: poolConfig.state.image,
+			briefDescription: poolConfig.state.briefDescription,
+			description: poolConfig.state.description,
+			owner: poolConfig.state.owner.pubkey,
+			ownerInfo: poolConfig.state.owner.info,
+			timestamp: poolConfig.state.timestamp,
+			contributors: {},
+			tokens: {},
+			totalContributions: '0',
+			totalSupply: '0',
+			balance: '0',
+		},
+	};
 }

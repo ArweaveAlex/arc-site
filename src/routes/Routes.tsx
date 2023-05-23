@@ -17,9 +17,9 @@ const Landing = getLazyImport('Landing');
 const Library = getLazyImport('Library');
 const NotFound = getLazyImport('NotFound');
 const Pool = getLazyImport('Pool');
-// const PoolManage = getLazyImport('Pool/PoolManage');
+const PoolManage = getLazyImport('Pool/PoolManage');
 const Pools = getLazyImport('Pools');
-// const PoolsCreate = getLazyImport('Pools/PoolsCreate');
+const PoolsCreate = getLazyImport('Pools/PoolsCreate');
 
 export default function _Routes() {
 	return (
@@ -41,14 +41,14 @@ export default function _Routes() {
 						</View>
 					}
 				/>
-				{/* <Route
+				<Route
 					path={`${urls.poolManage}:id/:active`}
 					element={
 						<View>
 							<PoolManage />
 						</View>
 					}
-				/> */}
+				/>
 				<Route
 					path={urls.pools}
 					element={
@@ -57,14 +57,14 @@ export default function _Routes() {
 						</View>
 					}
 				/>
-				{/* <Route
+				<Route
 					path={urls.poolsCreate}
 					element={
 						<View>
 							<PoolsCreate />
 						</View>
 					}
-				/> */}
+				/>
 				<Route
 					path={`${urls.library}:id/:active`}
 					element={

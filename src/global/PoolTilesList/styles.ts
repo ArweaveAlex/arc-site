@@ -25,6 +25,8 @@ export const HeaderFlex = styled.div`
 	justify-content: space-between;
 `;
 
+export const Action = styled.div``;
+
 export const H2 = styled.h2`
 	font-size: 28px;
 	font-family: ${(props) => props.theme.typography.family.alt1};

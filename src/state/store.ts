@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
+import { accountReducer } from './account/reducers';
 import { bookmarksReducer } from './artifacts/reducers';
 import { cursorsReducer } from './cursors/reducers';
 import { poolsReducer } from './pools/reducers';
@@ -18,6 +19,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+	accountReducer,
 	bookmarksReducer,
 	cursorsReducer,
 	poolsReducer,

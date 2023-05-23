@@ -8,6 +8,7 @@ import aboutStepsLogo2SVG from 'assets/about-steps-logo-2.svg';
 import aboutStepsLogo3SVG from 'assets/about-steps-logo-3.svg';
 import aboutStepsLogo4SVG from 'assets/about-steps-logo-4.svg';
 import menuActionSVG from 'assets/action-menu.svg';
+import addSVG from 'assets/add.svg';
 import allSVG from 'assets/all.svg';
 import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
 import arrowNextSVG from 'assets/arrow-next.svg';
@@ -59,6 +60,7 @@ import ownerSVG from 'assets/owner.svg';
 import poolSVG from 'assets/pool.svg';
 import poolsSVG from 'assets/pools.svg';
 import previewSVG from 'assets/preview.svg';
+import removeSVG from 'assets/remove.svg';
 import repliesSVG from 'assets/replies.svg';
 import retweetSVG from 'assets/retweet.svg';
 import searchSVG from 'assets/search.svg';
@@ -80,7 +82,7 @@ import { AccountAll } from 'views/Account/AccountAll';
 import { AccountBookmarks } from 'views/Account/AccountBookmarks';
 // import { AccountCollections } from 'views/Account/AccountCollections';
 import { AccountContributions } from 'views/Account/AccountContributions';
-// import { AccountPools } from 'views/Account/AccountPools';
+import { AccountPools } from 'views/Account/AccountPools';
 import { LibraryAll } from 'views/Library/LibraryAll';
 import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
 import { PoolManageMine } from 'views/Pool/PoolManage/PoolManageMine';
@@ -90,6 +92,7 @@ import { PoolManageView } from 'views/Pool/PoolManage/PoolManageView';
 export const APP = {
 	key: 'appVersion',
 	version: '1.1.3',
+	poolConfig: 'pools.json',
 };
 
 export const ASSETS = {
@@ -100,6 +103,7 @@ export const ASSETS = {
 	aboutStepsLogo2: aboutStepsLogo2SVG,
 	aboutStepsLogo3: aboutStepsLogo3SVG,
 	aboutStepsLogo4: aboutStepsLogo4SVG,
+	add: addSVG,
 	all: allSVG,
 	arrowNext: arrowNextSVG,
 	arrowPrevious: arrowPreviousSVG,
@@ -152,6 +156,7 @@ export const ASSETS = {
 	pool: poolSVG,
 	pools: poolsSVG,
 	preview: previewSVG,
+	remove: removeSVG,
 	replies: repliesSVG,
 	retweet: retweetSVG,
 	search: searchSVG,
@@ -299,14 +304,14 @@ export const URLS: IURLView = {
 			url: urls.accountAll,
 			view: AccountAll,
 		},
-		// {
-		// 	index: 1,
-		// 	label: language.account.pools.title,
-		// 	icon: ASSETS.pools,
-		// 	disabled: false,
-		// 	url: urls.accountPools,
-		// 	view: AccountPools,
-		// },
+		{
+			index: 1,
+			label: language.account.pools.title,
+			icon: ASSETS.pools,
+			disabled: false,
+			url: urls.accountPools,
+			view: AccountPools,
+		},
 		// {
 		// 	index: 2,
 		// 	label: language.account.collections.title,

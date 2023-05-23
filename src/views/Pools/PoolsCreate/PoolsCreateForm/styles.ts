@@ -131,20 +131,31 @@ export const Form = styled.form`
 
 export const Fields = styled.div`
 	padding: 20px 20px 0 20px;
-	background: ${(props) => props.theme.colors.container.alt4.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 `;
 
-export const FlexFields = styled.div`
+export const KeywordsWrapper = styled.div``;
+
+export const KeywordsHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	p {
+		font-size: ${(props) => props.theme.typography.size.xSmall};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+	}
 `;
 
 export const FlexField = styled.div`
-	width: 47.5%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	button {
+		margin: -15px 0 0 20px;
+	}
 `;
 
 export const SubmitContainer = styled.div`

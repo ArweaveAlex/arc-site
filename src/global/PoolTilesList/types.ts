@@ -5,4 +5,5 @@ export type IProps = {
 	emptyDataMessage: string;
 	data: PoolAdditionalPropsType[];
 	redirect: string | ((id: string) => string);
+	action?: React.ReactNode;
 };
