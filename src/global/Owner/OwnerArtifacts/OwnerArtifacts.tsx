@@ -1,23 +1,24 @@
 import React from 'react';
 
-import { PoolClient } from 'arcframework';
+import { UserClient } from 'arcframework';
 
 import { ArtifactsDetail } from 'global/ArtifactsDetail';
 
 import { IProps } from './types';
 
 export default function OwnerArtifacts(props: IProps) {
-	const poolClient = new PoolClient();
-
 	const [poolIds, setPoolIds] = React.useState<string[] | null>(null);
 
 	React.useEffect(() => {
 		(async function () {
 			if (props.owner) {
-				const contributions = await poolClient.getUserContributions(props.owner);
+				const userClient = new UserClient(props.owner);
+				const contributions = await userClient.getUserContributions();
+
 				const ids = contributions.map((contribution) => {
 					return contribution.id;
 				});
+
 				setPoolIds(ids);
 			}
 		})();

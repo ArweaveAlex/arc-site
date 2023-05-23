@@ -465,3 +465,5 @@ export const EXISTING_POOLS_FILTER = {
 		'GdtUa5Nr4lfhSNUAMg-r8ocncMgoJiKtHrb56cnVq-0',
 	],
 };
+
+export const POOL_TEST_MODE = true;

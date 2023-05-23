@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import * as ArcFramework from 'arcframework';
 
+import { POOL_TEST_MODE } from 'helpers/config';
 import * as windowUtils from 'helpers/window';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import * as accountActions from 'state/account/actions';
@@ -51,7 +52,7 @@ export default function PoolsCreate() {
 		const existingPool = await ArcFramework.checkExistingPool(title);
 		if (!existingPool) {
 			try {
-				let poolConfig = ArcFramework.initNewPoolConfig({ testMode: true });
+				let poolConfig = ArcFramework.initNewPoolConfig({ testMode: POOL_TEST_MODE });
 
 				poolConfig.state.controller.contribPercent = contributionPercentage;
 				poolConfig.state.title = title;
@@ -61,7 +62,10 @@ export default function PoolsCreate() {
 				poolConfig.keywords = keywords;
 				poolConfig.state.ownerMaintained = false;
 
-				const mimeType = image ? image.split(',')[0].split(':')[1].split(';')[0] : null;
+				let mimeType = null;
+				if (image) {
+					mimeType = image.split(',')[0].split(':')[1].split(';')[0];
+				}
 
 				poolConfig.state.owner.pubkey = arProvider.walletAddress;
 
@@ -69,7 +73,7 @@ export default function PoolsCreate() {
 				let signedControlWallet = new ArcFramework.ArweaveClient().warpPluginInjectedArweaveSigner(controlWalletJwk);
 				await signedControlWallet.setPublicKey();
 
-				let poolClient = new ArcFramework.PoolCreateClient({
+				let poolCreateClient = new ArcFramework.PoolCreateClient({
 					poolConfig,
 					img: imageBuffer ? imageBuffer : null,
 					imgFileType: mimeType,
@@ -80,7 +84,7 @@ export default function PoolsCreate() {
 
 				setCreatedPool(poolConfig);
 
-				await poolClient.createPool();
+				await poolCreateClient.createPool();
 				dispatch(accountActions.addAccountPool(fromPoolConfigType(poolConfig)));
 				setPoolCreateSuccess(true);
 			} catch (e: any) {

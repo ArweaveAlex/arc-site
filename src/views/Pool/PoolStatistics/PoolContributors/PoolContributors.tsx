@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { formatAddress, PoolClient } from 'arcframework';
+import { formatAddress, PoolClient, UserClient } from 'arcframework';
 
 import { Placeholder } from 'components/atoms/Placeholder';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -13,7 +14,8 @@ import { IProps } from './types';
 const ROW_COUNT = 3;
 
 export default function PoolContributors(props: IProps) {
-	const poolClient = new PoolClient();
+	let poolClient = new PoolClient();
+	const arProvider = useArweaveProvider();
 
 	function getBody(list: React.ReactNode[]) {
 		if (list.length <= 0) {
@@ -33,14 +35,16 @@ export default function PoolContributors(props: IProps) {
 
 	function getTopContributors() {
 		if (props.data) {
+			let userClient = new UserClient(arProvider.walletAddress);
+
 			const contributorList: React.ReactNode[] = [];
 			const contributors: any = props.data.state.contributors;
 
 			const sortedKeys: any = Object.keys(contributors)
 				.sort(function (a, b) {
 					return (
-						Number(poolClient.calcContributions(contributors[a])) -
-						Number(poolClient.calcContributions(contributors[b]))
+						Number(userClient.calcContributions(contributors[a])) -
+						Number(userClient.calcContributions(contributors[b]))
 					);
 				})
 				.reverse();
@@ -56,7 +60,7 @@ export default function PoolContributors(props: IProps) {
 						</S.Owner>
 						<S.Amount>
 							<p>
-								{poolClient.getARAmount(poolClient.calcContributions(props.data.state.contributors[sortedKeys[i]]))}
+								{poolClient.getARAmount(userClient.calcContributions(props.data.state.contributors[sortedKeys[i]]))}
 							</p>
 							&nbsp;
 							<span>{`${language.arTokens} ${language.total}`}</span>
@@ -73,6 +77,8 @@ export default function PoolContributors(props: IProps) {
 
 	function getRecentContributors() {
 		if (props.data) {
+			let userClient = new UserClient(arProvider.walletAddress);
+
 			const contributorList: React.ReactNode[] = [];
 			const contributorKeys = Object.keys(props.data.state.contributors).reverse();
 			for (let i = 0; i < contributorKeys.length; i++) {
@@ -84,7 +90,7 @@ export default function PoolContributors(props: IProps) {
 						<S.Amount>
 							<p>
 								{poolClient.getARAmount(
-									poolClient.calcContributions(props.data.state.contributors[contributorKeys[i]])
+									userClient.calcContributions(props.data.state.contributors[contributorKeys[i]])
 								)}
 							</p>
 							&nbsp;
