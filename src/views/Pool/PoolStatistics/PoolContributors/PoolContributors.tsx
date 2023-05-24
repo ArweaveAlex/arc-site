@@ -35,7 +35,7 @@ export default function PoolContributors(props: IProps) {
 
 	function getTopContributors() {
 		if (props.data) {
-			let userClient = new UserClient(arProvider.walletAddress);
+			let userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
 
 			const contributorList: React.ReactNode[] = [];
 			const contributors: any = props.data.state.contributors;
@@ -77,7 +77,7 @@ export default function PoolContributors(props: IProps) {
 
 	function getRecentContributors() {
 		if (props.data) {
-			let userClient = new UserClient(arProvider.walletAddress);
+			let userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
 
 			const contributorList: React.ReactNode[] = [];
 			const contributorKeys = Object.keys(props.data.state.contributors).reverse();
