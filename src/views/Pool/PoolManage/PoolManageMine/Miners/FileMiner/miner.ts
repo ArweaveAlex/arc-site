@@ -4,16 +4,19 @@ import {
 	getAlexType,
 	getAnsType,
 	getMimeType,
-	initPoolConfigFromContract,
 	PoolClient,
+	PoolConfigClient,
 	RENDER_WITH_VALUES,
 	TAGS,
 } from 'arcframework';
 
+import { POOL_TEST_MODE } from 'helpers/config';
 import { FileMetadataType } from 'helpers/types';
 
+// Interact with framework to mine files
 export async function uploadFiles(poolId: string, files: FileMetadataType[]) {
-	let poolConfig = await initPoolConfigFromContract(poolId);
+	let poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
+	const poolConfig = await poolConfigClient.initFromContract({ poolId });
 	poolConfig.walletKey = window.arweaveWallet;
 	let poolClient = new PoolClient({ poolConfig });
 	await poolClient.arClient.bundlr.ready();

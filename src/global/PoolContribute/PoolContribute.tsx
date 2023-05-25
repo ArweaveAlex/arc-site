@@ -24,8 +24,7 @@ import { IProps } from './types';
 
 export default function PoolContribute(props: IProps) {
 	const arProvider = useArweaveProvider();
-	const poolClient = new PoolClient();
-	let userClient = new UserClient(arProvider.walletAddress);
+	let userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
 
 	const [amount, setAmount] = React.useState<number>(0);
 	const [loading, setLoading] = React.useState<boolean>(false);
@@ -69,7 +68,8 @@ export default function PoolContribute(props: IProps) {
 		if (arProvider.availableBalance) {
 			e.preventDefault();
 			setLoading(true);
-			setContributionResult(await poolClient.handlePoolContribute(props.poolId, amount, arProvider.availableBalance));
+			let poolClient = new PoolClient({ poolId: props.poolId });
+			setContributionResult(await poolClient.handlePoolContribute(amount, arProvider.availableBalance));
 			setLoading(false);
 		}
 	}

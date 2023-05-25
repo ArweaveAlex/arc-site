@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { formatAddress, formatCount, formatDate, initPoolConfigFromContract, PoolClient } from 'arcframework';
+import { formatAddress, formatCount, formatDate, PoolClient, PoolConfigClient } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { ButtonLink } from 'components/atoms/ButtonLink';
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { Modal } from 'components/molecules/Modal';
-import { APP, ASSETS } from 'helpers/config';
+import { APP, ASSETS, POOL_TEST_MODE } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
@@ -76,7 +76,8 @@ export default function PoolManageHeader(props: IProps) {
 
 	const downloadPoolConfig = async () => {
 		setLoading(true);
-		const poolConfig = await initPoolConfigFromContract(props.id);
+		let poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
+		const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
 		const blob = new Blob([JSON.stringify(poolConfig, null, 4)], { type: 'application/json' });
 		const href = URL.createObjectURL(blob);
 		const link = document.createElement('a');

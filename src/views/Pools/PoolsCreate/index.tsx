@@ -52,7 +52,8 @@ export default function PoolsCreate() {
 		const existingPool = await ArcFramework.checkExistingPool(title);
 		if (!existingPool) {
 			try {
-				let poolConfig = ArcFramework.initNewPoolConfig({ testMode: POOL_TEST_MODE });
+				let poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
+				let poolConfig: ArcFramework.PoolConfigType = poolConfigClient.initNew();
 
 				poolConfig.state.controller.contribPercent = contributionPercentage;
 				poolConfig.state.title = title;
@@ -84,8 +85,9 @@ export default function PoolsCreate() {
 
 				setCreatedPool(poolConfig);
 
-				await poolCreateClient.createPool();
-				dispatch(accountActions.addAccountPool(fromPoolConfigType(poolConfig)));
+				let updatedPoolConfig = await poolCreateClient.createPool();
+
+				dispatch(accountActions.addAccountPool(fromPoolConfigType(updatedPoolConfig)));
 				setPoolCreateSuccess(true);
 			} catch (e: any) {
 				console.log(e);
