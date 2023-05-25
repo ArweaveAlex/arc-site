@@ -14,7 +14,7 @@ export default function AccountContributions() {
 
 	React.useEffect(() => {
 		if (arProvider.walletAddress) {
-			let userClient = new UserClient(arProvider.walletAddress);
+			let userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
 
 			(async function () {
 				setData(await userClient.getUserContributions());

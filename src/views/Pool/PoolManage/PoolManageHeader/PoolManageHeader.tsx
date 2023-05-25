@@ -1,6 +1,7 @@
 import React from 'react';
+import { ReactSVG } from 'react-svg';
 
-import { formatAddress, formatCount, formatDate, PoolClient, PoolConfigClient } from 'arcframework';
+import * as ArcFramework from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { ButtonLink } from 'components/atoms/ButtonLink';
@@ -10,19 +11,45 @@ import { Modal } from 'components/molecules/Modal';
 import { APP, ASSETS, POOL_TEST_MODE } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
-import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';
 import { IProps } from './types';
 
+// TODO: fund bundlr
 // TODO: get balances
+// TODO: progress bar
 export default function PoolManageHeader(props: IProps) {
-	const poolClient = new PoolClient();
-	const arProvider = useArweaveProvider();
-
+	const [poolClient, setPoolClient] = React.useState<any>(null);
 	const [copied, setCopied] = React.useState<boolean>(false);
 	const [loading, setLoading] = React.useState<boolean>(false);
+	const [balances, setBalances] = React.useState<ArcFramework.PoolBalancesType | null>(null);
 	const [showPoolBalanceInfo, setShowPoolBalanceInfo] = React.useState<boolean>(false);
+
+	// React.useEffect(() => {
+	// 	ArcFramework.initPoolConfigFromContract(props.id).then((poolConfig) => {
+	// 		setPoolClient(new ArcFramework.PoolClient({ poolConfig }));
+	// 	});
+	// }, []);
+
+	React.useEffect(() => {
+		(async function () {
+			let poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
+			const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
+			if (poolConfig) {
+				poolConfig.walletKey = window.arweaveWallet;
+				setPoolClient(new ArcFramework.PoolClient({ poolConfig }));
+			}
+		})();
+	}, []);
+
+	React.useEffect(() => {
+		(async function () {
+			if (poolClient) {
+				await poolClient.arClient.bundlr.ready();
+				setBalances(await poolClient.balances());
+			}
+		})();
+	}, [poolClient]);
 
 	const copyAddress = React.useCallback(async () => {
 		if (props.id) {
@@ -43,7 +70,7 @@ export default function PoolManageHeader(props: IProps) {
 					</S.Subheader1>
 					&nbsp;
 					<S.ID>
-						<p>{props.id ? formatAddress(props.id, false) : null}</p>
+						<p>{props.id ? ArcFramework.formatAddress(props.id, false) : null}</p>
 						<IconButton type={'primary'} src={ASSETS.copy} handlePress={copyAddress} sm />
 						{copied && (
 							<S.IDCopied>
@@ -59,7 +86,7 @@ export default function PoolManageHeader(props: IProps) {
 					</S.Subheader1>
 					&nbsp;
 					<S.Subheader2>
-						<p>{props.dateCreated ? formatDate(props.dateCreated, 'epoch') : null}</p>
+						<p>{props.dateCreated ? ArcFramework.formatDate(props.dateCreated, 'epoch') : null}</p>
 					</S.Subheader2>
 				</S.SubheaderContainer>
 			</S.SubheaderFlex>
@@ -68,15 +95,24 @@ export default function PoolManageHeader(props: IProps) {
 
 	function getCount() {
 		if (props.count || props.count === 0) {
-			return <p>{formatCount(props.count!.toString())}</p>;
+			return <p>{ArcFramework.formatCount(props.count!.toString())}</p>;
 		} else {
 			return <Loader sm />;
 		}
 	}
 
+	// TODO: calc pool balance
+	function getPoolBalance() {
+		if (balances && poolClient) {
+			return poolClient.getARAmount(balances.bundlrBalance).toFixed(3);
+		} else {
+			return '-';
+		}
+	}
+
 	const downloadPoolConfig = async () => {
 		setLoading(true);
-		let poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
+		let poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
 		const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
 		const blob = new Blob([JSON.stringify(poolConfig, null, 4)], { type: 'application/json' });
 		const href = URL.createObjectURL(blob);
@@ -88,6 +124,9 @@ export default function PoolManageHeader(props: IProps) {
 		document.body.removeChild(link);
 		setLoading(false);
 	};
+
+	const hasArweaveBalance = balances && balances.arweaveBalance > 0;
+	const hasBundlrBalance = balances && balances.bundlrBalance > 0;
 
 	return (
 		<>
@@ -101,63 +140,72 @@ export default function PoolManageHeader(props: IProps) {
 			<S.Wrapper>
 				<S.HeaderWrapper>
 					<S.HeaderContent>
-						<S.Header>
+						<S.H1>
 							<h2>{props.title ? `${language.managePool}: ${props.title}` : null}</h2>
 							{getSubheader()}
-						</S.Header>
-						<S.Actions>
-							<ButtonLink type={'alt2'} label={language.viewPool} href={`${urls.pool}${props.id}`} noMinWidth />
-							<ButtonLink type={'alt2'} label={language.viewAccount} href={`${urls.accountPools}`} noMinWidth />
-							<Button
-								type={'alt2'}
-								label={language.downloadPoolConfig}
-								handlePress={() => downloadPoolConfig()}
-								disabled={loading}
-								tooltip={language.downloadPoolConfigTooltip}
-							/>
-						</S.Actions>
+						</S.H1>
+						<S.H2>
+							{balances ? (
+								<>
+									<S.PoolBalance>
+										<S.TileTitle>
+											<p>{`${language.poolBalance}:`}</p>
+										</S.TileTitle>
+										&nbsp;
+										<S.TileData>
+											<p>{getPoolBalance()}</p>
+											<S.TContainer>
+												<p>{language.arTokens}</p>
+											</S.TContainer>
+										</S.TileData>
+										<S.TileInfo>
+											<IconButton
+												type={'primary'}
+												src={ASSETS.info}
+												handlePress={() => setShowPoolBalanceInfo(!showPoolBalanceInfo)}
+												sm
+											/>
+										</S.TileInfo>
+									</S.PoolBalance>
+									<S.ProgressWrapper>
+										<S.PIWrapper>
+											<S.ProgressIndicator completed={hasArweaveBalance}>
+												{hasArweaveBalance && <ReactSVG src={ASSETS.checkmark} />}
+											</S.ProgressIndicator>
+											<p>{language.funded}</p>
+										</S.PIWrapper>
+										<S.PD1 />
+										<S.PIWrapper>
+											<S.ProgressIndicator completed={hasBundlrBalance}>
+												{hasBundlrBalance && <ReactSVG src={ASSETS.checkmark} />}
+											</S.ProgressIndicator>
+											<p>{language.transferred}</p>
+										</S.PIWrapper>
+										<S.PD2 />
+										<S.PIWrapper>
+											<S.ProgressIndicator completed={hasArweaveBalance && hasBundlrBalance}>
+												{hasArweaveBalance && hasBundlrBalance && <ReactSVG src={ASSETS.checkmark} />}
+											</S.ProgressIndicator>
+											<p>{language.ready}</p>
+										</S.PIWrapper>
+									</S.ProgressWrapper>
+								</>
+							) : (
+								<Loader sm />
+							)}
+						</S.H2>
 					</S.HeaderContent>
 					<S.InfoWrapper>
 						<S.FlexTiles>
-							<S.TileAlt>
-								<S.TileTitle>
-									<p>{`${language.poolBalance}:`}</p>
-								</S.TileTitle>
-								&nbsp;
-								<S.TileData>
-									<p>{0.0}</p>
-									<S.TContainer>
-										<p>{language.arTokens}</p>
-									</S.TContainer>
-								</S.TileData>
-								<S.TileInfo>
-									<IconButton
-										type={'primary'}
-										src={ASSETS.info}
-										handlePress={() => setShowPoolBalanceInfo(!showPoolBalanceInfo)}
-										sm
-									/>
-								</S.TileInfo>
-							</S.TileAlt>
-							<S.Tile>
-								<S.TileTitle>
-									<p>{`${language.walletBalance}:`}</p>
-								</S.TileTitle>
-								&nbsp;
-								<S.TileData>
-									<p>{arProvider.availableBalance ? arProvider.availableBalance.toFixed(3) : `-`}</p>
-									<S.TContainer>
-										<p>{language.arTokens}</p>
-									</S.TContainer>
-								</S.TileData>
-							</S.Tile>
 							<S.Tile>
 								<S.TileTitle>
 									<p>{`${language.totalContributed}:`}</p>
 								</S.TileTitle>
 								&nbsp;
 								<S.TileData>
-									<p>{props.totalContributions ? poolClient.getARAmount(props.totalContributions) : null}</p>
+									<p>
+										{poolClient && props.totalContributions ? poolClient.getARAmount(props.totalContributions) : null}
+									</p>
 									<S.TContainer>
 										<p>{language.arTokens}</p>
 									</S.TContainer>
@@ -173,6 +221,24 @@ export default function PoolManageHeader(props: IProps) {
 								<S.TileData>{getCount()}</S.TileData>
 							</S.Tile>
 						</S.FlexTiles>
+						<S.Actions>
+							<Button
+								type={'alt1'}
+								label={language.fundPool}
+								handlePress={() => console.log('Fund pool')}
+								disabled={loading}
+								noMinWidth
+							/>
+							<ButtonLink type={'alt1'} label={language.viewPool} href={`${urls.pool}${props.id}`} noMinWidth />
+							<ButtonLink type={'alt1'} label={language.viewAccount} href={`${urls.accountPools}`} noMinWidth />
+							<Button
+								type={'alt1'}
+								label={language.downloadPoolConfig}
+								handlePress={() => downloadPoolConfig()}
+								disabled={loading}
+								tooltip={language.downloadPoolConfigTooltip}
+							/>
+						</S.Actions>
 					</S.InfoWrapper>
 				</S.HeaderWrapper>
 			</S.Wrapper>

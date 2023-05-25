@@ -12,7 +12,7 @@ export default function OwnerArtifacts(props: IProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (props.owner) {
-				const userClient = new UserClient(props.owner);
+				const userClient = new UserClient({ userWalletAddress: props.owner });
 				const contributions = await userClient.getUserContributions();
 
 				const ids = contributions.map((contribution) => {

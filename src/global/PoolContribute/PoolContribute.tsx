@@ -69,7 +69,9 @@ export default function PoolContribute(props: IProps) {
 			e.preventDefault();
 			setLoading(true);
 			let poolClient = new PoolClient({ poolId: props.poolId });
-			setContributionResult(await poolClient.handlePoolContribute(amount, arProvider.availableBalance));
+			setContributionResult(
+				await poolClient.handlePoolContribute({ amount: amount, availableBalance: arProvider.availableBalance })
+			);
 			setLoading(false);
 		}
 	}
