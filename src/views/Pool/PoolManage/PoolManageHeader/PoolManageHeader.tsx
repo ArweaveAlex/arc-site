@@ -15,7 +15,7 @@ import * as urls from 'helpers/urls';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: fund bundlr
+// TODO: fund bundlr (transfer funds)
 // TODO: get balances
 // TODO: progress bar
 export default function PoolManageHeader(props: IProps) {
@@ -24,12 +24,6 @@ export default function PoolManageHeader(props: IProps) {
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [balances, setBalances] = React.useState<ArcFramework.PoolBalancesType | null>(null);
 	const [showPoolBalanceInfo, setShowPoolBalanceInfo] = React.useState<boolean>(false);
-
-	// React.useEffect(() => {
-	// 	ArcFramework.initPoolConfigFromContract(props.id).then((poolConfig) => {
-	// 		setPoolClient(new ArcFramework.PoolClient({ poolConfig }));
-	// 	});
-	// }, []);
 
 	React.useEffect(() => {
 		(async function () {
@@ -104,7 +98,7 @@ export default function PoolManageHeader(props: IProps) {
 	// TODO: calc pool balance
 	function getPoolBalance() {
 		if (balances && poolClient) {
-			return poolClient.getARAmount(balances.bundlrBalance).toFixed(3);
+			return poolClient.getARAmount(balances.poolBalance).toFixed(3);
 		} else {
 			return '-';
 		}
@@ -125,8 +119,10 @@ export default function PoolManageHeader(props: IProps) {
 		setLoading(false);
 	};
 
-	const hasArweaveBalance = balances && balances.arweaveBalance > 0;
+	const hasPoolBalance = balances && balances.poolBalance > 0;
 	const hasBundlrBalance = balances && balances.bundlrBalance > 0;
+
+	console.log(balances);
 
 	return (
 		<>
@@ -169,8 +165,8 @@ export default function PoolManageHeader(props: IProps) {
 									</S.PoolBalance>
 									<S.ProgressWrapper>
 										<S.PIWrapper>
-											<S.ProgressIndicator completed={hasArweaveBalance}>
-												{hasArweaveBalance && <ReactSVG src={ASSETS.checkmark} />}
+											<S.ProgressIndicator completed={hasPoolBalance}>
+												{hasPoolBalance && <ReactSVG src={ASSETS.checkmark} />}
 											</S.ProgressIndicator>
 											<p>{language.funded}</p>
 										</S.PIWrapper>
@@ -183,8 +179,8 @@ export default function PoolManageHeader(props: IProps) {
 										</S.PIWrapper>
 										<S.PD2 />
 										<S.PIWrapper>
-											<S.ProgressIndicator completed={hasArweaveBalance && hasBundlrBalance}>
-												{hasArweaveBalance && hasBundlrBalance && <ReactSVG src={ASSETS.checkmark} />}
+											<S.ProgressIndicator completed={hasPoolBalance && hasBundlrBalance}>
+												{hasPoolBalance && hasBundlrBalance && <ReactSVG src={ASSETS.checkmark} />}
 											</S.ProgressIndicator>
 											<p>{language.ready}</p>
 										</S.PIWrapper>
@@ -204,7 +200,7 @@ export default function PoolManageHeader(props: IProps) {
 								&nbsp;
 								<S.TileData>
 									<p>
-										{poolClient && props.totalContributions ? poolClient.getARAmount(props.totalContributions) : null}
+										{poolClient && props.totalContributions ? poolClient.getARAmount(props.totalContributions) : `-`}
 									</p>
 									<S.TContainer>
 										<p>{language.arTokens}</p>
@@ -224,8 +220,8 @@ export default function PoolManageHeader(props: IProps) {
 						<S.Actions>
 							<Button
 								type={'alt1'}
-								label={language.fundPool}
-								handlePress={() => console.log('Fund pool')}
+								label={language.transferFunds}
+								handlePress={() => console.log('Transfer to bundlr')}
 								disabled={loading}
 								noMinWidth
 							/>
