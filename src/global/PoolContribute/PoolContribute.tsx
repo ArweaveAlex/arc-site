@@ -6,6 +6,7 @@ import {
 	formatDate,
 	getPoolById,
 	PoolClient,
+	PoolConfigClient,
 	UserClient,
 	ValidationType,
 } from 'arcframework';
@@ -15,7 +16,7 @@ import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
-import { ASSETS } from 'helpers/config';
+import { ASSETS, POOL_TEST_MODE } from 'helpers/config';
 import { language } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
@@ -68,7 +69,10 @@ export default function PoolContribute(props: IProps) {
 		if (arProvider.availableBalance) {
 			e.preventDefault();
 			setLoading(true);
-			let poolClient = new PoolClient({ poolId: props.poolId });
+			let poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
+			let poolConfig = await poolConfigClient.initFromContract({ poolId: props.poolId });
+			poolConfig.walletKey = 'use_wallet';
+			let poolClient = new PoolClient({ poolConfig });
 			setContributionResult(
 				await poolClient.handlePoolContribute({ amount: amount, availableBalance: arProvider.availableBalance })
 			);
