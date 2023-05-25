@@ -7,12 +7,13 @@ import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
+import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { Table } from 'components/organisms/Table';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
-import { AlignType, FileMetadataType } from 'helpers/types';
+import { AlignType, FileMetadataType, UploadingStatusType } from 'helpers/types';
 
 import { uploadFiles } from './miner';
 import * as S from './styles';
@@ -173,11 +174,10 @@ function FileMinerDropdown(props: {
 	);
 }
 
-// TODO: disable action dropdown - loading
 export default function FileMiner() {
 	const fileInputRef = React.useRef<any>(null);
 
-	const [loading, setLoading] = React.useState<boolean>(false);
+	const [uploadingStatus, setUploadingStatus] = React.useState<UploadingStatusType | null>(null);
 	const [selectedData, setSelectedData] = React.useState<FileMetadataType[]>([]);
 	const [metadataUpdated, setMetadataUpdated] = React.useState<boolean>(false);
 
@@ -209,9 +209,9 @@ export default function FileMiner() {
 	}
 
 	const handleUpload = async () => {
-		setLoading(true);
+		setUploadingStatus('uploading');
 		await uploadFiles(id, selectedData);
-		setLoading(false);
+		setUploadingStatus('complete');
 	};
 
 	function getHeader() {
@@ -287,11 +287,45 @@ export default function FileMiner() {
 							type={'alt2'}
 							label={language.chooseFiles}
 							handlePress={() => fileInputRef.current.click()}
-							disabled={loading}
+							disabled={uploadingStatus !== null}
 						/>
 					</S.EAction>
 				</S.EWrapper>
 			);
+		}
+	}
+
+	function getFileUploadStatus() {
+		if (uploadingStatus === 'uploading' || uploadingStatus === 'complete') {
+			return (
+				<>
+					<h2>{uploadingStatus === 'uploading' ? language.filesUploading : language.fileUploadComplete}</h2>
+					<S.Message>
+						<p>
+							{uploadingStatus === 'uploading'
+								? language.filesUploadingMessage
+								: language.filesUploadingMessageComplete}
+						</p>
+					</S.Message>
+					<S.ModalBottomContainer>
+						{uploadingStatus === 'uploading' ? (
+							<S.ModalLoadingContainer>
+								<Loader sm />
+							</S.ModalLoadingContainer>
+						) : (
+							<Button
+								type={'alt1'}
+								label={language.close}
+								handlePress={() => {
+									setUploadingStatus(null), setSelectedData([]);
+								}}
+							/>
+						)}
+					</S.ModalBottomContainer>
+				</>
+			);
+		} else {
+			return null;
 		}
 	}
 
@@ -300,6 +334,13 @@ export default function FileMiner() {
 			{metadataUpdated && (
 				<Notification type={'success'} message={language.metadataUpdated} callback={() => setMetadataUpdated(false)} />
 			)}
+
+			{uploadingStatus && (
+				<Modal header={null} handleClose={() => setUploadingStatus(null)} closeHidden>
+					<S.UploadingModalContainer>{getFileUploadStatus()}</S.UploadingModalContainer>
+				</Modal>
+			)}
+
 			<S.Wrapper>
 				<S.Header>
 					<S.DataWrapper>
@@ -316,13 +357,13 @@ export default function FileMiner() {
 							type={'alt1'}
 							label={language.chooseFiles}
 							handlePress={() => fileInputRef.current.click()}
-							disabled={loading}
+							disabled={uploadingStatus !== null}
 						/>
 						<Button
 							type={'success'}
 							label={language.upload}
 							handlePress={handleUpload}
-							disabled={selectedData.length <= 0 || loading}
+							disabled={selectedData.length <= 0 || uploadingStatus !== null}
 						/>
 					</S.Actions>
 				</S.Header>

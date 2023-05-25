@@ -78,3 +78,5 @@ export type FileMetadataType = {
 };
 
 export type StepType = 'prev' | 'next';
+
+export type UploadingStatusType = 'uploading' | 'complete';

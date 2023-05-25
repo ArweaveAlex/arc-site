@@ -177,3 +177,35 @@ export const MFooterWrapper = styled.div`
 		margin: 0 auto;
 	}
 `;
+
+export const UploadingModalContainer = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	padding: 20px;
+`;
+
+export const Message = styled.div`
+	margin: 20px 0 40px 0;
+	p {
+		line-height: 1.5;
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+		text-align: center;
+	}
+`;
+
+export const ModalBottomContainer = styled.div`
+	position: relative;
+	margin: 0 0 20px 0;
+`;
+
+export const ModalLoadingContainer = styled.div`
+	margin: 0 0 20px 0;
+`;

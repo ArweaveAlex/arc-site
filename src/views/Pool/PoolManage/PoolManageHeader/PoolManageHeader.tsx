@@ -16,8 +16,7 @@ import * as S from './styles';
 import { IProps } from './types';
 
 // TODO: fund bundlr (transfer funds)
-// TODO: get balances
-// TODO: progress bar
+// TODO: fix balances loader on new pool
 export default function PoolManageHeader(props: IProps) {
 	const [poolClient, setPoolClient] = React.useState<any>(null);
 	const [copied, setCopied] = React.useState<boolean>(false);
@@ -95,13 +94,19 @@ export default function PoolManageHeader(props: IProps) {
 		}
 	}
 
-	// TODO: calc pool balance
 	function getPoolBalance() {
 		if (balances && poolClient) {
-			return poolClient.getARAmount(balances.poolBalance).toFixed(3);
+			return poolClient.getARAmount(balances.bundlrBalance).toFixed(3);
 		} else {
 			return '-';
 		}
+	}
+
+	function getTransferDisabled() {
+		if (balances) {
+			return balances.poolBalance <= balances.bundlrBalance;
+		}
+		return true;
 	}
 
 	const downloadPoolConfig = async () => {
@@ -121,8 +126,6 @@ export default function PoolManageHeader(props: IProps) {
 
 	const hasPoolBalance = balances && balances.poolBalance > 0;
 	const hasBundlrBalance = balances && balances.bundlrBalance > 0;
-
-	console.log(balances);
 
 	return (
 		<>
@@ -222,7 +225,7 @@ export default function PoolManageHeader(props: IProps) {
 								type={'alt1'}
 								label={language.transferFunds}
 								handlePress={() => console.log('Transfer to bundlr')}
-								disabled={loading}
+								disabled={loading || getTransferDisabled()}
 								noMinWidth
 							/>
 							<ButtonLink type={'alt1'} label={language.viewPool} href={`${urls.pool}${props.id}`} noMinWidth />

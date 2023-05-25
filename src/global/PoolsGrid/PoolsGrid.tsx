@@ -22,7 +22,6 @@ import { CloseHandler } from 'wrappers/CloseHandler';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: PoolIndexType | PoolType
 function PoolTile(props: any) {
 	const poolClient = new PoolClient();
 

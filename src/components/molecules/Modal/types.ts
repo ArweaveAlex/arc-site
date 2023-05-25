@@ -7,4 +7,5 @@ export interface IProps {
 	noContainer?: boolean;
 	zoom?: boolean | undefined;
 	useMax?: boolean | undefined;
+	closeHidden?: boolean | undefined;
 }

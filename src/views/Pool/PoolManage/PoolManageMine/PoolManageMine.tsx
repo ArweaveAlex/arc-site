@@ -6,6 +6,7 @@ import { NavigationComponentType } from 'helpers/types';
 import { Navigation } from './Navigation';
 import * as S from './styles';
 
+// TODO: cost of storage before upload
 export default function PoolManageMine() {
 	const [currentSource, setCurrentSource] = React.useState<NavigationComponentType>(MINING_SOURCES[0]);
 
