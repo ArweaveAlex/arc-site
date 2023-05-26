@@ -28,6 +28,10 @@ export const Action = styled.div`
 	margin: 0;
 `;
 
+export const ActionNoInfo = styled.div`
+	margin: 0 0 0 10px;
+`;
+
 export const Title = styled.div`
 	width: fit-content;
 	padding: 2.5px 10px;

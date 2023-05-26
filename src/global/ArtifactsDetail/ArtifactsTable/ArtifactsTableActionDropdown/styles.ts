@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { STYLING } from 'helpers/styling';
+
 export const SubComponentContainer = styled.div`
 	min-height: 141.5px;
 	width: 600px;
@@ -36,10 +38,12 @@ export const StampWidgetContainer = styled(SubComponentContainer)`
 	min-height: 0;
 	width: fit-content;
 	top: 36.5px;
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;
 
 export const FactWidgetContainer = styled(SubComponentContainer)`
 	min-height: 0;
 	width: fit-content;
 	top: 69.5px;
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;

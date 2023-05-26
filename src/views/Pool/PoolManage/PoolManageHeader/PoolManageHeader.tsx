@@ -15,7 +15,6 @@ import * as urls from 'helpers/urls';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: fund bundlr (transfer funds)
 // TODO: fix balances loader on new pool
 export default function PoolManageHeader(props: IProps) {
 	const [poolClient, setPoolClient] = React.useState<any>(null);
@@ -23,6 +22,7 @@ export default function PoolManageHeader(props: IProps) {
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [balances, setBalances] = React.useState<ArcFramework.PoolBalancesType | null>(null);
 	const [showPoolBalanceInfo, setShowPoolBalanceInfo] = React.useState<boolean>(false);
+	const [fundsNotification, setFundsNotification] = React.useState<ArcFramework.NotificationResponseType | null>(null);
 
 	React.useEffect(() => {
 		(async function () {
@@ -53,6 +53,58 @@ export default function PoolManageHeader(props: IProps) {
 			}
 		}
 	}, [props.id]);
+
+	function getPoolBalance() {
+		if (balances && poolClient) {
+			return poolClient.getARAmount(balances.bundlrBalance).toFixed(3);
+		} else {
+			return '-';
+		}
+	}
+
+	function getTransferDisabled() {
+		if (balances) {
+			return balances.poolBalance <= 0;
+		}
+		return true;
+	}
+
+	async function transferFunds() {
+		if (balances && poolClient) {
+			try {
+				setLoading(true);
+				await poolClient.fundBundlr(balances.poolBalance);
+				setLoading(false);
+				setFundsNotification({
+					status: 200,
+					message: language.fundsTransferInitiatedMessage,
+				});
+			} catch (e: any) {
+				setFundsNotification({
+					status: 500,
+					message: language.fundsTransferFailedMessage,
+				});
+			}
+		}
+	}
+
+	async function downloadPoolConfig() {
+		setLoading(true);
+		let poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
+		const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
+		const blob = new Blob([JSON.stringify(poolConfig, null, 4)], { type: 'application/json' });
+		const href = URL.createObjectURL(blob);
+		const link = document.createElement('a');
+		link.href = href;
+		link.download = APP.poolConfig;
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+		setLoading(false);
+	}
+
+	const hasPoolBalance = balances && balances.poolBalance > 0;
+	const hasBundlrBalance = balances && balances.bundlrBalance > 0;
 
 	function getSubheader() {
 		return (
@@ -94,39 +146,6 @@ export default function PoolManageHeader(props: IProps) {
 		}
 	}
 
-	function getPoolBalance() {
-		if (balances && poolClient) {
-			return poolClient.getARAmount(balances.bundlrBalance).toFixed(3);
-		} else {
-			return '-';
-		}
-	}
-
-	function getTransferDisabled() {
-		if (balances) {
-			return balances.poolBalance <= balances.bundlrBalance;
-		}
-		return true;
-	}
-
-	const downloadPoolConfig = async () => {
-		setLoading(true);
-		let poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
-		const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
-		const blob = new Blob([JSON.stringify(poolConfig, null, 4)], { type: 'application/json' });
-		const href = URL.createObjectURL(blob);
-		const link = document.createElement('a');
-		link.href = href;
-		link.download = APP.poolConfig;
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
-		setLoading(false);
-	};
-
-	const hasPoolBalance = balances && balances.poolBalance > 0;
-	const hasBundlrBalance = balances && balances.bundlrBalance > 0;
-
 	return (
 		<>
 			{showPoolBalanceInfo && (
@@ -134,6 +153,16 @@ export default function PoolManageHeader(props: IProps) {
 					<S.PoolBalanceInfo>
 						<p>{language.poolBalanceInfo}</p>
 					</S.PoolBalanceInfo>
+				</Modal>
+			)}
+			{fundsNotification && (
+				<Modal
+					header={fundsNotification.status === 200 ? language.transferInitiated : language.transferFailed}
+					handleClose={() => setFundsNotification(null)}
+				>
+					<S.FundsNotificationMessage>
+						<p>{fundsNotification.message}</p>
+					</S.FundsNotificationMessage>
 				</Modal>
 			)}
 			<S.Wrapper>
@@ -224,16 +253,15 @@ export default function PoolManageHeader(props: IProps) {
 							<Button
 								type={'alt1'}
 								label={language.transferFunds}
-								handlePress={() => console.log('Transfer to bundlr')}
+								handlePress={transferFunds}
 								disabled={loading || getTransferDisabled()}
 								noMinWidth
 							/>
 							<ButtonLink type={'alt1'} label={language.viewPool} href={`${urls.pool}${props.id}`} noMinWidth />
-							<ButtonLink type={'alt1'} label={language.viewAccount} href={`${urls.accountPools}`} noMinWidth />
 							<Button
 								type={'alt1'}
 								label={language.downloadPoolConfig}
-								handlePress={() => downloadPoolConfig()}
+								handlePress={downloadPoolConfig}
 								disabled={loading}
 								tooltip={language.downloadPoolConfigTooltip}
 							/>

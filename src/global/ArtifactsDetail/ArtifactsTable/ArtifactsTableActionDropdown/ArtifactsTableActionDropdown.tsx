@@ -160,6 +160,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 						walletAddress={arProvider.walletAddress}
 						showWalletConnect={true}
 						warp={arClient.warpDefault}
+						arweave={arClient.arweavePost}
 						handleStampCallback={() => props.handleStampCallback()}
 					/>
 				</S.StampWidgetContainer>

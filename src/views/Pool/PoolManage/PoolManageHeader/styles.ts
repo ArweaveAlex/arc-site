@@ -245,8 +245,17 @@ export const TileInfo = styled.div`
 
 export const PoolBalanceInfo = styled.div`
 	p {
-		font-size: ${(props) => props.theme.typography.size.small};
 		line-height: 1.5;
+		font-size: ${(props) => props.theme.typography.size.small};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+	}
+`;
+
+export const FundsNotificationMessage = styled.div`
+	margin: 20px 0;
+	p {
+		line-height: 1.5;
+		font-size: ${(props) => props.theme.typography.size.small};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
 	}
 `;

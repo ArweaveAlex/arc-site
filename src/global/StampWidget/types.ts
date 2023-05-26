@@ -3,5 +3,6 @@ export interface IProps {
 	walletAddress: string | null;
 	showWalletConnect: boolean;
 	warp: any;
+	arweave: any;
 	handleStampCallback: () => void;
 }

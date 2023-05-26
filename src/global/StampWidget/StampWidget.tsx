@@ -62,14 +62,10 @@ function StampAction(props: { balance: number; handleSubmit: (amount: number) =>
 }
 
 export default function StampWidget(props: IProps) {
-	const stamps = Stamps.init({ warp: props.warp });
+	const stamps = Stamps.init({ warp: props.warp, arweave: props.arweave });
 
 	const [loading, setLoading] = React.useState<boolean>(true);
-	const [count, setCount] = React.useState<{
-		total: number;
-		vouched: number;
-		super: number;
-	} | null>(null);
+	const [count, setCount] = React.useState<any>(null);
 	const [updateCount, setUpdateCount] = React.useState<boolean>(false);
 	const [balance, setBalance] = React.useState<number>(0);
 
@@ -86,18 +82,31 @@ export default function StampWidget(props: IProps) {
 		} else {
 			setShowWalletConnect(false);
 		}
-	}, [props.walletAddress, props.showWalletConnect]);
+	}, [props.showWalletConnect]);
+
+	React.useEffect(() => {
+		(async function () {
+			if (props.txId) {
+				const hasStamped = await stamps.hasStamped(props.txId);
+				if (!hasStamped) {
+					setStampDisabled(false);
+				}
+			}
+		})();
+	}, [props.txId]);
 
 	React.useEffect(() => {
 		(async function () {
 			if (props.walletAddress) {
 				try {
-					setBalance(await stamps.balance(props.walletAddress));
-				} catch {}
+					setBalance(await stamps.balance());
+				} catch (e: any) {
+					console.error(e);
+				}
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.walletAddress]);
+	});
 
 	React.useEffect(() => {
 		(async function () {
@@ -110,21 +119,7 @@ export default function StampWidget(props: IProps) {
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.txId, updateCount, props.walletAddress]);
-
-	React.useEffect(() => {
-		(async function () {
-			if (props.txId && props.walletAddress) {
-				setStampCheckLoading(true);
-				const hasStamped = await stamps.hasStamped(props.walletAddress, props.txId);
-				setStampCheckLoading(false);
-				if (!hasStamped) {
-					setStampDisabled(false);
-				}
-			}
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.txId, props.walletAddress]);
+	}, [props.txId, updateCount]);
 
 	React.useEffect(() => {
 		if (count && !stampCheckLoading) {
@@ -132,7 +127,7 @@ export default function StampWidget(props: IProps) {
 		} else {
 			setLoading(true);
 		}
-	}, [count, stampCheckLoading, props.walletAddress]);
+	}, [count, stampCheckLoading]);
 
 	const handleStamp = React.useCallback(
 		async (amount?: number) => {
@@ -196,27 +191,26 @@ export default function StampWidget(props: IProps) {
 									src={ASSETS.stamp.default}
 									handlePress={() => handleStamp()}
 									disabled={disabled}
-									info={count.total.toString()}
+									info={count ? count.total.toString() : '0'}
 									tooltip={language.stamp}
 								/>
 							</S.Action>
-							<S.Action>
+							<S.ActionNoInfo>
 								<IconButton
 									type={'alt1'}
 									src={ASSETS.stamp.super}
 									handlePress={() => setShowStampAction(!showStampAction)}
 									disabled={disabled || balance <= 0 || showStampAction}
-									info={count.super.toString()}
 									tooltip={language.superStamp}
 								/>
-							</S.Action>
+							</S.ActionNoInfo>
 							<S.Action>
 								<IconButton
 									type={'alt3'}
 									src={ASSETS.stamp.vouched}
 									handlePress={null}
 									disabled={true}
-									info={count.vouched.toString()}
+									info={count ? count.vouched.toString() : '0'}
 									tooltip={language.stampsVouched}
 								/>
 							</S.Action>
