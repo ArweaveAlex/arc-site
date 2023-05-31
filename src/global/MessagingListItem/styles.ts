@@ -392,7 +392,7 @@ export const ImageContent = styled(MediaContent)<{ image: string }>`
 `;
 
 export const VideoContent = styled.video`
-	height: 100%;
+	height: 98.5%;
 	width: 100%;
 	cursor: pointer;
 	source {

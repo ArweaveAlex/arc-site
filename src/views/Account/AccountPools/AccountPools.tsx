@@ -19,9 +19,22 @@ export default function AccountPools() {
 	const [data, setData] = React.useState<ArcFramework.PoolType[] | null>(null);
 
 	React.useEffect(() => {
-		if (accountReducer.pools.data) {
-			setData(accountReducer.pools.data);
-		}
+		(async function () {
+			if (accountReducer.pools.data && accountReducer.pools.data.length > 0 && arProvider.walletAddress) {
+				if (arProvider.walletAddress === accountReducer.pools.data[0].state.owner) {
+					setData(accountReducer.pools.data);
+				} else {
+					if (arProvider.walletAddress) {
+						setData(await ArcFramework.getPoolsByOwner(arProvider.walletAddress));
+					}
+				}
+			} else {
+				if (arProvider.walletAddress) {
+					console.log('1');
+					setData(await ArcFramework.getPoolsByOwner(arProvider.walletAddress));
+				}
+			}
+		})();
 	}, [accountReducer.pools.data]);
 
 	function getAction() {

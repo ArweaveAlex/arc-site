@@ -1,4 +1,6 @@
-# Creating a pool
+# Creating a pool from the CLI.
+
+**If you used the User Interface to create a pool and would like to archive from sources that require the CLI, you can visit the Pools tab in your account and locate the pool that you created. After visiting that individual pool page, you can click 'Download Pool Configuration' to download the necessary configuration file needed to run further archiving processes. You will also need to create a wallets directory in the same directory as the stored configuration file that holds the wallet keyfile that owns the pool.**
 
 To create a pool you must complete the following steps:
 
@@ -61,21 +63,7 @@ Below is a screenshot of the **pools.json** file that has been initiated that no
 - **state.briefDescription**: A brief description of your pool. This description will appear on the [home page](https://alex.arweave.dev) of Alex.
 - **keywords**: A list of the main keywords to track in the mining process. This is the core driving data that instructs the mining programs of what to pull from mining sources such as Twitter, Wikipedia, Reddit, or Nostr
 - **topics** A list of one or more of the following topics
-  - **History**
-  - **Philosophy**
-  - **International**
-  - **Culture**
-  - **Art**
-  - **Music**
-  - **News**
-  - **Faith**
-  - **Science**
-  - **Spirituality**
-  - **Sports**
-  - **Business**
-  - **Technology**
-  - **Politics**
-  - **Other**
+  - **History**, **Philosophy**, **International**, **Culture**, **Art**, **Music**, **News**, **Faith**, **Science**, **Spirituality**, **Sports**, **Business**, **Technology**, **Politics**, **Other**
 - **controller.contribPercent**: A reward percentage of the contributions. This value can be from 0 - 100 and represents the total percentage of contributions that go to your control wallet for mining. If the value of **controller.contribPercent** is **10**, then **10%** of all contributions will go to your control wallet as a reward. This percentage will appear in the user interface to let contributors know how much of their contribution will go to the operator.
 - **controller.pubkey**: The public key for the control wallet that the percentage of contributions declared in **controller.contribPercent** will be sent to.
 

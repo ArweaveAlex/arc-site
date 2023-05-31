@@ -86,6 +86,7 @@ import { AccountPools } from 'views/Account/AccountPools';
 import { LibraryAll } from 'views/Library/LibraryAll';
 import { LibraryBookmarks } from 'views/Library/LibraryBookmarks';
 import { PoolManageMine } from 'views/Pool/PoolManage/PoolManageMine';
+import { DocMiner } from 'views/Pool/PoolManage/PoolManageMine/Miners/DocMiner';
 import { FileMiner } from 'views/Pool/PoolManage/PoolManageMine/Miners/FileMiner';
 import { PoolManageView } from 'views/Pool/PoolManage/PoolManageView';
 
@@ -376,7 +377,31 @@ export const URLS: IURLView = {
 };
 
 export const MINING_SOURCES: NavigationComponentType[] = [
-	{ label: language.miningSources.files, component: FileMiner },
+	{ label: language.miningSources.files, component: (disabled: boolean) => <FileMiner disabled={disabled} /> },
+	{
+		label: language.miningSources.twitter,
+		component: (disabled: boolean) => (
+			<DocMiner disabled={disabled} doc={'creating-a-pool/mining-artifacts'} id={'twitter'} />
+		),
+	},
+	{
+		label: language.miningSources.wikipedia,
+		component: (disabled: boolean) => (
+			<DocMiner disabled={disabled} doc={'creating-a-pool/mining-artifacts'} id={'wikipedia'} />
+		),
+	},
+	{
+		label: language.miningSources.reddit,
+		component: (disabled: boolean) => (
+			<DocMiner disabled={disabled} doc={'creating-a-pool/mining-artifacts'} id={'reddit'} />
+		),
+	},
+	{
+		label: language.miningSources.nostr,
+		component: (disabled: boolean) => (
+			<DocMiner disabled={disabled} doc={'creating-a-pool/mining-artifacts'} id={'nostr'} />
+		),
+	},
 ];
 
 export const POOL_SORT_OPTIONS = [
@@ -466,4 +491,4 @@ export const EXISTING_POOLS_FILTER = {
 	],
 };
 
-export const POOL_TEST_MODE = true;
+export const POOL_TEST_MODE = false;

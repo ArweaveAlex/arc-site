@@ -248,14 +248,15 @@ export const PoolBalanceInfo = styled.div`
 		line-height: 1.5;
 		font-size: ${(props) => props.theme.typography.size.small};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
 `;
 
 export const FundsNotificationMessage = styled.div`
-	margin: 20px 0;
 	p {
 		line-height: 1.5;
 		font-size: ${(props) => props.theme.typography.size.small};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
 `;

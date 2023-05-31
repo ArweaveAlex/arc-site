@@ -6,14 +6,27 @@ import * as ArcFramework from 'arcframework';
 import { Loader } from 'components/atoms/Loader';
 import { URLTabs } from 'components/organisms/URLTabs';
 import { URLS } from 'helpers/config';
+import { language } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
+import { WalletBlock } from 'wallet/WalletBlock';
 
 import { PoolManageHeader } from './PoolManageHeader';
 
-// TODO: wallet block
-// TODO: owner block
 export default function PoolManage() {
 	const { id } = useParams();
+
+	const arProvider = useArweaveProvider();
+
+	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
+
+	React.useEffect(() => {
+		setTimeout(() => {
+			if (!arProvider.walletAddress) {
+				setShowWalletBlock(true);
+			}
+		}, 200);
+	}, [arProvider.walletAddress]);
 
 	const [headerData, setHeaderData] = React.useState<ArcFramework.PoolType | null>(null);
 
@@ -84,12 +97,34 @@ export default function PoolManage() {
 		);
 	}
 
-	return headerData ? (
-		<div className={'view-wrapper max-cutoff'}>
-			{getPoolManageHeader()}
-			<URLTabs tabs={URLS.poolManage} activeUrl={URLS.poolManage[0]!.url} />
-		</div>
-	) : (
-		<Loader />
-	);
+	function getData() {
+		if (arProvider.walletAddress) {
+			if (headerData) {
+				if (arProvider.walletAddress === headerData.state.owner) {
+					return (
+						<div className={'view-wrapper max-cutoff'}>
+							{getPoolManageHeader()}
+							<URLTabs tabs={URLS.poolManage} activeUrl={URLS.poolManage[0]!.url} />
+						</div>
+					);
+				} else {
+					return (
+						<div className={'view-wrapper max-cutoff wrapper-600'}>
+							<p>{language.invalidWalletPoolManage}</p>
+						</div>
+					);
+				}
+			} else {
+				return <Loader />;
+			}
+		} else {
+			if (showWalletBlock) {
+				return <WalletBlock />;
+			} else {
+				return null;
+			}
+		}
+	}
+
+	return getData();
 }

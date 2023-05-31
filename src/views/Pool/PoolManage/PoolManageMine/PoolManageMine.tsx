@@ -1,16 +1,55 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
-import { MINING_SOURCES } from 'helpers/config';
+import * as ArcFramework from 'arcframework';
+
+import { MINING_SOURCES, POOL_TEST_MODE } from 'helpers/config';
 import { NavigationComponentType } from 'helpers/types';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import { Navigation } from './Navigation';
 import * as S from './styles';
 
-// TODO: cost of storage before upload
 export default function PoolManageMine() {
-	const [currentSource, setCurrentSource] = React.useState<NavigationComponentType>(MINING_SOURCES[0]);
+	const { id } = useParams();
 
-	const CurrentMiner = currentSource.component;
+	const arProvider = useArweaveProvider();
+
+	const [poolClient, setPoolClient] = React.useState<any>(null);
+	const [currentSource, setCurrentSource] = React.useState<NavigationComponentType>(MINING_SOURCES[0]);
+	const [balances, setBalances] = React.useState<ArcFramework.PoolBalancesType | null>(null);
+
+	React.useEffect(() => {
+		(async function () {
+			if (arProvider.walletAddress) {
+				let poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
+				const poolConfig = await poolConfigClient.initFromContract({ poolId: id });
+				if (poolConfig) {
+					poolConfig.walletKey = window.arweaveWallet;
+					setPoolClient(new ArcFramework.PoolClient({ poolConfig }));
+				}
+			}
+		})();
+	}, [arProvider.walletAddress]);
+
+	React.useEffect(() => {
+		(async function () {
+			if (poolClient) {
+				await poolClient.arClient.bundlr.ready();
+				setBalances(await poolClient.balances());
+			} else {
+				setBalances({
+					totalBalance: 0,
+					arweaveBalance: 0,
+					bundlrBalance: 0,
+					usedFunds: 0,
+					userBalance: 0,
+					poolBalance: 0,
+					transferBalance: 0,
+				});
+			}
+		})();
+	}, [poolClient]);
 
 	return (
 		<S.Wrapper>
@@ -21,7 +60,7 @@ export default function PoolManageMine() {
 				}
 			/>
 			<S.CMiner>
-				<CurrentMiner />
+				{currentSource.component(balances ? balances.poolBalance <= 0 || balances.transferBalance <= 0 : true)}
 			</S.CMiner>
 		</S.Wrapper>
 	);

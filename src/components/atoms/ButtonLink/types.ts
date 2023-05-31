@@ -6,6 +6,7 @@ export interface IProps {
 	type: ButtonType;
 	label: string | number | React.ReactNode;
 	href: string;
+	targetBlank?: boolean;
 	disabled?: boolean;
 	active?: boolean;
 	loading?: boolean;

@@ -69,7 +69,7 @@ export type ActionDropdownType = {
 
 export type NavigationComponentType = {
 	label: string;
-	component: React.ComponentType;
+	component: (disabled: boolean) => JSX.Element;
 };
 
 export type FileMetadataType = {

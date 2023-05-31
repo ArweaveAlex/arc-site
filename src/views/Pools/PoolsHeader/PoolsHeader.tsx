@@ -7,7 +7,7 @@ import * as S from './styles';
 
 export default function PoolsHeader() {
 	return (
-		<S.HeaderWrapper className={'header-wrapper'}>
+		<S.HeaderWrapper>
 			<S.HeaderContent>
 				<h2>{language.pools.header1}</h2>
 				<S.Actions>

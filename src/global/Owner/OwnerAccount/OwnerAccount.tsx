@@ -110,7 +110,7 @@ export default function OwnerAccount(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<S.HeaderWrapper className={'header-wrapper'}>
+			<S.HeaderWrapper>
 				<S.HeaderContent>
 					<S.C1>
 						<h2>{language.account.header1}</h2>

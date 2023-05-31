@@ -1,6 +1,5 @@
 const ARCONNECT_REDIRECT = 'https://www.arconnect.io/';
 const ARWEAVE_APP_REDIRECT = 'https://arweave.app/welcome';
-const DISCORD_REDIRECT = 'https://discord.gg/r3fj9m5AU5';
 
 export const language = {
 	about: `About`,
@@ -144,7 +143,7 @@ export const language = {
 		created for developers and creators to publically archive great digital works on Arweave.`,
 		detail: {
 			artifactTypes: `Artifacts are currently being preserved from:`,
-			action: `Learn About Wallets`,
+			action: `Learn about Wallets`,
 			section1: {
 				header: 'What does it mean?',
 				description:
@@ -172,10 +171,10 @@ export const language = {
 		},
 	},
 	contributionMessage: `Your contribution totals will be adjusted once your transfer has settled on the Arweave network.`,
-	contributionPercentage: `Contribution Percentage`,
+	contributionPercentage: `Management Fee`,
 	contributionPercentageMessage: (percentage: string) =>
-		`* This Pool Operator will claim ${percentage}% of the contribution as a reward fee.`,
-	contributionPercentageTooltip: `This value represents a reward percentage of the contributions. This value can be from 0 - 100 and represents the total percentage of contributions that go to your control wallet for mining. If the value of Contribution Percentage is 10, then 10% of all contributions will go to your control wallet as a reward. This percentage will appear in the user interface to let contributors know how much of their contribution will go to the operator.`,
+		`* This Pool Operator will claim ${percentage}% of the contribution as a management fee.`,
+	contributionPercentageTooltip: `This value represents a management fee of the contributions. This value can be from 0 - 100 and represents the total percentage of contributions that go to your control wallet for mining. If the value of Management Fee is 10, then 10% of all contributions will remain in your wallet as your personal funds. This percentage will appear in the user interface to let contributors know how much of their contribution will go to the operator.`,
 	contributions: `Contributions`,
 	contributors: {
 		recent: `Recent Contributors`,
@@ -191,25 +190,32 @@ export const language = {
 	createView: {
 		header1: `Create with Alex.`,
 		steps: {
-			header1: `How to create a pool`,
-			header2: `For full documentation, please visit our Docs`,
 			display: `Step`,
 			list: [
 				{
 					header: `Think of a topic to archive`,
 					description: `This can be a <span>historical event, current event, cultural topic, innovation, or anything that can be digitally preserved.</span> Once you have your topic, you must decide where you will mine the artifacts from. It can be from social media <span>(Twitter, Reddit, Nostr), websites (Wikipedia),</span> or your own <span>personal archive.</span>`,
-				},
-				{
-					header: `Initiate the pool`,
-					description: `By following our documentation you will have all of the steps needed to start the pool. This must be done via a CLI on a local machine because we aim to keep Alex. decentralized with no user data stored on our platform. If you do not have much experience with CLI’s or have any questions our dev team can assist you in our <a target="_blank" href=${DISCORD_REDIRECT}>Discord server</a>.`,
 					action: {
-						label: `Visit Pool Documentation`,
-						href: `/docs/creating-a-pool/getting-started`,
+						label: `Current Pools`,
+						href: `/pools`,
 					},
 				},
 				{
-					header: `Configure the pool`,
-					description: `This is where you will include all necessary information to display the pool on the pools page and start mining. This includes writing a description of the pool, including a header image, keywords, and determining the percentage of <span>($AR)</span> that will be collected from contributors. If social media channels will be mined, this step will also require inputting API keys.`,
+					header: `Connect your wallet`,
+					description: `Before building a pool, you must connect your Arweave wallet. You can connect your wallet in Alex. by selecting Connect Wallet in the navigation menu. You can create a wallet at <a target="_blank" href=${ARCONNECT_REDIRECT}>arconnect.io</a> or <a target="_blank" href=${ARWEAVE_APP_REDIRECT}>arweave.app</a>.`,
+					action: {
+						label: `Learn about Wallets`,
+						href: `https://cookbook.arweave.dev/concepts/keyfiles-and-wallets.html`,
+						targetBlank: true,
+					},
+				},
+				{
+					header: `Build the Pool`,
+					description: `You can start building your pool from our pool creation page. This is where you will include all necessary information to display the pool on the pools page and start mining. This includes writing a description of the pool, including a header image, keywords, and determining the percentage of contributions that you will receive as a management fee.`,
+					action: {
+						label: `Create a Pool`,
+						href: `/pools/create`,
+					},
 				},
 				{
 					header: `Fund the pool`,
@@ -220,8 +226,8 @@ export const language = {
 					},
 				},
 				{
-					header: `Start mining`,
-					description: `If you are mining from social media, you can use the commands from the mining section of the documentation to see specific platforms and parameters. On the pools page you will start to see the artifact count grow. <span>The key to running a good pool that users want to contribute to is consistent and accurate mining based on the pool topic.</span>`,
+					header: `Start archiving`,
+					description: `Once you receive contributions, you can then begin archiving. You may upload files directly from the User Interface. Your pool can be found from the pools tab in your account. If you are archiving from social media, you can follow our documentation to archive from specific platforms. On your specific pool page you will see artifacts start to accrue. The key to running a successful pool is consistent and accurate archiving based on the pool topic.`,
 					action: {
 						label: `Visit Mining Documentation`,
 						href: `/docs/creating-a-pool/mining-artifacts`,
@@ -270,7 +276,7 @@ export const language = {
 	filterBy: `Filter By`,
 	funded: `Funded`,
 	fundsTransferFailedMessage: `There was a problem transferring your funds. It could be due to existing funds currently processing in the network.`,
-	fundsTransferInitiatedMessage: `Your transfer has been initiated. It usually takes 20 - 30 minutes for the transfer to complete. You can verify the transfer by checking the funds progress bar on this screen.`,
+	fundsTransferInitiatedMessage: `Your transfer has been initiated. It usually takes 20 - 30 minutes for the transfer to complete. You can verify the transfer by checking the Pool Balance progress bar on this screen.`,
 	fundsTransferred: `Funds Transferred`,
 	handle: `Handle`,
 	headerImage: `Header Image`,
@@ -278,6 +284,7 @@ export const language = {
 	invalidMetadataField: `Metadata fields must be unique`,
 	invalidQuery: `Invalid Query`,
 	invalidTitle: `Invalid Title`,
+	invalidWalletPoolManage: `You do not have permission to manage this pool`,
 	keywordTooltip: `Keywords are relevant values to a pool used to search through different platforms while mining artifacts, they also are attached to each artifact in a pool.`,
 	keywords: `Keywords`,
 	landingView: {
@@ -285,10 +292,10 @@ export const language = {
 		infoSubheader1: `Anyone can become a sponsor of artifacts.`,
 		infoDescription1: `Pools are topics, events or ideas that are preserved digitally on Arweave. By contributing <b>($AR)</b> to pools, you pay for the storage space, and earn a stake in the artifacts mined into pools.`,
 		infoAction1: `Learn How to Contribute`,
-		infoHeader2: `Create a pool`,
+		infoHeader2: `Create a Pool`,
 		infoSubheader2: `Anyone can start preserving artifacts.`,
 		infoDescription2: `Anyone can start their own pool on any topic or idea they choose and earn <b>($AR)</b> for archiving. As the pool operator you can control what artifacts are mined and how much you earn.`,
-		infoAction2: `Learn How to Create`,
+		infoAction2: `Create a Pool`,
 	},
 	lastContribution: `Last Contribution`,
 	learnAboutCreating: `Learn About Creating`,
@@ -313,6 +320,10 @@ export const language = {
 	miningSource: `Mining Source`,
 	miningSources: {
 		files: 'Files',
+		twitter: 'Twitter',
+		wikipedia: 'Wikipedia',
+		reddit: 'Reddit',
+		nostr: 'Nostr',
 	},
 	name: `Name`,
 	navigation: `Navigation`,
@@ -345,7 +356,7 @@ export const language = {
 		},
 	},
 	poolBalance: `Pool Balance`,
-	poolBalanceInfo: `This balance represents the funds currently available for mining use. The calculation of this value is based off of the total amount of contributions made to the pool, how recently those contributions were made, and the total overall balance of the wallet. When contributions are made, they need to be transferred into another wallet before you can mine artifacts. This can be done by clicking 'Transfer Funds' from this screen.`,
+	poolBalanceInfo: `This balance represents the funds currently available for mining use. Note that this balance only represents funds contributed to this Alex. pool and not your total wallet balance.<br><br> When contributions are made, these funds must be transferred onto the network before you can mine artifacts. This can be done by clicking ‘Transfer Funds’ from this screen.`,
 	poolManage: {
 		mine: { title: 'Mine Artifacts' },
 		view: { title: 'View Artifacts' },

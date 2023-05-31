@@ -6,7 +6,6 @@ import { STYLING } from 'helpers/styling';
 export const NWrapper = styled.div`
 	height: auto;
 	width: 300px;
-	position: fixed;
 	backdrop-filter: blur(2px);
 	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
@@ -17,7 +16,6 @@ export const NWrapper = styled.div`
 `;
 
 export const NContent = styled.div`
-	height: 100%;
 	max-height: 700px;
 	width: 100%;
 	overflow: auto;

@@ -58,7 +58,7 @@ export default function ButtonLink(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<Link to={props.href}>
+			<Link to={props.href} target={props.targetBlank ? '_blank' : ''}>
 				<StyledButton
 					tabIndex={props.noFocus ? -1 : 0}
 					disabled={props.disabled}

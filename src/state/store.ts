@@ -1,5 +1,4 @@
 import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore } from 'redux';
-import { createLogger } from 'redux-logger';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
@@ -28,19 +27,17 @@ const rootReducer = combineReducers({
 	searchIndecesReducer,
 });
 
-const logger = createLogger();
-
 export type RootState = ReturnType<typeof store.getState>;
 const persistedReducer = persistReducer<any, any>(persistConfig, rootReducer);
 
 let composedEnhancer: any;
 if (window.__REDUX_DEVTOOLS_EXTENSION__) {
 	composedEnhancer = compose(
-		applyMiddleware(thunk, logger),
+		applyMiddleware(thunk),
 		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 	);
 } else {
-	composedEnhancer = compose(applyMiddleware(thunk, logger));
+	composedEnhancer = compose(applyMiddleware(thunk));
 }
 
 export type AppDispatch = typeof store.dispatch;

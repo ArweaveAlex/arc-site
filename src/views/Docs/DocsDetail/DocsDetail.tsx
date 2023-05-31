@@ -6,8 +6,15 @@ export default function DocsDetail() {
 	return (
 		<div className={'view-wrapper max-cutoff'}>
 			<S.Wrapper>
-				<Navigation />
-				<DocTemplate />
+				<S.HeaderWrapper>
+					<S.HeaderContent>
+						<h2>Docs</h2>
+					</S.HeaderContent>
+				</S.HeaderWrapper>
+				<S.BodyWrapper>
+					<Navigation />
+					<DocTemplate />
+				</S.BodyWrapper>
 			</S.Wrapper>
 		</div>
 	);

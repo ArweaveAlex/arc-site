@@ -16,7 +16,7 @@ export const docsOrder = [
 				path: 'getting-started',
 			},
 			{
-				name: 'Pool Creation',
+				name: 'Pool Creation (CLI)',
 				path: 'pool-creation',
 			},
 			{

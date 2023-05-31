@@ -72,7 +72,7 @@ export const Description = styled.div`
 	b {
 		color: ${(props) => props.theme.colors.font.primary.alt8};
 		font-size: clamp(17px, 2.35vw, 22px);
-		line-height: 1.5;
+		line-height: 1.75;
 		font-weight: 300;
 	}
 	b {

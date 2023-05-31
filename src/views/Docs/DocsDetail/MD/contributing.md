@@ -1,6 +1,6 @@
 # Contributing to a pool
 
-The Alex platform is developed in such a way so that anyone can contribute to preserving digital content. To contribute to a pool, you must navigate to the [pool page](https://alex.arweave.dev/#/pools) and click the contribute button.
+The Alex. Platform is developed in such a way so that anyone can contribute to preserving digital content. To contribute to a pool, you must navigate to the [pools page](https://alex.arweave.dev/#/pools), find a pool that you would like to contribute to, and click the contribute button.
 
 A popup screen will appear that requires you to connect your wallet and indicate how much $AR you would like to contribute.
 

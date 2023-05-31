@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
-export const Wrapper = styled.div`
-	width: calc(100% - 300px);
-	padding: 0 0 0 30px;
+export const Wrapper = styled.div<{ isView: boolean }>`
+	width: ${(props) => (props.isView ? 'calc(100% - 300px)' : '100%')};
+	padding: ${(props) => (props.isView ? '0 0 0 30px' : '0')};
 	animation: ${open} ${fadeIn2};
 	margin: 0 0 0 auto;
 
@@ -39,9 +39,16 @@ export const Wrapper = styled.div`
 
 	h2 {
 		font-size: clamp(22px, 3.05vw, 34px) !important;
+		scroll-margin-top: 100px;
+		a {
+			font-size: clamp(22px, 3.05vw, 34px) !important;
+		}
 	}
 	h3 {
 		font-size: clamp(18px, 2.05vw, 24px) !important;
+	}
+	h4 {
+		margin: 20px 0 10px 0;
 	}
 	h4,
 	h5,
@@ -115,8 +122,8 @@ export const Wrapper = styled.div`
 		background: ${(props) => props.theme.colors.container.alt3.background} !important;
 		border: 1px solid ${(props) => props.theme.colors.border.primary} !important;
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper} !important;
-		color: ${(props) => props.theme.colors.font.primary.active.base} !important;
-		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+		font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 		font-size: ${(props) => props.theme.typography.size.small} !important;
 	}
 
@@ -130,8 +137,8 @@ export const Wrapper = styled.div`
 			padding: 0 !important;
 			background: ${(props) => props.theme.colors.transparent} !important;
 			border: 1px solid ${(props) => props.theme.colors.transparent} !important;
-			color: ${(props) => props.theme.colors.font.primary.active.base} !important;
-			font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+			color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+			font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 			font-size: ${(props) => props.theme.typography.size.small} !important;
 			border-radius: 0 !important;
 			line-height: 1.5 !important;
@@ -160,8 +167,8 @@ export const CodeBlock = styled.div`
 		margin: 0 !important;
 		background: ${(props) => props.theme.colors.transparent} !important;
 		border: 1px solid ${(props) => props.theme.colors.transparent} !important;
-		color: ${(props) => props.theme.colors.font.primary.active.base} !important;
-		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+		font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 		font-size: ${(props) => props.theme.typography.size.small} !important;
 		border-radius: 0 !important;
 		line-height: 1.5 !important;

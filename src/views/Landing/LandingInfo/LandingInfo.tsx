@@ -57,7 +57,7 @@ export default function LandingInfo() {
 							<ButtonLink
 								type={'primary'}
 								label={language.landingView.infoAction2}
-								href={urls.create}
+								href={urls.poolsCreate}
 								height={52.5}
 								width={275}
 							/>

@@ -68,7 +68,7 @@ export const Subheader2 = styled.p`
 	font-family: ${(props) => props.theme.typography.family.primary};
 	color: ${(props) => props.theme.colors.font.primary.alt8};
 	text-align: center;
-	line-height: 1.5;
+	line-height: 1.75;
 	b {
 		font-size: clamp(18px, 2.5vw, 24px);
 		font-family: ${(props) => props.theme.typography.family.primary};

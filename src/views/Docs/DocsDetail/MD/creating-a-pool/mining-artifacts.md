@@ -1,6 +1,6 @@
 # Mining artifacts
 
-### Files and Documents
+## [Files and Documents](/#/docs/creating-a-pool/mining-artifacts#files)
 
 #### Renderer Supported File Types
 
@@ -53,9 +53,9 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory
 
 - Fill out the metadata file as follows
   - **FileName**: the only mandatory field which ties this entry in the file to the filename being mined
-  - **ArtifactName**: an optional name for the artifact that will show up in Alex
+  - **ArtifactName**: an optional name for the artifact that will show up in Alex.
   - **ArtifactGroup**: an optional grouping for the artifact, if multiple files have the same group they will be grouped together
-  - **ArtifactGroupSequence**: an ordering within the group, the lower numbers will display first in Alex
+  - **ArtifactGroupSequence**: an ordering within the group, the lower numbers will display first in Alex.
   - **MetaData**: can be any data fields you want to be stored alongside the file.
 
 **Mine a file with a metadata config**
@@ -76,7 +76,9 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./me
 arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./metafile.json --clear
 ```
 
-### Configure Twitter API Keys
+## [Twitter](/#/docs/creating-a-pool/mining-artifacts#twitter)
+
+#### Configure Twitter API Keys
 
 - Get Twitter API credentials [here](https://developer.twitter.com/en/docs/authentication/oauth-1-0a/api-key-and-secret). (Get elevated access for better mining, but not mandatory)
 - Enter credentials into **twitterApiKeys**
@@ -87,17 +89,9 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./me
   - **bearer_token** = **Bearer Token** in the Twitter developer platform
   - **clarifaiApiKey** if you plan to use content moderation on tweets in the mining process, you can get an api key from [Clarifai](https://www.clarifai.com/) and put it here. This will filter out explicit content from being mined into the pool. This is a bit expensive and unnecessary in most situations but if you are finding a lot of explicit content in the pool it may be of value to you.
 
-### Configure Reddit API Keys
-
-- **redditApiKeys** login or create a Reddit account and then get API access [here](https://www.reddit.com/prefs/apps)
-- Use **username** and **password** from Reddit
-- Insert **appId** and **appSecret** received from Reddit
-
 > **Before Mining:** double check the **keywords** in the **pools.json** to prevent unwanted artifacts in your pool.
 
 The mining process can begin in the directory containing the **pools.json** by running these commands.
-
-### Twitter
 
 **Mine tweets (runs 100 tweets at a time)**
 
@@ -123,15 +117,21 @@ For example: mine all tweets from SBF_FTX
 arcpool mine <POOL_ID> --source twitter --method user --username SBF_FTX
 ```
 
-### Wikipedia
+## [Wikipedia](/#/docs/creating-a-pool/mining-artifacts#wikipedia)
 
-**Mine a single Wikipedia article related to the given `keywords` in config**
+**Mine a single Wikipedia article related to the given keywords in config**
 
 ```sh
 arcpool mine <POOL_ID> --source wikipedia
 ```
 
-### Reddit
+## [Reddit](/#/docs/creating-a-pool/mining-artifacts#reddit)
+
+#### Configure Reddit API Keys
+
+- **redditApiKeys** login or create a Reddit account and then get API access [here](https://www.reddit.com/prefs/apps)
+- Use **username** and **password** from Reddit
+- Insert **appId** and **appSecret** received from Reddit
 
 **Mine Reddit posts by search term**
 
@@ -151,7 +151,7 @@ arcpool mine wildlife --source reddit --method subreddit --subreddit webdev
 arcpool mine wildlife --source reddit --method user --username exampleusername
 ```
 
-### Nostr
+## [Nostr](/#/docs/creating-a-pool/mining-artifacts#nostr)
 
 **Mine common Nostr threads for posts related to the keywords**
 
@@ -161,9 +161,9 @@ arcpool mine <POOL_ID> --source nostr
 
 ## Checking mining process
 
-After a few minutes of mining you can navigate back to your pool on Alex and see that the artifact count is growing and contributors are having artifacts minted to their addresses as expected.
+After a few minutes of mining you can navigate back to your pool on Alex. and see that the artifact count is growing and contributors are having artifacts minted to their addresses as expected.
 
-## Daemon mode mining
+#### Daemon mode mining
 
 If you wish to continually run a mining process, use daemon mode by passing the **--d** flag to any of the above mining commands. Daemon mode is built on top of pm2.
 

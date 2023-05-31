@@ -15,6 +15,8 @@ import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { AlignType, FileMetadataType, UploadingStatusType } from 'helpers/types';
 
+import { IProps } from '../types';
+
 import { uploadFiles } from './miner';
 import * as S from './styles';
 
@@ -174,7 +176,7 @@ function FileMinerDropdown(props: {
 	);
 }
 
-export default function FileMiner() {
+export default function FileMiner(props: IProps) {
 	const fileInputRef = React.useRef<any>(null);
 
 	const [uploadingStatus, setUploadingStatus] = React.useState<UploadingStatusType | null>(null);
@@ -182,6 +184,12 @@ export default function FileMiner() {
 	const [metadataUpdated, setMetadataUpdated] = React.useState<boolean>(false);
 
 	const { id } = useParams();
+
+	async function handleUpload() {
+		setUploadingStatus('uploading');
+		await uploadFiles(id, selectedData);
+		setUploadingStatus('complete');
+	}
 
 	function handleFileChange(e: any) {
 		let newFiles = [...e.target.files].map((file: any) => {
@@ -207,12 +215,6 @@ export default function FileMiner() {
 		);
 		setMetadataUpdated(true);
 	}
-
-	const handleUpload = async () => {
-		setUploadingStatus('uploading');
-		await uploadFiles(id, selectedData);
-		setUploadingStatus('complete');
-	};
 
 	function getHeader() {
 		return {
@@ -287,7 +289,7 @@ export default function FileMiner() {
 							type={'alt2'}
 							label={language.chooseFiles}
 							handlePress={() => fileInputRef.current.click()}
-							disabled={uploadingStatus !== null}
+							disabled={uploadingStatus !== null || props.disabled}
 						/>
 					</S.EAction>
 				</S.EWrapper>
@@ -357,18 +359,18 @@ export default function FileMiner() {
 							type={'alt1'}
 							label={language.chooseFiles}
 							handlePress={() => fileInputRef.current.click()}
-							disabled={uploadingStatus !== null}
+							disabled={uploadingStatus !== null || props.disabled}
 						/>
 						<Button
 							type={'success'}
 							label={language.upload}
 							handlePress={handleUpload}
-							disabled={selectedData.length <= 0 || uploadingStatus !== null}
+							disabled={selectedData.length <= 0 || uploadingStatus !== null || props.disabled}
 						/>
 					</S.Actions>
 				</S.Header>
 				{getTable()}
-				<input ref={fileInputRef} type={'file'} multiple onChange={handleFileChange} />
+				<input ref={fileInputRef} type={'file'} multiple onChange={handleFileChange} disabled={props.disabled} />
 			</S.Wrapper>
 		</>
 	);

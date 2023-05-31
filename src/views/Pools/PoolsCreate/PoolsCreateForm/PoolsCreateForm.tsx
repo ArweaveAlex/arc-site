@@ -86,7 +86,7 @@ export default function PoolsCreateForm(props: IProps) {
 				/>
 			)}
 			{props.createdPool && props.poolCreateSuccess && (
-				<Modal header={null} handleClose={() => props.setPoolCreateSuccess(false)}>
+				<Modal header={null} handleClose={() => props.setPoolCreateSuccess(false)} closeHidden={true}>
 					<S.SuccessModal>
 						<h2>{language.poolCreated}</h2>
 						<S.ModalDataLine>

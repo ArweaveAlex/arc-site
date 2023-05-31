@@ -53,7 +53,7 @@ export const StepDescription = styled.div`
 	color: ${(props) => props.theme.colors.font.primary.base};
 	font-size: clamp(17px, 2.35vw, 22px);
 	text-align: center;
-	line-height: 1.5;
+	line-height: 1.75;
 	margin: 20px 0 0 0;
 	max-width: 1000px;
 	b {

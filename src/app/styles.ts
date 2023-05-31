@@ -216,6 +216,8 @@ export const GlobalStyle = createGlobalStyle`
     animation: ${open} ${fadeIn2};
     p {
       font-weight: ${(props) => props.theme.typography.weight.medium};
+      text-align: center;
+      line-height: 1.5;
     }
   }
 `;

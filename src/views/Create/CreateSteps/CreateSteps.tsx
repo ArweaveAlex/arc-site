@@ -28,6 +28,7 @@ export default function CreateDetail() {
 										href={step.action.href}
 										height={52.5}
 										width={275}
+										targetBlank={step.action.targetBlank ? true : false}
 									/>
 								</S.Action>
 							)}

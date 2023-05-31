@@ -12,7 +12,6 @@ import { WalletBlock } from 'wallet/WalletBlock';
 import { PoolsCreateForm } from './PoolsCreateForm';
 import { PoolsCreateHeader } from './PoolsCreateHeader';
 
-// TODO: remove testMode
 export default function PoolsCreate() {
 	const dispatch = useDispatch();
 
