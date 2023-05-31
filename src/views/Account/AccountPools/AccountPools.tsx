@@ -30,7 +30,6 @@ export default function AccountPools() {
 				}
 			} else {
 				if (arProvider.walletAddress) {
-					console.log('1');
 					setData(await ArcFramework.getPoolsByOwner(arProvider.walletAddress));
 				}
 			}
