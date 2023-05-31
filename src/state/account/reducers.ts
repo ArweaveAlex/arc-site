@@ -5,7 +5,7 @@ import { AccountType } from './types';
 
 export const initStateAccount: AccountType = {
 	pools: {
-		data: null,
+		data: [],
 	},
 };
 
