@@ -8,7 +8,7 @@ export interface IProps {
 	showActions: boolean;
 	showPoolIds: boolean;
 	showSearch: boolean;
-	bookmarksDisabled: boolean;
+	ownerActionDisabled: boolean;
 	cursorObject: CursorObjectType;
 	selectCallback: ((id: string) => void) | null;
 	selectedCallbackIds: string[] | null;

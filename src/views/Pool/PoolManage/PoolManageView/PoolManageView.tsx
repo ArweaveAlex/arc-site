@@ -35,7 +35,7 @@ export default function PoolManageView() {
 			showActions={true}
 			showPoolIds={false}
 			showSearch={false}
-			bookmarksDisabled={true}
+			ownerActionDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
 			disabledSelectedCallbackIds={null}

@@ -69,7 +69,7 @@ export default function CollectionsManageHeader(props: IProps) {
 							showActions={true}
 							showPoolIds={true}
 							showSearch={false}
-							bookmarksDisabled={false}
+							ownerActionDisabled={false}
 							selectCallback={(id: string) => handleIdUpdate(id)}
 							selectedCallbackIds={props.selectedIds}
 							disabledSelectedCallbackIds={null}

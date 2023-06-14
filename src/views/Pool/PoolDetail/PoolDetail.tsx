@@ -16,7 +16,7 @@ export default function PoolDetail(props: IProps) {
 			showActions={true}
 			showPoolIds={false}
 			showSearch={false}
-			bookmarksDisabled={true}
+			ownerActionDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
 			disabledSelectedCallbackIds={null}

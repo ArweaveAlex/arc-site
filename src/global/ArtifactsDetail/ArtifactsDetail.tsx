@@ -123,7 +123,7 @@ export default function ArtifactsDetail(props: IProps) {
 			cursorObject={props.cursorObject}
 			setSearchRequested={(searchRequested: boolean) => setSearchRequested(searchRequested)}
 			showNoResults={showNoResults}
-			bookmarksDisabled={props.bookmarksDisabled}
+			ownerActionDisabled={props.ownerActionDisabled}
 			selectCallback={props.selectCallback}
 			selectedCallbackIds={props.selectedCallbackIds}
 			disabledSelectedCallbackIds={props.disabledSelectedCallbackIds}

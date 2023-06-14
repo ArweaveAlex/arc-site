@@ -19,7 +19,7 @@ export default function AccountAll() {
 			selectCallback={null}
 			selectedCallbackIds={null}
 			disabledSelectedCallbackIds={null}
-			bookmarksDisabled={false}
+			ownerActionDisabled={false}
 			cursorObject={{
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.accountAll,

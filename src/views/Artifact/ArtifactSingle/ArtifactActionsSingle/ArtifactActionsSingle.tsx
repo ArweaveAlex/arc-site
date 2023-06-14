@@ -4,6 +4,7 @@ import { ArweaveClient } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
+import { ArtifactSell } from 'global/ArtifactSell';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
 import { language } from 'helpers/language';
@@ -20,6 +21,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 	const [copied, setCopied] = React.useState<boolean>(false);
 	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
 	const [showFactWidget, setShowFactWidget] = React.useState<boolean>(false);
+	const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
 
 	const copyArtifactId = React.useCallback(async () => {
 		if (props.data.artifactId) {
@@ -32,11 +34,19 @@ export default function ArtifactActionsSingle(props: IProps) {
 	function handleShowStampWidget() {
 		setShowFactWidget(false);
 		setShowStampWidget(!showStampWidget);
+		setShowArtifactSell(false);
 	}
 
 	function handleShowFactWidget() {
 		setShowStampWidget(false);
 		setShowFactWidget(!showFactWidget);
+		setShowArtifactSell(false);
+	}
+
+	function handleShowArtifactSell() {
+		setShowStampWidget(false);
+		setShowFactWidget(false);
+		setShowArtifactSell(!showArtifactSell);
 	}
 
 	const stampWidget = () => {
@@ -58,6 +68,10 @@ export default function ArtifactActionsSingle(props: IProps) {
 		);
 	};
 
+	const artifactSell = () => {
+		return <ArtifactSell artifactId={props.data.artifactId} handleClose={() => setShowArtifactSell(false)} />;
+	};
+
 	function getWidget(widget: any, container: any, handleClose: () => void) {
 		if (checkDesktop()) {
 			const Container = container;
@@ -71,6 +85,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 		}
 	}
 
+	// TODO: hide sell if not owner
 	return props.data ? (
 		<S.Wrapper>
 			<S.ButtonsContainer>
@@ -99,6 +114,10 @@ export default function ArtifactActionsSingle(props: IProps) {
 						width={110}
 					/>
 					{showFactWidget && getWidget(factWidget, S.FactWidgetContainer, () => setShowFactWidget(false))}
+				</S.ButtonContainer>
+				<S.ButtonContainer>
+					<Button type={'alt2'} label={language.sellArtifact} handlePress={handleShowArtifactSell} noMinWidth />
+					{showArtifactSell && artifactSell()}
 				</S.ButtonContainer>
 			</S.ButtonsContainer>
 		</S.Wrapper>

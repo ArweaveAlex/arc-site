@@ -177,7 +177,7 @@ export default function ArtifactsTable(props: IProps) {
 				artifactId={artifactId}
 				tags={tags}
 				owner={props.owner}
-				bookmarksDisabled={props.bookmarksDisabled}
+				ownerActionDisabled={props.ownerActionDisabled}
 				handleStampCallback={() => setUpdateStamps(!updateStamps)}
 				handleViewedCallback={() => setUpdateViews(!updateViews)}
 				usePreviewModal={props.usePreviewModal}

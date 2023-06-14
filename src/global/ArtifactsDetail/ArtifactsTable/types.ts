@@ -13,7 +13,7 @@ export interface IProps {
 	cursorObject: CursorObjectType;
 	setSearchRequested: (searchRequested: boolean) => void;
 	showNoResults: boolean;
-	bookmarksDisabled: boolean;
+	ownerActionDisabled: boolean;
 	selectCallback: ((id: string) => void) | null;
 	selectedCallbackIds: string[] | null;
 	disabledSelectedCallbackIds: string[] | null;

@@ -15,6 +15,7 @@ import {
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
+import { ArtifactSell } from 'global/ArtifactSell';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
 import { DOM } from 'helpers/config';
@@ -58,6 +59,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
 	const [showFactWidget, setShowFactWidget] = React.useState<boolean>(false);
+	const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
 
 	const [bookmarkIdsState, setBookmarkIdsState] = React.useState<string[]>([]);
 
@@ -180,6 +182,13 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		};
 	}
 
+	function getArtifactSell() {
+		return {
+			node: <ArtifactSell artifactId={props.artifactId} handleClose={() => setShowArtifactSell(false)} />,
+			active: showArtifactSell,
+		};
+	}
+
 	function handleView() {
 		if (!sessionStorage.getItem(props.artifactId)) {
 			props.handleViewedCallback();
@@ -204,6 +213,13 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		setShowFactWidget(!showFactWidget);
 		setShowPreview(false);
 		setShowStampWidget(false);
+	}
+
+	function handleShowArtifactSell() {
+		setShowArtifactSell(!showArtifactSell);
+		setShowPreview(false);
+		setShowStampWidget(false);
+		setShowFactWidget(false);
 	}
 
 	function handleViewRedirect() {
@@ -283,7 +299,15 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				closeOnAction: false,
 				subComponent: null,
 				label: bookmarkIdsState.includes(props.artifactId) ? language.removeFromBookmarks : language.addtoBookmarks,
-				disabled: props.bookmarksDisabled,
+				disabled: props.ownerActionDisabled,
+				loading: false,
+			},
+			{
+				fn: handleShowArtifactSell,
+				closeOnAction: false,
+				subComponent: getArtifactSell(),
+				label: language.sellArtifact,
+				disabled: props.ownerActionDisabled,
 				loading: false,
 			},
 		];

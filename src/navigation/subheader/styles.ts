@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
 	top: ${STYLING.dimensions.navHeight};
 	z-index: 4;
 	background: ${(props) => props.theme.colors.navigation.header.background};
-	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
 `;
 
 export const Container = styled.div`

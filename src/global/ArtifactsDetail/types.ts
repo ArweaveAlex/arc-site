@@ -9,7 +9,7 @@ export interface IProps {
 		fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
 	};
 	showActions: boolean;
-	bookmarksDisabled: boolean;
+	ownerActionDisabled: boolean;
 	selectCallback: ((id: string) => void) | null;
 	showPoolIds: boolean;
 	showSearch: boolean;

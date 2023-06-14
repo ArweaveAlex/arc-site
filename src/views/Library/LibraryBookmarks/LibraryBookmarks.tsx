@@ -17,7 +17,7 @@ export default function LibraryBookmark() {
 			showActions={true}
 			showPoolIds={false}
 			showSearch={false}
-			bookmarksDisabled={true}
+			ownerActionDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
 			disabledSelectedCallbackIds={null}

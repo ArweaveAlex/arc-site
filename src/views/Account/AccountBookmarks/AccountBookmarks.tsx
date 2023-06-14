@@ -16,7 +16,7 @@ export default function AccountBookmarks() {
 			showActions={true}
 			showPoolIds={true}
 			showSearch={false}
-			bookmarksDisabled={false}
+			ownerActionDisabled={false}
 			selectCallback={null}
 			selectedCallbackIds={null}
 			disabledSelectedCallbackIds={null}

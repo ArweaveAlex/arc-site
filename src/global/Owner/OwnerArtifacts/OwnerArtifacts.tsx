@@ -37,7 +37,7 @@ export default function OwnerArtifacts(props: IProps) {
 			showActions={props.showActions}
 			showPoolIds={props.showPoolIds}
 			showSearch={props.showSearch}
-			bookmarksDisabled={props.bookmarksDisabled}
+			ownerActionDisabled={props.ownerActionDisabled}
 			owner={props.owner}
 			uploader={null}
 			selectCallback={props.selectCallback}

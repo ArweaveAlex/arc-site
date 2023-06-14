@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { formatAddress, PoolClient, UserClient } from 'arcframework';
+import { formatAddress, getProfile, PoolClient, UserClient } from 'arcframework';
 
 import { Placeholder } from 'components/atoms/Placeholder';
 import { language } from 'helpers/language';
@@ -16,6 +16,59 @@ const ROW_COUNT = 3;
 export default function PoolContributors(props: IProps) {
 	let poolClient = new PoolClient();
 	const arProvider = useArweaveProvider();
+
+	const [topContributorList, setTopContributorList] = React.useState<React.ReactNode[]>([]);
+	const [recentContributorList, setRecentContributorList] = React.useState<React.ReactNode[]>([]);
+
+	React.useEffect(() => {
+		async function getContributors(keys: string[]) {
+			let userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
+
+			if (props.data) {
+				const contributorsPromises = keys.map(async (key: string, i: number) => {
+					const profile = await getProfile(key);
+					return (
+						<S.Row key={i} isEnd={i !== 2}>
+							<S.Number>
+								<p>{i + 1}.</p>
+							</S.Number>
+							<S.Owner>
+								<Link to={`${urls.libraryAll(key)}`}>{profile ? profile.handle : formatAddress(key, false)}</Link>
+							</S.Owner>
+							<S.Amount>
+								<p>{poolClient.getARAmount(userClient.calcContributions(props.data.state.contributors[key]))}</p>
+								&nbsp;
+								<span>{`${language.arTokens} ${language.total}`}</span>
+							</S.Amount>
+							{/* <Count id={key} /> */}
+						</S.Row>
+					);
+				});
+
+				return await Promise.all(contributorsPromises);
+			}
+		}
+
+		(async function () {
+			let userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
+
+			const contributors: any = props.data.state.contributors;
+
+			const topContributorKeys: any = Object.keys(contributors)
+				.sort(function (a, b) {
+					return (
+						Number(userClient.calcContributions(contributors[a])) -
+						Number(userClient.calcContributions(contributors[b]))
+					);
+				})
+				.reverse();
+
+			const recentContributorKeys = Object.keys(props.data.state.contributors).reverse();
+
+			setTopContributorList(await getContributors(topContributorKeys));
+			setRecentContributorList(await getContributors(recentContributorKeys));
+		})();
+	}, [props.data]);
 
 	function getBody(list: React.ReactNode[]) {
 		if (list.length <= 0) {
@@ -33,91 +86,28 @@ export default function PoolContributors(props: IProps) {
 		}
 	}
 
-	function getTopContributors() {
-		if (props.data) {
-			let userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
-
-			const contributorList: React.ReactNode[] = [];
-			const contributors: any = props.data.state.contributors;
-
-			const sortedKeys: any = Object.keys(contributors)
-				.sort(function (a, b) {
-					return (
-						Number(userClient.calcContributions(contributors[a])) -
-						Number(userClient.calcContributions(contributors[b]))
-					);
-				})
-				.reverse();
-
-			for (let i = 0; i < sortedKeys.length; i++) {
-				contributorList.push(
-					<S.Row key={i} isEnd={i !== 2}>
-						<S.Number>
-							<p>{i + 1}.</p>
-						</S.Number>
-						<S.Owner>
-							<Link to={`${urls.libraryAll(sortedKeys[i])}`}>{formatAddress(sortedKeys[i], false)}</Link>
-						</S.Owner>
-						<S.Amount>
-							<p>
-								{poolClient.getARAmount(userClient.calcContributions(props.data.state.contributors[sortedKeys[i]]))}
-							</p>
-							&nbsp;
-							<span>{`${language.arTokens} ${language.total}`}</span>
-						</S.Amount>
-						{/* <Count id={sortedKeys[i]} /> */}
-					</S.Row>
-				);
-			}
-			return <S.Body>{getBody(contributorList)}</S.Body>;
-		} else {
-			return <Placeholder rowCount={ROW_COUNT} />;
-		}
-	}
-
-	function getRecentContributors() {
-		if (props.data) {
-			let userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
-
-			const contributorList: React.ReactNode[] = [];
-			const contributorKeys = Object.keys(props.data.state.contributors).reverse();
-			for (let i = 0; i < contributorKeys.length; i++) {
-				contributorList.push(
-					<S.Row key={i} isEnd={i !== 2}>
-						<S.RecentOwner>
-							<Link to={`${urls.libraryAll(contributorKeys[i])}`}>{formatAddress(contributorKeys[i], false)}</Link>
-						</S.RecentOwner>
-						<S.Amount>
-							<p>
-								{poolClient.getARAmount(
-									userClient.calcContributions(props.data.state.contributors[contributorKeys[i]])
-								)}
-							</p>
-							&nbsp;
-							<span>{`${language.arTokens}`}</span>
-						</S.Amount>
-					</S.Row>
-				);
-			}
-			return <S.Body>{getBody(contributorList)}</S.Body>;
-		} else {
-			return <Placeholder rowCount={ROW_COUNT} />;
-		}
-	}
-
 	return (
 		<S.Wrapper>
 			<S.CWrapper>
 				<S.Header>
 					<h2>{language.contributors.top}</h2>
 				</S.Header>
-				{getTopContributors()}
+				{topContributorList.length > 0 ? (
+					<S.Body>{getBody(topContributorList)}</S.Body>
+				) : (
+					<Placeholder rowCount={ROW_COUNT} />
+				)}
 			</S.CWrapper>
 			<S.CWrapper>
 				<S.Header>
 					<h2>{language.contributors.recent}</h2>
 				</S.Header>
-				{getRecentContributors()}
+
+				{recentContributorList.length > 0 ? (
+					<S.Body>{getBody(recentContributorList)}</S.Body>
+				) : (
+					<Placeholder rowCount={ROW_COUNT} />
+				)}
 			</S.CWrapper>
 		</S.Wrapper>
 	);

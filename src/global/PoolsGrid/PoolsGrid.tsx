@@ -25,12 +25,12 @@ import { IProps } from './types';
 function PoolTile(props: any) {
 	const poolClient = new PoolClient();
 
-	const [poolUrl, setPoolsUrl] = React.useState<string | null>(null);
+	const [poolUrl, setPoolUrl] = React.useState<string | null>(null);
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
 	const [showContributeModal, setShowContributeModal] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
-		setPoolsUrl(`${urls.pool}${props.id}`);
+		setPoolUrl(`${urls.pool}${props.id}`);
 	}, [props.id]);
 
 	React.useEffect(() => {
