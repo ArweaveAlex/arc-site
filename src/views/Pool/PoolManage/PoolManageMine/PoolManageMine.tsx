@@ -60,7 +60,9 @@ export default function PoolManageMine() {
 				}
 			/>
 			<S.CMiner>
-				{currentSource.component(balances ? balances.poolBalance <= 0 || balances.transferBalance <= 0 : true)}
+				{currentSource.component(
+					balances ? balances.poolBalance <= 0 || balances.bundlrBalance <= 0 || balances.transferBalance <= 0 : true
+				)}
 			</S.CMiner>
 		</S.Wrapper>
 	);
