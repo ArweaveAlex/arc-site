@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
+import { SequenceType } from 'arcframework';
+
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
@@ -176,14 +178,39 @@ function FileMinerDropdown(props: {
 	);
 }
 
+const SEQUENCE_ITERATION = 10;
+
 export default function FileMiner(props: IProps) {
+	const { id } = useParams();
+
 	const fileInputRef = React.useRef<any>(null);
 
 	const [uploadingStatus, setUploadingStatus] = React.useState<UploadingStatusType | null>(null);
 	const [selectedData, setSelectedData] = React.useState<FileMetadataType[]>([]);
+	const [currentSelectedData, setCurrentSelectedData] = React.useState<FileMetadataType[]>([]);
 	const [metadataUpdated, setMetadataUpdated] = React.useState<boolean>(false);
+	const [cursor, setCursor] = React.useState<string | null>(null);
 
-	const { id } = useParams();
+	const [sequence, setSequence] = React.useState<SequenceType>({
+		start: SEQUENCE_ITERATION - (SEQUENCE_ITERATION - 1) - 1,
+		end: SEQUENCE_ITERATION - 1,
+	});
+
+	React.useEffect(() => {
+		if (cursor) {
+			setSequence({
+				start: cursor === 'next' ? sequence.start + SEQUENCE_ITERATION : sequence.start - SEQUENCE_ITERATION,
+				end: cursor === 'next' ? sequence.end + SEQUENCE_ITERATION : sequence.end - SEQUENCE_ITERATION,
+			});
+		}
+	}, [cursor]);
+
+	React.useEffect(() => {
+		if (selectedData) {
+			let currentData = [...selectedData].splice(sequence.start, sequence.end + 1);
+			setCurrentSelectedData(currentData);
+		}
+	}, [selectedData, sequence]);
 
 	async function handleUpload() {
 		setUploadingStatus('uploading');
@@ -244,10 +271,10 @@ export default function FileMiner(props: IProps) {
 	}
 
 	function getData() {
-		return selectedData.map((data: FileMetadataType) => {
+		return currentSelectedData.map((data: FileMetadataType) => {
 			return {
 				data: {
-					fileName: data.file.name,
+					fileName: `${data.file.name}`,
 					actions: getActionDropdown(data),
 				},
 				active: false,
@@ -264,12 +291,12 @@ export default function FileMiner(props: IProps) {
 					action={null}
 					header={getHeader()}
 					data={getData()}
-					recordsPerPage={10}
+					recordsPerPage={SEQUENCE_ITERATION}
 					showPageNumbers={false}
-					handleCursorFetch={() => {}}
+					handleCursorFetch={(cursor: string | null) => setCursor(cursor)}
 					cursors={{
-						next: null,
-						previous: null,
+						next: currentSelectedData.length < SEQUENCE_ITERATION ? null : 'next',
+						previous: sequence.start <= 0 ? null : 'prev',
 					}}
 					showNoResults={false}
 				/>

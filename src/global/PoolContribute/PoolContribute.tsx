@@ -71,11 +71,15 @@ export default function PoolContribute(props: IProps) {
 			setLoading(true);
 			let poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
 			let poolConfig = await poolConfigClient.initFromContract({ poolId: props.poolId });
-			poolConfig.walletKey = 'use_wallet';
-			let poolClient = new PoolClient({ poolConfig });
-			setContributionResult(
-				await poolClient.handlePoolContribute({ amount: amount, availableBalance: arProvider.availableBalance })
-			);
+			if (poolConfig) {
+				poolConfig.walletKey = 'use_wallet';
+				let poolClient = new PoolClient({ poolConfig });
+				setContributionResult(
+					await poolClient.handlePoolContribute({ amount: amount, availableBalance: arProvider.availableBalance })
+				);
+			} else {
+				setContributionResult({ status: false, message: language.errorOccurred });
+			}
 			setLoading(false);
 		}
 	}

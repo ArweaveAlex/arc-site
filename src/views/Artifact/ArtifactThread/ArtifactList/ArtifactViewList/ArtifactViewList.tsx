@@ -1,8 +1,11 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { ArtifactEnum } from 'arcframework';
 
+import * as urls from 'helpers/urls';
 import { useQuery } from 'hooks/useQuery';
-import { Query } from 'wrappers/Query';
 
+// import { Query } from 'wrappers/Query';
 import { IProps } from '../types';
 
 import { ArtifactImageList } from './ArtifactImageList';
@@ -11,6 +14,9 @@ import { ArtifactNostrList } from './ArtifactNostrList';
 import * as S from './styles';
 
 export default function ArtifactViewList(props: IProps) {
+	const { id } = useParams();
+	const navigate = useNavigate();
+
 	const query = useQuery();
 	let List: any = null;
 
@@ -26,6 +32,7 @@ export default function ArtifactViewList(props: IProps) {
 				List = ArtifactNostrList;
 				return;
 			default:
+				navigate(`${urls.artifact}${id}`);
 				return;
 		}
 	}
@@ -33,17 +40,30 @@ export default function ArtifactViewList(props: IProps) {
 	getArtifactList();
 
 	return (
-		<Query value={'type'} check={[ArtifactEnum.Image, ArtifactEnum.Messaging, ArtifactEnum.Nostr]}>
-			<S.Wrapper>
-				{List ? (
-					<List
-						data={props.data}
-						loading={props.loading}
-						updateSequence={props.updateSequence}
-						updateDisabled={props.updateDisabled}
-					/>
-				) : null}
-			</S.Wrapper>
-		</Query>
+		<S.Wrapper>
+			{List ? (
+				<List
+					data={props.data}
+					loading={props.loading}
+					updateSequence={props.updateSequence}
+					updateDisabled={props.updateDisabled}
+				/>
+			) : null}
+		</S.Wrapper>
 	);
+
+	// return (
+	// 	<Query value={'type'} check={[ArtifactEnum.Image, ArtifactEnum.Messaging, ArtifactEnum.Nostr]}>
+	// 		<S.Wrapper>
+	// 			{List ? (
+	// 				<List
+	// 					data={props.data}
+	// 					loading={props.loading}
+	// 					updateSequence={props.updateSequence}
+	// 					updateDisabled={props.updateDisabled}
+	// 				/>
+	// 			) : null}
+	// 		</S.Wrapper>
+	// 	</Query>
+	// );
 }
