@@ -69,7 +69,15 @@ export default function ArtifactActionsSingle(props: IProps) {
 	};
 
 	const artifactSell = () => {
-		return <ArtifactSell artifactId={props.data.artifactId} handleClose={() => setShowArtifactSell(false)} />;
+		console.log(props.data);
+		return (
+			<ArtifactSell
+				artifactId={props.data.artifactId}
+				handleClose={() => setShowArtifactSell(false)}
+				artifactName={props.data.artifactName}
+				dateCreated={props.data.minted}
+			/>
+		);
 	};
 
 	function getWidget(widget: any, container: any, handleClose: () => void) {

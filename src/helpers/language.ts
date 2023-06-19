@@ -388,6 +388,7 @@ export const language = {
 	select: `Select`,
 	selectChooseFiles: `Select <b>Choose Files</b> to start uploading`,
 	sellArtifact: `Sell Artifact`,
+	sellArtifactDescription: `This artifact will be posted to the Arweave marketplace for the specified amount of U`,
 	share: `Share`,
 	shareArtifact: `Check out this Alex. Artifact !`,
 	sharePool: `Check out this Alex. Pool !`,
