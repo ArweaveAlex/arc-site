@@ -30,7 +30,7 @@ export default function ArtifactSell(props: IProps) {
 
 		const orderTx = await orderbook.sell({
 			assetId: props.artifactId,
-			price: 1,
+			price: amount * 1e6,
 			qty: 1,
 		});
 
