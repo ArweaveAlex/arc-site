@@ -30,6 +30,7 @@ export default function ArtifactRendererSingle(props: IProps) {
 
 	React.useEffect(() => {
 		let wrapperClass: string | null = null;
+		console.log(props.artifactType);
 		switch (props.artifactType) {
 			case ArtifactEnum.Image:
 				wrapperClass = 'wrapper-full';
@@ -39,6 +40,7 @@ export default function ArtifactRendererSingle(props: IProps) {
 			case ArtifactEnum.File:
 			case ArtifactEnum.Document:
 			case ArtifactEnum.Video:
+			case 'Default':
 				wrapperClass = 'wrapper-full border-wrapper';
 				break;
 			case ArtifactEnum.Messaging:
