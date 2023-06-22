@@ -22,7 +22,7 @@ export const STYLING = {
 		formHeightMax: '55px',
 		formWidthMin: '300px',
 		formWidthMax: '500px',
-		messagingContent: '650px',
+		rendererContent: '650px',
 		wrapWidth: '675px',
 	},
 };

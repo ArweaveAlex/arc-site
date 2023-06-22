@@ -5,13 +5,18 @@ import { STYLING } from 'helpers/styling';
 export const Wrapper = styled.div`
 	width: 100%;
 	max-width: ${STYLING.cutoffs.max}
-	height: 100px;
 	background: ${(props) => props.theme.colors.view.background};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: auto;
 		width: 100%;
 		position: relative;
 		top: auto;
+	}
+`;
+
+export const HeaderWrapper = styled.div`
+	h2 {
+		margin: 0 0 20px 0;
 	}
 `;
 
@@ -82,7 +87,7 @@ export const InfoData = styled.div`
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
-		max-width: 185px;
+		max-width: 195px;
 	}
 	p {
 		line-height: 16px;
@@ -126,29 +131,25 @@ export const InfoStyled = styled(InfoData)`
 	}
 `;
 
-export const InfoTitle = styled(InfoData)`
-	width: 27.5%;
-	padding: 0 10px 0 0;
-	justify-content: start;
-	p {
-		max-width: 98.5%;
-	}
-`;
-
 export const InfoType = styled(InfoStyled)`
-	width: 12.5%;
+	width: 20%;
+	border-left: none;
+	padding: 0 10px 0 0;
+	justify-content: flex-start;
 `;
 
 export const InfoMintDate = styled(InfoStyled)`
-	width: 25%;
+	width: 30%;
 `;
 
 export const InfoOwner = styled(InfoStyled)`
-	width: 15%;
+	width: 25%;
 `;
 
-export const InfoPools = styled(InfoStyled)`
-	width: 20%;
+export const InfoPool = styled(InfoStyled)`
+	width: 25%;
+	padding: 0 0 0 10px;
+	justify-content: flex-end;
 `;
 
 export const Divider = styled.div`

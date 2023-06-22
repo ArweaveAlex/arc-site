@@ -202,6 +202,7 @@ export const GlobalStyle = createGlobalStyle`
     border: 1px solid ${(props) => props.theme.colors.border.primary};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
+    overflow: hidden;
   }
 
   .wrapper-600 {
@@ -219,6 +220,12 @@ export const GlobalStyle = createGlobalStyle`
       text-align: center;
       line-height: 1.5;
     }
+  }
+  
+  .wrapper-full {
+    width: 100%;
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+    overflow: hidden;
   }
 `;
 
