@@ -17,7 +17,19 @@ import { IProps } from './types';
 
 // TODO: file download
 export default function ArtifactSingle(props: IProps) {
-	const txData = useFileTx(props.data.rawData);
+	let txData: any = null;
+	switch (props.data.artifactType) {
+		case ArtifactEnum.Image:
+		case ArtifactEnum.Ebook:
+		case ArtifactEnum.Audio:
+		case ArtifactEnum.Video:
+		case ArtifactEnum.Document:
+		case ArtifactEnum.File:
+			txData = useFileTx(props.data.rawData);
+			break;
+		default:
+			break;
+	}
 
 	const [currentTab, setCurrentTab] = React.useState<string>(ARTIFACT_TABS[0]!.label);
 
@@ -67,16 +79,18 @@ export default function ArtifactSingle(props: IProps) {
 	}
 
 	function getMetadata() {
-		switch (artifactType.label) {
-			case ArtifactEnum.Image:
-			case ArtifactEnum.Ebook:
-			case ArtifactEnum.Audio:
-			case ArtifactEnum.Video:
-			case ArtifactEnum.Document:
-			case ArtifactEnum.File:
-				return <FileMetadata metadata={txData.metadata} />;
-			default:
-				return null;
+		if (txData) {
+			switch (artifactType.label) {
+				case ArtifactEnum.Image:
+				case ArtifactEnum.Ebook:
+				case ArtifactEnum.Audio:
+				case ArtifactEnum.Video:
+				case ArtifactEnum.Document:
+				case ArtifactEnum.File:
+					return <FileMetadata metadata={txData.metadata} />;
+				default:
+					return null;
+			}
 		}
 	}
 
