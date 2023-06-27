@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { formatAddress, getProfile, PoolClient, UserClient } from 'arcframework';
+import { formatAddress, PoolClient, UserClient } from 'arcframework';
 
 import { Placeholder } from 'components/atoms/Placeholder';
 import { language } from 'helpers/language';
