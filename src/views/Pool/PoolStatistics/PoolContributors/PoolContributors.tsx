@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { formatAddress, PoolClient, UserClient } from 'arcframework';
+import { formatAddress, getProfile, PoolClient, UserClient } from 'arcframework';
 
 import { Placeholder } from 'components/atoms/Placeholder';
 import { language } from 'helpers/language';
@@ -26,16 +26,14 @@ export default function PoolContributors(props: IProps) {
 
 			if (props.data) {
 				const contributorsPromises = keys.map(async (key: string, i: number) => {
-					// const profile = await getProfile(key);
-					console.log(key);
+					const profile = await getProfile(key);
 					return (
 						<S.Row key={i} isEnd={i !== 2}>
 							<S.Number>
 								<p>{i + 1}.</p>
 							</S.Number>
 							<S.Owner>
-								{/* <Link to={`${urls.libraryAll(key)}`}>{profile ? profile.handle : formatAddress(key, false)}</Link> */}
-								<Link to={`${urls.libraryAll(key)}`}>{formatAddress(key, false)}</Link>
+								<Link to={`${urls.libraryAll(key)}`}>{profile ? profile.handle : formatAddress(key, false)}</Link>
 							</S.Owner>
 							<S.Amount>
 								<p>{poolClient.getARAmount(userClient.calcContributions(props.data.state.contributors[key]))}</p>
