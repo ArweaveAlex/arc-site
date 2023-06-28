@@ -1,10 +1,10 @@
 # Mining artifacts
 
-## [Files and Documents](/#/docs/creating-a-pool/mining-artifacts#files)
+## [Files and documents](/#/docs/creating-a-pool/mining-artifacts#files)
 
-#### Renderer Supported File Types
+#### Renderer supported file types
 
-**Any file type is supported for upload as an artifact, however the following types are supported by the User Interface. Any file types not in the following list can still be found in the site, however they will only be available for download.**
+**Any file type is supported for upload as an artifact, however the following types are supported by the eser interface. Any file types not in the following list can still be found in the site, however they will only be available for download.**
 
 - Images: **JPG, PNG, SVG, GIF, WEBP, BMP**
 - Ebooks: **EPUB**
@@ -24,7 +24,7 @@ arcpool mine <POOL_ID> --source files --path examplefile.jpg
 arcpool mine <POOL_ID> --source files --path ./exampledirectory
 ```
 
-**Optionally you can add metadata to your files by creating a metadata file that contains a JSON array with entries as follows, name this file whatever you want it will be passed as an argument**
+**Optionally you can add metadata to your files by creating a metadata file that contains a JSON array with entries as follows, name this file whatever you want it will be passed as an argument.**
 
 ```json
 [
@@ -51,7 +51,7 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory
 ]
 ```
 
-- Fill out the metadata file as follows
+- Fill out the metadata file as follows:
   - **FileName**: the only mandatory field which ties this entry in the file to the filename being mined
   - **ArtifactName**: an optional name for the artifact that will show up in Alex.
   - **ArtifactGroup**: an optional grouping for the artifact, if multiple files have the same group they will be grouped together
@@ -89,7 +89,7 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./me
   - **bearer_token** = **Bearer Token** in the Twitter developer platform
   - **clarifaiApiKey** if you plan to use content moderation on tweets in the mining process, you can get an api key from [Clarifai](https://www.clarifai.com/) and put it here. This will filter out explicit content from being mined into the pool. This is a bit expensive and unnecessary in most situations but if you are finding a lot of explicit content in the pool it may be of value to you.
 
-> **Before Mining:** double check the **keywords** in the **pools.json** to prevent unwanted artifacts in your pool.
+> **Before mining: double check the **keywords** in the pools.json to prevent unwanted artifacts in your pool. **
 
 The mining process can begin in the directory containing the **pools.json** by running these commands.
 
@@ -127,7 +127,7 @@ arcpool mine <POOL_ID> --source wikipedia
 
 ## [Reddit](/#/docs/creating-a-pool/mining-artifacts#reddit)
 
-#### Configure Reddit API Keys
+#### Configure Reddit API keys
 
 - **redditApiKeys** login or create a Reddit account and then get API access [here](https://www.reddit.com/prefs/apps)
 - Use **username** and **password** from Reddit
@@ -167,7 +167,7 @@ After a few minutes of mining you can navigate back to your pool on Alex. and se
 
 If you wish to continually run a mining process, use daemon mode by passing the **--d** flag to any of the above mining commands. Daemon mode is built on top of pm2.
 
-#### Mine tweets into the pool from above, still runs for 20 seconds but the daemon mode will continue restarting the program infinetly. Note the **--d** flag.
+#### Mine tweets into the pool from above, still runs for 20 seconds but the daemon mode will continue restarting the program infinitely. Note the **--d** flag.
 
 ```sh
 arcpool mine <POOL_ID> --source twitter --d

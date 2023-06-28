@@ -1,4 +1,4 @@
-# Access artifacts
+# Accessing artifacts
 
 Now that you have successfully contributed $AR to a pool, you will receive an equal percentage (of total $AR) of artifacts sent to your wallet.
 
