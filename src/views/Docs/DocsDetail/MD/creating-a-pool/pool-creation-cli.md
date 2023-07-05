@@ -1,27 +1,46 @@
 # Creating a pool from the CLI.
 
-**If you used the User Interface to create a pool and would like to archive from sources that require the CLI, you can visit the Pools tab in your account and locate the pool that you created. After visiting that individual pool page, you can click 'Download Pool Configuration' to download the necessary configuration file needed to run further archiving processes. You will also need to create a wallets directory in the same directory as the stored configuration file that holds the wallet keyfile that owns the pool.**
-
 To create a pool you must complete the following steps:
 
-1. **Initiate the pool**
-2. **Configure the pool**
-3. **Create the pool**
-4. **Fund the pool**
+1. **Install arcpool**
+2. **Initiate the pool**
+3. **Configure the pool**
+4. **Create the pool**
+5. **Fund the pool**
 
-### 1. Initiate the pool
+### 1. Install arcpool
+
+**arcpool** requires [NodeJS (v18+)](https://nodejs.org/en/download/) [NPM](https://www.npmjs.com/package/npm) and [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed.
+
+To install arcpool globally on your machine, run the following:
+
+```sh
+npm install --global arcpool
+```
+
+To test for a successful installation, run the following:
+
+```sh
+arcpool help
+```
+
+Expected Output:
+
+![](https://arweave.net/G0H0ODUr_P336-pXkjrG_7FBusFft3fgDT0XIfBAisk)
+
+### 2. Initiate the pool
 
 In your terminal / command prompt, you will create a directory for the pool configuration and wallets. This directory can be named anything you want. You will also choose an ID that will be used to identify the pool on your local machine.
 
 For the purposes of this documentation, the following values will be used as an examples for the directory name and Pool ID:
 
-Directory Name: **alex-test**
+Directory name: **alex-test**
 
 Pool ID: **russia_ukraine_conflict**
 
-#### Pool Initiation Steps
+#### Pool nitiation steps
 
-**Rememeber in each step to replace the appropriate values with your own personal values**
+**Remember in each step to replace the appropriate values with your own personal values**
 
 1. Create the directory
    ```sh
@@ -39,14 +58,12 @@ Pool ID: **russia_ukraine_conflict**
    ```
    Example: **arcpool init russia_ukraine_conflict**
 
-The result of these steps will generate a file called the following:
-
-**pools.json**
+The result of these steps will generate a file named: **pools.json**
 
 This file is the main pool configuration and should not be deleted. You will be making many edits to this file and it will
 be used every time you run any mining processes.
 
-### 2. Configure the pool
+### 3. Configure the pool
 
 Below is a screenshot of the **pools.json** file that has been initiated that now needs to be configured.
 
@@ -62,12 +79,12 @@ Below is a screenshot of the **pools.json** file that has been initiated that no
 - **state.description**: A long description of your pool. This description will appear on the [pool details](https://alex.arweave.dev/#/pool/zIZXNTl-GtTDbO8eP8LpkHks5S5WhB4j82YX-N2RuGw) page of Alex., under the 'About' header. It can contain text and/or HTML.
 - **state.briefDescription**: A brief description of your pool. This description will appear on the [home page](https://alex.arweave.dev) of Alex.
 - **keywords**: A list of the main keywords to track in the mining process. This is the core driving data that instructs the mining programs of what to pull from mining sources such as Twitter, Wikipedia, Reddit, or Nostr
-- **topics** A list of one or more of the following topics
+- **topics:** A list of one or more of the following topics
   - **History**, **Philosophy**, **International**, **Culture**, **Art**, **Music**, **News**, **Faith**, **Science**, **Spirituality**, **Sports**, **Business**, **Technology**, **Politics**, **Other**
 - **controller.contribPercent**: A reward percentage of the contributions. This value can be from 0 - 100 and represents the total percentage of contributions that go to your control wallet for mining. If the value of **controller.contribPercent** is **10**, then **10%** of all contributions will go to your control wallet as a reward. This percentage will appear in the user interface to let contributors know how much of their contribution will go to the operator.
 - **controller.pubkey**: The public key for the control wallet that the percentage of contributions declared in **controller.contribPercent** will be sent to.
 
-### 3. Create the pool
+### 4. Create the pool
 
 To create a pool you will need to run one command with a few arguments passed in, including the name from when you initialized the pool, path to wallet you created, and a path to your pool header image.
 
@@ -85,7 +102,7 @@ Note the top of the logs for your pool wallets seed phrase. Inside your working 
 
 If your pool has been successfully created, you will see a URL log in your terminal / command prompt at the end of the pool creation process. You will now be able to see your pool on the [Alex. Pools Page](https://alex.arweave.dev/#/pools). Note that it may take some time for the pool to appear.
 
-### 4. Fund the pool
+### 5. Fund the pool
 
 At the end of the pool creation process the CLI program will ask if you want to contribute funds from your control wallet. This is recommended as it will allow you to begin mining immediately. When the prompt asks, enter a decimal amount of $AR less than what you have in your wallet and hit enter. The funding portion will take some time because it is waiting for the transactions to process on the blockchain. Wait for the program to finish.
 

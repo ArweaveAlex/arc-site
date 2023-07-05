@@ -4,7 +4,7 @@ export const docsOrder = [
 		path: 'introduction',
 	},
 	{
-		name: 'Core Concepts',
+		name: 'Core concepts',
 		path: 'core-concepts',
 	},
 	{
@@ -12,21 +12,25 @@ export const docsOrder = [
 		path: 'creating-a-pool',
 		children: [
 			{
-				name: 'Getting Started',
+				name: 'Getting started',
 				path: 'getting-started',
 			},
 			{
-				name: 'Pool Creation (CLI)',
-				path: 'pool-creation',
+				name: 'Pool creation (UI)',
+				path: 'pool-creation-ui',
 			},
 			{
-				name: 'Mining Artifacts',
+				name: 'Pool creation (CLI)',
+				path: 'pool-creation-cli',
+			},
+			{
+				name: 'Mining artifacts',
 				path: 'mining-artifacts',
 			},
 		],
 	},
 	{
-		name: 'Accessing Artifacts',
+		name: 'Accessing artifacts',
 		path: 'access-artifacts',
 	},
 	{
@@ -34,7 +38,7 @@ export const docsOrder = [
 		path: 'contributing',
 	},
 	{
-		name: 'Interacting with Artifacts',
+		name: 'Interacting with artifacts',
 		path: 'interact-with-artifacts',
 	},
 ];
