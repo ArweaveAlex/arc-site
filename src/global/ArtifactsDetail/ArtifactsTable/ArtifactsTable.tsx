@@ -175,6 +175,9 @@ export default function ArtifactsTable(props: IProps) {
 		return (
 			<ArtifactsTableActionDropdown
 				artifactId={artifactId}
+				artifactType={getTagValue(tags, TAGS.keys.artifactType)}
+				artifactName={getTagValue(tags, TAGS.keys.ansTitle)}
+				dateCreated={getTagValue(tags, TAGS.keys.dateCreated)}
 				tags={tags}
 				owner={props.owner}
 				ownerActionDisabled={props.ownerActionDisabled}

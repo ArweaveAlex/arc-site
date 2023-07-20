@@ -140,7 +140,7 @@ export default function StampWidget(props: IProps) {
 				setStampDisabled(true);
 				setUpdateCount(!updateCount);
 				setStampNotification({
-					status: stampSuccess ? 200 : 500,
+					status: stampSuccess ? true : false,
 					message: stampSuccess ? language.artifactStamped : language.errorOccurred,
 				});
 			}
@@ -226,7 +226,7 @@ export default function StampWidget(props: IProps) {
 			{stampNotification && (
 				<Notification
 					message={stampNotification.message}
-					type={stampNotification.status === 200 ? 'success' : 'warning'}
+					type={stampNotification.status ? 'success' : 'warning'}
 					callback={handleStampCallback}
 				/>
 			)}

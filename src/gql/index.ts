@@ -7,7 +7,11 @@ import { store } from 'state/store';
 export async function getArtifactsByPool(
 	args: ArcFramework.ArtifactArgsType
 ): Promise<ArcFramework.ArtifactResponseType> {
-	return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByPool(args), ArcFramework.CursorEnum.GQL);
+	return getArtifactsResponseObject(
+		args,
+		await ArcFramework.getArtifactsByPool(args, true),
+		ArcFramework.CursorEnum.GQL
+	);
 }
 
 export async function getArtifactsByUser(
@@ -66,7 +70,7 @@ export async function getArtifactsByBookmarks(
 
 export async function setBookmarkIds(owner: string, ids: string[]): Promise<ArcFramework.NotificationResponseType> {
 	const response = await ArcFramework.setBookmarkIds(owner, ids);
-	if (response.status === 200) {
+	if (response.status) {
 		store.dispatch(
 			artifactActions.setBookmarks({
 				owner: owner,

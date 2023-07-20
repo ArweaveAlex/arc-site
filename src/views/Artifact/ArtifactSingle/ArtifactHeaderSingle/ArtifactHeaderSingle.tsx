@@ -12,15 +12,16 @@ import * as urls from 'helpers/urls';
 import * as S from './styles';
 import { IProps } from './types';
 
+// TODO: get balances owner
 export default function ArtifactHeaderSingle(props: IProps) {
 	return props.data && props.type ? (
 		<S.Wrapper>
+			<S.HeaderWrapper>
+				<h2>{props.data.ansTitle}</h2>
+			</S.HeaderWrapper>
 			<S.ContentWrapper>
 				<S.Content>
 					<S.Info>
-						<S.InfoTitle>
-							<p>{props.data.ansTitle}</p>
-						</S.InfoTitle>
 						<S.InfoType>
 							<>
 								<ReactSVG src={props.type.icon} />
@@ -39,12 +40,12 @@ export default function ArtifactHeaderSingle(props: IProps) {
 								<Link to={`${urls.libraryAll(props.data.owner!)}`}>{formatAddress(props.data.owner, false)}</Link>
 							</>
 						</S.InfoOwner>
-						<S.InfoPools>
+						<S.InfoPool>
 							<>
 								<ReactSVG src={ASSETS.pool} />
 								<Link to={`${urls.pool}${props.data.poolId}`}>{props.data.poolName}</Link>
 							</>
-						</S.InfoPools>
+						</S.InfoPool>
 					</S.Info>
 					<S.Divider />
 					<S.Body>

@@ -21,7 +21,6 @@ export const FlexWrapper = styled.div`
 `;
 
 export const ArtifactWrapper = styled.div`
-	min-height: calc(100vh - (165px + ${STYLING.dimensions.navHeight}));
 	width: 100%;
 	margin: 20px 0 0 0;
 `;

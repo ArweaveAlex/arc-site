@@ -96,6 +96,7 @@ export const language = {
 	artifact: `Artifact`,
 	artifactCount: `Artifact Count`,
 	artifactGroup: `Artifact Group`,
+	artifactListedForSale: `This artifact has been listed for sale!`,
 	artifactPreview: `Artifact Preview`,
 	artifactStamped: `Artifact Stamped`,
 	artifacts: `Artifacts`,

@@ -23,16 +23,14 @@ function getColor(m: NotificationType, theme: DefaultTheme) {
 
 export const Wrapper = styled.div`
 	height: 55px;
-	width: 600px;
+	width: 350px;
 	max-width: 90vw;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	position: fixed;
-	left: 50%;
+	left: 20px;
 	bottom: 20px;
-	transform: translate(-50%, 0);
 	z-index: 12;
 	animation: ${open} ${fadeIn1};
 	display: flex;

@@ -66,7 +66,7 @@ export default function FactWidget(props: IProps) {
 				});
 				const factMarketSuccess = factMarket && factMarket.tx;
 				setFactNotification({
-					status: factMarketSuccess ? 200 : 500,
+					status: factMarketSuccess ? true : false,
 					message: factMarketSuccess ? language.factMarketCreated : language.errorOccurred,
 				});
 				setUpdateFactCheck(!updateFactCheck);
@@ -145,7 +145,7 @@ export default function FactWidget(props: IProps) {
 			{factNotification && (
 				<Notification
 					message={factNotification.message}
-					type={factNotification.status === 200 ? 'success' : 'warning'}
+					type={factNotification.status ? 'success' : 'warning'}
 					callback={handleFactCallback}
 				/>
 			)}

@@ -69,16 +69,33 @@ export default function ArtifactActionsSingle(props: IProps) {
 	};
 
 	const artifactSell = () => {
-		console.log(props.data);
-		return (
-			<ArtifactSell
-				artifactId={props.data.artifactId}
-				handleClose={() => setShowArtifactSell(false)}
-				artifactName={props.data.artifactName}
-				dateCreated={props.data.minted}
-			/>
-		);
+		if (props.data && arProvider.walletAddress && props.data.owner === arProvider.walletAddress) {
+			return (
+				<ArtifactSell
+					artifactId={props.data.artifactId}
+					handleClose={() => setShowArtifactSell(false)}
+					artifactName={props.data.artifactName}
+					dateCreated={props.data.minted}
+				/>
+			);
+		} else {
+			return null;
+		}
 	};
+
+	function getArtifactSell() {
+		if (
+			props.data &&
+			arProvider.walletAddress &&
+			props.data.owner === arProvider.walletAddress &&
+			props.data.claimable !== null &&
+			props.data.claimable !== undefined
+		) {
+			return <Button type={'alt2'} label={language.sellArtifact} handlePress={handleShowArtifactSell} noMinWidth />;
+		} else {
+			return null;
+		}
+	}
 
 	function getWidget(widget: any, container: any, handleClose: () => void) {
 		if (checkDesktop()) {
@@ -93,7 +110,6 @@ export default function ArtifactActionsSingle(props: IProps) {
 		}
 	}
 
-	// TODO: hide sell if not owner
 	return props.data ? (
 		<S.Wrapper>
 			<S.ButtonsContainer>
@@ -124,7 +140,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 					{showFactWidget && getWidget(factWidget, S.FactWidgetContainer, () => setShowFactWidget(false))}
 				</S.ButtonContainer>
 				<S.ButtonContainer>
-					<Button type={'alt2'} label={language.sellArtifact} handlePress={handleShowArtifactSell} noMinWidth />
+					{getArtifactSell()}
 					{showArtifactSell && artifactSell()}
 				</S.ButtonContainer>
 			</S.ButtonsContainer>

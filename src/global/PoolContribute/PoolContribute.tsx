@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {
-	ContributionResultType,
 	formatAddress,
 	formatDate,
 	getPoolById,
+	NotificationResponseType,
 	PoolClient,
 	PoolConfigClient,
 	UserClient,
@@ -31,7 +31,7 @@ export default function PoolContribute(props: IProps) {
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [receivingPercent, setReceivingPercent] = React.useState<string | null>(null);
 
-	const [contributionResult, setContributionResult] = React.useState<ContributionResultType | null>(null);
+	const [contributionResult, setContributionResult] = React.useState<NotificationResponseType | null>(null);
 
 	const [copied, setCopied] = React.useState<boolean>(false);
 

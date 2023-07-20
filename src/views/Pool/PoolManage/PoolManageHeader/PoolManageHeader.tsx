@@ -91,12 +91,12 @@ export default function PoolManageHeader(props: IProps) {
 				await poolClient.fundBundlr(balances.poolBalance);
 				setLoading(false);
 				setFundsNotification({
-					status: 200,
+					status: true,
 					message: language.fundsTransferInitiatedMessage,
 				});
 			} catch (e: any) {
 				setFundsNotification({
-					status: 500,
+					status: false,
 					message: language.fundsTransferFailedMessage,
 				});
 			}
@@ -172,7 +172,7 @@ export default function PoolManageHeader(props: IProps) {
 			)}
 			{fundsNotification && (
 				<Modal
-					header={fundsNotification.status === 200 ? language.transferInitiated : language.transferFailed}
+					header={fundsNotification.status ? language.transferInitiated : language.transferFailed}
 					handleClose={() => setFundsNotification(null)}
 				>
 					<S.FundsNotificationMessage>

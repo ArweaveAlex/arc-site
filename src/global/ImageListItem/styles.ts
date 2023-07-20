@@ -78,7 +78,7 @@ export const ImageWrapper = styled.div`
 	background: ${(props) => props.theme.colors.container.alt5.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: ${(props) => getImageShadow(props.theme)};
-	cursor: zoom-in;
+	cursor: pointer;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		height: 300px;
 	}

@@ -15,7 +15,7 @@ import {
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
-import { ArtifactSell } from 'global/ArtifactSell';
+// import { ArtifactSell } from 'global/ArtifactSell';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
 import { DOM } from 'helpers/config';
@@ -29,10 +29,10 @@ import { ArtifactRendererSingle } from 'views/Artifact/ArtifactSingle/ArtifactRe
 import * as S from './styles';
 import { IProps } from './types';
 
-function Preview(props: { artifactId: string; useModal: boolean; handleClose: () => void }) {
+function Preview(props: { artifactId: string; artifactType: string; useModal: boolean; handleClose: () => void }) {
 	let renderer: any = null;
 	if (props.artifactId) {
-		renderer = <ArtifactRendererSingle artifactId={props.artifactId} />;
+		renderer = <ArtifactRendererSingle artifactId={props.artifactId} artifactType={props.artifactType} />;
 	}
 
 	return props.useModal ? (
@@ -44,6 +44,7 @@ function Preview(props: { artifactId: string; useModal: boolean; handleClose: ()
 	);
 }
 
+// TODO: add sell to dropdown
 export default function ArtifactsTableActionDropdown(props: IProps) {
 	const dispatch = useDispatch();
 
@@ -59,7 +60,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
 	const [showFactWidget, setShowFactWidget] = React.useState<boolean>(false);
-	const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
+	// const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
 
 	const [bookmarkIdsState, setBookmarkIdsState] = React.useState<string[]>([]);
 
@@ -124,7 +125,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 		setBookmarkNotification({
 			status: bookmarkResponse.status,
-			message: bookmarkResponse.status === 200 ? language.bookmarksUpdated : language.errorOccurred,
+			message: bookmarkResponse.status ? language.bookmarksUpdated : language.errorOccurred,
 		});
 	}
 
@@ -145,6 +146,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 			node: (
 				<Preview
 					artifactId={props.artifactId}
+					artifactType={props.artifactType}
 					useModal={props.usePreviewModal}
 					handleClose={() => handlePreviewCallback()}
 				/>
@@ -182,12 +184,19 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		};
 	}
 
-	function getArtifactSell() {
-		return {
-			node: <ArtifactSell artifactId={props.artifactId} handleClose={() => setShowArtifactSell(false)} />,
-			active: showArtifactSell,
-		};
-	}
+	// function getArtifactSell() {
+	// 	return {
+	// 		node: (
+	// 			<ArtifactSell
+	// 				artifactId={props.artifactId}
+	// 				handleClose={() => setShowArtifactSell(false)}
+	// 				artifactName={props.artifactName}
+	// 				dateCreated={props.dateCreated}
+	// 			/>
+	// 		),
+	// 		active: showArtifactSell,
+	// 	};
+	// }
 
 	function handleView() {
 		if (!sessionStorage.getItem(props.artifactId)) {
@@ -215,12 +224,12 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		setShowStampWidget(false);
 	}
 
-	function handleShowArtifactSell() {
-		setShowArtifactSell(!showArtifactSell);
-		setShowPreview(false);
-		setShowStampWidget(false);
-		setShowFactWidget(false);
-	}
+	// function handleShowArtifactSell() {
+	// 	setShowArtifactSell(!showArtifactSell);
+	// 	setShowPreview(false);
+	// 	setShowStampWidget(false);
+	// 	setShowFactWidget(false);
+	// }
 
 	function handleViewRedirect() {
 		window.open(redirect, '_blank');
@@ -302,14 +311,14 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				disabled: props.ownerActionDisabled,
 				loading: false,
 			},
-			{
-				fn: handleShowArtifactSell,
-				closeOnAction: false,
-				subComponent: getArtifactSell(),
-				label: language.sellArtifact,
-				disabled: props.ownerActionDisabled,
-				loading: false,
-			},
+			// {
+			// 	fn: handleShowArtifactSell,
+			// 	closeOnAction: false,
+			// 	subComponent: getArtifactSell(),
+			// 	label: language.sellArtifact,
+			// 	disabled: props.ownerActionDisabled,
+			// 	loading: false,
+			// },
 		];
 	}
 
@@ -318,7 +327,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 			{bookmarkNotification && (
 				<Notification
 					message={bookmarkNotification.message}
-					type={bookmarkNotification.status === 200 ? 'success' : 'warning'}
+					type={bookmarkNotification.status ? 'success' : 'warning'}
 					callback={handleBookmarkCallback}
 				/>
 			)}

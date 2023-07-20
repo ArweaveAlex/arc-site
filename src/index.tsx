@@ -9,6 +9,7 @@ import { GlobalStyle } from 'app/styles';
 import { Loader } from 'components/atoms/Loader';
 import { defaultTheme } from 'helpers/themes';
 import { ArweaveProvider } from 'providers/ArweaveProvider';
+import { OrderBookProvider } from 'providers/OrderBookProvider';
 import { persistor, store } from 'state/store';
 // import { registerServiceWorker } from 'workers/registerServiceWorker';
 
@@ -21,10 +22,12 @@ root.render(
 		<PersistGate loading={<Loader />} persistor={persistor}>
 			<ThemeProvider theme={defaultTheme}>
 				<ArweaveProvider>
-					<HashRouter>
-						<GlobalStyle />
-						<App />
-					</HashRouter>
+					<OrderBookProvider>
+						<HashRouter>
+							<GlobalStyle />
+							<App />
+						</HashRouter>
+					</OrderBookProvider>
 				</ArweaveProvider>
 			</ThemeProvider>
 		</PersistGate>

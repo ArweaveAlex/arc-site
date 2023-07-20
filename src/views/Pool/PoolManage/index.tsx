@@ -73,9 +73,7 @@ export default function PoolManage() {
 						headerData.state.image.length > 0 ? headerData.state.image : ArcFramework.FALLBACK_IMAGE
 					)
 				);
-				setImageUrl(
-					imageResponse.status === 200 ? imageResponse.url : ArcFramework.getTxEndpoint(ArcFramework.FALLBACK_IMAGE)
-				);
+				setImageUrl(imageResponse.status ? imageResponse.url : ArcFramework.getTxEndpoint(ArcFramework.FALLBACK_IMAGE));
 			}
 		})();
 	}, [headerData]);

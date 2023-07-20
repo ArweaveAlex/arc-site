@@ -1,5 +1,8 @@
 export interface IProps {
 	artifactId: string;
+	artifactType: string;
+	artifactName: string;
+	dateCreated: string;
 	tags: { [key: string]: any }[];
 	owner: string | null;
 	ownerActionDisabled: boolean;
