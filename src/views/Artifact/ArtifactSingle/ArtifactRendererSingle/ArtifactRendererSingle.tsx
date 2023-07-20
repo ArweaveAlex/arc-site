@@ -30,7 +30,6 @@ export default function ArtifactRendererSingle(props: IProps) {
 
 	React.useEffect(() => {
 		let wrapperClass: string | null = null;
-		console.log(props.artifactType);
 		switch (props.artifactType) {
 			case ArtifactEnum.Image:
 				wrapperClass = 'wrapper-full';

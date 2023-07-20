@@ -491,4 +491,5 @@ export const EXISTING_POOLS_FILTER = {
 	],
 };
 
-export const POOL_TEST_MODE = false;
+// TODO: POOL_TEST_MODE
+export const POOL_TEST_MODE = true;

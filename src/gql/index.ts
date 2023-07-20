@@ -70,7 +70,7 @@ export async function getArtifactsByBookmarks(
 
 export async function setBookmarkIds(owner: string, ids: string[]): Promise<ArcFramework.NotificationResponseType> {
 	const response = await ArcFramework.setBookmarkIds(owner, ids);
-	if (response.status === 200) {
+	if (response.status) {
 		store.dispatch(
 			artifactActions.setBookmarks({
 				owner: owner,

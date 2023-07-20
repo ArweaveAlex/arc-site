@@ -2,7 +2,7 @@ export type ButtonType = 'primary' | 'alt1' | 'alt2' | 'alt3' | 'success' | 'war
 export type FormFieldType = 'number' | 'password';
 export type NotificationType = 'success' | 'warning' | 'neutral';
 export type AlignType = 'left' | 'center' | 'right';
-export type ContributionResultType = {
+export type NotificationResponseType = {
 	status: boolean;
 	message: string | null;
 };

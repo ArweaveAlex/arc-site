@@ -32,7 +32,7 @@ export default function ImageListItem(props: IProps) {
 				const imageResponse = await fetch(
 					getTxEndpoint(jsonData.fileTxId.length > 0 ? jsonData.fileTxId : FALLBACK_IMAGE)
 				);
-				setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
+				setImageUrl(imageResponse.status ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
 			}
 		})();
 	}, [jsonData]);

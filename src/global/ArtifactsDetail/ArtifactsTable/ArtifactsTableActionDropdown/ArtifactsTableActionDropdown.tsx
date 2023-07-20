@@ -44,6 +44,7 @@ function Preview(props: { artifactId: string; artifactType: string; useModal: bo
 	);
 }
 
+// TODO: add sell to dropdown
 export default function ArtifactsTableActionDropdown(props: IProps) {
 	const dispatch = useDispatch();
 
@@ -124,7 +125,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 		setBookmarkNotification({
 			status: bookmarkResponse.status,
-			message: bookmarkResponse.status === 200 ? language.bookmarksUpdated : language.errorOccurred,
+			message: bookmarkResponse.status ? language.bookmarksUpdated : language.errorOccurred,
 		});
 	}
 
@@ -326,7 +327,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 			{bookmarkNotification && (
 				<Notification
 					message={bookmarkNotification.message}
-					type={bookmarkNotification.status === 200 ? 'success' : 'warning'}
+					type={bookmarkNotification.status ? 'success' : 'warning'}
 					callback={handleBookmarkCallback}
 				/>
 			)}
