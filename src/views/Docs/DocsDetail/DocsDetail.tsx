@@ -1,3 +1,5 @@
+import { language } from 'helpers/language';
+
 import { DocTemplate } from './DocTemplate';
 import { Navigation } from './Navigation';
 import * as S from './styles';
@@ -8,7 +10,7 @@ export default function DocsDetail() {
 			<S.Wrapper>
 				<S.HeaderWrapper>
 					<S.HeaderContent>
-						<h2>Docs</h2>
+						<h2>{language.docs}</h2>
 					</S.HeaderContent>
 				</S.HeaderWrapper>
 				<S.BodyWrapper>

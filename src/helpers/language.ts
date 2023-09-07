@@ -250,6 +250,7 @@ export const language = {
 	details: `Details`,
 	description: `Description`,
 	disconnect: `Disconnect`,
+	docs: `Docs`,
 	docsTitle: `Documentation`,
 	downloadPoolConfig: `Download Pool Configuration`,
 	downloadPoolConfigTooltip: `Download the necessary configuration file to operate this pool from the Alex. CLI`,
