@@ -5,6 +5,7 @@ import Stamps from '@permaweb/stampjs';
 import parse from 'html-react-parser';
 
 import {
+	ARTIFACT_CONTRACT,
 	ArweaveClient,
 	formatDate,
 	formatKeywordString,
@@ -146,6 +147,7 @@ export default function ArtifactsTable(props: IProps) {
 					</S.ALink>
 				</S.ALinkWrapper>
 				<S.Icons>
+					<S.TradeIcon>{checkTradability(tags) && <ReactSVG src={ASSETS.trade} />}</S.TradeIcon>
 					<S.Icon>{checkMedia(tags) && <ReactSVG src={ASSETS.media} />}</S.Icon>
 					<S.AssociationIcon>{checkAssociation(tags) && <ReactSVG src={ASSETS.association} />}</S.AssociationIcon>
 				</S.Icons>
@@ -177,6 +179,7 @@ export default function ArtifactsTable(props: IProps) {
 				artifactId={artifactId}
 				artifactType={getTagValue(tags, TAGS.keys.artifactType)}
 				artifactName={getTagValue(tags, TAGS.keys.ansTitle)}
+				artifactContractSrc={getTagValue(tags, TAGS.keys.contractSrc)}
 				dateCreated={getTagValue(tags, TAGS.keys.dateCreated)}
 				tags={tags}
 				owner={props.owner}
@@ -329,5 +332,12 @@ function checkMedia(tags: { [key: string]: any }[]) {
 function checkAssociation(tags: { [key: string]: any }[]) {
 	return (
 		getTagValue(tags, TAGS.keys.associationId) !== '' && getTagValue(tags, TAGS.keys.associationId) !== STORAGE.none
+	);
+}
+
+function checkTradability(tags: { [key: string]: any }[]) {
+	return (
+		getTagValue(tags, TAGS.keys.contractSrc) !== '' &&
+		getTagValue(tags, TAGS.keys.contractSrc) === ARTIFACT_CONTRACT.src
 	);
 }

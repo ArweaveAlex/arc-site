@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { CursorEnum } from 'arcframework';
 
@@ -23,8 +22,6 @@ function HeaderAction(props: IAProps) {
 }
 
 export default function CollectionsManageHeader(props: IProps) {
-	const navigate = useNavigate();
-
 	const [showPreview, setShowPreview] = React.useState<boolean>(false);
 	const [showEdit, setShowEdit] = React.useState<boolean>(false);
 
@@ -116,9 +113,6 @@ export default function CollectionsManageHeader(props: IProps) {
 									noMinWidth
 									disabled={true}
 								/>
-							</S.Action>
-							<S.Action>
-								<Button type={'warning'} label={language.exit} handlePress={() => navigate(-1)} noMinWidth />
 							</S.Action>
 						</S.Actions>
 					</S.Header>

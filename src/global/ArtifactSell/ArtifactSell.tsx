@@ -1,7 +1,7 @@
 import React from 'react';
+import { InjectedArweaveSigner } from 'warp-contracts-plugin-signature';
 
-import { ArweaveClient, formatAddress, formatDate, ValidationType } from 'arcframework';
-import { OrderBook, OrderBookType } from 'permaweb-orderbook';
+import { formatAddress, formatDate, ValidationType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
@@ -10,7 +10,7 @@ import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
-import { NotificationResponseType } from 'helpers/types';
+import { NotificationResponseType, WalletEnum } from 'helpers/types';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { useOrderBookProvider } from 'providers/OrderBookProvider';
 
@@ -21,9 +21,6 @@ export default function ArtifactSell(props: IProps) {
 	const arProvider = useArweaveProvider();
 	const orProvider = useOrderBookProvider();
 
-	// const arClient = new ArweaveClient();
-
-	// const [orderBook, setOrderBook] = React.useState<OrderBookType>();
 	const [amount, setAmount] = React.useState<number>(0);
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [submitted, setSubmitted] = React.useState<boolean>(false);
@@ -31,29 +28,58 @@ export default function ArtifactSell(props: IProps) {
 
 	const [copied, setCopied] = React.useState<boolean>(false);
 
-	async function handleSell(e: any) {
+	async function sellArtifact(e: any) {
 		e.preventDefault();
-		if (orProvider.orderBook && arProvider.walletAddress) {
+		if (props.artifactId && orProvider.orderBook) {
 			setLoading(true);
 			try {
-				await orProvider.orderBook?.sell({
-					assetId: props.artifactId,
-					qty: 1,
-					price: amount * 1e6,
-					wallet: 'use_wallet',
-					walletAddress: arProvider.walletAddress,
-				});
-				setSellNotification({
-					status: true,
-					message: language.artifactListedForSale,
-				});
+				if (arProvider.wallet && window.arweaveWallet) {
+					const signer = new InjectedArweaveSigner(arProvider.wallet);
+					signer.getAddress = window.arweaveWallet.getActiveAddress;
+					await signer.setPublicKey();
+
+					await orProvider.orderBook.sell({
+						assetId: props.artifactId,
+						qty: 1,
+						price: amount * 1e6,
+						wallet: signer,
+						walletAddress: arProvider.walletAddress,
+					});
+
+					setLoading(false);
+					setSellNotification({
+						status: true,
+						message: language.artifactListedForSale,
+					});
+				} else {
+					let message = '';
+					if (arProvider.walletType === WalletEnum.arweaveApp && !arProvider.wallet['_address']) {
+						message = language.arweaveAppConnectionError;
+					} else {
+						message = language.errorOccurred;
+					}
+					setLoading(false);
+					setSellNotification({
+						status: false,
+						message: message,
+					});
+				}
 			} catch (e: any) {
+				console.error(e);
+				let message = '';
+				if (e.message) {
+					message = e.message;
+				} else if (arProvider.walletType === WalletEnum.arweaveApp && !arProvider.wallet['_address']) {
+					message = language.arweaveAppConnectionError;
+				} else {
+					message = language.errorOccurred;
+				}
+				setLoading(false);
 				setSellNotification({
 					status: false,
-					message: e.toString(),
+					message: message,
 				});
 			}
-			setLoading(false);
 			setSubmitted(true);
 		}
 	}
@@ -125,7 +151,7 @@ export default function ArtifactSell(props: IProps) {
 						</S.HeaderFlex>
 						{getSubheader()}
 					</S.Header>
-					<S.Form onSubmit={(e) => handleSell(e)}>
+					<S.Form onSubmit={(e) => sellArtifact(e)}>
 						<S.FormWrapper>
 							<S.FormContainer>
 								<FormField
@@ -145,7 +171,7 @@ export default function ArtifactSell(props: IProps) {
 							<Button
 								label={language.submit}
 								type={'alt1'}
-								handlePress={(e) => handleSell(e)}
+								handlePress={(e) => sellArtifact(e)}
 								disabled={getDisabledSubmit()}
 								loading={loading}
 								formSubmit

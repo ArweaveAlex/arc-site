@@ -11,41 +11,16 @@ export const HeaderWrapper = styled.div`
 	}
 `;
 
-export const HeaderContent = styled.div`
-	position: absolute;
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		position: relative;
-	}
-`;
+export const HeaderContent = styled.div``;
 
 export const HeaderContentFixed = styled.div`
 	width: calc(100% - 40px);
 	max-width: calc(${STYLING.cutoffs.max} - 40px);
-	background: ${(props) => props.theme.colors.container.primary.background};
-	margin: 0 0 40px 0;
-	position: fixed;
-	z-index: 2;
-	top: ${STYLING.dimensions.navHeight};
-	left: 50%;
-	transform: translate(-50%, 0);
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		width: 100%;
-		position: relative;
-		top: auto;
-		left: auto;
-		transform: translate(0, 0);
-		margin: 0;
-	}
+	margin: 0 auto;
 `;
 
 export const Header = styled.div`
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.alt3.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
-	padding: 20px;
-	margin: 20px 0 0 0;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -66,7 +41,7 @@ export const H2 = styled.h2`
 export const Header1 = styled(H2)`
 	color: ${(props) => props.theme.colors.font.primary.active.base};
 	font-family: ${(props) => props.theme.typography.family.alt1};
-	font-weight: ${(props) => props.theme.typography.weight.regular};
+	font-weight: ${(props) => props.theme.typography.weight.bold};
 `;
 
 export const Actions = styled.div`

@@ -19,4 +19,5 @@ export interface IProps {
 	disabledSelectedCallbackIds: string[] | null;
 	usePreviewModal: boolean;
 	action?: React.ReactNode;
+	setCount?: (count: number) => void | null;
 }

@@ -29,23 +29,18 @@ export const TypeLabel = styled.div`
 
 export const Icons = styled.div`
 	height: 100%;
-	width: 80px;
 	display: flex;
+	justify-content: space-between;
 	position: absolute;
 	right: 0;
 `;
 
 export const Icon = styled.div`
 	height: 100%;
-	width: 50%;
+	width: 30px;
 	display: flex;
 	justify-content: end;
 	align-items: center;
-	position: absolute;
-	top: 50%;
-	left: 0;
-	right: auto;
-	transform: translate(0, -50%);
 	svg {
 		width: 10px;
 		margin: 3.5px 0 0 0;
@@ -54,10 +49,16 @@ export const Icon = styled.div`
 `;
 
 export const AssociationIcon = styled(Icon)`
+	svg {
+		width: 12.5px;
+	}
+`;
+
+export const TradeIcon = styled(Icon)`
 	right: 0;
 	left: auto;
 	svg {
-		width: 12.5px;
+		width: 10px;
 	}
 `;
 

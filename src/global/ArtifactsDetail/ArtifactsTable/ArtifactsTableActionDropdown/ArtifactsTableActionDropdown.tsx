@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
+	ARTIFACT_CONTRACT,
 	ArweaveClient,
 	getBookmarkIds,
 	getHashUrl,
@@ -15,7 +16,7 @@ import {
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
-// import { ArtifactSell } from 'global/ArtifactSell';
+import { ArtifactSell } from 'global/ArtifactSell';
 import { FactWidget } from 'global/FactWidget';
 import { StampWidget } from 'global/StampWidget';
 import { DOM } from 'helpers/config';
@@ -44,7 +45,6 @@ function Preview(props: { artifactId: string; artifactType: string; useModal: bo
 	);
 }
 
-// TODO: add sell to dropdown
 export default function ArtifactsTableActionDropdown(props: IProps) {
 	const dispatch = useDispatch();
 
@@ -60,7 +60,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 
 	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
 	const [showFactWidget, setShowFactWidget] = React.useState<boolean>(false);
-	// const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
+	const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
 
 	const [bookmarkIdsState, setBookmarkIdsState] = React.useState<string[]>([]);
 
@@ -184,19 +184,19 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		};
 	}
 
-	// function getArtifactSell() {
-	// 	return {
-	// 		node: (
-	// 			<ArtifactSell
-	// 				artifactId={props.artifactId}
-	// 				handleClose={() => setShowArtifactSell(false)}
-	// 				artifactName={props.artifactName}
-	// 				dateCreated={props.dateCreated}
-	// 			/>
-	// 		),
-	// 		active: showArtifactSell,
-	// 	};
-	// }
+	function getArtifactSell() {
+		return {
+			node: (
+				<ArtifactSell
+					artifactId={props.artifactId}
+					handleClose={() => setShowArtifactSell(false)}
+					artifactName={props.artifactName}
+					dateCreated={props.dateCreated}
+				/>
+			),
+			active: showArtifactSell,
+		};
+	}
 
 	function handleView() {
 		if (!sessionStorage.getItem(props.artifactId)) {
@@ -224,12 +224,12 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		setShowStampWidget(false);
 	}
 
-	// function handleShowArtifactSell() {
-	// 	setShowArtifactSell(!showArtifactSell);
-	// 	setShowPreview(false);
-	// 	setShowStampWidget(false);
-	// 	setShowFactWidget(false);
-	// }
+	function handleShowArtifactSell() {
+		setShowArtifactSell(!showArtifactSell);
+		setShowPreview(false);
+		setShowStampWidget(false);
+		setShowFactWidget(false);
+	}
 
 	function handleViewRedirect() {
 		window.open(redirect, '_blank');
@@ -311,14 +311,14 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				disabled: props.ownerActionDisabled,
 				loading: false,
 			},
-			// {
-			// 	fn: handleShowArtifactSell,
-			// 	closeOnAction: false,
-			// 	subComponent: getArtifactSell(),
-			// 	label: language.sellArtifact,
-			// 	disabled: props.ownerActionDisabled,
-			// 	loading: false,
-			// },
+			{
+				fn: handleShowArtifactSell,
+				closeOnAction: false,
+				subComponent: getArtifactSell(),
+				label: language.sellArtifact,
+				disabled: props.ownerActionDisabled || props.artifactContractSrc !== ARTIFACT_CONTRACT.src,
+				loading: false,
+			},
 		];
 	}
 
@@ -335,7 +335,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				open={dropdownOpen}
 				handleCallback={handleCallback}
 				handleShowDropdown={() => setDropdownOpen(!dropdownOpen)}
-				actions={getActions()}
+				actions={getActions().filter((action: any) => !action.disabled)}
 				closeDisabled={showPreview && props.usePreviewModal}
 			/>
 		</>

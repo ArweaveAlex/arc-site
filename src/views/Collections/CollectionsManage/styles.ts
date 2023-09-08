@@ -5,7 +5,7 @@ import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	width: 100%;
-	padding: 0 20px 20px 20px;
+	padding: 20px;
 	width: 100%;
 	animation: ${open} ${fadeIn2};
 	margin: 0 auto;
@@ -25,7 +25,7 @@ export const ContentWrapper = styled.div`
 	height: 100%;
 	width: 100%;
 	max-width: calc(${STYLING.cutoffs.max} - 40px);
-	margin: calc(${STYLING.dimensions.navHeight} + 130px) auto 0 auto;
+	margin: 40px auto 0 auto;
 	display: flex;
 	justify-content: space-between;
 	animation: ${open} ${fadeIn2};
@@ -40,7 +40,7 @@ export const ContentWrapper = styled.div`
 `;
 
 export const ArtifactsWrapper = styled.div`
-	width: calc(100% - 400px);
+	width: calc(100% - 520px);
 	padding: 0 10px 0 0;
 	position: relative;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
@@ -55,7 +55,7 @@ export const ArtifactsWrapper = styled.div`
 
 export const FormWrapper = styled.div`
 	position: relative;
-	width: 350px;
+	width: 500px;
 	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;

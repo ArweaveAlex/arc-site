@@ -317,6 +317,7 @@ export default function FileMiner(props: IProps) {
 							label={language.chooseFiles}
 							handlePress={() => fileInputRef.current.click()}
 							disabled={uploadingStatus !== null || props.disabled}
+							noMinWidth
 						/>
 					</S.EAction>
 				</S.EWrapper>
@@ -387,12 +388,14 @@ export default function FileMiner(props: IProps) {
 							label={language.chooseFiles}
 							handlePress={() => fileInputRef.current.click()}
 							disabled={uploadingStatus !== null || props.disabled}
+							noMinWidth
 						/>
 						<Button
 							type={'success'}
 							label={language.upload}
 							handlePress={handleUpload}
 							disabled={selectedData.length <= 0 || uploadingStatus !== null || props.disabled}
+							noMinWidth
 						/>
 					</S.Actions>
 				</S.Header>

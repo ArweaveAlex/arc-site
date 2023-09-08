@@ -15,7 +15,6 @@ import { ArtifactRendererSingle } from './ArtifactRendererSingle';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: file download
 export default function ArtifactSingle(props: IProps) {
 	let txData: any = null;
 	switch (props.data.artifactType) {

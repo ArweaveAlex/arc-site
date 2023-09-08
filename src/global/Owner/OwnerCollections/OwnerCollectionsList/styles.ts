@@ -192,7 +192,7 @@ export const LIButton = styled.button`
 `;
 
 export const EWrapper = styled.div`
-	width: 700px;
+	width: 800px;
 	max-width: 90vw;
 	margin: 40px auto;
 	display: flex;

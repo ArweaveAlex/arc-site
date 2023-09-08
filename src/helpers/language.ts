@@ -68,6 +68,7 @@ export const language = {
 		},
 	},
 	address: `Address`,
+	appName: `Alex.`,
 	artifactDetails: `Artifact Details`,
 	artifactTypesDisplay: {
 		files: `Personal Archives`,
@@ -79,6 +80,7 @@ export const language = {
 		webpage: `Wikipedia`,
 	},
 	artifactsCreated: `of Artifacts Created`,
+	arweaveAppConnectionError: `Connection error with Arweave.app. The connector window must remain open after the initial connection.`,
 	accept: `Accept`,
 	account: {
 		header1: `Account`,
@@ -181,6 +183,7 @@ export const language = {
 		recent: `Recent Contributors`,
 		top: `Top Contributors`,
 	},
+	connectorNotFound: `This connector was not found`,
 	copied: `Copied!`,
 	copyAddress: `Copy Address`,
 	copyArtifactId: `Copy Artifact ID`,
@@ -252,6 +255,7 @@ export const language = {
 	disconnect: `Disconnect`,
 	docs: `Docs`,
 	docsTitle: `Documentation`,
+	download: `Download`,
 	downloadPoolConfig: `Download Pool Configuration`,
 	downloadPoolConfigTooltip: `Download the necessary configuration file to operate this pool from the Alex. CLI`,
 	editSelectedArtifacts: `Edit Selected Artifacts`,
@@ -359,6 +363,8 @@ export const language = {
 	},
 	poolBalance: `Pool Balance`,
 	poolBalanceInfo: `This balance represents the funds currently available for mining use. Note that this balance only represents funds contributed to this Alex. pool and not your total wallet balance.<br><br> When contributions are made, these funds must be transferred onto the network before you can mine artifacts. This can be done by clicking ‘Transfer Funds’ from this screen.`,
+	poolConfiguration: `Pool Configuration`,
+	poolConfigurationInfo: `This configuration can be used for mining with the Alex. CLI. Please enter a Pool ID which will be used to identify the pool in the CLI.`,
 	poolManage: {
 		mine: { title: 'Mine Artifacts' },
 		view: { title: 'View Artifacts' },
@@ -366,6 +372,7 @@ export const language = {
 	poolAlreadyExists: `This Pool Already Exists`,
 	poolCreated: `Success, Pool Created!`,
 	poolCreatedInfo: `Congratulations on starting a new pool! You will be able to start mining artifacts when the pool transaction has settled on the Arweave Network and a contribution to the pool has been made. You can find your pool from the pools tab on your account page, and you can being managing your pool by clicking Manage Pool below.`,
+	poolId: `Pool ID`,
 	poolOperator: `Alex. Pool Operator`,
 	pools: {
 		header1: `Pools`,
@@ -390,7 +397,7 @@ export const language = {
 	select: `Select`,
 	selectChooseFiles: `Select <b>Choose Files</b> to start uploading`,
 	sellArtifact: `Sell Artifact`,
-	sellArtifactDescription: `This artifact will be posted to the Arweave marketplace for the specified amount of U`,
+	sellArtifactDescription: `This order will be listed in the UCM for the specified amount of $U`,
 	share: `Share`,
 	shareArtifact: `Check out this Alex. Artifact !`,
 	sharePool: `Check out this Alex. Pool !`,

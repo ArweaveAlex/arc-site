@@ -10,6 +10,7 @@ import aboutStepsLogo4SVG from 'assets/about-steps-logo-4.svg';
 import menuActionSVG from 'assets/action-menu.svg';
 import addSVG from 'assets/add.svg';
 import allSVG from 'assets/all.svg';
+import arLogoSVG from 'assets/ar-logo.svg';
 import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
 import arrowNextSVG from 'assets/arrow-next.svg';
 import arrowPreviousSVG from 'assets/arrow-previous.svg';
@@ -71,12 +72,13 @@ import defaultStampSVG from 'assets/stamp-default.svg';
 import superStampSVG from 'assets/stamp-super.svg';
 import vouchedStampSVG from 'assets/stamp-vouched.svg';
 import starSVG from 'assets/star.svg';
+import tradeSVG from 'assets/trade.svg';
 import twitterSocialSVG from 'assets/twitter.svg';
 import universitySVG from 'assets/university-icon.svg';
 import userSVG from 'assets/user.svg';
 import * as filters from 'filters/pools';
 import { language } from 'helpers/language';
-import { IURLView, NavigationComponentType } from 'helpers/types';
+import { IURLView, NavigationComponentType, WalletEnum } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { AccountAll } from 'views/Account/AccountAll';
 import { AccountBookmarks } from 'views/Account/AccountBookmarks';
@@ -174,10 +176,12 @@ export const ASSETS = {
 		vouched: vouchedStampSVG,
 	},
 	star: starSVG,
+	trade: tradeSVG,
 	university: universitySVG,
 	user: userSVG,
 	wallets: {
 		arconnect: arconnectWalletPNG,
+		arweaveApp: arLogoSVG,
 	},
 };
 
@@ -254,7 +258,10 @@ export const ARTIFACT_TYPES_DISPLAY = {
 	],
 };
 
-export const AR_WALLETS = [{ name: 'arconnect', logo: ASSETS.wallets.arconnect }];
+export const AR_WALLETS = [
+	{ type: WalletEnum.arConnect, logo: ASSETS.wallets.arconnect },
+	{ type: WalletEnum.arweaveApp, logo: ASSETS.wallets.arweaveApp },
+];
 
 export const WALLET_PERMISSIONS = ['ACCESS_ADDRESS', 'ACCESS_PUBLIC_KEY', 'SIGN_TRANSACTION', 'DISPATCH', 'SIGNATURE'];
 
@@ -491,5 +498,19 @@ export const EXISTING_POOLS_FILTER = {
 	],
 };
 
-// TODO: POOL_TEST_MODE
-export const POOL_TEST_MODE = true;
+export const POOL_TEST_MODE = false;
+
+export const DRE_NODE = 'https://dre-u.warp.cc/contract';
+
+export const CURRENCIES = {
+	default: 'U' as 'U',
+};
+
+export const API_CONFIG = {
+	arweaveGet: 'arweave.net',
+	arweavePost: 'arweave.net',
+	protocol: 'https',
+	port: 443,
+	timeout: 40000,
+	logging: false,
+};

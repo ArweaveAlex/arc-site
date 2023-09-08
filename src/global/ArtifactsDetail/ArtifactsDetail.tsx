@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ArtifactResponseType } from 'arcframework';
 
 import { ArtifactsTable } from 'global/ArtifactsDetail/ArtifactsTable';
-import { getArtifactsByIds } from 'gql';
+// import { getArtifactsByIds } from 'gql';
 import * as windowUtils from 'helpers/window';
 import { clearCursors } from 'state/cursors/actions';
 import { RootState } from 'state/store';
@@ -14,7 +14,7 @@ import { IProps } from './types';
 export default function ArtifactsDetail(props: IProps) {
 	const dispatch = useDispatch();
 
-	const searchIdsReducer = useSelector((state: RootState) => state.searchIdsReducer);
+	// const searchIdsReducer = useSelector((state: RootState) => state.searchIdsReducer);
 	const searchTermReducer = useSelector((state: RootState) => state.searchTermReducer);
 
 	const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
@@ -40,29 +40,29 @@ export default function ArtifactsDetail(props: IProps) {
 		dispatch(clearCursors());
 	}, [dispatch]);
 
-	React.useEffect(() => {
-		(async function () {
-			setShowNoResults(false);
-			setDetailDataUpdated(!detailDataUpdated);
-			setDetailData(null);
-			if (
-				searchRequested &&
-				searchIdsReducer[props.cursorObject.value] &&
-				searchIdsReducer[props.cursorObject.value].length > 0
-			) {
-				setDetailData(
-					await getArtifactsByIds({
-						ids: null,
-						owner: null,
-						uploader: null,
-						cursor: cursor,
-						reduxCursor: props.cursorObject.value,
-					})
-				);
-			}
-		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [searchRequested, searchIdsReducer, cursor]);
+	// React.useEffect(() => {
+	// 	(async function () {
+	// 		setShowNoResults(false);
+	// 		setDetailDataUpdated(!detailDataUpdated);
+	// 		setDetailData(null);
+	// 		if (
+	// 			searchRequested &&
+	// 			searchIdsReducer[props.cursorObject.value] &&
+	// 			searchIdsReducer[props.cursorObject.value].length > 0
+	// 		) {
+	// 			setDetailData(
+	// 				await getArtifactsByIds({
+	// 					ids: null,
+	// 					owner: null,
+	// 					uploader: null,
+	// 					cursor: cursor,
+	// 					reduxCursor: props.cursorObject.value,
+	// 				})
+	// 			);
+	// 		}
+	// 	})();
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, [searchRequested, searchIdsReducer, cursor]);
 
 	React.useEffect(() => {
 		(async function () {
@@ -84,25 +84,31 @@ export default function ArtifactsDetail(props: IProps) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchRequested, props.id.value, props.uploader, props.cursorObject.value, cursor]);
 
-	React.useEffect(() => {
-		if (
-			searchRequested &&
-			searchIdsReducer[props.cursorObject.value] &&
-			searchIdsReducer[props.cursorObject.value].length <= 0
-		) {
-			handleShowNoResults();
-			setDetailData({
-				nextCursor: null,
-				previousCursor: null,
-				contracts: [],
-			});
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [detailDataUpdated]);
+	// React.useEffect(() => {
+	// 	if (
+	// 		searchRequested &&
+	// 		searchIdsReducer[props.cursorObject.value] &&
+	// 		searchIdsReducer[props.cursorObject.value].length <= 0
+	// 	) {
+	// 		handleShowNoResults();
+	// 		setDetailData({
+	// 			nextCursor: null,
+	// 			previousCursor: null,
+	// 			count: 0,
+	// 			contracts: [],
+	// 		});
+	// 	}
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, [detailDataUpdated]);
 
 	React.useEffect(() => {
-		if (detailData && detailData.contracts.length <= 0) {
-			handleShowNoResults();
+		if (detailData) {
+			if (detailData.contracts.length <= 0) {
+				handleShowNoResults();
+			}
+			if (props.setCount) {
+				props.setCount(detailData.count);
+			}
 		}
 	}, [detailData]);
 

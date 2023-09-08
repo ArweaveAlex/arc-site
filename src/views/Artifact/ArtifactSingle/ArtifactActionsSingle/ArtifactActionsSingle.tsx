@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ArweaveClient } from 'arcframework';
+import { ARTIFACT_CONTRACT, ArweaveClient, getTxEndpoint, STORAGE } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
@@ -89,9 +89,15 @@ export default function ArtifactActionsSingle(props: IProps) {
 			arProvider.walletAddress &&
 			props.data.owner === arProvider.walletAddress &&
 			props.data.claimable !== null &&
-			props.data.claimable !== undefined
+			props.data.claimable !== undefined &&
+			props.data.artifactContractSrc === ARTIFACT_CONTRACT.src
 		) {
-			return <Button type={'alt2'} label={language.sellArtifact} handlePress={handleShowArtifactSell} noMinWidth />;
+			return (
+				<S.ButtonContainer>
+					<Button type={'alt2'} label={language.sellArtifact} handlePress={handleShowArtifactSell} noMinWidth />
+					{showArtifactSell && artifactSell()}
+				</S.ButtonContainer>
+			);
 		} else {
 			return null;
 		}
@@ -107,6 +113,27 @@ export default function ArtifactActionsSingle(props: IProps) {
 					<S.MobileWidget>{widget()}</S.MobileWidget>
 				</Modal>
 			);
+		}
+	}
+
+	function handleDownload() {
+		const link = document.createElement('a');
+		link.href = getTxEndpoint(JSON.parse(props.data.rawData).fileTxId);
+		link.download = `${props.data.artifactName}.${props.data.fileType}`;
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	}
+
+	function getArtifactDownload() {
+		if (props.data.fileType && props.data.fileType !== STORAGE.none && JSON.parse(props.data.rawData).fileTxId) {
+			return (
+				<S.ButtonContainer>
+					<Button type={'alt2'} label={language.download} handlePress={handleDownload} width={110} />
+				</S.ButtonContainer>
+			);
+		} else {
+			return null;
 		}
 	}
 
@@ -139,10 +166,8 @@ export default function ArtifactActionsSingle(props: IProps) {
 					/>
 					{showFactWidget && getWidget(factWidget, S.FactWidgetContainer, () => setShowFactWidget(false))}
 				</S.ButtonContainer>
-				<S.ButtonContainer>
-					{getArtifactSell()}
-					{showArtifactSell && artifactSell()}
-				</S.ButtonContainer>
+				{getArtifactSell()}
+				{getArtifactDownload()}
 			</S.ButtonsContainer>
 		</S.Wrapper>
 	) : null;

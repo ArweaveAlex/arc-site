@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
-import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { ASSETS } from 'helpers/config';
 import * as urls from 'helpers/urls';
-import * as windowUtils from 'helpers/window';
 
 import * as S from './styles';
 
@@ -15,7 +14,9 @@ function CodeBlock({ children }: { children: React.ReactNode }): React.ReactElem
 
 	const [copied, setCopied] = React.useState<boolean>(false);
 
-	const handleCopyClick = () => {
+	const handleCopyClick = (e: any) => {
+		e.preventDefault();
+		e.stopPropagation();
 		if (codeRef.current) {
 			const range = document.createRange();
 			range.selectNode(codeRef.current);
@@ -31,16 +32,15 @@ function CodeBlock({ children }: { children: React.ReactNode }): React.ReactElem
 	return (
 		<S.CodeBlock>
 			<pre ref={codeRef}>{children}</pre>
-			<IconButton
-				sm
-				type={'alt1'}
-				src={copied ? ASSETS.checkmark : ASSETS.copy}
-				handlePress={handleCopyClick}
+			<S.CopyIcon
+				onClick={(e: any) => handleCopyClick(e)}
 				dimensions={{
 					wrapper: 22.5,
 					icon: 12.5,
 				}}
-			/>
+			>
+				<ReactSVG src={copied ? ASSETS.checkmark : ASSETS.copy} />
+			</S.CopyIcon>
 		</S.CodeBlock>
 	);
 }
@@ -86,8 +86,6 @@ export default function DocTemplate(props: { doc?: string; id?: string }) {
 							targetElement.scrollIntoView();
 							observer.disconnect();
 							break;
-						} else {
-							windowUtils.scrollTo(0, 0);
 						}
 					}
 				}

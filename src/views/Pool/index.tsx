@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import * as ArcFramework from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
-import { getArtifactsByPool } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
 
 import { PoolDetail } from './PoolDetail';
@@ -26,30 +25,6 @@ export default function Pool() {
 			}
 		})();
 	}, [id]);
-
-	React.useEffect(() => {
-		(async function () {
-			if (id && headerData) {
-				const detailData = await getArtifactsByPool({
-					ids: [id],
-					owner: null,
-					uploader: headerData.state.owner,
-					cursor: null,
-					reduxCursor: REDUX_TABLES.poolAll,
-				});
-
-				if (detailData && detailData.contracts.length > 0) {
-					setCount(
-						await ArcFramework.getPoolCount(
-							ArcFramework.getTagValue(detailData.contracts[0].node.tags, ArcFramework.TAGS.keys.contractSrc)
-						)
-					);
-				} else {
-					setCount(0);
-				}
-			}
-		})();
-	}, [id, headerData]);
 
 	React.useEffect(() => {
 		(async function () {
@@ -97,6 +72,7 @@ export default function Pool() {
 					value: REDUX_TABLES.poolAll,
 				}}
 				uploader={headerData.state.owner}
+				setCount={(count: number) => setCount(count)}
 			/>
 		);
 	}

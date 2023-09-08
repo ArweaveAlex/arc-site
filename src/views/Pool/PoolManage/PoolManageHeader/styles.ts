@@ -260,3 +260,16 @@ export const FundsNotificationMessage = styled.div`
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
 `;
+
+export const MWrapper = styled.div`
+	p {
+		line-height: 1.5;
+		font-size: ${(props) => props.theme.typography.size.small};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		margin: 0 0 40px 0;
+	}
+	button {
+		margin: 20px auto;
+	}
+`;

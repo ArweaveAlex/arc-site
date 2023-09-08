@@ -80,3 +80,8 @@ export type FileMetadataType = {
 export type StepType = 'prev' | 'next';
 
 export type UploadingStatusType = 'uploading' | 'complete';
+
+export enum WalletEnum {
+	arConnect = 'arconnect',
+	arweaveApp = 'arweave.app',
+}

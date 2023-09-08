@@ -51,15 +51,15 @@ export const Form = styled.form`
 
 export const Fields = styled.div`
 	padding: 20px 20px 0 20px;
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 `;
 
 export const SubmitContainer = styled.div`
-	margin: 20px 0 0 0;
-	width: 100%;
+	width: fit-content;
+	margin: 20px 0 0 auto;
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	overflow: hidden;
 `;

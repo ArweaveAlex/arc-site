@@ -99,6 +99,7 @@ function getArtifactsResponseObject(
 	return {
 		nextCursor: nextCursor,
 		previousCursor: previousCursor,
+		count: artifactsResponse.count,
 		contracts: artifactsResponse.contracts,
 	};
 }

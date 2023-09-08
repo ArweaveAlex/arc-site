@@ -1,15 +1,18 @@
 import React from 'react';
 import Arweave from 'arweave';
 import { defaultCacheOptions, LoggerFactory, WarpFactory } from 'warp-contracts';
+import { DeployPlugin } from 'warp-contracts-plugin-deploy';
 
 import { OrderBook, OrderBookType } from 'permaweb-orderbook';
 
+import { API_CONFIG, CURRENCIES, DRE_NODE } from 'helpers/config';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 LoggerFactory.INST.logLevel('fatal');
 
 interface OrderBookContextState {
 	orderBook: OrderBookType | null;
+	setUpdate: (update: boolean) => void;
 }
 
 interface OrderBookProviderProps {
@@ -18,6 +21,7 @@ interface OrderBookProviderProps {
 
 const DEFAULT_CONTEXT = {
 	orderBook: null,
+	setUpdate(_update: boolean) {},
 };
 
 const OrderBookContext = React.createContext<OrderBookContextState>(DEFAULT_CONTEXT);
@@ -30,57 +34,47 @@ export function OrderBookProvider(props: OrderBookProviderProps) {
 	const arProvider = useArweaveProvider();
 
 	const [orderBook, setOrderBook] = React.useState<OrderBookType | null>(null);
-
-	const dreReducer = {
-		label: 'DRE-1',
-		source: 'https://dre-1.warp.cc/contract',
-	};
+	const [update, setUpdate] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
-		const GET_ENDPOINT = 'arweave-search.goldsky.com';
-		const POST_ENDPOINT = 'arweave.net';
-
-		const PORT = 443;
-		const PROTOCOL = 'https';
-		const TIMEOUT = 40000;
-		const LOGGING = false;
-
-		let arweaveGet = Arweave.init({
-			host: GET_ENDPOINT,
-			port: PORT,
-			protocol: PROTOCOL,
-			timeout: TIMEOUT,
-			logging: LOGGING,
+		const arweaveGet = Arweave.init({
+			host: API_CONFIG.arweaveGet,
+			port: API_CONFIG.port,
+			protocol: API_CONFIG.protocol,
+			timeout: API_CONFIG.timeout,
+			logging: API_CONFIG.logging,
 		});
 
-		let arweavePost = Arweave.init({
-			host: POST_ENDPOINT,
-			port: PORT,
-			protocol: PROTOCOL,
-			timeout: TIMEOUT,
-			logging: LOGGING,
+		const arweavePost = Arweave.init({
+			host: API_CONFIG.arweavePost,
+			port: API_CONFIG.port,
+			protocol: API_CONFIG.protocol,
+			timeout: API_CONFIG.timeout,
+			logging: API_CONFIG.logging,
 		});
 
-		let warp = WarpFactory.forMainnet({
+		const warp = WarpFactory.forMainnet({
 			...defaultCacheOptions,
 			inMemory: true,
-		});
+		}).use(new DeployPlugin());
 
 		setOrderBook(
 			OrderBook.init({
-				currency: 'U',
+				currency: CURRENCIES.default,
 				arweaveGet: arweaveGet,
 				arweavePost: arweavePost,
+				bundlrKey: window.arweaveWallet ? window.arweaveWallet : null,
 				warp: warp,
-				warpDreNode: dreReducer.source,
+				warpDreNode: DRE_NODE,
 			})
 		);
-	}, [arProvider.walletAddress, dreReducer.source]);
+	}, [arProvider.wallet, arProvider.walletAddress, DRE_NODE, update]);
 
 	return (
 		<OrderBookContext.Provider
 			value={{
 				orderBook,
+				setUpdate: setUpdate,
 			}}
 		>
 			{props.children}

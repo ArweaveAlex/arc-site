@@ -6,6 +6,7 @@ import * as ArcFramework from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { ButtonLink } from 'components/atoms/ButtonLink';
+import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { Modal } from 'components/molecules/Modal';
@@ -27,10 +28,13 @@ export default function PoolManageHeader(props: IProps) {
 	const [showPoolBalanceInfo, setShowPoolBalanceInfo] = React.useState<boolean>(false);
 	const [fundsNotification, setFundsNotification] = React.useState<ArcFramework.NotificationResponseType | null>(null);
 
+	const [showPoolIdInput, setShowPoolIdInput] = React.useState<boolean>(false);
+	const [poolIdInput, setPoolIdInput] = React.useState<string>('');
+
 	React.useEffect(() => {
 		(async function () {
 			if (arProvider.walletAddress) {
-				let poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
+				const poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
 				const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
 				if (poolConfig) {
 					poolConfig.walletKey = window.arweaveWallet;
@@ -104,18 +108,21 @@ export default function PoolManageHeader(props: IProps) {
 	}
 
 	async function downloadPoolConfig() {
-		setLoading(true);
-		let poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
-		const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
-		const blob = new Blob([JSON.stringify(poolConfig, null, 4)], { type: 'application/json' });
-		const href = URL.createObjectURL(blob);
-		const link = document.createElement('a');
-		link.href = href;
-		link.download = APP.poolConfig;
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
-		setLoading(false);
+		if (poolIdInput) {
+			setLoading(true);
+			const poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
+			const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
+
+			const blob = new Blob([JSON.stringify({ [poolIdInput]: poolConfig }, null, 4)], { type: 'application/json' });
+			const href = URL.createObjectURL(blob);
+			const link = document.createElement('a');
+			link.href = href;
+			link.download = APP.poolConfig;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			setLoading(false);
+		}
 	}
 
 	const hasPoolBalance = balances && (balances.poolBalance > 0 || balances.bundlrBalance > 0);
@@ -282,7 +289,7 @@ export default function PoolManageHeader(props: IProps) {
 							<Button
 								type={'alt1'}
 								label={language.downloadPoolConfig}
-								handlePress={downloadPoolConfig}
+								handlePress={() => setShowPoolIdInput(true)}
 								disabled={loading}
 								tooltip={language.downloadPoolConfigTooltip}
 							/>
@@ -290,6 +297,30 @@ export default function PoolManageHeader(props: IProps) {
 					</S.InfoWrapper>
 				</S.HeaderWrapper>
 			</S.Wrapper>
+			{showPoolIdInput && (
+				<Modal header={language.poolConfiguration} handleClose={() => setShowPoolIdInput(false)}>
+					<S.MWrapper>
+						<p>{language.poolConfigurationInfo}</p>
+						<FormField
+							value={poolIdInput}
+							label={language.poolId}
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPoolIdInput(e.target.value)}
+							disabled={loading || !arProvider.walletAddress}
+							invalid={{ status: false, message: null }}
+						/>
+						<Button
+							type={'alt1'}
+							label={language.download}
+							handlePress={() => {
+								downloadPoolConfig();
+								setShowPoolIdInput(false);
+								setPoolIdInput('');
+							}}
+							disabled={!poolIdInput}
+						/>
+					</S.MWrapper>
+				</Modal>
+			)}
 		</>
 	);
 }

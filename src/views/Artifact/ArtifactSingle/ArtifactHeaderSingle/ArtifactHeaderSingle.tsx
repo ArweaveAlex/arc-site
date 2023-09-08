@@ -12,7 +12,6 @@ import * as urls from 'helpers/urls';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: get balances owner
 export default function ArtifactHeaderSingle(props: IProps) {
 	return props.data && props.type ? (
 		<S.Wrapper>

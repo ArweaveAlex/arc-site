@@ -23,6 +23,7 @@ export default function PoolDetail(props: IProps) {
 			owner={null}
 			uploader={props.uploader}
 			usePreviewModal={true}
+			setCount={props.setCount ? props.setCount : null}
 		/>
 	);
 }
