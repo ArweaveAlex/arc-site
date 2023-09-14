@@ -9,6 +9,7 @@ import aboutStepsLogo3SVG from 'assets/about-steps-logo-3.svg';
 import aboutStepsLogo4SVG from 'assets/about-steps-logo-4.svg';
 import menuActionSVG from 'assets/action-menu.svg';
 import addSVG from 'assets/add.svg';
+import alexLogo from 'assets/alexLogo.png';
 import allSVG from 'assets/all.svg';
 import arLogoSVG from 'assets/ar-logo.svg';
 import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
@@ -82,7 +83,7 @@ import { IURLView, NavigationComponentType, WalletEnum } from 'helpers/types';
 import * as urls from 'helpers/urls';
 import { AccountAll } from 'views/Account/AccountAll';
 import { AccountBookmarks } from 'views/Account/AccountBookmarks';
-// import { AccountCollections } from 'views/Account/AccountCollections';
+import { AccountCollections } from 'views/Account/AccountCollections';
 import { AccountContributions } from 'views/Account/AccountContributions';
 import { AccountPools } from 'views/Account/AccountPools';
 import { LibraryAll } from 'views/Library/LibraryAll';
@@ -108,6 +109,7 @@ export const ASSETS = {
 	aboutStepsLogo4: aboutStepsLogo4SVG,
 	add: addSVG,
 	all: allSVG,
+	alexLogo: alexLogo,
 	arrowNext: arrowNextSVG,
 	arrowPrevious: arrowPreviousSVG,
 	artifact: artifactSVG,
@@ -320,14 +322,14 @@ export const URLS: IURLView = {
 			url: urls.accountPools,
 			view: AccountPools,
 		},
-		// {
-		// 	index: 2,
-		// 	label: language.account.collections.title,
-		// 	icon: ASSETS.collections,
-		// 	disabled: false,
-		// 	url: urls.accountCollections,
-		// 	view: AccountCollections,
-		// },
+		{
+			index: 2,
+			label: language.account.collections.title,
+			icon: ASSETS.collections,
+			disabled: false,
+			url: urls.accountCollections,
+			view: AccountCollections,
+		},
 		{
 			index: 3,
 			label: language.account.bookmarks.title,

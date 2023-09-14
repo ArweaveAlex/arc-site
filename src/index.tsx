@@ -9,6 +9,7 @@ import { GlobalStyle } from 'app/styles';
 import { Loader } from 'components/atoms/Loader';
 import { defaultTheme } from 'helpers/themes';
 import { ArweaveProvider } from 'providers/ArweaveProvider';
+import { MintProvider } from 'providers/MintProvider';
 import { OrderBookProvider } from 'providers/OrderBookProvider';
 import { persistor, store } from 'state/store';
 // import { registerServiceWorker } from 'workers/registerServiceWorker';
@@ -23,10 +24,12 @@ root.render(
 			<ThemeProvider theme={defaultTheme}>
 				<ArweaveProvider>
 					<OrderBookProvider>
-						<HashRouter>
-							<GlobalStyle />
-							<App />
-						</HashRouter>
+						<MintProvider>
+							<HashRouter>
+								<GlobalStyle />
+								<App />
+							</HashRouter>
+						</MintProvider>
 					</OrderBookProvider>
 				</ArweaveProvider>
 			</ThemeProvider>
