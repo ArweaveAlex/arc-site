@@ -1,4 +1,4 @@
-import { CollectionType } from 'arcframework';
+import { CollectionType } from '../../../../lib/clients/mint';
 
 export interface IProps {
 	owner: string | null;

@@ -56,7 +56,7 @@ export default function OwnerCollectionsList(props: IProps) {
 										<Link to={`${urls.collectionsManage}?owner=${props.owner}&contractId=${collection.id}`}>
 											<S.ListItemWrapper>
 												<S.LIHeaderContainer>
-													<S.LIHeader1>{collection.state.title}</S.LIHeader1>
+													<S.LIHeader1>{collection.title}</S.LIHeader1>
 													<S.SubheaderFlex>
 														<S.SubheaderContainer>
 															<S.Subheader1>
@@ -73,7 +73,7 @@ export default function OwnerCollectionsList(props: IProps) {
 															</S.Subheader1>
 															&nbsp;
 															<S.Date>
-																<p>{formatDate(collection.state.timestamp, 'epoch')}</p>
+																<p>{formatDate(collection.timestamp, 'epoch')}</p>
 															</S.Date>
 														</S.SubheaderContainer>
 													</S.SubheaderFlex>
@@ -81,7 +81,7 @@ export default function OwnerCollectionsList(props: IProps) {
 												<S.LIBodyContainer>
 													<S.LIBodyFlex>
 														<S.LIBodyHeader>{language.description}</S.LIBodyHeader>
-														<S.LIBodyData>{collection.state.description}</S.LIBodyData>
+														<S.LIBodyData>{collection.description}</S.LIBodyData>
 													</S.LIBodyFlex>
 												</S.LIBodyContainer>
 											</S.ListItemWrapper>
