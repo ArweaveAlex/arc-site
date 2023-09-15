@@ -93,13 +93,15 @@ export default function Subheader(props: IProps) {
 				});
 			} else {
 				return (
-					<Select
-						onChange={(e) => handleEvent(e)}
-						display={null}
-						value={activeNode.display}
-						options={props.nodes.map((node: { id: string; display: string }) => node.display)}
-						disabled={false}
-					/>
+					<S.Select>
+						<Select
+							onChange={(e) => handleEvent(e)}
+							display={null}
+							value={activeNode.display}
+							options={props.nodes.map((node: { id: string; display: string }) => node.display)}
+							disabled={false}
+						/>
+					</S.Select>
 				);
 			}
 		} else {

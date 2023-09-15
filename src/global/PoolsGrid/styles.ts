@@ -16,6 +16,11 @@ export const SubheaderFlex = styled.div`
 	margin: 0 0 20px 0;
 `;
 
+export const Select = styled.div`
+	width: 100%;
+	max-width: 400px;
+`;
+
 export const FilterWrapper = styled.div`
 	display: flex;
 	align-items: center;

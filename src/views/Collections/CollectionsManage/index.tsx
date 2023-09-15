@@ -14,6 +14,7 @@ import { CollectionsManageForm } from './CollectionsManageForm';
 import { CollectionsManageHeader } from './CollectionsManageHeader';
 import * as S from './styles';
 
+// TODO: create disclaimer modal
 export default function CollectionsManage() {
 	const query = useQuery();
 	const owner = query.get('owner');
@@ -55,12 +56,8 @@ export default function CollectionsManage() {
 	async function handleSave() {
 		if (arProvider.walletAddress) {
 			try {
-				// TODO: pick good images or have user upload, took this one from twitter
-				let bannerImage = ASSETS.alexLogo;
-				let thumbnailImage = ASSETS.alexLogo;
-
-				const mimeTypeBanner = bannerImage ? bannerImage.split(';')[0].split(':')[1] : null;
-				const mimeTypeThumb = thumbnailImage ? bannerImage.split(';')[0].split(':')[1] : null;
+				let thumbnailImage = ASSETS.siteLogo;
+				const mimeTypeThumb = thumbnailImage ? thumbnailImage.split(';')[0].split(':')[1] : null;
 
 				const collection: CollectionUploadType = {
 					name: title,
@@ -76,13 +73,13 @@ export default function CollectionsManage() {
 						[arProvider.walletAddress]: 100,
 					},
 					// TODO: put tag in framework
-					type: 'document',
-					code: '',
+					type: 'Document',
+					code: 'alex-collection-literacy-fiction',
 					creator: arProvider.walletAddress,
 					items: selectedIds,
-					banner: dataURLtoArrayBuffer(bannerImage),
+					banner: null,
 					thumbnail: dataURLtoArrayBuffer(thumbnailImage),
-					bannerMime: mimeTypeBanner,
+					bannerMime: null,
 					thumbnailMime: mimeTypeThumb,
 				};
 

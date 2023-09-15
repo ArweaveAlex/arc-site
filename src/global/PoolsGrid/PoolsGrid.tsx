@@ -217,13 +217,15 @@ export default function PoolsGrid(props: IProps) {
 			<S.Wrapper>
 				<S.SubheaderFlex>
 					{getPoolFilter()}
-					<Select
-						onChange={(e) => setCurrentSort(getPoolSort(e.target.value))}
-						display={null}
-						value={currentSort.title}
-						options={POOL_SORT_OPTIONS.map((filter: PoolFilterType) => filter.title)}
-						disabled={false}
-					/>
+					<S.Select>
+						<Select
+							onChange={(e) => setCurrentSort(getPoolSort(e.target.value))}
+							display={null}
+							value={currentSort.title}
+							options={POOL_SORT_OPTIONS.map((filter: PoolFilterType) => filter.title)}
+							disabled={false}
+						/>
+					</S.Select>
 				</S.SubheaderFlex>
 				<S.Body>{getData()}</S.Body>
 				{data && count && data.length > count && (

@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { formatAddress, formatDate } from 'arcframework';
+import { formatAddress } from 'arcframework';
 
 import { ButtonLink } from 'components/atoms/ButtonLink';
 import { ASSETS } from 'helpers/config';
@@ -11,6 +10,9 @@ import * as urls from 'helpers/urls';
 import * as S from './styles';
 import { IProps } from './types';
 
+// TODO: loader - null collections
+// TODO: empty wrapper - no collections
+// TODO: onclick view collection modal redirect to bazar
 export default function OwnerCollectionsList(props: IProps) {
 	function getData() {
 		if (props.data) {
@@ -51,23 +53,24 @@ export default function OwnerCollectionsList(props: IProps) {
 						</S.Header>
 						<S.List>
 							{props.data.map((collection: any, index: number) => {
+								console.log(collection.id);
 								return (
 									<S.Link key={index}>
-										<Link to={`${urls.collectionsManage}?owner=${props.owner}&contractId=${collection.id}`}>
-											<S.ListItemWrapper>
-												<S.LIHeaderContainer>
-													<S.LIHeader1>{collection.title}</S.LIHeader1>
-													<S.SubheaderFlex>
-														<S.SubheaderContainer>
-															<S.Subheader1>
-																<p>{language.collection.subheader1}</p>
-															</S.Subheader1>
-															&nbsp;
-															<S.ID>
-																<p>{formatAddress(collection.id, false)}</p>
-															</S.ID>
-														</S.SubheaderContainer>
-														<S.SubheaderContainer>
+										{/* <Link to={`${urls.collectionsManage}?owner=${props.owner}&contractId=${collection.id}`}> */}
+										<S.ListItemWrapper>
+											<S.LIHeaderContainer>
+												<S.LIHeader1>{collection.title}</S.LIHeader1>
+												<S.SubheaderFlex>
+													<S.SubheaderContainer>
+														<S.Subheader1>
+															<p>{language.collection.subheader1}</p>
+														</S.Subheader1>
+														&nbsp;
+														<S.ID>
+															<p>{formatAddress(collection.id, false)}</p>
+														</S.ID>
+													</S.SubheaderContainer>
+													{/* <S.SubheaderContainer>
 															<S.Subheader1>
 																<p>{language.createdOn}</p>
 															</S.Subheader1>
@@ -75,17 +78,17 @@ export default function OwnerCollectionsList(props: IProps) {
 															<S.Date>
 																<p>{formatDate(collection.timestamp, 'epoch')}</p>
 															</S.Date>
-														</S.SubheaderContainer>
-													</S.SubheaderFlex>
-												</S.LIHeaderContainer>
-												<S.LIBodyContainer>
-													<S.LIBodyFlex>
-														<S.LIBodyHeader>{language.description}</S.LIBodyHeader>
-														<S.LIBodyData>{collection.description}</S.LIBodyData>
-													</S.LIBodyFlex>
-												</S.LIBodyContainer>
-											</S.ListItemWrapper>
-										</Link>
+														</S.SubheaderContainer> */}
+												</S.SubheaderFlex>
+											</S.LIHeaderContainer>
+											<S.LIBodyContainer>
+												<S.LIBodyFlex>
+													<S.LIBodyHeader>{language.description}</S.LIBodyHeader>
+													<S.LIBodyData>{collection.description}</S.LIBodyData>
+												</S.LIBodyFlex>
+											</S.LIBodyContainer>
+										</S.ListItemWrapper>
+										{/* </Link> */}
 									</S.Link>
 								);
 							})}

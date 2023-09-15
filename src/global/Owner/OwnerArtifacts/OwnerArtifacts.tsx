@@ -43,6 +43,7 @@ export default function OwnerArtifacts(props: IProps) {
 			selectCallback={props.selectCallback}
 			selectedCallbackIds={props.selectedCallbackIds}
 			disabledSelectedCallbackIds={props.disabledSelectedCallbackIds}
+			disabledContractSrc={props.disabledContractSrc}
 			usePreviewModal={props.usePreviewModal}
 			action={props.action}
 		/>

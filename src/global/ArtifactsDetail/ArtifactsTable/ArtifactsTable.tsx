@@ -191,12 +191,16 @@ export default function ArtifactsTable(props: IProps) {
 		);
 	}
 
-	function getCallback(id: string) {
+	function getDisabled(id: string) {
+		return props.disabledSelectedCallbackIds ? props.disabledSelectedCallbackIds.includes(id) : false;
+	}
+
+	function getCallback(id: string, contractSrcDisabled: boolean) {
 		return (
 			<S.CheckboxContainer>
 				<Checkbox
 					checked={selectedCallbackIdsState.includes(id)}
-					disabled={props.disabledSelectedCallbackIds ? props.disabledSelectedCallbackIds.includes(id) : false}
+					disabled={getDisabled(id) || contractSrcDisabled}
 					handleSelect={() => props.selectCallback(id)}
 				/>
 			</S.CheckboxContainer>
@@ -249,7 +253,13 @@ export default function ArtifactsTable(props: IProps) {
 						.map((element: any) => {
 							const row: ArtifactTableRowType = {};
 							if (props.selectCallback) {
-								row.callback = getCallback(element.node.id);
+								let disabled: boolean = false;
+								if (props.disabledContractSrc) {
+									const contractSrc = getTagValue(element.node.tags, TAGS.keys.contractSrc);
+									disabled = contractSrc !== ARTIFACT_CONTRACT.src;
+								}
+
+								row.callback = getCallback(element.node.id, disabled);
 							}
 
 							row.type = getType(getTagValue(element.node.tags, TAGS.keys.artifactType));

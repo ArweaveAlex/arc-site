@@ -100,6 +100,7 @@ export default function CollectionsManageArtifacts(props: IProps) {
 			selectCallback={(id: string) => handleIdUpdate(id)}
 			selectedCallbackIds={props.selectedIds}
 			disabledSelectedCallbackIds={null}
+			disabledContractSrc={true}
 			cursorObject={{
 				key: CursorEnum.Search,
 				value: tableType.cursorType,

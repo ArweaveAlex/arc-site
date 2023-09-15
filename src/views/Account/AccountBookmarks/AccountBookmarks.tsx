@@ -20,6 +20,7 @@ export default function AccountBookmarks() {
 			selectCallback={null}
 			selectedCallbackIds={null}
 			disabledSelectedCallbackIds={null}
+			disabledContractSrc={false}
 			cursorObject={{
 				key: CursorEnum.Search,
 				value: REDUX_TABLES.accountBookmarks,

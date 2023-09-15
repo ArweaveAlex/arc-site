@@ -24,32 +24,13 @@ export default function CollectionsManageForm(props: IProps) {
 	}
 
 	function getAction() {
-		// let lang: string;
-		// let func: () => void;
-		// let disabled: boolean;
-
-		// lang = language.save;
-		// func = () => handleSave();
-		// disabled = getSubmitDisabled();
-
-		// if (contractId) {
-		// 	lang = language.save;
-		// 	func = () => handleSave();
-		// 	disabled = getSubmitDisabled();
-		// } else {
-		// 	lang = language.create;
-		// 	func = () => handleCreate();
-		// 	disabled = getSubmitDisabled();
-		// }
-
 		return (
 			<Button
 				type={'alt1'}
-				label={language.save}
+				label={language.publish}
 				handlePress={() => props.handleSave()}
 				disabled={getSubmitDisabled()}
-				height={52.5}
-				width={350}
+				noMinWidth
 			/>
 		);
 	}
@@ -77,13 +58,15 @@ export default function CollectionsManageForm(props: IProps) {
 							options={Object.keys(ANSTopicEnum).map((topic: string) => topic)}
 							disabled={false}
 						/>
-						<TextArea
-							label={language.description}
-							value={props.description}
-							onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => props.setDescription(e.target.value as any)}
-							invalid={{ status: false, message: null }}
-							disabled={false}
-						/>
+						<S.Description>
+							<TextArea
+								label={language.description}
+								value={props.description}
+								onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => props.setDescription(e.target.value as any)}
+								invalid={{ status: false, message: null }}
+								disabled={false}
+							/>
+						</S.Description>
 					</S.Fields>
 					<S.SubmitContainer>{getAction()}</S.SubmitContainer>
 				</S.Form>

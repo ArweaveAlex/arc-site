@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getCollectionsByOwner } from 'arcframework';
+// import { getCollectionsByOwner } from 'arcframework';
 import { CollectionsResponseType } from 'permaweb-orderbook';
 
 import { useArweaveProvider } from 'providers/ArweaveProvider';
@@ -13,14 +13,13 @@ import * as S from './styles';
 import { IProps } from './types';
 
 export default function OwnerCollections(props: IProps) {
-	const [ownerCollections, setOwnerCollections] = React.useState<CollectionType[]>([]);
 	const arProvider = useArweaveProvider();
 	const mintProvider = useMintProvider();
 
+	const [ownerCollections, setOwnerCollections] = React.useState<CollectionType[] | null>(null);
+
 	React.useEffect(() => {
 		// TODO: unify CollectionType from arcframework and from this mint client
-		// probably replace the one in arcframework
-		// TODO: add a timestamp to the collection coming out of the client
 		if (arProvider.walletAddress && mintProvider.mintClient) {
 			mintProvider.mintClient
 				.getCollectionsByUser({

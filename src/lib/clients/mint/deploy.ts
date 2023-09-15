@@ -1,3 +1,5 @@
+import { FALLBACK_IMAGE } from 'arcframework';
+
 import { CollectionUploadType } from './index';
 
 const ATOMIC_TOKEN_SRC = 'Of9pi--Gj7hCTawhgxOwbuWnFI1h24TTgO5pw8ENJNQ';
@@ -52,7 +54,7 @@ export function publishCollection(bundlr: any) {
 			{ name: 'Description', value: collection.description },
 			{ name: 'Type', value: 'Document' },
 			{ name: 'License', value: collection.licenseTags.License },
-			{ name: 'Banner', value: banner ? banner : '' },
+			{ name: 'Banner', value: banner ? banner : FALLBACK_IMAGE },
 			{ name: 'Thumbnail', value: thumbnail ? thumbnail : '' },
 			{ name: 'Collection-Code', value: collection.code },
 			{ name: 'Creator', value: collection.creator },

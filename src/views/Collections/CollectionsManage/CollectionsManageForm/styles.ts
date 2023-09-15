@@ -57,6 +57,10 @@ export const Fields = styled.div`
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 `;
 
+export const Description = styled.div`
+	margin: 20px 0 0 0;
+`;
+
 export const SubmitContainer = styled.div`
 	width: fit-content;
 	margin: 20px 0 0 auto;

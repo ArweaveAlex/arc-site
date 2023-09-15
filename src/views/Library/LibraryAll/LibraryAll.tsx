@@ -20,6 +20,7 @@ export default function LibraryAll() {
 			ownerActionDisabled={true}
 			selectCallback={null}
 			selectedCallbackIds={null}
+			disabledContractSrc={false}
 			disabledSelectedCallbackIds={null}
 			cursorObject={{
 				key: CursorEnum.Search,

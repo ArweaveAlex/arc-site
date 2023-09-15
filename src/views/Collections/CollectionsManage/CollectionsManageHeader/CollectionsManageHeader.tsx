@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CursorEnum } from 'arcframework';
 
-import { Button } from 'components/atoms/Button';
+// import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
 import { ArtifactsCollection } from 'global/ArtifactsCollection';
 import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
@@ -70,6 +70,7 @@ export default function CollectionsManageHeader(props: IProps) {
 							selectCallback={(id: string) => handleIdUpdate(id)}
 							selectedCallbackIds={props.selectedIds}
 							disabledSelectedCallbackIds={null}
+							disabledContractSrc={true}
 							cursorObject={{
 								key: CursorEnum.Search,
 								value: REDUX_TABLES.accountAll,
@@ -86,7 +87,7 @@ export default function CollectionsManageHeader(props: IProps) {
 				<S.HeaderContentFixed>
 					<S.Header>
 						<S.Header1>{language.createCollection}</S.Header1>
-						<S.Actions>
+						{/* <S.Actions>
 							<S.Action>
 								<Button
 									type={'alt1'}
@@ -114,7 +115,7 @@ export default function CollectionsManageHeader(props: IProps) {
 									disabled={true}
 								/>
 							</S.Action>
-						</S.Actions>
+						</S.Actions> */}
 					</S.Header>
 				</S.HeaderContentFixed>
 			</S.HeaderContent>

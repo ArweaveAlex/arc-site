@@ -33,6 +33,11 @@ export const Content = styled.div`
 	}
 `;
 
+export const Select = styled.div`
+	width: 100%;
+	max-width: 400px;
+`;
+
 export const Node = styled.button<{ active: boolean }>`
 	margin: 0 25px;
 	font-size: ${(props) => props.theme.typography.size.small};
