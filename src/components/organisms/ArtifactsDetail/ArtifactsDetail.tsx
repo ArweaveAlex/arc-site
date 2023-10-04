@@ -135,7 +135,6 @@ export default function ArtifactsDetail(props: IProps) {
 
 	function getCursors() {
 		if (props.useIdPagination && paginatedIds && paginatedIds.length) {
-			console.log(paginatedIds);
 			const cursorObject = paginatedIds.find((element: IdPaginatorType) => element.index === cursor);
 			if (!cursorObject) {
 				return {
