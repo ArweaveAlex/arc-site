@@ -80,7 +80,7 @@ export default function PoolManageHeader(props: IProps) {
 
 	function getPoolBalance() {
 		if (balances && balances.bundlrBalance > 0 && poolClient) {
-			return poolClient.getARAmount(balances.bundlrBalance).toFixed(3);
+			return poolClient.getARAmount(balances.bundlrBalance).toFixed(2);
 		} else {
 			return '0';
 		}
@@ -118,13 +118,15 @@ export default function PoolManageHeader(props: IProps) {
 		}
 	}
 
-	async function downloadPoolConfig() {
+	async function downloadPoolConfig(e: any) {
+		e.preventDefault();
 		if (poolIdInput) {
+			const poolId = poolIdInput.replace(/ /g, '-');
 			setLoading(true);
 			const poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
 			const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
 
-			const blob = new Blob([JSON.stringify({ [poolIdInput]: poolConfig }, null, 4)], { type: 'application/json' });
+			const blob = new Blob([JSON.stringify({ [poolId]: poolConfig }, null, 4)], { type: 'application/json' });
 			const href = URL.createObjectURL(blob);
 			const link = document.createElement('a');
 			link.href = href;
@@ -309,9 +311,13 @@ export default function PoolManageHeader(props: IProps) {
 				<Modal header={language.poolConfiguration} handleClose={() => setShowPoolIdInput(false)}>
 					<S.MWrapper>
 						<S.MText>
-							<p>{language.poolConfigurationInfo}</p>
+							<p>{parse(language.poolConfigurationInfo)}</p>
 						</S.MText>
-						<S.MForm>
+						<S.MForm
+							onSubmit={(e: any) => {
+								downloadPoolConfig(e);
+							}}
+						>
 							<S.MFormField>
 								<FormField
 									value={poolIdInput}
@@ -321,17 +327,25 @@ export default function PoolManageHeader(props: IProps) {
 									invalid={{ status: false, message: null }}
 								/>
 							</S.MFormField>
-							<Button
-								type={'alt1'}
-								label={language.download}
-								handlePress={() => {
-									downloadPoolConfig();
-									setShowPoolIdInput(false);
-									setPoolIdInput('');
-								}}
-								formSubmit
-								disabled={!poolIdInput}
-							/>
+							<S.MActions>
+								<ButtonLink
+									type={'primary'}
+									label={language.viewDocs}
+									href={`${urls.docs}creating-a-pool/pool-creation-ui`}
+									targetBlank
+									noMinWidth
+								/>
+								<Button
+									type={'alt1'}
+									label={language.download}
+									handlePress={(e: any) => {
+										downloadPoolConfig(e);
+									}}
+									formSubmit
+									disabled={!poolIdInput || loading}
+									noMinWidth
+								/>
+							</S.MActions>
 						</S.MForm>
 					</S.MWrapper>
 				</Modal>
@@ -354,7 +368,11 @@ export default function PoolManageHeader(props: IProps) {
 								<S.ARTokens>{language.arTokens}</S.ARTokens>
 							</S.BalanceWrapper>
 						)}
-						<S.MForm>
+						<S.MForm
+							onSubmit={(e: any) => {
+								transferFunds(e);
+							}}
+						>
 							<S.MFormField>
 								<FormField
 									type={'number'}
@@ -365,19 +383,23 @@ export default function PoolManageHeader(props: IProps) {
 									endText={language.arTokens}
 								/>
 							</S.MFormField>
-							<Button
-								type={'alt1'}
-								label={language.confirmTransfer}
-								handlePress={(e: any) => {
-									transferFunds(e);
-								}}
-								formSubmit
-								disabled={loading || !transferAmount || transferAmount <= 0 || fundsNotification !== null}
-								loading={loading}
-							/>
-							<S.FundsNotificationMessage>
-								{fundsNotification && <p>{fundsNotification.message}</p>}
-							</S.FundsNotificationMessage>
+							<S.MActions>
+								<Button
+									type={'alt1'}
+									label={language.confirmTransfer}
+									handlePress={(e: any) => {
+										transferFunds(e);
+									}}
+									formSubmit
+									disabled={loading || !transferAmount || transferAmount <= 0 || fundsNotification !== null}
+									loading={loading}
+								/>
+							</S.MActions>
+							{fundsNotification && (
+								<S.FundsNotificationMessage>
+									<p>{fundsNotification.message}</p>
+								</S.FundsNotificationMessage>
+							)}
 						</S.MForm>
 					</S.MWrapper>
 				</Modal>

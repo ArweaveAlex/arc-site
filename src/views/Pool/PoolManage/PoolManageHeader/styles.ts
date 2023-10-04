@@ -253,7 +253,7 @@ export const PoolBalanceInfo = styled.div`
 `;
 
 export const FundsNotificationMessage = styled.div`
-	margin: 40px 0 0 0;
+	margin: 20px 0 0 0;
 	p {
 		line-height: 1.5;
 		font-size: ${(props) => props.theme.typography.size.small};
@@ -262,11 +262,7 @@ export const FundsNotificationMessage = styled.div`
 	}
 `;
 
-export const MWrapper = styled.div`
-	button {
-		margin: 20px auto;
-	}
-`;
+export const MWrapper = styled.div``;
 
 export const MForm = styled.form``;
 
@@ -311,6 +307,17 @@ export const MH2 = styled.h2`
 	line-height: 1.25;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		font-size: 24px;
+	}
+`;
+
+export const MActions = styled.div`
+	width: fit-content;
+	display: flex;
+	margin: 0 auto 20px auto;
+	> * {
+		&:not(:last-child) {
+			margin: 0 15px 0 0;
+		}
 	}
 `;
 

@@ -373,7 +373,7 @@ export const language = {
 	poolBalance: `Pool Balance`,
 	poolBalanceInfo: `This balance represents the funds currently available for mining use. Note that this balance only represents funds contributed to this Alex. pool and not your total wallet balance.<br><br> When contributions are made, these funds must be transferred onto the network before you can mine artifacts. This can be done by clicking ‘Transfer Funds’ from this screen.`,
 	poolConfiguration: `Pool Configuration`,
-	poolConfigurationInfo: `This configuration can be used for mining with the Alex. CLI. Please enter a Pool ID which will be used to identify the pool in the CLI.`,
+	poolConfigurationInfo: `This configuration can be used for mining with the Alex. CLI. Please enter a Pool ID which will be used to identify the pool in the CLI.<br><br>After downloading this configuration, please visit our documentation for next steps. You will need to enter additional information into the configuration to successfully mine artifacts in the CLI.`,
 	poolManage: {
 		mine: { title: 'Mine Artifacts' },
 		view: { title: 'View Artifacts' },
@@ -449,6 +449,7 @@ export const language = {
 	value: `Value`,
 	view: `View`,
 	viewAccount: `View Account`,
+	viewDocs: `View Docs`,
 	viewOnArweave: `View on Arweave`,
 	viewOnBazar: `View on BazAR`,
 	viewOnPermafacts: `View on Permafacts`,

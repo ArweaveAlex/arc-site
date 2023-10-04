@@ -58,9 +58,6 @@ export const C2Body = styled.div<{ column: boolean }>`
 		&:not(:last-child) {
 			margin: 0 0 15px 0;
 		}
-		&:last-child {
-			margin: 0;
-		}
 	}
 	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		height: auto;
