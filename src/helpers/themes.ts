@@ -252,7 +252,7 @@ export const defaultTheme: DefaultTheme = {
 			alt1: DEFAULT.overlay2,
 		},
 		shadow: {
-			primary: DEFAULT.neutral5,
+			primary: DEFAULT.neutral3,
 		},
 		table: {
 			placeholder: {

@@ -29,6 +29,11 @@ export interface IURLView {
 	poolManage: URLViewType[];
 }
 
+export type ResponseType = {
+	status: boolean;
+	message: string | null;
+};
+
 export type ValidationType = {
 	status: boolean;
 	message: string | null;
@@ -85,3 +90,8 @@ export enum WalletEnum {
 	arConnect = 'arconnect',
 	arweaveApp = 'arweave.app',
 }
+
+export type IdPaginatorType = {
+	index: string;
+	ids: string[];
+};

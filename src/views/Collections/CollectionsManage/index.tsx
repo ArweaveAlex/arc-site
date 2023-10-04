@@ -1,9 +1,15 @@
 import React from 'react';
-import { CollectionUploadType } from 'lib/clients/mint';
 
-import { ASSETS } from 'helpers/config';
+import { logValue, TAGS } from 'arcframework';
+
+import { CollectionDisclaimer } from 'components/atoms/CollectionDisclaimer';
+import { Notification } from 'components/atoms/Notification';
+import { APP, ASSETS, DEFAULT_LICENSE } from 'helpers/config';
+import { language } from 'helpers/language';
+import { ResponseType } from 'helpers/types';
 import * as windowUtils from 'helpers/window';
 import { useQuery } from 'hooks/useQuery';
+import { CollectionUploadType } from 'lib/clients/mint';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { useMintProvider } from 'providers/MintProvider';
 import { WalletBlock } from 'wallet/WalletBlock';
@@ -14,7 +20,6 @@ import { CollectionsManageForm } from './CollectionsManageForm';
 import { CollectionsManageHeader } from './CollectionsManageHeader';
 import * as S from './styles';
 
-// TODO: create disclaimer modal
 export default function CollectionsManage() {
 	const query = useQuery();
 	const owner = query.get('owner');
@@ -22,13 +27,17 @@ export default function CollectionsManage() {
 	const arProvider = useArweaveProvider();
 	const mintProvider = useMintProvider();
 
-	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
-
 	const [title, setTitle] = React.useState<string>('');
 	const [topic, setTopic] = React.useState<string>('');
 	const [description, setDescription] = React.useState<string>('');
 
 	const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
+
+	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
+	const [showDisclaimer, setShowDisclaimer] = React.useState<boolean>(
+		localStorage.getItem(APP.disclaimerShown) ? false : true
+	);
+	const [collectionResponse, setCollectionResponse] = React.useState<ResponseType | null>(null);
 
 	React.useEffect(() => {
 		windowUtils.scrollTo(0, 0);
@@ -64,17 +73,12 @@ export default function CollectionsManage() {
 					title: title,
 					description: description,
 					topics: [topic],
-					// TODO: select and generate license tags
-					licenseTags: {
-						License: 'yRj4a5KMctX_uOmKWCFJIjmY8DeJcusVk6-HzLiM_t8',
-						Access: 'public',
-					},
+					licenseTags: DEFAULT_LICENSE,
 					owners: {
 						[arProvider.walletAddress]: 100,
 					},
-					// TODO: put tag in framework
-					type: 'Document',
-					code: 'alex-collection-literacy-fiction',
+					type: TAGS.values.document,
+					code: null,
 					creator: arProvider.walletAddress,
 					items: selectedIds,
 					banner: null,
@@ -84,45 +88,68 @@ export default function CollectionsManage() {
 				};
 
 				const id = await mintProvider.mintClient.publishCollection({ collection: collection });
-				console.log(`Collection id - ${id}`);
+				logValue(`Deployed Collection`, id, 0);
+				setCollectionResponse({
+					status: true,
+					message: `${language.collectionCreated}!`,
+				});
 			} catch (e: any) {
 				console.error(e);
+				setCollectionResponse({
+					status: false,
+					message: language.errorOccurred,
+				});
 			}
 		}
 	}
 
+	function handleDisclaimerClose() {
+		setShowDisclaimer(false);
+		localStorage.setItem(APP.disclaimerShown, 'true');
+	}
+
 	function getData() {
 		return (
-			<S.Wrapper>
-				<S.HeaderWrapper>
-					<CollectionsManageHeader
-						owner={owner}
-						selectedIds={selectedIds}
-						setSelectedIds={(ids: string[]) => setSelectedIds(ids)}
-						title={title}
-						topic={topic}
-						description={description}
-					/>
-				</S.HeaderWrapper>
-				<S.ContentWrapper>
-					<S.ArtifactsWrapper>
-						<CollectionsManageArtifacts
+			<>
+				<S.Wrapper>
+					<S.HeaderWrapper>
+						<CollectionsManageHeader
 							owner={owner}
 							selectedIds={selectedIds}
 							setSelectedIds={(ids: string[]) => setSelectedIds(ids)}
+							title={title}
+							topic={topic}
+							description={description}
 						/>
-					</S.ArtifactsWrapper>
-					<S.FormWrapper>
-						<CollectionsManageForm
-							{...{ title, setTitle }}
-							{...{ topic, setTopic }}
-							{...{ description, setDescription }}
-							selectedIds={selectedIds}
-							handleSave={() => handleSave()}
-						/>
-					</S.FormWrapper>
-				</S.ContentWrapper>
-			</S.Wrapper>
+					</S.HeaderWrapper>
+					<S.ContentWrapper>
+						<S.ArtifactsWrapper>
+							<CollectionsManageArtifacts
+								owner={owner}
+								selectedIds={selectedIds}
+								setSelectedIds={(ids: string[]) => setSelectedIds(ids)}
+							/>
+						</S.ArtifactsWrapper>
+						<S.FormWrapper>
+							<CollectionsManageForm
+								{...{ title, setTitle }}
+								{...{ topic, setTopic }}
+								{...{ description, setDescription }}
+								selectedIds={selectedIds}
+								handleSave={() => handleSave()}
+							/>
+						</S.FormWrapper>
+					</S.ContentWrapper>
+				</S.Wrapper>
+				{showDisclaimer && <CollectionDisclaimer handleClose={handleDisclaimerClose} />}
+				{collectionResponse && (
+					<Notification
+						type={collectionResponse.status ? 'success' : 'warning'}
+						message={collectionResponse.message}
+						callback={() => setCollectionResponse(null)}
+					/>
+				)}
+			</>
 		);
 	}
 

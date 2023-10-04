@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { ArtifactArgsType, ArtifactResponseType, CursorEnum } from 'arcframework';
+import { ArtifactArgsType, ArtifactResponseType, CursorEnum, UserArtifactsArgsType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
-import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-import { getArtifactsByBookmarks, getArtifactsByUser } from 'gql';
+import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
+import { getArtifactIdsByUser, getArtifactsByBookmarks } from 'gql';
 import { URLS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
@@ -14,10 +14,12 @@ import { IProps } from './types';
 
 export default function CollectionsManageArtifacts(props: IProps) {
 	const [tableType, setTableType] = React.useState<{
-		fn: (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
+		fn:
+			| ((args: ArtifactArgsType) => Promise<ArtifactResponseType>)
+			| ((args: UserArtifactsArgsType) => Promise<string[]>);
 		cursorType: string;
 	}>({
-		fn: getArtifactsByUser,
+		fn: getArtifactIdsByUser,
 		cursorType: REDUX_TABLES.accountAll,
 	});
 
@@ -56,7 +58,7 @@ export default function CollectionsManageArtifacts(props: IProps) {
 						label={allAction.label}
 						handlePress={() =>
 							setTableType({
-								fn: getArtifactsByUser,
+								fn: getArtifactIdsByUser,
 								cursorType: REDUX_TABLES.accountAll,
 							})
 						}
@@ -102,10 +104,11 @@ export default function CollectionsManageArtifacts(props: IProps) {
 			disabledSelectedCallbackIds={null}
 			disabledContractSrc={true}
 			cursorObject={{
-				key: CursorEnum.Search,
+				key: CursorEnum.IdGQL,
 				value: tableType.cursorType,
 			}}
 			usePreviewModal={true}
+			useIdPagination={tableType.cursorType === REDUX_TABLES.accountAll}
 			action={getAction()}
 		/>
 	);

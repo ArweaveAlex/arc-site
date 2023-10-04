@@ -85,26 +85,25 @@ const mintClient: MintClientType = {
 			tagFilters: [
 				{
 					name: TAGS.keys.dataProtocol,
-					// values: [TAGS.values.collection],
-					values: ['Collection-Test-1'],
+					values: [TAGS.values.collection],
 				},
 			],
 			uploader: [args.walletAddress],
 			cursor: args.cursor,
 			reduxCursor: null,
 			cursorObject: CursorEnum.GQL,
+			useArweavePost: true,
 		});
 		const collections: CollectionType[] = [];
 
-		// TODO: add these tags to framework
 		for (let i = 0; i < gqlData.data.length; i++) {
 			const node = gqlData.data[i].node;
-			const name = getTagValue(node.tags, 'Name');
-			const title = getTagValue(node.tags, 'Title');
-			const description = getTagValue(node.tags, 'Description');
-			const type = getTagValue(node.tags, 'Type');
-			const banner = getTagValue(node.tags, 'Banner');
-			const thumbnail = getTagValue(node.tags, 'Thumbnail');
+			const name = getTagValue(node.tags, TAGS.keys.name);
+			const title = getTagValue(node.tags, TAGS.keys.ansTitle);
+			const description = getTagValue(node.tags, TAGS.keys.ansDescription);
+			const type = getTagValue(node.tags, TAGS.keys.ansType);
+			const banner = getTagValue(node.tags, TAGS.keys.banner);
+			const thumbnail = getTagValue(node.tags, TAGS.keys.thumbnail);
 
 			if ([name, title, description, type].includes(STORAGE.none)) continue;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { OwnerAccount } from 'global/Owner/OwnerAccount';
+import { OwnerAccount } from 'components/organisms/Owner/OwnerAccount';
 import { URLS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';

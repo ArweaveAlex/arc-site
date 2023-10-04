@@ -1,8 +1,6 @@
-import { FALLBACK_IMAGE } from 'arcframework';
+import { ARTIFACT_CONTRACT, CONTENT_TYPES, FALLBACK_IMAGE, TAGS } from 'arcframework';
 
 import { CollectionUploadType } from './index';
-
-const ATOMIC_TOKEN_SRC = 'Of9pi--Gj7hCTawhgxOwbuWnFI1h24TTgO5pw8ENJNQ';
 
 export function publishCollection(bundlr: any) {
 	return async (collection: CollectionUploadType) => {
@@ -11,7 +9,7 @@ export function publishCollection(bundlr: any) {
 
 		if (collection.banner) {
 			const tx = await bundlr.createTransaction(collection.banner, {
-				tags: [{ name: 'Content-Type', value: collection.bannerMime }],
+				tags: [{ name: TAGS.keys.contentType, value: collection.bannerMime }],
 			});
 			await tx.sign();
 			tx.upload();
@@ -20,7 +18,7 @@ export function publishCollection(bundlr: any) {
 
 		if (collection.thumbnail) {
 			const tx = await bundlr.createTransaction(collection.thumbnail, {
-				tags: [{ name: 'Content-Type', value: collection.thumbnailMime }],
+				tags: [{ name: TAGS.keys.contentType, value: collection.thumbnailMime }],
 			});
 			await tx.sign();
 			tx.upload();
@@ -28,39 +26,43 @@ export function publishCollection(bundlr: any) {
 		}
 
 		const tags = [
-			{ name: 'Content-Type', value: 'application/json' },
-			{ name: 'Name', value: collection.name },
-			{ name: 'Data-Protocol', value: 'Collection-Test-1' },
-			{ name: 'App-Name', value: 'SmartWeaveContract' },
-			{ name: 'App-Version', value: '0.3.0' },
-			{ name: 'Contract-Src', value: ATOMIC_TOKEN_SRC },
+			{ name: TAGS.keys.contentType, value: CONTENT_TYPES.json },
+			{ name: TAGS.keys.name, value: collection.name },
+			{ name: TAGS.keys.dataProtocol, value: TAGS.values.collection },
+			{ name: TAGS.keys.appName, value: TAGS.values.appName },
+			{ name: TAGS.keys.appVersion, value: TAGS.values.appVersion },
+			{ name: TAGS.keys.contractSrc, value: ARTIFACT_CONTRACT.src },
+			{ name: TAGS.keys.contractManifest, value: TAGS.values.contractManifest },
 			{
-				name: 'Contract-Manifest',
-				value:
-					'{"evaluationOptions":{"sourceType":"redstone-sequencer","allowBigInt":true,"internalWrites":true,"unsafeClient":"skip","useConstructor":true}}',
-			},
-			{
-				name: 'Init-State',
+				name: TAGS.keys.initState,
 				value: JSON.stringify({
 					balances: collection.owners,
 					name: collection.name,
 					description: collection.description,
-					ticker: 'ATOMIC',
+					ticker: TAGS.values.collectionTicker,
 					claimable: [],
 					creator: collection.creator,
 				}),
 			},
-			{ name: 'Title', value: collection.name },
-			{ name: 'Description', value: collection.description },
-			{ name: 'Type', value: 'Document' },
-			{ name: 'License', value: collection.licenseTags.License },
-			{ name: 'Banner', value: banner ? banner : FALLBACK_IMAGE },
-			{ name: 'Thumbnail', value: thumbnail ? thumbnail : '' },
-			{ name: 'Collection-Code', value: collection.code },
-			{ name: 'Creator', value: collection.creator },
+			{ name: TAGS.keys.ansTitle, value: collection.name },
+			{ name: TAGS.keys.ansDescription, value: collection.description },
+			{ name: TAGS.keys.ansType, value: TAGS.values.document },
+			{ name: TAGS.keys.license, value: collection.licenseTags.License },
+			{ name: TAGS.keys.banner, value: banner ? banner : FALLBACK_IMAGE },
+			{ name: TAGS.keys.creator, value: collection.creator },
 		];
 
-		const result = await bundlr.upload(JSON.stringify({ type: 'Collection', items: collection.items }), { tags });
+		if (thumbnail) {
+			tags.push({ name: TAGS.keys.thumbnail, value: thumbnail });
+		}
+
+		if (collection.code) {
+			tags.push({ name: TAGS.keys.collectionCode, value: collection.code });
+		}
+
+		const result = await bundlr.upload(JSON.stringify({ type: TAGS.values.collection, items: collection.items }), {
+			tags,
+		});
 
 		return result.id;
 	};

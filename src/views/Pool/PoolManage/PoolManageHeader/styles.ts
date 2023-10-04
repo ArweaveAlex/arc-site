@@ -253,6 +253,7 @@ export const PoolBalanceInfo = styled.div`
 `;
 
 export const FundsNotificationMessage = styled.div`
+	margin: 40px 0 0 0;
 	p {
 		line-height: 1.5;
 		font-size: ${(props) => props.theme.typography.size.small};
@@ -262,14 +263,77 @@ export const FundsNotificationMessage = styled.div`
 `;
 
 export const MWrapper = styled.div`
-	p {
-		line-height: 1.5;
-		font-size: ${(props) => props.theme.typography.size.small};
-		color: ${(props) => props.theme.colors.font.primary.alt1};
-		font-weight: ${(props) => props.theme.typography.weight.medium};
-		margin: 0 0 40px 0;
-	}
 	button {
 		margin: 20px auto;
 	}
+`;
+
+export const MForm = styled.form``;
+
+export const MFormField = styled.div`
+	margin: 25px 0 0 0;
+	max-width: 300px;
+	margin: 50px auto 0px;
+`;
+
+export const MText = styled.div`
+	p {
+		line-height: 1.65;
+		font-size: ${(props) => props.theme.typography.size.small};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+	}
+`;
+
+export const MHeader = styled.div`
+	height: 30%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin: 0 0 20px 0;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		height: auto;
+	}
+`;
+
+export const MHeaderFlex = styled.div`
+	display: flex;
+	justify-content: space-between;
+	margin: 0 0 10px 0;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		width: fit-content;
+		flex-direction: column;
+	}
+`;
+
+export const MH2 = styled.h2`
+	font-size: 28px;
+	line-height: 1.25;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		font-size: 24px;
+	}
+`;
+
+export const BalanceWrapper = styled.div`
+	display: flex;
+	margin: 20px 0 0 0;
+`;
+
+export const AvailableBalance = styled.p`
+	color: ${(props) => props.theme.colors.font.primary.alt1};
+	line-height: 18px;
+	white-space: nowrap;
+	overflow: hidden;
+`;
+
+export const BalanceAmount = styled.p`
+	color: ${(props) => props.theme.colors.font.primary.alt1};
+	font-size: 18px;
+	font-weight: ${(props) => props.theme.typography.weight.medium};
+`;
+
+export const ARTokens = styled.p`
+	color: ${(props) => props.theme.colors.font.primary.alt4};
+	font-size: 18px;
+	font-weight: ${(props) => props.theme.typography.weight.medium};
 `;

@@ -12,7 +12,7 @@ import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
-import { Table } from 'components/organisms/Table';
+import { Table } from 'components/molecules/Table';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { AlignType, FileMetadataType, UploadingStatusType } from 'helpers/types';

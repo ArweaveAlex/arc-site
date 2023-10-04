@@ -6,11 +6,11 @@ import { formatAddress, formatCount, formatDate, PoolClient } from 'arcframework
 
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
-import { SocialShare } from 'global/SocialShare';
+import { SocialShare } from 'components/organisms/SocialShare';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 
-import { PoolContribute } from '../../../global/PoolContribute';
+import { PoolContribute } from '../../../components/organisms/PoolContribute';
 
 import * as S from './styles';
 import { IProps } from './types';

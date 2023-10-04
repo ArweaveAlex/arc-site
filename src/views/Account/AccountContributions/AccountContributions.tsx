@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PoolAdditionalPropsType, UserClient } from 'arcframework';
 
-import { PoolTilesList } from 'global/PoolTilesList';
+import { PoolTilesList } from 'components/organisms/PoolTilesList';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';

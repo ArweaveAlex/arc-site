@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { formatAddress, getProfile, PoolClient, UserClient } from 'arcframework';
 
-import { Placeholder } from 'components/atoms/Placeholder';
+import { ListPlaceholder } from 'components/atoms/ListPlaceholder';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
@@ -95,7 +95,7 @@ export default function PoolContributors(props: IProps) {
 				{topContributorList.length > 0 ? (
 					<S.Body>{getBody(topContributorList)}</S.Body>
 				) : (
-					<Placeholder rowCount={ROW_COUNT} />
+					<ListPlaceholder rowCount={ROW_COUNT} rowHeight={40} rowMargin={10} />
 				)}
 			</S.CWrapper>
 			<S.CWrapper>
@@ -106,7 +106,7 @@ export default function PoolContributors(props: IProps) {
 				{recentContributorList.length > 0 ? (
 					<S.Body>{getBody(recentContributorList)}</S.Body>
 				) : (
-					<Placeholder rowCount={ROW_COUNT} />
+					<ListPlaceholder rowCount={ROW_COUNT} rowHeight={40} rowMargin={10} />
 				)}
 			</S.CWrapper>
 		</S.Wrapper>

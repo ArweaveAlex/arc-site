@@ -95,6 +95,7 @@ import { PoolManageView } from 'views/Pool/PoolManage/PoolManageView';
 
 export const APP = {
 	key: 'appVersion',
+	disclaimerShown: 'disclaimerShown',
 	version: '1.1.3',
 	poolConfig: 'pools.json',
 };
@@ -515,4 +516,15 @@ export const API_CONFIG = {
 	port: 443,
 	timeout: 40000,
 	logging: false,
+};
+
+export const REDIRECTS = {
+	bazar: {
+		collection: (id: string) => `https://bazar.arweave.dev/#/collection/${id}`,
+	},
+};
+
+export const DEFAULT_LICENSE = {
+	License: 'yRj4a5KMctX_uOmKWCFJIjmY8DeJcusVk6-HzLiM_t8',
+	Access: 'public',
 };

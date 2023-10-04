@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { CursorEnum } from 'arcframework';
 
-import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
+import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
 import { getArtifactsByBookmarks } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
 
@@ -23,10 +23,11 @@ export default function LibraryBookmark() {
 			disabledContractSrc={false}
 			disabledSelectedCallbackIds={null}
 			cursorObject={{
-				key: CursorEnum.Search,
+				key: CursorEnum.IdGQL,
 				value: REDUX_TABLES.libraryBookmarks,
 			}}
 			usePreviewModal={true}
+			useIdPagination={false}
 		/>
 	) : null;
 }

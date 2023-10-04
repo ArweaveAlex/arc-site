@@ -20,6 +20,10 @@ export async function getArtifactsByUser(
 	return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByUser(args), ArcFramework.CursorEnum.GQL);
 }
 
+export async function getArtifactIdsByUser(args: ArcFramework.UserArtifactsArgsType): Promise<string[]> {
+	return await ArcFramework.getArtifactIdsByUser(args);
+}
+
 export async function getArtifactsByIds(
 	args: ArcFramework.ArtifactArgsType
 ): Promise<ArcFramework.ArtifactResponseType> {
@@ -34,7 +38,7 @@ export async function getArtifactsByIds(
 	return getArtifactsResponseObject(
 		finalArgs,
 		await ArcFramework.getArtifactsByIds(finalArgs),
-		ArcFramework.CursorEnum.Search
+		ArcFramework.CursorEnum.IdGQL
 	);
 }
 
@@ -84,7 +88,7 @@ export async function setBookmarkIds(owner: string, ids: string[]): Promise<ArcF
 function getArtifactsResponseObject(
 	args: ArcFramework.ArtifactArgsType,
 	artifactsResponse: ArcFramework.ArtifactResponseType,
-	cursorObject: ArcFramework.CursorEnum.GQL | ArcFramework.CursorEnum.Search
+	cursorObject: ArcFramework.CursorEnum.GQL | ArcFramework.CursorEnum.IdGQL
 ): ArcFramework.ArtifactResponseType {
 	handleCursors(args.cursor, args.reduxCursor, cursorObject, artifactsResponse.nextCursor);
 

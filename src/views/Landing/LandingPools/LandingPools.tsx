@@ -1,4 +1,4 @@
-import { PoolsGrid } from 'global/PoolsGrid';
+import { PoolsGrid } from 'components/organisms/PoolsGrid';
 import { DEFAULT_POOL_FETCH_COUNT } from 'helpers/config';
 
 import * as S from './styles';

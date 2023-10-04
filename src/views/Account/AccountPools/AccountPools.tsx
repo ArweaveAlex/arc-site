@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import * as ArcFramework from 'arcframework';
 
 import { ButtonLink } from 'components/atoms/ButtonLink';
-import { PoolTilesList } from 'global/PoolTilesList';
+import { PoolTilesList } from 'components/organisms/PoolTilesList';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';

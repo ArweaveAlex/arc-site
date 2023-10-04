@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 
 import { CursorEnum } from 'arcframework';
 
-import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
-import { getArtifactsByUser } from 'gql';
+import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
+import { getArtifactIdsByUser } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
 
 export default function LibraryAll() {
@@ -13,7 +13,7 @@ export default function LibraryAll() {
 		<OwnerArtifacts
 			owner={id}
 			reduxCursor={REDUX_TABLES.libraryAll}
-			fetch={getArtifactsByUser}
+			fetch={getArtifactIdsByUser}
 			showActions={true}
 			showPoolIds={true}
 			showSearch={false}
@@ -23,10 +23,11 @@ export default function LibraryAll() {
 			disabledContractSrc={false}
 			disabledSelectedCallbackIds={null}
 			cursorObject={{
-				key: CursorEnum.Search,
+				key: CursorEnum.IdGQL,
 				value: REDUX_TABLES.libraryAll,
 			}}
 			usePreviewModal={true}
+			useIdPagination={true}
 		/>
 	) : null;
 }

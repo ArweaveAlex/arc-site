@@ -68,7 +68,7 @@ export default function Pool() {
 			<PoolDetail
 				id={{ value: id, type: 'poolId' }}
 				cursorObject={{
-					key: ArcFramework.CursorEnum.Search,
+					key: ArcFramework.CursorEnum.IdGQL,
 					value: REDUX_TABLES.poolAll,
 				}}
 				uploader={headerData.state.owner}

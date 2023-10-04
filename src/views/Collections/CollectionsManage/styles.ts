@@ -40,7 +40,7 @@ export const ContentWrapper = styled.div`
 `;
 
 export const ArtifactsWrapper = styled.div`
-	width: calc(100% - 520px);
+	width: calc(100% - 470px);
 	padding: 0 10px 0 0;
 	position: relative;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
@@ -55,7 +55,7 @@ export const ArtifactsWrapper = styled.div`
 
 export const FormWrapper = styled.div`
 	position: relative;
-	width: 500px;
+	width: 450px;
 	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;

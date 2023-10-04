@@ -1,9 +1,8 @@
 import React from 'react';
 
+import { MintClient, MintClientType } from 'lib/clients/mint/index';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { useOrderBookProvider } from 'providers/OrderBookProvider';
-
-import { MintClient, MintClientType } from '../lib/clients/mint/index';
 
 interface MintContextState {
 	mintClient: MintClientType | null;

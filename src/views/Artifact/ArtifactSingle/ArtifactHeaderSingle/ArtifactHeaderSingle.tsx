@@ -3,8 +3,8 @@ import { ReactSVG } from 'react-svg';
 
 import { formatAddress, formatArtifactType, formatDate } from 'arcframework';
 
-import { Tabs } from 'components/organisms/Tabs';
-import { SocialShare } from 'global/SocialShare';
+import { Tabs } from 'components/molecules/Tabs';
+import { SocialShare } from 'components/organisms/SocialShare';
 import { ARTIFACT_TABS, ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';

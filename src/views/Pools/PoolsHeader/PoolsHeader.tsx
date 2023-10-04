@@ -1,5 +1,5 @@
 import { ButtonLink } from 'components/atoms/ButtonLink';
-import { SocialShare } from 'global/SocialShare';
+import { SocialShare } from 'components/organisms/SocialShare';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 

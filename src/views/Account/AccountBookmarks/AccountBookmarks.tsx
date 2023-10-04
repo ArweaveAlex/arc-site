@@ -1,6 +1,6 @@
 import { CursorEnum } from 'arcframework';
 
-import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
+import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
 import { getArtifactsByBookmarks } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
@@ -22,10 +22,11 @@ export default function AccountBookmarks() {
 			disabledSelectedCallbackIds={null}
 			disabledContractSrc={false}
 			cursorObject={{
-				key: CursorEnum.Search,
+				key: CursorEnum.IdGQL,
 				value: REDUX_TABLES.accountBookmarks,
 			}}
 			usePreviewModal={true}
+			useIdPagination={false}
 		/>
 	) : null;
 }

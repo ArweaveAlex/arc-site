@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import * as ArcFramework from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
-import { URLTabs } from 'components/organisms/URLTabs';
+import { URLTabs } from 'components/molecules/URLTabs';
 import { URLS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';

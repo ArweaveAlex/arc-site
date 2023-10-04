@@ -1,4 +1,4 @@
-import { PoolsGrid } from 'global/PoolsGrid';
+import { PoolsGrid } from 'components/organisms/PoolsGrid';
 
 import { PoolsHeader } from './PoolsHeader';
 

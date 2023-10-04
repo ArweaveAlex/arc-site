@@ -1,4 +1,4 @@
-import { ArtifactsDetail } from 'global/ArtifactsDetail';
+import { ArtifactsDetail } from 'components/organisms/ArtifactsDetail';
 import { getArtifactsByPool } from 'gql';
 
 import { IProps } from './types';
@@ -7,7 +7,6 @@ export default function PoolDetail(props: IProps) {
 	return (
 		<ArtifactsDetail
 			id={props.id}
-			indexIds={[props.id.value]}
 			cursorObject={props.cursorObject}
 			defaultFetch={{
 				ids: [props.id.value],
@@ -24,6 +23,8 @@ export default function PoolDetail(props: IProps) {
 			uploader={props.uploader}
 			usePreviewModal={true}
 			setCount={props.setCount ? props.setCount : null}
+			disabledContractSrc={false}
+			useIdPagination={false}
 		/>
 	);
 }

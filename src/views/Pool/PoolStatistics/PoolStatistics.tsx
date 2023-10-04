@@ -37,6 +37,7 @@ export default function PoolStatistics(props: IProps) {
 			nextCursor: detailData.nextCursor,
 			previousCursor: detailData.previousCursor,
 			contracts: detailData.contracts.slice(0, 5),
+			count: 0,
 		};
 	}
 
@@ -61,6 +62,7 @@ export default function PoolStatistics(props: IProps) {
 							nextCursor: null,
 							previousCursor: null,
 							contracts: [],
+							count: 0,
 						});
 					}
 				}

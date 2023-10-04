@@ -24,7 +24,12 @@ export default function PoolManageHeader(props: IProps) {
 	const [poolClient, setPoolClient] = React.useState<any>(null);
 	const [copied, setCopied] = React.useState<boolean>(false);
 	const [loading, setLoading] = React.useState<boolean>(false);
+
 	const [balances, setBalances] = React.useState<ArcFramework.PoolBalancesType | null>(null);
+
+	const [showTransfer, setShowTransfer] = React.useState<boolean>(false);
+	const [transferAmount, setTransferAmount] = React.useState<number>(0);
+
 	const [showPoolBalanceInfo, setShowPoolBalanceInfo] = React.useState<boolean>(false);
 	const [fundsNotification, setFundsNotification] = React.useState<ArcFramework.NotificationResponseType | null>(null);
 
@@ -88,22 +93,28 @@ export default function PoolManageHeader(props: IProps) {
 		return true;
 	}
 
-	async function transferFunds() {
-		if (balances && poolClient) {
+	function calcTransferAmount() {
+		return transferAmount * 1e12;
+	}
+
+	async function transferFunds(e: any) {
+		e.preventDefault();
+		if (balances && poolClient && transferAmount) {
+			setLoading(true);
 			try {
-				setLoading(true);
-				await poolClient.fundBundlr(balances.poolBalance);
-				setLoading(false);
+				await poolClient.fundBundlr(calcTransferAmount());
 				setFundsNotification({
 					status: true,
 					message: language.fundsTransferInitiatedMessage,
 				});
 			} catch (e: any) {
+				console.error(e);
 				setFundsNotification({
 					status: false,
 					message: language.fundsTransferFailedMessage,
 				});
 			}
+			setLoading(false);
 		}
 	}
 
@@ -168,6 +179,13 @@ export default function PoolManageHeader(props: IProps) {
 		}
 	}
 
+	function getInvalidTransferAmount() {
+		if (!balances || !transferAmount) return { status: false, message: null };
+		if (calcTransferAmount() > balances.poolBalance)
+			return { status: true, message: language.amountExceedsMaxTransferAmount };
+		return { status: false, message: null };
+	}
+
 	return (
 		<>
 			{showPoolBalanceInfo && (
@@ -175,16 +193,6 @@ export default function PoolManageHeader(props: IProps) {
 					<S.PoolBalanceInfo>
 						<p>{parse(language.poolBalanceInfo)}</p>
 					</S.PoolBalanceInfo>
-				</Modal>
-			)}
-			{fundsNotification && (
-				<Modal
-					header={fundsNotification.status ? language.transferInitiated : language.transferFailed}
-					handleClose={() => setFundsNotification(null)}
-				>
-					<S.FundsNotificationMessage>
-						<p>{fundsNotification.message}</p>
-					</S.FundsNotificationMessage>
 				</Modal>
 			)}
 			<S.Wrapper>
@@ -275,15 +283,8 @@ export default function PoolManageHeader(props: IProps) {
 							<Button
 								type={'alt1'}
 								label={language.transferFunds}
-								handlePress={transferFunds}
+								handlePress={() => setShowTransfer(true)}
 								disabled={loading || getTransferDisabled()}
-								noMinWidth
-							/>
-							<ButtonLink
-								type={'alt1'}
-								label={language.viewPool}
-								href={`${urls.pool}${props.id}`}
-								disabled={loading}
 								noMinWidth
 							/>
 							<Button
@@ -293,6 +294,13 @@ export default function PoolManageHeader(props: IProps) {
 								disabled={loading}
 								tooltip={language.downloadPoolConfigTooltip}
 							/>
+							<ButtonLink
+								type={'alt1'}
+								label={language.viewPool}
+								href={`${urls.pool}${props.id}`}
+								disabled={loading}
+								noMinWidth
+							/>
 						</S.Actions>
 					</S.InfoWrapper>
 				</S.HeaderWrapper>
@@ -300,24 +308,77 @@ export default function PoolManageHeader(props: IProps) {
 			{showPoolIdInput && (
 				<Modal header={language.poolConfiguration} handleClose={() => setShowPoolIdInput(false)}>
 					<S.MWrapper>
-						<p>{language.poolConfigurationInfo}</p>
-						<FormField
-							value={poolIdInput}
-							label={language.poolId}
-							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPoolIdInput(e.target.value)}
-							disabled={loading || !arProvider.walletAddress}
-							invalid={{ status: false, message: null }}
-						/>
-						<Button
-							type={'alt1'}
-							label={language.download}
-							handlePress={() => {
-								downloadPoolConfig();
-								setShowPoolIdInput(false);
-								setPoolIdInput('');
-							}}
-							disabled={!poolIdInput}
-						/>
+						<S.MText>
+							<p>{language.poolConfigurationInfo}</p>
+						</S.MText>
+						<S.MForm>
+							<S.MFormField>
+								<FormField
+									value={poolIdInput}
+									label={language.poolId}
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPoolIdInput(e.target.value)}
+									disabled={loading || !arProvider.walletAddress}
+									invalid={{ status: false, message: null }}
+								/>
+							</S.MFormField>
+							<Button
+								type={'alt1'}
+								label={language.download}
+								handlePress={() => {
+									downloadPoolConfig();
+									setShowPoolIdInput(false);
+									setPoolIdInput('');
+								}}
+								formSubmit
+								disabled={!poolIdInput}
+							/>
+						</S.MForm>
+					</S.MWrapper>
+				</Modal>
+			)}
+			{showTransfer && (
+				<Modal header={language.transferFunds} handleClose={() => setShowTransfer(false)}>
+					<S.MWrapper>
+						<S.MHeader>
+							<S.MHeaderFlex>
+								<S.MH2>{language.transferPoolFunds}</S.MH2>
+							</S.MHeaderFlex>
+						</S.MHeader>
+						<S.MText>
+							<p>{language.transferPoolFundsInfo}</p>
+						</S.MText>
+						{balances && balances.poolBalance && (
+							<S.BalanceWrapper>
+								<S.AvailableBalance>{language.maxTransferAmount}:&nbsp;</S.AvailableBalance>
+								<S.BalanceAmount>{poolClient.getARAmount(balances.poolBalance).toFixed(2)}&nbsp;</S.BalanceAmount>
+								<S.ARTokens>{language.arTokens}</S.ARTokens>
+							</S.BalanceWrapper>
+						)}
+						<S.MForm>
+							<S.MFormField>
+								<FormField
+									type={'number'}
+									value={transferAmount}
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTransferAmount(parseFloat(e.target.value))}
+									disabled={loading || !arProvider.walletAddress}
+									invalid={getInvalidTransferAmount()}
+									endText={language.arTokens}
+								/>
+							</S.MFormField>
+							<Button
+								type={'alt1'}
+								label={language.confirmTransfer}
+								handlePress={(e: any) => {
+									transferFunds(e);
+								}}
+								formSubmit
+								disabled={loading || !transferAmount || transferAmount <= 0 || fundsNotification !== null}
+								loading={loading}
+							/>
+							<S.FundsNotificationMessage>
+								{fundsNotification && <p>{fundsNotification.message}</p>}
+							</S.FundsNotificationMessage>
+						</S.MForm>
 					</S.MWrapper>
 				</Modal>
 			)}

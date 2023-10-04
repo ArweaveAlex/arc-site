@@ -3,7 +3,7 @@ import React from 'react';
 import { ArtifactEnum, checkNullValues, TAGS } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
-import { FileMetadata } from 'global/FileMetadata';
+import { FileMetadata } from 'components/organisms/FileMetadata';
 import { ARTIFACT_TABS, ARTIFACT_TYPES, TAB_OPTIONS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { useFileTx } from 'hooks/useFileTx';

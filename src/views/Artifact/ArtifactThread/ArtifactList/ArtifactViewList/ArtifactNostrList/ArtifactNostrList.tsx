@@ -5,8 +5,8 @@ import { ArtifactDetailType, formatAddress, formatDate, getArtifactById, getPool
 
 import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
+import { NostrListItem } from 'components/organisms/NostrListItem';
 import { sortByAssociationSequence } from 'filters/artifacts';
-import { NostrListItem } from 'global/NostrListItem';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 

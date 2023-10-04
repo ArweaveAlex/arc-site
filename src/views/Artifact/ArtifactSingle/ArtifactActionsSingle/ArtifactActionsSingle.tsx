@@ -4,9 +4,9 @@ import { ARTIFACT_CONTRACT, ArweaveClient, getTxEndpoint, STORAGE } from 'arcfra
 
 import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
-import { ArtifactSell } from 'global/ArtifactSell';
-import { FactWidget } from 'global/FactWidget';
-import { StampWidget } from 'global/StampWidget';
+import { ArtifactSell } from 'components/organisms/ArtifactSell';
+import { FactWidget } from 'components/organisms/FactWidget';
+import { StampWidget } from 'components/organisms/StampWidget';
 import { language } from 'helpers/language';
 import { checkDesktop } from 'helpers/window';
 import { useArweaveProvider } from 'providers/ArweaveProvider';

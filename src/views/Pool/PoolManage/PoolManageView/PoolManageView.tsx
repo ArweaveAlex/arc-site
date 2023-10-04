@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import * as ArcFramework from 'arcframework';
 
-import { ArtifactsDetail } from 'global/ArtifactsDetail';
+import { ArtifactsDetail } from 'components/organisms/ArtifactsDetail';
 import { getArtifactsByPool } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
 
@@ -23,9 +23,8 @@ export default function PoolManageView() {
 	return headerData ? (
 		<ArtifactsDetail
 			id={{ value: id, type: 'poolId' }}
-			indexIds={[id]}
 			cursorObject={{
-				key: ArcFramework.CursorEnum.Search,
+				key: ArcFramework.CursorEnum.IdGQL,
 				value: REDUX_TABLES.poolAll,
 			}}
 			defaultFetch={{
@@ -42,6 +41,8 @@ export default function PoolManageView() {
 			owner={null}
 			uploader={headerData.state.owner}
 			usePreviewModal={true}
+			disabledContractSrc={false}
+			useIdPagination={false}
 		/>
 	) : null;
 }

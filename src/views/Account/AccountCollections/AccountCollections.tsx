@@ -1,4 +1,4 @@
-import { OwnerCollections } from 'global/Owner/OwnerCollections';
+import { OwnerCollections } from 'components/organisms/Owner/OwnerCollections';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 export default function AccountCollections() {

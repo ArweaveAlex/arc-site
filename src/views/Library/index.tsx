@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { OwnerAccount } from 'global/Owner/OwnerAccount';
+import { OwnerAccount } from 'components/organisms/Owner/OwnerAccount';
 import { URLS } from 'helpers/config';
 import { language } from 'helpers/language';
 

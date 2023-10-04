@@ -5,8 +5,8 @@ import { ArtifactDetailType, formatAddress, formatDate, getArtifactById, getPool
 
 import { Loader } from 'components/atoms/Loader';
 import { Carousel } from 'components/molecules/Carousel';
+import { ImageListItem } from 'components/organisms/ImageListItem';
 import { sortByAssociationSequence } from 'filters/artifacts';
-import { ImageListItem } from 'global/ImageListItem';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 

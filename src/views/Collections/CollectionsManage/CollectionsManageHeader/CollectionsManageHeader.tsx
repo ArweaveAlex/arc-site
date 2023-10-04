@@ -4,8 +4,8 @@ import { CursorEnum } from 'arcframework';
 
 // import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
-import { ArtifactsCollection } from 'global/ArtifactsCollection';
-import { OwnerArtifacts } from 'global/Owner/OwnerArtifacts';
+import { ArtifactsCollection } from 'components/organisms/ArtifactsCollection';
+import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
 import { getArtifactsByIds } from 'gql';
 import { language } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
@@ -72,7 +72,7 @@ export default function CollectionsManageHeader(props: IProps) {
 							disabledSelectedCallbackIds={null}
 							disabledContractSrc={true}
 							cursorObject={{
-								key: CursorEnum.Search,
+								key: CursorEnum.IdGQL,
 								value: REDUX_TABLES.accountAll,
 							}}
 							usePreviewModal={true}
