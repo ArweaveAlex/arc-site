@@ -9,7 +9,6 @@ import aboutStepsLogo3SVG from 'assets/about-steps-logo-3.svg';
 import aboutStepsLogo4SVG from 'assets/about-steps-logo-4.svg';
 import menuActionSVG from 'assets/action-menu.svg';
 import addSVG from 'assets/add.svg';
-import alexLogo from 'assets/alexLogo.png';
 import allSVG from 'assets/all.svg';
 import arLogoSVG from 'assets/ar-logo.svg';
 import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
@@ -110,7 +109,6 @@ export const ASSETS = {
 	aboutStepsLogo4: aboutStepsLogo4SVG,
 	add: addSVG,
 	all: allSVG,
-	alexLogo: alexLogo,
 	arrowNext: arrowNextSVG,
 	arrowPrevious: arrowPreviousSVG,
 	artifact: artifactSVG,
