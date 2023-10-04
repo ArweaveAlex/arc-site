@@ -134,11 +134,12 @@ export default function ArtifactsDetail(props: IProps) {
 	}
 
 	function getCursors() {
-		if (props.useIdPagination && paginatedIds) {
+		if (props.useIdPagination && paginatedIds && paginatedIds.length) {
+			console.log(paginatedIds);
 			const cursorObject = paginatedIds.find((element: IdPaginatorType) => element.index === cursor);
 			if (!cursorObject) {
 				return {
-					next: paginatedIds[1].index,
+					next: paginatedIds.length > 1 ? paginatedIds[1].index : null,
 					previous: null,
 				};
 			} else {
