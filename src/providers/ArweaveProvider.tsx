@@ -132,6 +132,7 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 	async function handleDisconnect() {
 		// @ts-ignore
 		await global.window?.arweaveWallet?.disconnect();
+		setWallet(null);
 		setWalletAddress(null);
 	}
 
@@ -145,8 +146,12 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 		async function handleWallet() {
 			let walletAddress: string | null = null;
 			try {
-				// @ts-ignore
 				walletAddress = await global.window.arweaveWallet.getActiveAddress();
+
+				if (walletType !== WalletEnum.arweaveApp) {
+					setWalletType(WalletEnum.arConnect);
+					setWallet(window.arweaveWallet);
+				}
 			} catch {}
 			if (walletAddress) {
 				setWalletAddress(walletAddress as any);
@@ -161,7 +166,7 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 		return () => {
 			window.removeEventListener('arweaveWalletLoaded', handleWallet);
 		};
-	});
+	}, [walletType]);
 
 	React.useEffect(() => {
 		(async function () {

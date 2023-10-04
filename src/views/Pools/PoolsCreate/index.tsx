@@ -89,12 +89,11 @@ export default function PoolsCreate() {
 				dispatch(accountActions.addAccountPool(fromPoolConfigType(updatedPoolConfig)));
 				setPoolCreateSuccess(true);
 			} catch (e: any) {
-				console.log(e);
+				console.error(e);
 				setPoolCreateError(true);
 			}
 		} else {
 			setInvalidTitle(true);
-			console.log(`Pool Already Exists`);
 		}
 		setLoading(false);
 	};

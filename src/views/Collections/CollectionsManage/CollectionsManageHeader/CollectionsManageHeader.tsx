@@ -76,6 +76,7 @@ export default function CollectionsManageHeader(props: IProps) {
 								value: REDUX_TABLES.accountAll,
 							}}
 							usePreviewModal={true}
+							useIdPagination={false}
 							action={null}
 						/>
 					}
@@ -88,34 +89,26 @@ export default function CollectionsManageHeader(props: IProps) {
 					<S.Header>
 						<S.Header1>{language.createCollection}</S.Header1>
 						{/* <S.Actions>
-							<S.Action>
-								<Button
-									type={'alt1'}
-									label={language.previewCollection}
-									handlePress={() => setShowPreview(!showPreview)}
-									noMinWidth
-									disabled={props.selectedIds.length <= 0}
-								/>
-							</S.Action>
-							<S.Action>
-								<Button
-									type={'alt1'}
-									label={language.editSelectedArtifacts}
-									handlePress={() => setShowEdit(!showEdit)}
-									noMinWidth
-									disabled={props.selectedIds.length <= 0}
-								/>
-							</S.Action>
-							<S.Action>
-								<Button
-									type={'success'}
-									label={language.publish}
-									handlePress={() => console.log('Publish')}
-									noMinWidth
-									disabled={true}
-								/>
-							</S.Action>
-						</S.Actions> */}
+								<S.Action>
+									<Button
+										type={'alt1'}
+										label={language.previewCollection}
+										handlePress={() => setShowPreview(!showPreview)}
+										noMinWidth
+										disabled={props.selectedIds.length <= 0}
+									/>
+								</S.Action>
+								<S.Action>
+									<Button
+										type={'alt1'}
+										label={language.editSelectedArtifacts}
+										handlePress={() => setShowEdit(!showEdit)}
+										noMinWidth
+										disabled={props.selectedIds.length <= 0}
+									/>
+								</S.Action>
+						</S.Actions>
+						*/}
 					</S.Header>
 				</S.HeaderContentFixed>
 			</S.HeaderContent>

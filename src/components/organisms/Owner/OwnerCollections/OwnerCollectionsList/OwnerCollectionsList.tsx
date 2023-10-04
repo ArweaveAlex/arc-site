@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactSVG } from 'react-svg';
 import { InjectedArweaveSigner } from 'warp-contracts-plugin-signature';
 
-import { formatAddress, getTxEndpoint } from 'arcframework';
+import { formatAddress, getTxEndpoint, log } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { ButtonLink } from 'components/atoms/ButtonLink';
@@ -83,7 +83,7 @@ function CollectionModal(props: { collection: CollectionType; handleClose: () =>
 								walletAddress: arProvider.walletAddress,
 							})
 							.catch((e: any) => console.error(e));
-						console.log(`Listed artifact: ${items[i]}`);
+						log(`Listed artifact: ${items[i]}`, 0);
 					} catch (e: any) {
 						console.error(e);
 					}
@@ -101,8 +101,6 @@ function CollectionModal(props: { collection: CollectionType; handleClose: () =>
 				});
 				setLoading(false);
 			}
-		} else {
-			console.log(arProvider.wallet);
 		}
 	}
 

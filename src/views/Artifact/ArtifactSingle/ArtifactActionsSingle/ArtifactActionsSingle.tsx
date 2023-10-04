@@ -22,6 +22,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
 	const [showFactWidget, setShowFactWidget] = React.useState<boolean>(false);
 	const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
+	const [sellDisabled, setSellDisabled] = React.useState<boolean>(false);
 
 	const copyArtifactId = React.useCallback(async () => {
 		if (props.data.artifactId) {
@@ -76,6 +77,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 					handleClose={() => setShowArtifactSell(false)}
 					artifactName={props.data.artifactName}
 					dateCreated={props.data.minted}
+					setSellDisabled={() => setSellDisabled(true)}
 				/>
 			);
 		} else {
@@ -94,7 +96,13 @@ export default function ArtifactActionsSingle(props: IProps) {
 		) {
 			return (
 				<S.ButtonContainer>
-					<Button type={'alt2'} label={language.sellArtifact} handlePress={handleShowArtifactSell} noMinWidth />
+					<Button
+						type={'alt2'}
+						label={language.sellArtifact}
+						handlePress={handleShowArtifactSell}
+						disabled={sellDisabled}
+						noMinWidth
+					/>
 					{showArtifactSell && artifactSell()}
 				</S.ButtonContainer>
 			);

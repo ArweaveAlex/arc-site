@@ -51,9 +51,8 @@ export default function ArtifactSell(props: IProps) {
 						status: true,
 						message: language.artifactListedForSale,
 					});
+					props.setSellDisabled();
 				} else {
-					console.log(arProvider.wallet);
-					console.log(window.arweaveWallet);
 					let message = '';
 					if (arProvider.walletType === WalletEnum.arweaveApp && !arProvider.wallet['_address']) {
 						message = language.arweaveAppConnectionError;

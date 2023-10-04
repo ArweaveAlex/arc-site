@@ -21,7 +21,7 @@
 		"@facts-kit/facts-sdk": "^0.0.47",
 		"@permaweb/stampjs": "0.2.6",
 		"@types/react-router-dom": "^5.3.3",
-		"arcframework": "1.2.03",
+		"arcframework": "1.2.14",
 		"arweave-wallet-connector": "^1.0.2",
 		"html-react-parser": "^3.0.4",
 		"permaweb-orderbook": "1.6.4",

@@ -3,4 +3,5 @@ export interface IProps {
 	handleClose: () => void;
 	artifactName: string;
 	dateCreated: string;
+	setSellDisabled: () => void;
 }
