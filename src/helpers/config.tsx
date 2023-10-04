@@ -32,7 +32,6 @@ import contributeHeaderLogoPNG from 'assets/contribute-header-logo.png';
 import contributionsSVG from 'assets/contributions.svg';
 import copySVG from 'assets/copy.svg';
 import createHeaderLogoSVG from 'assets/create-header-logo.svg';
-import cyclePNG from 'assets/cycle.png';
 import dataSVG from 'assets/data.svg';
 import disconnectSVG from 'assets/disconnect.svg';
 import discordSocialSVG from 'assets/discord.svg';
@@ -131,7 +130,6 @@ export const ASSETS = {
 	copy: copySVG,
 	contributeHeaderLogo: contributeHeaderLogoPNG,
 	createHeaderLogo: createHeaderLogoSVG,
-	cycle: cyclePNG,
 	data: dataSVG,
 	disconnect: disconnectSVG,
 	dropdown: dropdownSVG,

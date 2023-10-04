@@ -1,7 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ArtifactArgsType, ArtifactResponseType, PAGINATOR, UserArtifactsArgsType } from 'arcframework';
+import {
+	ArtifactArgsType,
+	ArtifactResponseType,
+	getTagValue,
+	PAGINATOR,
+	TAGS,
+	UserArtifactsArgsType,
+} from 'arcframework';
 
 import { ArtifactsTable } from 'components/organisms/ArtifactsDetail/ArtifactsTable';
 import { getArtifactsByIds } from 'gql';
@@ -58,7 +65,6 @@ export default function ArtifactsDetail(props: IProps) {
 		(async function () {
 			if (props.useIdPagination && paginatedIds && paginatedIds.length) {
 				setDetailData(null);
-
 				const currentFetchIds = cursor
 					? paginatedIds.find((element: IdPaginatorType) => element.index === cursor).ids
 					: paginatedIds[0].ids;
@@ -107,6 +113,19 @@ export default function ArtifactsDetail(props: IProps) {
 			}
 		}
 	}, [detailData, cursor]);
+
+	React.useEffect(() => {
+		if (props.setArtifacts && detailData !== null && detailData.contracts.length) {
+			const sortedArtifacts = [...detailData.contracts].sort((a, b) => {
+				const dateA = getTagValue(a.node.tags, TAGS.keys.dateCreated);
+				const dateB = getTagValue(b.node.tags, TAGS.keys.dateCreated);
+
+				return Number(dateB) - Number(dateA);
+			});
+
+			props.setArtifacts.fn(sortedArtifacts.slice(0, props.setArtifacts.count));
+		}
+	}, [detailData, props.setArtifacts]);
 
 	function handleShowNoResults() {
 		setTimeout(() => {

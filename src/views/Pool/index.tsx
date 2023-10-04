@@ -17,6 +17,7 @@ export default function Pool() {
 
 	const [count, setCount] = React.useState<number | null>(null);
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
+	const [recentArtifacts, setRecentArtifacts] = React.useState<ArcFramework.GQLResponseType[] | null>(null);
 
 	React.useEffect(() => {
 		(async function () {
@@ -60,7 +61,7 @@ export default function Pool() {
 		if (headerData && headerData.state.ownerMaintained) {
 			return null;
 		}
-		return <PoolStatistics headerData={headerData} />;
+		return <PoolStatistics headerData={headerData} artifacts={recentArtifacts} />;
 	}
 
 	function getPoolDetail() {
@@ -73,6 +74,9 @@ export default function Pool() {
 				}}
 				uploader={headerData.state.owner}
 				setCount={(count: number) => setCount(count)}
+				setArtifacts={
+					!recentArtifacts ? (artifacts: ArcFramework.GQLResponseType[]) => setRecentArtifacts(artifacts) : null
+				}
 			/>
 		);
 	}

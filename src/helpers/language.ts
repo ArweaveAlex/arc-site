@@ -284,7 +284,7 @@ export const language = {
 	filesUploadingMessage: `This may take some time, please stay on this screen.`,
 	filesUploadingMessageComplete: `Your artifacts have been created, it will take some time for them to settle on the Arweave network. Once they have, you will be able to find them in your pool.`,
 	fileUploadComplete: `File Upload Complete!`,
-	filesAndMetadata: `Files and Metadata`,
+	filesAndMetadata: `Files & Metadata`,
 	filesSelected: `Files Selected`,
 	filter: `Filter`,
 	filterBy: `Filter By`,
@@ -334,7 +334,7 @@ export const language = {
 	metadataUpdated: `Metadata Updated`,
 	miningSource: `Mining Source`,
 	miningSources: {
-		files: 'Files',
+		files: 'Files & Metadata',
 		twitter: 'Twitter',
 		wikipedia: 'Wikipedia',
 		reddit: 'Reddit',

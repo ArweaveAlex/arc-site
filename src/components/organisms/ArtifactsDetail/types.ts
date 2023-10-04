@@ -2,6 +2,7 @@ import {
 	ArtifactArgsType,
 	ArtifactResponseType,
 	CursorObjectType,
+	GQLResponseType,
 	TableIdType,
 	UserArtifactsArgsType,
 } from 'arcframework';
@@ -29,4 +30,8 @@ export interface IProps {
 	action?: React.ReactNode;
 	setCount?: (count: number) => void | null;
 	useIdPagination: boolean;
+	setArtifacts?: {
+		fn: (artifacts: GQLResponseType[]) => void;
+		count: number;
+	} | null;
 }

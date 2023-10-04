@@ -35,10 +35,10 @@ export default function PoolRecentlyMinted(props: IProps) {
 	}
 
 	function getData() {
-		if (props.data && props.data.contracts.length > 0) {
+		if (props.data && props.data.length > 0) {
 			return (
 				<>
-					{props.data.contracts.map((element: GQLResponseType, index: number) => {
+					{props.data.map((element: GQLResponseType, index: number) => {
 						const type = getArtifactType(getTagValue(element.node.tags, TAGS.keys.artifactType));
 						return (
 							<S.NLWrapper key={index}>
@@ -67,7 +67,7 @@ export default function PoolRecentlyMinted(props: IProps) {
 					})}
 				</>
 			);
-		} else if (props.data && props.data.contracts.length <= 0) {
+		} else if (props.data && props.data.length <= 0) {
 			return (
 				<S.NoArtifactsContainer>
 					<p>{language.noArtifacts}</p>

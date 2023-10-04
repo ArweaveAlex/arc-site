@@ -1,8 +1,9 @@
-import { CursorObjectType, TableIdType } from 'arcframework';
+import { CursorObjectType, GQLResponseType, TableIdType } from 'arcframework';
 
 export interface IProps {
 	id: TableIdType;
 	cursorObject: CursorObjectType;
 	uploader: string | null;
 	setCount?: (count: number) => void;
+	setArtifacts: ((artifacts: GQLResponseType[]) => void) | null;
 }

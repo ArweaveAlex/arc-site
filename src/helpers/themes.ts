@@ -147,7 +147,7 @@ export const defaultTheme: DefaultTheme = {
 				background: DEFAULT.neutral2,
 			},
 			alt7: {
-				background: DEFAULT.neutral5,
+				background: DEFAULT.neutral2,
 			},
 		},
 		font: {

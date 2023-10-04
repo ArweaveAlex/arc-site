@@ -20,7 +20,7 @@ export default function FileMetadata(props: IProps) {
 		if (props.metadata && Object.keys(props.metadata).length > 0) {
 			const body = Object.keys(props.metadata).map((key) => {
 				return (
-					<S.ContentLine key={key}>
+					<S.ContentLine key={key} className={'border-wrapper'}>
 						<S.InfoData>
 							<span>{key}</span>
 							<S.BodyData>{props.metadata[key]}</S.BodyData>

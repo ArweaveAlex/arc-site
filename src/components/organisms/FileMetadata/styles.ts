@@ -47,7 +47,7 @@ export const C2Body = styled.div`
 export const ContentLine = styled.div`
 	width: 100%;
 	padding: 17.5px;
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;

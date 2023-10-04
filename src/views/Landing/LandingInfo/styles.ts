@@ -7,8 +7,6 @@ export const Wrapper = styled.div`
 	width: 100%;
 	margin: 0 auto;
 	background: ${(props) => props.theme.colors.container.alt7.background};
-	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 `;
 
 export const WrapperAlt = styled(Wrapper)`

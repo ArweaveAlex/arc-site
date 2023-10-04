@@ -39,14 +39,13 @@ export const Icon = styled.div`
 	justify-content: center;
 	align-items: center;
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	background: ${(props) => props.theme.colors.container.alt1.background};
 	svg {
 		width: 50%;
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		fill: ${(props) => props.theme.colors.font.primary.base};
+		fill: ${(props) => props.theme.colors.icon.alt1.fill};
 	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		svg {
@@ -67,7 +66,7 @@ export const TypeLabel = styled.div`
 	z-index: 1;
 	p {
 		font-size: 12px;
-		color: ${(props) => props.theme.colors.font.primary.base};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
 `;
@@ -108,9 +107,10 @@ export const NodeWrapper = styled.div`
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;
 	&:hover {
-		&:hover ${Icon} {
-			background: ${(props) => props.theme.colors.container.alt2.background};
-		}
+		background: ${(props) => props.theme.colors.container.primary.hover};
+		// ${Icon} {
+		// 	background: ${(props) => props.theme.colors.container.primary.hover};
+		//  }
 	}
 	a {
 		height: 100%;
