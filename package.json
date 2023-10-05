@@ -19,7 +19,7 @@
 	},
 	"dependencies": {
 		"@facts-kit/facts-sdk": "^0.0.47",
-		"@permaweb/stampjs": "0.2.6",
+		"@permaweb/stampjs": "0.5.4",
 		"@types/react-router-dom": "^5.3.3",
 		"arcframework": "1.2.15",
 		"arweave-wallet-connector": "^1.0.2",

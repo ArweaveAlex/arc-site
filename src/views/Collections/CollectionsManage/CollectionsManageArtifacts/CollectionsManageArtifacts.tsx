@@ -98,7 +98,7 @@ export default function CollectionsManageArtifacts(props: IProps) {
 			showActions={true}
 			showPoolIds={true}
 			showSearch={false}
-			ownerActionDisabled={false}
+			ownerActionDisabled={true}
 			selectCallback={(id: string) => handleIdUpdate(id)}
 			selectedCallbackIds={props.selectedIds}
 			disabledSelectedCallbackIds={null}

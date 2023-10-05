@@ -420,6 +420,7 @@ export const language = {
 		twitter: `Twitter`,
 	},
 	sortBy: `Sort By`,
+	sourceNotSupportedInfo: `This mining source is only supported from the CLI. View the documentation to learn how to mine this source.`,
 	stamp: `STAMP`,
 	stamps: `Stamps`,
 	stampsVouched: `Vouched Stamps`,

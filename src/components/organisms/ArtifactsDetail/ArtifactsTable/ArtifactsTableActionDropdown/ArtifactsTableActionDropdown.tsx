@@ -161,6 +161,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				<S.StampWidgetContainer>
 					<StampWidget
 						txId={props.artifactId}
+						contractSrc={props.artifactContractSrc}
 						walletAddress={arProvider.walletAddress}
 						showWalletConnect={true}
 						warp={arClient.warpDefault}
@@ -192,6 +193,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 					handleClose={() => setShowArtifactSell(false)}
 					artifactName={props.artifactName}
 					dateCreated={props.dateCreated}
+					setSellDisabled={() => {}}
 				/>
 			),
 			active: showArtifactSell,

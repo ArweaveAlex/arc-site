@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { ArtifactDetailType, getArtifactById } from 'arcframework';
-
 import { Carousel } from 'components/molecules/Carousel';
 import { DOM } from 'helpers/config';
 import { language } from 'helpers/language';
@@ -13,7 +11,6 @@ import { IProps } from './types';
 
 export default function ArtifactsCollection(props: IProps) {
 	const [currentId, setCurrentId] = React.useState<string | null>(null);
-	const [currentData, setCurrentData] = React.useState<ArtifactDetailType | null>(null);
 
 	React.useEffect(() => {
 		if (props.selectedIds && props.selectedIds.length > 0) {
@@ -21,19 +18,8 @@ export default function ArtifactsCollection(props: IProps) {
 		}
 	}, [props.selectedIds]);
 
-	React.useEffect(() => {
-		(async function () {
-			if (currentId) {
-				setCurrentData(await getArtifactById(currentId));
-			}
-		})();
-	}, [currentId]);
-
 	function handleUpdate(action: StepType) {
 		const currentIndex = props.selectedIds.indexOf(currentId);
-		setTimeout(() => {
-			setCurrentData(null);
-		}, 200);
 		setCurrentId(action === 'prev' ? props.selectedIds[currentIndex - 1] : props.selectedIds[currentIndex + 1]);
 	}
 
@@ -41,7 +27,7 @@ export default function ArtifactsCollection(props: IProps) {
 		return props.selectedIds.map((id: string) => {
 			return (
 				<S.ArtifactPreviewContainer id={DOM.preview} key={id}>
-					<ArtifactRendererSingle data={currentData} />
+					<ArtifactRendererSingle artifactId={id} artifactType={'Default'} />
 				</S.ArtifactPreviewContainer>
 			);
 		});
@@ -54,19 +40,19 @@ export default function ArtifactsCollection(props: IProps) {
 					<p>{language.collectionDetails}</p>
 				</S.C2Header>
 				<S.C2Body column={false}>
-					<S.ContentLine>
+					<S.ContentLine className={'border-wrapper'}>
 						<S.InfoData>
 							<span>{language.title}</span>
 							<S.BodyData>{props.title ? props.title : `-`}</S.BodyData>
 						</S.InfoData>
 					</S.ContentLine>
-					<S.ContentLine>
+					<S.ContentLine className={'border-wrapper'}>
 						<S.InfoData>
 							<span>{language.topic}</span>
 							<S.BodyData>{props.topic ? props.topic : `-`}</S.BodyData>
 						</S.InfoData>
 					</S.ContentLine>
-					<S.ContentLine>
+					<S.ContentLine className={'border-wrapper'}>
 						<S.InfoData>
 							<span>{language.description}</span>
 							<S.BodyData>{props.description ? props.description : `-`}</S.BodyData>

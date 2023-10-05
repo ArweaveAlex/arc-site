@@ -26,6 +26,7 @@ import bookmarkSVG from 'assets/bookmark.svg';
 import bookmarkSelectedSVG from 'assets/bookmark-selected.svg';
 import bookmarksSVG from 'assets/bookmarks.svg';
 import checkmarkSVG from 'assets/checkmark.svg';
+import cliSVG from 'assets/cli.svg';
 import closeSVG from 'assets/close.svg';
 import collectionsSVG from 'assets/collections.svg';
 import contributeHeaderLogoPNG from 'assets/contribute-header-logo.png';
@@ -125,6 +126,7 @@ export const ASSETS = {
 	bookmarks: bookmarksSVG,
 	checkmark: checkmarkSVG,
 	close: closeSVG,
+	cli: cliSVG,
 	collections: collectionsSVG,
 	contributions: contributionsSVG,
 	copy: copySVG,
@@ -500,6 +502,7 @@ export const EXISTING_POOLS_FILTER = {
 export const POOL_TEST_MODE = false;
 
 export const DRE_NODE = 'https://dre-u.warp.cc/contract';
+export const DRE_NODE_1 = 'https://dre-1.warp.cc/contract';
 
 export const CURRENCIES = {
 	default: 'U' as 'U',

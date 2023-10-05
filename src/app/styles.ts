@@ -201,7 +201,7 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.primary};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-    box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
+    box-shadow: 0 0 3.5px ${(props) => props.theme.colors.shadow.primary};
     overflow: hidden;
   }
 

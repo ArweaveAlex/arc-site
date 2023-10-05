@@ -1,16 +1,18 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 import Stamps from '@permaweb/stampjs';
+import { InjectedArweaveSigner } from 'warp-contracts-plugin-signature';
 
-import { formatFloat, NotificationResponseType } from 'arcframework';
+import { ARTIFACT_CONTRACT, NotificationResponseType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
-import { ASSETS } from 'helpers/config';
+import { ASSETS, DRE_NODE, DRE_NODE_1 } from 'helpers/config';
 import { language } from 'helpers/language';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { WalletBlock } from 'wallet/WalletBlock';
 
 import * as S from './styles';
@@ -26,7 +28,7 @@ function StampAction(props: { balance: number; handleSubmit: (amount: number) =>
 			<S.SAInfoContainer>
 				<S.SABalanceContainer>
 					<ReactSVG src={ASSETS.stamp.super} />
-					<p>{formatFloat(props.balance, 2)}</p>
+					<p>{(props.balance / 1e12).toFixed(2)}</p>
 				</S.SABalanceContainer>
 				<S.SACloseContainer>
 					<IconButton type={'primary'} sm warning src={ASSETS.close} handlePress={props.handleClose} />
@@ -62,7 +64,9 @@ function StampAction(props: { balance: number; handleSubmit: (amount: number) =>
 }
 
 export default function StampWidget(props: IProps) {
-	const stamps = Stamps.init({ warp: props.warp, arweave: props.arweave });
+	const arProvider = useArweaveProvider();
+
+	const [stamps, setStamps] = React.useState<any>(null);
 
 	const [loading, setLoading] = React.useState<boolean>(true);
 	const [count, setCount] = React.useState<any>(null);
@@ -77,6 +81,17 @@ export default function StampWidget(props: IProps) {
 	const [stampNotification, setStampNotification] = React.useState<NotificationResponseType | null>(null);
 
 	React.useEffect(() => {
+		setStamps(
+			Stamps.init({
+				warp: props.warp,
+				arweave: props.arweave,
+				wallet: arProvider.walletAddress ? new InjectedArweaveSigner(arProvider.walletAddress) : 'use_wallet',
+				dre: props.contractSrc === ARTIFACT_CONTRACT.src ? DRE_NODE : DRE_NODE_1,
+			})
+		);
+	}, [arProvider.walletAddress]);
+
+	React.useEffect(() => {
 		if (!props.walletAddress && props.showWalletConnect) {
 			setShowWalletConnect(true);
 		} else {
@@ -86,31 +101,32 @@ export default function StampWidget(props: IProps) {
 
 	React.useEffect(() => {
 		(async function () {
-			if (props.txId) {
+			if (stamps && props.txId) {
+				await new Promise((resolve) => setTimeout(resolve, 2500));
 				const hasStamped = await stamps.hasStamped(props.txId);
 				if (!hasStamped) {
 					setStampDisabled(false);
 				}
 			}
 		})();
-	}, [props.txId]);
+	}, [stamps, props.txId]);
 
 	React.useEffect(() => {
 		(async function () {
-			if (props.walletAddress) {
+			if (stamps && arProvider.walletAddress) {
 				try {
-					setBalance(await stamps.balance());
+					setBalance(await stamps.balance(arProvider.walletAddress));
 				} catch (e: any) {
 					console.error(e);
 				}
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	});
+	}, [stamps, arProvider.walletAddress]);
 
 	React.useEffect(() => {
 		(async function () {
-			if (props.txId) {
+			if (stamps && props.txId) {
 				try {
 					setStampCheckLoading(true);
 					setCount(await stamps.count(props.txId));
@@ -119,7 +135,7 @@ export default function StampWidget(props: IProps) {
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.txId, updateCount]);
+	}, [stamps, props.txId, updateCount]);
 
 	React.useEffect(() => {
 		if (count && !stampCheckLoading) {
@@ -131,10 +147,10 @@ export default function StampWidget(props: IProps) {
 
 	const handleStamp = React.useCallback(
 		async (amount?: number) => {
-			if (props.txId) {
+			if (stamps && props.txId) {
 				setStampCheckLoading(true);
-				let stamp: any = await stamps.stamp(props.txId, amount ? amount : 0, [{ name: '', value: '' }]);
-				const stampSuccess = stamp && stamp.bundlrResponse && stamp.bundlrResponse.id;
+				const stamp: any = await stamps.stamp(props.txId, amount ? amount : 0, [{ name: '', value: '' }]);
+				const stampSuccess = stamp && stamp.id;
 
 				setStampCheckLoading(false);
 				setStampDisabled(true);
@@ -221,7 +237,7 @@ export default function StampWidget(props: IProps) {
 		}
 	}
 
-	return (
+	return stamps ? (
 		<>
 			{stampNotification && (
 				<Notification
@@ -232,5 +248,5 @@ export default function StampWidget(props: IProps) {
 			)}
 			<S.Wrapper>{getWidget()}</S.Wrapper>
 		</>
-	);
+	) : null;
 }

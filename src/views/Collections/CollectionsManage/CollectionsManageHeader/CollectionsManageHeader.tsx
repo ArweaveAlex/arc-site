@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CursorEnum } from 'arcframework';
 
-// import { Button } from 'components/atoms/Button';
+import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
 import { ArtifactsCollection } from 'components/organisms/ArtifactsCollection';
 import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
@@ -88,27 +88,26 @@ export default function CollectionsManageHeader(props: IProps) {
 				<S.HeaderContentFixed>
 					<S.Header>
 						<S.Header1>{language.createCollection}</S.Header1>
-						{/* <S.Actions>
-								<S.Action>
-									<Button
-										type={'alt1'}
-										label={language.previewCollection}
-										handlePress={() => setShowPreview(!showPreview)}
-										noMinWidth
-										disabled={props.selectedIds.length <= 0}
-									/>
-								</S.Action>
-								<S.Action>
-									<Button
-										type={'alt1'}
-										label={language.editSelectedArtifacts}
-										handlePress={() => setShowEdit(!showEdit)}
-										noMinWidth
-										disabled={props.selectedIds.length <= 0}
-									/>
-								</S.Action>
+						<S.Actions>
+							<S.Action>
+								<Button
+									type={'alt1'}
+									label={language.previewCollection}
+									handlePress={() => setShowPreview(!showPreview)}
+									noMinWidth
+									disabled={props.selectedIds.length <= 0}
+								/>
+							</S.Action>
+							<S.Action>
+								<Button
+									type={'alt1'}
+									label={language.editSelectedArtifacts}
+									handlePress={() => setShowEdit(!showEdit)}
+									noMinWidth
+									disabled={props.selectedIds.length <= 0}
+								/>
+							</S.Action>
 						</S.Actions>
-						*/}
 					</S.Header>
 				</S.HeaderContentFixed>
 			</S.HeaderContent>

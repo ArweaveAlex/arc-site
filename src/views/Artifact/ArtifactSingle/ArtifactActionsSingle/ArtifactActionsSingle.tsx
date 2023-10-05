@@ -54,6 +54,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 		return (
 			<StampWidget
 				txId={props.data.artifactId}
+				contractSrc={props.data.artifactContractSrc}
 				walletAddress={arProvider.walletAddress}
 				warp={arClient.warpDefault}
 				arweave={arClient.arweavePost}

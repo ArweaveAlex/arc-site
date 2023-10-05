@@ -49,6 +49,10 @@ export const Body = styled.div`
 	overflow-x: auto;
 	animation: ${open} ${fadeIn2};
 	min-height: 66.5vh;
+	scrollbar-width: none;
+	::-webkit-scrollbar {
+		width: 0px;
+	}
 `;
 
 export const Table = styled.div`
@@ -82,18 +86,15 @@ function getRowStyle(theme: DefaultTheme, active: boolean, viewed: boolean) {
 	if (active) {
 		return `
 			background: ${theme.colors.table.row.active.background};
-			// border: 0.5px solid ${theme.colors.table.row.active.border};
 		`;
 	} else {
 		if (viewed) {
 			return `
 				background: ${theme.colors.container.primary.hover};
-				// border: 0.5px solid ${theme.colors.border.primary};
 			`;
 		} else {
 			return `
 				background: ${theme.colors.container.primary.background};
-				// border: 0.5px solid ${theme.colors.border.primary};
 			`;
 		}
 	}
@@ -108,8 +109,6 @@ export const Row = styled.div<{ active: boolean; viewed: boolean }>`
 	&:hover {
 		background: ${(props) =>
 			props.active ? props.theme.colors.table.row.active.background : props.theme.colors.container.primary.hover};
-		// border: 0.5px solid
-		// 	${(props) => (props.active ? props.theme.colors.table.row.active.border : props.theme.colors.border.primary)};
 	}
 `;
 

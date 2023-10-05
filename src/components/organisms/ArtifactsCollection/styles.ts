@@ -54,6 +54,7 @@ export const C2Header = styled.div`
 export const C2Body = styled.div<{ column: boolean }>`
 	height: ${(props) => (props.column ? 'auto' : 'calc(100% - 40px)')};
 	width: 100%;
+	margin: 0 0 40px 0;
 	> * {
 		&:not(:last-child) {
 			margin: 0 0 15px 0;
@@ -68,9 +69,6 @@ export const C2Body = styled.div<{ column: boolean }>`
 export const ContentLine = styled.div`
 	width: 100%;
 	padding: 17.5px;
-	background: ${(props) => props.theme.colors.container.alt3.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;
 `;
 
@@ -137,6 +135,11 @@ export const ArtifactPreviewContainer = styled.div`
 	scrollbar-width: none;
 	::-webkit-scrollbar {
 		width: 0px;
+	}
+	iframe {
+		min-height: 400px !important;
+		width: 100% !important;
+		margin: 0 !important;
 	}
 	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
 		max-height: none;
