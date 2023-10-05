@@ -173,13 +173,13 @@ export default function PoolManageHeader(props: IProps) {
 		);
 	}
 
-	function getCount() {
-		if (props.count || props.count === 0) {
-			return <p>{ArcFramework.formatCount(props.count!.toString())}</p>;
-		} else {
-			return <Loader sm />;
-		}
-	}
+	// function getCount() {
+	// 	if (props.count || props.count === 0) {
+	// 		return <p>{ArcFramework.formatCount(props.count!.toString())}</p>;
+	// 	} else {
+	// 		return <Loader sm />;
+	// 	}
+	// }
 
 	function getInvalidTransferAmount() {
 		if (!balances || !transferAmount) return { status: false, message: null };
@@ -271,7 +271,7 @@ export default function PoolManageHeader(props: IProps) {
 									</S.TContainer>
 								</S.TileData>
 							</S.Tile>
-							<S.Tile>
+							{/* <S.Tile>
 								{(props.count || props.count === 0) && (
 									<S.TileTitle>
 										<p>{`${language.pool.artifactsCreated}:`}</p>
@@ -279,7 +279,7 @@ export default function PoolManageHeader(props: IProps) {
 								)}
 								&nbsp;
 								<S.TileData>{getCount()}</S.TileData>
-							</S.Tile>
+							</S.Tile> */}
 						</S.FlexTiles>
 						<S.Actions>
 							<Button

@@ -14,6 +14,7 @@ export default function Pool() {
 	const { id } = useParams();
 
 	const [headerData, setHeaderData] = React.useState<ArcFramework.PoolType | null>(null);
+	const [uploaders, setUploaders] = React.useState<string[] | null>(null);
 
 	const [count, setCount] = React.useState<number | null>(null);
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
@@ -26,6 +27,16 @@ export default function Pool() {
 			}
 		})();
 	}, [id]);
+
+	React.useEffect(() => {
+		(async function () {
+			if (headerData) {
+				const stateUploaders: string[] = [headerData.state.owner];
+				if (headerData.state.controlPubkey) stateUploaders.push(headerData.state.controlPubkey);
+				setUploaders(stateUploaders);
+			}
+		})();
+	}, [headerData]);
 
 	React.useEffect(() => {
 		(async function () {
@@ -72,7 +83,7 @@ export default function Pool() {
 					key: ArcFramework.CursorEnum.IdGQL,
 					value: REDUX_TABLES.poolAll,
 				}}
-				uploader={headerData.state.owner}
+				uploaders={uploaders}
 				setCount={(count: number) => setCount(count)}
 				setArtifacts={
 					!recentArtifacts ? (artifacts: ArcFramework.GQLResponseType[]) => setRecentArtifacts(artifacts) : null

@@ -30,7 +30,7 @@ export async function getArtifactsByIds(
 	const finalArgs = {
 		ids: args.ids,
 		owner: null,
-		uploader: null,
+		uploaders: null,
 		cursor: null,
 		reduxCursor: null,
 	};
@@ -61,7 +61,7 @@ export async function getArtifactsByBookmarks(
 	const finalArgs = {
 		ids: bookmarkIds,
 		owner: args.owner,
-		uploader: args.uploader,
+		uploaders: args.uploaders,
 		cursor: args.cursor,
 		reduxCursor: args.reduxCursor,
 	};

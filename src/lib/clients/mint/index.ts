@@ -88,7 +88,7 @@ const mintClient: MintClientType = {
 					values: [TAGS.values.collection],
 				},
 			],
-			uploader: [args.walletAddress],
+			uploaders: [args.walletAddress],
 			cursor: args.cursor,
 			reduxCursor: null,
 			cursorObject: CursorEnum.GQL,

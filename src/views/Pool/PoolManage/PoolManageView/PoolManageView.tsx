@@ -11,6 +11,7 @@ export default function PoolManageView() {
 	const { id } = useParams();
 
 	const [headerData, setHeaderData] = React.useState<ArcFramework.PoolType | null>(null);
+	const [uploaders, setUploaders] = React.useState<string[] | null>(null);
 
 	React.useEffect(() => {
 		(async function () {
@@ -19,6 +20,16 @@ export default function PoolManageView() {
 			}
 		})();
 	}, [id]);
+
+	React.useEffect(() => {
+		(async function () {
+			if (headerData) {
+				const stateUploaders: string[] = [headerData.state.owner];
+				if (headerData.state.controlPubkey) stateUploaders.push(headerData.state.controlPubkey);
+				setUploaders(stateUploaders);
+			}
+		})();
+	}, [headerData]);
 
 	return headerData ? (
 		<ArtifactsDetail
@@ -39,7 +50,7 @@ export default function PoolManageView() {
 			selectedCallbackIds={null}
 			disabledSelectedCallbackIds={null}
 			owner={null}
-			uploader={headerData.state.owner}
+			uploaders={uploaders}
 			usePreviewModal={true}
 			disabledContractSrc={false}
 			useIdPagination={false}

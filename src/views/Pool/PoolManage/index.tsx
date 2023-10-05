@@ -20,6 +20,12 @@ export default function PoolManage() {
 
 	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
 
+	const [headerData, setHeaderData] = React.useState<ArcFramework.PoolType | null>(null);
+	const [uploaders, setUploaders] = React.useState<string[] | null>(null);
+
+	const [count, setCount] = React.useState<number | null>(null);
+	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
+
 	React.useEffect(() => {
 		setTimeout(() => {
 			if (!arProvider.walletAddress) {
@@ -27,11 +33,6 @@ export default function PoolManage() {
 			}
 		}, 200);
 	}, [arProvider.walletAddress]);
-
-	const [headerData, setHeaderData] = React.useState<ArcFramework.PoolType | null>(null);
-
-	const [count, setCount] = React.useState<number | null>(null);
-	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
 
 	React.useEffect(() => {
 		(async function () {
@@ -43,11 +44,21 @@ export default function PoolManage() {
 
 	React.useEffect(() => {
 		(async function () {
+			if (headerData) {
+				const stateUploaders: string[] = [headerData.state.owner];
+				if (headerData.state.controlPubkey) stateUploaders.push(headerData.state.controlPubkey);
+				setUploaders(stateUploaders);
+			}
+		})();
+	}, [headerData]);
+
+	React.useEffect(() => {
+		(async function () {
 			if (id && headerData) {
 				const detailData = await ArcFramework.getArtifactsByPool({
 					ids: [id],
 					owner: null,
-					uploader: headerData.state.owner,
+					uploaders: uploaders,
 					cursor: null,
 					reduxCursor: REDUX_TABLES.poolAll,
 				});

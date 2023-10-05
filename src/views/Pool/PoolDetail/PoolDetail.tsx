@@ -22,7 +22,7 @@ export default function PoolDetail(props: IProps) {
 			selectedCallbackIds={null}
 			disabledSelectedCallbackIds={null}
 			owner={null}
-			uploader={props.uploader}
+			uploaders={props.uploaders}
 			usePreviewModal={true}
 			setCount={props.setCount ? props.setCount : null}
 			disabledContractSrc={false}

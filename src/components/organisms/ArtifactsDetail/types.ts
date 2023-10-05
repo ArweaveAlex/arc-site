@@ -22,7 +22,7 @@ export interface IProps {
 	showPoolIds: boolean;
 	showSearch: boolean;
 	owner: string | null;
-	uploader: string | null;
+	uploaders: string[] | null;
 	selectedCallbackIds: string[] | null;
 	disabledSelectedCallbackIds: string[] | null;
 	disabledContractSrc: boolean;

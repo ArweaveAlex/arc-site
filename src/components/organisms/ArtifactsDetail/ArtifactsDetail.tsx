@@ -73,7 +73,7 @@ export default function ArtifactsDetail(props: IProps) {
 					await getArtifactsByIds({
 						ids: currentFetchIds,
 						owner: null,
-						uploader: null,
+						uploaders: null,
 						cursor: null,
 						reduxCursor: null,
 					})
@@ -93,14 +93,14 @@ export default function ArtifactsDetail(props: IProps) {
 					(await defaultFetch({
 						ids: props.defaultFetch.ids,
 						owner: props.owner,
-						uploader: props.uploader,
+						uploaders: props.uploaders,
 						cursor: cursor,
 						reduxCursor: props.cursorObject.value,
 					})) as ArtifactResponseType
 				);
 			}
 		})();
-	}, [props.uploader, props.cursorObject.value, cursor]);
+	}, [props.uploaders, props.cursorObject.value, cursor]);
 
 	// GQL Error if count is sent in query with a cursor
 	React.useEffect(() => {
