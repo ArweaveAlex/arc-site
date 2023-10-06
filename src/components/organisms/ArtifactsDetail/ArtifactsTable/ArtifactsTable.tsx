@@ -81,12 +81,6 @@ export default function ArtifactsTable(props: IProps) {
 			};
 		}
 
-		header.stamps = {
-			width: '7.5%',
-			align: 'center' as AlignType,
-			display: language.stamps,
-		};
-
 		if (props.showActions) {
 			header.actions = {
 				width: '10%',
@@ -157,14 +151,6 @@ export default function ArtifactsTable(props: IProps) {
 					{label}
 				</Link>
 			</S.PLink>
-		);
-	}
-
-	function getStampCount(id: string) {
-		return (
-			<S.StampContainer>
-				<p>{stamps && stamps[id] ? stamps[id].total : `-`}</p>
-			</S.StampContainer>
 		);
 	}
 
@@ -254,8 +240,6 @@ export default function ArtifactsTable(props: IProps) {
 									getTagValue(element.node.tags, TAGS.keys.poolId)
 								);
 							}
-
-							row.stamps = getStampCount(element.node.id);
 
 							if (props.showActions) {
 								row.actions = getActionDropdown(element.node.id, element.node.tags);
