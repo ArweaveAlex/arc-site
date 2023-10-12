@@ -47,16 +47,6 @@ export const Icon = styled.div`
 		transform: translate(-50%, -50%);
 		fill: ${(props) => props.theme.colors.icon.alt1.fill};
 	}
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		svg {
-			width: 37.5%;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			fill: ${(props) => props.theme.colors.font.primary.base};
-		}
-	}
 `;
 
 export const TypeLabel = styled.div`
