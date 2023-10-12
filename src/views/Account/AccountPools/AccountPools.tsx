@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { ReduxAccountPoolsUpdate } from 'store/account/ReduxAccountPoolsUpdate';
 
 import * as ArcFramework from 'arcframework';
 
@@ -8,8 +10,6 @@ import { PoolTilesList } from 'components/organisms/PoolTilesList';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
-import { ReduxAccountPoolsUpdate } from 'state/account/ReduxAccountPoolsUpdate';
-import { RootState } from 'state/store';
 
 export default function AccountPools() {
 	const accountReducer = useSelector((state: RootState) => state.accountReducer);

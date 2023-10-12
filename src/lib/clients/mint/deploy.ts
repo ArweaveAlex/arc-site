@@ -31,7 +31,7 @@ export function publishCollection(bundlr: any) {
 			{ name: TAGS.keys.dataProtocol, value: TAGS.values.collection },
 			{ name: TAGS.keys.appName, value: TAGS.values.appName },
 			{ name: TAGS.keys.appVersion, value: TAGS.values.appVersion },
-			{ name: TAGS.keys.contractSrc, value: ARTIFACT_CONTRACT.src },
+			{ name: TAGS.keys.contractSrc, value: ARTIFACT_CONTRACT.srcTradeable },
 			{ name: TAGS.keys.contractManifest, value: TAGS.values.contractManifest },
 			{
 				name: TAGS.keys.initState,

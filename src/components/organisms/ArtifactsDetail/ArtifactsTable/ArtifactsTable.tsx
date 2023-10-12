@@ -81,12 +81,6 @@ export default function ArtifactsTable(props: IProps) {
 			};
 		}
 
-		header.stamps = {
-			width: '7.5%',
-			align: 'center' as AlignType,
-			display: language.stamps,
-		};
-
 		if (props.showActions) {
 			header.actions = {
 				width: '10%',
@@ -160,14 +154,6 @@ export default function ArtifactsTable(props: IProps) {
 		);
 	}
 
-	function getStampCount(id: string) {
-		return (
-			<S.StampContainer>
-				<p>{stamps && stamps[id] ? stamps[id].total : `-`}</p>
-			</S.StampContainer>
-		);
-	}
-
 	function getActionDropdown(artifactId: string, tags: { [key: string]: any }[]) {
 		return (
 			<ArtifactsTableActionDropdown
@@ -238,7 +224,7 @@ export default function ArtifactsTable(props: IProps) {
 								let disabled: boolean = false;
 								if (props.disabledContractSrc) {
 									const contractSrc = getTagValue(element.node.tags, TAGS.keys.contractSrc);
-									disabled = contractSrc !== ARTIFACT_CONTRACT.src;
+									disabled = contractSrc !== ARTIFACT_CONTRACT.srcTradeable;
 								}
 
 								row.callback = getCallback(element.node.id, disabled);
@@ -254,8 +240,6 @@ export default function ArtifactsTable(props: IProps) {
 									getTagValue(element.node.tags, TAGS.keys.poolId)
 								);
 							}
-
-							row.stamps = getStampCount(element.node.id);
 
 							if (props.showActions) {
 								row.actions = getActionDropdown(element.node.id, element.node.tags);
@@ -319,6 +303,6 @@ function checkAssociation(tags: { [key: string]: any }[]) {
 function checkTradability(tags: { [key: string]: any }[]) {
 	return (
 		getTagValue(tags, TAGS.keys.contractSrc) !== '' &&
-		getTagValue(tags, TAGS.keys.contractSrc) === ARTIFACT_CONTRACT.src
+		getTagValue(tags, TAGS.keys.contractSrc) === ARTIFACT_CONTRACT.srcTradeable
 	);
 }

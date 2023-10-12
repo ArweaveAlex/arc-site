@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { clearCursors } from 'store/cursors/actions';
 
 import {
 	ArtifactArgsType,
@@ -14,7 +15,6 @@ import { ArtifactsTable } from 'components/organisms/ArtifactsDetail/ArtifactsTa
 import { getArtifactsByIds } from 'gql';
 import { IdPaginatorType } from 'helpers/types';
 import * as windowUtils from 'helpers/window';
-import { clearCursors } from 'state/cursors/actions';
 
 import { IProps } from './types';
 

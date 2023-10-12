@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import * as accountActions from 'store/account/actions';
 
 import * as ArcFramework from 'arcframework';
 
 import { POOL_TEST_MODE } from 'helpers/config';
 import * as windowUtils from 'helpers/window';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
-import * as accountActions from 'state/account/actions';
 import { WalletBlock } from 'wallet/WalletBlock';
 
 import { PoolsCreateForm } from './PoolsCreateForm';

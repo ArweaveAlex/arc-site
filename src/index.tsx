@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from 'store';
 import { ThemeProvider } from 'styled-components';
 
 import { App } from 'app';
@@ -11,7 +12,6 @@ import { defaultTheme } from 'helpers/themes';
 import { ArweaveProvider } from 'providers/ArweaveProvider';
 import { MintProvider } from 'providers/MintProvider';
 import { OrderBookProvider } from 'providers/OrderBookProvider';
-import { persistor, store } from 'state/store';
 // import { registerServiceWorker } from 'workers/registerServiceWorker';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

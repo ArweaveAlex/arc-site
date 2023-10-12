@@ -1,5 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import * as artifactActions from 'store/artifacts/actions';
 
 import {
 	ARTIFACT_CONTRACT,
@@ -23,8 +25,6 @@ import { DOM } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
-import * as artifactActions from 'state/artifacts/actions';
-import { RootState } from 'state/store';
 import { ArtifactRendererSingle } from 'views/Artifact/ArtifactSingle/ArtifactRendererSingle';
 
 import * as S from './styles';
@@ -318,7 +318,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				closeOnAction: false,
 				subComponent: getArtifactSell(),
 				label: language.sellArtifact,
-				disabled: props.ownerActionDisabled || props.artifactContractSrc !== ARTIFACT_CONTRACT.src,
+				disabled: props.ownerActionDisabled || props.artifactContractSrc !== ARTIFACT_CONTRACT.srcTradeable,
 				loading: false,
 			},
 		];

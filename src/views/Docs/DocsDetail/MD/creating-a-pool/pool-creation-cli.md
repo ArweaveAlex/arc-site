@@ -38,7 +38,7 @@ Directory name: **alex-test**
 
 Pool ID: **russia_ukraine_conflict**
 
-#### Pool nitiation steps
+#### Pool initiation steps
 
 **Remember in each step to replace the appropriate values with your own personal values**
 
@@ -65,9 +65,85 @@ be used every time you run any mining processes.
 
 ### 3. Configure the pool
 
-Below is a screenshot of the **pools.json** file that has been initiated that now needs to be configured.
+Below is a example of the **pools.json** file that has been initiated that now needs to be configured.
 
-![](https://arweave.net/bDYwoBuP7Ty9lDIhrfNolVZ-cBaI-OzzAKkV64Y74Mo)
+```
+{
+    "Test-Pool": {
+        "appType": "Alex-Archiving-Pool-v1.5",
+        "tradeable": true,
+        "contracts": {
+            "pool": {
+                "id": "",
+                "src": ""
+            }
+        },
+        "state": {
+            "owner": {
+                "pubkey": "",
+                "info": ""
+            },
+            "controller": {
+                "pubkey": "",
+                "contribPercent": 0
+            },
+            "title": "Pool Title",
+            "description": "Paragraph/HTML Markup",
+            "briefDescription": "Short Pool Description",
+            "image": "",
+            "timestamp": "",
+            "ownerMaintained": false
+        },
+        "walletPath": "",
+        "walletKey": null,
+        "keywords": [
+            "keyword"
+        ],
+        "twitterApiKeys": {
+            "consumer_key": "",
+            "consumer_secret": "",
+            "token": "",
+            "token_secret": "",
+            "bearer_token": ""
+        },
+        "clarifaiApiKey": "",
+        "topics": [
+            "History"
+        ],
+        "redditApiKeys": {
+            "username": "",
+            "password": "",
+            "appId": "",
+            "appSecret": ""
+        },
+        "nostr": {
+            "relays": [
+                {
+                    "socket": "wss://relay.damus.io"
+                },
+                {
+                    "socket": "wss://nos.lol"
+                },
+                {
+                    "socket": "wss://nostr.relayer.se"
+                },
+                {
+                    "socket": "wss://relay.current.fyi"
+                },
+                {
+                    "socket": "wss://nostr.bitcoiner.social"
+                },
+                {
+                    "socket": "wss://relay.nostr.info"
+                },
+                {
+                    "socket": "wss://nostr.fmt.wiz.biz"
+                }
+            ]
+        }
+    }
+}
+```
 
 #### Pool Configuration Steps
 
@@ -75,6 +151,7 @@ Below is a screenshot of the **pools.json** file that has been initiated that no
 
 2. Modify the following values **(Note: The following values are the only values that need to modified at this time, there are many other values in this file that either never need to be modified or should be modified at a later point)**
 
+- **tradeable**: If set to true, artifact sponsorships in this pool can be bought and sold via the UCM.
 - **state.title**: The title of your pool.
 - **state.description**: A long description of your pool. This description will appear on the [pool details](https://alex.arweave.dev/#/pool/zIZXNTl-GtTDbO8eP8LpkHks5S5WhB4j82YX-N2RuGw) page of Alex., under the 'About' header. It can contain text and/or HTML.
 - **state.briefDescription**: A brief description of your pool. This description will appear on the [home page](https://alex.arweave.dev) of Alex.

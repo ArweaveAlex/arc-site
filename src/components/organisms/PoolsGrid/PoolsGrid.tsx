@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
+import { RootState } from 'store';
+import { ReduxPoolsUpdate } from 'store/pools/ReduxPoolsUpdate';
 
 import { ANSTopicEnum, FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolIndexType } from 'arcframework';
 
@@ -15,8 +17,6 @@ import { ASSETS, DEFAULT_POOL_FETCH_COUNT, DOM, EXISTING_POOLS_FILTER, POOL_SORT
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import * as windowUtils from 'helpers/window';
-import { ReduxPoolsUpdate } from 'state/pools/ReduxPoolsUpdate';
-import { RootState } from 'state/store';
 import { CloseHandler } from 'wrappers/CloseHandler';
 
 import * as S from './styles';

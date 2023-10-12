@@ -86,7 +86,7 @@ export default function StampWidget(props: IProps) {
 				warp: props.warp,
 				arweave: props.arweave,
 				wallet: arProvider.walletAddress ? new InjectedArweaveSigner(arProvider.walletAddress) : 'use_wallet',
-				dre: props.contractSrc === ARTIFACT_CONTRACT.src ? DRE_NODE : DRE_NODE_1,
+				dre: props.contractSrc === ARTIFACT_CONTRACT.srcTradeable ? DRE_NODE : DRE_NODE_1,
 			})
 		);
 	}, [arProvider.walletAddress]);
