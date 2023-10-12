@@ -318,7 +318,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				closeOnAction: false,
 				subComponent: getArtifactSell(),
 				label: language.sellArtifact,
-				disabled: props.ownerActionDisabled || props.artifactContractSrc !== ARTIFACT_CONTRACT.src,
+				disabled: props.ownerActionDisabled || props.artifactContractSrc !== ARTIFACT_CONTRACT.srcTradeable,
 				loading: false,
 			},
 		];

@@ -224,7 +224,7 @@ export default function ArtifactsTable(props: IProps) {
 								let disabled: boolean = false;
 								if (props.disabledContractSrc) {
 									const contractSrc = getTagValue(element.node.tags, TAGS.keys.contractSrc);
-									disabled = contractSrc !== ARTIFACT_CONTRACT.src;
+									disabled = contractSrc !== ARTIFACT_CONTRACT.srcTradeable;
 								}
 
 								row.callback = getCallback(element.node.id, disabled);
@@ -303,6 +303,6 @@ function checkAssociation(tags: { [key: string]: any }[]) {
 function checkTradability(tags: { [key: string]: any }[]) {
 	return (
 		getTagValue(tags, TAGS.keys.contractSrc) !== '' &&
-		getTagValue(tags, TAGS.keys.contractSrc) === ARTIFACT_CONTRACT.src
+		getTagValue(tags, TAGS.keys.contractSrc) === ARTIFACT_CONTRACT.srcTradeable
 	);
 }

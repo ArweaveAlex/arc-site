@@ -93,7 +93,7 @@ export default function ArtifactActionsSingle(props: IProps) {
 			props.data.owner === arProvider.walletAddress &&
 			props.data.claimable !== null &&
 			props.data.claimable !== undefined &&
-			props.data.artifactContractSrc === ARTIFACT_CONTRACT.src
+			props.data.artifactContractSrc === ARTIFACT_CONTRACT.srcTradeable
 		) {
 			return (
 				<S.ButtonContainer>

@@ -65,7 +65,7 @@ export default function OwnerAccount(props: IProps) {
 					<S.ProfileWrapper>
 						<S.ProfileFlex>
 							<S.AvatarWrapper>
-								{arProfile.avatar === 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA' ? (
+								{!arProfile.avatar || arProfile.avatar === 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA' ? (
 									<ReactSVG src={ASSETS.user} />
 								) : (
 									<S.Avatar src={getTxEndpoint(arProfile.avatar.substring(5))} />
