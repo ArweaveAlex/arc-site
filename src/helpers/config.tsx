@@ -499,7 +499,8 @@ export const EXISTING_POOLS_FILTER = {
 	],
 };
 
-export const POOL_TEST_MODE = false;
+// TODO
+export const POOL_TEST_MODE = true;
 
 export const DRE_NODE = 'https://dre-u.warp.cc/contract';
 export const DRE_NODE_1 = 'https://dre-1.warp.cc/contract';

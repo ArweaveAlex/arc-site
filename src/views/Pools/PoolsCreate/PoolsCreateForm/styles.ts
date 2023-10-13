@@ -137,6 +137,19 @@ export const Fields = styled.div`
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 `;
 
+export const TCheckbox = styled.div`
+	display: flex;
+	align-items: center;
+	margin: 0 0 25px 0;
+	span {
+		display: block;
+		margin: 0 10px 0 0;
+		font-size: ${(props) => props.theme.typography.size.xSmall} !important;
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
+	}
+`;
+
 export const KeywordsWrapper = styled.div``;
 
 export const KeywordsHeader = styled.div`

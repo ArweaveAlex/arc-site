@@ -9,6 +9,8 @@ export interface IProps {
 	setTitle: (e: any) => void;
 	contributionPercentage: number | null;
 	setContributionPercentage: (e: any) => void;
+	tradeable: boolean;
+	setTradeable: () => void;
 	topics: string[] | null;
 	setTopics: (e: any) => void;
 	keywords: string[] | null;

@@ -22,8 +22,10 @@ export default function PoolsCreate() {
 
 	const [image, setImage] = React.useState<any>(null);
 	const [imageBuffer, setImageBuffer] = React.useState<any>(null);
+
 	const [title, setTitle] = React.useState<string>('');
 	const [contributionPercentage, setContributionPercentage] = React.useState<number>(0);
+	const [tradeable, setTradeable] = React.useState<boolean>(true);
 	const [topics, setTopics] = React.useState<string[]>([]);
 	const [keywords, setKeywords] = React.useState<string[]>(['']);
 	const [description, setDescription] = React.useState<string>('');
@@ -54,6 +56,7 @@ export default function PoolsCreate() {
 				let poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
 				let poolConfig: ArcFramework.PoolConfigType = poolConfigClient.initNew();
 
+				poolConfig.tradeable = tradeable;
 				poolConfig.state.controller.contribPercent = contributionPercentage;
 				poolConfig.state.title = title;
 				poolConfig.state.description = description;
@@ -130,6 +133,8 @@ export default function PoolsCreate() {
 				title={title}
 				setTitle={handleTitleChange}
 				{...{ contributionPercentage, setContributionPercentage }}
+				tradeable={tradeable}
+				setTradeable={() => setTradeable(!tradeable)}
 				{...{ topics, setTopics }}
 				keywords={keywords}
 				setKeywords={handleKeywordChange}

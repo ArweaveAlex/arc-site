@@ -4,6 +4,7 @@ import * as ArcFramework from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { ButtonLink } from 'components/atoms/ButtonLink';
+import { Checkbox } from 'components/atoms/Checkbox';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
 import { MultiSelect } from 'components/atoms/MultiSelect';
@@ -65,12 +66,10 @@ export default function PoolsCreateForm(props: IProps) {
 	function getAction() {
 		return (
 			<Button
-				type={'alt1'}
+				type={'success'}
 				label={language.create}
 				handlePress={() => props.handleSave()}
 				disabled={getSubmitDisabled()}
-				height={52.5}
-				width={350}
 				loading={props.loading}
 			/>
 		);
@@ -237,6 +236,10 @@ export default function PoolsCreateForm(props: IProps) {
 									invalid={{ status: false, message: null }}
 									disabled={props.loading}
 								/>
+								<S.TCheckbox>
+									<span>{language.poolTradeableOption}</span>
+									<Checkbox checked={props.tradeable} disabled={false} handleSelect={props.setTradeable} />
+								</S.TCheckbox>
 							</S.Fields>
 							<S.SubmitContainer>{getAction()}</S.SubmitContainer>
 						</S.Form>

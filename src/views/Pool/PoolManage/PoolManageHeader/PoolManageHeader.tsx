@@ -126,14 +126,18 @@ export default function PoolManageHeader(props: IProps) {
 			const poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
 			const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
 
-			const blob = new Blob([JSON.stringify({ [poolId]: poolConfig }, null, 4)], { type: 'application/json' });
-			const href = URL.createObjectURL(blob);
-			const link = document.createElement('a');
-			link.href = href;
-			link.download = APP.poolConfig;
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
+			if (poolConfig) {
+				const blob = new Blob([JSON.stringify({ [poolId]: poolConfig }, null, 4)], { type: 'application/json' });
+				const href = URL.createObjectURL(blob);
+				const link = document.createElement('a');
+				link.href = href;
+				link.download = APP.poolConfig;
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			} else {
+				alert(language.poolConfigurationNotFound);
+			}
 			setLoading(false);
 		}
 	}

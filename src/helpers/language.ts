@@ -374,6 +374,7 @@ export const language = {
 	poolBalanceInfo: `This balance represents the funds currently available for mining use. Note that this balance only represents funds contributed to this Alex. pool and not your total wallet balance.<br><br> When contributions are made, these funds must be transferred onto the network before you can mine artifacts. This can be done by clicking ‘Transfer Funds’ from this screen.`,
 	poolConfiguration: `Pool Configuration`,
 	poolConfigurationInfo: `This configuration can be used for mining with the Alex. CLI. Please enter a Pool ID which will be used to identify the pool in the CLI.<br><br>After downloading this configuration, please visit our documentation for next steps. You will need to enter additional information into the configuration to successfully mine artifacts in the CLI.`,
+	poolConfigurationNotFound: `Pool configuration not found`,
 	poolManage: {
 		mine: { title: 'Mine Artifacts' },
 		view: { title: 'View Artifacts' },
@@ -383,6 +384,7 @@ export const language = {
 	poolCreatedInfo: `Congratulations on starting a new pool! You will be able to start mining artifacts when the pool transaction has settled on the Arweave Network and a contribution to the pool has been made. You can find your pool from the pools tab on your account page, and you can being managing your pool by clicking Manage Pool below.`,
 	poolId: `Pool ID`,
 	poolOperator: `Alex. Pool Operator`,
+	poolTradeableOption: `Artifacts archived from this pool are tradeable via UCM`,
 	pools: {
 		header1: `Pools`,
 		gridTitles: {
