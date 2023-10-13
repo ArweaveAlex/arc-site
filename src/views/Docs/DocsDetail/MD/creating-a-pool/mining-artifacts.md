@@ -1,6 +1,6 @@
 # Mining artifacts
 
-## [Files and documents](/#/docs/creating-a-pool/mining-artifacts#files)
+## [Files](/#/docs/creating-a-pool/mining-artifacts#files)
 
 #### Renderer supported file types
 
@@ -76,6 +76,54 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./me
 arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./metafile.json --clear
 ```
 
+## [News API](/#/docs/creating-a-pool/mining-artifacts#news-api)
+
+#### Configure News API key
+
+- Get News API access [here](https://newsapi.org/)
+
+**Mine news articles based on keywords configured in pools.json**
+
+```sh
+arcpool mine <POOL_ID> --source news-api
+```
+
+## [Reddit](/#/docs/creating-a-pool/mining-artifacts#reddit)
+
+#### Configure Reddit API keys
+
+- Login or create a Reddit account and then get API access [here](https://www.reddit.com/prefs/apps)
+
+- Insert the following into **redditAPIKeys** in **pools.json**
+  - **username** and **password** used for Reddit
+  - **appId** and **appSecret** received from Reddit
+
+**Mine Reddit posts by search term**
+
+```sh
+arcpool mine wildlife --source reddit --method search --search-term america
+```
+
+**Mine Reddit posts by subreddit**
+
+```sh
+arcpool mine wildlife --source reddit --method subreddit --subreddit webdev
+```
+
+**Mine Reddit posts by username**
+
+```sh
+arcpool mine wildlife --source reddit --method user --username exampleusername
+```
+
+## [Wikipedia](/#/docs/creating-a-pool/mining-artifacts#wikipedia)
+
+**Mine a single Wikipedia article based on keywords configured in pools.json**
+
+```sh
+arcpool mine <POOL_ID> --source wikipedia
+```
+
 ## [Twitter](/#/docs/creating-a-pool/mining-artifacts#twitter)
 
 #### Configure Twitter API Keys
@@ -115,40 +163,6 @@ For example: mine all tweets from SBF_FTX
 
 ```sh
 arcpool mine <POOL_ID> --source twitter --method user --username SBF_FTX
-```
-
-## [Wikipedia](/#/docs/creating-a-pool/mining-artifacts#wikipedia)
-
-**Mine a single Wikipedia article related to the given keywords in config**
-
-```sh
-arcpool mine <POOL_ID> --source wikipedia
-```
-
-## [Reddit](/#/docs/creating-a-pool/mining-artifacts#reddit)
-
-#### Configure Reddit API keys
-
-- **redditApiKeys** login or create a Reddit account and then get API access [here](https://www.reddit.com/prefs/apps)
-- Use **username** and **password** from Reddit
-- Insert **appId** and **appSecret** received from Reddit
-
-**Mine Reddit posts by search term**
-
-```sh
-arcpool mine wildlife --source reddit --method search --search-term america
-```
-
-**Mine Reddit posts by subreddit**
-
-```sh
-arcpool mine wildlife --source reddit --method subreddit --subreddit webdev
-```
-
-**Mine Reddit posts by username**
-
-```sh
-arcpool mine wildlife --source reddit --method user --username exampleusername
 ```
 
 ## [Nostr](/#/docs/creating-a-pool/mining-artifacts#nostr)

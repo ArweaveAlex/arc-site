@@ -99,6 +99,9 @@ Below is a example of the **pools.json** file that has been initiated that now n
         "keywords": [
             "keyword"
         ],
+        "topics": [
+            "History"
+        ],
         "twitterApiKeys": {
             "consumer_key": "",
             "consumer_secret": "",
@@ -107,15 +110,13 @@ Below is a example of the **pools.json** file that has been initiated that now n
             "bearer_token": ""
         },
         "clarifaiApiKey": "",
-        "topics": [
-            "History"
-        ],
         "redditApiKeys": {
             "username": "",
             "password": "",
             "appId": "",
             "appSecret": ""
         },
+        "newsApiKey": "",
         "nostr": {
             "relays": [
                 {
