@@ -7,11 +7,7 @@ import * as ArcFramework from 'arcframework';
 export async function getArtifactsByPool(
 	args: ArcFramework.ArtifactArgsType
 ): Promise<ArcFramework.ArtifactResponseType> {
-	return getArtifactsResponseObject(
-		args,
-		await ArcFramework.getArtifactsByPool(args, true),
-		ArcFramework.CursorEnum.GQL
-	);
+	return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByPool(args), ArcFramework.CursorEnum.GQL);
 }
 
 export async function getArtifactsByUser(
