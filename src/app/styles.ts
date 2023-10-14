@@ -191,6 +191,10 @@ export const GlobalStyle = createGlobalStyle`
     padding: 20px;
   }
 
+  .padding-wrapper {
+    padding: 20px;
+  }
+
   .max-cutoff {
     width: 100%;
     max-width: ${STYLING.cutoffs.max};

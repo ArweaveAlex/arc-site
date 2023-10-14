@@ -57,6 +57,7 @@ import mediaPlaySVG from 'assets/media-play.svg';
 import menuSVG from 'assets/menu.svg';
 import mintSVG from 'assets/mint.svg';
 import newTabSVG from 'assets/new-tab.svg';
+import newsSVG from 'assets/news.svg';
 import ownerSVG from 'assets/owner.svg';
 import poolSVG from 'assets/pool.svg';
 import poolsSVG from 'assets/pools.svg';
@@ -116,6 +117,7 @@ export const ASSETS = {
 		default: defaultArtifactTypeSVG,
 		file: fileArtifactTypeSVG,
 		messaging: messagingArtifactTypeSVG,
+		news: newsSVG,
 		nostrEvent: nostrEventArtifactTypeSVG,
 		redditThread: redditThreadArtifactTypeSVG,
 		webpage: webpageArtifactTypeSVG,
@@ -226,6 +228,10 @@ export const ARTIFACT_TYPES = {
 	[TAGS.values.webpageArtifactType]: {
 		label: TAGS.values.webpageArtifactType,
 		icon: ASSETS.artifactTypes.webpage,
+	},
+	[TAGS.values.newsArtifactType]: {
+		label: TAGS.values.newsArtifactType,
+		icon: ASSETS.artifactTypes.news,
 	},
 };
 

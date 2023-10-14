@@ -213,14 +213,14 @@ export const Tags = styled.div`
 	margin: 15px 0 0 0;
 	display: flex;
 	flex-wrap: wrap;
+	gap: 12.5px;
 `;
 
 export const Tag = styled.div`
-	padding: 8px 14.5px;
+	padding: 6.5px 14.5px;
 	width: fit-content;
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	margin: 0 10px 10px 0;
+	border-radius: ${STYLING.dimensions.borderRadius};
 	background: ${(props) => props.theme.colors.container.alt4.background};
 	p {
 		color: ${(props) => props.theme.colors.font.primary.alt1};

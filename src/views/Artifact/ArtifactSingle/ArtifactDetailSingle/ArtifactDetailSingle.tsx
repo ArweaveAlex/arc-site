@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { formatAddress, formatDataSize, formatDate } from 'arcframework';
+import { formatAddress, formatDataSize, formatDate, getTxEndpoint } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { ASSETS } from 'helpers/config';
@@ -104,8 +104,8 @@ export default function ArtifactDetailSingle(props: IProps) {
 						<S.LinkWrapperAlt>
 							<S.DataLine>
 								<ReactSVG src={ASSETS.logoAlt2} />
-								<S.DataUrl target={'_blank'} rel={'noreferrer'} href={props.data.dataUrl!}>
-									{props.data.dataUrl}
+								<S.DataUrl target={'_blank'} rel={'noreferrer'} href={getTxEndpoint(props.data.artifactId)}>
+									{getTxEndpoint(props.data.artifactId)}
 								</S.DataUrl>
 							</S.DataLine>
 						</S.LinkWrapperAlt>
