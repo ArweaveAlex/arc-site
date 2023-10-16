@@ -12,6 +12,9 @@ export const Frame = styled.iframe`
 	height: 100%;
 	width: 100%;
 	scrollbar-width: none;
+	::-webkit-scrollbar {
+		width: 0px;
+	}
 `;
 
 export const LoadingContainer = styled.div`
