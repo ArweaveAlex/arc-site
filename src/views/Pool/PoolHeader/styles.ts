@@ -234,6 +234,7 @@ export const LDBody = styled.div`
 	color: ${(props) => props.theme.colors.font.primary.active.base};
 	font-size: ${(props) => props.theme.typography.size.base};
 	line-height: 1.5;
+	overflow-wrap: anywhere;
 	b {
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 		font-weight: ${(props) => props.theme.typography.weight.medium};

@@ -221,7 +221,7 @@ export const CopyIcon = styled.button<{
 		transform: translate(-50%, -50%);
 
 		&:hover {
-			cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+			cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
 			opacity: 1;
 		}
 	}

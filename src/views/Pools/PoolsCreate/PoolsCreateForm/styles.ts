@@ -23,7 +23,7 @@ export const HeaderImageWrapper = styled.div``;
 export const HeaderImage = styled.div<{ disabled: boolean }>`
 	height: 350px;
 	width: 100%;
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border: 1px dashed ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	display: flex;
@@ -41,15 +41,15 @@ export const HeaderImage = styled.div<{ disabled: boolean }>`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+		cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
 		transition: background 0.075s;
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-		background: ${(props) => props.theme.colors.container.alt4.background};
+		background: ${(props) => props.theme.colors.container.alt3.background};
 		&:hover {
 			background: ${(props) =>
-				props.disabled ? props.theme.colors.container.primary.disabled : props.theme.colors.container.primary.hover};
+				props.disabled ? props.theme.colors.container.primary.disabled : props.theme.colors.container.alt4.background};
 		}
 	}
 	input {

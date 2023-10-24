@@ -163,6 +163,13 @@ export default function PoolsGrid(props: IProps) {
 								<CloseHandler active={filterOpen} callback={() => setFilterOpen(false)} disabled={false}>
 									<S.FOTitle>
 										<p>{language.filterBy}</p>
+										<IconButton
+											type={'primary'}
+											sm
+											warning
+											src={ASSETS.close}
+											handlePress={() => setFilterOpen(false)}
+										/>
 									</S.FOTitle>
 									<S.FOList>
 										{Object.keys({ All: 'All', ...ANSTopicEnum }).map((topic: string, index: number) => (

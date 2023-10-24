@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ArtifactEnum, getRendererEndpoint, RENDER_WITH_VALUES } from 'arcframework';
+import { ArtifactEnum, getRendererEndpoint, RENDER_WITH_VALUES, STORAGE } from 'arcframework';
 
 import { DOM } from 'helpers/config';
 
@@ -47,6 +47,9 @@ export default function ArtifactRendererSingle(props: IProps) {
 			case ArtifactEnum.Reddit:
 			case ArtifactEnum.Audio:
 				wrapperClass = 'wrapper-600 border-wrapper';
+				break;
+			case STORAGE.none:
+				wrapperClass = 'wrapper-full';
 				break;
 			case 'Default':
 				wrapperClass = 'wrapper-full border-wrapper padding-wrapper';

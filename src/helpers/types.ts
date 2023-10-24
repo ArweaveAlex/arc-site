@@ -84,7 +84,7 @@ export type FileMetadataType = {
 
 export type StepType = 'prev' | 'next';
 
-export type UploadingStatusType = 'uploading' | 'complete';
+export type UploadingStatusType = 'uploading' | 'complete' | 'error';
 
 export enum WalletEnum {
 	arConnect = 'arconnect',

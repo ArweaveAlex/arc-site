@@ -96,7 +96,7 @@ import { PoolManageView } from 'views/Pool/PoolManage/PoolManageView';
 export const APP = {
 	key: 'appVersion',
 	disclaimerShown: 'disclaimerShown',
-	version: '1.1.3',
+	version: '1.1.31',
 	poolConfig: 'pools.json',
 };
 
@@ -321,6 +321,14 @@ export const URLS: IURLView = {
 		},
 		{
 			index: 1,
+			label: language.account.bookmarks.title,
+			icon: ASSETS.bookmarks,
+			disabled: false,
+			url: urls.accountBookmarks,
+			view: AccountBookmarks,
+		},
+		{
+			index: 2,
 			label: language.account.pools.title,
 			icon: ASSETS.pools,
 			disabled: false,
@@ -328,20 +336,12 @@ export const URLS: IURLView = {
 			view: AccountPools,
 		},
 		{
-			index: 2,
+			index: 3,
 			label: language.account.collections.title,
 			icon: ASSETS.collections,
 			disabled: false,
 			url: urls.accountCollections,
 			view: AccountCollections,
-		},
-		{
-			index: 3,
-			label: language.account.bookmarks.title,
-			icon: ASSETS.bookmarks,
-			disabled: false,
-			url: urls.accountBookmarks,
-			view: AccountBookmarks,
 		},
 		{
 			index: 4,

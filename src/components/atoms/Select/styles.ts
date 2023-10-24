@@ -28,8 +28,8 @@ export const Select = styled.select`
 	font-weight: ${(props) => props.theme.typography.weight.bold};
 	margin: 5px auto;
 	box-sizing: border-box;
-	background-color: ${(props) => props.theme.colors.form.alt1.background};
-	border: 1px solid ${(props) => props.theme.colors.form.alt1.border};
+	background-color: ${(props) => props.theme.colors.form.background};
+	border: 1px solid ${(props) => props.theme.colors.form.border};
 	border-radius: 25px;
 	padding: 10px 15px;
 	color: ${(props) =>
@@ -38,12 +38,12 @@ export const Select = styled.select`
 
 	&:hover {
 		cursor: pointer;
-		background-color: ${(props) => props.theme.colors.form.alt1.hover};
+		background-color: ${(props) => props.theme.colors.form.hover};
 	}
 
 	&:focus {
 		outline: 0;
-		background-color: ${(props) => props.theme.colors.form.alt1.hover};
+		background-color: ${(props) => props.theme.colors.form.hover};
 	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: 40px;

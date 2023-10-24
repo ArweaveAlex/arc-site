@@ -51,7 +51,7 @@ export const Form = styled.form`
 
 export const Fields = styled.div`
 	padding: 20px 20px 0 20px;
-	background: ${(props) => props.theme.colors.container.primary.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};

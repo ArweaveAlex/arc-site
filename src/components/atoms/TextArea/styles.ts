@@ -32,7 +32,7 @@ export const TextArea = styled.textarea<{
 	margin: 7.5px 0 0 0;
 	border: 1px solid
 		${(props) => (props.invalid ? props.theme.colors.form.invalid.outline : props.theme.colors.form.border)};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	border-radius: ${STYLING.dimensions.borderRadiusField};
 	&:focus {
 		outline: 0;
 		border: 1px solid

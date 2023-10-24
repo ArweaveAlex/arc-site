@@ -213,9 +213,14 @@ export default function FileMiner(props: IProps) {
 	}, [selectedData, sequence]);
 
 	async function handleUpload() {
-		setUploadingStatus('uploading');
-		await uploadFiles(id, selectedData);
-		setUploadingStatus('complete');
+		try {
+			setUploadingStatus('uploading');
+			await uploadFiles(id, selectedData);
+			setUploadingStatus('complete');
+		} catch (e: any) {
+			console.error(e);
+			setUploadingStatus('error');
+		}
 	}
 
 	function handleFileChange(e: any) {
@@ -365,7 +370,7 @@ export default function FileMiner(props: IProps) {
 				<Notification type={'success'} message={language.metadataUpdated} callback={() => setMetadataUpdated(false)} />
 			)}
 
-			{uploadingStatus && (
+			{uploadingStatus && uploadingStatus !== 'error' && (
 				<Modal header={null} handleClose={() => setUploadingStatus(null)} closeHidden>
 					<S.UploadingModalContainer>{getFileUploadStatus()}</S.UploadingModalContainer>
 				</Modal>
@@ -400,6 +405,9 @@ export default function FileMiner(props: IProps) {
 					</S.Actions>
 				</S.Header>
 				{getTable()}
+				{uploadingStatus === 'error' && (
+					<Notification message={language.errorOccurred} type={'warning'} callback={() => setUploadingStatus(null)} />
+				)}
 				<input ref={fileInputRef} type={'file'} multiple onChange={handleFileChange} disabled={props.disabled} />
 			</S.Wrapper>
 		</>

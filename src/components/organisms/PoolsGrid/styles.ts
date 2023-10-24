@@ -84,12 +84,13 @@ export const FOTitle = styled.div`
 	height: 50px;
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
+	padding: 0 15px;
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 	p {
-		font-size: ${(props) => props.theme.typography.size.xSmall} !important;
+		font-size: ${(props) => props.theme.typography.size.small} !important;
 		font-weight: ${(props) => props.theme.typography.weight.bold} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	}

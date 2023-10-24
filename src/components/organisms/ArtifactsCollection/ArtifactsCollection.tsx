@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { STORAGE } from 'arcframework';
+
 import { Carousel } from 'components/molecules/Carousel';
 import { DOM } from 'helpers/config';
 import { language } from 'helpers/language';
@@ -27,7 +29,7 @@ export default function ArtifactsCollection(props: IProps) {
 		return props.selectedIds.map((id: string) => {
 			return (
 				<S.ArtifactPreviewContainer id={DOM.preview} key={id}>
-					<ArtifactRendererSingle artifactId={id} artifactType={'Default'} />
+					<ArtifactRendererSingle artifactId={id} artifactType={STORAGE.none} />
 				</S.ArtifactPreviewContainer>
 			);
 		});

@@ -14,7 +14,6 @@ import { IProps } from './types';
 export default function CollectionsManageForm(props: IProps) {
 	function getInvalidTitle() {
 		return { status: false, message: null };
-		// return { status: true, message: language.collectionNameAlreadyExists };
 	}
 
 	function getSubmitDisabled() {
@@ -26,11 +25,10 @@ export default function CollectionsManageForm(props: IProps) {
 	function getAction() {
 		return (
 			<Button
-				type={'alt1'}
-				label={language.publish}
+				type={'success'}
+				label={language.create}
 				handlePress={() => props.handleSave()}
 				disabled={getSubmitDisabled()}
-				noMinWidth
 			/>
 		);
 	}

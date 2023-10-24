@@ -175,6 +175,7 @@ export const defaultTheme: DefaultTheme = {
 		form: {
 			background: DEFAULT.neutral1,
 			border: DEFAULT.neutral6,
+			hover: DEFAULT.neutral2,
 			invalid: {
 				outline: DEFAULT.contrast,
 				shadow: DEFAULT.contrastShadow,

@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { STYLING } from 'helpers/styling';
-
 const checkmark = css<{ image: string }>`
 	&:after {
 		content: ${(props) => `url("${props.image}")`};
@@ -20,7 +18,7 @@ export const Input = styled.input<{ image: string }>`
 		props.checked ? props.theme.colors.checkbox.active.background : props.theme.colors.checkbox.background};
 	border: 1px solid
 		${(props) => (props.checked ? props.theme.colors.checkbox.active.background : props.theme.colors.checkbox.border)};
-	border-radius: ${STYLING.dimensions.borderRadiusField};
+	border-radius: 2.5px;
 	height: 12.5px;
 	width: 12.5px;
 	position: relative;
@@ -48,7 +46,7 @@ export const Input = styled.input<{ image: string }>`
 	&:disabled {
 		background: ${(props) => props.theme.colors.checkbox.disabled};
 		border: 1px solid ${(props) => props.theme.colors.checkbox.disabled};
-		cursor: not-allowed;
+		cursor: default;
 	}
 
 	${(props) => props.checked && checkmark};

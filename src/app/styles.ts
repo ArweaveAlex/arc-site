@@ -144,7 +144,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     &:disabled {
-      cursor: not-allowed;
+      cursor: default;
     }
   }
 
@@ -163,7 +163,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 10px;
     &:disabled {
-      cursor: not-allowed;
+      cursor: default;
     }
   }
 
@@ -204,8 +204,7 @@ export const GlobalStyle = createGlobalStyle`
   .border-wrapper {
     background: ${(props) => props.theme.colors.container.primary.background};
     border: 1px solid ${(props) => props.theme.colors.border.primary};
-    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-    box-shadow: 0 0 3.5px ${(props) => props.theme.colors.shadow.primary};
+    border-radius: ${STYLING.dimensions.borderRadius};
     overflow: hidden;
   }
 
