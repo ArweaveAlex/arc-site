@@ -1,9 +1,10 @@
 import React from 'react';
 import { ArweaveWebWallet } from 'arweave-wallet-connector';
 
-import { getBalanceEndpoint, getProfile, ProfileType } from 'arcframework';
+import { getBalanceEndpoint, ProfileType } from 'arcframework';
 
 import { Modal } from 'components/molecules/Modal';
+import { getProfiles } from 'gql';
 import { AR_WALLETS, ASSETS, WALLET_PERMISSIONS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { WalletEnum } from 'helpers/types';
@@ -130,7 +131,6 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 	}
 
 	async function handleDisconnect() {
-		// @ts-ignore
 		await global.window?.arweaveWallet?.disconnect();
 		setWallet(null);
 		setWalletAddress(null);
@@ -171,7 +171,7 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (walletAddress) {
-				const profile = await getProfile(walletAddress);
+				const profile = (await getProfiles({ addresses: [walletAddress] }))[0];
 				if (profile) {
 					setArProfile(profile);
 				}

@@ -5,6 +5,7 @@ import * as ArcFramework from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { REDUX_TABLES } from 'helpers/redux';
+import { CursorEnum, GQLNodeResponseType } from 'helpers/types';
 
 import { PoolDetail } from './PoolDetail';
 import { PoolHeader } from './PoolHeader';
@@ -18,7 +19,7 @@ export default function Pool() {
 
 	const [count, setCount] = React.useState<number | null>(null);
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
-	const [recentArtifacts, setRecentArtifacts] = React.useState<ArcFramework.GQLResponseType[] | null>(null);
+	const [recentArtifacts, setRecentArtifacts] = React.useState<GQLNodeResponseType[] | null>(null);
 
 	React.useEffect(() => {
 		(async function () {
@@ -32,7 +33,8 @@ export default function Pool() {
 		(async function () {
 			if (headerData) {
 				const stateUploaders: string[] = [headerData.state.owner];
-				if (headerData.state.controlPubkey) stateUploaders.push(headerData.state.controlPubkey);
+				if (headerData.state.controlPubkey && headerData.state.controlPubkey !== headerData.state.owner)
+					stateUploaders.push(headerData.state.controlPubkey);
 				setUploaders(stateUploaders);
 			}
 		})();
@@ -76,20 +78,20 @@ export default function Pool() {
 	}
 
 	function getPoolDetail() {
-		return (
-			<PoolDetail
-				id={{ value: id, type: 'poolId' }}
-				cursorObject={{
-					key: ArcFramework.CursorEnum.IdGQL,
-					value: REDUX_TABLES.poolAll,
-				}}
-				uploaders={uploaders}
-				setCount={(count: number) => setCount(count)}
-				setArtifacts={
-					!recentArtifacts ? (artifacts: ArcFramework.GQLResponseType[]) => setRecentArtifacts(artifacts) : null
-				}
-			/>
-		);
+		if (uploaders) {
+			return (
+				<PoolDetail
+					id={{ value: id, type: 'poolId' }}
+					cursorObject={{
+						key: CursorEnum.GQL,
+						value: REDUX_TABLES.poolAll,
+					}}
+					uploaders={uploaders}
+					setCount={(count: number) => setCount(count)}
+					setArtifacts={!recentArtifacts ? (artifacts: GQLNodeResponseType[]) => setRecentArtifacts(artifacts) : null}
+				/>
+			);
+		}
 	}
 
 	return headerData ? (

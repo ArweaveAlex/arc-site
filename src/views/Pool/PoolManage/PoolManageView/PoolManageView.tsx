@@ -6,6 +6,7 @@ import * as ArcFramework from 'arcframework';
 import { ArtifactsDetail } from 'components/organisms/ArtifactsDetail';
 import { getArtifactsByPool } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
+import { CursorEnum } from 'helpers/types';
 
 export default function PoolManageView() {
 	const { id } = useParams();
@@ -35,7 +36,7 @@ export default function PoolManageView() {
 		<ArtifactsDetail
 			id={{ value: id, type: 'poolId' }}
 			cursorObject={{
-				key: ArcFramework.CursorEnum.IdGQL,
+				key: CursorEnum.IdGQL,
 				value: REDUX_TABLES.poolAll,
 			}}
 			defaultFetch={{

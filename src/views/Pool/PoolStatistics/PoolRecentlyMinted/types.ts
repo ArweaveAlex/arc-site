@@ -1,5 +1,5 @@
-import { GQLResponseType } from 'arcframework';
+import { GQLNodeResponseType } from 'arcframework';
 
 export interface IProps {
-	data: GQLResponseType[];
+	data: GQLNodeResponseType[];
 }

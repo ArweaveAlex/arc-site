@@ -5,6 +5,7 @@ import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	width: 100%;
+	margin: 0 0 50px 0;
 `;
 
 export const Header = styled.div`
@@ -22,10 +23,7 @@ export const Body = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin: 20px 0 0 0;
-	> * {
-		flex: 1 1 190px;
-		margin: 0 21.5px 20px 0px;
-	}
+	gap: 27.5px;
 `;
 
 export const Icon = styled.div`
@@ -62,7 +60,7 @@ export const TypeLabel = styled.div`
 `;
 
 export const Info = styled.div`
-	height: 20.5%;
+	height: 22.5%;
 	width: 96.5%;
 	position: absolute;
 	top: 86.05%;
@@ -77,15 +75,14 @@ export const InfoTitle = styled.div`
 		text-overflow: ellipsis;
 		overflow: hidden;
 		font-size: ${(props) => props.theme.typography.size.xSmall};
-		line-height: 18px;
+		line-height: 1.5;
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 	}
 `;
 
 export const NLWrapper = styled.div`
-	height: 325px;
+	height: 330px;
 	min-width: 250px;
-	width: 290px;
 	max-width: 250px;
 `;
 
@@ -98,9 +95,6 @@ export const NodeWrapper = styled.div`
 	position: relative;
 	&:hover {
 		background: ${(props) => props.theme.colors.container.primary.hover};
-		// ${Icon} {
-		// 	background: ${(props) => props.theme.colors.container.primary.hover};
-		//  }
 	}
 	a {
 		height: 100%;
@@ -126,9 +120,8 @@ export const ALinkNT = styled.div`
 `;
 
 export const Placeholder = styled.div`
-	height: 325px;
+	height: 330px;
 	min-width: 250px;
-	width: 290px;
 	max-width: 250px;
 	position: relative;
 	background: linear-gradient(

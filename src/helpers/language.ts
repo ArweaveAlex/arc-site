@@ -68,6 +68,7 @@ export const language = {
 		},
 	},
 	address: `Address`,
+	applyChanges: `Apply Changes`,
 	appName: `Alex.`,
 	artifactDetails: `Artifact Details`,
 	artifactTypesDisplay: {
@@ -102,6 +103,7 @@ export const language = {
 	artifactListedForSale: `This artifact has been listed for sale!`,
 	artifactPreview: `Artifact Preview`,
 	artifactStamped: `Artifact Stamped`,
+	artifactType: `Artifact Type`,
 	artifacts: `Artifacts`,
 	artifactDetail: {
 		fileInformation: `File Information`,
@@ -286,8 +288,8 @@ export const language = {
 	fileUploadComplete: `File Upload Complete!`,
 	filesAndMetadata: `Files & Metadata`,
 	filesSelected: `Files Selected`,
-	filter: `Filter`,
-	filterBy: `Filter By`,
+	filterByPoolTopic: `Filter by Pool Topic`,
+	filterResults: `Filter Results`,
 	funded: `Funded`,
 	fundsTransferFailedMessage: `There was a problem transferring your funds. It could be due to existing funds currently processing in the network.`,
 	fundsTransferInitiatedMessage: `Your transfer has been initiated. It usually takes 20 - 30 minutes for the transfer to complete. You can verify the transfer by checking the Pool Balance progress bar on this screen.`,
@@ -312,7 +314,7 @@ export const language = {
 		infoAction2: `Create a Pool`,
 	},
 	lastContribution: `Last Contribution`,
-	learnAboutCreating: `Learn About Creating`,
+	learnAboutCreating: `Learn about Creating`,
 	library: {
 		header1: `Library`,
 		all: { title: `All` },
@@ -364,6 +366,7 @@ export const language = {
 	pool: {
 		subheader1: `Pool`,
 		artifactsCreated: `Artifacts Created`,
+		totalContributionSponsors: `Total Sponsors`,
 		contribute: {
 			notEnoughFunds: `Not enough AR to contribute to this pool.`,
 			failed: `Failed to contribute to pool. Please try again.`,
@@ -375,6 +378,7 @@ export const language = {
 	poolConfiguration: `Pool Configuration`,
 	poolConfigurationInfo: `This configuration can be used for mining with the Alex. CLI. Please enter a Pool ID which will be used to identify the pool in the CLI.<br><br>After downloading this configuration, please visit our documentation for next steps. You will need to enter additional information into the configuration to successfully mine artifacts in the CLI.`,
 	poolConfigurationNotFound: `Pool configuration not found`,
+	poolContributions: (title: string) => `${title} Contributions`,
 	poolManage: {
 		mine: { title: 'Mine Artifacts' },
 		view: { title: 'View Artifacts' },
@@ -436,6 +440,7 @@ export const language = {
 	topics: `Topics`,
 	total: `Total`,
 	totalContributed: `Total Contributed`,
+	totalCount: `Total Count`,
 	transferred: `Transferred`,
 	transferFailed: `Transfer Failed`,
 	transferFunds: `Transfer Funds`,
@@ -452,6 +457,7 @@ export const language = {
 	value: `Value`,
 	view: `View`,
 	viewAccount: `View Account`,
+	viewAllContributions: `View All Contributions`,
 	viewDocs: `View Docs`,
 	viewOnArweave: `View on Arweave`,
 	viewOnBazar: `View on BazAR`,

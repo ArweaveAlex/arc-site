@@ -14,7 +14,7 @@ declare const window: any;
 const persistConfig = {
 	key: 'root',
 	storage,
-	blacklist: ['cursorsReducer', 'searchIdsReducer', 'bookmarksReducer'],
+	blacklist: ['cursorsReducer', 'searchIdsReducer'],
 };
 
 const rootReducer = combineReducers({

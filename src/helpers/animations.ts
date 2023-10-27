@@ -18,6 +18,15 @@ export const openLeft = keyframes`
   }
 `;
 
+export const openRight = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+`;
+
 export const loaderKeyFrame = keyframes`
   0% {
     opacity: 1;

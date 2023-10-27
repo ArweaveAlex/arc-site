@@ -28,8 +28,32 @@ export const HeaderContent = styled.div`
 	}
 `;
 
-export const SubheaderFlex = styled.div`
+export const SHWrapper = styled.div`
 	display: flex;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	gap: 32.5px;
+	margin: 7.5px 0 0 0;
+`;
+
+export const SHCWrapper = styled.div`
+	span {
+		width: fit-content;
+		font-size: ${(props) => props.theme.typography.size.base};
+	}
+	svg {
+		height: 22.5px;
+		width: 22.5px;
+		.active-path-svg {
+			fill: transparent !important;
+		}
+	}
+`;
+
+export const SubheaderFlex = styled.div`
+	width: fit-content;
+	display: flex;
+	align-items: flex-start;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		margin: 20px 0 0 0;
 		flex-direction: column;
@@ -38,7 +62,6 @@ export const SubheaderFlex = styled.div`
 
 export const SubheaderContainer = styled.div`
 	display: flex;
-	margin: 10px 0 0 0;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		margin: 0 0 7.5px 0;
 	}
@@ -116,6 +139,7 @@ export const FlexTiles = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+	margin: 20px 0 30px 0;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
 	}
@@ -145,17 +169,17 @@ export const ContributeTile = styled(Tile)`
 export const ContributeAction = styled.button`
 	height: 100%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.button.alt1.background};
-	border: 1px solid ${(props) => props.theme.colors.border.alt1};
+	background: ${(props) => props.theme.colors.button.alt2.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	&:hover {
-		background: ${(props) => props.theme.colors.button.alt1.hover};
+		background: ${(props) => props.theme.colors.button.alt2.hover};
 	}
 	&:focus {
-		background: ${(props) => props.theme.colors.button.alt1.hover};
+		background: ${(props) => props.theme.colors.button.alt2.hover};
 	}
 	&:disabled {
 		background: ${(props) => props.theme.colors.button.disabled};
@@ -174,7 +198,7 @@ export const ContributeLabel = styled.div`
 	span {
 		font-size: 24px;
 		font-weight: ${(props) => props.theme.typography.weight.medium};
-		color: ${(props) => props.theme.colors.font.primary.base};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
 	}
 `;
 
@@ -213,10 +237,10 @@ export const TContainer = styled.div`
 
 export const LongDescription = styled.div`
 	width: 100%;
-	margin: 30px 0 35px 0;
+	margin: 30px 0;
 `;
 
-export const LDHeader = styled.div`
+export const Header = styled.div`
 	h2 {
 		font-size: 24px;
 		font-family: ${(props) => props.theme.typography.family.alt1};

@@ -1,13 +1,14 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { formatAddress, getHashUrl, getProfile, getTxEndpoint, ProfileType } from 'arcframework';
+import { formatAddress, getHashUrl, getTxEndpoint, ProfileType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { URLTabs } from 'components/molecules/URLTabs';
-import { ASSETS } from 'helpers/config';
+import { getProfiles } from 'gql';
+import { AR_PROFILE, ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { TWITTER_ACCOUNT_REDIRECT } from 'helpers/paths';
 import * as urls from 'helpers/urls';
@@ -25,7 +26,7 @@ export default function OwnerAccount(props: IProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (props.walletAddress) {
-				const profile = await getProfile(props.walletAddress);
+				const profile = (await getProfiles({ addresses: [props.walletAddress] }))[0];
 				if (profile) {
 					setArProfile(profile);
 				}
@@ -65,10 +66,10 @@ export default function OwnerAccount(props: IProps) {
 					<S.ProfileWrapper>
 						<S.ProfileFlex>
 							<S.AvatarWrapper>
-								{!arProfile.avatar || arProfile.avatar === 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA' ? (
+								{!arProfile.avatar || arProfile.avatar === AR_PROFILE.defaultAvatar ? (
 									<ReactSVG src={ASSETS.user} />
 								) : (
-									<S.Avatar src={getTxEndpoint(arProfile.avatar.substring(5))} />
+									<S.Avatar src={getTxEndpoint(arProfile.avatar)} />
 								)}
 							</S.AvatarWrapper>
 							<S.Info>

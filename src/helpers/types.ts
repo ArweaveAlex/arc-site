@@ -95,3 +95,87 @@ export type IdPaginatorType = {
 	index: string;
 	ids: string[];
 };
+
+export enum CursorEnum {
+	GQL = 'gql',
+	IdGQL = 'idGql',
+}
+
+export type CursorObjectKeyType = CursorEnum.GQL | CursorEnum.IdGQL | null;
+
+export type CursorObjectType = {
+	key: CursorObjectKeyType;
+	value: string;
+};
+
+export type TagFilterType = { name: string; values: string[] };
+
+export type GQLNodeResponseType = {
+	cursor: string | null;
+	node: {
+		id: string;
+		tags: { [key: string]: any }[];
+		data: {
+			size: string;
+			type: string;
+		};
+		block?: {
+			height: number;
+			timestamp: number;
+		};
+		owner?: {
+			address: string;
+		};
+		address?: string;
+		timestamp?: number;
+	};
+};
+
+export type AGQLResponseType = {
+	data: GQLNodeResponseType[];
+	count: number;
+	nextCursor: string | null;
+	previousCursor: string | null;
+};
+
+export type ProfileType = {
+	handle: string | null;
+	avatar: string | null;
+	twitter: string | null;
+	discord: string | null;
+	walletAddress: string;
+};
+
+export type GQLArgsType = {
+	gateway: string;
+	ids: string[] | null;
+	tagFilters: TagFilterType[] | null;
+	owners: string[] | null;
+	cursor: string | null;
+	reduxCursor: string | null;
+	cursorObjectKey: CursorObjectKeyType;
+};
+
+export type PagingType = {
+	limit: number;
+	items: number;
+	page: number;
+};
+
+export type BalanceType = {
+	contract_tx_id: string;
+	token_ticker: string;
+	token_name: string;
+	balance: string;
+	sort_key: string;
+};
+
+export type UserBalancesType = {
+	paging: PagingType;
+	balances: BalanceType[];
+};
+
+export type UserArtifactsArgsType = {
+	walletAddress: string;
+	fetchType: 'all' | 'bookmarks';
+};

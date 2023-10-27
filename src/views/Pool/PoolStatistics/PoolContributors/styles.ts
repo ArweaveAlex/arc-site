@@ -4,10 +4,13 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
+	margin: 20px 0;
+`;
+
+export const TWrapper = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	margin: 20px 0 40px 0;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
 	}
@@ -35,18 +38,34 @@ export const Body = styled.div`
 	height: calc(100% - 50px);
 	width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
+	animation: ${open} ${fadeIn2};
+	> * {
+		&:not(:last-child) {
+			border-bottom: 1px solid ${(props) => props.theme.colors.border.alt2};
+		}
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+`;
+
+export const BFull = styled(Body)`
+	padding: 0.5px 0;
+	border-top: 1.5px solid ${(props) => props.theme.colors.border.primary};
+	border-bottom: 1.5px solid ${(props) => props.theme.colors.border.primary};
+`;
+
+export const BWrapper = styled.div`
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 0 15px;
-	animation: ${open} ${fadeIn2};
 `;
 
-export const Row = styled.div<{ isEnd: boolean }>`
+export const Row = styled.div`
 	height: 50px;
 	display: flex;
 	align-items: center;
-	border-bottom: 1px solid ${(props) => (props.isEnd ? props.theme.colors.border.alt2 : props.theme.colors.transparent)};
 `;
 
 export const InfoData = styled.div`
@@ -57,6 +76,7 @@ export const InfoData = styled.div`
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
+		line-height: 1.25;
 	}
 `;
 
@@ -79,6 +99,7 @@ export const RecentOwner = styled(Owner)`
 
 export const Amount = styled(InfoData)`
 	display: flex;
+	align-items: center;
 	margin: 0 0 0 auto;
 	p,
 	span {
@@ -100,5 +121,15 @@ export const NoContributionsContainer = styled.div`
 	p {
 		margin: 15px 0 0 0;
 		color: ${(props) => props.theme.colors.warning};
+	}
+`;
+
+export const VWrapper = styled.div`
+	margin: 20px 0 0 0;
+	button {
+		margin: 0 0 0 auto;
+	}
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		margin: 0;
 	}
 `;

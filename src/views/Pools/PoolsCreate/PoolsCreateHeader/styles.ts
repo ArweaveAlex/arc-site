@@ -16,6 +16,9 @@ export const HeaderContent = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	span {
+		font-size: ${(props) => props.theme.typography.size.base};
+	}
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		flex-direction: column;
 		align-items: start;

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { PAGINATOR } from 'arcframework';
-
 import { ListPlaceholder } from 'components/atoms/ListPlaceholder';
 import { Paginator } from 'components/molecules/Paginator';
 import { language } from 'helpers/language';
@@ -23,7 +21,7 @@ export default function Table(props: IProps) {
 
 	function getTable() {
 		if (!currentRecords) {
-			return <ListPlaceholder rowCount={PAGINATOR} rowHeight={40} rowMargin={10} />;
+			return <ListPlaceholder rowCount={15} rowHeight={40} rowMargin={10} />;
 		} else {
 			if (currentRecords.length <= 0) {
 				if (props.showNoResults) {
@@ -115,12 +113,14 @@ export default function Table(props: IProps) {
 
 	return (
 		<S.Wrapper ref={scrollRef}>
-			<S.Header>
-				<S.HeaderFlex>
-					<S.H2>{props.title}</S.H2>
-					{props.action && <>{props.action}</>}
-				</S.HeaderFlex>
-			</S.Header>
+			{props.title && (
+				<S.Header>
+					<S.HeaderFlex>
+						<S.H2>{props.title}</S.H2>
+						{props.action && <>{props.action}</>}
+					</S.HeaderFlex>
+				</S.Header>
+			)}
 			{getPaginator(true)}
 			{getTable()}
 			{getPaginator(false)}

@@ -1,22 +1,21 @@
 import React from 'react';
 
-import { ArtifactArgsType, ArtifactResponseType, CursorEnum, UserArtifactsArgsType } from 'arcframework';
+import { CursorEnum, UserArtifactsArgsType } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
-import { getArtifactIdsByUser, getArtifactsByBookmarks } from 'gql';
+import { getArtifactIdsByBookmarks, getArtifactIdsByUser } from 'gql';
 import { URLS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
+import { AGQLResponseType, GQLArgsType } from 'helpers/types';
 
 import * as S from './styles';
 import { IProps } from './types';
 
 export default function CollectionsManageArtifacts(props: IProps) {
 	const [tableType, setTableType] = React.useState<{
-		fn:
-			| ((args: ArtifactArgsType) => Promise<ArtifactResponseType>)
-			| ((args: UserArtifactsArgsType) => Promise<string[]>);
+		fn: ((args: GQLArgsType) => Promise<AGQLResponseType>) | ((args: UserArtifactsArgsType) => Promise<string[]>);
 		cursorType: string;
 	}>({
 		fn: getArtifactIdsByUser,
@@ -75,7 +74,7 @@ export default function CollectionsManageArtifacts(props: IProps) {
 						label={bookmarksAction.label}
 						handlePress={() =>
 							setTableType({
-								fn: getArtifactsByBookmarks,
+								fn: getArtifactIdsByBookmarks,
 								cursorType: REDUX_TABLES.accountBookmarks,
 							})
 						}
@@ -108,7 +107,7 @@ export default function CollectionsManageArtifacts(props: IProps) {
 				value: tableType.cursorType,
 			}}
 			usePreviewModal={true}
-			useIdPagination={tableType.cursorType === REDUX_TABLES.accountAll}
+			useIdPagination={true}
 			action={getAction()}
 		/>
 	);

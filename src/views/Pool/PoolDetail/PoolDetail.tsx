@@ -1,4 +1,4 @@
-import { GQLResponseType } from 'arcframework';
+import { GQLNodeResponseType } from 'arcframework';
 
 import { ArtifactsDetail } from 'components/organisms/ArtifactsDetail';
 import { getArtifactsByPool } from 'gql';
@@ -28,7 +28,9 @@ export default function PoolDetail(props: IProps) {
 			disabledContractSrc={false}
 			useIdPagination={false}
 			setArtifacts={
-				props.setArtifacts ? { fn: (artifacts: GQLResponseType[]) => props.setArtifacts(artifacts), count: 5 } : null
+				props.setArtifacts
+					? { fn: (artifacts: GQLNodeResponseType[]) => props.setArtifacts(artifacts), count: 5 }
+					: null
 			}
 		/>
 	);

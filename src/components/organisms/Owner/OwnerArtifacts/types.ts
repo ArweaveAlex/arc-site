@@ -1,12 +1,10 @@
-import { ArtifactArgsType, ArtifactResponseType, CursorObjectType, UserArtifactsArgsType } from 'arcframework';
+import { AGQLResponseType, CursorObjectType, GQLArgsType, UserArtifactsArgsType } from 'helpers/types';
 
 export interface IProps {
 	owner: string | null;
 	ids?: string[];
 	reduxCursor: string;
-	fetch:
-		| ((args: ArtifactArgsType) => Promise<ArtifactResponseType>)
-		| ((args: UserArtifactsArgsType) => Promise<string[]>);
+	fetch: ((args: GQLArgsType) => Promise<AGQLResponseType>) | ((args: UserArtifactsArgsType) => Promise<string[]>);
 	showActions: boolean;
 	showPoolIds: boolean;
 	showSearch: boolean;

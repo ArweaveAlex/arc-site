@@ -35,7 +35,10 @@ export const Actions = styled.div`
 `;
 
 export const CreateAction = styled.div`
-	margin: 0 0 0 40px;
+	margin: 0 0 0 32.5px;
+	span {
+		font-size: ${(props) => props.theme.typography.size.base};
+	}
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		margin: 20px 0 0 0;
 	}

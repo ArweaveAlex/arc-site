@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { formatArtifactType, getTagValue, GQLResponseType, STORAGE, TAGS } from 'arcframework';
+import { getTagValue, STORAGE, TAGS } from 'arcframework';
 
 import { ARTIFACT_TYPES } from 'helpers/config';
 import { language } from 'helpers/language';
+import { GQLNodeResponseType } from 'helpers/types';
 import * as urls from 'helpers/urls';
+import { formatArtifactType } from 'helpers/utils';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -38,7 +40,7 @@ export default function PoolRecentlyMinted(props: IProps) {
 		if (props.data && props.data.length > 0) {
 			return (
 				<>
-					{props.data.map((element: GQLResponseType, index: number) => {
+					{props.data.map((element: GQLNodeResponseType, index: number) => {
 						const type = getArtifactType(getTagValue(element.node.tags, TAGS.keys.artifactType));
 						return (
 							<S.NLWrapper key={index}>

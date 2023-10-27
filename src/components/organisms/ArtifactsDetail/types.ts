@@ -1,20 +1,14 @@
-import {
-	ArtifactArgsType,
-	ArtifactResponseType,
-	CursorObjectType,
-	GQLResponseType,
-	TableIdType,
-	UserArtifactsArgsType,
-} from 'arcframework';
+import { TableIdType, UserArtifactsArgsType } from 'arcframework';
+
+import { AGQLResponseType, CursorObjectType, GQLArgsType, GQLNodeResponseType } from 'helpers/types';
 
 export interface IProps {
 	id: TableIdType;
+	fetchIds?: string[];
 	cursorObject: CursorObjectType;
 	defaultFetch: {
 		ids: string[] | null;
-		fn:
-			| ((args: ArtifactArgsType) => Promise<ArtifactResponseType>)
-			| ((args: UserArtifactsArgsType) => Promise<string[]>);
+		fn: ((args: GQLArgsType) => Promise<AGQLResponseType>) | ((args: UserArtifactsArgsType) => Promise<string[]>);
 	};
 	showActions: boolean;
 	ownerActionDisabled: boolean;
@@ -31,7 +25,7 @@ export interface IProps {
 	setCount?: (count: number) => void | null;
 	useIdPagination: boolean;
 	setArtifacts?: {
-		fn: (artifacts: GQLResponseType[]) => void;
+		fn: (artifacts: GQLNodeResponseType[]) => void;
 		count: number;
 	} | null;
 }

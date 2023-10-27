@@ -1,11 +1,31 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import * as artifactActions from 'store/artifacts/actions';
+
 import { ArtifactsDetail } from 'components/organisms/ArtifactsDetail';
+import { getBookmarkIds } from 'gql';
 
 import { IProps } from './types';
 
 export default function OwnerArtifacts(props: IProps) {
+	const dispatch = useDispatch();
+
+	React.useEffect(() => {
+		(async function () {
+			const bookmarkIds = await getBookmarkIds(props.owner);
+			dispatch(
+				artifactActions.setBookmarks({
+					owner: props.owner,
+					ids: bookmarkIds,
+				})
+			);
+		})();
+	}, [props.owner]);
+
 	return (
 		<ArtifactsDetail
 			id={{ value: props.owner, type: 'ownerId' }}
+			fetchIds={props.ids}
 			cursorObject={props.cursorObject}
 			defaultFetch={{
 				fn: props.fetch,

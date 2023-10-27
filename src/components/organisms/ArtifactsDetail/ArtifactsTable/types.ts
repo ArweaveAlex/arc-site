@@ -1,8 +1,10 @@
-import { ArtifactResponseType, CursorObjectType, CursorType, TableIdType } from 'arcframework';
+import { CursorType, TableIdType } from 'arcframework';
+
+import { AGQLResponseType, CursorObjectType } from 'helpers/types';
 
 export interface IProps {
 	id: TableIdType;
-	data: ArtifactResponseType;
+	data: AGQLResponseType;
 	showActions: boolean;
 	showPoolIds: boolean;
 	showSearch: boolean;
@@ -17,5 +19,8 @@ export interface IProps {
 	disabledSelectedCallbackIds: string[] | null;
 	disabledContractSrc: boolean;
 	usePreviewModal: boolean;
+	setFilteredArtifactTypes: (artifactTypes: string[]) => void;
+	currentFilteredArtifactTypes: string[];
+	filterDisabled: boolean;
 	action?: React.ReactNode;
 }

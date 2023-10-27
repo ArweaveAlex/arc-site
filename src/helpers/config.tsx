@@ -189,13 +189,17 @@ export const ASSETS = {
 };
 
 export const ARTIFACT_TYPES = {
-	[TAGS.values.defaultArtifactType]: {
-		label: language.default,
-		icon: ASSETS.artifactTypes.default,
+	[TAGS.values.newsArtifactType]: {
+		label: TAGS.values.newsArtifactType,
+		icon: ASSETS.artifactTypes.news,
 	},
-	[TAGS.values.messagingArtifactType]: {
-		label: TAGS.values.messagingArtifactType,
-		icon: ASSETS.artifactTypes.messaging,
+	[TAGS.values.webpageArtifactType]: {
+		label: TAGS.values.webpageArtifactType,
+		icon: ASSETS.artifactTypes.webpage,
+	},
+	[TAGS.values.ebookArtifactType]: {
+		label: TAGS.values.ebookArtifactType,
+		icon: ASSETS.artifactTypes.file,
 	},
 	[TAGS.values.imageArtifactType]: {
 		label: TAGS.values.imageArtifactType,
@@ -213,25 +217,21 @@ export const ARTIFACT_TYPES = {
 		label: TAGS.values.videoArtifactType,
 		icon: ASSETS.artifactTypes.file,
 	},
-	[TAGS.values.ebookArtifactType]: {
-		label: TAGS.values.ebookArtifactType,
-		icon: ASSETS.artifactTypes.file,
+	[TAGS.values.redditThreadArtifactType]: {
+		label: TAGS.values.redditThreadArtifactType,
+		icon: ASSETS.artifactTypes.redditThread,
+	},
+	[TAGS.values.messagingArtifactType]: {
+		label: TAGS.values.messagingArtifactType,
+		icon: ASSETS.artifactTypes.messaging,
 	},
 	[TAGS.values.nostrEventArtifactType]: {
 		label: TAGS.values.nostrEventArtifactType,
 		icon: ASSETS.artifactTypes.nostrEvent,
 	},
-	[TAGS.values.redditThreadArtifactType]: {
-		label: TAGS.values.redditThreadArtifactType,
-		icon: ASSETS.artifactTypes.redditThread,
-	},
-	[TAGS.values.webpageArtifactType]: {
-		label: TAGS.values.webpageArtifactType,
-		icon: ASSETS.artifactTypes.webpage,
-	},
-	[TAGS.values.newsArtifactType]: {
-		label: TAGS.values.newsArtifactType,
-		icon: ASSETS.artifactTypes.news,
+	[TAGS.values.defaultArtifactType]: {
+		label: language.default,
+		icon: ASSETS.artifactTypes.default,
 	},
 };
 
@@ -532,4 +532,20 @@ export const REDIRECTS = {
 export const DEFAULT_LICENSE = {
 	License: 'yRj4a5KMctX_uOmKWCFJIjmY8DeJcusVk6-HzLiM_t8',
 	Access: 'public',
+};
+
+export const CURSORS = {
+	p1: 'P1',
+	end: 'END',
+};
+
+export const PAGINATOR = 100;
+
+export const GATEWAYS = {
+	arweave: 'arweave.net',
+	goldsky: 'arweave-search.goldsky.com',
+};
+
+export const AR_PROFILE = {
+	defaultAvatar: 'OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA',
 };

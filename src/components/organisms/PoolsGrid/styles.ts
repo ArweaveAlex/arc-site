@@ -37,7 +37,7 @@ export const FilterWrapper = styled.div`
 export const CurrentFilter = styled.div`
 	height: 33.5px;
 	width: fit-content;
-	padding: 0 15px;
+	padding: 1.5px 12.5px 0 15px;
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
@@ -49,14 +49,13 @@ export const CurrentFilter = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.alt1};
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
-		margin: 0 10.5px 0 0;
+		margin: 0 8.5px 0 0;
 	}
 	button {
 		margin: 0;
-		padding: 1.5px 0 0 0;
 		svg {
-			height: 12.5px !important;
-			width: 12.5px !important;
+			height: 11.5px !important;
+			width: 11.5px !important;
 		}
 	}
 `;
@@ -73,7 +72,8 @@ export const FOWrapper = styled.div`
 
 export const FOContent = styled.div`
 	height: 100%;
-	width: 250px;
+	width: 330px;
+	max-width: 90vw;
 	overflow: hidden;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
@@ -90,8 +90,8 @@ export const FOTitle = styled.div`
 	background: ${(props) => props.theme.colors.container.alt6.background};
 	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 	p {
-		font-size: ${(props) => props.theme.typography.size.small} !important;
-		font-weight: ${(props) => props.theme.typography.weight.bold} !important;
+		font-size: ${(props) => props.theme.typography.size.base} !important;
+		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	}
 `;
@@ -108,7 +108,7 @@ export const FOListItem = styled.li<{ disabled: boolean; active: boolean }>`
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-	font-size: 13px;
+	font-size: ${(props) => props.theme.typography.size.xSmall};
 	line-height: 1.35;
 	color: ${(props) => (props.active ? props.theme.colors.font.primary.base : props.theme.colors.font.primary.alt1)};
 	font-weight: ${(props) => props.theme.typography.weight.medium};
@@ -120,7 +120,7 @@ export const FOListItem = styled.li<{ disabled: boolean; active: boolean }>`
 			: props.active
 			? props.theme.colors.button.alt2.active.background
 			: props.theme.colors.button.alt2.background};
-	padding: 10px 15px;
+	padding: 12.5px 15px;
 	&:hover {
 		background: ${(props) =>
 			props.disabled
@@ -305,6 +305,9 @@ export const LP = styled.div`
 export const FetchAction = styled.div`
 	width: fit-content;
 	margin: 40px auto 0 auto;
+	span {
+		font-size: ${(props) => props.theme.typography.size.base};
+	}
 `;
 
 export const NoPoolsContainer = styled.div`

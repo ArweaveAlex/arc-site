@@ -1,8 +1,7 @@
-import { CursorEnum } from 'arcframework';
-
 import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
-import { getArtifactsByBookmarks } from 'gql';
+import { getArtifactIdsByBookmarks } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
+import { CursorEnum } from 'helpers/types';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 export default function AccountBookmarks() {
@@ -12,7 +11,7 @@ export default function AccountBookmarks() {
 		<OwnerArtifacts
 			owner={arProvider.walletAddress}
 			reduxCursor={REDUX_TABLES.accountBookmarks}
-			fetch={getArtifactsByBookmarks}
+			fetch={getArtifactIdsByBookmarks}
 			showActions={true}
 			showPoolIds={true}
 			showSearch={false}
@@ -26,7 +25,7 @@ export default function AccountBookmarks() {
 				value: REDUX_TABLES.accountBookmarks,
 			}}
 			usePreviewModal={true}
-			useIdPagination={false}
+			useIdPagination={true}
 		/>
 	) : null;
 }

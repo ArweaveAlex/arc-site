@@ -2,18 +2,19 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { clearCursors } from 'store/cursors/actions';
 
-import {
-	ArtifactArgsType,
-	ArtifactResponseType,
-	getTagValue,
-	PAGINATOR,
-	TAGS,
-	UserArtifactsArgsType,
-} from 'arcframework';
+import { getTagValue, PAGINATOR, STORAGE, TAGS } from 'arcframework';
 
 import { ArtifactsTable } from 'components/organisms/ArtifactsDetail/ArtifactsTable';
-import { getArtifactsByIds } from 'gql';
-import { IdPaginatorType } from 'helpers/types';
+import { getGQLData } from 'gql';
+import { GATEWAYS } from 'helpers/config';
+import {
+	AGQLResponseType,
+	CursorObjectType,
+	GQLArgsType,
+	GQLNodeResponseType,
+	IdPaginatorType,
+	UserArtifactsArgsType,
+} from 'helpers/types';
 import * as windowUtils from 'helpers/window';
 
 import { IProps } from './types';
@@ -21,12 +22,17 @@ import { IProps } from './types';
 export default function ArtifactsDetail(props: IProps) {
 	const dispatch = useDispatch();
 
-	const [detailData, setDetailData] = React.useState<ArtifactResponseType | null>(null);
+	const [detailData, setDetailData] = React.useState<AGQLResponseType | null>(null);
 	const [detailDataUpdated, setDetailDataUpdated] = React.useState<boolean>(false);
 
 	const [cursor, setCursor] = React.useState<string | null>(null);
 	const [paginatedIds, setPaginatedIds] = React.useState<IdPaginatorType[] | null>(null);
 	const [showNoResults, setShowNoResults] = React.useState<boolean>(false);
+
+	const [currentCursorObject, setCurrentCursorObject] = React.useState<CursorObjectType | null>(null);
+	const [currentCursorUpdate, setCurrentCursorUpdate] = React.useState<string>(STORAGE.none);
+
+	const [filteredArtifactTypes, setFilteredArtifactTypes] = React.useState<string[]>([]);
 
 	React.useEffect(() => {
 		windowUtils.scrollTo(0, 0);
@@ -34,50 +40,73 @@ export default function ArtifactsDetail(props: IProps) {
 	}, [dispatch]);
 
 	React.useEffect(() => {
-		(async function () {
-			if (props.useIdPagination) {
-				const defaultFetch = props.defaultFetch.fn as (args: UserArtifactsArgsType) => Promise<string[]>;
-
-				if (!paginatedIds) {
-					const paginatedIdsObject: IdPaginatorType[] = [];
-
-					const ids = await defaultFetch({
-						walletAddress: props.owner,
-						fetchType: 'all',
-					});
-
-					if (ids && ids.length > 0) {
-						for (let i = 0, j = 0; i < ids.length; i += PAGINATOR, j++) {
-							paginatedIdsObject.push({
-								index: `${props.cursorObject.value}-${j}`,
-								ids: [...ids].slice(i, i + PAGINATOR),
-							});
-						}
-					}
-
-					setPaginatedIds(paginatedIdsObject);
-				}
-			}
-		})();
-	}, [props.useIdPagination, cursor]);
+		if (!currentCursorObject || currentCursorObject.value !== props.cursorObject.value) {
+			setDetailData(null);
+			setCurrentCursorObject(props.cursorObject);
+		}
+		if (currentCursorUpdate === STORAGE.none || currentCursorUpdate !== cursor) {
+			setDetailData(null);
+			setCurrentCursorUpdate(cursor);
+		}
+	}, [props.cursorObject, cursor]);
 
 	React.useEffect(() => {
 		(async function () {
-			if (props.useIdPagination && paginatedIds && paginatedIds.length) {
-				setDetailData(null);
-				const currentFetchIds = cursor
-					? paginatedIds.find((element: IdPaginatorType) => element.index === cursor).ids
-					: paginatedIds[0].ids;
+			if (props.useIdPagination) {
+				const defaultFetch = props.defaultFetch.fn as (args: UserArtifactsArgsType) => Promise<string[]>;
+				const paginatedIdsObject: IdPaginatorType[] = [];
+				let ids: string[] = [];
 
-				setDetailData(
-					await getArtifactsByIds({
-						ids: currentFetchIds,
-						owner: null,
-						uploaders: null,
-						cursor: null,
-						reduxCursor: null,
-					})
-				);
+				if (props.fetchIds) {
+					ids = [...props.fetchIds];
+				} else {
+					ids = await defaultFetch({
+						walletAddress: props.owner,
+						fetchType: 'all',
+					});
+				}
+
+				if (ids && ids.length > 0) {
+					for (let i = 0, j = 0; i < ids.length; i += PAGINATOR, j++) {
+						paginatedIdsObject.push({
+							index: `${props.cursorObject.value}-${j}`,
+							ids: [...ids].slice(i, i + PAGINATOR),
+						});
+					}
+				} else {
+					setDetailData({
+						data: [],
+						count: 0,
+						nextCursor: null,
+						previousCursor: null,
+					});
+				}
+
+				setPaginatedIds(paginatedIdsObject);
+			}
+		})();
+	}, [props.cursorObject, props.useIdPagination, cursor]);
+
+	React.useEffect(() => {
+		(async function () {
+			if (props.useIdPagination) {
+				if (paginatedIds && paginatedIds.length) {
+					const currentFetchIds = cursor
+						? paginatedIds.find((element: IdPaginatorType) => element.index === cursor).ids
+						: paginatedIds[0].ids;
+
+					setDetailData(
+						(await getGQLData({
+							gateway: GATEWAYS.arweave,
+							ids: currentFetchIds,
+							tagFilters: null,
+							owners: null,
+							cursor: null,
+							reduxCursor: props.cursorObject.value,
+							cursorObjectKey: props.cursorObject.key,
+						})) as AGQLResponseType
+					);
+				}
 			}
 		})();
 	}, [props.useIdPagination, paginatedIds, cursor]);
@@ -88,26 +117,36 @@ export default function ArtifactsDetail(props: IProps) {
 				setDetailData(null);
 				setShowNoResults(false);
 				setDetailDataUpdated(!detailDataUpdated);
-				const defaultFetch = props.defaultFetch.fn as (args: ArtifactArgsType) => Promise<ArtifactResponseType>;
+
+				const defaultFetch = props.defaultFetch.fn as (args: GQLArgsType) => Promise<AGQLResponseType>;
+
+				let owners: string[] | null = null;
+				if (props.owner) owners = [props.owner];
+				if (props.uploaders) owners = owners ? [...owners, ...props.uploaders] : props.uploaders;
+
 				setDetailData(
 					(await defaultFetch({
+						gateway: GATEWAYS.goldsky,
 						ids: props.defaultFetch.ids,
-						owner: props.owner,
-						uploaders: props.uploaders,
+						tagFilters: filteredArtifactTypes
+							? [{ name: TAGS.keys.artifactType, values: filteredArtifactTypes }]
+							: null,
+						owners: owners,
 						cursor: cursor,
 						reduxCursor: props.cursorObject.value,
-					})) as ArtifactResponseType
+						cursorObjectKey: props.cursorObject.key,
+					})) as AGQLResponseType
 				);
 			}
 		})();
-	}, [props.uploaders, props.cursorObject.value, cursor]);
+	}, [props.uploaders, props.cursorObject.value, cursor, filteredArtifactTypes]);
 
 	// GQL Error if count is sent in query with a cursor
 	React.useEffect(() => {
+		if (detailData && detailData.data.length <= 0) {
+			handleShowNoResults();
+		}
 		if (detailData && !cursor) {
-			if (detailData.contracts.length <= 0) {
-				handleShowNoResults();
-			}
 			if (props.setCount) {
 				props.setCount(detailData.count);
 			}
@@ -115,8 +154,8 @@ export default function ArtifactsDetail(props: IProps) {
 	}, [detailData, cursor]);
 
 	React.useEffect(() => {
-		if (props.setArtifacts && detailData !== null && detailData.contracts.length) {
-			const sortedArtifacts = [...detailData.contracts].sort((a, b) => {
+		if (props.setArtifacts && detailData !== null && detailData.data.length) {
+			const sortedArtifacts: GQLNodeResponseType[] = [...detailData.data].sort((a, b) => {
 				const dateA = getTagValue(a.node.tags, TAGS.keys.dateCreated);
 				const dateB = getTagValue(b.node.tags, TAGS.keys.dateCreated);
 
@@ -156,6 +195,12 @@ export default function ArtifactsDetail(props: IProps) {
 		}
 	}
 
+	function handleFilterUpdate(artifactTypes: string[]) {
+		setFilteredArtifactTypes(artifactTypes);
+		dispatch(clearCursors());
+		setCursor(null);
+	}
+
 	return (
 		<ArtifactsTable
 			id={props.id}
@@ -174,6 +219,9 @@ export default function ArtifactsDetail(props: IProps) {
 			disabledSelectedCallbackIds={props.disabledSelectedCallbackIds}
 			disabledContractSrc={props.disabledContractSrc}
 			usePreviewModal={props.usePreviewModal}
+			setFilteredArtifactTypes={(artifactTypes: string[]) => handleFilterUpdate(artifactTypes)}
+			currentFilteredArtifactTypes={filteredArtifactTypes}
+			filterDisabled={props.useIdPagination}
 			action={props.action}
 		/>
 	);

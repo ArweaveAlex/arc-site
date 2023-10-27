@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { CursorEnum } from 'arcframework';
-
 import { Button } from 'components/atoms/Button';
 import { Modal } from 'components/molecules/Modal';
 import { ArtifactsCollection } from 'components/organisms/ArtifactsCollection';
@@ -9,6 +7,7 @@ import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
 import { getArtifactsByIds } from 'gql';
 import { language } from 'helpers/language';
 import { REDUX_TABLES } from 'helpers/redux';
+import { CursorEnum } from 'helpers/types';
 
 import * as S from './styles';
 import { IAProps, IProps } from './types';
@@ -62,7 +61,7 @@ export default function CollectionsManageHeader(props: IProps) {
 							owner={props.owner}
 							fetch={getArtifactsByIds}
 							ids={props.selectedIds}
-							reduxCursor={null}
+							reduxCursor={REDUX_TABLES.accountAll}
 							showActions={true}
 							showPoolIds={true}
 							showSearch={false}
@@ -76,7 +75,7 @@ export default function CollectionsManageHeader(props: IProps) {
 								value: REDUX_TABLES.accountAll,
 							}}
 							usePreviewModal={true}
-							useIdPagination={false}
+							useIdPagination={true}
 							action={null}
 						/>
 					}
@@ -87,7 +86,7 @@ export default function CollectionsManageHeader(props: IProps) {
 			<S.HeaderContent>
 				<S.HeaderContentFixed>
 					<S.Header>
-						<S.Header1>{language.createCollection}</S.Header1>
+						<h2>{language.createCollection}</h2>
 						<S.Actions>
 							<S.Action>
 								<Button

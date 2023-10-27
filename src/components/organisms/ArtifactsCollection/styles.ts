@@ -128,9 +128,11 @@ export const CarouselContainer = styled.div`
 `;
 
 export const ArtifactPreviewContainer = styled.div`
-	max-height: 95%;
+	height: 95%;
+	max-height: 500px;
+	width: calc(100% - 5px);
 	overflow: auto;
-	margin: 0 0 0 auto;
+	margin: 5px auto;
 	text-align: left !important;
 	scrollbar-width: none;
 	::-webkit-scrollbar {

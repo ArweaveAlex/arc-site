@@ -6,11 +6,9 @@ import * as artifactActions from 'store/artifacts/actions';
 import {
 	ARTIFACT_CONTRACT,
 	ArweaveClient,
-	getBookmarkIds,
 	getHashUrl,
 	getTagValue,
 	NotificationResponseType,
-	setBookmarkIds,
 	STORAGE,
 	TAGS,
 } from 'arcframework';
@@ -21,6 +19,7 @@ import { Modal } from 'components/molecules/Modal';
 import { ArtifactSell } from 'components/organisms/ArtifactSell';
 import { FactWidget } from 'components/organisms/FactWidget';
 import { StampWidget } from 'components/organisms/StampWidget';
+import { getBookmarkIds, setBookmarkIds } from 'gql';
 import { DOM } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';

@@ -1,6 +1,6 @@
-import { GQLResponseType, PoolType } from 'arcframework';
+import { GQLNodeResponseType, PoolType } from 'arcframework';
 
 export interface IProps {
 	headerData: PoolType;
-	artifacts: GQLResponseType[] | null;
+	artifacts: GQLNodeResponseType[] | null;
 }

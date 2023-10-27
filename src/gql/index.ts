@@ -1,120 +1,131 @@
 import { store } from 'store';
-import * as artifactActions from 'store/artifacts/actions';
 import * as cursorActions from 'store/cursors/actions';
 
-import * as ArcFramework from 'arcframework';
+import { CURSORS, GATEWAYS, PAGINATOR } from 'helpers/config';
+import { AGQLResponseType, CursorObjectKeyType, GQLArgsType, GQLNodeResponseType } from 'helpers/types';
 
-export async function getArtifactsByPool(
-	args: ArcFramework.ArtifactArgsType
-): Promise<ArcFramework.ArtifactResponseType> {
-	return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByPool(args), ArcFramework.CursorEnum.GQL);
-}
+export async function getGQLData(args: GQLArgsType): Promise<AGQLResponseType> {
+	let data: GQLNodeResponseType[] = [];
+	let count: number = 0;
+	let nextCursor: string | null = null;
 
-export async function getArtifactsByUser(
-	args: ArcFramework.ArtifactArgsType
-): Promise<ArcFramework.ArtifactResponseType> {
-	return getArtifactsResponseObject(args, await ArcFramework.getArtifactsByUser(args), ArcFramework.CursorEnum.GQL);
-}
+	if (args.ids && !args.ids.length) {
+		return { data: data, count: count, nextCursor: nextCursor, previousCursor: null };
+	}
 
-export async function getArtifactIdsByUser(args: ArcFramework.UserArtifactsArgsType): Promise<string[]> {
-	return await ArcFramework.getArtifactIdsByUser(args);
-}
+	try {
+		const response = await fetch(`https://${args.gateway}/graphql`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: getQuery(args),
+		});
+		const responseJson = await response.json();
+		if (responseJson.data.transactions.edges.length) {
+			data = [...responseJson.data.transactions.edges];
+			count = responseJson.data.transactions.count ?? 0;
 
-export async function getArtifactsByIds(
-	args: ArcFramework.ArtifactArgsType
-): Promise<ArcFramework.ArtifactResponseType> {
-	const finalArgs = {
-		ids: args.ids,
-		owner: null,
-		uploaders: null,
-		cursor: null,
-		reduxCursor: null,
-	};
+			const lastResults: boolean = data.length < PAGINATOR || !responseJson.data.transactions.pageInfo.hasNextPage;
 
-	return getArtifactsResponseObject(
-		finalArgs,
-		await ArcFramework.getArtifactsByIds(finalArgs),
-		ArcFramework.CursorEnum.IdGQL
-	);
-}
+			if (lastResults) nextCursor = CURSORS.end;
+			else nextCursor = data[data.length - 1].cursor;
 
-export async function getArtifactsByBookmarks(
-	args: ArcFramework.ArtifactArgsType
-): Promise<ArcFramework.ArtifactResponseType> {
-	let bookmarkIds: string[];
-	const bookmarksReducer = store.getState().bookmarksReducer;
-
-	if (bookmarksReducer.owner === args.owner) {
-		bookmarkIds = bookmarksReducer.ids;
-	} else {
-		if (args.owner) {
-			bookmarkIds = await ArcFramework.getBookmarkIds(args.owner);
+			return getGQLResponseObject(args, {
+				data: data,
+				count: count,
+				nextCursor: nextCursor,
+				previousCursor: null,
+			});
 		} else {
-			bookmarkIds = [];
+			return { data: data, count: count, nextCursor: nextCursor, previousCursor: null };
 		}
+	} catch (e: any) {
+		console.error(e);
+		return { data: data, count: count, nextCursor: nextCursor, previousCursor: null };
 	}
+}
 
-	const finalArgs = {
-		ids: bookmarkIds,
-		owner: args.owner,
-		uploaders: args.uploaders,
-		cursor: args.cursor,
-		reduxCursor: args.reduxCursor,
+function getQuery(args: GQLArgsType): string {
+	const ids = args.ids ? JSON.stringify(args.ids) : null;
+	const tagFilters = args.tagFilters ? JSON.stringify(args.tagFilters).replace(/"([^"]+)":/g, '$1:') : null;
+	const owners = args.owners ? JSON.stringify(args.owners) : null;
+	const cursor = args.cursor ? `"${args.cursor}"` : null;
+	const count = args.gateway === GATEWAYS.goldsky && !args.cursor ? 'count' : '';
+
+	const query = {
+		query: `
+                query {
+                    transactions(
+                        ids: ${ids},
+                        tags: ${tagFilters},
+						first: ${PAGINATOR}
+                        owners: ${owners},
+                        after: ${cursor},
+                    ){
+					${count}
+					pageInfo {
+						hasNextPage
+					}
+                    edges {
+                        cursor
+                        node {
+                            id
+                            tags {
+                                name 
+                                value 
+                            }
+							data {
+								size
+								type
+							}
+							owner {
+								address
+							}
+							block {
+								height
+								timestamp
+							}
+                        }
+                    }
+                }
+            }
+        `,
 	};
-	return getArtifactsResponseObject(
-		finalArgs,
-		await ArcFramework.getArtifactsByBookmarks(finalArgs),
-		ArcFramework.CursorEnum.GQL
-	);
+
+	return JSON.stringify(query);
 }
 
-export async function setBookmarkIds(owner: string, ids: string[]): Promise<ArcFramework.NotificationResponseType> {
-	const response = await ArcFramework.setBookmarkIds(owner, ids);
-	if (response.status) {
-		store.dispatch(
-			artifactActions.setBookmarks({
-				owner: owner,
-				ids: ids,
-			})
-		);
-	}
-	return response;
-}
-
-function getArtifactsResponseObject(
-	args: ArcFramework.ArtifactArgsType,
-	artifactsResponse: ArcFramework.ArtifactResponseType,
-	cursorObject: ArcFramework.CursorEnum.GQL | ArcFramework.CursorEnum.IdGQL
-): ArcFramework.ArtifactResponseType {
-	handleCursors(args.cursor, args.reduxCursor, cursorObject, artifactsResponse.nextCursor);
+export function getGQLResponseObject(args: GQLArgsType, gqlResponse: AGQLResponseType): AGQLResponseType {
+	handleCursors(args.cursor, args.reduxCursor, args.cursorObjectKey, gqlResponse.nextCursor);
 
 	let cursorState: any;
 	if (args.reduxCursor) {
-		cursorState = store.getState().cursorsReducer[cursorObject][args.reduxCursor];
+		cursorState = store.getState().cursorsReducer[args.cursorObjectKey][args.reduxCursor];
 	}
 
 	let nextCursor: string | null = cursorState ? cursorState.next : null;
 	let previousCursor: string | null = cursorState ? cursorState.previous : null;
 
 	return {
+		data: gqlResponse.data,
+		count: gqlResponse.count,
 		nextCursor: nextCursor,
 		previousCursor: previousCursor,
-		count: artifactsResponse.count,
-		contracts: artifactsResponse.contracts,
 	};
 }
 
-function handleCursors(
+export function handleCursors(
 	cursor: string | null,
 	reduxCursor: string | null,
-	cursorObject: ArcFramework.CursorObjectKeyType,
+	cursorObjectKey: CursorObjectKeyType,
 	nextCursor: string | null
 ) {
 	let cursorState: any;
 	let cursorList: (string | null)[] = [];
 
-	if (reduxCursor && cursorObject && store.getState().cursorsReducer[cursorObject][reduxCursor]) {
-		cursorState = store.getState().cursorsReducer[cursorObject][reduxCursor];
+	if (reduxCursor && cursorObjectKey && store.getState().cursorsReducer[cursorObjectKey][reduxCursor]) {
+		cursorState = store.getState().cursorsReducer[cursorObjectKey][reduxCursor];
 		cursorList = [...cursorState.cursors];
 	}
 
@@ -151,7 +162,7 @@ function handleCursors(
 			}
 			if (cursorList.length === 2) {
 				cursorState.next = cursorList[1];
-				cursorState.previous = ArcFramework.CURSORS.p1;
+				cursorState.previous = CURSORS.p1;
 				tempCursorList.push(cursorState.previous);
 				for (let i = 0; i < cursorList.length; i++) {
 					tempCursorList[i + 1] = cursorList[i];
@@ -161,20 +172,23 @@ function handleCursors(
 		}
 
 		if (cursor) {
-			if (cursor === ArcFramework.CURSORS.p1) {
+			if (cursor === CURSORS.p1) {
 				cursorState.next = nextCursor;
 				cursorState.previous = null;
 				cursorList = [nextCursor];
 			}
 		}
 
-		if (cursorObject) {
+		if (cursorObjectKey) {
 			cursorState.cursors = cursorList;
 			store.dispatch(
 				cursorActions.setCursors({
-					[cursorObject]: { [reduxCursor]: cursorState },
+					[cursorObjectKey]: { [reduxCursor]: cursorState },
 				})
 			);
 		}
 	}
 }
+
+export * from './artifacts';
+export * from './profiles';

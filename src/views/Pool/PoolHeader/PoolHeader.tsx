@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 
 import { formatAddress, formatCount, formatDate, PoolClient } from 'arcframework';
 
+import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { SocialShare } from 'components/organisms/SocialShare';
@@ -92,11 +93,34 @@ export default function PoolHeader(props: IProps) {
 			<S.HeaderWrapper>
 				<S.HeaderContent>
 					<h2>{props.title ? props.title : null}</h2>
-					<SocialShare type={'primary'} href={window.location.href} title={language.sharePool} />
+					<S.SHWrapper>
+						<SocialShare type={'primary'} href={window.location.href} title={language.sharePool} />
+						<S.SHCWrapper>
+							<Button
+								type={'alt2'}
+								active
+								label={language.contribute}
+								handlePress={() => setShowContributeModal(true)}
+								height={52.5}
+								width={275}
+								icon={ASSETS.logoAltActive}
+								iconLeftAlign
+							/>
+						</S.SHCWrapper>
+					</S.SHWrapper>
 				</S.HeaderContent>
 				{getSubheader()}
 			</S.HeaderWrapper>
 			{getImage()}
+			<S.LongDescription>
+				<S.Header>
+					<h2>{language.about}</h2>
+				</S.Header>
+				<S.LDBody>{props.description ? parse(props.description) : null}</S.LDBody>
+			</S.LongDescription>
+			<S.Header>
+				<h2>{language.contributions}</h2>
+			</S.Header>
 			<S.FlexTiles>
 				<S.Tile>
 					<S.TileTitle>
@@ -111,7 +135,7 @@ export default function PoolHeader(props: IProps) {
 				</S.Tile>
 				<S.Tile>
 					<S.TileTitle>
-						<p>{language.pool.artifactsCreated}</p>
+						<p>{language.artifactCount}</p>
 					</S.TileTitle>
 					<S.TileData>{getCount()}</S.TileData>
 				</S.Tile>
@@ -137,12 +161,6 @@ export default function PoolHeader(props: IProps) {
 					)}
 				</S.ContributeTile>
 			</S.FlexTiles>
-			<S.LongDescription>
-				<S.LDHeader>
-					<h2>{language.about}</h2>
-				</S.LDHeader>
-				<S.LDBody>{props.description ? parse(props.description) : null}</S.LDBody>
-			</S.LongDescription>
 		</S.Wrapper>
 	);
 }

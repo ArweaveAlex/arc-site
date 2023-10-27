@@ -14,11 +14,15 @@ import {
 } from 'arcframework';
 
 import { Checkbox } from 'components/atoms/Checkbox';
+import { IconButton } from 'components/atoms/IconButton';
 import { Table } from 'components/molecules/Table';
 import { ARTIFACT_TYPES, ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { AlignType, ArtifactTableRowType, TableHeaderType } from 'helpers/types';
 import * as urls from 'helpers/urls';
+import { formatArtifactType } from 'helpers/utils';
+
+import { ArtifactsFilter } from '../ArtifactsFilter';
 
 import { ArtifactsTableActionDropdown } from './ArtifactsTableActionDropdown';
 import * as S from './styles';
@@ -200,11 +204,43 @@ export default function ArtifactsTable(props: IProps) {
 		return sessionStorage.getItem(id) !== null && sessionStorage.getItem(id) !== undefined;
 	}
 
+	function handleTypeFilterUpdate(filteredArtifact: string) {
+		const indexToRemove = props.currentFilteredArtifactTypes.indexOf(filteredArtifact);
+		const newFilteredArtifacts = [...props.currentFilteredArtifactTypes];
+		newFilteredArtifacts.splice(indexToRemove, 1);
+		props.setFilteredArtifactTypes(newFilteredArtifacts);
+	}
+
 	function getAction() {
-		if (props.action) {
-			return props.action;
-		}
-		return null;
+		return (
+			<S.AWrapper>
+				{props.action && <S.ActionsWrapper>{props.action}</S.ActionsWrapper>}
+				{!props.filterDisabled && (
+					<S.FilterWrapper>
+						{props.currentFilteredArtifactTypes.map((filteredArtifact: string, index: number) => {
+							return (
+								<S.FCWrapper key={index}>
+									<p>{formatArtifactType(filteredArtifact)}</p>
+									<IconButton
+										type={'primary'}
+										sm
+										warning
+										src={ASSETS.close}
+										disabled={!data}
+										handlePress={() => handleTypeFilterUpdate(filteredArtifact)}
+									/>
+								</S.FCWrapper>
+							);
+						})}
+						<ArtifactsFilter
+							disabled={!data || !data.length || props.filterDisabled}
+							currentFilteredArtifactTypes={props.currentFilteredArtifactTypes}
+							setFilteredArtifactTypes={(artifactTypes: string[]) => props.setFilteredArtifactTypes(artifactTypes)}
+						/>
+					</S.FilterWrapper>
+				)}
+			</S.AWrapper>
+		);
 	}
 
 	React.useEffect(() => {
@@ -217,7 +253,7 @@ export default function ArtifactsTable(props: IProps) {
 		if (props.data) {
 			(async function () {
 				setData(
-					props.data.contracts
+					props.data.data
 						.map((element: any) => {
 							const row: ArtifactTableRowType = {};
 							if (props.selectCallback) {

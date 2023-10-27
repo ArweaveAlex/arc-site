@@ -145,7 +145,7 @@ export default function PoolsGrid(props: IProps) {
 			<S.FilterWrapper>
 				<Button
 					type={'alt2'}
-					label={language.filter}
+					label={language.filterResults}
 					icon={ASSETS.filter}
 					handlePress={() => setFilterOpen(!filterOpen)}
 					noMinWidth
@@ -162,7 +162,7 @@ export default function PoolsGrid(props: IProps) {
 							<S.FOContent>
 								<CloseHandler active={filterOpen} callback={() => setFilterOpen(false)} disabled={false}>
 									<S.FOTitle>
-										<p>{language.filterBy}</p>
+										<p>{language.filterByPoolTopic}</p>
 										<IconButton
 											type={'primary'}
 											sm

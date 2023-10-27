@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { CursorEnum } from 'arcframework';
 
 import { OwnerArtifacts } from 'components/organisms/Owner/OwnerArtifacts';
-import { getArtifactsByBookmarks } from 'gql';
+import { getArtifactIdsByBookmarks } from 'gql';
 import { REDUX_TABLES } from 'helpers/redux';
 
 export default function LibraryBookmark() {
@@ -13,7 +13,7 @@ export default function LibraryBookmark() {
 		<OwnerArtifacts
 			owner={id}
 			reduxCursor={REDUX_TABLES.libraryBookmarks}
-			fetch={getArtifactsByBookmarks}
+			fetch={getArtifactIdsByBookmarks}
 			showActions={true}
 			showPoolIds={false}
 			showSearch={false}
@@ -27,7 +27,7 @@ export default function LibraryBookmark() {
 				value: REDUX_TABLES.libraryBookmarks,
 			}}
 			usePreviewModal={true}
-			useIdPagination={false}
+			useIdPagination={true}
 		/>
 	) : null;
 }
