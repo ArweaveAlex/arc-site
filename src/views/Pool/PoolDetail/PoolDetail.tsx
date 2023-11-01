@@ -1,7 +1,6 @@
-import { GQLNodeResponseType } from 'arcframework';
-
 import { ArtifactsDetail } from 'components/organisms/ArtifactsDetail';
 import { getArtifactsByPool } from 'gql';
+import { GQLNodeResponseType } from 'helpers/types';
 
 import { IProps } from './types';
 

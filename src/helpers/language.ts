@@ -412,7 +412,7 @@ export const language = {
 	searchInitializing: `Initializing search`,
 	select: `Select`,
 	selectChooseFiles: `Select <b>Choose Files</b> to start uploading`,
-	sellArtifact: `Sell Artifact`,
+	sellArtifact: `Trade Sponsorship`,
 	sellArtifactDescription: `This order will be listed in the UCM for the specified amount of $U`,
 	share: `Share`,
 	shareArtifact: `Check out this Alex. Artifact !`,

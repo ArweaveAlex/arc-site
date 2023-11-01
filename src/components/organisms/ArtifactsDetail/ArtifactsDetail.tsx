@@ -146,7 +146,7 @@ export default function ArtifactsDetail(props: IProps) {
 		if (detailData && detailData.data.length <= 0) {
 			handleShowNoResults();
 		}
-		if (detailData && !cursor) {
+		if (detailData && !cursor && !filteredArtifactTypes.length) {
 			if (props.setCount) {
 				props.setCount(detailData.count);
 			}
