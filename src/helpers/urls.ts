@@ -21,5 +21,6 @@ export const poolManageMine = (id: string) => `${poolManage}${id}/mine/`;
 export const poolManageView = (id: string) => `${poolManage}${id}/view/`;
 export const pools = `${base}pools/`;
 export const poolsCreate = `${pools}create/`;
+export const storage = `${base}storage-technology/`;
 export const thread = `${base}thread/`;
 export const trade = `${base}trade/`;

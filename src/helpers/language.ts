@@ -431,6 +431,39 @@ export const language = {
 	stamp: `STAMP`,
 	stamps: `Stamps`,
 	stampsVouched: `Vouched Stamps`,
+	storageView: {
+		header1: `About our storage technology`,
+		subHeader1: `<p>Pay once, store forever with Arweave </p>`,
+		subHeader2: `Unlike traditional archiving services, our platform only requires users to pay once and store data forever on the Arweave network.`,
+		detail: {
+			section1: {
+				header: 'What is Arweave?',
+				description:
+					'Arweave is a decentralized protocol that provides permanent, accessible and tamper-proof data storage. The Arweave network uses a blockchain-like data structure called the Blockweave, and is backed by a sustainable endowment that guarantees that data is stored for at least 200 years, but likely much longer.',
+				footer:
+					'Learn more about Arweave <a href="https://arwiki.wiki/#/en/main" target="_blank" rel="noopener noreferrer">here.</a>',
+			},
+			section2: {
+				header: 'How to buy $AR tokens?',
+				description1: `Arweave’s native token AR is used to purchase storage space on the network. If you want to contribute to an archival pool, here is how you purchase AR tokens. Tokens are either bought through a centralized exchange (CEX) or a decentralized exchange (DEX).`,
+				description2: 'Please note that some exchanges are not registered in some countries.',
+				description3: 'Popular exchanges include',
+				list1: '<a href="https://crypto.com/price/arweave" target="_blank" rel="noopener noreferrer">Crypto.com</a>.',
+				list2:
+					'<a href="https://www.binance.com/en/price/arweave" target="_blank" rel="noopener noreferrer">Binance</a>.',
+				list3:
+					'<a href="https://uphold.com/assets/crypto/buy-arweave" target="_blank" rel="noopener noreferrer">Uphold</a>.',
+				list4: '<a href="https://www.huobi.com/en-us/" target="_blank" rel="noopener noreferrer">Huobi</a>.',
+				list5: '<a href="https://wazirx.com/exchange/AR-INR" target="_blank" rel="noopener noreferrer">Warzix</a>.',
+				list6:
+					'<a href="https://app.permaswap.network/" target="_blank" rel="noopener noreferrer">Permaswap</a> (DEX).',
+			},
+			subnav: {
+				header: `About Arweave`,
+				howItWorks: 'How to get $AR',
+			},
+		},
+	},
 	superStamp: `Super STAMP`,
 	submit: `Submit`,
 	success: `Success`,
@@ -444,13 +477,9 @@ export const language = {
 	totalCount: `Total Count`,
 	trade: 'Trade',
 	tradeView: {
-		header1: `Trade artifact sponsorships and earn $U`,
-		subHeader1: `<p>Anyone can contribute to a pool, which pays for the storage costs of its <span>artifacts</span>.`,
-		subHeader2: `<b>Archiving is a public good</b>. Allowing people access to information about the past enables them to make higher
-		quality decisions in the present. Currently, however, archiving is insufficiently incentivized: The person 
-		that stores the data, which other's can later access without charge, is the person that has to pay.
-		<b>Alex. changes this</b>. By allowing its community to become micro-sponsors of digital artifacts, an incentive is
-		created for developers and creators to publically archive great digital works on Arweave.`,
+		header1: `Trade artifact sponsorships`,
+		subHeader1: `<p>Contribute to archival pools, earn artifact sponsorships, and then trade these sponsorships on the permaweb to earn $U.`,
+		subHeader2: `Becoming a micro-sponsor of digital artifacts provides the community with an incentive to contribute to pools, ensuring that exceptional digital works can be securely stored on Arweave.`,
 		detail: {
 			artifactTypes: `Artifacts are currently being preserved from:`,
 			action: `Learn about Wallets`,
@@ -459,7 +488,7 @@ export const language = {
 				description:
 					'Artifact sponsorships are the atomic assets that contributors earn for contributing to archival pools. These sponsorships prove that a user provided the $AR for a piece of digital content to be permanently archived on Arweave.',
 				footer:
-					'Sponsorship owners can list their sponsorships on BazAR straight from their account page on Alex. Please note that Alex. is not liable for any artifact sponsorships that are traded without permission of the content creator.',
+					'Sponsorship owners can list their sponsorships on the <a href="https://bazar.arweave.dev/" target="_blank" rel="noopener noreferrer">BazAR</a> marketplace straight from their account page on Alex. Please note that Alex. is not liable for any artifact sponsorships that are traded without permission of the content creator.',
 			},
 			section2: {
 				header: 'How to list your artifact sponsorships on BazAR?',
@@ -468,7 +497,8 @@ export const language = {
 				description1: `Select the artifact you want to trade.`,
 				description2: 'Select “sell artifact” from the list of actions.',
 				description3: 'Review the terms for listing artifact sponsorships (a popup with terms will appear)',
-				description4: 'Set the price in $U. Learn more about $U here.',
+				description4:
+					'Set the price in $U. Learn more about $U <a href="https://u-wiki.arweave.dev/#/en/main" target="_blank" rel="noopener noreferrer">here</a>.',
 				description5: 'You can view your listing on your BazAR account page.',
 				subheader2: 'If you want to trade a collection of artifact sponsorships, follow these steps:',
 				collectionDescription1: `Go to your accounts page and select "Collections."`,
@@ -476,14 +506,16 @@ export const language = {
 				collectionDescription3: 'Choose the artifacts you want to include in the collection.',
 				collectionDescription4: 'Provide a title, description, and topic for the collection (visible on BazAR).',
 				collectionDescription5: 'Review the terms for listing artifact sponsorships (a popup with terms will appear).',
-				collectionDescription6: 'Set the price in $U. Learn more about $U here.',
+				collectionDescription6:
+					'Set the price in $U. Learn more about $U <a href="https://u-wiki.arweave.dev/#/en/main" target="_blank" rel="noopener noreferrer">here</a>.',
 				collectionDescription7: 'You can view your collection listing on your BazAR account page.',
 			},
 			section3: {
 				header: 'What is the $U token?',
 				description:
 					'The $U token is the real time unit of value for the permaweb. With $U, users can efficiently access apps and services on the permaweb, and trade atomic assets on BazAR. Through BazAR, users can trade Alex artifact sponsorships and earn $U.',
-				footer: 'You can get $U by burning your own AR here or by purchasing on Everpay.',
+				footer:
+					'You can get $U by burning your own AR <a href="https://getu.arweave.dev/#/burn/" target="_blank" rel="noopener noreferrer">here</a> or by purchasing on <a href="https://everpay.io/" target="_blank" rel="noopener noreferrer">Everpay</a>',
 			},
 		},
 		subnav: {

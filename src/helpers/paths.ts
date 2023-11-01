@@ -21,6 +21,10 @@ export const NAV_PATHS = [
 		href: urls.docs,
 	},
 	{
+		name: language.paths.storage,
+		href: urls.storage,
+	},
+	{
 		name: language.paths.trade,
 		href: urls.trade,
 	},
