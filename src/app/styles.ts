@@ -149,7 +149,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button, select, li {
-    transition: background .075s;
+    transition: background .05s;
   }
 
   input, textarea {

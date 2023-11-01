@@ -43,7 +43,7 @@ export const HeaderImage = styled.div<{ disabled: boolean }>`
 		align-items: center;
 		cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
-		transition: background 0.075s;
+		transition: background 0.05s;
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 		background: ${(props) => props.theme.colors.container.alt3.background};

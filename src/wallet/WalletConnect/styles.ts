@@ -64,7 +64,7 @@ export const DBodyWrapper = styled.ul`
 		color: ${(props) => props.theme.colors.font.primary};
 		border: 1px solid transparent;
 		padding: 0 15px;
-		transition: all 100ms;
+		transition: all 0.05s;
 		&:hover {
 			background: ${(props) => props.theme.colors.button.alt1.hover};
 			color: ${(props) => props.theme.colors.button.alt1.label};

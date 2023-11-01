@@ -195,7 +195,7 @@ export const Info = styled.div`
 	left: 0;
 	border-top-left-radius: ${STYLING.dimensions.borderRadius};
 	border-top-right-radius: ${STYLING.dimensions.borderRadius};
-	transition: background 0.1s;
+	transition: background 0.05s;
 	padding: 20px;
 	p {
 		font-size: ${(props) => props.theme.typography.size.xSmall};

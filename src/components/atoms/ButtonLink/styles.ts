@@ -53,7 +53,7 @@ export const Primary = styled.div<{
 	align-items: center;
 	justify-content: center;
 	border-radius: 25px;
-	transition: background 0.075s;
+	transition: background 0.05s;
 	&:hover {
 		border: 1px solid ${(props) => (props.active ? 'transparent' : props.theme.colors.button.primary.hover)};
 		background: ${(props) =>
