@@ -97,7 +97,7 @@ export default function WalletConnect(props: { callback?: () => void }) {
 						</S.DHeaderWrapper>
 						<S.DBodyWrapper>
 							<li onClick={handleViewAccount}>{language.account.header1}</li>
-							<li onClick={copyAddress}>{copied ? language.copied : language.copyAddress}</li>
+							<li onClick={copyAddress}>{copied ? `${language.copied}!` : language.copyAddress}</li>
 						</S.DBodyWrapper>
 						<S.DFooterWrapper>
 							<li onClick={handleDisconnect}>{language.disconnect}</li>
