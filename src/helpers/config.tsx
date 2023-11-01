@@ -300,6 +300,10 @@ export const DOM = {
 		header: `create-header`,
 		howItWorks: `create-how-it-works`,
 	},
+	trade: {
+		header: `trade-header`,
+		howItWorks: `trade-how-it-works`,
+	},
 	loader: 'loader',
 	modal: 'modal',
 	notification: 'notification',

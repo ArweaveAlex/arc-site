@@ -359,6 +359,7 @@ export const language = {
 		contribute: `Contribute`,
 		create: `Create`,
 		docs: `Docs`,
+		trade: 'Trade',
 		pools: `Pools`,
 	},
 	pause: `Pause`,
@@ -441,6 +442,55 @@ export const language = {
 	total: `Total`,
 	totalContributed: `Total Contributed`,
 	totalCount: `Total Count`,
+	trade: 'Trade',
+	tradeView: {
+		header1: `Trade artifact sponsorships and earn $U`,
+		subHeader1: `<p>Anyone can contribute to a pool, which pays for the storage costs of its <span>artifacts</span>.`,
+		subHeader2: `<b>Archiving is a public good</b>. Allowing people access to information about the past enables them to make higher
+		quality decisions in the present. Currently, however, archiving is insufficiently incentivized: The person 
+		that stores the data, which other's can later access without charge, is the person that has to pay.
+		<b>Alex. changes this</b>. By allowing its community to become micro-sponsors of digital artifacts, an incentive is
+		created for developers and creators to publically archive great digital works on Arweave.`,
+		detail: {
+			artifactTypes: `Artifacts are currently being preserved from:`,
+			action: `Learn about Wallets`,
+			section1: {
+				header: 'What does it mean to trade artifact sponsorships?',
+				description:
+					'Artifact sponsorships are the atomic assets that contributors earn for contributing to archival pools. These sponsorships prove that a user provided the $AR for a piece of digital content to be permanently archived on Arweave.',
+				footer:
+					'Sponsorship owners can list their sponsorships on BazAR straight from their account page on Alex. Please note that Alex. is not liable for any artifact sponsorships that are traded without permission of the content creator.',
+			},
+			section2: {
+				header: 'How to list your artifact sponsorships on BazAR?',
+				subheader1:
+					'After contributing to a pool and receiving artifact sponsorships, here is how to trade them individually:',
+				description1: `Select the artifact you want to trade.`,
+				description2: 'Select “sell artifact” from the list of actions.',
+				description3: 'Review the terms for listing artifact sponsorships (a popup with terms will appear)',
+				description4: 'Set the price in $U. Learn more about $U here.',
+				description5: 'You can view your listing on your BazAR account page.',
+				subheader2: 'If you want to trade a collection of artifact sponsorships, follow these steps:',
+				collectionDescription1: `Go to your accounts page and select "Collections."`,
+				collectionDescription2: 'Create a new collection.',
+				collectionDescription3: 'Choose the artifacts you want to include in the collection.',
+				collectionDescription4: 'Provide a title, description, and topic for the collection (visible on BazAR).',
+				collectionDescription5: 'Review the terms for listing artifact sponsorships (a popup with terms will appear).',
+				collectionDescription6: 'Set the price in $U. Learn more about $U here.',
+				collectionDescription7: 'You can view your collection listing on your BazAR account page.',
+			},
+			section3: {
+				header: 'What is the $U token?',
+				description:
+					'The $U token is the real time unit of value for the permaweb. With $U, users can efficiently access apps and services on the permaweb, and trade atomic assets on BazAR. Through BazAR, users can trade Alex artifact sponsorships and earn $U.',
+				footer: 'You can get $U by burning your own AR here or by purchasing on Everpay.',
+			},
+		},
+		subnav: {
+			header: `Trading`,
+			howItWorks: 'How it works',
+		},
+	},
 	transferred: `Transferred`,
 	transferFailed: `Transfer Failed`,
 	transferFunds: `Transfer Funds`,

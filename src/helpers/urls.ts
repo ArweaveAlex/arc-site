@@ -22,3 +22,4 @@ export const poolManageView = (id: string) => `${poolManage}${id}/view/`;
 export const pools = `${base}pools/`;
 export const poolsCreate = `${pools}create/`;
 export const thread = `${base}thread/`;
+export const trade = `${base}trade/`;
