@@ -40,10 +40,6 @@ export default function Header() {
 		showDocumentBody();
 	}
 
-	// function getWalletDisplay() {
-	// 	return !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-	// }
-
 	function navList() {
 		return (
 			<S.NC>

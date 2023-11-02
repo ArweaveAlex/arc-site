@@ -3,8 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Loader } from 'components/atoms/Loader';
 import * as urls from 'helpers/urls';
-import Storage from 'views/Storage';
-import Trade from 'views/Trade';
 import { View } from 'wrappers/View';
 
 const About = getLazyImport('About');
@@ -22,6 +20,8 @@ const Pool = getLazyImport('Pool');
 const PoolManage = getLazyImport('Pool/PoolManage');
 const Pools = getLazyImport('Pools');
 const PoolsCreate = getLazyImport('Pools/PoolsCreate');
+const Storage = getLazyImport('Storage');
+const Trade = getLazyImport('Trade');
 
 export default function _Routes() {
 	return (

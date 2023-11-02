@@ -74,7 +74,7 @@ export const Description = styled.p`
 	font-size: clamp(17px, 2.35vw, 22px);
 	font-weight: ${(props) => props.theme.typography.weight.regular};
 	line-height: 1.75;
-	margin: 20px 0 40px 0;
+	margin: 20px 0 10px 0;
 	text-align: center;
 	b,
 	a {
@@ -119,10 +119,20 @@ export const Footer = styled.div`
 
 export const FooterAlt = styled(Footer)`
 	color: ${(props) => props.theme.colors.font.primary.base};
+	font-size: clamp(17px, 2.35vw, 22px);
+	font-weight: ${(props) => props.theme.typography.weight.regular};
+	line-height: 1.75;
+	text-align: center;
+	a {
+		color: ${(props) => props.theme.colors.font.primary.base};
+		font-size: clamp(17px, 2.35vw, 22px);
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		line-height: 1.75;
+	}
 `;
 
 export const Action = styled.div`
-	margin: 20px auto 40px auto;
+	margin: 20px auto 10px auto;
 	span {
 		font-size: ${(props) => props.theme.typography.size.base} !important;
 	}

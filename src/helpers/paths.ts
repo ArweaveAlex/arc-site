@@ -17,10 +17,6 @@ export const NAV_PATHS = [
 		href: urls.create,
 	},
 	{
-		name: language.paths.docs,
-		href: urls.docs,
-	},
-	{
 		name: language.paths.storage,
 		href: urls.storage,
 	},
@@ -31,6 +27,10 @@ export const NAV_PATHS = [
 	{
 		name: language.paths.pools,
 		href: urls.pools,
+	},
+	{
+		name: language.paths.docs,
+		href: urls.docs,
 	},
 ];
 

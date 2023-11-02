@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
 
 export const WrapperAlt1 = styled(Wrapper)`
 	padding: 60px 20px 20px 20px;
+	width: 100%;
 	background: ${(props) => props.theme.colors.container.primary.background};
 `;
 
@@ -74,7 +75,7 @@ export const Description = styled.p`
 	font-size: clamp(17px, 2.35vw, 22px);
 	font-weight: ${(props) => props.theme.typography.weight.regular};
 	line-height: 1.75;
-	margin: 20px 0 40px 0;
+	margin: 20px 0 10px 0;
 	text-align: center;
 	b,
 	a {
@@ -94,6 +95,15 @@ export const Description = styled.p`
 	}
 `;
 
+export const SWrapper = styled.div``;
+
+export const Step = styled(Description)`
+	font-weight: ${(props) => props.theme.typography.weight.medium};
+	a {
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+	}
+`;
+
 export const DescriptionAlt = styled(Description)`
 	color: ${(props) => props.theme.colors.font.primary.base};
 	b {
@@ -104,7 +114,7 @@ export const DescriptionAlt = styled(Description)`
 export const Footer = styled.div`
 	color: ${(props) => props.theme.colors.font.primary.alt8};
 	font-size: clamp(17px, 2.35vw, 22px);
-	font-weight: ${(props) => props.theme.typography.weight.bold};
+	font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 	line-height: 1.35;
 	font-weight: 300;
 	text-align: center;
@@ -115,10 +125,26 @@ export const Footer = styled.div`
 		line-height: 1.35;
 		text-align: center;
 	}
+	a {
+		color: ${(props) => props.theme.colors.font.primary.alt8};
+		font-size: clamp(17px, 2.35vw, 22px);
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		line-height: 1.75;
+	}
 `;
 
 export const FooterAlt = styled(Footer)`
 	color: ${(props) => props.theme.colors.font.primary.base};
+	font-size: clamp(17px, 2.35vw, 22px);
+	font-weight: ${(props) => props.theme.typography.weight.regular};
+	line-height: 1.75;
+	text-align: center;
+	a {
+		color: ${(props) => props.theme.colors.font.primary.base};
+		font-size: clamp(17px, 2.35vw, 22px);
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		line-height: 1.75;
+	}
 `;
 
 export const Action = styled.div`

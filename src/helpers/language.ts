@@ -360,8 +360,9 @@ export const language = {
 		contribute: `Contribute`,
 		create: `Create`,
 		docs: `Docs`,
-		trade: 'Trade',
+		trade: `Trade`,
 		pools: `Pools`,
+		storage: `Storage`,
 	},
 	pause: `Pause`,
 	play: `Play`,
@@ -459,10 +460,10 @@ export const language = {
 				list6:
 					'<a href="https://app.permaswap.network/" target="_blank" rel="noopener noreferrer">Permaswap</a> (DEX).',
 			},
-			subnav: {
-				header: `About Arweave`,
-				howItWorks: 'How to get $AR',
-			},
+		},
+		subnav: {
+			header: `About Arweave`,
+			howItWorks: 'How to get $AR',
 		},
 	},
 	superStamp: `Super STAMP`,
@@ -495,21 +496,21 @@ export const language = {
 				header: 'How to list your artifact sponsorships on BazAR?',
 				subheader1:
 					'After contributing to a pool and receiving artifact sponsorships, here is how to trade them individually:',
-				description1: `Select the artifact you want to trade.`,
-				description2: 'Select “sell artifact” from the list of actions.',
-				description3: 'Review the terms for listing artifact sponsorships (a popup with terms will appear)',
-				description4:
-					'Set the price in $U. Learn more about $U <a href="https://u-wiki.arweave.dev/#/en/main" target="_blank" rel="noopener noreferrer">here</a>.',
-				description5: 'You can view your listing on your BazAR account page.',
+				description1: `1. Select the artifact you want to trade.`,
+				description2: '2. Select “Trade Sponsorship” from the list of actions.',
+				description3:
+					'3. Set the price in $U. Learn more about $U <a href="https://u-wiki.arweave.dev/#/en/main" target="_blank" rel="noopener noreferrer">here</a>.',
+				description4: '4. You can view your listing on your BazAR account page.',
 				subheader2: 'If you want to trade a collection of artifact sponsorships, follow these steps:',
-				collectionDescription1: `Go to your accounts page and select "Collections."`,
-				collectionDescription2: 'Create a new collection.',
-				collectionDescription3: 'Choose the artifacts you want to include in the collection.',
-				collectionDescription4: 'Provide a title, description, and topic for the collection (visible on BazAR).',
-				collectionDescription5: 'Review the terms for listing artifact sponsorships (a popup with terms will appear).',
+				collectionDescription1: `1. Go to your accounts page and select "Collections."`,
+				collectionDescription2: '2. Create a new collection.',
+				collectionDescription3: '3. Choose the artifacts you want to include in the collection.',
+				collectionDescription4: '4. Provide a title, description, and topic for the collection (visible on BazAR).',
+				collectionDescription5:
+					'5. Review the terms for listing artifact sponsorships (a popup with terms will appear).',
 				collectionDescription6:
-					'Set the price in $U. Learn more about $U <a href="https://u-wiki.arweave.dev/#/en/main" target="_blank" rel="noopener noreferrer">here</a>.',
-				collectionDescription7: 'You can view your collection listing on your BazAR account page.',
+					'6. Set the price in $U. Learn more about $U <a href="https://u-wiki.arweave.dev/#/en/main" target="_blank" rel="noopener noreferrer">here</a>.',
+				collectionDescription7: '7. You can view your collection listing on your BazAR account page.',
 			},
 			section3: {
 				header: 'What is the $U token?',
