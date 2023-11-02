@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Loader } from 'components/atoms/Loader';
 import * as urls from 'helpers/urls';
+import Storage from 'views/Storage';
+import Trade from 'views/Trade';
 import { View } from 'wrappers/View';
 
 const About = getLazyImport('About');
@@ -150,6 +152,22 @@ export default function _Routes() {
 					element={
 						<View>
 							<NotFound />
+						</View>
+					}
+				/>
+				<Route
+					path={urls.storage}
+					element={
+						<View>
+							<Storage />
+						</View>
+					}
+				/>
+				<Route
+					path={urls.trade}
+					element={
+						<View>
+							<Trade />
 						</View>
 					}
 				/>
