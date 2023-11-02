@@ -198,6 +198,7 @@ export const language = {
 	copyArtifactId: `Copy Artifact ID`,
 	create: `Create`,
 	createCollection: `Create a Collection`,
+	creatingCollection: `Creating Collection`,
 	createFirstCollection: `Create your first collection`,
 	createListings: `Create Listings`,
 	createPool: `Create a Pool`,

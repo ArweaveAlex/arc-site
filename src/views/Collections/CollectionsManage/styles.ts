@@ -64,3 +64,33 @@ export const FormWrapper = styled.div`
 		width: 100%;
 	}
 `;
+
+export const UploadingModalContainer = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	background: ${(props) => props.theme.colors.container.primary.background};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	padding: 20px;
+`;
+
+export const ModalBottomContainer = styled.div`
+	position: relative;
+	margin: 40px 0 0 0;
+`;
+
+export const ModalActionsContainer = styled.div`
+	width: fit-content;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	margin: 0 auto;
+`;
+
+export const ModalLoadingContainer = styled.div`
+	margin: 0 0 20px 0;
+`;

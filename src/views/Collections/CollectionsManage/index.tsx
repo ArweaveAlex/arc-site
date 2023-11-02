@@ -2,9 +2,12 @@ import React from 'react';
 
 import { logValue, TAGS } from 'arcframework';
 
+import { Button } from 'components/atoms/Button';
+import { ButtonLink } from 'components/atoms/ButtonLink';
 import { CollectionDisclaimer } from 'components/atoms/CollectionDisclaimer';
-import { Notification } from 'components/atoms/Notification';
-import { APP, ASSETS, DEFAULT_LICENSE } from 'helpers/config';
+import { Loader } from 'components/atoms/Loader';
+import { Modal } from 'components/molecules/Modal';
+import { APP, ASSETS, DEFAULT_LICENSE, REDIRECTS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { ResponseType } from 'helpers/types';
 import * as windowUtils from 'helpers/window';
@@ -37,7 +40,9 @@ export default function CollectionsManage() {
 	const [showDisclaimer, setShowDisclaimer] = React.useState<boolean>(
 		localStorage.getItem(APP.disclaimerShown) ? false : true
 	);
+	const [loading, setLoading] = React.useState<boolean>(false);
 	const [collectionResponse, setCollectionResponse] = React.useState<ResponseType | null>(null);
+	const [responseId, setResponseId] = React.useState<string | null>(null);
 
 	React.useEffect(() => {
 		windowUtils.scrollTo(0, 0);
@@ -62,8 +67,17 @@ export default function CollectionsManage() {
 		return bytes.buffer;
 	}
 
+	function handleClear() {
+		setCollectionResponse(null);
+		setTitle('');
+		setTopic('');
+		setDescription('');
+		setSelectedIds([]);
+	}
+
 	async function handleSave() {
 		if (arProvider.walletAddress) {
+			setLoading(true);
 			try {
 				let thumbnailImage = ASSETS.siteLogo;
 				const mimeTypeThumb = thumbnailImage ? thumbnailImage.split(';')[0].split(':')[1] : null;
@@ -89,6 +103,7 @@ export default function CollectionsManage() {
 
 				const id = await mintProvider.mintClient.publishCollection({ collection: collection });
 				logValue(`Deployed Collection`, id, 0);
+				setResponseId(id);
 				setCollectionResponse({
 					status: true,
 					message: `${language.collectionCreated}!`,
@@ -100,6 +115,7 @@ export default function CollectionsManage() {
 					message: language.errorOccurred,
 				});
 			}
+			setLoading(false);
 		}
 	}
 
@@ -142,12 +158,38 @@ export default function CollectionsManage() {
 					</S.ContentWrapper>
 				</S.Wrapper>
 				{showDisclaimer && <CollectionDisclaimer handleClose={handleDisclaimerClose} />}
-				{collectionResponse && (
+				{/* {collectionResponse && (
 					<Notification
 						type={collectionResponse.status ? 'success' : 'warning'}
 						message={collectionResponse.message}
 						callback={() => setCollectionResponse(null)}
 					/>
+				)} */}
+				{(loading || collectionResponse) && (
+					<Modal header={null} handleClose={() => setCollectionResponse(null)} closeHidden>
+						<S.UploadingModalContainer>
+							<h2>{loading ? language.creatingCollection : collectionResponse.message}</h2>
+							<S.ModalBottomContainer>
+								{loading ? (
+									<S.ModalLoadingContainer>
+										<Loader sm />
+									</S.ModalLoadingContainer>
+								) : (
+									<S.ModalActionsContainer>
+										{responseId && (
+											<ButtonLink
+												type={'primary'}
+												label={language.viewOnBazar}
+												href={REDIRECTS.bazar.collection(responseId)}
+												targetBlank
+											/>
+										)}
+										<Button type={'alt1'} label={language.close} handlePress={handleClear} />
+									</S.ModalActionsContainer>
+								)}
+							</S.ModalBottomContainer>
+						</S.UploadingModalContainer>
+					</Modal>
 				)}
 			</>
 		);
