@@ -19,13 +19,31 @@ export default function WalletConnect(props: { callback?: () => void }) {
 
 	const [showWallet, setShowWallet] = React.useState<boolean>(false);
 	const [showDropdown, setShowDropdown] = React.useState<boolean>(false);
+
 	const [copied, setCopied] = React.useState<boolean>(false);
+	const [label, setLabel] = React.useState<string | null>(null);
 
 	React.useEffect(() => {
 		setTimeout(() => {
 			setShowWallet(true);
 		}, 400);
 	}, [arProvider.walletAddress]);
+
+	React.useEffect(() => {
+		if (!showWallet) {
+			setLabel(`${language.fetching}...`);
+		} else {
+			if (arProvider.walletAddress) {
+				if (arProvider.arProfile && arProvider.arProfile.handle) {
+					setLabel(arProvider.arProfile.handle);
+				} else {
+					setLabel(formatAddress(arProvider.walletAddress, false));
+				}
+			} else {
+				setLabel(language.connect);
+			}
+		}
+	}, [showWallet, arProvider.walletAddress, arProvider.arProfile]);
 
 	function handlePress() {
 		if (arProvider.walletAddress) {
@@ -58,26 +76,10 @@ export default function WalletConnect(props: { callback?: () => void }) {
 		}
 	}
 
-	function getWalletLabel() {
-		if (!showWallet) {
-			return `${language.fetching} ...`;
-		} else {
-			if (arProvider.walletAddress) {
-				if (arProvider.arProfile) {
-					return arProvider.arProfile.handle;
-				} else {
-					return formatAddress(arProvider.walletAddress, false);
-				}
-			} else {
-				return language.connectWallet;
-			}
-		}
-	}
-
 	return (
 		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown} disabled={false}>
 			<S.Wrapper>
-				<Button type={'alt2'} label={getWalletLabel()} handlePress={handlePress} useMaxWidth />
+				<Button type={'alt2'} label={label} handlePress={handlePress} useMaxWidth />
 				{showDropdown && (
 					<S.WalletDropdown className={'border-wrapper'}>
 						<S.DHeaderWrapper>
@@ -91,7 +93,7 @@ export default function WalletConnect(props: { callback?: () => void }) {
 								)}
 							</S.AvatarWrapper>
 							<S.DHeader>
-								<p>{getWalletLabel()}</p>
+								<p>{label}</p>
 								<span>{formatAddress(arProvider.walletAddress, false)}</span>
 							</S.DHeader>
 						</S.DHeaderWrapper>
