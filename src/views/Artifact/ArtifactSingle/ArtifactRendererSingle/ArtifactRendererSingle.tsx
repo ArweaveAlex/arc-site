@@ -32,7 +32,6 @@ export default function ArtifactRendererSingle(props: IProps) {
 		let wrapperClass: string | null = null;
 		switch (props.artifactType) {
 			case ArtifactEnum.Image:
-			case ArtifactEnum.NewsArticle:
 				wrapperClass = 'wrapper-full';
 				break;
 			case ArtifactEnum.Webpage:
@@ -40,6 +39,7 @@ export default function ArtifactRendererSingle(props: IProps) {
 			case ArtifactEnum.File:
 			case ArtifactEnum.Document:
 			case ArtifactEnum.Video:
+			case ArtifactEnum.NewsArticle:
 				wrapperClass = 'wrapper-full border-wrapper';
 				break;
 			case ArtifactEnum.Messaging:
