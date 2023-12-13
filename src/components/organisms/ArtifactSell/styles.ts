@@ -83,10 +83,10 @@ export const FormContainer = styled.div`
 
 export const SubmitWrapper = styled.div`
 	margin: 40px auto 15px auto;
-	button {
-		width: fit-content;
-		margin: 0 auto;
-	}
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 15px;
 `;
 
 export const SubheaderFlex = styled.div`

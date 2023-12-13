@@ -8,7 +8,7 @@ import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
-import { ASSETS } from 'helpers/config';
+import { ASSETS, REDIRECTS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { NotificationResponseType, WalletEnum } from 'helpers/types';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
@@ -170,12 +170,20 @@ export default function ArtifactSell(props: IProps) {
 						</S.Message>
 						<S.SubmitWrapper>
 							<Button
+								type={'alt2'}
+								label={language.viewOnBazar}
+								handlePress={() => window.open(REDIRECTS.bazar.asset(props.artifactId), '_blank')}
+								disabled={false}
+								noMinWidth
+							/>
+							<Button
 								label={language.submit}
 								type={'alt1'}
 								handlePress={(e) => sellArtifact(e)}
 								disabled={getDisabledSubmit()}
 								loading={loading}
 								formSubmit
+								noMinWidth
 							/>
 						</S.SubmitWrapper>
 					</S.Form>

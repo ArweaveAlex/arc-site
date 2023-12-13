@@ -72,11 +72,15 @@ export default function PoolContribute(props: IProps) {
 			let poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
 			let poolConfig = await poolConfigClient.initFromContract({ poolId: props.poolId });
 			if (poolConfig) {
-				poolConfig.walletKey = 'use_wallet';
-				let poolClient = new PoolClient({ poolConfig });
-				setContributionResult(
-					await poolClient.handlePoolContribute({ amount: amount, availableBalance: arProvider.availableBalance })
-				);
+				if (arProvider.walletAddress === poolConfig.state.controller.pubkey) {
+					setContributionResult({ status: false, message: language.operatorContributionsRestricted });
+				} else {
+					poolConfig.walletKey = 'use_wallet';
+					let poolClient = new PoolClient({ poolConfig });
+					setContributionResult(
+						await poolClient.handlePoolContribute({ amount: amount, availableBalance: arProvider.availableBalance })
+					);
+				}
 			} else {
 				setContributionResult({ status: false, message: language.errorOccurred });
 			}

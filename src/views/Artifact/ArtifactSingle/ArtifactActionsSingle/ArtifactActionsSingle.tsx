@@ -3,10 +3,12 @@ import React from 'react';
 import { ARTIFACT_CONTRACT, ArweaveClient, getTxEndpoint, STORAGE } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
+import { TradeDisclaimer } from 'components/atoms/TradeDisclaimer';
 import { Modal } from 'components/molecules/Modal';
 import { ArtifactSell } from 'components/organisms/ArtifactSell';
 import { FactWidget } from 'components/organisms/FactWidget';
 import { StampWidget } from 'components/organisms/StampWidget';
+import { APP } from 'helpers/config';
 import { language } from 'helpers/language';
 import { checkDesktop } from 'helpers/window';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
@@ -23,6 +25,10 @@ export default function ArtifactActionsSingle(props: IProps) {
 	const [showFactWidget, setShowFactWidget] = React.useState<boolean>(false);
 	const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
 	const [sellDisabled, setSellDisabled] = React.useState<boolean>(false);
+
+	const [showDisclaimer, setShowDisclaimer] = React.useState<boolean>(
+		localStorage.getItem(APP.disclaimerShown) ? false : true
+	);
 
 	const copyArtifactId = React.useCallback(async () => {
 		if (props.data.artifactId) {
@@ -50,6 +56,11 @@ export default function ArtifactActionsSingle(props: IProps) {
 		setShowArtifactSell(!showArtifactSell);
 	}
 
+	function handleDisclaimerClose() {
+		setShowDisclaimer(false);
+		localStorage.setItem(APP.disclaimerShown, 'true');
+	}
+
 	const stampWidget = () => {
 		return (
 			<StampWidget
@@ -73,13 +84,16 @@ export default function ArtifactActionsSingle(props: IProps) {
 	const artifactSell = () => {
 		if (props.data && arProvider.walletAddress && props.data.owner === arProvider.walletAddress) {
 			return (
-				<ArtifactSell
-					artifactId={props.data.artifactId}
-					handleClose={() => setShowArtifactSell(false)}
-					artifactName={props.data.artifactName}
-					dateCreated={props.data.minted}
-					setSellDisabled={() => setSellDisabled(true)}
-				/>
+				<>
+					<ArtifactSell
+						artifactId={props.data.artifactId}
+						handleClose={() => setShowArtifactSell(false)}
+						artifactName={props.data.artifactName}
+						dateCreated={props.data.minted}
+						setSellDisabled={() => setSellDisabled(true)}
+					/>
+					{showDisclaimer && <TradeDisclaimer handleClose={handleDisclaimerClose} />}
+				</>
 			);
 		} else {
 			return null;

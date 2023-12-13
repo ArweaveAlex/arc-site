@@ -5,11 +5,11 @@ import { language } from 'helpers/language';
 
 import * as S from './styles';
 
-export default function CollectionDisclaimer(props: { handleClose: () => void }) {
+export default function TradeDisclaimer(props: { handleClose: () => void }) {
 	return (
-		<Modal header={language.collectionDisclaimerHeader} handleClose={props.handleClose}>
+		<Modal header={language.tradeDisclaimerHeader} handleClose={props.handleClose}>
 			<S.Wrapper>
-				<p>{parse(language.collectionDisclaimerInfo)}</p>
+				<p>{parse(language.tradeDisclaimerInfo)}</p>
 			</S.Wrapper>
 		</Modal>
 	);

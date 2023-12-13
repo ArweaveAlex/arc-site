@@ -140,7 +140,7 @@ export default function PoolHeader(props: IProps) {
 					<S.TileData>{getCount()}</S.TileData>
 				</S.Tile>
 				<S.ContributeTile>
-					<S.ContributeAction onClick={() => setShowContributeModal(true)} disabled={props.ownerMaintained}>
+					<S.ContributeAction onClick={() => setShowContributeModal(true)} disabled={false}>
 						<S.ContributeLabel>
 							<S.ContributeLabel>
 								<ReactSVG src={ASSETS.logoAltActive} />

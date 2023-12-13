@@ -14,7 +14,7 @@ export const create = `${base}create/`;
 export const docs = `${base}docs/`;
 export const library = `${base}library/`;
 export const libraryAll = (id: string) => `${library}${id}/all/`;
-export const libraryBookmarks = (id: string) => `${library}${id}/collections/`;
+export const libraryBookmarks = (id: string) => `${library}${id}/bookmarks/`;
 export const pool = `${base}pool/`;
 export const poolManage = `${pool}manage/`;
 export const poolManageMine = (id: string) => `${poolManage}${id}/mine/`;

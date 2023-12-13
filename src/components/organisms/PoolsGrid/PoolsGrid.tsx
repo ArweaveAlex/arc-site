@@ -69,10 +69,7 @@ function PoolTile(props: any) {
 		<>
 			<S.PCWrapper>
 				<Link to={poolUrl}>{getLink()}</Link>
-				<S.Action
-					onClick={() => setShowContributeModal(true)}
-					disabled={props.state.ownerMaintained ? props.state.ownerMaintained : false}
-				>
+				<S.Action onClick={() => setShowContributeModal(true)} disabled={false}>
 					<span>{language.contribute}</span>
 					<ReactSVG src={ASSETS.logoAlt} />
 				</S.Action>

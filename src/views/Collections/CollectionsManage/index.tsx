@@ -4,8 +4,8 @@ import { logValue, TAGS } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { ButtonLink } from 'components/atoms/ButtonLink';
-import { CollectionDisclaimer } from 'components/atoms/CollectionDisclaimer';
 import { Loader } from 'components/atoms/Loader';
+import { TradeDisclaimer } from 'components/atoms/TradeDisclaimer';
 import { Modal } from 'components/molecules/Modal';
 import { APP, ASSETS, DEFAULT_LICENSE, REDIRECTS } from 'helpers/config';
 import { language } from 'helpers/language';
@@ -157,7 +157,7 @@ export default function CollectionsManage() {
 						</S.FormWrapper>
 					</S.ContentWrapper>
 				</S.Wrapper>
-				{showDisclaimer && <CollectionDisclaimer handleClose={handleDisclaimerClose} />}
+				{showDisclaimer && <TradeDisclaimer handleClose={handleDisclaimerClose} />}
 				{/* {collectionResponse && (
 					<Notification
 						type={collectionResponse.status ? 'success' : 'warning'}
