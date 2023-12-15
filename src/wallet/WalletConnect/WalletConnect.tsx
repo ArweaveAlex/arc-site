@@ -5,7 +5,7 @@ import { ReactSVG } from 'react-svg';
 import { formatAddress, getTxEndpoint } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
-import { ASSETS, URLS } from 'helpers/config';
+import { AR_PROFILE, ASSETS, URLS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { CloseHandler } from 'wrappers/CloseHandler';
@@ -84,12 +84,10 @@ export default function WalletConnect(props: { callback?: () => void }) {
 					<S.WalletDropdown className={'border-wrapper'}>
 						<S.DHeaderWrapper>
 							<S.AvatarWrapper>
-								{!arProvider.arProfile ||
-								!arProvider.arProfile.avatar ||
-								arProvider.arProfile.avatar === 'ar://OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA' ? (
+								{!arProvider.arProfile.avatar || arProvider.arProfile.avatar === AR_PROFILE.defaultAvatar ? (
 									<ReactSVG src={ASSETS.user} />
 								) : (
-									<S.Avatar src={getTxEndpoint(arProvider.arProfile.avatar.substring(5))} />
+									<S.Avatar src={getTxEndpoint(arProvider.arProfile.avatar)} />
 								)}
 							</S.AvatarWrapper>
 							<S.DHeader>
