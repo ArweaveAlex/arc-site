@@ -9,6 +9,7 @@ import { ButtonLink } from 'components/atoms/ButtonLink';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
+import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { APP, ASSETS, POOL_TEST_MODE } from 'helpers/config';
 import { language } from 'helpers/language';
@@ -32,6 +33,9 @@ export default function PoolManageHeader(props: IProps) {
 
 	const [showPoolBalanceInfo, setShowPoolBalanceInfo] = React.useState<boolean>(false);
 	const [fundsNotification, setFundsNotification] = React.useState<ArcFramework.NotificationResponseType | null>(null);
+	const [evolveNotification, setEvolveNotification] = React.useState<ArcFramework.NotificationResponseType | null>(
+		null
+	);
 
 	const [showPoolIdInput, setShowPoolIdInput] = React.useState<boolean>(false);
 	const [poolIdInput, setPoolIdInput] = React.useState<string>('');
@@ -42,8 +46,14 @@ export default function PoolManageHeader(props: IProps) {
 				const poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
 				const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
 				if (poolConfig) {
+					let controlWalletJwk = global.window.arweaveWallet;
+					let signedControlWallet = new ArcFramework.ArweaveClient().warpPluginInjectedArweaveSigner(controlWalletJwk);
+					await signedControlWallet.setPublicKey();
+
 					poolConfig.walletKey = window.arweaveWallet;
-					setPoolClient(new ArcFramework.PoolClient({ poolConfig }));
+					// poolConfig.walletKey = signedControlWallet;
+
+					setPoolClient(new ArcFramework.PoolClient({ poolConfig, signedPoolWallet: signedControlWallet }));
 				}
 			}
 		})();
@@ -140,6 +150,32 @@ export default function PoolManageHeader(props: IProps) {
 			}
 			setLoading(false);
 		}
+	}
+
+	async function handleEvolve() {
+		setLoading(true);
+		const poolConfigClient = new ArcFramework.PoolConfigClient({ testMode: POOL_TEST_MODE });
+		const poolConfig = await poolConfigClient.initFromContract({ poolId: props.id });
+		if (poolConfig) {
+			try {
+				await poolClient.evolve();
+				setEvolveNotification({
+					status: true,
+					message: language.poolContractEvolved,
+				});
+				console.log(1);
+			} catch (e: any) {
+				console.error(e);
+				setEvolveNotification({
+					status: true,
+					message: e.message,
+				});
+				console.log(2);
+			}
+		} else {
+			alert(language.poolConfigurationNotFound);
+		}
+		setLoading(false);
 	}
 
 	const hasPoolBalance = balances && (balances.poolBalance > 0 || balances.bundlrBalance > 0);
@@ -271,6 +307,13 @@ export default function PoolManageHeader(props: IProps) {
 						<S.Actions>
 							<Button
 								type={'alt1'}
+								label={language.evolvePool}
+								handlePress={handleEvolve}
+								disabled={loading}
+								noMinWidth
+							/>
+							<Button
+								type={'alt1'}
 								label={language.transferFunds}
 								handlePress={() => setShowTransfer(true)}
 								disabled={loading || getTransferDisabled()}
@@ -390,6 +433,13 @@ export default function PoolManageHeader(props: IProps) {
 						</S.MForm>
 					</S.MWrapper>
 				</Modal>
+			)}
+			{evolveNotification && (
+				<Notification
+					type={evolveNotification.status ? 'success' : 'warning'}
+					message={evolveNotification.message}
+					callback={() => setEvolveNotification(null)}
+				/>
 			)}
 		</>
 	);

@@ -211,3 +211,11 @@ Output Screenshot:
 ![](https://arweave.net/K2WdwCIYaKtipmGEQJrcn5flTMlwMgmYGJrycv9VAhU)
 
 Once you see that you have Bundlr funds you can proceed to the mining processes.
+
+### Additional: Evolve the pool contract
+
+If a new pool contract source is deployed and a contract evolve is required, this can be done with the following command:
+
+```sh
+arcpool evolve <POOL_ID>
+```

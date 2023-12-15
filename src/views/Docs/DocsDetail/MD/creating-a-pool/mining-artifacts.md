@@ -1,5 +1,19 @@
 # Mining artifacts
 
+## [All Sources](/#/docs/creating-a-pool/mining-artifacts#all)
+
+**Mine all available sources that can be run concurrently**
+
+**Current sources include**
+
+- **News API**
+- **Wikipedia**
+- **Reddit**
+
+```sh
+arcpool mine <POOL_ID> --source all
+```
+
 ## [Files](/#/docs/creating-a-pool/mining-artifacts#files)
 
 #### Renderer supported file types

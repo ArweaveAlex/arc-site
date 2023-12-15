@@ -273,6 +273,7 @@ export const language = {
 	enterFullScreen: `Enter Full Screen`,
 	errorFetchingArtifact: `Error Fetching Artifact`,
 	errorOccurred: `Error Occurred`,
+	evolvePool: `Evolve Pool`,
 	exit: `Exit`,
 	exploreMore: `Explore More`,
 	factMarket: `Fact Market`,
@@ -383,6 +384,7 @@ export const language = {
 	poolConfigurationInfo: `This configuration can be used for mining with the Alex. CLI. Please enter a Pool ID which will be used to identify the pool in the CLI.<br><br>After downloading this configuration, please visit our documentation for next steps. You will need to enter additional information into the configuration to successfully mine artifacts in the CLI.`,
 	poolConfigurationNotFound: `Pool configuration not found`,
 	poolContributions: (title: string) => `${title} Contributions`,
+	poolContractEvolved: `Pool Contract Evolved`,
 	poolManage: {
 		mine: { title: 'Mine Artifacts' },
 		view: { title: 'View Artifacts' },
