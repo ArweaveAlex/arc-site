@@ -84,7 +84,7 @@ export default function WalletConnect(props: { callback?: () => void }) {
 					<S.WalletDropdown className={'border-wrapper'}>
 						<S.DHeaderWrapper>
 							<S.AvatarWrapper>
-								{!arProvider.arProfile.avatar || arProvider.arProfile.avatar === AR_PROFILE.defaultAvatar ? (
+								{!arProvider.arProfile || arProvider.arProfile.avatar === AR_PROFILE.defaultAvatar ? (
 									<ReactSVG src={ASSETS.user} />
 								) : (
 									<S.Avatar src={getTxEndpoint(arProvider.arProfile.avatar)} />
