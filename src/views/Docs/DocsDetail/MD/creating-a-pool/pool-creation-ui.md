@@ -1,8 +1,26 @@
-# Creating a pool from the UI
+# Creating a Pool from the UI
 
-Start by connecting your wallet and filling out the pool information [here](https://alex.arweave.dev/#/pools/create).
+To start, connect your wallet and fill out the pool information [here](https://alex.arweave.dev/#/pools/create).
 
-Once you have created your pool and visit the individual Pool Manage Page located in the Pools tab in your account, you can now upload files to your pool. Please note that file metadata uploaded is permanent, so don’t forget to double check metadata.
+Once you've created your pool, visit the individual Pool Manage Page located in the Pools tab within your account. From here, you can begin uploading files to your pool.
+
+## Setting Artifact Metadata from the UI
+
+After uploading the files you wish to archive, proceed to create metadata:
+
+- Click on the three dots located to the right of each file displayed.
+- Select “Update Metadata”.
+
+In the metadata section, you can fill out form fields with metadata that you'd like to attach to each specific artifact. Here is an example input:
+
+- “Field: Date”
+- “Value: 12.08.2023”
+
+You can add as many metadata fields as needed to each artifact. Once you're finished, click "Save".
+
+Finally, upload the files by selecting the green “Upload” button at the top of the Pool Management Page.
+
+**Remember, file metadata uploaded is permanent. Double-check the metadata before uploading.**
 
 ## UI to CLI configuration
 
