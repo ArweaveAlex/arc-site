@@ -401,6 +401,12 @@ export const URLS: IURLView = {
 export const MINING_SOURCES: NavigationComponentType[] = [
 	{ label: language.miningSources.files, component: (disabled: boolean) => <FileMiner disabled={disabled} /> },
 	{
+		label: language.miningSources.newsApi,
+		component: (disabled: boolean) => (
+			<DocMiner disabled={disabled} doc={'creating-a-pool/mining-artifacts'} id={'news'} />
+		),
+	},
+	{
 		label: language.miningSources.twitter,
 		component: (disabled: boolean) => (
 			<DocMiner disabled={disabled} doc={'creating-a-pool/mining-artifacts'} id={'twitter'} />

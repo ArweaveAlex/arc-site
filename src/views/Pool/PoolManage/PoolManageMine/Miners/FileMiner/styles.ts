@@ -149,7 +149,6 @@ export const FieldsWrapper = styled.div`
 	background: ${(props) => props.theme.colors.container.alt3.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	position: relative;
 `;
 
@@ -172,10 +171,8 @@ export const RemoveAction = styled.div`
 `;
 
 export const MFooterWrapper = styled.div`
-	margin: 40px 0 0 0;
-	button {
-		margin: 0 auto;
-	}
+	width: fit-content;
+	margin: 40px 0 0 auto;
 `;
 
 export const UploadingModalContainer = styled.div`
@@ -208,4 +205,33 @@ export const ModalBottomContainer = styled.div`
 
 export const ModalLoadingContainer = styled.div`
 	margin: 0 0 20px 0;
+`;
+
+export const GFlexWrapper = styled.div`
+	margin: 40px 0 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 15px;
+	button {
+		width: 75%;
+		min-width: 150px;
+		border-radius: ${STYLING.dimensions.borderRadius} !important;
+		span {
+			font-size: ${(props) => props.theme.typography.size.small};
+		}
+	}
+`;
+
+export const GAddWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 15px;
+	button {
+		margin: 0 0 0 auto;
+	}
 `;

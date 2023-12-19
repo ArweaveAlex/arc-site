@@ -25,14 +25,25 @@ import * as S from './styles';
 function FileMinerDropdown(props: {
 	data: FileMetadataType;
 	handleAddMetadata: (fileName: string, metadata: { [key: string]: string }) => void;
+	handleAddTitle: (fileName: string, title: string) => void;
+	handleAddGroup: (fileName: string, activeGroup: string) => void;
 	handleRemoveFile: (fileName: string) => void;
+	availableGroups: string[];
+	setAvailableGroups: (groupOption: string) => void;
 }) {
 	const [dropdownOpen, setDropdownOpen] = React.useState<boolean>(false);
 	const [metadataModalOpen, setMetadataModalOpen] = React.useState<boolean>(false);
+	const [titleModalOpen, setTitleModalOpen] = React.useState<boolean>(false);
+	const [groupModalOpen, setGroupModalOpen] = React.useState<boolean>(false);
+	const [groupOptionModalOpen, setGroupOptionModalOpen] = React.useState<boolean>(false);
+	const [groupOption, setGroupOption] = React.useState<string>('');
 
 	const [metadataFields, setMetadataFields] = React.useState<Array<{ field: string; value: string }>>([
 		{ field: '', value: '' },
 	]);
+
+	const [title, setTitle] = React.useState<string>('');
+	const [activeGroup, setActiveGroup] = React.useState<string>('');
 
 	function handleAddMetadata() {
 		const metadata = metadataFields.reduce((acc, field) => {
@@ -41,6 +52,23 @@ function FileMinerDropdown(props: {
 
 		props.handleAddMetadata(props.data.file.name, metadata);
 		setMetadataModalOpen(false);
+	}
+
+	function handleAddTitle() {
+		props.handleAddTitle(props.data.file.name, title);
+		setTitleModalOpen(false);
+	}
+
+	function handleAddGroup() {
+		props.handleAddGroup(props.data.file.name, activeGroup);
+		setGroupModalOpen(false);
+	}
+
+	function handleAddGroupOption() {
+		props.setAvailableGroups(groupOption);
+		setActiveGroup(groupOption);
+		setGroupOptionModalOpen(false);
+		setGroupOption('');
 	}
 
 	function handleAddMetadataField() {
@@ -64,6 +92,22 @@ function FileMinerDropdown(props: {
 	function getActions() {
 		return [
 			{
+				fn: () => setTitleModalOpen(true),
+				closeOnAction: true,
+				subComponent: null,
+				label: language.addArtifactName,
+				disabled: false,
+				loading: false,
+			},
+			{
+				fn: () => setGroupModalOpen(true),
+				closeOnAction: true,
+				subComponent: null,
+				label: language.addToGroup,
+				disabled: false,
+				loading: false,
+			},
+			{
 				fn: () => setMetadataModalOpen(true),
 				closeOnAction: true,
 				subComponent: null,
@@ -83,28 +127,140 @@ function FileMinerDropdown(props: {
 	}
 
 	function getDisabled() {
-		for (const element of metadataFields) {
-			if (!element.field || !element.value) {
-				return true;
+		if (metadataModalOpen) {
+			for (const element of metadataFields) {
+				if (!element.field || !element.value) {
+					return true;
+				}
 			}
-		}
-		const uniqueValues = new Set();
-		let hasDuplicate = false;
+			const uniqueValues = new Set();
+			let hasDuplicate = false;
 
-		for (const element of metadataFields) {
-			if (uniqueValues.has(element.field)) {
-				hasDuplicate = true;
-				break;
+			for (const element of metadataFields) {
+				if (uniqueValues.has(element.field)) {
+					hasDuplicate = true;
+					break;
+				}
+				uniqueValues.add(element.field);
 			}
-			uniqueValues.add(element.field);
+			return hasDuplicate;
 		}
-		return hasDuplicate;
+		if (titleModalOpen) {
+			return !title;
+		}
+		if (groupModalOpen) {
+			return !activeGroup;
+		}
 	}
 
-	return (
-		<>
-			{metadataModalOpen && (
-				<Modal header={language.updateMetadata} handleClose={() => setMetadataModalOpen(false)}>
+	function getModal() {
+		let header: string;
+		let handleClose: () => void;
+		let body: React.ReactNode;
+		let handleSave: () => void;
+
+		if (metadataModalOpen) {
+			header = language.updateMetadata;
+			handleClose = () => setMetadataModalOpen(false);
+			body = (
+				<>
+					{metadataFields.map((metadataField: any, index: number) => (
+						<S.FieldsWrapper key={index}>
+							<S.FieldsHeader>
+								<p>{`${language.metadataField} (${index + 1})`}</p>
+								<IconButton
+									type={'primary'}
+									sm
+									warning
+									src={ASSETS.close}
+									handlePress={() => handleRemoveMetadataField(index)}
+									tooltip={language.removeField}
+								/>
+							</S.FieldsHeader>
+							<FormField
+								label={language.field}
+								value={metadataField.field}
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+									handleChangeMetadataField(index, 'field', e.target.value)
+								}
+								invalid={{
+									status: false,
+									message: null,
+								}}
+								disabled={false}
+								sm
+							/>
+							<FormField
+								label={language.value}
+								value={metadataField.value}
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+									handleChangeMetadataField(index, 'value', e.target.value)
+								}
+								invalid={{ status: false, message: null }}
+								disabled={false}
+								sm
+							/>
+						</S.FieldsWrapper>
+					))}
+				</>
+			);
+			handleSave = handleAddMetadata;
+		}
+		if (titleModalOpen) {
+			header = language.addArtifactName;
+			handleClose = () => setTitleModalOpen(false);
+			body = (
+				<FormField
+					label={language.artifactName}
+					value={title}
+					onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+					invalid={{
+						status: false,
+						message: null,
+					}}
+					disabled={false}
+					sm
+				/>
+			);
+			handleSave = handleAddTitle;
+		}
+		if (groupModalOpen) {
+			header = language.addToGroup;
+			handleClose = () => setGroupModalOpen(false);
+			body = (
+				<>
+					<S.GFlexWrapper>
+						{props.availableGroups.length ? (
+							props.availableGroups.map((group: string, index: number) => {
+								return (
+									<Button
+										key={index}
+										type={'alt2'}
+										label={group}
+										handlePress={() => setActiveGroup(group === activeGroup ? '' : group)}
+										active={group === activeGroup}
+										height={45}
+									/>
+								);
+							})
+						) : (
+							<Button
+								type={'alt2'}
+								label={language.addGroupOption}
+								handlePress={() => setGroupOptionModalOpen(true)}
+								active={false}
+								height={45}
+							/>
+						)}
+					</S.GFlexWrapper>
+				</>
+			);
+			handleSave = handleAddGroup;
+		}
+
+		return (
+			<>
+				<Modal header={header} handleClose={handleClose}>
 					<S.MWrapper>
 						<S.MHeaderWrapper>
 							<S.MHeader>
@@ -112,61 +268,48 @@ function FileMinerDropdown(props: {
 								&nbsp;
 								<p>{props.data.file.name}</p>
 							</S.MHeader>
-							<Button type={'alt2'} label={language.addField} handlePress={() => handleAddMetadataField()} />
+							{metadataModalOpen && (
+								<Button type={'alt2'} label={language.addField} handlePress={() => handleAddMetadataField()} />
+							)}
+							{groupModalOpen && (
+								<Button
+									type={'alt2'}
+									label={language.addGroupOption}
+									handlePress={() => setGroupOptionModalOpen(true)}
+								/>
+							)}
 						</S.MHeaderWrapper>
-						<S.MBodyWrapper>
-							{metadataFields.map((metadataField: any, index: number) => (
-								<S.FieldsWrapper key={index}>
-									<S.FieldsHeader>
-										<p>{`${language.metadataField} (${index + 1})`}</p>
-										<IconButton
-											type={'primary'}
-											sm
-											warning
-											src={ASSETS.close}
-											handlePress={() => handleRemoveMetadataField(index)}
-											tooltip={language.removeField}
-										/>
-									</S.FieldsHeader>
-									<FormField
-										label={language.field}
-										value={metadataField.field}
-										onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-											handleChangeMetadataField(index, 'field', e.target.value)
-										}
-										invalid={{
-											status: false,
-											message: null,
-										}}
-										disabled={false}
-										sm
-									/>
-									<FormField
-										label={language.value}
-										value={metadataField.value}
-										onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-											handleChangeMetadataField(index, 'value', e.target.value)
-										}
-										invalid={{ status: false, message: null }}
-										disabled={false}
-										sm
-									/>
-								</S.FieldsWrapper>
-							))}
-						</S.MBodyWrapper>
+						<S.MBodyWrapper>{body}</S.MBodyWrapper>
 						<S.MFooterWrapper>
-							<Button
-								type={'alt1'}
-								label={language.save}
-								handlePress={() => handleAddMetadata()}
-								height={52.5}
-								width={275}
-								disabled={getDisabled()}
-							/>
+							<Button type={'alt1'} label={language.save} handlePress={handleSave} disabled={getDisabled()} />
 						</S.MFooterWrapper>
 					</S.MWrapper>
 				</Modal>
-			)}
+				{groupOptionModalOpen && (
+					<Modal header={language.addGroupOption} handleClose={() => setGroupOptionModalOpen(false)}>
+						<S.GAddWrapper>
+							<FormField
+								label={language.groupName}
+								value={groupOption}
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) => setGroupOption(e.target.value)}
+								invalid={{
+									status: false,
+									message: null,
+								}}
+								disabled={false}
+								sm
+							/>
+							<Button type={'alt1'} label={language.add} handlePress={handleAddGroupOption} disabled={!groupOption} />
+						</S.GAddWrapper>
+					</Modal>
+				)}
+			</>
+		);
+	}
+
+	return (
+		<>
+			{(metadataModalOpen || titleModalOpen || groupModalOpen) && getModal()}
 			<ActionDropdown
 				open={dropdownOpen}
 				handleCallback={() => setDropdownOpen(!dropdownOpen)}
@@ -189,12 +332,26 @@ export default function FileMiner(props: IProps) {
 	const [selectedData, setSelectedData] = React.useState<FileMetadataType[]>([]);
 	const [currentSelectedData, setCurrentSelectedData] = React.useState<FileMetadataType[]>([]);
 	const [metadataUpdated, setMetadataUpdated] = React.useState<boolean>(false);
+	const [availableGroups, setAvailableGroups] = React.useState<string[]>([]);
 	const [cursor, setCursor] = React.useState<string | null>(null);
 
 	const [sequence, setSequence] = React.useState<SequenceType>({
 		start: SEQUENCE_ITERATION - (SEQUENCE_ITERATION - 1) - 1,
 		end: SEQUENCE_ITERATION - 1,
 	});
+
+	React.useEffect(() => {
+		const handleBeforeUnload = (e: any) => {
+			e.preventDefault();
+			e.returnValue = '';
+		};
+
+		window.addEventListener('beforeunload', handleBeforeUnload);
+
+		return () => {
+			window.removeEventListener('beforeunload', handleBeforeUnload);
+		};
+	}, []);
 
 	React.useEffect(() => {
 		if (cursor) {
@@ -225,7 +382,7 @@ export default function FileMiner(props: IProps) {
 
 	function handleFileChange(e: any) {
 		let newFiles = [...e.target.files].map((file: any) => {
-			return { file: file, metadata: {} };
+			return { file: file, metadata: {}, title: '', associationId: '' };
 		});
 
 		newFiles = newFiles.filter(
@@ -242,7 +399,36 @@ export default function FileMiner(props: IProps) {
 	function handleAddMetadata(fileName: string, newMetadata: { [key: string]: string }) {
 		setSelectedData((prevSelectedData) =>
 			prevSelectedData.map((fileData) =>
-				fileData.file.name === fileName ? { ...fileData, metadata: { ...fileData.metadata, ...newMetadata } } : fileData
+				fileData.file.name === fileName
+					? {
+							file: fileData.file,
+							metadata: { ...fileData.metadata, ...newMetadata },
+							title: fileData.title,
+							associationId: fileData.associationId,
+					  }
+					: fileData
+			)
+		);
+		setMetadataUpdated(true);
+	}
+
+	function handleAddTitle(fileName: string, title: string) {
+		setSelectedData((prevSelectedData) =>
+			prevSelectedData.map((fileData) =>
+				fileData.file.name === fileName
+					? { file: fileData.file, metadata: fileData.metadata, title: title, associationId: fileData.associationId }
+					: fileData
+			)
+		);
+		setMetadataUpdated(true);
+	}
+
+	function handleAddGroup(fileName: string, group: string) {
+		setSelectedData((prevSelectedData) =>
+			prevSelectedData.map((fileData) =>
+				fileData.file.name === fileName
+					? { file: fileData.file, metadata: fileData.metadata, title: fileData.title, associationId: group }
+					: fileData
 			)
 		);
 		setMetadataUpdated(true);
@@ -253,7 +439,7 @@ export default function FileMiner(props: IProps) {
 			fileName: {
 				width: '90%',
 				align: 'left' as AlignType,
-				display: language.fileName,
+				display: language.artifactName,
 			},
 			actions: {
 				width: '10%',
@@ -270,7 +456,11 @@ export default function FileMiner(props: IProps) {
 				handleAddMetadata={(fileName: string, metadata: { [key: string]: string }) =>
 					handleAddMetadata(fileName, metadata)
 				}
+				handleAddTitle={(fileName: string, title: string) => handleAddTitle(fileName, title)}
+				handleAddGroup={(fileName: string, group: string) => handleAddGroup(fileName, group)}
 				handleRemoveFile={(fileName: string) => handleRemoveFile(fileName)}
+				availableGroups={availableGroups}
+				setAvailableGroups={(groupOption: string) => setAvailableGroups([...availableGroups, groupOption])}
 			/>
 		);
 	}
@@ -279,7 +469,7 @@ export default function FileMiner(props: IProps) {
 		return currentSelectedData.map((data: FileMetadataType) => {
 			return {
 				data: {
-					fileName: `${data.file.name}`,
+					fileName: data.title ? data.title : data.file.name,
 					actions: getActionDropdown(data),
 				},
 				active: false,
@@ -369,13 +559,11 @@ export default function FileMiner(props: IProps) {
 			{metadataUpdated && (
 				<Notification type={'success'} message={language.metadataUpdated} callback={() => setMetadataUpdated(false)} />
 			)}
-
 			{uploadingStatus && uploadingStatus !== 'error' && (
 				<Modal header={null} handleClose={() => setUploadingStatus(null)} closeHidden>
 					<S.UploadingModalContainer>{getFileUploadStatus()}</S.UploadingModalContainer>
 				</Modal>
 			)}
-
 			<S.Wrapper>
 				<S.Header>
 					<S.DataWrapper>

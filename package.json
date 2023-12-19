@@ -21,7 +21,7 @@
 		"@facts-kit/facts-sdk": "^0.0.47",
 		"@permaweb/stampjs": "0.5.4",
 		"@types/react-router-dom": "^5.3.3",
-		"arcframework": "1.2.23",
+		"arcframework": "1.2.26",
 		"arweave-wallet-connector": "^1.0.2",
 		"html-react-parser": "^3.0.4",
 		"permaweb-orderbook": "1.6.4",
@@ -36,6 +36,7 @@
 		"redux-persist": "^6.0.0",
 		"redux-thunk": "^2.4.2",
 		"styled-components": "^5.3.6",
+		"warp-contracts": "1.4.26",
 		"warp-contracts-plugin-deploy": "1.0.8",
 		"warp-contracts-plugin-signature": "1.0.15-beta.1"
 	},

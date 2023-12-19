@@ -90,7 +90,7 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./me
 arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./metafile.json --clear
 ```
 
-## [News API](/#/docs/creating-a-pool/mining-artifacts#news-api)
+## [News API](/#/docs/creating-a-pool/mining-artifacts#news)
 
 #### Configure News API key
 

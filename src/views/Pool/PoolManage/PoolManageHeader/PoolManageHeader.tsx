@@ -8,7 +8,7 @@ import { Button } from 'components/atoms/Button';
 import { ButtonLink } from 'components/atoms/ButtonLink';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
-import { Loader } from 'components/atoms/Loader';
+// import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { APP, ASSETS, POOL_TEST_MODE } from 'helpers/config';
@@ -19,6 +19,7 @@ import { useArweaveProvider } from 'providers/ArweaveProvider';
 import * as S from './styles';
 import { IProps } from './types';
 
+// TODO: pool balance
 export default function PoolManageHeader(props: IProps) {
 	const arProvider = useArweaveProvider();
 
@@ -88,13 +89,13 @@ export default function PoolManageHeader(props: IProps) {
 		}
 	}, [props.id]);
 
-	function getPoolBalance() {
-		if (balances && balances.bundlrBalance > 0 && poolClient) {
-			return poolClient.getARAmount(balances.bundlrBalance).toFixed(2);
-		} else {
-			return '0';
-		}
-	}
+	// function getPoolBalance() {
+	// 	if (balances && balances.bundlrBalance > 0 && poolClient) {
+	// 		return poolClient.getARAmount(balances.bundlrBalance).toFixed(2);
+	// 	} else {
+	// 		return '0';
+	// 	}
+	// }
 
 	function getTransferDisabled() {
 		if (balances) {
@@ -163,14 +164,12 @@ export default function PoolManageHeader(props: IProps) {
 					status: true,
 					message: language.poolContractEvolved,
 				});
-				console.log(1);
 			} catch (e: any) {
 				console.error(e);
 				setEvolveNotification({
 					status: true,
 					message: e.message,
 				});
-				console.log(2);
 			}
 		} else {
 			alert(language.poolConfigurationNotFound);
@@ -178,8 +177,8 @@ export default function PoolManageHeader(props: IProps) {
 		setLoading(false);
 	}
 
-	const hasPoolBalance = balances && (balances.poolBalance > 0 || balances.bundlrBalance > 0);
-	const hasBundlrBalance = balances && balances.bundlrBalance > 0;
+	// const hasPoolBalance = balances && (balances.poolBalance > 0 || balances.bundlrBalance > 0);
+	// const hasBundlrBalance = balances && balances.bundlrBalance > 0;
 
 	function getSubheader() {
 		return (
@@ -236,7 +235,7 @@ export default function PoolManageHeader(props: IProps) {
 							<h2>{props.title ? `${language.managePool}: ${props.title}` : null}</h2>
 							{getSubheader()}
 						</S.H1>
-						<S.H2>
+						{/* <S.H2>
 							{balances ? (
 								<>
 									<S.PoolBalance>
@@ -285,6 +284,52 @@ export default function PoolManageHeader(props: IProps) {
 							) : (
 								<Loader sm />
 							)}
+						</S.H2> */}
+						<S.H2>
+							<>
+								<S.PoolBalance>
+									<S.TileTitle>
+										<p>{`${language.poolBalance}:`}</p>
+									</S.TileTitle>
+									&nbsp;
+									<S.TileData>
+										<p>-</p>
+										<S.TContainer>
+											<p>{language.arTokens}</p>
+										</S.TContainer>
+									</S.TileData>
+									<S.TileInfo>
+										<IconButton
+											type={'primary'}
+											src={ASSETS.info}
+											handlePress={() => setShowPoolBalanceInfo(!showPoolBalanceInfo)}
+											sm
+										/>
+									</S.TileInfo>
+								</S.PoolBalance>
+								<S.ProgressWrapper>
+									<S.PIWrapper>
+										<S.ProgressIndicator completed={true}>
+											<ReactSVG src={ASSETS.checkmark} />
+										</S.ProgressIndicator>
+										<p>{language.funded}</p>
+									</S.PIWrapper>
+									<S.PD1 />
+									<S.PIWrapper>
+										<S.ProgressIndicator completed={true}>
+											<ReactSVG src={ASSETS.checkmark} />
+										</S.ProgressIndicator>
+										<p>{language.transferred}</p>
+									</S.PIWrapper>
+									<S.PD2 />
+									<S.PIWrapper>
+										<S.ProgressIndicator completed={true}>
+											<ReactSVG src={ASSETS.checkmark} />
+										</S.ProgressIndicator>
+										<p>{language.ready}</p>
+									</S.PIWrapper>
+								</S.ProgressWrapper>
+							</>
 						</S.H2>
 					</S.HeaderContent>
 					<S.InfoWrapper>

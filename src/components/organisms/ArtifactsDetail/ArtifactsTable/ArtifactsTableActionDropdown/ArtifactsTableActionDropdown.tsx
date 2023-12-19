@@ -308,7 +308,7 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				fn: () => handleBookmarkStateUpdate(props.artifactId),
 				closeOnAction: false,
 				subComponent: null,
-				label: bookmarkIdsState.includes(props.artifactId) ? language.removeFromBookmarks : language.addtoBookmarks,
+				label: bookmarkIdsState.includes(props.artifactId) ? language.removeFromBookmarks : language.addToBookmarks,
 				disabled: props.ownerActionDisabled,
 				loading: false,
 			},

@@ -1,8 +1,8 @@
 import {
 	CONTENT_TYPES,
 	createAsset,
-	getAlexType,
 	getAnsType,
+	getArtifactType,
 	getMimeType,
 	PoolClient,
 	PoolConfigClient,
@@ -13,7 +13,6 @@ import {
 import { POOL_TEST_MODE } from 'helpers/config';
 import { FileMetadataType } from 'helpers/types';
 
-// Interact with framework to mine files
 export async function uploadFiles(poolId: string, files: FileMetadataType[]) {
 	let poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
 	const poolConfig = await poolConfigClient.initFromContract({ poolId });
@@ -26,10 +25,12 @@ export async function uploadFiles(poolId: string, files: FileMetadataType[]) {
 }
 
 async function uploadFile(poolClient: PoolClient, file: FileMetadataType) {
-	let name = file.file.name;
-	const fileType = name.slice(name.lastIndexOf('.') + 1);
-	let alexType = getAlexType(fileType);
-	let ansType = getAnsType(alexType);
+	let name = file.title && file.title.length ? file.title : file.file.name;
+	let associationId = file.associationId ? file.associationId : null;
+
+	const fileType = file.file.name.slice(file.file.name.lastIndexOf('.') + 1);
+	let artifactType = getArtifactType(fileType);
+	let ansType = getAnsType(artifactType);
 
 	let fileTransactionId = await processFile(poolClient, file);
 
@@ -54,13 +55,13 @@ async function uploadFile(poolClient: PoolClient, file: FileMetadataType) {
 		paths: (assetId: string) => ({ 'file.json': { id: assetId } }),
 		content: fileJson,
 		contentType: CONTENT_TYPES.json,
-		artifactType: alexType,
+		artifactType: artifactType,
 		name: name,
 		description: name,
 		type: ansType,
 		additionalMediaPaths: [],
 		profileImagePath: null,
-		associationId: null,
+		associationId: associationId,
 		associationSequence: null,
 		childAssets: null,
 		renderWith: RENDER_WITH_VALUES,

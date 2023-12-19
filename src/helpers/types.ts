@@ -80,6 +80,8 @@ export type NavigationComponentType = {
 export type FileMetadataType = {
 	file: any;
 	metadata: { [key: string]: string };
+	title: string;
+	associationId: string;
 };
 
 export type StepType = 'prev' | 'next';
