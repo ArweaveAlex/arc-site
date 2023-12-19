@@ -76,6 +76,8 @@ export default function WalletConnect(props: { callback?: () => void }) {
 		}
 	}
 
+	console.log(arProvider.arProfile);
+
 	return (
 		<CloseHandler callback={() => setShowDropdown(!showDropdown)} active={showDropdown} disabled={false}>
 			<S.Wrapper>
@@ -84,7 +86,9 @@ export default function WalletConnect(props: { callback?: () => void }) {
 					<S.WalletDropdown className={'border-wrapper'}>
 						<S.DHeaderWrapper>
 							<S.AvatarWrapper>
-								{!arProvider.arProfile || arProvider.arProfile.avatar === AR_PROFILE.defaultAvatar ? (
+								{!arProvider.arProfile ||
+								arProvider.arProfile.avatar === AR_PROFILE.defaultAvatar ||
+								arProvider.arProfile.avatar === 'null' ? (
 									<ReactSVG src={ASSETS.user} />
 								) : (
 									<S.Avatar src={getTxEndpoint(arProvider.arProfile.avatar)} />

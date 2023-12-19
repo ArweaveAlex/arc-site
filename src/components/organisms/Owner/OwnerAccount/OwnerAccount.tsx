@@ -66,7 +66,7 @@ export default function OwnerAccount(props: IProps) {
 					<S.ProfileWrapper>
 						<S.ProfileFlex>
 							<S.AvatarWrapper>
-								{!arProfile.avatar || arProfile.avatar === AR_PROFILE.defaultAvatar ? (
+								{!arProfile.avatar || arProfile.avatar === AR_PROFILE.defaultAvatar || arProfile.avatar === 'null' ? (
 									<ReactSVG src={ASSETS.user} />
 								) : (
 									<S.Avatar src={getTxEndpoint(arProfile.avatar)} />
