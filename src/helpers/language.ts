@@ -160,7 +160,8 @@ export const language = {
 				header: 'What does it mean?',
 				description:
 					'Contributing means to send a portion of your <b>($AR)</b> to a pool. Contributions are used to pay for the storage costs of artifacts stored on Arweave. A portion of contributions also go to pool operators for their work.',
-				footer: 'Artifacts are deployed as assets to Arweave and distributed to the contributors who support the pool.',
+				footer:
+					'Artifacts are deployed as atomic assets to Arweave and distributed to the contributors who support the pool.',
 			},
 			section2: {
 				header: 'How to Contribute?',
@@ -209,7 +210,7 @@ export const language = {
 			list: [
 				{
 					header: `Think of a topic to archive`,
-					description: `This can be a <span>historical event, current event, cultural topic, innovation, or anything that can be digitally preserved.</span> Once you have your topic, you must decide where you will mine the artifacts from. It can be from social media <span>(Twitter, Reddit, Nostr), websites (Wikipedia),</span> or your own <span>personal archive.</span>`,
+					description: `This can be a <span>historical event, current event, cultural topic, innovation, or anything that can be digitally preserved.</span> Once you have your topic, you must decide where you will mine the artifacts from. It can be from social media <span>(Twitter, Reddit, Nostr), websites (Wikipedia, news sources),</span> or your own <span>personal archive.</span>`,
 					action: {
 						label: `Current Pools`,
 						href: `/pools`,
@@ -252,7 +253,7 @@ export const language = {
 		},
 		stepsHeader1: `How it works`,
 		subHeader1: `<p>If you have an idea, topic or event that you would like to preserve forever, you can create a pool and earn <span>($AR)</span> for it.</p>`,
-		subHeader2: `Anyone can create a pool with Alex. for any given topic/event. An operator creates a pool and mines artifacts into it. These artifacts are deployed as assets to Arweave and distributed to the contributors based on the amount of <b>$AR</b> contributed.`,
+		subHeader2: `Anyone can create a pool with Alex. for any given topic/event. An operator creates a pool and mines artifacts into it. These artifacts are deployed as 1:1 atomic assets to Arweave and distributed to the contributors based on the amount of <b>$AR</b> contributed.`,
 		subnav: {
 			header: `Create with Alex.`,
 			howItWorks: `How it works`,
@@ -510,7 +511,7 @@ export const language = {
 				collectionDescription3: '3. Choose the artifacts you want to include in the collection.',
 				collectionDescription4: '4. Provide a title, description, and topic for the collection (visible on BazAR).',
 				collectionDescription5:
-					'5. Review the terms for listing artifact sponsorships (a popup with terms will appear).',
+					'5. Review the terms for listing artifact sponsorships (a popup with terms will appear). You can also read the terms for trading artifact sponsorships <a href="https://alex.arweave.dev/#/docs/interact-with-artifacts" target="_blank" rel="noopener noreferrer">here</a>',
 				collectionDescription6:
 					'6. Set the price in $U. Learn more about $U <a href="https://u-wiki.arweave.dev/#/en/main" target="_blank" rel="noopener noreferrer">here</a>.',
 				collectionDescription7: '7. You can view your collection listing on your BazAR account page.',
