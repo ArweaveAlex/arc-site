@@ -4,7 +4,7 @@ To start, connect your wallet and fill out the pool information [here](https://a
 
 Once you've created your pool, visit the individual Pool Manage Page located in the Pools tab within your account. From here, you can begin uploading files to your pool.
 
-## Setting Artifact Metadata from the UI
+## Setting artifact metadata from the UI
 
 After uploading the files you wish to archive, proceed to create metadata:
 
@@ -21,6 +21,17 @@ You can add as many metadata fields as needed to each artifact. Once you're fini
 Finally, upload the files by selecting the green “Upload” button at the top of the Pool Management Page.
 
 **Remember, file metadata uploaded is permanent. Double-check the metadata before uploading.**
+
+## Creating artifact groups
+
+Before uploading files, you have the option to create artifact groups:
+
+- Click on the three dots located to the right of each file displayed.
+- Select "Add to Groups”.
+- Create and name the group.
+- Create as many groups as needed and add each artifact to specific groups.
+
+**Remember, artifact groups are permanent. Double-check the metadata before uploading.**
 
 ## UI to CLI configuration
 
