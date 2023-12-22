@@ -110,25 +110,31 @@ export default function PoolContributors(props: IProps) {
 						<S.Header>
 							<h2>{language.contributors.top}</h2>
 						</S.Header>
-						{topContributorList.length > 0 ? (
+						{/* {topContributorList.length > 0 ? (
 							<S.BWrapper>
 								<S.Body>{getBody(topContributorList)}</S.Body>
 							</S.BWrapper>
 						) : (
 							<ListPlaceholder rowCount={ROW_COUNT} rowHeight={40} rowMargin={10} />
-						)}
+						)} */}
+						<S.BWrapper>
+							<S.Body>{getBody(topContributorList)}</S.Body>
+						</S.BWrapper>
 					</S.CWrapper>
 					<S.CWrapper>
 						<S.Header>
 							<h2>{language.contributors.recent}</h2>
 						</S.Header>
-						{recentContributorList.length > 0 ? (
+						{/* {recentContributorList.length > 0 ? (
 							<S.BWrapper>
 								<S.Body>{getBody(recentContributorList)}</S.Body>
 							</S.BWrapper>
 						) : (
 							<ListPlaceholder rowCount={ROW_COUNT} rowHeight={40} rowMargin={10} />
-						)}
+						)} */}
+						<S.BWrapper>
+							<S.Body>{getBody(recentContributorList)}</S.Body>
+						</S.BWrapper>
 					</S.CWrapper>
 				</S.TWrapper>
 				<S.VWrapper>
@@ -142,11 +148,20 @@ export default function PoolContributors(props: IProps) {
 			</S.Wrapper>
 			{showViewAll && props.data && profiles && (
 				<Modal header={language.poolContributions(props.data.state.title)} handleClose={() => setShowViewAll(false)}>
-					{fullContributorList.length > 0 ? (
+					{/* {fullContributorList.length > 0 ? (
 						<S.BFull>{fullContributorList}</S.BFull>
 					) : (
 						<ListPlaceholder rowCount={ROW_COUNT} rowHeight={40} rowMargin={10} />
-					)}
+					)} */}
+					<S.BFull>
+						{fullContributorList.length ? (
+							fullContributorList
+						) : (
+							<S.NoContributionsContainer>
+								<p>{language.noContributions}</p>
+							</S.NoContributionsContainer>
+						)}
+					</S.BFull>
 				</Modal>
 			)}
 		</>

@@ -118,8 +118,8 @@ export const Count = styled(Amount)``;
 export const NoContributionsContainer = styled.div`
 	height: 100%;
 	width: 100%;
+	padding: 10px 0;
 	p {
-		margin: 15px 0 0 0;
 		color: ${(props) => props.theme.colors.warning};
 	}
 `;
