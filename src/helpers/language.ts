@@ -123,7 +123,7 @@ export const language = {
 	banner: {
 		header1: `A decentralized archival platform that preserves human history and culture digitally.`,
 		subheader1: `Archives are permanently stored on`,
-		subheader2: `Pools are created with the`,
+		subheader2: `Start a pool with the`,
 	},
 	basicInformation: `Basic Information`,
 	bookmarks: `Bookmarks`,
@@ -401,7 +401,7 @@ export const language = {
 	poolCreated: `Success, Pool Created!`,
 	poolCreatedInfo: `Congratulations on starting a new pool! You will be able to start mining artifacts when the pool transaction has settled on the Arweave Network and a contribution to the pool has been made. You can find your pool from the pools tab on your account page, and you can being managing your pool by clicking Manage Pool below.`,
 	poolId: `Pool ID`,
-	poolOperator: `Alex. Pool Operator`,
+	poolOperator: `Alex. Pool Creator`,
 	poolTradeableOption: `Artifacts archived from this pool are tradeable via UCM`,
 	pools: {
 		header1: `Pools`,
@@ -460,7 +460,7 @@ export const language = {
 				header: 'How to buy $AR tokens?',
 				description1: `Arweave’s native token AR is used to purchase storage space on the network. If you want to contribute to an archival pool, here is how you purchase AR tokens. Tokens are either bought through a centralized exchange (CEX) or a decentralized exchange (DEX).`,
 				description2: 'Please note that some exchanges are not registered in some countries.',
-				description3: 'Popular exchanges include',
+				description3: 'Popular exchanges include:',
 				list1: '<a href="https://crypto.com/price/arweave" target="_blank" rel="noopener noreferrer">Crypto.com</a>.',
 				list2:
 					'<a href="https://www.binance.com/en/price/arweave" target="_blank" rel="noopener noreferrer">Binance</a>.',
@@ -501,7 +501,7 @@ export const language = {
 				description:
 					'Artifact sponsorships are the atomic assets that contributors earn for contributing to archival pools. These sponsorships prove that a user provided the $AR for a piece of digital content to be permanently archived on Arweave.',
 				footer:
-					'Sponsorship owners can list their sponsorships on the <a href="https://bazar.arweave.dev/" target="_blank" rel="noopener noreferrer">BazAR</a> marketplace straight from their account page on Alex. Please note that Alex. is not liable for any artifact sponsorships that are traded without permission of the content creator.',
+					'Sponsorship owners can list their sponsorships on the <a href="https://bazar.arweave.dev/" target="_blank" rel="noopener noreferrer">BazAR</a> Marketplace straight from their account page on Alex. Please note that Alex. is not liable for any artifact sponsorships that are traded without permission of the content creator. Read our full terms and coditions for trading artifact sponsorships <a href="https://alex.arweave.dev/#/docs/interact-with-artifacts" target="_blank" rel="noopener noreferrer">here</a>.',
 			},
 			section2: {
 				header: 'How to list your artifact sponsorships on BazAR?',
