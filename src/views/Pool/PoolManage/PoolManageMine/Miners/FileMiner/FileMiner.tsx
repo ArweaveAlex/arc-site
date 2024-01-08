@@ -97,7 +97,7 @@ function FileMinerDropdown(props: {
 				fn: () => setTitleModalOpen(true),
 				closeOnAction: true,
 				subComponent: null,
-				label: language.addArtifactName,
+				label: language.editArtifactName,
 				disabled: false,
 				loading: false,
 			},
@@ -209,7 +209,7 @@ function FileMinerDropdown(props: {
 			handleSave = handleAddMetadata;
 		}
 		if (titleModalOpen) {
-			header = language.addArtifactName;
+			header = language.editArtifactName;
 			handleClose = () => setTitleModalOpen(false);
 			body = (
 				<FormField
