@@ -63,6 +63,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
+    background: ${(props) => props.theme.colors.view.background};
   }
   
 
@@ -152,8 +153,8 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  button, select, li {
-    transition: background .05s;
+  button, select, li, a {
+    transition: background .035s;
   }
 
   input, textarea {
@@ -207,9 +208,14 @@ export const GlobalStyle = createGlobalStyle`
 
   .border-wrapper {
     background: ${(props) => props.theme.colors.container.primary.background};
-    border: 1px solid ${(props) => props.theme.colors.border.primary};
-    border-radius: ${STYLING.dimensions.borderRadius};
+    box-shadow: 0 3.5px 10px 0 ${(props) => props.theme.colors.shadow.primary};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     overflow: hidden;
+  }
+
+  .border-wrapper-alt {
+    background: ${(props) => props.theme.colors.container.alt3.background};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
   }
 
   .wrapper-600 {

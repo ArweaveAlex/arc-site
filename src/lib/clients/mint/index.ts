@@ -40,7 +40,7 @@ export type MintClientType = {
 	getCollectionsByUser: (args: { cursor: string | null; walletAddress: string }) => Promise<CollectionsResponseType>;
 };
 
-export type PublishCollectionArgs = { collection: CollectionUploadType };
+export type PublishCollectionArgs = { collection: CollectionUploadType; wallet: any };
 
 export type CollectionUploadType = {
 	name: string;
@@ -68,11 +68,8 @@ const mintClient: MintClientType = {
 	},
 
 	publishCollection: async function (args: PublishCollectionArgs) {
-		await this.arClient.bundlr.ready();
-		const publish = publishCollection(this.arClient.bundlr);
+		const publish = publishCollection(args.wallet);
 		let id = await publish(args.collection);
-		await new Promise((r) => setTimeout(r, 1000));
-		await this.arClient.warpDefault.register(id, 'node2');
 		return id;
 	},
 

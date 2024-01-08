@@ -48,39 +48,6 @@ export const BalanceWrapper = styled.div`
 	margin: 20px 0 0 0;
 `;
 
-export const AvailableBalance = styled.p`
-	color: ${(props) => props.theme.colors.font.primary.alt1};
-	line-height: 18px;
-	white-space: nowrap;
-	overflow: hidden;
-`;
-
-export const BalanceAmount = styled.p`
-	color: ${(props) => props.theme.colors.font.primary.alt1};
-	font-size: 18px;
-	font-weight: ${(props) => props.theme.typography.weight.medium};
-`;
-
-export const ARTokens = styled.p`
-	color: ${(props) => props.theme.colors.font.primary.alt4};
-	font-size: 18px;
-	font-weight: ${(props) => props.theme.typography.weight.medium};
-`;
-
-export const Form = styled.form`
-	height: 70%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-`;
-
-export const FormWrapper = styled.div``;
-
-export const FormContainer = styled.div`
-	max-width: ${STYLING.dimensions.formWidthMin};
-	margin: 50px auto 0 auto;
-`;
-
 export const SubmitWrapper = styled.div`
 	margin: 40px auto 15px auto;
 	button {
@@ -96,7 +63,7 @@ export const RPWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	gap: 3.5px;
-	margin: 0 auto;
+	margin: 15px 0 0 0;
 	span,
 	p {
 		font-size: ${(props) => props.theme.typography.size.xSmall};
@@ -193,4 +160,85 @@ export const IDCopied = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.alt4};
 		white-space: nowrap;
 	}
+`;
+
+export const MWrapper = styled.div`
+	position: relative;
+`;
+
+export const MInfo = styled.div`
+	margin: 10px 0 0 0;
+	padding: 0 20px 0 0;
+	p,
+	span {
+		line-height: 1.5;
+	}
+	p {
+		color: ${(props) => props.theme.colors.font.primary.alt8};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		font-size: ${(props) => props.theme.typography.size.small};
+		margin: 0 0 5px 0;
+	}
+	span {
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-weight: ${(props) => props.theme.typography.weight.regular};
+		font-size: ${(props) => props.theme.typography.size.xSmall};
+	}
+`;
+
+export const DWrapper = styled.div`
+	margin: 20px 0 0 0;
+`;
+
+export const DHeader = styled.div`
+	margin: 0 0 7.5px 0;
+	span {
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		font-size: ${(props) => props.theme.typography.size.xSmall};
+	}
+`;
+
+export const DElements = styled.div`
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	button {
+		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	}
+`;
+
+export const CWrapper = styled(DWrapper)`
+	margin: 30px 0 0 0;
+	input {
+		width: 150px !important;
+	}
+`;
+
+export const COWrapper = styled.div`
+	padding: 15px;
+	span {
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		font-size: ${(props) => props.theme.typography.size.xSmall};
+	}
+`;
+
+export const COHeader = styled(DHeader)``;
+
+export const MActions = styled.div`
+	margin: 30px 0 0 0;
+	display: flex;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	gap: 15px;
+`;
+
+export const COWrapperAlt = styled(COWrapper)`
+	margin: 20px 0 0 0;
+`;
+
+export const LWrapper = styled.div`
+	margin: 30px auto 0 auto;
 `;

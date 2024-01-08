@@ -28,7 +28,7 @@ export default function ArtifactsCollection(props: IProps) {
 	function getArtifactList() {
 		return props.selectedIds.map((id: string) => {
 			return (
-				<S.ArtifactPreviewContainer id={DOM.preview} key={id}>
+				<S.ArtifactPreviewContainer id={DOM.preview} key={id} className={'border-wrapper'}>
 					<ArtifactRendererSingle artifactId={id} artifactType={STORAGE.none} />
 				</S.ArtifactPreviewContainer>
 			);
@@ -42,19 +42,19 @@ export default function ArtifactsCollection(props: IProps) {
 					<p>{language.collectionDetails}</p>
 				</S.C2Header>
 				<S.C2Body column={false}>
-					<S.ContentLine className={'border-wrapper'}>
+					<S.ContentLine className={'border-wrapper-alt'}>
 						<S.InfoData>
 							<span>{language.title}</span>
 							<S.BodyData>{props.title ? props.title : `-`}</S.BodyData>
 						</S.InfoData>
 					</S.ContentLine>
-					<S.ContentLine className={'border-wrapper'}>
+					<S.ContentLine className={'border-wrapper-alt'}>
 						<S.InfoData>
 							<span>{language.topic}</span>
 							<S.BodyData>{props.topic ? props.topic : `-`}</S.BodyData>
 						</S.InfoData>
 					</S.ContentLine>
-					<S.ContentLine className={'border-wrapper'}>
+					<S.ContentLine className={'border-wrapper-alt'}>
 						<S.InfoData>
 							<span>{language.description}</span>
 							<S.BodyData>{props.description ? props.description : `-`}</S.BodyData>

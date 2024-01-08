@@ -1,94 +1,120 @@
+import { ArweaveWebIrys } from '@irys/sdk/build/esm/web/tokens/arweave';
+
 import {
 	CONTENT_TYPES,
-	createAsset,
+	createContract,
+	createContractTags,
 	getAnsType,
 	getArtifactType,
+	getGQLData,
 	getMimeType,
+	logValue,
 	PoolClient,
-	PoolConfigClient,
 	RENDER_WITH_VALUES,
 	TAGS,
 } from 'arcframework';
 
-import { POOL_TEST_MODE } from 'helpers/config';
-import { FileMetadataType } from 'helpers/types';
+import { UPLOAD_CONFIG } from 'helpers/config';
+import { FileMetadataType, TagType } from 'helpers/types';
+import { fileToBuffer } from 'helpers/utils';
 
-export async function uploadFiles(poolId: string, files: FileMetadataType[]) {
-	let poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
-	const poolConfig = await poolConfigClient.initFromContract({ poolId });
-	poolConfig.walletKey = window.arweaveWallet;
-	let poolClient = new PoolClient({ poolConfig });
-	await poolClient.arClient.bundlr.ready();
-	for (let i = 0; i < files.length; i++) {
-		await uploadFile(poolClient, files[i]);
-	}
-}
+export async function uploadFile(poolClient: PoolClient, data: FileMetadataType, uploader: any, wallet: any) {
+	const irys = new ArweaveWebIrys({ url: UPLOAD_CONFIG.node2, wallet: { provider: wallet } });
+	await irys.ready();
 
-async function uploadFile(poolClient: PoolClient, file: FileMetadataType) {
-	let name = file.title && file.title.length ? file.title : file.file.name;
-	let associationId = file.associationId ? file.associationId : null;
+	let name = data.title && data.title.length ? data.title : data.file.name;
+	let associationId = data.associationId ? data.associationId : null;
 
-	const fileType = file.file.name.slice(file.file.name.lastIndexOf('.') + 1);
+	const fileType = data.file.name.slice(data.file.name.lastIndexOf('.') + 1);
 	let artifactType = getArtifactType(fileType);
 	let ansType = getAnsType(artifactType);
 
-	let fileTransactionId = await processFile(poolClient, file);
+	let fileTxId: string | null = null;
+	let metadataTxId: string | null = null;
 
-	let metadataTx = poolClient.arClient.bundlr.createTransaction(JSON.stringify(file.metadata), {
-		tags: [
+	try {
+		const fileTags = [
+			{ name: TAGS.keys.application, value: TAGS.values.application },
+			{ name: TAGS.keys.contentType, value: getMimeType(data.file.name) },
+		];
+		const buffer = await fileToBuffer(data.file);
+		const fileTxResponse = await uploader.uploadData(buffer as any, { tags: fileTags } as any);
+
+		fileTxId = fileTxResponse.data.id;
+	} catch (e: any) {
+		throw new Error(e);
+	}
+
+	try {
+		const metadataTxTags = [
 			{ name: TAGS.keys.application, value: TAGS.values.application },
 			{ name: TAGS.keys.contentType, value: CONTENT_TYPES.json },
-		],
-	});
-	await metadataTx.sign();
-	const metadataTxId = metadataTx.id;
+		];
+		const metadataTxResponse = await irys.upload(JSON.stringify(data.metadata) as any, { tags: metadataTxTags } as any);
 
-	await metadataTx.upload();
+		metadataTxId = metadataTxResponse.id;
+	} catch (e: any) {
+		throw new Error(e);
+	}
 
-	let fileJson = {
-		fileTxId: fileTransactionId,
-		metadataTxId: metadataTxId,
-	};
-
-	return await createAsset(poolClient, {
-		index: { path: 'file.json' },
-		paths: (assetId: string) => ({ 'file.json': { id: assetId } }),
-		content: fileJson,
-		contentType: CONTENT_TYPES.json,
-		artifactType: artifactType,
-		name: name,
-		description: name,
-		type: ansType,
-		additionalMediaPaths: [],
-		profileImagePath: null,
-		associationId: associationId,
-		associationSequence: null,
-		childAssets: null,
-		renderWith: RENDER_WITH_VALUES,
-		assetId: fileTransactionId,
-		fileType: fileType,
-	});
-}
-
-async function processFile(poolClient: PoolClient, file: FileMetadataType) {
-	const mimeType = getMimeType(file.file.name);
-	const subTags = [
-		{ name: TAGS.keys.application, value: TAGS.values.application },
-		{ name: TAGS.keys.contentType, value: mimeType },
-	];
-	let actualFile = await toArrayBuffer(file.file);
-	const tx = poolClient.arClient.bundlr.createTransaction(actualFile, { tags: subTags });
-	await tx.sign();
-	const id = tx.id;
-	tx.upload();
-	return id;
-}
-
-const toArrayBuffer = (file: any) =>
-	new Promise((resolve, _reject) => {
-		const fr = new FileReader();
-		fr.readAsArrayBuffer(file);
-		fr.addEventListener('loadend', (evt) => {
-			resolve(evt.target.result);
+	try {
+		const tags: TagType[] = await createContractTags(poolClient, {
+			index: { path: 'file.json' },
+			paths: (assetId: string) => ({ 'file.json': { id: assetId } }),
+			contentType: CONTENT_TYPES.json,
+			artifactType: artifactType,
+			name: name,
+			description: name,
+			type: ansType,
+			additionalMediaPaths: [],
+			profileImagePath: null,
+			associationId: associationId,
+			associationSequence: null,
+			childAssets: null,
+			renderWith: RENDER_WITH_VALUES,
+			assetId: fileTxId,
+			fileType: fileType,
 		});
-	});
+
+		const fileJson = {
+			fileTxId: fileTxId,
+			metadataTxId: metadataTxId,
+		};
+
+		const txResponse = await irys.upload(JSON.stringify(fileJson) as any, { tags } as any);
+
+		await new Promise((r) => setTimeout(r, 2000));
+
+		const assetId: string = txResponse.id;
+		let fetchedAssetId: string;
+		while (!fetchedAssetId) {
+			await new Promise((r) => setTimeout(r, 2000));
+			const gqlResponse = await getGQLData({
+				ids: [assetId],
+				tagFilters: null,
+				uploaders: null,
+				cursor: null,
+				reduxCursor: null,
+				cursorObject: null,
+				useArweavePost: true,
+			});
+
+			if (gqlResponse && gqlResponse.data.length) {
+				logValue(`Fetched Transaction`, gqlResponse.data[0].node.id, 0);
+				fetchedAssetId = gqlResponse.data[0].node.id;
+			} else {
+				logValue(`Transaction Not Found`, assetId, 0);
+			}
+		}
+
+		const contractId = await createContract(poolClient, { assetId: assetId });
+		if (contractId) {
+			logValue(`Deployed Contract`, contractId, 0);
+			return contractId;
+		} else {
+			return null;
+		}
+	} catch (e: any) {
+		throw new Error(e);
+	}
+}

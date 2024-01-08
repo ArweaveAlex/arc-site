@@ -1,10 +1,12 @@
 import { store } from 'store';
 import * as cursorActions from 'store/cursors/actions';
 
-import { CURSORS, GATEWAYS, PAGINATOR } from 'helpers/config';
+import { CURSORS, GATEWAYS, PAGINATORS } from 'helpers/config';
 import { AGQLResponseType, CursorObjectKeyType, GQLArgsType, GQLNodeResponseType } from 'helpers/types';
 
 export async function getGQLData(args: GQLArgsType): Promise<AGQLResponseType> {
+	const paginator = args.paginator ? args.paginator : PAGINATORS.default;
+
 	let data: GQLNodeResponseType[] = [];
 	let count: number = 0;
 	let nextCursor: string | null = null;
@@ -16,9 +18,7 @@ export async function getGQLData(args: GQLArgsType): Promise<AGQLResponseType> {
 	try {
 		const response = await fetch(`https://${args.gateway}/graphql`, {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
+			headers: { 'Content-Type': 'application/json' },
 			body: getQuery(args),
 		});
 		const responseJson = await response.json();
@@ -26,17 +26,17 @@ export async function getGQLData(args: GQLArgsType): Promise<AGQLResponseType> {
 			data = [...responseJson.data.transactions.edges];
 			count = responseJson.data.transactions.count ?? 0;
 
-			const lastResults: boolean = data.length < PAGINATOR || !responseJson.data.transactions.pageInfo.hasNextPage;
+			const lastResults: boolean = data.length < paginator || !responseJson.data.transactions.pageInfo.hasNextPage;
 
 			if (lastResults) nextCursor = CURSORS.end;
 			else nextCursor = data[data.length - 1].cursor;
 
-			return getGQLResponseObject(args, {
+			return {
 				data: data,
 				count: count,
 				nextCursor: nextCursor,
 				previousCursor: null,
-			});
+			};
 		} else {
 			return { data: data, count: count, nextCursor: nextCursor, previousCursor: null };
 		}
@@ -47,11 +47,28 @@ export async function getGQLData(args: GQLArgsType): Promise<AGQLResponseType> {
 }
 
 function getQuery(args: GQLArgsType): string {
+	const paginator = args.paginator ? args.paginator : PAGINATORS.default;
 	const ids = args.ids ? JSON.stringify(args.ids) : null;
-	const tagFilters = args.tagFilters ? JSON.stringify(args.tagFilters).replace(/"([^"]+)":/g, '$1:') : null;
+	const tagFilters = args.tagFilters
+		? JSON.stringify(args.tagFilters)
+				.replace(/"([^"]+)":/g, '$1:')
+				.replace(/"FUZZY_OR"/g, 'FUZZY_OR')
+		: null;
 	const owners = args.owners ? JSON.stringify(args.owners) : null;
-	const cursor = args.cursor ? `"${args.cursor}"` : null;
-	const count = args.gateway === GATEWAYS.goldsky && !args.cursor ? 'count' : '';
+	const cursor = args.cursor && args.cursor !== CURSORS.end ? `"${args.cursor}"` : null;
+
+	let fetchCount: string = `first: ${paginator}`;
+	let txCount: string = '';
+	let nodeFields: string = `data { size type } owner { address } block { height timestamp }`;
+	let order: string = '';
+
+	switch (args.gateway) {
+		case GATEWAYS.arweave:
+			break;
+		case GATEWAYS.goldsky:
+			txCount = `count`;
+			break;
+	}
 
 	const query = {
 		query: `
@@ -59,11 +76,13 @@ function getQuery(args: GQLArgsType): string {
                     transactions(
                         ids: ${ids},
                         tags: ${tagFilters},
-						first: ${PAGINATOR}
+						${fetchCount}
                         owners: ${owners},
                         after: ${cursor},
+						${order}
+						
                     ){
-					${count}
+					${txCount}
 					pageInfo {
 						hasNextPage
 					}
@@ -75,17 +94,7 @@ function getQuery(args: GQLArgsType): string {
                                 name 
                                 value 
                             }
-							data {
-								size
-								type
-							}
-							owner {
-								address
-							}
-							block {
-								height
-								timestamp
-							}
+							${nodeFields}
                         }
                     }
                 }

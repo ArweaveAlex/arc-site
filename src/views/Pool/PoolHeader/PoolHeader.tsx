@@ -7,11 +7,10 @@ import { formatAddress, formatCount, formatDate, PoolClient } from 'arcframework
 import { Button } from 'components/atoms/Button';
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
+import { PoolContribute } from 'components/organisms/PoolContribute';
 import { SocialShare } from 'components/organisms/SocialShare';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
-
-import { PoolContribute } from '../../../components/organisms/PoolContribute';
 
 import * as S from './styles';
 import { IProps } from './types';
@@ -116,13 +115,13 @@ export default function PoolHeader(props: IProps) {
 				<S.Header>
 					<h2>{language.about}</h2>
 				</S.Header>
-				<S.LDBody>{props.description ? parse(props.description) : null}</S.LDBody>
+				<S.LDBody className={'border-wrapper-alt'}>{props.description ? parse(props.description) : null}</S.LDBody>
 			</S.LongDescription>
 			<S.Header>
 				<h2>{language.contributions}</h2>
 			</S.Header>
 			<S.FlexTiles>
-				<S.Tile>
+				<S.Tile className={'border-wrapper'}>
 					<S.TileTitle>
 						<p>{language.totalContributed}</p>
 					</S.TileTitle>
@@ -133,13 +132,13 @@ export default function PoolHeader(props: IProps) {
 						</S.TContainer>
 					</S.TileData>
 				</S.Tile>
-				<S.Tile>
+				<S.Tile className={'border-wrapper'}>
 					<S.TileTitle>
 						<p>{language.artifactCount}</p>
 					</S.TileTitle>
 					<S.TileData>{getCount()}</S.TileData>
 				</S.Tile>
-				<S.ContributeTile>
+				<S.ContributeTile className={'border-wrapper'}>
 					<S.ContributeAction onClick={() => setShowContributeModal(true)} disabled={false}>
 						<S.ContributeLabel>
 							<S.ContributeLabel>
@@ -156,7 +155,7 @@ export default function PoolHeader(props: IProps) {
 							totalContributions={props.totalContributions ? props.totalContributions : null}
 							contributors={props.contributors ? props.contributors : null}
 							contribPercent={props.contribPercent ? props.contribPercent : null}
-							handleShowModal={() => setShowContributeModal(false)}
+							handleClose={() => setShowContributeModal(false)}
 						/>
 					)}
 				</S.ContributeTile>

@@ -8,32 +8,87 @@ import {
 	PoolClient,
 	PoolConfigClient,
 	UserClient,
-	ValidationType,
 } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
+import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { ASSETS, POOL_TEST_MODE } from 'helpers/config';
+import { getTurboCheckoutEndpoint, getTurboPriceWincEndpoint } from 'helpers/endpoints';
 import { language } from 'helpers/language';
+import { formatTurboAmount, formatUSDAmount, getARAmountFromWinc } from 'helpers/utils';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';
 import { IProps } from './types';
 
+const DEFAULT_AMOUNTS = [5, 10, 25, 50, 75];
+
 export default function PoolContribute(props: IProps) {
 	const arProvider = useArweaveProvider();
-	let userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
+	const userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
 
-	const [amount, setAmount] = React.useState<number>(0);
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [receivingPercent, setReceivingPercent] = React.useState<string | null>(null);
 
 	const [contributionResult, setContributionResult] = React.useState<NotificationResponseType | null>(null);
 
 	const [copied, setCopied] = React.useState<boolean>(false);
+
+	const [checkout, setCheckout] = React.useState<any>(null);
+	const [checkoutStep, setCheckoutStep] = React.useState<'amount' | 'payment'>('amount');
+
+	const [currency, _setCurrency] = React.useState<string>('usd');
+	const [amount, setAmount] = React.useState<number>(0);
+	const [customAmount, setCustomAmount] = React.useState<number>(0);
+	const [paymentSubmitted, setPaymentSubmitted] = React.useState<boolean>(false);
+
+	const [wincConversion, setWincConversion] = React.useState<number>(0);
+	const [fetchingConversion, setFetchingConversion] = React.useState<boolean>(false);
+
+	React.useEffect(() => {
+		(async function () {
+			if (currency && amount) {
+				setFetchingConversion(true);
+				try {
+					const priceResponse = await fetch(getTurboPriceWincEndpoint(currency, amount));
+					if (priceResponse.ok) {
+						const price = await priceResponse.json();
+						setWincConversion(getARAmountFromWinc(price.winc ? price.winc : 0));
+					}
+				} catch (e: any) {
+					console.error(e);
+				}
+				setFetchingConversion(false);
+			}
+		})();
+	}, [amount]);
+
+	React.useEffect(() => {
+		if (customAmount) setAmount(Number(customAmount));
+	}, [customAmount]);
+
+	React.useEffect(() => {
+		(async function () {
+			if (checkoutStep === 'payment' && amount && !getInvalidAmount().status && currency) {
+				const poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
+				const poolConfig = await poolConfigClient.initFromContract({ poolId: props.poolId });
+				try {
+					const checkoutResponse = await fetch(
+						getTurboCheckoutEndpoint(poolConfig.state.owner.pubkey, currency, amount)
+					);
+					if (checkoutResponse.ok) {
+						setCheckout(await checkoutResponse.json());
+					}
+				} catch (e: any) {
+					console.error(e);
+				}
+			}
+		})();
+	}, [checkoutStep]);
 
 	React.useEffect(() => {
 		(async function () {
@@ -42,17 +97,20 @@ export default function PoolContribute(props: IProps) {
 				contributors = (await getPoolById(props.poolId)).state.contributors;
 			}
 			if (arProvider.walletAddress && (props.contributors || contributors)) {
-				setReceivingPercent(
-					userClient.getReceivingPercent(
-						arProvider.walletAddress,
-						props.contributors ? props.contributors : contributors,
-						props.totalContributions,
-						amount
-					)
-				);
+				const priceResponse = await fetch(getTurboPriceWincEndpoint(currency, amount));
+				if (priceResponse.ok) {
+					const price = await priceResponse.json();
+					setReceivingPercent(
+						userClient.getReceivingPercent(
+							arProvider.walletAddress,
+							props.contributors ? props.contributors : contributors,
+							props.totalContributions,
+							price.winc
+						)
+					);
+				}
 			}
 		})();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [arProvider, arProvider.walletAddress, props.poolId, props.contributors, props.totalContributions, amount]);
 
 	const copyAddress = React.useCallback(async () => {
@@ -65,65 +123,31 @@ export default function PoolContribute(props: IProps) {
 		}
 	}, [props.poolId]);
 
-	async function handlePoolContribute(e: any) {
-		if (arProvider.availableBalance) {
-			e.preventDefault();
-			setLoading(true);
-			let poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
-			let poolConfig = await poolConfigClient.initFromContract({ poolId: props.poolId });
-			if (poolConfig) {
-				if (arProvider.walletAddress === poolConfig.state.controller.pubkey) {
-					setContributionResult({ status: false, message: language.operatorContributionsRestricted });
-				} else {
+	async function handleSubmit() {
+		if (checkout && checkout.paymentSession && checkout.paymentSession.url && amount && currency && arProvider.wallet) {
+			const response = await fetch(getTurboPriceWincEndpoint(currency, amount));
+			if (response.ok) {
+				try {
+					setLoading(true);
+					const wincAmount = (await response.json()).winc;
+					const poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
+					const poolConfig = await poolConfigClient.initFromContract({ poolId: props.poolId });
 					poolConfig.walletKey = 'use_wallet';
-					let poolClient = new PoolClient({ poolConfig });
-					setContributionResult(
-						await poolClient.handlePoolContribute({ amount: amount, availableBalance: arProvider.availableBalance })
-					);
+					const poolClient = new PoolClient({ poolConfig });
+					setContributionResult(await poolClient.handlePoolContribute({ wincAmount: wincAmount }));
+					window.open(checkout.paymentSession.url, '_blank');
+					setLoading(false);
+					setPaymentSubmitted(true);
+				} catch (e: any) {
+					console.error(e);
 				}
-			} else {
-				setContributionResult({ status: false, message: language.errorOccurred });
-			}
-			setLoading(false);
-		}
-	}
-
-	function getAvailableBalance() {
-		if (!arProvider.walletAddress) {
-			return <p>{language.walletNotConnected}</p>;
-		} else {
-			if (arProvider.availableBalance) {
-				return (
-					<>
-						<S.AvailableBalance>{language.availableBalance}:&nbsp;</S.AvailableBalance>
-						<S.BalanceAmount>{arProvider.availableBalance.toFixed(2)}&nbsp;</S.BalanceAmount>
-						<S.ARTokens>{language.arTokens}</S.ARTokens>
-					</>
-				);
-			} else {
-				if (arProvider.availableBalance === 0) {
-					return (
-						<>
-							<S.AvailableBalance>{language.availableBalance}:&nbsp;</S.AvailableBalance>
-							<S.BalanceAmount>{0}&nbsp;</S.BalanceAmount>
-							<S.ARTokens>{language.arTokens}</S.ARTokens>
-						</>
-					);
-				}
-				return <p>{language.fetchingBalance}&nbsp;...</p>;
 			}
 		}
 	}
 
-	function getInvalidForm(): ValidationType {
-		if (!arProvider.availableBalance) {
-			return { status: false, message: null };
-		} else {
-			if (amount > arProvider.availableBalance) {
-				return { status: true, message: language.amountExceedsBalance };
-			}
-			return { status: false, message: null };
-		}
+	function handleGoBack() {
+		setCheckout(null);
+		setCheckoutStep('amount');
 	}
 
 	function getReceivingPercent() {
@@ -132,7 +156,7 @@ export default function PoolContribute(props: IProps) {
 				<S.RPWrapper>
 					<span>{language.willBeReceiving}:</span>
 					<p>
-						~&nbsp;{receivingPercent}% {language.ofArtifactsCreated}.
+						~&nbsp;{receivingPercent}% {language.ofArtifactsCreated}
 					</p>
 				</S.RPWrapper>
 			);
@@ -141,8 +165,9 @@ export default function PoolContribute(props: IProps) {
 		}
 	}
 
-	function getDisabledSubmit() {
-		return getInvalidForm().status || loading || !arProvider.walletAddress || isNaN(amount) || amount <= 0;
+	function getInvalidAmount() {
+		if (amount && (amount < 5 || amount > 10000)) return { status: true, message: language.invalidAmountTurbo };
+		return { status: false, message: null };
 	}
 
 	function getSubheader() {
@@ -177,6 +202,129 @@ export default function PoolContribute(props: IProps) {
 		);
 	}
 
+	function getCheckoutStep() {
+		switch (checkoutStep) {
+			case 'amount':
+				return (
+					<S.MWrapper>
+						<S.DWrapper>
+							<S.DHeader>
+								<span>{language.amount}</span>
+							</S.DHeader>
+							<S.DElements>
+								{DEFAULT_AMOUNTS.map((defaultAmount: number, index: number) => {
+									return (
+										<Button
+											key={index}
+											type={'primary'}
+											label={formatUSDAmount(defaultAmount)}
+											handlePress={() => {
+												setAmount(defaultAmount);
+												setCustomAmount(0);
+											}}
+											active={Number(defaultAmount) === Number(amount)}
+											height={40}
+											width={125}
+										/>
+									);
+								})}
+							</S.DElements>
+						</S.DWrapper>
+						<S.CWrapper>
+							<FormField
+								label={`${language.customAmount} (${language.customAmountTurboInfo})`}
+								type={'number'}
+								value={customAmount}
+								onChange={(e: any) => setCustomAmount(e.target.value)}
+								disabled={false}
+								invalid={getInvalidAmount()}
+								sm
+							/>
+						</S.CWrapper>
+						<S.COWrapper className={'border-wrapper-alt'}>
+							<S.COHeader>
+								<span>{language.conversion}</span>
+							</S.COHeader>
+							<span>
+								{fetchingConversion
+									? `${language.fetching}...`
+									: `${formatUSDAmount(amount)} = ${formatTurboAmount(wincConversion)}`}
+							</span>
+						</S.COWrapper>
+						{arProvider.walletAddress && <S.RPWrapper>{getReceivingPercent()}</S.RPWrapper>}
+						<S.MActions>
+							<Button
+								type={'primary'}
+								label={language.cancel}
+								handlePress={props.handleClose}
+								disabled={false}
+								noMinWidth
+							/>
+							<Button
+								type={'alt1'}
+								label={language.next}
+								handlePress={() => setCheckoutStep('payment')}
+								disabled={amount <= 0 || getInvalidAmount().status || !currency || !arProvider.walletAddress}
+								loading={false}
+								formSubmit
+								noMinWidth
+							/>
+						</S.MActions>
+					</S.MWrapper>
+				);
+			case 'payment':
+				if (checkout && checkout.paymentSession && checkout.paymentSession.url) {
+					return (
+						<S.MWrapper>
+							<S.MInfo>
+								<p>{language.fundTurboPaymentHeader}</p>
+								<span>{language.fundTurboPaymentDetail}</span>
+							</S.MInfo>
+							<S.DWrapper>
+								<S.DHeader>
+									<span>{`${language.amount}: ${formatUSDAmount(amount)}`}</span>
+								</S.DHeader>
+							</S.DWrapper>
+							<S.COWrapperAlt className={'border-wrapper-alt'}>
+								<S.COHeader>
+									<span>{language.conversion}</span>
+								</S.COHeader>
+								<span>
+									{fetchingConversion
+										? `${language.fetching}...`
+										: `${formatUSDAmount(amount)} = ${formatTurboAmount(wincConversion)}`}
+								</span>
+							</S.COWrapperAlt>
+							<S.MActions>
+								<Button
+									type={'primary'}
+									label={language.back}
+									handlePress={handleGoBack}
+									disabled={loading || contributionResult !== null || paymentSubmitted}
+									noMinWidth
+								/>
+								<Button
+									type={'alt1'}
+									label={language.goToPayment}
+									handlePress={handleSubmit}
+									disabled={loading || contributionResult !== null || paymentSubmitted}
+									loading={loading}
+									formSubmit
+									noMinWidth
+								/>
+							</S.MActions>
+						</S.MWrapper>
+					);
+				} else {
+					return (
+						<S.LWrapper>
+							<Loader sm relative />
+						</S.LWrapper>
+					);
+				}
+		}
+	}
+
 	return (
 		<>
 			{contributionResult && (
@@ -187,48 +335,15 @@ export default function PoolContribute(props: IProps) {
 				/>
 			)}
 
-			<Modal header={language.contributeTo} handleClose={() => props.handleShowModal()}>
+			<Modal header={language.contributeTo} handleClose={() => props.handleClose()}>
 				<S.ModalWrapper>
 					<S.Header>
 						<S.HeaderFlex>
 							<S.Header1>{props.header}</S.Header1>
 						</S.HeaderFlex>
 						{getSubheader()}
-						<S.BalanceWrapper>{getAvailableBalance()}</S.BalanceWrapper>
-						{props.contribPercent && (
-							<S.Warning>
-								<p>{language.contributionPercentageMessage(props.contribPercent)}</p>
-							</S.Warning>
-						)}
 					</S.Header>
-					<S.Form onSubmit={(e) => handlePoolContribute(e)}>
-						<S.FormWrapper>
-							<S.FormContainer>
-								<FormField
-									type={'number'}
-									value={amount}
-									onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(parseFloat(e.target.value))}
-									disabled={loading || !arProvider.walletAddress}
-									invalid={getInvalidForm()}
-									endText={language.arTokens}
-								/>
-							</S.FormContainer>
-							{arProvider.walletAddress && <S.RPWrapper>{getReceivingPercent()}</S.RPWrapper>}
-						</S.FormWrapper>
-						<S.Message>
-							<p>{language.contributionMessage}</p>
-						</S.Message>
-						<S.SubmitWrapper>
-							<Button
-								label={language.submit}
-								type={'alt1'}
-								handlePress={(e) => handlePoolContribute(e)}
-								disabled={getDisabledSubmit()}
-								loading={loading}
-								formSubmit
-							/>
-						</S.SubmitWrapper>
-					</S.Form>
+					{getCheckoutStep()}
 				</S.ModalWrapper>
 			</Modal>
 		</>

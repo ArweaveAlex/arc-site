@@ -1,13 +1,20 @@
 import React from 'react';
-import { ArweaveWebWallet } from 'arweave-wallet-connector';
+import { randomBytes } from 'crypto-browserify';
 
-import { getBalanceEndpoint, ProfileType } from 'arcframework';
+import Arweave from 'arweave';
+import { bufferTob64Url } from 'arweave/node/lib/utils.js';
+import { ArweaveWebWallet } from 'arweave-wallet-connector';
+import { ArconnectSigner } from 'arbundles';
+
+import { getBalanceEndpoint } from 'arcframework';
 
 import { Modal } from 'components/molecules/Modal';
-import { getProfiles } from 'gql';
-import { AR_WALLETS, ASSETS, WALLET_PERMISSIONS } from 'helpers/config';
+import { getCurrentProfile } from 'gql';
+import { API_CONFIG, AR_WALLETS, ASSETS, GATEWAYS, WALLET_PERMISSIONS } from 'helpers/config';
+import { getTurboBalanceEndpoint } from 'helpers/endpoints';
 import { language } from 'helpers/language';
-import { WalletEnum } from 'helpers/types';
+import { ProfileType, WalletEnum } from 'helpers/types';
+import { getARAmountFromWinc } from 'helpers/utils';
 
 import * as S from './styles';
 
@@ -21,7 +28,9 @@ interface ArweaveContextState {
 	handleDisconnect: () => void;
 	walletModalVisible: boolean;
 	setWalletModalVisible: (open: boolean) => void;
-	arProfile: any;
+	profile: any;
+	turboBalance: number | string | null;
+	getTurboBalance: () => void;
 }
 
 interface ArweaveProviderProps {
@@ -44,7 +53,9 @@ const DEFAULT_CONTEXT = {
 	setWalletModalVisible(_open: boolean) {
 		console.error(`Make sure to render ArweaveProvider as an ancestor of the component that uses ARContext.Provider`);
 	},
-	arProfile: null,
+	profile: null,
+	turboBalance: null,
+	getTurboBalance() {},
 };
 
 const ARContext = React.createContext<ArweaveContextState>(DEFAULT_CONTEXT);
@@ -74,7 +85,8 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 	const [walletModalVisible, setWalletModalVisible] = React.useState<boolean>(false);
 	const [walletAddress, setWalletAddress] = React.useState<string | null>(null);
 	const [availableBalance, setAvailableBalance] = React.useState<number | null>(null);
-	const [arProfile, setArProfile] = React.useState<ProfileType | null>(null);
+	const [turboBalance, setTurboBalance] = React.useState<number | string | null>(null);
+	const [profile, setProfile] = React.useState<ProfileType | null>(null);
 
 	async function handleArConnect() {
 		if (!walletAddress) {
@@ -170,14 +182,55 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 
 	React.useEffect(() => {
 		(async function () {
-			if (walletAddress) {
-				const profile = (await getProfiles({ addresses: [walletAddress] }))[0];
-				if (profile) {
-					setArProfile(profile);
+			if (wallet && walletAddress) {
+				try {
+					setProfile(await getCurrentProfile({ address: walletAddress }));
+				} catch (e: any) {
+					console.error(e);
 				}
 			}
 		})();
-	}, [walletAddress]);
+	}, [wallet, walletAddress, walletType]);
+
+	async function getTurboBalance() {
+		if (wallet) {
+			try {
+				setTurboBalance(`${language.loading}...`);
+				const arweave = Arweave.init({
+					host: GATEWAYS.arweave,
+					protocol: API_CONFIG.protocol,
+					port: API_CONFIG.port,
+					timeout: API_CONFIG.timeout,
+					logging: API_CONFIG.logging,
+				});
+
+				const publicKey = await wallet.getActivePublicKey();
+				const nonce = randomBytes(16).toString('hex');
+				const buffer = Buffer.from(nonce);
+
+				const signer = new ArconnectSigner(wallet, arweave as any);
+				const signature = await signer.sign(buffer);
+				const b64UrlSignature = bufferTob64Url(Buffer.from(signature));
+
+				const result = await fetch(getTurboBalanceEndpoint(), {
+					headers: {
+						'x-nonce': nonce,
+						'x-public-key': publicKey,
+						'x-signature': b64UrlSignature,
+					},
+				});
+
+				if (result.ok) {
+					setTurboBalance(getARAmountFromWinc(Number((await result.json()).winc)));
+				} else {
+					setTurboBalance(0);
+				}
+			} catch (e: any) {
+				console.error(e);
+				setTurboBalance(null);
+			}
+		}
+	}
 
 	return (
 		<>
@@ -197,7 +250,9 @@ export function ArweaveProvider(props: ArweaveProviderProps) {
 					wallets,
 					walletModalVisible,
 					setWalletModalVisible,
-					arProfile,
+					profile,
+					turboBalance,
+					getTurboBalance,
 				}}
 			>
 				{props.children}

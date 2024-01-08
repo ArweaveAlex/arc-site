@@ -12,4 +12,5 @@ export interface IProps {
 	endText?: string;
 	error?: string | null;
 	testingCtx?: string;
+	required?: boolean;
 }

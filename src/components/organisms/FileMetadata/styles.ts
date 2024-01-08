@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { STYLING } from 'helpers/styling';
-
 export const Wrapper = styled.div``;
 
 export const C2 = styled.div`
@@ -47,9 +45,6 @@ export const C2Body = styled.div`
 export const ContentLine = styled.div`
 	width: 100%;
 	padding: 17.5px;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;
 `;
 

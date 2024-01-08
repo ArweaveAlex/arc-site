@@ -141,11 +141,19 @@ export type AGQLResponseType = {
 };
 
 export type ProfileType = {
+	txId: string;
+	channelTitle: string | null;
 	handle: string | null;
 	avatar: string | null;
+	walletAddress: string;
+	profileIndex: string | null;
+	banner: string | null;
 	twitter: string | null;
 	discord: string | null;
-	walletAddress: string;
+};
+
+export type FullProfileType = ProfileType & {
+	bio: string;
 };
 
 export type GQLArgsType = {
@@ -156,6 +164,7 @@ export type GQLArgsType = {
 	cursor: string | null;
 	reduxCursor: string | null;
 	cursorObjectKey: CursorObjectKeyType;
+	paginator?: number;
 };
 
 export type PagingType = {
@@ -180,4 +189,9 @@ export type UserBalancesType = {
 export type UserArtifactsArgsType = {
 	walletAddress: string;
 	fetchType: 'all' | 'bookmarks';
+};
+
+export type TagType = {
+	name: string;
+	value: string;
 };

@@ -6,7 +6,7 @@ import { STYLING } from 'helpers/styling';
 export const Wrapper = styled.div`
 	height: 100%;
 	width: 100%;
-	position: absolute;
+	position: fixed;
 	z-index: 11;
 	top: 0;
 	left: 0;
@@ -14,13 +14,14 @@ export const Wrapper = styled.div`
 	animation: ${open};
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<{ relative: boolean }>`
 	height: 50px;
 	width: 50px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	position: ${(props) => (props.relative ? 'relative' : 'fixed')};
+	top: ${(props) => (props.relative ? 'auto' : '50%')};
+	left: ${(props) => (props.relative ? 'auto' : '50%')};
+	transform: ${(props) => (props.relative ? 'translate(0, 0)' : 'translate(-50%, -50%)')};
+	margin: ${(props) => (props.relative ? 'auto' : '0')};
 	z-index: 3;
 `;
 

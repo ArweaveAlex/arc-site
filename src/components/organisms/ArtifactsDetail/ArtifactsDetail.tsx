@@ -2,11 +2,11 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { clearCursors } from 'store/cursors/actions';
 
-import { getTagValue, PAGINATOR, STORAGE, TAGS } from 'arcframework';
+import { getTagValue, STORAGE, TAGS } from 'arcframework';
 
 import { ArtifactsTable } from 'components/organisms/ArtifactsDetail/ArtifactsTable';
 import { getGQLData } from 'gql';
-import { GATEWAYS } from 'helpers/config';
+import { GATEWAYS, PAGINATORS } from 'helpers/config';
 import {
 	AGQLResponseType,
 	CursorObjectType,
@@ -67,10 +67,10 @@ export default function ArtifactsDetail(props: IProps) {
 				}
 
 				if (ids && ids.length > 0) {
-					for (let i = 0, j = 0; i < ids.length; i += PAGINATOR, j++) {
+					for (let i = 0, j = 0; i < ids.length; i += PAGINATORS.default, j++) {
 						paginatedIdsObject.push({
 							index: `${props.cursorObject.value}-${j}`,
-							ids: [...ids].slice(i, i + PAGINATOR),
+							ids: [...ids].slice(i, i + PAGINATORS.default),
 						});
 					}
 				} else {
@@ -91,9 +91,14 @@ export default function ArtifactsDetail(props: IProps) {
 		(async function () {
 			if (props.useIdPagination) {
 				if (paginatedIds && paginatedIds.length) {
-					const currentFetchIds = cursor
-						? paginatedIds.find((element: IdPaginatorType) => element.index === cursor).ids
-						: paginatedIds[0].ids;
+					let cursorObject: any;
+					if (cursor) {
+						cursorObject = paginatedIds.find((element: IdPaginatorType) => element.index === cursor);
+						if (!cursorObject) cursorObject = paginatedIds[0];
+					}
+
+					let currentFetchIds: any;
+					currentFetchIds = cursor ? (cursorObject && cursorObject.ids ? cursorObject.ids : []) : paginatedIds[0].ids;
 
 					setDetailData(
 						(await getGQLData({

@@ -30,7 +30,7 @@ export const HeaderContent = styled.div`
 
 export const SHWrapper = styled.div`
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	flex-wrap: wrap;
 	gap: 32.5px;
 	margin: 7.5px 0 0 0;
@@ -148,10 +148,6 @@ export const FlexTiles = styled.div`
 export const Tile = styled.div`
 	height: 100px;
 	width: 32.5%;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 15px;
 	position: relative;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
@@ -164,6 +160,9 @@ export const ContributeTile = styled(Tile)`
 	padding: 0;
 	background: none;
 	border: none;
+	button {
+		border: none;
+	}
 `;
 
 export const ContributeAction = styled.button`
@@ -251,12 +250,9 @@ export const Header = styled.div`
 export const LDBody = styled.div`
 	margin: 20px 0;
 	padding: 15px;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	color: ${(props) => props.theme.colors.font.primary.active.base};
 	font-size: ${(props) => props.theme.typography.size.base};
+	font-weight: ${(props) => props.theme.typography.weight.medium};
 	line-height: 1.5;
 	overflow-wrap: anywhere;
 	b {

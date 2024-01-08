@@ -34,8 +34,8 @@ export default function WalletConnect(props: { callback?: () => void }) {
 			setLabel(`${language.fetching}...`);
 		} else {
 			if (arProvider.walletAddress) {
-				if (arProvider.arProfile && arProvider.arProfile.handle) {
-					setLabel(arProvider.arProfile.handle);
+				if (arProvider.profile && arProvider.profile.handle) {
+					setLabel(arProvider.profile.handle);
 				} else {
 					setLabel(formatAddress(arProvider.walletAddress, false));
 				}
@@ -43,11 +43,11 @@ export default function WalletConnect(props: { callback?: () => void }) {
 				setLabel(language.connect);
 			}
 		}
-	}, [showWallet, arProvider.walletAddress, arProvider.arProfile]);
+	}, [showWallet, arProvider.walletAddress, arProvider.profile]);
 
 	function handlePress() {
 		if (arProvider.walletAddress) {
-			setShowDropdown(true);
+			setShowDropdown(!showDropdown);
 		} else {
 			arProvider.setWalletModalVisible(true);
 		}
@@ -84,12 +84,12 @@ export default function WalletConnect(props: { callback?: () => void }) {
 					<S.WalletDropdown className={'border-wrapper'}>
 						<S.DHeaderWrapper>
 							<S.AvatarWrapper>
-								{!arProvider.arProfile ||
-								!arProvider.arProfile.avatar ||
-								arProvider.arProfile.avatar === AR_PROFILE.defaultAvatar ? (
+								{!arProvider.profile ||
+								!arProvider.profile.avatar ||
+								arProvider.profile.avatar === AR_PROFILE.defaultAvatar ? (
 									<ReactSVG src={ASSETS.user} />
 								) : (
-									<S.Avatar src={getTxEndpoint(arProvider.arProfile.avatar)} />
+									<S.Avatar src={getTxEndpoint(arProvider.profile.avatar)} />
 								)}
 							</S.AvatarWrapper>
 							<S.DHeader>

@@ -76,7 +76,7 @@ export default function CollectionsManage() {
 	}
 
 	async function handleSave() {
-		if (arProvider.walletAddress) {
+		if (arProvider.wallet && arProvider.walletAddress) {
 			setLoading(true);
 			try {
 				let thumbnailImage = ASSETS.siteLogo;
@@ -101,7 +101,10 @@ export default function CollectionsManage() {
 					thumbnailMime: mimeTypeThumb,
 				};
 
-				const id = await mintProvider.mintClient.publishCollection({ collection: collection });
+				const id = await mintProvider.mintClient.publishCollection({
+					collection: collection,
+					wallet: arProvider.wallet,
+				});
 				logValue(`Deployed Collection`, id, 0);
 				setResponseId(id);
 				setCollectionResponse({

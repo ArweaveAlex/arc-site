@@ -1,4 +1,4 @@
-import { PoolType, TAGS } from 'arcframework';
+import { PoolType } from 'arcframework';
 
 import aboutHeaderLogoSVG from 'assets/about-header-logo.svg';
 import aboutInfoLogo1SVG from 'assets/about-info-logo-1.svg';
@@ -12,6 +12,7 @@ import addSVG from 'assets/add.svg';
 import allSVG from 'assets/all.svg';
 import arLogoSVG from 'assets/ar-logo.svg';
 import arconnectWalletPNG from 'assets/arconnect-wallet-logo.png';
+import arrowDownSVG from 'assets/arrow-down.svg';
 import arrowNextSVG from 'assets/arrow-next.svg';
 import arrowPreviousSVG from 'assets/arrow-previous.svg';
 import artifactSVG from 'assets/artifact.svg';
@@ -96,7 +97,7 @@ import { PoolManageView } from 'views/Pool/PoolManage/PoolManageView';
 export const APP = {
 	key: 'appVersion',
 	disclaimerShown: 'disclaimerShown',
-	version: '1.1.31',
+	version: '1.1.5',
 	poolConfig: 'pools.json',
 };
 
@@ -110,6 +111,7 @@ export const ASSETS = {
 	aboutStepsLogo4: aboutStepsLogo4SVG,
 	add: addSVG,
 	all: allSVG,
+	arrowDown: arrowDownSVG,
 	arrowNext: arrowNextSVG,
 	arrowPrevious: arrowPreviousSVG,
 	artifact: artifactSVG,
@@ -188,6 +190,120 @@ export const ASSETS = {
 	},
 };
 
+export const TAGS = {
+	keys: {
+		alexPoolId: 'Alex-Pool-Id',
+		ansTitle: 'Title',
+		ansDescription: 'Description',
+		ansTopic: 'Topic',
+		ansType: 'Type',
+		ansImplements: 'Implements',
+		application: 'Application',
+		appName: 'App-Name',
+		appType: 'App-Type',
+		appVersion: 'App-Version',
+		artifactName: 'Artifact-Name',
+		artifactSeries: 'Artifact-Series',
+		artifactType: 'Artifact-Type',
+		associationId: 'Association-Id',
+		associationSequence: 'Association-Sequence',
+		avatar: 'Avatar',
+		banner: 'Banner',
+		bookmarkIds: 'Bookmark-Ids-Tag',
+		bookmarkSearch: 'Alex-Bookmark-Search',
+		childAssets: 'Child-Assets',
+		creator: 'Creator',
+		dataProtocol: 'Data-Protocol',
+		dateCreated: 'Date-Created',
+		description: 'Description',
+		fileType: 'File-Type',
+		handle: 'Handle',
+		holderTitle: 'Holder-Title',
+		keywords: 'Keywords',
+		implements: 'Implements',
+		indexedBy: 'Indexed-By',
+		initialOwner: 'Initial-Owner',
+		initState: 'Init-State',
+		license: 'License',
+		name: 'Name',
+		poolId: 'Pool-Id',
+		poolName: 'Pool-Name',
+		profileImage: 'Profile-Image',
+		profileIndex: 'Profile-Index',
+		protocolName: 'Protocol-Name',
+		uploaderTxId: 'Uploader-Tx-Id',
+		collectionCode: 'Collection-Code',
+		contractSrc: 'Contract-Src',
+		contractManifest: 'Contract-Manifest',
+		contentType: 'Content-Type',
+		mediaIds: 'Media-Ids',
+		thumbnail: 'Thumbnail',
+		tweetId: 'Tweet-ID',
+		redditPostId: 'Reddit-Post-ID',
+		nostrEventId: 'Nostr-Event-ID',
+		timestamp: 'Timestamp',
+		title: 'Title',
+		topic: (topic: string) => `Topic:${topic}`,
+		type: 'Type',
+		collectionName: 'Collection-Name',
+		collectionDescription: 'Collection-Description',
+		renderWith: 'Render-With',
+	},
+	values: {
+		ansTypes: {
+			socialPost: 'social-post',
+			webPage: 'web-page',
+			image: 'image',
+			video: 'video',
+			music: 'music',
+			document: 'document',
+			file: 'file',
+			collection: 'collection',
+			article: 'article',
+		},
+		audioArtifactType: 'Alex-Audio',
+		application: 'Alex.',
+		appName: 'SmartWeaveContract',
+		appVersion: '0.3.0',
+		collection: 'Collection',
+		collectionTicker: 'COLLECTION',
+		contractManifest:
+			'{"evaluationOptions":{"sourceType":"redstone-sequencer","allowBigInt":true,"internalWrites":true,"unsafeClient":"skip","useConstructor":true}}',
+		defaultArtifactType: 'Alex-Default',
+		document: 'Document',
+		documentArtifactType: 'Alex-Document',
+		ebookArtifactType: 'Alex-Ebook',
+		holderTitle: 'sponsor',
+		imageArtifactType: 'Alex-Image',
+		indexer: 'ucm',
+		initState: {
+			name: (name: string) => `Artifact - ${name}`,
+			ticker: (assetId: string) => `ATOMIC-ASSET-${assetId}`,
+			title: (name: string) => `Alex Artifact - ${name}`,
+		},
+		license: 'x5UYiin_eRB0XCpZAkpduL0JIaXAUe9Bi2-RXGloBQI',
+		messagingArtifactType: 'Alex-Messaging',
+		newsArtifactType: 'Alex-News-Article',
+		nostrEventArtifactType: 'Alex-Nostr-Event',
+		redditThreadArtifactType: 'Alex-Reddit-Thread',
+		webpageArtifactType: 'Alex-Webpage',
+		videoArtifactType: 'Alex-Video',
+		profileVersions: {
+			'1': 'Account-0.3',
+		},
+		poolVersions: {
+			'1.2': 'Alex-Archiving-Pool-v1.2',
+			'1.4': 'Alex-Archiving-Pool-v1.4',
+			'1.5': 'Alex-Archiving-Pool-v1.5',
+		},
+		searchIndex: 'Alex-Search-Index-v1.0',
+		collectionAppType: 'Alex-Collection-v1.0',
+		poolIndex: 'Alex-Pool-Index-v1.0',
+		ansVersion: 'ANS-110',
+		ansType: 'token',
+	},
+};
+
 export const ARTIFACT_TYPES = {
 	[TAGS.values.newsArtifactType]: {
 		label: TAGS.values.newsArtifactType,
@@ -240,6 +356,11 @@ export const ARTIFACT_TYPES_DISPLAY = {
 		{ value: null, display: language.artifactTypesDisplay.files, icon: ASSETS.file },
 		{ value: null, display: language.artifactTypesDisplay.universities, icon: ASSETS.university },
 		{ value: null, display: language.artifactTypesDisplay.historical, icon: ASSETS.historical },
+		{
+			value: null,
+			display: language.artifactTypesDisplay.newsSources,
+			icon: ARTIFACT_TYPES[TAGS.values.newsArtifactType].icon,
+		},
 	],
 	platforms: [
 		{
@@ -265,10 +386,7 @@ export const ARTIFACT_TYPES_DISPLAY = {
 	],
 };
 
-export const AR_WALLETS = [
-	{ type: WalletEnum.arConnect, logo: ASSETS.wallets.arconnect },
-	{ type: WalletEnum.arweaveApp, logo: ASSETS.wallets.arweaveApp },
-];
+export const AR_WALLETS = [{ type: WalletEnum.arConnect, logo: ASSETS.wallets.arconnect }];
 
 export const WALLET_PERMISSIONS = ['ACCESS_ADDRESS', 'ACCESS_PUBLIC_KEY', 'SIGN_TRANSACTION', 'DISPATCH', 'SIGNATURE'];
 
@@ -554,8 +672,6 @@ export const CURSORS = {
 	end: 'END',
 };
 
-export const PAGINATOR = 100;
-
 export const GATEWAYS = {
 	arweave: 'arweave.net',
 	goldsky: 'arweave-search.goldsky.com',
@@ -563,4 +679,22 @@ export const GATEWAYS = {
 
 export const AR_PROFILE = {
 	defaultAvatar: 'OrG-ZG2WN3wdcwvpjz1ihPe4MI24QBJUpsJGIdL85wA',
+	defaultBanner: 'a0ieiziq2JkYhWamlrUCHxrGYnHWUAMcONxRmfkWt-k',
 };
+
+export const UPLOAD_CONFIG = {
+	node1: 'https://up.arweave.network',
+	node2: 'https://turbo.ardrive.io',
+	batchSize: 1,
+	chunkSize: 7500000,
+};
+
+export const STORAGE = {
+	none: 'N/A',
+};
+
+export const PAGINATORS = {
+	default: 100,
+};
+
+export const DEFAULT_COLLECTION_THUMBNAIL = '0zSu02XsjXSw8PSZGKIS3Qw01BNVfTOpExT6Z0L5uNo';

@@ -66,10 +66,6 @@ export const EWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background: ${(props) => props.theme.colors.container.alt3.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	animation: ${open} ${fadeIn2};
 `;
 
@@ -179,32 +175,79 @@ export const UploadingModalContainer = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	padding: 20px;
+	h2 {
+		font-size: 24px;
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+		margin: 0 0 10px 0;
+	}
 `;
 
 export const Message = styled.div`
-	margin: 20px 0 40px 0;
+	margin: 10px 0 0 0;
 	p {
 		line-height: 1.5;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
-		text-align: center;
 	}
 `;
 
 export const ModalBottomContainer = styled.div`
 	position: relative;
-	margin: 0 0 20px 0;
+	margin: 10px auto 0 auto;
 `;
 
-export const ModalLoadingContainer = styled.div`
-	margin: 0 0 20px 0;
+export const MAction = styled.div`
+	margin: 10px 0 0 0;
+`;
+
+export const ModalLoadingContainer = styled.div``;
+
+export const AContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 0 0 0;
+	animation: ${open} ${fadeIn2};
+`;
+
+export const AProgress = styled.div<{ percentage: string }>`
+	height: 33.5px;
+	width: 300px;
+	max-width: 67.5vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: ${(props) => props.theme.colors.container.alt5.background};
+	border-radius: 20px;
+	overflow: hidden;
+	position: relative;
+	span {
+		color: ${(props) => props.theme.colors.font.primary.base};
+		font-size: ${(props) => props.theme.typography.size.xSmall};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		line-height: 1.25;
+		position: relative;
+		z-index: 1;
+		display: block;
+		text-align: center;
+	}
+	> div {
+		height: 100%;
+		position: absolute;
+		left: 0;
+		width: ${(props) => props.percentage}%;
+		background: ${(props) => props.theme.colors.container.alt8.background};
+		transition: width 0.15s ease;
+	}
+`;
+
+export const APercentage = styled.span`
+	width: 20px;
 `;
 
 export const GFlexWrapper = styled.div`
@@ -232,6 +275,6 @@ export const GAddWrapper = styled.div`
 	flex-wrap: wrap;
 	gap: 15px;
 	button {
-		margin: 0 0 0 auto;
+		margin: 40px 0 0 auto;
 	}
 `;

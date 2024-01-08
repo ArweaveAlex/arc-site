@@ -26,7 +26,45 @@ arcpool help
 
 Expected Output:
 
-![](https://arweave.net/G0H0ODUr_P336-pXkjrG_7FBusFft3fgDT0XIfBAisk)
+```
+Usage: arcpool [command] [arguments]
+
+Commands
+balance <pool> (Check the Arweave and Turbo balance for the pool wallet)
+create <pool> (Create a pool using pools.json)
+    Arguments
+    --control-wallet <wallet-path> (Specifies a wallet to use in the pool creation)
+    --image <image-path> (Specifies an image to use for pool)
+dlist (List all daemon mining processes)
+dstop <daemon> (Stop a daemon mining process by name)
+    Arguments
+    --dname <daemon> (Specifies the daemon name to stop)
+evolve <pool> (Evolve the pool contract)
+help (Display help text)
+init <pool> (Initialize pools.json)
+mine <pool> (Mine artifacts for a given pool)
+    Arguments
+    --source <all / files / twitter / wikipedia / reddit / news-api / nostr> (Specifies the data source)
+      Suboptions
+      files
+          --path <path> (Specifies a file or directory path to upload)
+          --meta-file <meta-path> (Specifies a metadata file config for uploads)
+          --clear (Clear local files that have been uploaded)
+      reddit
+          --method <search-term / subreddit / username> (Archiving method)
+              --search-term <term> (Search term)
+              --subreddit <subreddit> (Subreddit)
+              --username <username> (Username)
+      twitter
+          --method <mention-tag / username> (Archiving method)
+              --mention-tag <mention-tag> (Mention tag)
+              --username <username> (User account)
+          --content-moderation (Use content moderation on twitter mining)
+    --d (Run the miner as a daemon process)
+topics <pool> (Set the pool topics in pool state)
+    Arguments
+    --topic-values <topics> (Comma separated list of topics)
+```
 
 ### 2. Initiate the pool
 
@@ -54,7 +92,7 @@ Pool ID: **russia_ukraine_conflict**
    Example: **cd alex-test**
 3. Create the pool configuration file
    ```sh
-   arcpool init <POOL_ID>
+   arcpool init <pool>
    ```
    Example: **arcpool init russia_ukraine_conflict**
 
@@ -167,7 +205,7 @@ Below is a example of the **pools.json** file that has been initiated that now n
 To create a pool you will need to run one command with a few arguments passed in, including the name from when you initialized the pool, path to wallet you created, and a path to your pool header image.
 
 ```sh
-arcpool create <POOL_ID> --control-wallet <PATH_TO_WALLET.json> --image <PATH_TO_IMAGE>
+arcpool create <pool> --control-wallet <PATH_TO_WALLET.json> --image <PATH_TO_IMAGE>
 ```
 
 Example: **arcpool create russia_ukraine_conflict --control-wallet ../wallet.json --image ../pool-image.jpg**
@@ -176,46 +214,28 @@ Note the top of the logs for your pool wallets seed phrase. Inside your working 
 
 **Do not give this to anyone. Without this you have no way to recover your wallet should anything happen.**
 
-![](https://arweave.net/9at6rfK4Ej3XOsdE5FUMmv8PSiM55hwtUUZAG96fASA)
+```
+***Write the following seed phrase down***
+
+this will be your pool wallet seed phrase do not give it out
+
+***THERE IS NO WAY TO RECOVER YOUR SEED PHRASE SO WRITE IT DOWN AND KEEP IT OUT OF OTHERS HANDS***
+```
 
 If your pool has been successfully created, you will see a URL log in your terminal / command prompt at the end of the pool creation process. You will now be able to see your pool on the [Alex. Pools Page](https://alex.arweave.dev/#/pools). Note that it may take some time for the pool to appear.
 
-### 5. Fund the pool
+### View pool balances
 
-At the end of the pool creation process the CLI program will ask if you want to contribute funds from your control wallet. This is recommended as it will allow you to begin mining immediately. When the prompt asks, enter a decimal amount of $AR less than what you have in your wallet and hit enter. The funding portion will take some time because it is waiting for the transactions to process on the blockchain. Wait for the program to finish.
-
-If you decide to not fund the pool from your control wallet, you will need contributions to start mining. This can be a small amount to get started just to trigger the CLI to start transferring your funds to your pools Bundlr instance. We will only need to do this once and as more contributions are made it will be updated automatically as we run the mining service.
-
-Find and navigate to your pool on the [Alex. Pools Page](https://alex.arweave.dev/#/pools) and click the contribute button. Contribute a small amount of $$AR to your collection and wait for that contribution to display in the UI. Once that has registered the funds to the pool, go back to your terminal and run:
+To see how many credits are in the pool wallet for mining:
 
 ```sh
-arcpool fund <POOL_ID>
+arcpool balance <pool>
 ```
 
-Example: **arcpool fund russia_ukraine_conflict**
-
-Output Screenshot:
-
-![](https://arweave.net/z02hcBqrVeNbjYDIgyMImJVNv77QoSl2h73q0eksnwM)
-
-Please note that funding a Bundlr instance can take up to 30 minutes. To check the status of the funding you can use the command:
-
-```sh
-arcpool balance <POOL_ID>
-```
-
-Example: **arcpool balance russia_ukraine_conflict**
-
-Output Screenshot:
-
-![](https://arweave.net/K2WdwCIYaKtipmGEQJrcn5flTMlwMgmYGJrycv9VAhU)
-
-Once you see that you have Bundlr funds you can proceed to the mining processes.
-
-### Additional: Evolve the pool contract
+### Evolve the pool contract
 
 If a new pool contract source is deployed and a contract evolve is required, this can be done with the following command:
 
 ```sh
-arcpool evolve <POOL_ID>
+arcpool evolve <pool>
 ```

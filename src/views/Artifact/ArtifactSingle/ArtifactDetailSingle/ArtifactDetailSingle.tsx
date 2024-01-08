@@ -30,7 +30,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 				</S.Icon>
 			</S.IconWrapper>
 			<S.Content>
-				<S.ContentLine>
+				<S.ContentLine className={'border-wrapper-alt'}>
 					<S.InfoData>
 						<S.DataWrapper>
 							<S.DataLine>
@@ -40,7 +40,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 						</S.DataWrapper>
 					</S.InfoData>
 				</S.ContentLine>
-				<S.ContentLine>
+				<S.ContentLine className={'border-wrapper-alt'}>
 					<S.InfoData>
 						<S.DataWrapper>
 							<S.DataLine>
@@ -54,13 +54,13 @@ export default function ArtifactDetailSingle(props: IProps) {
 						</S.DataWrapper>
 					</S.InfoData>
 				</S.ContentLine>
-				<S.ContentLine>
+				<S.ContentLine className={'border-wrapper-alt'}>
 					<S.InfoData>
 						<span>{language.artifactDetail.title}</span>
 						<S.BodyData>{props.data.ansTitle}</S.BodyData>
 					</S.InfoData>
 				</S.ContentLine>
-				<S.ContentLine>
+				<S.ContentLine className={'border-wrapper-alt'}>
 					{copied && (
 						<S.RawDataCopied>
 							<p>{language.copied}</p>
@@ -79,7 +79,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 					</S.InfoData>
 				</S.ContentLine>
 				{JSON.parse(props.data.keywords).length > 1 && JSON.parse(props.data.keywords)[0] !== '' && (
-					<S.ContentLine>
+					<S.ContentLine className={'border-wrapper-alt'}>
 						<S.InfoData>
 							<span>{language.artifactDetail.tags}</span>
 							<S.Tags>
@@ -92,7 +92,7 @@ export default function ArtifactDetailSingle(props: IProps) {
 						</S.InfoData>
 					</S.ContentLine>
 				)}
-				<S.ContentLine>
+				<S.ContentLine className={'border-wrapper-alt'}>
 					<S.InfoData>
 						<span>{language.artifactDetail.fileInformation}</span>
 						<S.LinkWrapper>

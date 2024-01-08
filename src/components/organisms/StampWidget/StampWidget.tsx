@@ -1,7 +1,8 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import Stamps from '@permaweb/stampjs';
+
 import { InjectedArweaveSigner } from 'warp-contracts-plugin-signature';
+import Stamps from '@permaweb/stampjs';
 
 import { ARTIFACT_CONTRACT, NotificationResponseType } from 'arcframework';
 

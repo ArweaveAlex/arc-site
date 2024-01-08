@@ -120,7 +120,6 @@ export const Wrapper = styled.div<{ isView: boolean }>`
 	code {
 		padding: 2.5px 10px !important;
 		background: ${(props) => props.theme.colors.container.alt3.background} !important;
-		border: 1px solid ${(props) => props.theme.colors.border.primary} !important;
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 		font-weight: ${(props) => props.theme.typography.weight.regular} !important;
@@ -130,13 +129,11 @@ export const Wrapper = styled.div<{ isView: boolean }>`
 	pre {
 		padding: 10px !important;
 		background: ${(props) => props.theme.colors.container.alt3.background} !important;
-		border: 1px solid ${(props) => props.theme.colors.border.primary} !important;
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper} !important;
 		overflow: auto;
 		code {
 			padding: 0 !important;
 			background: ${(props) => props.theme.colors.transparent} !important;
-			border: 1px solid ${(props) => props.theme.colors.transparent} !important;
 			color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 			font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 			font-size: ${(props) => props.theme.typography.size.small} !important;
@@ -151,7 +148,6 @@ export const Wrapper = styled.div<{ isView: boolean }>`
 		background: ${(props) => props.theme.colors.container.primary.background};
 		border: 1px solid ${(props) => props.theme.colors.border.primary};
 		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-		box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	}
 `;
 

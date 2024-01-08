@@ -134,17 +134,17 @@ export default function PoolsCreateForm(props: IProps) {
 						</S.Header>
 						{arProvider && (
 							<>
-								<S.OwnerInfo>
+								<S.OwnerInfo className={'border-wrapper'}>
 									<S.DataLine>
 										<span>{`${language.address}:`}</span>
 										&nbsp;
 										<p>{ArcFramework.formatAddress(arProvider.walletAddress, true)}</p>
 									</S.DataLine>
-									{arProvider.arProfile && (
+									{arProvider.profile && (
 										<S.DataLine>
 											<span>{`${language.handle}:`}</span>
 											&nbsp;
-											<p>{arProvider.arProfile.handle}</p>
+											<p>{arProvider.profile.handle}</p>
 										</S.DataLine>
 									)}
 								</S.OwnerInfo>
@@ -158,13 +158,14 @@ export default function PoolsCreateForm(props: IProps) {
 					</S.Header>
 					<S.FormContent>
 						<S.Form>
-							<S.Fields>
+							<S.Fields className={'border-wrapper'}>
 								<FormField
 									label={language.title}
 									value={props.title}
 									onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setTitle(e.target.value as any)}
 									invalid={getInvalidTitle()}
 									disabled={props.loading}
+									required
 									sm
 								/>
 								<FormField
@@ -235,6 +236,7 @@ export default function PoolsCreateForm(props: IProps) {
 									onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => props.setDescription(e.target.value as any)}
 									invalid={{ status: false, message: null }}
 									disabled={props.loading}
+									required
 								/>
 								<S.TCheckbox>
 									<span>{language.poolTradeableOption}</span>

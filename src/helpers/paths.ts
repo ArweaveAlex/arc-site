@@ -7,22 +7,28 @@ export const NAV_PATHS = [
 	{
 		name: language.paths.about,
 		href: urls.about,
+		subpaths: [
+			{
+				name: language.paths.contribute,
+				href: urls.contribute,
+			},
+			{
+				name: language.paths.create,
+				href: urls.create,
+			},
+			{
+				name: language.paths.storage,
+				href: urls.storage,
+			},
+			{
+				name: language.paths.trade,
+				href: urls.trade,
+			},
+		],
 	},
 	{
-		name: language.paths.contribute,
-		href: urls.contribute,
-	},
-	{
-		name: language.paths.create,
-		href: urls.create,
-	},
-	{
-		name: language.paths.storage,
-		href: urls.storage,
-	},
-	{
-		name: language.paths.trade,
-		href: urls.trade,
+		name: language.paths.poolCreate,
+		href: urls.poolsCreate,
 	},
 	{
 		name: language.paths.pools,

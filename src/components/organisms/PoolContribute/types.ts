@@ -5,5 +5,5 @@ export interface IProps {
 	dateCreated: string | null;
 	contributors: any | null;
 	contribPercent: string | null;
-	handleShowModal: () => void;
+	handleClose: () => void;
 }

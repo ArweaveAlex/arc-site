@@ -16,7 +16,7 @@ export default function DocMiner(props: IProps) {
 
 	return (
 		<>
-			<S.Wrapper>
+			<S.Wrapper className={'border-wrapper-alt'}>
 				<S.Logo>
 					<ReactSVG src={ASSETS.cli} />
 				</S.Logo>

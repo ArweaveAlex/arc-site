@@ -10,7 +10,6 @@ import { useArweaveProvider } from 'providers/ArweaveProvider';
 import { Navigation } from './Navigation';
 import * as S from './styles';
 
-// TODO: bundler balances
 export default function PoolManageMine() {
 	const { id } = useParams();
 
@@ -36,7 +35,6 @@ export default function PoolManageMine() {
 	React.useEffect(() => {
 		(async function () {
 			if (poolClient) {
-				await poolClient.arClient.bundlr.ready();
 				setBalances(await poolClient.balances());
 			} else {
 				setBalances({
@@ -60,12 +58,7 @@ export default function PoolManageMine() {
 					setCurrentSource(MINING_SOURCES.find((source: NavigationComponentType) => source.label === label))
 				}
 			/>
-			<S.CMiner>
-				{/* {currentSource.component(
-					balances ? balances.poolBalance <= 0 || balances.bundlrBalance <= 0 || balances.transferBalance <= 0 : true
-				)} */}
-				{currentSource.component(false)}
-			</S.CMiner>
+			<S.CMiner>{currentSource.component(false)}</S.CMiner>
 		</S.Wrapper>
 	);
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
+
 import { InjectedArweaveSigner } from 'warp-contracts-plugin-signature';
 
 import { formatAddress, getTxEndpoint, log } from 'arcframework';
@@ -160,7 +161,7 @@ export default function OwnerCollectionsList(props: IProps) {
 	function getData() {
 		if (props.data !== null && props.data.length <= 0) {
 			return (
-				<S.EWrapper>
+				<S.EWrapper className={'border-wrapper-alt'}>
 					<S.ELogo>
 						<ReactSVG src={ASSETS.collections} />
 					</S.ELogo>

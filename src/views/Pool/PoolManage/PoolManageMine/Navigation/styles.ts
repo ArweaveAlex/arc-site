@@ -4,7 +4,7 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const NWrapper = styled.div`
-	height: auto;
+	height: fit-content;
 	width: 300px;
 	backdrop-filter: blur(2px);
 	animation: ${open} ${fadeIn2};
@@ -20,10 +20,6 @@ export const NContent = styled.div`
 	max-height: 700px;
 	width: 100%;
 	overflow: auto;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 20px 20px 10px 20px;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		padding: 0;

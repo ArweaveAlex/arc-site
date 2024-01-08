@@ -3,23 +3,25 @@ import { useParams } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
-import { SequenceType } from 'arcframework';
+import { ArweaveWebIrys } from '@irys/sdk/build/esm/web/tokens/arweave';
+
+import { PoolClient, PoolConfigClient, SequenceType } from 'arcframework';
 
 import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Button } from 'components/atoms/Button';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
-import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { Table } from 'components/molecules/Table';
-import { ASSETS } from 'helpers/config';
+import { ASSETS, POOL_TEST_MODE, UPLOAD_CONFIG } from 'helpers/config';
 import { language } from 'helpers/language';
 import { AlignType, FileMetadataType, UploadingStatusType } from 'helpers/types';
+import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import { IProps } from '../types';
 
-import { uploadFiles } from './miner';
+import { uploadFile } from './miner';
 import * as S from './styles';
 
 function FileMinerDropdown(props: {
@@ -293,13 +295,18 @@ function FileMinerDropdown(props: {
 								value={groupOption}
 								onChange={(e: React.ChangeEvent<HTMLInputElement>) => setGroupOption(e.target.value)}
 								invalid={{
-									status: false,
-									message: null,
+									status: props.availableGroups.includes(groupOption),
+									message: props.availableGroups.includes(groupOption) ? language.groupExists : null,
 								}}
 								disabled={false}
 								sm
 							/>
-							<Button type={'alt1'} label={language.add} handlePress={handleAddGroupOption} disabled={!groupOption} />
+							<Button
+								type={'alt1'}
+								label={language.add}
+								handlePress={handleAddGroupOption}
+								disabled={!groupOption || props.availableGroups.includes(groupOption)}
+							/>
 						</S.GAddWrapper>
 					</Modal>
 				)}
@@ -326,6 +333,8 @@ const SEQUENCE_ITERATION = 10;
 export default function FileMiner(props: IProps) {
 	const { id } = useParams();
 
+	const arProvider = useArweaveProvider();
+
 	const fileInputRef = React.useRef<any>(null);
 
 	const [uploadingStatus, setUploadingStatus] = React.useState<UploadingStatusType | null>(null);
@@ -333,6 +342,11 @@ export default function FileMiner(props: IProps) {
 	const [currentSelectedData, setCurrentSelectedData] = React.useState<FileMetadataType[]>([]);
 	const [metadataUpdated, setMetadataUpdated] = React.useState<boolean>(false);
 	const [availableGroups, setAvailableGroups] = React.useState<string[]>([]);
+
+	const [uploadIndex, setUploadIndex] = React.useState<number>(0);
+	const [uploadPercentage, setUploadPercentage] = React.useState<number>(0);
+	const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+
 	const [cursor, setCursor] = React.useState<string | null>(null);
 
 	const [sequence, setSequence] = React.useState<SequenceType>({
@@ -371,11 +385,34 @@ export default function FileMiner(props: IProps) {
 
 	async function handleUpload() {
 		try {
+			const poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
+			const poolConfig = await poolConfigClient.initFromContract({ poolId: id });
+			const poolClient = new PoolClient({ poolConfig });
+
 			setUploadingStatus('uploading');
-			await uploadFiles(id, selectedData);
+			let index = 0;
+			for (const data of selectedData) {
+				const irys = new ArweaveWebIrys({ url: UPLOAD_CONFIG.node2, wallet: { provider: arProvider.wallet } });
+				await irys.ready();
+
+				let uploader = irys.uploader.chunkedUploader;
+				uploader.setBatchSize(UPLOAD_CONFIG.batchSize);
+				uploader.setChunkSize(UPLOAD_CONFIG.chunkSize);
+
+				setUploadIndex(index + 1);
+				uploader.on('chunkUpload', (chunkInfo) => {
+					setUploadPercentage(Math.floor((chunkInfo.totalUploaded / data.file.size) * 100));
+				});
+				uploader.on('chunkError', (e) => {
+					console.error(e);
+				});
+				await uploadFile(poolClient, data, uploader, arProvider.wallet);
+				setUploadPercentage(0);
+				index++;
+			}
 			setUploadingStatus('complete');
 		} catch (e: any) {
-			console.error(e);
+			setErrorMessage(e.message ? e.message : language.errorOccurred);
 			setUploadingStatus('error');
 		}
 	}
@@ -498,7 +535,7 @@ export default function FileMiner(props: IProps) {
 			);
 		} else {
 			return (
-				<S.EWrapper>
+				<S.EWrapper className={'border-wrapper-alt'}>
 					<S.ELogo>
 						<ReactSVG src={ASSETS.file} />
 					</S.ELogo>
@@ -532,19 +569,33 @@ export default function FileMiner(props: IProps) {
 								: language.filesUploadingMessageComplete}
 						</p>
 					</S.Message>
+					{uploadingStatus === 'uploading' && (
+						<S.Message>
+							<p>{`${language.uploadingFile}: ${uploadIndex} ${language.of} ${selectedData.length}`}</p>
+						</S.Message>
+					)}
 					<S.ModalBottomContainer>
 						{uploadingStatus === 'uploading' ? (
 							<S.ModalLoadingContainer>
-								<Loader sm />
+								<S.AContainer>
+									<S.AProgress percentage={uploadPercentage.toString()}>
+										<div />
+										<span>{`${language.uploadStatus}: `}</span>
+										&nbsp;
+										<S.APercentage>{`${uploadPercentage.toString()}%`}</S.APercentage>
+									</S.AProgress>
+								</S.AContainer>
 							</S.ModalLoadingContainer>
 						) : (
-							<Button
-								type={'alt1'}
-								label={language.close}
-								handlePress={() => {
-									setUploadingStatus(null), setSelectedData([]);
-								}}
-							/>
+							<S.MAction>
+								<Button
+									type={'alt1'}
+									label={language.close}
+									handlePress={() => {
+										setUploadingStatus(null), setSelectedData([]);
+									}}
+								/>
+							</S.MAction>
 						)}
 					</S.ModalBottomContainer>
 				</>
@@ -572,7 +623,7 @@ export default function FileMiner(props: IProps) {
 						</S.DataTitle>
 						&nbsp;
 						<S.Data>
-							<p>{selectedData.length}</p>
+							<p>{`(${selectedData.length})`}</p>
 						</S.Data>
 					</S.DataWrapper>
 					<S.Actions>
@@ -593,8 +644,16 @@ export default function FileMiner(props: IProps) {
 					</S.Actions>
 				</S.Header>
 				{getTable()}
-				{uploadingStatus === 'error' && (
-					<Notification message={language.errorOccurred} type={'warning'} callback={() => setUploadingStatus(null)} />
+				{errorMessage && uploadingStatus === 'error' && (
+					<Notification
+						message={errorMessage}
+						type={'warning'}
+						callback={() => {
+							setUploadingStatus(null);
+							setErrorMessage(null);
+							setUploadPercentage(0);
+						}}
+					/>
 				)}
 				<input ref={fileInputRef} type={'file'} multiple onChange={handleFileChange} disabled={props.disabled} />
 			</S.Wrapper>

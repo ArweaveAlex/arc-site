@@ -76,22 +76,16 @@ export default function PoolRecentlyMinted(props: IProps) {
 				</S.NoArtifactsContainer>
 			);
 		} else {
-			return (
-				<>
-					{Array.from({ length: 5 }, (_, i) => i + 1).map((element: number) => {
-						return <S.Placeholder key={element} />;
-					})}
-				</>
-			);
+			return null;
 		}
 	}
 
-	return (
+	return props.data && props.data.length > 0 ? (
 		<S.Wrapper>
 			<S.Header>
 				<h2>{language.recentlyMintedArtifacts}</h2>
 			</S.Header>
 			<S.Body>{getData()}</S.Body>
 		</S.Wrapper>
-	);
+	) : null;
 }

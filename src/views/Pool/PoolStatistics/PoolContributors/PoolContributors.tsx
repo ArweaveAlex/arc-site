@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { formatAddress, PoolClient, UserClient } from 'arcframework';
 
 import { Button } from 'components/atoms/Button';
-import { ListPlaceholder } from 'components/atoms/ListPlaceholder';
 import { Modal } from 'components/molecules/Modal';
 import { getProfiles } from 'gql';
 import { language } from 'helpers/language';
@@ -110,14 +109,7 @@ export default function PoolContributors(props: IProps) {
 						<S.Header>
 							<h2>{language.contributors.top}</h2>
 						</S.Header>
-						{/* {topContributorList.length > 0 ? (
-							<S.BWrapper>
-								<S.Body>{getBody(topContributorList)}</S.Body>
-							</S.BWrapper>
-						) : (
-							<ListPlaceholder rowCount={ROW_COUNT} rowHeight={40} rowMargin={10} />
-						)} */}
-						<S.BWrapper>
+						<S.BWrapper className={'border-wrapper-alt'}>
 							<S.Body>{getBody(topContributorList)}</S.Body>
 						</S.BWrapper>
 					</S.CWrapper>
@@ -125,21 +117,14 @@ export default function PoolContributors(props: IProps) {
 						<S.Header>
 							<h2>{language.contributors.recent}</h2>
 						</S.Header>
-						{/* {recentContributorList.length > 0 ? (
-							<S.BWrapper>
-								<S.Body>{getBody(recentContributorList)}</S.Body>
-							</S.BWrapper>
-						) : (
-							<ListPlaceholder rowCount={ROW_COUNT} rowHeight={40} rowMargin={10} />
-						)} */}
-						<S.BWrapper>
+						<S.BWrapper className={'border-wrapper-alt'}>
 							<S.Body>{getBody(recentContributorList)}</S.Body>
 						</S.BWrapper>
 					</S.CWrapper>
 				</S.TWrapper>
 				<S.VWrapper>
 					<Button
-						type={'alt2'}
+						type={'primary'}
 						label={language.viewAllContributions}
 						handlePress={() => setShowViewAll(true)}
 						noMinWidth
@@ -148,11 +133,6 @@ export default function PoolContributors(props: IProps) {
 			</S.Wrapper>
 			{showViewAll && props.data && profiles && (
 				<Modal header={language.poolContributions(props.data.state.title)} handleClose={() => setShowViewAll(false)}>
-					{/* {fullContributorList.length > 0 ? (
-						<S.BFull>{fullContributorList}</S.BFull>
-					) : (
-						<ListPlaceholder rowCount={ROW_COUNT} rowHeight={40} rowMargin={10} />
-					)} */}
 					<S.BFull>
 						{fullContributorList.length ? (
 							fullContributorList

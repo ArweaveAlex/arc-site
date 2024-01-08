@@ -3,20 +3,12 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
-import {
-	ARTIFACT_CONTRACT,
-	formatDate,
-	formatKeywordString,
-	getTagValue,
-	PAGINATOR,
-	STORAGE,
-	TAGS,
-} from 'arcframework';
+import { ARTIFACT_CONTRACT, formatDate, formatKeywordString, getTagValue, STORAGE, TAGS } from 'arcframework';
 
 import { Checkbox } from 'components/atoms/Checkbox';
 import { IconButton } from 'components/atoms/IconButton';
 import { Table } from 'components/molecules/Table';
-import { ARTIFACT_TYPES, ASSETS } from 'helpers/config';
+import { ARTIFACT_TYPES, ASSETS, PAGINATORS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { AlignType, ArtifactTableRowType, TableHeaderType } from 'helpers/types';
 import * as urls from 'helpers/urls';
@@ -310,7 +302,7 @@ export default function ArtifactsTable(props: IProps) {
 			action={getAction()}
 			header={getHeader()}
 			data={data}
-			recordsPerPage={PAGINATOR}
+			recordsPerPage={PAGINATORS.default}
 			showPageNumbers={false}
 			handleCursorFetch={props.handleCursorFetch}
 			cursors={props.cursors}

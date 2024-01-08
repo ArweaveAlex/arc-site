@@ -4,7 +4,7 @@ import { IProps } from './types';
 export default function TextArea(props: IProps) {
 	return (
 		<S.Wrapper>
-			{props.label && <S.Label>{props.label}</S.Label>}
+			{props.label && <S.Label>{props.required ? `${props.label} *` : props.label}</S.Label>}
 			<S.TextArea
 				value={props.value}
 				onChange={props.onChange}

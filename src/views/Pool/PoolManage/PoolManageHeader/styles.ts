@@ -97,13 +97,9 @@ export const InfoWrapper = styled.div`
 `;
 
 export const H2 = styled.div`
-	min-height: 135.5px;
+	height: fit-content;
 	width: 361.5px;
 	max-width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 15px;
 	position: relative;
 `;
@@ -118,62 +114,6 @@ export const PoolBalance = styled.div`
 	}
 `;
 
-export const ProgressWrapper = styled.div`
-	position: relative;
-	display: flex;
-	justify-content: space-between;
-	margin: 20px 0 0 0;
-`;
-
-export const PIWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	p {
-		text-align: center;
-		margin: 10px 0 0 0;
-		font-size: ${(props) => props.theme.typography.size.xxSmall} !important;
-		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
-	}
-`;
-
-export const ProgressIndicator = styled.button<{ completed: boolean }>`
-	height: 40px;
-	width: 40px;
-	border: 1.5px solid ${(props) => props.theme.colors.border.alt4};
-	border-radius: 50%;
-	background: ${(props) =>
-		props.completed ? props.theme.colors.notification.success : props.theme.colors.button.primary.hover};
-	position: relative;
-	svg {
-		height: 15px;
-		width: 15px;
-		position: absolute;
-		top: 52.5%;
-		width: 50%;
-		transform: translate(-50%, -50%);
-	}
-	&:hover {
-		cursor: default;
-	}
-`;
-
-export const ProgressDivider = styled.div`
-	height: 2px;
-	width: 75px;
-	margin: 20px 0 0 0;
-	border-top: 2px solid ${(props) => props.theme.colors.border.alt4};
-`;
-
-export const PD1 = styled(ProgressDivider)`
-	margin: 20px 0 0 12.5px;
-`;
-
-export const PD2 = styled(ProgressDivider)`
-	margin: 20px 15px 0 0;
-`;
-
 export const FlexTiles = styled.div`
 	display: flex;
 	flex-wrap: wrap;
@@ -186,10 +126,6 @@ export const FlexTiles = styled.div`
 `;
 
 export const Tile = styled.div`
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 15px;
 	position: relative;
 	display: flex;
@@ -209,8 +145,12 @@ export const TileData = styled.div`
 	display: flex;
 	p {
 		font-size: ${(props) => props.theme.typography.size.base};
-		color: ${(props) => props.theme.colors.font.primary.active.base};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
+		max-width: 115px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 `;
 
@@ -240,7 +180,29 @@ export const IDCopied = styled.div`
 `;
 
 export const TileInfo = styled.div`
+	display: flex;
+	align-items: center;
 	margin: 2.5px 0 0 10px;
+	> * {
+		&:not(:last-child) {
+			margin: 0 7.5px 0 0;
+		}
+		&:last-child {
+			margin: 0;
+		}
+	}
+`;
+
+export const TAction = styled.div`
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translate(0, -50%);
+	button {
+		span {
+			font-size: ${(props) => props.theme.typography.size.xxSmall} !important;
+		}
+	}
 `;
 
 export const PoolBalanceInfo = styled.div`
@@ -248,7 +210,7 @@ export const PoolBalanceInfo = styled.div`
 		line-height: 1.5;
 		font-size: ${(props) => props.theme.typography.size.small};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
-		font-weight: ${(props) => props.theme.typography.weight.medium};
+		font-weight: ${(props) => props.theme.typography.weight.regular};
 	}
 `;
 
@@ -277,7 +239,7 @@ export const MText = styled.div`
 		line-height: 1.65;
 		font-size: ${(props) => props.theme.typography.size.small};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
-		font-weight: ${(props) => props.theme.typography.weight.medium};
+		font-weight: ${(props) => props.theme.typography.weight.regular};
 	}
 `;
 

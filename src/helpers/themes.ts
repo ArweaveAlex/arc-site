@@ -5,18 +5,18 @@ const DEFAULT = {
 	neutral2: '#F2F3F4',
 	neutral3: '#EEEEEE',
 	neutral4: '#3A3A3A',
-	neutral5: '#D0D7DE',
+	neutral5: '#F1F1F1',
 	neutral6: '#D9D9D9',
 	neutral7: '#959595',
 	neutral8: '#ACACAC',
-	neutral9: '#F6F8FA',
+	neutral9: '#F2F3F4',
 	neutral10: '#BABABA',
 	neutral11: '#000000',
 	neutral12: '#FAFAFA',
 	neutral13: '#F7F7F7',
 	neutral14: '#FFFFFF',
-	neutral15: '#536471',
-	neutral16: '#F0F9FE',
+	neutral15: '#A1A1A1',
+	neutral16: '#F7F7F7',
 	primary: '#003153',
 	primary2: '#265F85',
 	primary3: '#4C8CB8',
@@ -42,7 +42,7 @@ export const defaultTheme: DefaultTheme = {
 	scheme: 'light',
 	colors: {
 		border: {
-			primary: DEFAULT.neutral5,
+			primary: DEFAULT.neutral6,
 			alt1: DEFAULT.primary3,
 			alt2: DEFAULT.primary4,
 			alt3: DEFAULT.neutral6,
@@ -52,7 +52,7 @@ export const defaultTheme: DefaultTheme = {
 			primary: {
 				background: DEFAULT.neutral2,
 				border: DEFAULT.neutral2,
-				hover: DEFAULT.neutral5,
+				hover: DEFAULT.neutral6,
 				label: DEFAULT.neutral11,
 				active: {
 					background: DEFAULT.primary,
@@ -83,7 +83,7 @@ export const defaultTheme: DefaultTheme = {
 			},
 			alt2: {
 				background: DEFAULT.neutral1,
-				border: DEFAULT.neutral5,
+				border: DEFAULT.neutral6,
 				hover: DEFAULT.neutral2,
 				label: DEFAULT.primary,
 				active: {
@@ -92,7 +92,7 @@ export const defaultTheme: DefaultTheme = {
 					label: DEFAULT.neutral1,
 				},
 				disabled: {
-					background: DEFAULT.neutral13,
+					background: DEFAULT.neutral5,
 					border: DEFAULT.neutral3,
 					label: DEFAULT.neutral7,
 				},
@@ -148,6 +148,9 @@ export const defaultTheme: DefaultTheme = {
 			},
 			alt7: {
 				background: DEFAULT.neutral2,
+			},
+			alt8: {
+				background: DEFAULT.primary3,
 			},
 		},
 		font: {
@@ -253,7 +256,7 @@ export const defaultTheme: DefaultTheme = {
 			alt1: DEFAULT.overlay2,
 		},
 		shadow: {
-			primary: DEFAULT.neutral5,
+			primary: DEFAULT.neutral6,
 		},
 		table: {
 			placeholder: {

@@ -63,7 +63,7 @@ export default function Navigation() {
 
 		return (
 			<S.NWrapper>
-				<S.NContent>
+				<S.NContent className={'border-wrapper-alt'}>
 					<Title onClick={desktop ? () => {} : () => setOpen(!open)}>
 						<p>
 							{language.siteTitle} {language.docsTitle}

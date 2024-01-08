@@ -5,9 +5,10 @@ import * as cursorActions from 'store/cursors/actions';
 import * as searchActions from 'store/search/actions';
 import { ReduxSearchIndexUpdate } from 'store/search/ReduxSearchIndexUpdate';
 
-import { PAGINATOR, runSearch, SEARCH, splitArray } from 'arcframework';
+import { runSearch, SEARCH, splitArray } from 'arcframework';
 
 import { Search } from 'components/molecules/Search';
+import { PAGINATORS } from 'helpers/config';
 
 import { IProps } from './types';
 
@@ -36,7 +37,7 @@ export default function ArtifactsSearch(props: IProps) {
 
 	const handleIdUpdate = React.useCallback(
 		(searchResultIds: any[], cursorValue: string) => {
-			const splitIds = splitArray(searchResultIds, PAGINATOR);
+			const splitIds = splitArray(searchResultIds, PAGINATORS.default);
 			const searchReducerList = [];
 			for (let i = 0; i < splitIds.length; i++) {
 				searchReducerList.push({

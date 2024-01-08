@@ -82,7 +82,7 @@ function PoolTile(props: any) {
 					dateCreated={props.state.timestamp ? props.state.timestamp : null}
 					contributors={props.state.contributors ? props.state.contributors : null}
 					contribPercent={props.state.contribPercent ? props.state.contribPercent : null}
-					handleShowModal={() => setShowContributeModal(false)}
+					handleClose={() => setShowContributeModal(false)}
 				/>
 			)}
 		</>

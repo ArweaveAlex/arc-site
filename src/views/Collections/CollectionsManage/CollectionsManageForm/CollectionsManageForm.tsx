@@ -40,7 +40,7 @@ export default function CollectionsManageForm(props: IProps) {
 			</S.Header>
 			<S.FormContent>
 				<S.Form>
-					<S.Fields>
+					<S.Fields className={'border-wrapper'}>
 						<FormField
 							label={language.title}
 							value={props.title}

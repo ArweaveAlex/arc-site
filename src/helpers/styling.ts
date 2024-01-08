@@ -18,7 +18,7 @@ export const STYLING = {
 		navHeight: '70px',
 		footerHeight: '50px',
 		formHeightMin: '37.5px',
-		formHeightSm: '42.5px',
+		formHeightSm: '45px',
 		formHeightMax: '55px',
 		formWidthMin: '300px',
 		formWidthMax: '500px',

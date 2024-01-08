@@ -47,7 +47,7 @@ export default function Navigation(props: IProps) {
 		const Title: any = desktop ? S.NTitle : S.NTitleMobile;
 
 		return (
-			<S.NWrapper>
+			<S.NWrapper className={'border-wrapper-alt'}>
 				<S.NContent>
 					<Title onClick={desktop ? () => {} : () => setOpen(!open)}>
 						<p>{language.miningSource}</p>

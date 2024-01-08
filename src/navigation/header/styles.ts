@@ -8,7 +8,7 @@ export const Wrapper = styled.header`
 	width: 100%;
 	position: fixed;
 	top: 0;
-	z-index: 5;
+	z-index: 6;
 	background: ${(props) => props.theme.colors.navigation.header.background};
 `;
 
@@ -122,7 +122,43 @@ export const Menu = styled.div`
 	padding: 0 3.5px 0 0;
 `;
 
-export const Link = styled.div`
+export const SubpathWrapper = styled.div`
+	min-width: 250px;
+	position: absolute;
+	left: 20px;
+	margin: -12.5px 0 0 0;
+	padding: 10px;
+	display: none;
+	a {
+		padding: 0 !important;
+		justify-content: flex-start !important;
+		padding: 12.5px 5px !important;
+	}
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		display: block;
+		position: relative;
+		margin: 0;
+		padding: 0;
+		min-width: 0;
+		left: 15px;
+		a {
+			height: 60px;
+			width: 100vw;
+			justify-content: left;
+			padding: 0 20px;
+		}
+	}
+`;
+
+export const LinkWrapper = styled.div`
+	height: 100%;
+	position: relative;
+	&:hover {
+		${SubpathWrapper} {
+			display: block;
+			animation: ${open} ${fadeIn1};
+		}
+	}
 	a {
 		height: 100%;
 		display: flex;
@@ -130,13 +166,27 @@ export const Link = styled.div`
 		align-items: center;
 		padding: 0 20px;
 		font-weight: ${(props) => props.theme.typography.weight.medium};
+		svg {
+			width: 12.5px;
+			margin: 2.5px 0 0 10px;
+			fill: ${(props) => props.theme.colors.font.primary.active.base};
+		}
 		&:hover {
 			text-decoration: none;
 			color: ${(props) => props.theme.colors.font.primary.active.hover};
+			svg {
+				fill: ${(props) => props.theme.colors.font.primary.active.hover};
+			}
+			${SubpathWrapper} {
+				display: block;
+			}
 		}
 		&:focus {
 			text-decoration: none;
 			color: ${(props) => props.theme.colors.font.primary.active.hover};
+			svg {
+				fill: ${(props) => props.theme.colors.font.primary.active.hover};
+			}
 		}
 		@media (max-width: ${STYLING.cutoffs.initial}) {
 			height: 60px;
@@ -148,6 +198,9 @@ export const Link = styled.div`
 				background: ${(props) => props.theme.colors.container.primary.hover};
 			}
 		}
+	}
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		height: auto;
 	}
 `;
 

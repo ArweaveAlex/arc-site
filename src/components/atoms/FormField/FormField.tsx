@@ -30,7 +30,7 @@ export default function FormField(props: IProps) {
 			)}
 			<S.Wrapper sm={props.sm}>
 				<S.TWrapper>
-					{props.label && <S.Label>{props.label}</S.Label>}
+					{props.label && <S.Label>{props.required ? `${props.label} *` : props.label}</S.Label>}
 					{props.tooltip && (
 						<IconButton type={'primary'} src={ASSETS.info} handlePress={() => setShowTooltip(!showTooltip)} sm />
 					)}

@@ -36,9 +36,6 @@ export const Content = styled.div`
 	height: 100%;
 	width: 100%;
 	max-width: ${STYLING.cutoffs.max};
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	position: relative;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		background: ${(props) => props.theme.colors.transparent};
@@ -54,11 +51,6 @@ export const Info = styled.div`
 	display: flex;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-left: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	border-top-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		background: ${(props) => props.theme.colors.transparent};
 		border: none;
@@ -98,9 +90,6 @@ export const InfoData = styled.div`
 		max-width: 100%;
 		margin: 0 10px 10px 0;
 		padding: 10px !important;
-		border: 1px solid ${(props) => props.theme.colors.border.primary} !important;
-		border-radius: ${STYLING.dimensions.borderRadiusWrapper} !important;
-		background: ${(props) => props.theme.colors.container.primary.background};
 	}
 `;
 
@@ -173,11 +162,6 @@ export const Body = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 25px;
-	border-bottom-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	border-bottom-right-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-left: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		height: 50px;
 		margin: 0 auto;

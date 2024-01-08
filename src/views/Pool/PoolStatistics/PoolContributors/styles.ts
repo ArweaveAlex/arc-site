@@ -17,7 +17,7 @@ export const TWrapper = styled.div`
 `;
 
 export const CWrapper = styled.div`
-	height: 202.5px;
+	max-height: 202.5px;
 	width: 47.5%;
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		width: 100%;
@@ -37,7 +37,6 @@ export const Header = styled.div`
 export const Body = styled.div`
 	height: calc(100% - 50px);
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
 	animation: ${open} ${fadeIn2};
 	> * {
 		&:not(:last-child) {
@@ -49,16 +48,9 @@ export const Body = styled.div`
 	}
 `;
 
-export const BFull = styled(Body)`
-	padding: 0.5px 0;
-	border-top: 1.5px solid ${(props) => props.theme.colors.border.primary};
-	border-bottom: 1.5px solid ${(props) => props.theme.colors.border.primary};
-`;
+export const BFull = styled(Body)``;
 
 export const BWrapper = styled.div`
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	padding: 0 15px;
 `;
 

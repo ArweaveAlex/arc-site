@@ -1,29 +1,18 @@
-import { ARTIFACT_CONTRACT, CONTENT_TYPES, FALLBACK_IMAGE, TAGS } from 'arcframework';
+import { ArweaveWebIrys } from '@irys/sdk/build/esm/web/tokens/arweave';
+
+import { ARTIFACT_CONTRACT, CONTENT_TYPES, FALLBACK_IMAGE, TAGS, UPLOAD_CONFIG } from 'arcframework';
+
+import { DEFAULT_COLLECTION_THUMBNAIL } from 'helpers/config';
 
 import { CollectionUploadType } from './index';
 
-export function publishCollection(bundlr: any) {
+export function publishCollection(wallet: any) {
 	return async (collection: CollectionUploadType) => {
+		const irys = new ArweaveWebIrys({ url: UPLOAD_CONFIG.node2, wallet: { provider: wallet } });
+		await irys.ready();
+
 		let banner = null;
-		let thumbnail = null;
-
-		if (collection.banner) {
-			const tx = await bundlr.createTransaction(collection.banner, {
-				tags: [{ name: TAGS.keys.contentType, value: collection.bannerMime }],
-			});
-			await tx.sign();
-			tx.upload();
-			banner = tx.id;
-		}
-
-		if (collection.thumbnail) {
-			const tx = await bundlr.createTransaction(collection.thumbnail, {
-				tags: [{ name: TAGS.keys.contentType, value: collection.thumbnailMime }],
-			});
-			await tx.sign();
-			tx.upload();
-			thumbnail = tx.id;
-		}
+		let thumbnail = DEFAULT_COLLECTION_THUMBNAIL;
 
 		const tags = [
 			{ name: TAGS.keys.contentType, value: CONTENT_TYPES.json },
@@ -60,9 +49,9 @@ export function publishCollection(bundlr: any) {
 			tags.push({ name: TAGS.keys.collectionCode, value: collection.code });
 		}
 
-		const result = await bundlr.upload(JSON.stringify({ type: TAGS.values.collection, items: collection.items }), {
-			tags,
-		});
+		const data = JSON.stringify({ type: TAGS.values.collection, items: collection.items });
+
+		const result = await irys.upload(data as any, { tags: tags } as any);
 
 		return result.id;
 	};

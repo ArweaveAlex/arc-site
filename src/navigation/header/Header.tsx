@@ -45,11 +45,23 @@ export default function Header() {
 			<S.NC>
 				<S.NavPaths>
 					{NAV_PATHS.map((path, index) => (
-						<S.Link key={index}>
+						<S.LinkWrapper key={index}>
 							<Link to={path.href} onClick={() => setOpen(false)}>
 								{path.name}
+								{desktop && path.subpaths && <ReactSVG src={ASSETS.arrowDown} />}
 							</Link>
-						</S.Link>
+							{path.subpaths && (
+								<S.SubpathWrapper className={desktop ? 'border-wrapper' : ''}>
+									{path.subpaths.map((path, index) => {
+										return (
+											<Link key={index} to={path.href} onClick={() => setOpen(false)}>
+												{path.name}
+											</Link>
+										);
+									})}
+								</S.SubpathWrapper>
+							)}
+						</S.LinkWrapper>
 					))}
 				</S.NavPaths>
 				<S.SC>

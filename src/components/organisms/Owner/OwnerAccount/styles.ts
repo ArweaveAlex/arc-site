@@ -129,7 +129,7 @@ export const ShareWrapper = styled.div`
 
 export const URLCopied = styled.div`
 	position: absolute;
-	top: -25px;
+	top: -20px;
 	left: -100px;
 	z-index: 5;
 	background: ${(props) => props.theme.colors.container.primary.background};

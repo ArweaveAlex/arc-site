@@ -11,14 +11,14 @@
 - **Reddit**
 
 ```sh
-arcpool mine <POOL_ID> --source all
+arcpool mine <pool> --source all
 ```
 
 ## [Files](/#/docs/creating-a-pool/mining-artifacts#files)
 
 #### Renderer supported file types
 
-**Any file type is supported for upload as an artifact, however the following types are supported by the eser interface. Any file types not in the following list can still be found in the site, however they will only be available for download.**
+**Any file type is supported for upload as an artifact, however the following types are supported by the user interface. Any file types not in the following list can still be found in the site, however they will only be available for download.**
 
 - Images: **JPG, PNG, SVG, GIF, WEBP, BMP**
 - Ebooks: **EPUB**
@@ -29,13 +29,13 @@ arcpool mine <POOL_ID> --source all
 **Mine a file**
 
 ```sh
-arcpool mine <POOL_ID> --source files --path examplefile.jpg
+arcpool mine <pool> --source files --path examplefile.jpg
 ```
 
 **Mine a directory of files**
 
 ```sh
-arcpool mine <POOL_ID> --source files --path ./exampledirectory
+arcpool mine <pool> --source files --path ./exampledirectory
 ```
 
 **Optionally you can add metadata to your files by creating a metadata file that contains a JSON array with entries as follows, name this file whatever you want it will be passed as an argument.**
@@ -44,21 +44,21 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory
 [
 	{
 		"FileName": "examplefile.jpg",
-		"ArtifactName": "test name",
+		"ArtifactName": "Test Name",
 		"ArtifactGroup": "Group1",
 		"ArtifactGroupSequence": "1",
 		"MetaData": {
-			"ExampleMetaDataField1(whatever you want for example AddressWherePictureTaken)": "Here is some metadata about the file",
+			"ExampleMetaDataField1": "Here is some metadata about the file",
 			"ExampleMetaDataField2": "Here is some more metadata about the file"
 		}
 	},
 	{
 		"FileName": "examplefile2.jpg",
-		"ArtifactName": "test name 2",
+		"ArtifactName": "Test Name 2",
 		"ArtifactGroup": "Group2",
 		"ArtifactGroupSequence": "1",
 		"MetaData": {
-			"ExampleMetaDataField1(whatever you want for example AddressWherePictureTaken)": "Here is some metadata about the file",
+			"ExampleMetaDataField1": "Here is some metadata about the file",
 			"ExampleMetaDataField2": "Here is some more metadata about the file"
 		}
 	}
@@ -66,28 +66,28 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory
 ```
 
 - Fill out the metadata file as follows:
-  - **FileName**: the only mandatory field which ties this entry in the file to the filename being mined
-  - **ArtifactName**: an optional name for the artifact that will show up in Alex.
-  - **ArtifactGroup**: an optional grouping for the artifact, if multiple files have the same group they will be grouped together
-  - **ArtifactGroupSequence**: an ordering within the group, the lower numbers will display first in Alex.
-  - **MetaData**: can be any data fields you want to be stored alongside the file.
+  - **FileName**: (Required) Maps the metadata object to the file being mined
+  - **ArtifactName**: (Optional) Name of the artifact (Defaults to the file name)
+  - **ArtifactGroup**: (Optional) Group that the artifact will be categorized in, if multiple files have the same group they will be grouped together
+  - **ArtifactGroupSequence**: (Optional) Ordering within the group
+  - **MetaData**: (Optional) Any data fields you want to be stored alongside the file.
 
 **Mine a file with a metadata config**
 
 ```sh
-arcpool mine <POOL_ID> --source files --path examplefile.jpg --meta-file ./metafile.json
+arcpool mine <pool> --source files --path examplefile.jpg --meta-file ./metafile.json
 ```
 
 **Mine a directory of files with a metadata config**
 
 ```sh
-arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./metafile.json
+arcpool mine <pool> --source files --path ./exampledirectory --meta-file ./metafile.json
 ```
 
 **Lastly, when sending a directory, arcpool will store a list of files already sent and not send duplicates, to send all files again, use the --clear option**
 
 ```sh
-arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./metafile.json --clear
+arcpool mine <pool> --source files --path ./exampledirectory --meta-file ./metafile.json --clear
 ```
 
 ## [News API](/#/docs/creating-a-pool/mining-artifacts#news)
@@ -99,7 +99,7 @@ arcpool mine <POOL_ID> --source files --path ./exampledirectory --meta-file ./me
 **Mine news articles based on keywords configured in pools.json**
 
 ```sh
-arcpool mine <POOL_ID> --source news-api
+arcpool mine <pool> --source news-api
 ```
 
 ## [Reddit](/#/docs/creating-a-pool/mining-artifacts#reddit)
@@ -135,7 +135,7 @@ arcpool mine wildlife --source reddit --method user --username exampleusername
 **Mine a single Wikipedia article based on keywords configured in pools.json**
 
 ```sh
-arcpool mine <POOL_ID> --source wikipedia
+arcpool mine <pool> --source wikipedia
 ```
 
 ## [Twitter](/#/docs/creating-a-pool/mining-artifacts#twitter)
@@ -158,7 +158,7 @@ The mining process can begin in the directory containing the **pools.json** by r
 **Mine tweets (runs 100 tweets at a time)**
 
 ```sh
-arcpool mine <POOL_ID> --source twitter
+arcpool mine <pool> --source twitter
 ```
 
 **Mine all tweets based on user and tag**
@@ -166,17 +166,17 @@ arcpool mine <POOL_ID> --source twitter
 For example: mine all tweets with "@thealexarchive #TOPIC"
 
 ```sh
-arcpool mine <POOL_ID> --source twitter --method mention --mention-tag "@thealexarchive #TOPIC"
+arcpool mine <pool> --source twitter --method mention --mention-tag "@thealexarchive #TOPIC"
 ```
 
 **Mine all tweets ever from a particular user**
 
-For example: mine all tweets from SBF_FTX
+For example: mine all tweets from @thealexarchive
 
 - Do not include the @ in the **--username value**
 
 ```sh
-arcpool mine <POOL_ID> --source twitter --method user --username SBF_FTX
+arcpool mine <pool> --source twitter --method user --username thealexarchive
 ```
 
 ## [Nostr](/#/docs/creating-a-pool/mining-artifacts#nostr)
@@ -184,7 +184,7 @@ arcpool mine <POOL_ID> --source twitter --method user --username SBF_FTX
 **Mine common Nostr threads for posts related to the keywords**
 
 ```sh
-arcpool mine <POOL_ID> --source nostr
+arcpool mine <pool> --source nostr
 ```
 
 ## Checking mining process
@@ -198,7 +198,7 @@ If you wish to continually run a mining process, use daemon mode by passing the 
 #### Mine tweets into the pool from above, still runs for 20 seconds but the daemon mode will continue restarting the program infinitely. Note the **--d** flag.
 
 ```sh
-arcpool mine <POOL_ID> --source twitter --d
+arcpool mine <pool> --source all --d
 ```
 
 **To view all the daemon mode mining processes:**
@@ -207,14 +207,10 @@ arcpool mine <POOL_ID> --source twitter --d
 arcpool dlist
 ```
 
-Expected Output:
-
-![](https://arweave.net/jPx7l8816lKYpf4sstSKRtKVUV7cAXWFqlIglIjcFJQ)
-
 **Stop a pools daemon process by name:**
 
 ```sh
-arcpool dstop --dname <POOL_ID>
+arcpool dstop --dname <daemon>
 ```
 
 **To view logs for the mining processes install pm2:**

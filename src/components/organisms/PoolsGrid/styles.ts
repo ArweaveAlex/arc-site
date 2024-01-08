@@ -81,7 +81,7 @@ export const FOContent = styled.div`
 `;
 
 export const FOTitle = styled.div`
-	height: 50px;
+	height: 60px;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
 import * as ArcFramework from 'arcframework';
@@ -8,18 +7,17 @@ import { Button } from 'components/atoms/Button';
 import { ButtonLink } from 'components/atoms/ButtonLink';
 import { FormField } from 'components/atoms/FormField';
 import { IconButton } from 'components/atoms/IconButton';
-// import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { APP, ASSETS, POOL_TEST_MODE } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
+import { getTurboBalance } from 'helpers/utils';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: pool balance
 export default function PoolManageHeader(props: IProps) {
 	const arProvider = useArweaveProvider();
 
@@ -27,13 +25,7 @@ export default function PoolManageHeader(props: IProps) {
 	const [copied, setCopied] = React.useState<boolean>(false);
 	const [loading, setLoading] = React.useState<boolean>(false);
 
-	const [balances, setBalances] = React.useState<ArcFramework.PoolBalancesType | null>(null);
-
-	const [showTransfer, setShowTransfer] = React.useState<boolean>(false);
-	const [transferAmount, setTransferAmount] = React.useState<number>(0);
-
 	const [showPoolBalanceInfo, setShowPoolBalanceInfo] = React.useState<boolean>(false);
-	const [fundsNotification, setFundsNotification] = React.useState<ArcFramework.NotificationResponseType | null>(null);
 	const [evolveNotification, setEvolveNotification] = React.useState<ArcFramework.NotificationResponseType | null>(
 		null
 	);
@@ -51,33 +43,11 @@ export default function PoolManageHeader(props: IProps) {
 					let signedControlWallet = new ArcFramework.ArweaveClient().warpPluginInjectedArweaveSigner(controlWalletJwk);
 					await signedControlWallet.setPublicKey();
 
-					poolConfig.walletKey = window.arweaveWallet;
-					// poolConfig.walletKey = signedControlWallet;
-
 					setPoolClient(new ArcFramework.PoolClient({ poolConfig, signedPoolWallet: signedControlWallet }));
 				}
 			}
 		})();
 	}, [props.id, arProvider.walletAddress]);
-
-	React.useEffect(() => {
-		(async function () {
-			if (poolClient) {
-				await poolClient.arClient.bundlr.ready();
-				setBalances(await poolClient.balances());
-			} else {
-				setBalances({
-					totalBalance: 0,
-					arweaveBalance: 0,
-					bundlrBalance: 0,
-					usedFunds: 0,
-					userBalance: 0,
-					poolBalance: 0,
-					transferBalance: 0,
-				});
-			}
-		})();
-	}, [poolClient]);
 
 	const copyAddress = React.useCallback(async () => {
 		if (props.id) {
@@ -88,46 +58,6 @@ export default function PoolManageHeader(props: IProps) {
 			}
 		}
 	}, [props.id]);
-
-	// function getPoolBalance() {
-	// 	if (balances && balances.bundlrBalance > 0 && poolClient) {
-	// 		return poolClient.getARAmount(balances.bundlrBalance).toFixed(2);
-	// 	} else {
-	// 		return '0';
-	// 	}
-	// }
-
-	function getTransferDisabled() {
-		if (balances) {
-			return balances.poolBalance <= 0 || balances.transferBalance <= 0;
-		}
-		return true;
-	}
-
-	function calcTransferAmount() {
-		return transferAmount * 1e12;
-	}
-
-	async function transferFunds(e: any) {
-		e.preventDefault();
-		if (balances && poolClient && transferAmount) {
-			setLoading(true);
-			try {
-				await poolClient.fundBundlr(calcTransferAmount());
-				setFundsNotification({
-					status: true,
-					message: language.fundsTransferInitiatedMessage,
-				});
-			} catch (e: any) {
-				console.error(e);
-				setFundsNotification({
-					status: false,
-					message: language.fundsTransferFailedMessage,
-				});
-			}
-			setLoading(false);
-		}
-	}
 
 	async function downloadPoolConfig(e: any) {
 		e.preventDefault();
@@ -177,9 +107,6 @@ export default function PoolManageHeader(props: IProps) {
 		setLoading(false);
 	}
 
-	// const hasPoolBalance = balances && (balances.poolBalance > 0 || balances.bundlrBalance > 0);
-	// const hasBundlrBalance = balances && balances.bundlrBalance > 0;
-
 	function getSubheader() {
 		return (
 			<S.SubheaderFlex>
@@ -212,13 +139,6 @@ export default function PoolManageHeader(props: IProps) {
 		);
 	}
 
-	function getInvalidTransferAmount() {
-		if (!balances || !transferAmount) return { status: false, message: null };
-		if (calcTransferAmount() > balances.poolBalance)
-			return { status: true, message: language.amountExceedsMaxTransferAmount };
-		return { status: false, message: null };
-	}
-
 	return (
 		<>
 			{showPoolBalanceInfo && (
@@ -235,57 +155,7 @@ export default function PoolManageHeader(props: IProps) {
 							<h2>{props.title ? `${language.managePool}: ${props.title}` : null}</h2>
 							{getSubheader()}
 						</S.H1>
-						{/* <S.H2>
-							{balances ? (
-								<>
-									<S.PoolBalance>
-										<S.TileTitle>
-											<p>{`${language.poolBalance}:`}</p>
-										</S.TileTitle>
-										&nbsp;
-										<S.TileData>
-											<p>{getPoolBalance()}</p>
-											<S.TContainer>
-												<p>{language.arTokens}</p>
-											</S.TContainer>
-										</S.TileData>
-										<S.TileInfo>
-											<IconButton
-												type={'primary'}
-												src={ASSETS.info}
-												handlePress={() => setShowPoolBalanceInfo(!showPoolBalanceInfo)}
-												sm
-											/>
-										</S.TileInfo>
-									</S.PoolBalance>
-									<S.ProgressWrapper>
-										<S.PIWrapper>
-											<S.ProgressIndicator completed={hasPoolBalance}>
-												{hasPoolBalance && <ReactSVG src={ASSETS.checkmark} />}
-											</S.ProgressIndicator>
-											<p>{language.funded}</p>
-										</S.PIWrapper>
-										<S.PD1 />
-										<S.PIWrapper>
-											<S.ProgressIndicator completed={hasPoolBalance && hasBundlrBalance}>
-												{hasPoolBalance && hasBundlrBalance && <ReactSVG src={ASSETS.checkmark} />}
-											</S.ProgressIndicator>
-											<p>{language.transferred}</p>
-										</S.PIWrapper>
-										<S.PD2 />
-										<S.PIWrapper>
-											<S.ProgressIndicator completed={hasPoolBalance && hasBundlrBalance}>
-												{hasPoolBalance && hasBundlrBalance && <ReactSVG src={ASSETS.checkmark} />}
-											</S.ProgressIndicator>
-											<p>{language.ready}</p>
-										</S.PIWrapper>
-									</S.ProgressWrapper>
-								</>
-							) : (
-								<Loader sm />
-							)}
-						</S.H2> */}
-						<S.H2>
+						<S.H2 className={'border-wrapper'}>
 							<>
 								<S.PoolBalance>
 									<S.TileTitle>
@@ -293,10 +163,7 @@ export default function PoolManageHeader(props: IProps) {
 									</S.TileTitle>
 									&nbsp;
 									<S.TileData>
-										<p>-</p>
-										<S.TContainer>
-											<p>{language.arTokens}</p>
-										</S.TContainer>
+										<p>{getTurboBalance(arProvider.turboBalance)}</p>
 									</S.TileData>
 									<S.TileInfo>
 										<IconButton
@@ -305,36 +172,24 @@ export default function PoolManageHeader(props: IProps) {
 											handlePress={() => setShowPoolBalanceInfo(!showPoolBalanceInfo)}
 											sm
 										/>
+										<S.TAction>
+											<Button
+												type={'alt1'}
+												label={language.show}
+												handlePress={() => arProvider.getTurboBalance()}
+												disabled={arProvider.turboBalance !== null}
+												height={25}
+												noMinWidth
+											/>
+										</S.TAction>
 									</S.TileInfo>
 								</S.PoolBalance>
-								<S.ProgressWrapper>
-									<S.PIWrapper>
-										<S.ProgressIndicator completed={true}>
-											<ReactSVG src={ASSETS.checkmark} />
-										</S.ProgressIndicator>
-										<p>{language.funded}</p>
-									</S.PIWrapper>
-									<S.PD1 />
-									<S.PIWrapper>
-										<S.ProgressIndicator completed={true}>
-											<ReactSVG src={ASSETS.checkmark} />
-										</S.ProgressIndicator>
-										<p>{language.transferred}</p>
-									</S.PIWrapper>
-									<S.PD2 />
-									<S.PIWrapper>
-										<S.ProgressIndicator completed={true}>
-											<ReactSVG src={ASSETS.checkmark} />
-										</S.ProgressIndicator>
-										<p>{language.ready}</p>
-									</S.PIWrapper>
-								</S.ProgressWrapper>
 							</>
 						</S.H2>
 					</S.HeaderContent>
 					<S.InfoWrapper>
 						<S.FlexTiles>
-							<S.Tile>
+							<S.Tile className={'border-wrapper'}>
 								<S.TileTitle>
 									<p>{`${language.totalContributed}:`}</p>
 								</S.TileTitle>
@@ -355,13 +210,7 @@ export default function PoolManageHeader(props: IProps) {
 								label={language.evolvePool}
 								handlePress={handleEvolve}
 								disabled={loading}
-								noMinWidth
-							/>
-							<Button
-								type={'alt1'}
-								label={language.transferFunds}
-								handlePress={() => setShowTransfer(true)}
-								disabled={loading || getTransferDisabled()}
+								loading={loading}
 								noMinWidth
 							/>
 							<Button
@@ -421,60 +270,6 @@ export default function PoolManageHeader(props: IProps) {
 									noMinWidth
 								/>
 							</S.MActions>
-						</S.MForm>
-					</S.MWrapper>
-				</Modal>
-			)}
-			{showTransfer && (
-				<Modal header={language.transferFunds} handleClose={() => setShowTransfer(false)}>
-					<S.MWrapper>
-						<S.MHeader>
-							<S.MHeaderFlex>
-								<S.MH2>{language.transferPoolFunds}</S.MH2>
-							</S.MHeaderFlex>
-						</S.MHeader>
-						<S.MText>
-							<p>{language.transferPoolFundsInfo}</p>
-						</S.MText>
-						{balances && balances.poolBalance && (
-							<S.BalanceWrapper>
-								<S.AvailableBalance>{language.maxTransferAmount}:&nbsp;</S.AvailableBalance>
-								<S.BalanceAmount>{poolClient.getARAmount(balances.poolBalance).toFixed(2)}&nbsp;</S.BalanceAmount>
-								<S.ARTokens>{language.arTokens}</S.ARTokens>
-							</S.BalanceWrapper>
-						)}
-						<S.MForm
-							onSubmit={(e: any) => {
-								transferFunds(e);
-							}}
-						>
-							<S.MFormField>
-								<FormField
-									type={'number'}
-									value={transferAmount}
-									onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTransferAmount(parseFloat(e.target.value))}
-									disabled={loading || !arProvider.walletAddress}
-									invalid={getInvalidTransferAmount()}
-									endText={language.arTokens}
-								/>
-							</S.MFormField>
-							<S.MActions>
-								<Button
-									type={'alt1'}
-									label={language.confirmTransfer}
-									handlePress={(e: any) => {
-										transferFunds(e);
-									}}
-									formSubmit
-									disabled={loading || !transferAmount || transferAmount <= 0 || fundsNotification !== null}
-									loading={loading}
-								/>
-							</S.MActions>
-							{fundsNotification && (
-								<S.FundsNotificationMessage>
-									<p>{fundsNotification.message}</p>
-								</S.FundsNotificationMessage>
-							)}
 						</S.MForm>
 					</S.MWrapper>
 				</Modal>
