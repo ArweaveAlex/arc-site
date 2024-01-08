@@ -14,19 +14,20 @@ export default function Artifact() {
 
 	const [data, setData] = React.useState<ArtifactDetailType | null>(null);
 	const [loading, setLoading] = React.useState<boolean>(false);
+	const [error, setError] = React.useState<string | null>(null);
 
 	React.useEffect(() => {
 		(async function () {
 			if (id) {
 				windowUtils.scrollTo(0, 0);
+				setLoading(true);
 				try {
-					setLoading(true);
 					const artifact = await getArtifactById(id);
 					setData(artifact);
-					setLoading(false);
 				} catch (e: any) {
-					console.error(e);
+					setError(e.message);
 				}
+				setLoading(false);
 			}
 		})();
 	}, [id]);
@@ -38,7 +39,7 @@ export default function Artifact() {
 		} else {
 			return (
 				<div className={'wrapper-600'}>
-					<span>{language.artifactNotFound}</span>
+					<span>{error ? error : language.artifactNotFound}</span>
 				</div>
 			);
 		}
