@@ -7,4 +7,7 @@ export const Wrapper = styled.div`
 	margin: 0 auto;
 	animation: ${open} ${fadeIn2};
 	padding: 0 0 20px 0;
+	h2 {
+		margin: 0 0 10px 0;
+	}
 `;

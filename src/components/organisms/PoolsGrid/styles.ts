@@ -65,7 +65,7 @@ export const FOWrapper = styled.div`
 	width: 100%;
 	position: fixed;
 	top: 0;
-	z-index: 6;
+	z-index: 7;
 	background: ${(props) => props.theme.colors.overlay.alt1};
 	backdrop-filter: blur(3px);
 `;
