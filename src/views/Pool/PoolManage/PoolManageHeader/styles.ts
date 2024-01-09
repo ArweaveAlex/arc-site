@@ -147,6 +147,7 @@ export const TileData = styled.div`
 		font-size: ${(props) => props.theme.typography.size.base};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
+		line-height: 1.5;
 		max-width: 115px;
 		white-space: nowrap;
 		overflow: hidden;

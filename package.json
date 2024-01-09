@@ -22,7 +22,7 @@
 		"@irys/sdk": "^0.1.1",
 		"@permaweb/stampjs": "0.5.4",
 		"@types/react-router-dom": "^5.3.3",
-		"arcframework": "1.2.34",
+		"arcframework": "1.2.36",
 		"arweave-wallet-connector": "^1.0.2",
 		"html-react-parser": "^3.0.4",
 		"permaweb-orderbook": "1.6.4",
