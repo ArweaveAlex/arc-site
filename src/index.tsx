@@ -12,11 +12,8 @@ import { defaultTheme } from 'helpers/themes';
 import { ArweaveProvider } from 'providers/ArweaveProvider';
 import { MintProvider } from 'providers/MintProvider';
 import { OrderBookProvider } from 'providers/OrderBookProvider';
-// import { registerServiceWorker } from 'workers/registerServiceWorker';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-
-// registerServiceWorker();
 
 root.render(
 	<Provider store={store}>

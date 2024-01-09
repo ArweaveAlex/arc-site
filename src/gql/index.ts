@@ -22,7 +22,7 @@ export async function getGQLData(args: GQLArgsType): Promise<AGQLResponseType> {
 			body: getQuery(args),
 		});
 		const responseJson = await response.json();
-		if (responseJson.data.transactions.edges.length) {
+		if (responseJson.data && responseJson.data.transactions && responseJson.data.transactions.edges.length) {
 			data = [...responseJson.data.transactions.edges];
 			count = responseJson.data.transactions.count ?? 0;
 
@@ -31,12 +31,12 @@ export async function getGQLData(args: GQLArgsType): Promise<AGQLResponseType> {
 			if (lastResults) nextCursor = CURSORS.end;
 			else nextCursor = data[data.length - 1].cursor;
 
-			return {
+			return getGQLResponseObject(args, {
 				data: data,
 				count: count,
 				nextCursor: nextCursor,
 				previousCursor: null,
-			};
+			});
 		} else {
 			return { data: data, count: count, nextCursor: nextCursor, previousCursor: null };
 		}
@@ -66,7 +66,7 @@ function getQuery(args: GQLArgsType): string {
 		case GATEWAYS.arweave:
 			break;
 		case GATEWAYS.goldsky:
-			txCount = `count`;
+			txCount = args.cursor ? '' : 'count';
 			break;
 	}
 

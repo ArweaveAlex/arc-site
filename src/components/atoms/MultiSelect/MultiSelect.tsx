@@ -34,7 +34,3 @@ export default function MultiSelect(props: IProps) {
 		</S.Wrapper>
 	);
 }
-
-// <S.Option key={index} onClick={() => handleChange(option)} active={props.values.includes(option)} disabled={props.disabled}>
-// 	{option}
-// </S.Option>
