@@ -162,7 +162,7 @@ export const defaultTheme: DefaultTheme = {
 				alt4: DEFAULT.primary3,
 				alt5: DEFAULT.primary4,
 				alt6: DEFAULT.neutral7,
-				alt7: DEFAULT.neutral8,
+				alt7: DEFAULT.neutral7,
 				alt8: DEFAULT.neutral11,
 				alt9: DEFAULT.neutral15,
 				alt10: DEFAULT.neutral5,

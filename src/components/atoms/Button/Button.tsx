@@ -87,7 +87,7 @@ export default function Button(props: IProps) {
 			height={props.height}
 			data-testid={props.testingCtx}
 		>
-			{props.loading ? `${language.loading} ...` : getLabel()}
+			{props.loading ? `${language.loading}...` : getLabel()}
 		</StyledButton>
 	);
 }
