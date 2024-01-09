@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 
-import { ARTIFACT_CONTRACT, formatDate, formatKeywordString, getTagValue, STORAGE, TAGS } from 'arcframework';
+import { ARTIFACT_CONTRACT, formatKeywordString, getTagValue, STORAGE, TAGS } from 'arcframework';
 
 import { Checkbox } from 'components/atoms/Checkbox';
 import { IconButton } from 'components/atoms/IconButton';
@@ -12,7 +12,7 @@ import { ARTIFACT_TYPES, ASSETS, PAGINATORS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { AlignType, ArtifactTableRowType, TableHeaderType } from 'helpers/types';
 import * as urls from 'helpers/urls';
-import { formatArtifactType } from 'helpers/utils';
+import { formatArtifactType, formatDate } from 'helpers/utils';
 
 import { ArtifactsFilter } from '../ArtifactsFilter';
 

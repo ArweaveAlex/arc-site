@@ -201,3 +201,4 @@ export function handleCursors(
 
 export * from './artifacts';
 export * from './profiles';
+export * from './search';

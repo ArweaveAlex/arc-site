@@ -17,6 +17,7 @@ const DEFAULT = {
 	neutral14: '#FFFFFF',
 	neutral15: '#A1A1A1',
 	neutral16: '#F7F7F7',
+	neutral17: '#707070',
 	primary: '#003153',
 	primary2: '#265F85',
 	primary3: '#4C8CB8',
@@ -107,7 +108,7 @@ export const defaultTheme: DefaultTheme = {
 			},
 			neutral: {
 				background: DEFAULT.neutral2,
-				hover: DEFAULT.neutral5,
+				hover: DEFAULT.neutral6,
 			},
 			overlay: {
 				background: DEFAULT.semiTransparentAlt1,
@@ -120,7 +121,7 @@ export const defaultTheme: DefaultTheme = {
 			},
 			background: DEFAULT.neutral1,
 			hover: DEFAULT.neutral9,
-			border: DEFAULT.neutral5,
+			border: DEFAULT.neutral6,
 			disabled: DEFAULT.neutral5,
 		},
 		container: {
@@ -162,7 +163,7 @@ export const defaultTheme: DefaultTheme = {
 				alt4: DEFAULT.primary3,
 				alt5: DEFAULT.primary4,
 				alt6: DEFAULT.neutral7,
-				alt7: DEFAULT.neutral7,
+				alt7: DEFAULT.neutral17,
 				alt8: DEFAULT.neutral11,
 				alt9: DEFAULT.neutral15,
 				alt10: DEFAULT.neutral5,
@@ -257,6 +258,7 @@ export const defaultTheme: DefaultTheme = {
 		},
 		shadow: {
 			primary: DEFAULT.neutral6,
+			alt1: DEFAULT.neutral7,
 		},
 		table: {
 			placeholder: {

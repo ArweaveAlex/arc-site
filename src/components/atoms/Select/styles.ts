@@ -24,7 +24,7 @@ export const Action = styled.div``;
 export const Select = styled.select`
 	width: 100%;
 	pointer-events: ${(props) => (props.disabled ? `none` : `all`)};
-	font-size: ${(props) => props.theme.typography.size.small};
+	font-size: ${(props) => props.theme.typography.size.xSmall};
 	font-weight: ${(props) => props.theme.typography.weight.bold};
 	margin: 5px auto;
 	box-sizing: border-box;

@@ -81,7 +81,7 @@ export default function WalletConnect(props: { callback?: () => void }) {
 			<S.Wrapper>
 				<Button type={'alt2'} label={label} handlePress={handlePress} useMaxWidth />
 				{showDropdown && (
-					<S.WalletDropdown className={'border-wrapper'}>
+					<S.WalletDropdown className={'border-wrapper-alt2'}>
 						<S.DHeaderWrapper>
 							<S.AvatarWrapper>
 								{!arProvider.profile ||

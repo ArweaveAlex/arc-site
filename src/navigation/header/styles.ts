@@ -72,6 +72,20 @@ export const NC = styled.div`
 	}
 `;
 
+export const SWrapper = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 8.5%;
+	transform: translate(0%, -50%);
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		position: relative;
+		top: auto;
+		left: auto;
+		transform: translate(0, 0);
+		margin: 0 10px 0 0;
+	}
+`;
+
 export const NavPaths = styled.div`
 	height: 100%;
 	display: flex;

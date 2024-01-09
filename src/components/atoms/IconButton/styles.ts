@@ -11,9 +11,13 @@ export const Primary = styled.button<{
 	sm: boolean | undefined;
 	warning: boolean | undefined;
 	disabled: boolean | undefined;
+	dimensions: { wrapper: number; icon: number } | undefined;
 }>`
-	height: auto;
-	width: ${(props) => (props.sm ? '15px' : '17.5px')};
+	min-height: ${(props) => (props.dimensions ? `${props.dimensions.icon.toString()}px` : `auto`)};
+	height: ${(props) => (props.dimensions ? `${props.dimensions.icon.toString()}px` : `auto`)};
+	min-width: ${(props) => (props.dimensions ? `${props.dimensions.icon.toString()}px` : props.sm ? '15px' : '17.5px')};
+	width: ${(props) => (props.dimensions ? `${props.dimensions.icon.toString()}px` : props.sm ? '15px' : '17.5px')};
+
 	color: inherit;
 	border: none;
 	padding: 0;
@@ -43,9 +47,7 @@ export const Primary = styled.button<{
 	}
 `;
 
-export const Alt1 = styled(Primary)<{
-	dimensions: { wrapper: number; icon: number } | undefined;
-}>`
+export const Alt1 = styled(Primary)`
 	height: ${(props) => (props.dimensions ? `${props.dimensions.wrapper.toString()}px` : `32.5px`)};
 	min-width: ${(props) => (props.dimensions ? `${props.dimensions.wrapper.toString()}px` : `32.5px`)};
 	display: flex;

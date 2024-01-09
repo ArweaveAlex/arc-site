@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { IconButton } from 'components/atoms/IconButton';
+import { Search } from 'components/molecules/Search';
 import { ASSETS, DOM } from 'helpers/config';
 import { NAV_PATHS } from 'helpers/paths';
 import * as urls from 'helpers/urls';
@@ -42,34 +43,39 @@ export default function Header() {
 
 	function navList() {
 		return (
-			<S.NC>
-				<S.NavPaths>
-					{NAV_PATHS.map((path, index) => (
-						<S.LinkWrapper key={index}>
-							<Link to={path.href} onClick={() => setOpen(false)}>
-								{path.name}
-								{desktop && path.subpaths && <ReactSVG src={ASSETS.arrowDown} />}
-							</Link>
-							{path.subpaths && (
-								<S.SubpathWrapper className={desktop ? 'border-wrapper' : ''}>
-									{path.subpaths.map((path, index) => {
-										return (
-											<Link key={index} to={path.href} onClick={() => setOpen(false)}>
-												{path.name}
-											</Link>
-										);
-									})}
-								</S.SubpathWrapper>
-							)}
-						</S.LinkWrapper>
-					))}
-				</S.NavPaths>
-				<S.SC>
-					<S.Connect show={true}>
-						<WalletConnect callback={() => setOpen(!open)} />
-					</S.Connect>
-				</S.SC>
-			</S.NC>
+			<>
+				<S.SWrapper>
+					<Search handleClose={() => setOpen(false)} />
+				</S.SWrapper>
+				<S.NC>
+					<S.NavPaths>
+						{NAV_PATHS.map((path, index) => (
+							<S.LinkWrapper key={index}>
+								<Link to={path.href} onClick={() => setOpen(false)}>
+									{path.name}
+									{desktop && path.subpaths && <ReactSVG src={ASSETS.arrowDown} />}
+								</Link>
+								{path.subpaths && (
+									<S.SubpathWrapper className={desktop ? 'border-wrapper-alt2' : ''}>
+										{path.subpaths.map((path, index) => {
+											return (
+												<Link key={index} to={path.href} onClick={() => setOpen(false)}>
+													{path.name}
+												</Link>
+											);
+										})}
+									</S.SubpathWrapper>
+								)}
+							</S.LinkWrapper>
+						))}
+					</S.NavPaths>
+					<S.SC>
+						<S.Connect show={true}>
+							<WalletConnect callback={() => setOpen(!open)} />
+						</S.Connect>
+					</S.SC>
+				</S.NC>
+			</>
 		);
 	}
 

@@ -22,6 +22,7 @@ export default function Root() {
 			<div id={DOM.modal} />
 			<div id={DOM.sideNavigation} />
 			<div id={DOM.notification} />
+			<div id={DOM.overlay} />
 			<Header />
 			<div id={DOM.subheader} />
 			<Routes />

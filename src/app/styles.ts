@@ -210,11 +210,16 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.colors.container.primary.background};
     box-shadow: 0 3.5px 10px 0 ${(props) => props.theme.colors.shadow.primary};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-    overflow: hidden;
   }
 
   .border-wrapper-alt {
     background: ${(props) => props.theme.colors.container.alt3.background};
+    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+  }
+
+  .border-wrapper-alt2 {
+    background: ${(props) => props.theme.colors.container.primary.background};
+    box-shadow: 0 2.5px 5px 0 ${(props) => props.theme.colors.shadow.alt1};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
   }
 

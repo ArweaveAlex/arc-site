@@ -9,5 +9,6 @@ export const Wrapper = styled.div`
 	padding: 0 0 20px 0;
 	h2 {
 		margin: 0 0 10px 0;
+		font-size: clamp(28px, 2.75vw, 32px);
 	}
 `;

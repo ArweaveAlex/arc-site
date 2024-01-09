@@ -110,7 +110,7 @@ export type CursorObjectType = {
 	value: string;
 };
 
-export type TagFilterType = { name: string; values: string[] };
+export type TagFilterType = { name: string; values: string[]; match?: string };
 
 export type GQLNodeResponseType = {
 	cursor: string | null;
