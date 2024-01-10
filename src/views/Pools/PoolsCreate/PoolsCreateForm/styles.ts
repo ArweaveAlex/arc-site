@@ -70,7 +70,7 @@ export const OwnerInfoWrapper = styled.div`
 `;
 
 export const OwnerInfo = styled.div`
-	padding: 20px 20px 0 20px;
+	padding: 20px 20px 1.5px 20px;
 	margin: 0 0 20px 0;
 `;
 
@@ -127,7 +127,7 @@ export const Form = styled.form`
 `;
 
 export const Fields = styled.div`
-	padding: 20px 20px 0 20px;
+	padding: 20px 20px 1.5px 20px;
 `;
 
 export const TCheckbox = styled.div`

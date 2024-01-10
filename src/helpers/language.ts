@@ -337,7 +337,7 @@ export const language = {
 		infoAction2: `Create a Pool`,
 	},
 	lastContribution: `Last Contribution`,
-	learnAboutCreating: `Learn about Creating`,
+	learnAboutCreating: `Learn about creating`,
 	library: {
 		header1: `Library`,
 		all: { title: `All` },
