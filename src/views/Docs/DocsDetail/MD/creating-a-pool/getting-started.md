@@ -2,9 +2,8 @@
 
 This documentation allows anyone to start their own pool and earn $AR. For a more high level overview of the Alex. Archive, please visit our [about page](https://alex.arweave.dev/#/about).
 
-An Arweave web wallet is needed to deploy your pool. You can get one here:
+An Arweave wallet is needed to deploy your pool. You can get one here:
 
-- [Arweave Wallet](https://docs.arweave.org/info/wallets/arweave-wallet)
 - [ArConnect](https://arconnect.io)
 
 ## Pool creation methods

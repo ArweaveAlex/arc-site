@@ -1,4 +1,4 @@
-# Creating a Pool from the UI
+# Creating a pool from the UI
 
 To start, connect your wallet and fill out the pool information [here](https://alex.arweave.dev/#/pools/create).
 
