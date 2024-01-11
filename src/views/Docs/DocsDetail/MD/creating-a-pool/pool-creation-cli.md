@@ -202,7 +202,7 @@ Below is a example of the **pools.json** file that has been initiated that now n
 
 ### 4. Create the pool
 
-To create a pool you will need to run one command with a few arguments passed in, including the name from when you initialized the pool, path to wallet you created, and a path to your pool header image.
+To create a pool you will need to run one command with a few arguments passed in, including the name from when you initialized the pool, path to your Arweave wallet, and a path to your pool header image.
 
 ```sh
 arcpool create <pool> --control-wallet <PATH_TO_WALLET.json> --image <PATH_TO_IMAGE>

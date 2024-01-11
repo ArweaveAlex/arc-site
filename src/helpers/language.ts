@@ -9,7 +9,7 @@ export const language = {
 		steps: {
 			list: [
 				{
-					header: `Creating Pools`,
+					header: `Creating pools`,
 					description: `An operator creates a pool. A pool operator can be a historical institution, or anyone that is interested in preserving a topic.`,
 					action: {
 						label: `Learn About Creating`,
@@ -17,19 +17,19 @@ export const language = {
 					},
 				},
 				{
-					header: `Contributing to Pools`,
+					header: `Contributing to pools`,
 					description: `Users contribute Arweave tokens ($AR) to pools that they find valuable. These contributions pay for the storage space on Arweave.`,
 					action: {
-						label: `Learn About Contributing`,
+						label: `Learn about contributing`,
 						href: `/contribute/`,
 					},
 				},
 				{
-					header: `Preserve Artifacts`,
+					header: `Preserve artifacts`,
 					description: `Pool operators can now collect artifacts. Documents, books, images, audio clips, videos, etc. within the pool are uploaded to Arweave. Since the artifacts are stored on Arweave, they cannot be changed or removed by anyone.`,
 				},
 				{
-					header: `Collect Artifacts`,
+					header: `Collect artifacts`,
 					description: `Contributors will be made the sponsor of an amount of digital artifacts equal to the percentage of their $AR contribution (relative to the total $AR contributed).`,
 				},
 			],
@@ -38,7 +38,7 @@ export const language = {
 		subHeader2: `In order for humanity to move forward, we need to clearly see our past.`,
 		detail: {
 			artifactTypes: `Artifacts are preserved from:`,
-			action: `Learn How to Create`,
+			action: `Learn how to create`,
 			section1: {
 				header: 'Alex.',
 				description: 'A decentralized archival platform that preserves human history and culture digitally. ',
@@ -46,12 +46,12 @@ export const language = {
 					'Alex. leverages the immutable and permanent data storage of Arweave. Institutions and creators are incentivized to publicly archive digital content by allowing anyone to become sponsors of their digital <b>artifacts</b>. Artifacts are grouped together into <b>pools</b>.',
 			},
 			section2: {
-				header: 'What is a Pool?',
+				header: 'What is a pool?',
 				description: 'A pool is a topic, event, or idea that can be digitally and publicly archived.',
 				footer: 'Anyone can create a pool and earn rewards.',
 			},
 			section3: {
-				header: 'What is an Artifact?',
+				header: 'What is an artifact?',
 				description:
 					'An aritfact is a permanently preserved piece of digital content, including <b>documents</b>, <b>books</b>, <b>images</b>, <b>audio</b>, or <b>videos</b>.',
 				footer: 'Artifacts are deployed as assets to Arweave and distributed to the contributors who support the pool.',
@@ -166,7 +166,7 @@ export const language = {
 		created for developers and creators to publically archive great digital works on Arweave.`,
 		detail: {
 			artifactTypes: `Artifacts are preserved from:`,
-			action: `Learn about Wallets`,
+			action: `Learn about wallets`,
 			section1: {
 				header: 'What does it mean?',
 				description:
@@ -175,7 +175,7 @@ export const language = {
 					'Artifacts are deployed as atomic assets to Arweave and distributed to the contributors who support the pool.',
 			},
 			section2: {
-				header: 'How to Contribute?',
+				header: 'How to contribute?',
 				description1: `First, users will need an Arweave wallet with some <b>($AR)</b> in it to contribute. You can create a wallet at <a target="_blank" href=${ARCONNECT_REDIRECT}>arconnect.io</a>. You can connect your wallet in Alex. by selecting <b>Connect Wallet</b> in the navigation menu.`,
 				description2:
 					'Next, you can select the <b>Contribute</b> button in any of the open pool pages. A window will appear which allows you to select the amount to contribute through <a target="_blank" href=${TURBO_REDIRECT}>Turbo</a>. This also shows the percentage of artifacts you will receive for contributing based on the amount of <b>($AR)</b> that you send.',
@@ -223,7 +223,7 @@ export const language = {
 					header: `Think of a topic to archive`,
 					description: `This can be a <span>historical event, current event, cultural topic, innovation, or anything that can be digitally preserved.</span> Once you have your topic, you must decide where you will mine the artifacts from. It can be from social media <span>(Twitter, Reddit, Nostr), websites (Wikipedia, news sources),</span> or your own <span>personal archive.</span>`,
 					action: {
-						label: `Current Pools`,
+						label: `Current pools`,
 						href: `/pools`,
 					},
 				},
@@ -231,16 +231,16 @@ export const language = {
 					header: `Connect your wallet`,
 					description: `Before building a pool, you must connect your Arweave wallet. You can connect your wallet in Alex. by selecting Connect Wallet in the navigation menu. You can create a wallet at <a target="_blank" href=${ARCONNECT_REDIRECT}>arconnect.io</a>.`,
 					action: {
-						label: `Learn about Wallets`,
+						label: `Learn about wallets`,
 						href: `https://cookbook.arweave.dev/concepts/keyfiles-and-wallets.html`,
 						targetBlank: true,
 					},
 				},
 				{
-					header: `Build the Pool`,
+					header: `Build the pool`,
 					description: `You can start building your pool from our pool creation page. This is where you will include all necessary information to display the pool on the pools page and start mining. This includes writing a description of the pool, including a header image, keywords, and determining the percentage of contributions that you will receive as a management fee.`,
 					action: {
-						label: `Create a Pool`,
+						label: `Create a pool`,
 						href: `/pools/create`,
 					},
 				},
@@ -248,7 +248,7 @@ export const language = {
 					header: `Fund the pool`,
 					description: `Once a pool is configured and created, <span>($AR)</span> is needed to store the artifacts and run the mining processes. Users are encouraged to support pools by contributing <span>($AR)</span> to pools to pay for storage costs and become sponsors of artifacts.`,
 					action: {
-						label: `Learn About Contributing`,
+						label: `Learn About contributing`,
 						href: `/docs/contributing`,
 					},
 				},
@@ -256,7 +256,7 @@ export const language = {
 					header: `Start archiving`,
 					description: `Once you receive contributions, you can then begin archiving. You may upload files directly from the User Interface. Your pool can be found from the pools tab in your account. If you are archiving from social media, you can follow our documentation to archive from specific platforms. On your specific pool page you will see artifacts start to accrue. The key to running a successful pool is consistent and accurate archiving based on the pool topic.`,
 					action: {
-						label: `Visit Mining Documentation`,
+						label: `Visit mining documentation`,
 						href: `/docs/creating-a-pool/mining-artifacts`,
 					},
 				},
@@ -330,7 +330,7 @@ export const language = {
 		infoHeader1: `Contribute to a pool`,
 		infoSubheader1: `Anyone can become a sponsor of artifacts.`,
 		infoDescription1: `Pools are topics, events or ideas that are preserved digitally on Arweave. By contributing <b>($AR)</b> to pools, you pay for the storage space, and earn a stake in the artifacts mined into pools.`,
-		infoAction1: `Learn How to Contribute`,
+		infoAction1: `Learn About Contributing`,
 		infoHeader2: `Create a Pool`,
 		infoSubheader2: `Anyone can start preserving artifacts.`,
 		infoDescription2: `Anyone can start their own pool on any topic or idea they choose and earn <b>($AR)</b> for archiving. As the pool operator you can control what artifacts are mined and how much you earn.`,
@@ -416,7 +416,7 @@ export const language = {
 	},
 	poolAlreadyExists: `This Pool Already Exists`,
 	poolCreated: `Success, Pool Created!`,
-	poolCreatedInfo: `Congratulations on starting a new pool! You will be able to start mining artifacts when the pool transaction has settled on the Arweave Network and a contribution to the pool has been made. You can find your pool from the pools tab on your account page, and you can being managing your pool by clicking Manage Pool below.`,
+	poolCreatedInfo: `Congratulations on starting a new pool! You will be able to start mining artifacts when the pool transaction has settled on the Arweave Network and a contribution to the pool has been made. You can find your pool from the pools tab on your account page, and you can begin managing your pool by clicking Manage Pool below.`,
 	poolId: `Pool ID`,
 	poolOperator: `Alex. Pool Creator`,
 	poolTradeableOption: `Artifacts archived from this pool are tradeable via UCM`,
