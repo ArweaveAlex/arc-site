@@ -1,5 +1,4 @@
 const ARCONNECT_REDIRECT = 'https://www.arconnect.io/';
-const TURBO_REDIRECT = 'https://ardrive.io/turbo-bundler/';
 
 export const language = {
 	about: `About`,
@@ -213,7 +212,7 @@ export const language = {
 	creatingCollection: `Creating Collection`,
 	createFirstCollection: `Create your first collection`,
 	createListings: `Create Listings`,
-	createPool: `Create a Pool`,
+	createPool: `Create a pool`,
 	createView: {
 		header1: `Create with Alex.`,
 		steps: {
@@ -330,11 +329,11 @@ export const language = {
 		infoHeader1: `Contribute to a pool`,
 		infoSubheader1: `Anyone can become a sponsor of artifacts.`,
 		infoDescription1: `Pools are topics, events or ideas that are preserved digitally on Arweave. By contributing <b>($AR)</b> to pools, you pay for the storage space, and earn a stake in the artifacts mined into pools.`,
-		infoAction1: `Learn About Contributing`,
-		infoHeader2: `Create a Pool`,
+		infoAction1: `Learn about contributing`,
+		infoHeader2: `Create a pool`,
 		infoSubheader2: `Anyone can start preserving artifacts.`,
 		infoDescription2: `Anyone can start their own pool on any topic or idea they choose and earn <b>($AR)</b> for archiving. As the pool operator you can control what artifacts are mined and how much you earn.`,
-		infoAction2: `Create a Pool`,
+		infoAction2: `Create a pool`,
 	},
 	lastContribution: `Last Contribution`,
 	learnAboutCreating: `Learn about creating`,

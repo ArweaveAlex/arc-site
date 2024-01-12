@@ -52,7 +52,7 @@ export default function ArtifactsDetail(props: IProps) {
 
 	React.useEffect(() => {
 		(async function () {
-			if (props.useIdPagination) {
+			if (!paginatedIds && props.useIdPagination) {
 				const defaultFetch = props.defaultFetch.fn as (args: UserArtifactsArgsType) => Promise<string[]>;
 				const paginatedIdsObject: IdPaginatorType[] = [];
 				let ids: string[] = [];

@@ -47,8 +47,8 @@ export const DInput = styled.input<{ disabled: boolean; invalid: boolean; hasDat
 		border: 1px solid ${(props) => props.theme.colors.form.valid.outline};
 		transition: box-shadow, border 225ms ease-in-out;
 	}
-	@media (max-width ${STYLING.cutoffs.initial}) {
-		font-size: ${(props) => props.theme.typography.size.small};
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		font-size: ${(props) => props.theme.typography.size.base};
 	}
 `;
 
@@ -236,6 +236,7 @@ export const MResultsWrapper = styled(DResultsWrapper)`
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: none;
 	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 	box-shadow: none;
 	border-radius: 0;
 	overflow: auto;
