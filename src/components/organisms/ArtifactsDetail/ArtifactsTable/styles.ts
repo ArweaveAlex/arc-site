@@ -88,12 +88,6 @@ export const ALink = styled.div`
 		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
-	a {
-		line-height: 18px;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-	}
 	span,
 	b {
 		color: ${(props) => props.theme.colors.font.primary.alt4};
