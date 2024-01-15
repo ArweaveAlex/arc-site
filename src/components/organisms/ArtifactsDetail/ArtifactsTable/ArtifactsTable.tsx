@@ -127,7 +127,7 @@ export default function ArtifactsTable(props: IProps) {
 				<S.ALinkWrapper>
 					<S.ALink>
 						<Link to={redirect} tabIndex={-1} onClick={() => handleView(id)}>
-							{getArtifactLinkLabel(tags)}
+							<p>{getArtifactLinkLabel(tags)}</p>
 						</Link>
 					</S.ALink>
 				</S.ALinkWrapper>
