@@ -121,7 +121,7 @@ export const RowData = styled.div`
 	align-items: center;
 	p {
 		font-family: ${(props) => props.theme.typography.family.primary};
-		font-size: ${(props) => props.theme.typography.size.xSmall};
+		font-size: ${(props) => props.theme.typography.size.xSmall} !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 		color: ${(props) => props.theme.colors.font.primary.active.base};
 		overflow: hidden;
@@ -157,7 +157,7 @@ export const TData = styled(RowData)<{
 	p {
 		font-family: ${(props) => props.theme.typography.family.primary};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
-		font-size: ${(props) => props.theme.typography.size.xSxmall};
+		font-size: ${(props) => props.theme.typography.size.xSmall} !important;
 	}
 `;
 
