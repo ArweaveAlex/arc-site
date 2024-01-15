@@ -1,12 +1,12 @@
-# Alex. Site Repo
+#### Alex Archive Site Repo
 
 <a href="https://alex.arweave.dev">https://alex.arweave.dev</a>
 
-### Requirements
+###### Requirements
 
 - Node.js 18+ and npm
 
-### Local Run
+###### Local Run
 
 ```
 npm install
