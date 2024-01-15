@@ -1,4 +1,5 @@
 const ARCONNECT_REDIRECT = 'https://www.arconnect.io/';
+const TURBO_REDIRECT = 'https://ardrive.io/turbo-bundler/';
 
 export const language = {
 	about: `About`,
@@ -175,9 +176,8 @@ export const language = {
 			},
 			section2: {
 				header: 'How to contribute?',
-				description1: `First, users will need an Arweave wallet with some <b>($AR)</b> in it to contribute. You can create a wallet at <a target="_blank" href=${ARCONNECT_REDIRECT}>arconnect.io</a>. You can connect your wallet in Alex. by selecting <b>Connect Wallet</b> in the navigation menu.`,
-				description2:
-					'Next, you can select the <b>Contribute</b> button in any of the open pool pages. A window will appear which allows you to select the amount to contribute through <a target="_blank" href=${TURBO_REDIRECT}>Turbo</a>. This also shows the percentage of artifacts you will receive for contributing based on the amount of <b>($AR)</b> that you send.',
+				description1: `First, users will need to connect a wallet. You can create a wallet at <a target="_blank" href=${ARCONNECT_REDIRECT}>arconnect.io</a>. You can connect your wallet in Alex. by selecting <b>Connect Wallet</b> in the navigation menu.`,
+				description2: `Next, you can select the <b>Contribute</b> button in any of the open pool pages. A window will appear which allows you to select the amount to contribute through <a target="_blank" href=${TURBO_REDIRECT}>Turbo</a>. This also shows the percentage of artifacts you will receive for contributing based on the amount of <b>($AR)</b> that you send.`,
 				description3:
 					'After the contribution is received and the pool operator continues to mine artifacts, you will then be able to see your artifacts in your account.',
 				description4: 'Learn more about how contributing works in our documentation.',
