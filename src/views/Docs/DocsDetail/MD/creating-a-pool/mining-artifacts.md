@@ -7,6 +7,8 @@
 **Current sources include**
 
 - **News API**
+- **GNews**
+- **News API**
 - **Wikipedia**
 - **Reddit**
 
@@ -100,6 +102,18 @@ arcpool mine <pool> --source files --path ./exampledirectory --meta-file ./metaf
 
 ```sh
 arcpool mine <pool> --source news-api
+```
+
+## [GNews](/#/docs/creating-a-pool/mining-artifacts#gnews)
+
+#### Configure GNews API key
+
+- Get News API access [here](https://gnews.io/
+
+**Mine news articles based on keywords configured in pools.json**
+
+```sh
+arcpool mine <pool> --source gnews
 ```
 
 ## [Reddit](/#/docs/creating-a-pool/mining-artifacts#reddit)

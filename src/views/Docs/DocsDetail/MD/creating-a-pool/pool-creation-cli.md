@@ -44,7 +44,7 @@ help (Display help text)
 init <pool> (Initialize pools.json)
 mine <pool> (Mine artifacts for a given pool)
     Arguments
-    --source <all / files / twitter / wikipedia / reddit / news-api / nostr> (Specifies the data source)
+    --source <all / files / twitter / wikipedia / reddit / news-api / gnews / nostr> (Specifies the data source)
       Suboptions
       files
           --path <path> (Specifies a file or directory path to upload)
@@ -155,6 +155,7 @@ Below is a example of the **pools.json** file that has been initiated that now n
             "appSecret": ""
         },
         "newsApiKey": "",
+        "gNewsApiKey": "",
         "nostr": {
             "relays": [
                 {
