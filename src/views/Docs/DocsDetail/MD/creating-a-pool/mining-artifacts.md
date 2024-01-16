@@ -96,7 +96,8 @@ arcpool mine <pool> --source files --path ./exampledirectory --meta-file ./metaf
 
 #### Configure News API key
 
-- Get News API access [here](https://newsapi.org/)
+- Get GNews API access [here](https://newsapi.org/)
+- Verify email address with GNews before mining
 
 **Mine news articles based on keywords configured in pools.json**
 
