@@ -108,7 +108,8 @@ arcpool mine <pool> --source news-api
 
 #### Configure GNews API key
 
-- Get News API access [here](https://gnews.io/)
+- Get GNews API access [here](https://gnews.io/)
+- Verify email address with GNews before mining
 
 **Mine news articles based on keywords configured in pools.json**
 
