@@ -4,6 +4,7 @@ import { APP, DOM } from 'helpers/config';
 import { Footer } from 'navigation/footer';
 import { Header } from 'navigation/header';
 import { Routes } from 'routes';
+import { ReduxPoolsUpdate } from 'store/pools/ReduxPoolsUpdate';
 
 export default function Root() {
 	React.useEffect(() => {
@@ -25,7 +26,9 @@ export default function Root() {
 			<div id={DOM.overlay} />
 			<Header />
 			<div id={DOM.subheader} />
-			<Routes />
+			<ReduxPoolsUpdate>
+				<Routes />
+			</ReduxPoolsUpdate>
 			<Footer />
 		</>
 	);

@@ -1,7 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import * as artifactActions from 'store/artifacts/actions';
 
 import {
 	ARTIFACT_CONTRACT,
@@ -24,6 +22,8 @@ import { DOM } from 'helpers/config';
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
+import { RootState } from 'store';
+import * as artifactActions from 'store/artifacts/actions';
 import { ArtifactRendererSingle } from 'views/Artifact/ArtifactSingle/ArtifactRendererSingle';
 
 import * as S from './styles';

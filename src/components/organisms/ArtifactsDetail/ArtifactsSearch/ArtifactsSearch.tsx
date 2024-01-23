@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import * as cursorActions from 'store/cursors/actions';
-import * as searchActions from 'store/search/actions';
-import { ReduxSearchIndexUpdate } from 'store/search/ReduxSearchIndexUpdate';
 
 import { runSearch, SEARCH, splitArray } from 'arcframework';
 
 import { Search } from 'components/molecules/Search';
 import { PAGINATORS } from 'helpers/config';
+import { RootState } from 'store';
+import * as cursorActions from 'store/cursors/actions';
+import * as searchActions from 'store/search/actions';
+import { ReduxSearchIndexUpdate } from 'store/search/ReduxSearchIndexUpdate';
 
 import { IProps } from './types';
 

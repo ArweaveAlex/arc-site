@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import * as artifactActions from 'store/artifacts/actions';
 
 import { ArtifactsDetail } from 'components/organisms/ArtifactsDetail';
 import { getBookmarkIds } from 'gql';
+import * as artifactActions from 'store/artifacts/actions';
 
 import { IProps } from './types';
 

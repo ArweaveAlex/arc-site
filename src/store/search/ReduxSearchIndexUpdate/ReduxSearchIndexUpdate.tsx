@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import * as searchActions from 'store/search/actions';
 
 import { initSearch, TableIdType } from 'arcframework';
+
+import { RootState } from 'store';
+import * as searchActions from 'store/search/actions';
 
 export default function ReduxSearchIndexUpdate(props: {
 	id: TableIdType;
