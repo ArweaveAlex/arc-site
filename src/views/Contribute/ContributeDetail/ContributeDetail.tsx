@@ -59,6 +59,7 @@ export default function AboutDetail() {
 						<S.Section>
 							<S.Header>{language.contributeView.detail.section3.header}</S.Header>
 							<S.Description>{parse(language.contributeView.detail.section3.description)}</S.Description>
+							<S.Footer>{parse(language.contributeView.detail.section3.footer)}</S.Footer>
 						</S.Section>
 					</S.Content>
 				</S.Container>

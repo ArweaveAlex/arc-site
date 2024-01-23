@@ -3,7 +3,6 @@ import { ReactSVG } from 'react-svg';
 
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
-import * as urls from 'helpers/urls';
 
 import * as S from './styles';
 
@@ -27,7 +26,9 @@ export default function LandingHeader() {
 							<div>
 								<p>
 									{language.banner.subheader2}&nbsp;
-									<Link to={`${urls.docs}creating-a-pool/getting-started`}>{language.poolOperator}</Link>
+									<Link to="https://alex.arweave.dev/#/pools/create/" target="_blank">
+										here.
+									</Link>
 								</p>
 							</div>
 						</S.SubheaderContainer>

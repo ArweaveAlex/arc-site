@@ -12,13 +12,13 @@ export const language = {
 					header: `Creating pools`,
 					description: `An operator creates a pool. A pool operator can be a historical institution, or anyone that is interested in preserving a topic.`,
 					action: {
-						label: `Learn About Creating`,
+						label: `Learn about creating`,
 						href: `/create/`,
 					},
 				},
 				{
 					header: `Contributing to pools`,
-					description: `Users contribute Arweave tokens ($AR) to pools that they find valuable. These contributions pay for the storage space on Arweave.`,
+					description: `Users contribute Arweave tokens ($AR) through Turbo to pools that they find valuable. These contributions pay for the storage space on Arweave.`,
 					action: {
 						label: `Learn about contributing`,
 						href: `/contribute/`,
@@ -54,12 +54,13 @@ export const language = {
 				header: 'What is an artifact?',
 				description:
 					'An aritfact is a permanently preserved piece of digital content, including <b>documents</b>, <b>books</b>, <b>images</b>, <b>audio</b>, or <b>videos</b>.',
-				footer: 'Artifacts are deployed as assets to Arweave and distributed to the contributors who support the pool.',
+				footer:
+					'Artifacts are deployed as atomic assets to Arweave and distributed to the contributors who support the pool.',
 			},
 		},
 		infoDescription1: `<b>Archiving is important.</b> Archives allow people to look back at history to ensure better decisions are made for the future of society. Unfortunately, the current model for archiving is insufficiently incentivized. The person that stores the data, which others can later access without charge, is the person that has to pay. Alex. changes this by allowing the public to sponsor the archiving of digital content.`,
 		infoDescription2: `Currently, historical archives are often controlled by a single centralized entity. This means that data can be manipulated or censored to benefit special interests. Therefore <b>Alex. uses Arweave to preserve important historical and cultural information</b> that may otherwise be lost, tampered with, or held hostage in a centralized server.`,
-		infoHeader1: `Decentralized Archiving`,
+		infoHeader1: `Decentralized archiving`,
 		stepsHeader1: `How it works`,
 		subnav: {
 			decentralization: 'Decentralization',
@@ -72,8 +73,8 @@ export const language = {
 	amount: `Amount`,
 	applyChanges: `Apply Changes`,
 	appName: `Alex.`,
-	artifactDetails: `Artifact Details`,
-	artifactName: `Artifact Name`,
+	artifactDetails: `Artifact details`,
+	artifactName: `Artifact name`,
 	artifactNotFound: `Artifact not found`,
 	artifactTypesDisplay: {
 		files: `Personal Archives`,
@@ -85,7 +86,7 @@ export const language = {
 		universities: `Universities`,
 		webpage: `Wikipedia`,
 	},
-	artifactsCreated: `of Artifacts Created`,
+	artifactsCreated: `of artifacts created`,
 	arweaveAppConnectionError: `Connection error with Arweave.app. The connector window must remain open after the initial connection.`,
 	accept: `Accept`,
 	account: {
@@ -119,14 +120,14 @@ export const language = {
 		title: `Title`,
 	},
 	artifactListingPrice: `Artifact Listing Price`,
-	artifactListingPriceInfo: `This value represents the price for each artifact that will be listed in the UCM`,
+	artifactListingPriceInfo: `This value represents the price for each artifact that will be listed on the UCM`,
 	arTokens: `$AR`,
 	availableBalance: `Available Balance`,
 	back: `Back`,
 	banner: {
 		header1: `A decentralized archival platform that preserves human history and culture digitally.`,
 		subheader1: `Archives are permanently stored on`,
-		subheader2: `Start a pool with the`,
+		subheader2: `Create an archival pool`,
 	},
 	basicInformation: `Basic Information`,
 	bookmarks: `Bookmarks`,
@@ -166,17 +167,17 @@ export const language = {
 		created for developers and creators to publically archive great digital works on Arweave.`,
 		detail: {
 			artifactTypes: `Artifacts are preserved from:`,
-			action: `Learn about wallets`,
+			action: `Learn more about Arweave wallets`,
 			section1: {
-				header: 'What does it mean?',
+				header: 'What does contributing to a pool mean?',
 				description:
-					'Contributing means to send a portion of your <b>($AR)</b> to a pool. Contributions are used to pay for the storage costs of artifacts stored on Arweave. A portion of contributions also go to pool operators for their work.',
+					'Contributing means to send a portion of your <b>($AR)</b> to a pool. Contributions are done made through <a target="_blank" href=${TURBO_REDIRECT}>Turbo</a>, which converts fiat currencies to $AR.  Contributions are used to pay for the storage costs of artifacts stored on Arweave. A portion of contributions also go to pool operators for their work.',
 				footer:
 					'Artifacts are deployed as atomic assets to Arweave and distributed to the contributors who support the pool.',
 			},
 			section2: {
 				header: 'How to contribute?',
-				description1: `First, users will need to connect a wallet. You can create a wallet at <a target="_blank" href=${ARCONNECT_REDIRECT}>arconnect.io</a>. You can connect your wallet in Alex. by selecting <b>Connect Wallet</b> in the navigation menu.`,
+				description1: `First, you must create and connect an Arweave wallet. You can create a wallet at <a target="_blank" href=${ARCONNECT_REDIRECT}>arconnect.io</a>. You can connect your wallet in Alex. by selecting <b>Connect Wallet</b> in the navigation menu.`,
 				description2: `Next, you can select the <b>Contribute</b> button in any of the open pool pages. A window will appear which allows you to select the amount to contribute through <a target="_blank" href=${TURBO_REDIRECT}>Turbo</a>. This also shows the percentage of artifacts you will receive for contributing based on the amount of <b>($AR)</b> that you send.`,
 				description3:
 					'After the contribution is received and the pool operator continues to mine artifacts, you will then be able to see your artifacts in your account.',
@@ -185,7 +186,9 @@ export const language = {
 			section3: {
 				header: 'Why sponsor artifacts?',
 				description:
-					'Artifact sponsoring creates a new incentive for users to contribute to permanent archiving of digital content. <b>Anyone can contribute to pools and earn artifacts</b>. These artifacts can never be modified or removed as they are permanently stored on Arweave. Artifacts come in the form of documents, books, images, audio, videos, and more.',
+					'Sponsoring artifact storage creates a new incentive for users to contribute to permanent archiving of digital content. <b>Anyone can contribute to pools and earn artifacts</b>. These artifacts can never be modified or removed as they are permanently stored on Arweave as atomic assets. Artifacts come in the form of documents, books, images, audio, videos, and more.',
+				footer:
+					'Artifact sponsorships in some archival pools are even made tradeable on BazAR (UCM). These sponsorships can be traded for $U. Learn more about trading <a href="https://alex.arweave.dev/#/trade/" target="_blank" rel="noopener noreferrer">here</a>.',
 			},
 		},
 		subnav: {
@@ -383,9 +386,9 @@ export const language = {
 	paths: {
 		about: `About`,
 		contribute: `How to contribute`,
-		create: `How to create`,
+		create: `How to create a pool`,
 		docs: `Docs`,
-		trade: `Learn about trading`,
+		trade: `About trading artifacts`,
 		pools: `Pools`,
 		poolCreate: `Create`,
 		storage: `About our storage`,
@@ -417,7 +420,6 @@ export const language = {
 	poolCreated: `Success, Pool Created!`,
 	poolCreatedInfo: `Congratulations on starting a new pool! You will be able to start mining artifacts when the pool transaction has settled on the Arweave Network and a contribution to the pool has been made. You can find your pool from the pools tab on your account page, and you can begin managing your pool by clicking Manage Pool below.`,
 	poolId: `Pool ID`,
-	poolOperator: `Alex. Pool Creator`,
 	poolTradeableOption: `Artifacts archived from this pool are tradeable via UCM`,
 	pools: {
 		header1: `Pools`,
@@ -517,7 +519,7 @@ export const language = {
 				description:
 					'Artifact sponsorships are the atomic assets that contributors earn for contributing to archival pools. These sponsorships prove that a user provided the $AR for a piece of digital content to be permanently archived on Arweave.',
 				footer:
-					'Sponsorship owners can list their sponsorships on the <a href="https://bazar.arweave.dev/" target="_blank" rel="noopener noreferrer">BazAR</a> Marketplace straight from their account page on Alex. Please note that Alex. is not liable for any artifact sponsorships that are traded without permission of the content creator. Read our full terms and coditions for trading artifact sponsorships <a href="https://alex.arweave.dev/#/docs/interact-with-artifacts" target="_blank" rel="noopener noreferrer">here</a>.',
+					'Sponsorship owners can list their atomic assets on the <a href="https://bazar.arweave.dev/" target="_blank" rel="noopener noreferrer">BazAR</a> Marketplace straight from their account page on Alex. Please note that Alex. is not liable for any artifact sponsorships that are traded without permission of the content creator. Read our full terms and coditions for trading artifact sponsorships <a href="https://alex.arweave.dev/#/docs/interact-with-artifacts" target="_blank" rel="noopener noreferrer">here</a>.',
 			},
 			section2: {
 				header: 'How to list your artifact sponsorships on BazAR?',
@@ -571,14 +573,14 @@ export const language = {
 	view: `View`,
 	viewAccount: `View Account`,
 	viewAllContributions: `View all contributions`,
-	viewDocs: `View Docs`,
+	viewDocs: `View docs`,
 	viewOnArweave: `View on Arweave`,
 	viewOnBazar: `View on BazAR`,
 	viewOnPermafacts: `View on Permafacts`,
-	viewPool: `View Pool`,
-	visitDocs: `Visit Documentation`,
+	viewPool: `View pool`,
+	visitDocs: `Visit documentation`,
 	volume: `Volume`,
-	walletBalance: `Wallet Balance`,
+	walletBalance: `Wallet balance`,
 	walletNotConnected: `Connect a wallet to continue`,
 	willBeReceiving: `You will be receiving`,
 };
