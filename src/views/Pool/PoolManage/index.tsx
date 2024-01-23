@@ -64,11 +64,16 @@ export default function PoolManage() {
 				});
 
 				if (detailData && detailData.contracts.length > 0) {
-					setCount(
-						await ArcFramework.getPoolCount(
-							ArcFramework.getTagValue(detailData.contracts[0].node.tags, ArcFramework.TAGS.keys.contractSrc)
-						)
-					);
+					try {
+						setCount(
+							await ArcFramework.getPoolCount(
+								ArcFramework.getTagValue(detailData.contracts[0].node.tags, ArcFramework.TAGS.keys.contractSrc)
+							)
+						);
+					} catch (e: any) {
+						console.error(e);
+						setCount(0);
+					}
 				} else {
 					setCount(0);
 				}

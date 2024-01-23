@@ -16,7 +16,7 @@ const DEFAULT = {
 	neutral13: '#F7F7F7',
 	neutral14: '#FFFFFF',
 	neutral15: '#A1A1A1',
-	neutral16: '#F7F7F7',
+	neutral16: '#F5F5F5',
 	neutral17: '#707070',
 	primary: '#003153',
 	primary2: '#265F85',
@@ -152,6 +152,9 @@ export const defaultTheme: DefaultTheme = {
 			},
 			alt8: {
 				background: DEFAULT.primary3,
+			},
+			alt9: {
+				background: DEFAULT.neutral16,
 			},
 		},
 		font: {

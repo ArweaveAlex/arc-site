@@ -50,7 +50,6 @@ export const Info = styled.div`
 	padding: 0 25px;
 	display: flex;
 	position: relative;
-	background: ${(props) => props.theme.colors.container.primary.background};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		background: ${(props) => props.theme.colors.transparent};
 		border: none;
@@ -157,7 +156,6 @@ export const Divider = styled.div`
 export const Body = styled.div`
 	height: 50%;
 	width: 100%;
-	background: ${(props) => props.theme.colors.container.primary.background};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

@@ -65,7 +65,7 @@ export const FOSectionTitle = styled.div`
 	p {
 		font-size: ${(props) => props.theme.typography.size.small} !important;
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
-		color: ${(props) => props.theme.colors.font.primary.alt9} !important;
+		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	}
 `;
 
