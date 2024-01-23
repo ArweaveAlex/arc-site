@@ -32,6 +32,7 @@ export default function StorageDetail() {
 							<S.Description>{parse(language.storageView.detail.section2.list4)}</S.Description>
 							<S.Description>{parse(language.storageView.detail.section2.list5)}</S.Description>
 							<S.Description>{parse(language.storageView.detail.section2.list6)}</S.Description>
+							<S.Description>{parse(language.storageView.detail.section2.footer)}</S.Description>
 						</S.Section>
 					</S.Content>
 				</S.Container>
