@@ -10,7 +10,7 @@ To create a pool you must complete the following steps:
 
 ### 1. Install arcpool
 
-**arcpool** requires [NodeJS (v18+)](https://nodejs.org/en/download/) [NPM](https://www.npmjs.com/package/npm) and [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed.
+**arcpool** requires [NodeJS (v18)](https://nodejs.org/en/download/) [NPM](https://www.npmjs.com/package/npm) and [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed.
 
 To install arcpool globally on your machine, run the following:
 
