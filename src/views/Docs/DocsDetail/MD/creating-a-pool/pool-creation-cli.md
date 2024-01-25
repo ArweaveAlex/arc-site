@@ -211,18 +211,6 @@ arcpool create <pool> --control-wallet <PATH_TO_WALLET.json> --image <PATH_TO_IM
 
 Example: **arcpool create russia_ukraine_conflict --control-wallet ../wallet.json --image ../pool-image.jpg**
 
-Note the top of the logs for your pool wallets seed phrase. Inside your working directory should be a **wallets** directory. This is where your pool collection wallet is stored and should be kept safe, along with the seed phrase logged by the CLI. Write down your seed phrase.
-
-**Do not give this to anyone. Without this you have no way to recover your wallet should anything happen.**
-
-```
-***Write the following seed phrase down***
-
-this will be your pool wallet seed phrase do not give it out
-
-***THERE IS NO WAY TO RECOVER YOUR SEED PHRASE SO WRITE IT DOWN AND KEEP IT OUT OF OTHERS HANDS***
-```
-
 If your pool has been successfully created, you will see a URL log in your terminal / command prompt at the end of the pool creation process. You will now be able to see your pool on the [Alex. Pools Page](https://alex.arweave.dev/#/pools). Note that it may take some time for the pool to appear.
 
 ### View pool balances
