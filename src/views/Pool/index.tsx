@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import * as ArcFramework from 'arcframework';
@@ -6,6 +7,7 @@ import * as ArcFramework from 'arcframework';
 import { Loader } from 'components/atoms/Loader';
 import { REDUX_TABLES } from 'helpers/redux';
 import { CursorEnum, GQLNodeResponseType } from 'helpers/types';
+import { RootState } from 'store';
 
 import { PoolDetail } from './PoolDetail';
 import { PoolHeader } from './PoolHeader';
@@ -14,12 +16,15 @@ import { PoolStatistics } from './PoolStatistics';
 export default function Pool() {
 	const { id } = useParams();
 
+	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
+
 	const [headerData, setHeaderData] = React.useState<ArcFramework.PoolType | null>(null);
 	const [uploaders, setUploaders] = React.useState<string[] | null>(null);
 
 	const [count, setCount] = React.useState<number | null>(null);
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
 	const [recentArtifacts, setRecentArtifacts] = React.useState<GQLNodeResponseType[] | null>(null);
+	const [totalContributions, setTotalContributions] = React.useState<string>('0');
 
 	React.useEffect(() => {
 		(async function () {
@@ -28,6 +33,15 @@ export default function Pool() {
 			}
 		})();
 	}, [id]);
+
+	React.useEffect(() => {
+		if (id && poolsReducer && poolsReducer.data && poolsReducer.data.length) {
+			const existingPool = poolsReducer.data.find((pool: ArcFramework.PoolType) => pool.id === id);
+			if (existingPool && existingPool.state.totalContributions) {
+				setTotalContributions(existingPool.state.totalContributions);
+			}
+		}
+	}, [id, poolsReducer]);
 
 	React.useEffect(() => {
 		(async function () {
@@ -62,7 +76,7 @@ export default function Pool() {
 				description={headerData.state.description}
 				dateCreated={headerData.state.timestamp}
 				count={count}
-				totalContributions={headerData.state.totalContributions}
+				totalContributions={totalContributions}
 				contributors={headerData.state.contributors}
 				ownerMaintained={false}
 				contribPercent={headerData.state.contribPercent ? headerData.state.contribPercent : null}

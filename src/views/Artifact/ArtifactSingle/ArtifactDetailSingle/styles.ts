@@ -213,11 +213,11 @@ export const Tags = styled.div`
 `;
 
 export const Tag = styled.div`
-	padding: 6.5px 14.5px;
+	padding: 4.5px 12.5px;
 	width: fit-content;
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadius};
-	background: ${(props) => props.theme.colors.container.alt4.background};
+	background: ${(props) => props.theme.colors.container.alt3.background};
 	p {
 		color: ${(props) => props.theme.colors.font.primary.alt1};
 	}

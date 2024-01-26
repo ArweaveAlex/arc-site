@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import * as ArcFramework from 'arcframework';
@@ -7,8 +8,8 @@ import { Loader } from 'components/atoms/Loader';
 import { URLTabs } from 'components/molecules/URLTabs';
 import { URLS } from 'helpers/config';
 import { language } from 'helpers/language';
-import { REDUX_TABLES } from 'helpers/redux';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
+import { RootState } from 'store';
 import { WalletBlock } from 'wallet/WalletBlock';
 
 import { PoolManageHeader } from './PoolManageHeader';
@@ -16,15 +17,16 @@ import { PoolManageHeader } from './PoolManageHeader';
 export default function PoolManage() {
 	const { id } = useParams();
 
+	const poolsReducer = useSelector((state: RootState) => state.poolsReducer);
+
 	const arProvider = useArweaveProvider();
 
 	const [showWalletBlock, setShowWalletBlock] = React.useState<boolean>(false);
 
 	const [headerData, setHeaderData] = React.useState<ArcFramework.PoolType | null>(null);
-	const [uploaders, setUploaders] = React.useState<string[] | null>(null);
 
-	const [count, setCount] = React.useState<number | null>(null);
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
+	const [totalContributions, setTotalContributions] = React.useState<string>('0');
 
 	React.useEffect(() => {
 		setTimeout(() => {
@@ -43,38 +45,13 @@ export default function PoolManage() {
 	}, [id]);
 
 	React.useEffect(() => {
-		(async function () {
-			if (headerData) {
-				const stateUploaders: string[] = [headerData.state.owner];
-				if (headerData.state.controlPubkey) stateUploaders.push(headerData.state.controlPubkey);
-				setUploaders(stateUploaders);
+		if (id && poolsReducer && poolsReducer.data && poolsReducer.data.length) {
+			const existingPool = poolsReducer.data.find((pool: ArcFramework.PoolType) => pool.id === id);
+			if (existingPool && existingPool.state.totalContributions) {
+				setTotalContributions(existingPool.state.totalContributions);
 			}
-		})();
-	}, [headerData]);
-
-	React.useEffect(() => {
-		(async function () {
-			if (id && headerData) {
-				const detailData = await ArcFramework.getArtifactsByPool({
-					ids: [id],
-					owner: null,
-					uploaders: uploaders,
-					cursor: null,
-					reduxCursor: REDUX_TABLES.poolAll,
-				});
-
-				if (detailData && detailData.contracts.length > 0) {
-					setCount(
-						await ArcFramework.getPoolCount(
-							ArcFramework.getTagValue(detailData.contracts[0].node.tags, ArcFramework.TAGS.keys.contractSrc)
-						)
-					);
-				} else {
-					setCount(0);
-				}
-			}
-		})();
-	}, [id, headerData]);
+		}
+	}, [id, poolsReducer]);
 
 	React.useEffect(() => {
 		(async function () {
@@ -97,8 +74,8 @@ export default function PoolManage() {
 				title={headerData.state.title}
 				description={headerData.state.description}
 				dateCreated={headerData.state.timestamp}
-				count={count}
-				totalContributions={headerData.state.totalContributions}
+				count={0}
+				totalContributions={totalContributions}
 				contributors={headerData.state.contributors}
 				ownerMaintained={false}
 				contribPercent={headerData.state.contribPercent ? headerData.state.contribPercent : null}

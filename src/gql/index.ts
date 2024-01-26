@@ -1,8 +1,7 @@
-import { store } from 'store';
-import * as cursorActions from 'store/cursors/actions';
-
 import { CURSORS, GATEWAYS, PAGINATORS } from 'helpers/config';
 import { AGQLResponseType, CursorObjectKeyType, GQLArgsType, GQLNodeResponseType } from 'helpers/types';
+import { store } from 'store';
+import * as cursorActions from 'store/cursors/actions';
 
 export async function getGQLData(args: GQLArgsType): Promise<AGQLResponseType> {
 	const paginator = args.paginator ? args.paginator : PAGINATORS.default;

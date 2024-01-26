@@ -2,8 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
-import { RootState } from 'store';
-import { ReduxPoolsUpdate } from 'store/pools/ReduxPoolsUpdate';
 
 import { ANSTopicEnum, FALLBACK_IMAGE, getTxEndpoint, PoolClient, PoolFilterType, PoolIndexType } from 'arcframework';
 
@@ -17,6 +15,7 @@ import { ASSETS, DEFAULT_POOL_FETCH_COUNT, DOM, EXISTING_POOLS_FILTER, POOL_SORT
 import { language } from 'helpers/language';
 import * as urls from 'helpers/urls';
 import * as windowUtils from 'helpers/window';
+import { RootState } from 'store';
 import { CloseHandler } from 'wrappers/CloseHandler';
 
 import * as S from './styles';
@@ -38,7 +37,7 @@ function PoolTile(props: any) {
 			const imageResponse = await fetch(
 				getTxEndpoint(props.state.image.length > 0 ? props.state.image : FALLBACK_IMAGE)
 			);
-			setImageUrl(imageResponse.status ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
+			setImageUrl(imageResponse.ok ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
 		})();
 	});
 
@@ -217,33 +216,31 @@ export default function PoolsGrid(props: IProps) {
 	}
 
 	return (
-		<ReduxPoolsUpdate>
-			<S.Wrapper>
-				<S.SubheaderFlex>
-					{getPoolFilter()}
-					<S.Select>
-						<Select
-							onChange={(e) => setCurrentSort(getPoolSort(e.target.value))}
-							display={null}
-							value={currentSort.title}
-							options={POOL_SORT_OPTIONS.map((filter: PoolFilterType) => filter.title)}
-							disabled={false}
-						/>
-					</S.Select>
-				</S.SubheaderFlex>
-				<S.Body>{getData()}</S.Body>
-				{data && count && data.length > count && (
-					<S.FetchAction>
-						<Button
-							type={'primary'}
-							label={language.exploreMore}
-							handlePress={() => setCount(count + props.fetchCount)}
-							height={52.5}
-							width={275}
-						/>
-					</S.FetchAction>
-				)}
-			</S.Wrapper>
-		</ReduxPoolsUpdate>
+		<S.Wrapper>
+			<S.SubheaderFlex>
+				{getPoolFilter()}
+				<S.Select>
+					<Select
+						onChange={(e) => setCurrentSort(getPoolSort(e.target.value))}
+						display={null}
+						value={currentSort.title}
+						options={POOL_SORT_OPTIONS.map((filter: PoolFilterType) => filter.title)}
+						disabled={false}
+					/>
+				</S.Select>
+			</S.SubheaderFlex>
+			<S.Body>{getData()}</S.Body>
+			{data && count && data.length > count && (
+				<S.FetchAction>
+					<Button
+						type={'primary'}
+						label={language.exploreMore}
+						handlePress={() => setCount(count + props.fetchCount)}
+						height={52.5}
+						width={275}
+					/>
+				</S.FetchAction>
+			)}
+		</S.Wrapper>
 	);
 }

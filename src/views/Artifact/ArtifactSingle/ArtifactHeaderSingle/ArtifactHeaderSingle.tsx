@@ -20,7 +20,7 @@ export default function ArtifactHeaderSingle(props: IProps) {
 				<h2>{props.data.ansTitle}</h2>
 			</S.HeaderWrapper>
 			<S.ContentWrapper>
-				<S.Content className={'border-wrapper'}>
+				<S.Content className={'border-wrapper-alt'}>
 					<S.Info>
 						<S.InfoType>
 							<>

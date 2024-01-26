@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import * as poolActions from 'store/pools/actions';
 
 import { getIndexPools, getPools, PoolIndexType, PoolType } from 'arcframework';
+
+import { RootState } from 'store';
+import * as poolActions from 'store/pools/actions';
 
 export default function ReduxPoolsUpdate(props: { children: React.ReactNode }) {
 	const dispatch = useDispatch();

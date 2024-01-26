@@ -252,7 +252,7 @@ export const LDBody = styled.div`
 	padding: 15px;
 	color: ${(props) => props.theme.colors.font.primary.active.base};
 	font-size: ${(props) => props.theme.typography.size.base};
-	font-weight: ${(props) => props.theme.typography.weight.medium};
+	font-weight: ${(props) => props.theme.typography.weight.regular};
 	line-height: 1.5;
 	overflow-wrap: anywhere;
 	b {

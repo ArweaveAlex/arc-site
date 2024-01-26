@@ -6,7 +6,6 @@ export const C2 = styled.div`
 	height: auto;
 	width: 100%;
 	margin: 20px 0 0 0;
-	overflow: auto;
 	scrollbar-width: none;
 	::-webkit-scrollbar {
 		width: 0px;

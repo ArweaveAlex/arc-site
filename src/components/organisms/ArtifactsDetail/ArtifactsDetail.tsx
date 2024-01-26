@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { clearCursors } from 'store/cursors/actions';
 
 import { getTagValue, STORAGE, TAGS } from 'arcframework';
 
@@ -16,6 +15,7 @@ import {
 	UserArtifactsArgsType,
 } from 'helpers/types';
 import * as windowUtils from 'helpers/window';
+import { clearCursors } from 'store/cursors/actions';
 
 import { IProps } from './types';
 

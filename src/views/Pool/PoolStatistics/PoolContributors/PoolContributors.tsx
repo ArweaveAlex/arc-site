@@ -105,31 +105,37 @@ export default function PoolContributors(props: IProps) {
 		<>
 			<S.Wrapper>
 				<S.TWrapper>
-					<S.CWrapper>
-						<S.Header>
-							<h2>{language.contributors.top}</h2>
-						</S.Header>
-						<S.BWrapper className={'border-wrapper-alt'}>
-							<S.Body>{getBody(topContributorList)}</S.Body>
-						</S.BWrapper>
-					</S.CWrapper>
-					<S.CWrapper>
-						<S.Header>
-							<h2>{language.contributors.recent}</h2>
-						</S.Header>
-						<S.BWrapper className={'border-wrapper-alt'}>
-							<S.Body>{getBody(recentContributorList)}</S.Body>
-						</S.BWrapper>
-					</S.CWrapper>
+					{topContributorList.length > 0 && (
+						<S.CWrapper>
+							<S.Header>
+								<h2>{language.contributors.top}</h2>
+							</S.Header>
+							<S.BWrapper className={'border-wrapper-alt'}>
+								<S.Body>{getBody(topContributorList)}</S.Body>
+							</S.BWrapper>
+						</S.CWrapper>
+					)}
+					{recentContributorList.length > 0 && (
+						<S.CWrapper>
+							<S.Header>
+								<h2>{language.contributors.recent}</h2>
+							</S.Header>
+							<S.BWrapper className={'border-wrapper-alt'}>
+								<S.Body>{getBody(recentContributorList)}</S.Body>
+							</S.BWrapper>
+						</S.CWrapper>
+					)}
 				</S.TWrapper>
-				<S.VWrapper>
-					<Button
-						type={'primary'}
-						label={language.viewAllContributions}
-						handlePress={() => setShowViewAll(true)}
-						noMinWidth
-					/>
-				</S.VWrapper>
+				{fullContributorList.length > 0 && (
+					<S.VWrapper>
+						<Button
+							type={'primary'}
+							label={language.viewAllContributions}
+							handlePress={() => setShowViewAll(true)}
+							noMinWidth
+						/>
+					</S.VWrapper>
+				)}
 			</S.Wrapper>
 			{showViewAll && props.data && profiles && (
 				<Modal header={language.poolContributions(props.data.state.title)} handleClose={() => setShowViewAll(false)}>

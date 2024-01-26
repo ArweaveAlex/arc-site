@@ -49,6 +49,28 @@ export default function PoolContribute(props: IProps) {
 	const [wincConversion, setWincConversion] = React.useState<number>(0);
 	const [fetchingConversion, setFetchingConversion] = React.useState<boolean>(false);
 
+	// React.useEffect(() => {
+	// 	(async function () {
+	// 		if (checkout && checkout.paymentSession && checkout.paymentSession.id) {
+	// 			const response = await fetch(`https://api.stripe.com/v1/checkout/sessions/${checkout.paymentSession.id}`);
+	// 			console.log(response);
+	// 		}
+	// 	})();
+
+	// 	const handleBeforeUnload = (e: any) => {
+	// 		if (checkout) {
+	// 			e.preventDefault();
+	// 			e.returnValue = '';
+	// 		}
+	// 	};
+
+	// 	window.addEventListener('beforeunload', handleBeforeUnload);
+
+	// 	return () => {
+	// 		window.removeEventListener('beforeunload', handleBeforeUnload);
+	// 	};
+	// }, [checkout]);
+
 	React.useEffect(() => {
 		(async function () {
 			if (currency && amount) {
