@@ -47,7 +47,7 @@ export const Body = styled.div`
 	display: flex;
 	flex-direction: column;
 	overflow-x: auto;
-	overflow-y: hidden;
+	overflow-y: auto;
 	animation: ${open} ${fadeIn2};
 	min-height: 66.5vh;
 	scrollbar-width: none;

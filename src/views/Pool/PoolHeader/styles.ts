@@ -103,7 +103,7 @@ export const ImageContainer = styled.div`
 	padding: 0 0 43.25% 0;
 	margin: 30px 0 20px 0;
 	animation: ${open} ${fadeIn2};
-	border-radius: ${STYLING.dimensions.borderRadius};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	@media (max-width: ${STYLING.cutoffs.secondary}) {
 		padding: 0 0 59.25% 0;
 	}
@@ -121,7 +121,7 @@ export const Image = styled.div<{ image: string }>`
 	background-repeat: no-repeat;
 	background-color: ${(props) => props.theme.colors.container.alt5.background};
 	box-shadow: ${(props) => getImageShadow(props.theme)};
-	border-radius: ${STYLING.dimensions.borderRadius};
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 `;
 

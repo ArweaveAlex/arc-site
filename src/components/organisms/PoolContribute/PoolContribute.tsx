@@ -1,4 +1,7 @@
 import React from 'react';
+import { Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { useTheme } from 'styled-components';
 
 import {
 	formatAddress,
@@ -16,9 +19,10 @@ import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
-import { ASSETS, POOL_TEST_MODE } from 'helpers/config';
+import { ASSETS, POOL_TEST_MODE, STRIPE_PUBLISHABLE_KEY } from 'helpers/config';
 import { getTurboCheckoutEndpoint, getTurboPriceWincEndpoint } from 'helpers/endpoints';
 import { language } from 'helpers/language';
+import { STYLING } from 'helpers/styling';
 import { formatTurboAmount, formatUSDAmount, getARAmountFromWinc } from 'helpers/utils';
 import { useArweaveProvider } from 'providers/ArweaveProvider';
 
@@ -27,14 +31,131 @@ import { IProps } from './types';
 
 const DEFAULT_AMOUNTS = [5, 10, 25, 50, 75];
 
+const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
+
+function CheckoutForm(props: {
+	poolId: string;
+	handleGoBack: () => void;
+	amount: number;
+	wincConversion: number;
+	currency: string;
+	handleClose: () => void;
+}) {
+	const stripe = useStripe();
+	const elements = useElements();
+
+	const arProvider = useArweaveProvider();
+
+	const [loading, setLoading] = React.useState<boolean>(false);
+	const [contributionResult, setContributionResult] = React.useState<NotificationResponseType | null>(null);
+
+	const [mounting, setMounting] = React.useState<boolean>(true);
+
+	React.useEffect(() => {
+		(async function () {
+			await new Promise((r) => setTimeout(r, 500));
+			setMounting(false);
+		})();
+	}, []);
+
+	async function handleSubmit(e: any) {
+		e.preventDefault();
+		setLoading(true);
+		if (!stripe || !elements) {
+			return;
+		}
+		try {
+			if (arProvider.walletAddress) {
+				const paymentResponse = await stripe.confirmPayment({
+					elements,
+					confirmParams: {
+						return_url: `https://alex.arweave.dev/#/pool${props.poolId}`,
+					},
+					redirect: 'if_required',
+				});
+
+				if (paymentResponse.error) {
+					console.error(paymentResponse.error.message);
+				} else {
+					if (paymentResponse && paymentResponse.paymentIntent && paymentResponse.paymentIntent.status) {
+						if (paymentResponse.paymentIntent.status === 'succeeded') {
+							const priceResponse = await fetch(getTurboPriceWincEndpoint(props.currency, props.amount));
+							if (priceResponse.ok) {
+								try {
+									setLoading(true);
+									const wincAmount = (await priceResponse.json()).winc;
+									const poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
+									const poolConfig = await poolConfigClient.initFromContract({ poolId: props.poolId });
+									poolConfig.walletKey = 'use_wallet';
+									const poolClient = new PoolClient({ poolConfig });
+									setContributionResult(await poolClient.handlePoolContribute({ wincAmount: wincAmount }));
+									setLoading(false);
+								} catch (e: any) {
+									console.error(e);
+								}
+							}
+						} else {
+							setContributionResult({ status: false, message: language.errorOccurred });
+						}
+					}
+				}
+			}
+		} catch (e: any) {
+			console.error(e);
+		}
+		setLoading(false);
+	}
+
+	return (
+		<>
+			<S.COWrapperAlt className={'border-wrapper-alt'}>
+				<S.COHeader>
+					<span>{language.amount}</span>
+				</S.COHeader>
+				<span>{`${formatUSDAmount(props.amount)} = ${formatTurboAmount(props.wincConversion)}`}</span>
+			</S.COWrapperAlt>
+			<S.CheckoutForm disabled={loading || contributionResult !== null} className={'border-wrapper'}>
+				{mounting ? <Loader sm relative /> : <PaymentElement />}
+			</S.CheckoutForm>
+			<S.MActions>
+				<Button
+					type={'primary'}
+					label={language.back}
+					handlePress={props.handleGoBack}
+					disabled={loading || contributionResult !== null}
+					noMinWidth
+				/>
+				<Button
+					type={'alt1'}
+					label={language.submit}
+					handlePress={handleSubmit}
+					disabled={loading || contributionResult !== null}
+					loading={loading}
+					formSubmit
+					noMinWidth
+				/>
+			</S.MActions>
+			{contributionResult && (
+				<Notification
+					type={contributionResult.status === true ? 'success' : 'warning'}
+					message={contributionResult.message!}
+					callback={() => {
+						setContributionResult(null);
+						props.handleClose();
+					}}
+				/>
+			)}
+		</>
+	);
+}
+
 export default function PoolContribute(props: IProps) {
+	const theme = useTheme();
+
 	const arProvider = useArweaveProvider();
 	const userClient = new UserClient({ userWalletAddress: arProvider.walletAddress });
 
-	const [loading, setLoading] = React.useState<boolean>(false);
 	const [receivingPercent, setReceivingPercent] = React.useState<string | null>(null);
-
-	const [contributionResult, setContributionResult] = React.useState<NotificationResponseType | null>(null);
 
 	const [copied, setCopied] = React.useState<boolean>(false);
 
@@ -44,32 +165,10 @@ export default function PoolContribute(props: IProps) {
 	const [currency, _setCurrency] = React.useState<string>('usd');
 	const [amount, setAmount] = React.useState<number>(0);
 	const [customAmount, setCustomAmount] = React.useState<number>(0);
-	const [paymentSubmitted, setPaymentSubmitted] = React.useState<boolean>(false);
+	const [clientSecret, setClientSecret] = React.useState<string>('');
 
 	const [wincConversion, setWincConversion] = React.useState<number>(0);
 	const [fetchingConversion, setFetchingConversion] = React.useState<boolean>(false);
-
-	// React.useEffect(() => {
-	// 	(async function () {
-	// 		if (checkout && checkout.paymentSession && checkout.paymentSession.id) {
-	// 			const response = await fetch(`https://api.stripe.com/v1/checkout/sessions/${checkout.paymentSession.id}`);
-	// 			console.log(response);
-	// 		}
-	// 	})();
-
-	// 	const handleBeforeUnload = (e: any) => {
-	// 		if (checkout) {
-	// 			e.preventDefault();
-	// 			e.returnValue = '';
-	// 		}
-	// 	};
-
-	// 	window.addEventListener('beforeunload', handleBeforeUnload);
-
-	// 	return () => {
-	// 		window.removeEventListener('beforeunload', handleBeforeUnload);
-	// 	};
-	// }, [checkout]);
 
 	React.useEffect(() => {
 		(async function () {
@@ -103,7 +202,9 @@ export default function PoolContribute(props: IProps) {
 						getTurboCheckoutEndpoint(poolConfig.state.owner.pubkey, currency, amount)
 					);
 					if (checkoutResponse.ok) {
-						setCheckout(await checkoutResponse.json());
+						const checkoutResponseJson = await checkoutResponse.json();
+						setCheckout(checkoutResponseJson);
+						setClientSecret(checkoutResponseJson.paymentSession.client_secret);
 					}
 				} catch (e: any) {
 					console.error(e);
@@ -144,28 +245,6 @@ export default function PoolContribute(props: IProps) {
 			}
 		}
 	}, [props.poolId]);
-
-	async function handleSubmit() {
-		if (checkout && checkout.paymentSession && checkout.paymentSession.url && amount && currency && arProvider.wallet) {
-			const response = await fetch(getTurboPriceWincEndpoint(currency, amount));
-			if (response.ok) {
-				try {
-					setLoading(true);
-					const wincAmount = (await response.json()).winc;
-					const poolConfigClient = new PoolConfigClient({ testMode: POOL_TEST_MODE });
-					const poolConfig = await poolConfigClient.initFromContract({ poolId: props.poolId });
-					poolConfig.walletKey = 'use_wallet';
-					const poolClient = new PoolClient({ poolConfig });
-					setContributionResult(await poolClient.handlePoolContribute({ wincAmount: wincAmount }));
-					window.open(checkout.paymentSession.url, '_blank');
-					setLoading(false);
-					setPaymentSubmitted(true);
-				} catch (e: any) {
-					console.error(e);
-				}
-			}
-		}
-	}
 
 	function handleGoBack() {
 		setCheckout(null);
@@ -295,46 +374,40 @@ export default function PoolContribute(props: IProps) {
 					</S.MWrapper>
 				);
 			case 'payment':
-				if (checkout && checkout.paymentSession && checkout.paymentSession.url) {
+				if (checkout && checkout.paymentSession && clientSecret) {
 					return (
 						<S.MWrapper>
 							<S.MInfo>
 								<p>{language.fundTurboPaymentHeader}</p>
 								<span>{language.fundTurboPaymentDetail}</span>
 							</S.MInfo>
-							<S.DWrapper>
-								<S.DHeader>
-									<span>{`${language.amount}: ${formatUSDAmount(amount)}`}</span>
-								</S.DHeader>
-							</S.DWrapper>
-							<S.COWrapperAlt className={'border-wrapper-alt'}>
-								<S.COHeader>
-									<span>{language.conversion}</span>
-								</S.COHeader>
-								<span>
-									{fetchingConversion
-										? `${language.fetching}...`
-										: `${formatUSDAmount(amount)} = ${formatTurboAmount(wincConversion)}`}
-								</span>
-							</S.COWrapperAlt>
-							<S.MActions>
-								<Button
-									type={'primary'}
-									label={language.back}
-									handlePress={handleGoBack}
-									disabled={loading || contributionResult !== null || paymentSubmitted}
-									noMinWidth
+							<Elements
+								stripe={stripePromise}
+								options={{
+									clientSecret: clientSecret,
+									appearance: {
+										theme: 'flat',
+										variables: {
+											fontSizeBase: theme.typography.size.small,
+											fontWeightLight: theme.typography.weight.medium,
+											fontWeightNormal: theme.typography.weight.medium,
+											fontWeightMedium: theme.typography.weight.medium,
+											fontWeightBold: theme.typography.weight.medium,
+											borderRadius: STYLING.dimensions.borderRadiusField,
+											spacingUnit: '3.5px',
+										},
+									},
+								}}
+							>
+								<CheckoutForm
+									poolId={props.poolId}
+									handleGoBack={handleGoBack}
+									wincConversion={wincConversion}
+									currency={currency}
+									amount={amount}
+									handleClose={props.handleClose}
 								/>
-								<Button
-									type={'alt1'}
-									label={language.goToPayment}
-									handlePress={handleSubmit}
-									disabled={loading || contributionResult !== null || paymentSubmitted}
-									loading={loading}
-									formSubmit
-									noMinWidth
-								/>
-							</S.MActions>
+							</Elements>
 						</S.MWrapper>
 					);
 				} else {
@@ -349,14 +422,6 @@ export default function PoolContribute(props: IProps) {
 
 	return (
 		<>
-			{contributionResult && (
-				<Notification
-					type={contributionResult.status === true ? 'success' : 'warning'}
-					message={contributionResult.message!}
-					callback={() => setContributionResult(null)}
-				/>
-			)}
-
 			<Modal header={language.contributeTo} handleClose={() => props.handleClose()}>
 				<S.ModalWrapper>
 					<S.Header>

@@ -24,7 +24,7 @@
 		"@stripe/react-stripe-js": "^2.4.0",
 		"@stripe/stripe-js": "^2.4.0",
 		"@types/react-router-dom": "^5.3.3",
-		"arcframework": "1.2.40",
+		"arcframework": "1.2.41",
 		"arweave-wallet-connector": "^1.0.2",
 		"html-react-parser": "^3.0.4",
 		"permaweb-orderbook": "1.6.4",
