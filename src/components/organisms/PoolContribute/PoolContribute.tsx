@@ -252,18 +252,20 @@ export default function PoolContribute(props: IProps) {
 	}
 
 	function getReceivingPercent() {
-		if (receivingPercent) {
-			return (
-				<S.RPWrapper>
-					<span>{language.willBeReceiving}:</span>
-					<p>
-						~&nbsp;{receivingPercent}% {language.ofArtifactsCreated}
-					</p>
-				</S.RPWrapper>
-			);
-		} else {
-			return <p>{language.fetchingReceivingPercentage}&nbsp;...</p>;
-		}
+		return (
+			<S.RPWrapper>
+				{receivingPercent ? (
+					<>
+						<span>{language.willBeReceiving}:</span>
+						<p>
+							~&nbsp;{receivingPercent}% {language.ofArtifactsCreated}
+						</p>
+					</>
+				) : (
+					<p>{language.fetchingReceivingPercentage}&nbsp;...</p>
+				)}
+			</S.RPWrapper>
+		);
 	}
 
 	function getInvalidAmount() {
