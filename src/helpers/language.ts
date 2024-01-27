@@ -375,7 +375,7 @@ export const language = {
 	noPools: `No pools`,
 	noResults: `No results`,
 	of: `of`,
-	ofArtifactsCreated: `of new Artifacts created`,
+	ofArtifactsCreated: `of new artifacts created`,
 	openInNewTab: `Open in New Tab`,
 	operatorContributionsRestricted: `Operator contributions not allowed`,
 	oppose: `Oppose`,
