@@ -115,7 +115,7 @@ function CheckoutForm(props: {
 				<span>{`${formatUSDAmount(props.amount)} = ${formatTurboAmount(props.wincConversion)}`}</span>
 			</S.COWrapperAlt>
 			<S.CheckoutForm disabled={loading || contributionResult !== null} className={'border-wrapper'}>
-				{mounting ? <Loader sm relative /> : <PaymentElement />}
+				{mounting ? <Loader sm relative /> : <PaymentElement options={{ layout: 'accordion' }} />}
 			</S.CheckoutForm>
 			<S.MActions>
 				<Button
@@ -390,6 +390,7 @@ export default function PoolContribute(props: IProps) {
 									appearance: {
 										theme: 'flat',
 										variables: {
+											colorPrimary: theme.colors.font.primary.alt4,
 											fontSizeBase: theme.typography.size.small,
 											fontWeightLight: theme.typography.weight.medium,
 											fontWeightNormal: theme.typography.weight.medium,

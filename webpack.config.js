@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -24,6 +25,10 @@ module.exports = {
 		compress: true,
 		client: {
 			overlay: true,
+		},
+		https: {
+			key: fs.readFileSync('/Users/nickj/certs/localhost-key.pem'),
+			cert: fs.readFileSync('/Users/nickj/certs/localhost.pem'),
 		},
 	},
 	optimization:
