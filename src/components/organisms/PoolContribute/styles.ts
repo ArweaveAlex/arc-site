@@ -59,27 +59,14 @@ export const SubmitWrapper = styled.div`
 
 export const RPWrapper = styled.div`
 	width: fit-content;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	gap: 3.5px;
-	margin: 15px 0 0 0;
+	margin: 20px 0 0 0;
 	span,
 	p {
-		font-size: ${(props) => props.theme.typography.size.xSmall};
-		line-height: 18px;
-	}
-	span {
 		color: ${(props) => props.theme.colors.font.primary.alt7};
-	}
-	p {
+		font-size: ${(props) => props.theme.typography.size.xSmall};
 		font-weight: ${(props) => props.theme.typography.weight.medium};
-	}
-	white-space: nowrap;
-	overflow: hidden;
-	@media (max-width: ${STYLING.cutoffs.secondary}) {
-		gap: 10px;
+		line-height: 1.5;
+		white-spcae: normal;
 	}
 `;
 
@@ -247,6 +234,5 @@ export const LWrapper = styled.div`
 export const CheckoutForm = styled.form<{ disabled: boolean }>`
 	pointer-events: ${(props) => (props.disabled ? 'none' : 'all')};
 	margin: 20px 0 0 0;
-	padding: 20px;
 	animation: ${open} ${fadeIn2};
 `;

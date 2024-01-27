@@ -114,7 +114,7 @@ function CheckoutForm(props: {
 				</S.COHeader>
 				<span>{`${formatUSDAmount(props.amount)} = ${formatTurboAmount(props.wincConversion)}`}</span>
 			</S.COWrapperAlt>
-			<S.CheckoutForm disabled={loading || contributionResult !== null} className={'border-wrapper'}>
+			<S.CheckoutForm disabled={loading || contributionResult !== null}>
 				{mounting ? <Loader sm relative /> : <PaymentElement options={{ layout: 'accordion' }} />}
 			</S.CheckoutForm>
 			<S.MActions>
@@ -255,12 +255,9 @@ export default function PoolContribute(props: IProps) {
 		return (
 			<S.RPWrapper>
 				{receivingPercent ? (
-					<>
-						<span>{language.willBeReceiving}:</span>
-						<p>
-							~&nbsp;{receivingPercent}% {language.ofArtifactsCreated}
-						</p>
-					</>
+					<p>
+						{language.willBeReceiving}: ~&nbsp;{receivingPercent}% {language.ofArtifactsCreated}
+					</p>
 				) : (
 					<p>{language.fetchingReceivingPercentage}&nbsp;...</p>
 				)}
@@ -354,7 +351,12 @@ export default function PoolContribute(props: IProps) {
 									: `${formatUSDAmount(amount)} = ${formatTurboAmount(wincConversion)}`}
 							</span>
 						</S.COWrapper>
-						{arProvider.walletAddress && <S.RPWrapper>{getReceivingPercent()}</S.RPWrapper>}
+						{!arProvider.walletAddress && (
+							<S.RPWrapper>
+								<p>{language.walletNotConnected}</p>
+							</S.RPWrapper>
+						)}
+						{arProvider.walletAddress && getReceivingPercent()}
 						<S.MActions>
 							<Button
 								type={'primary'}
@@ -396,7 +398,7 @@ export default function PoolContribute(props: IProps) {
 											fontWeightNormal: theme.typography.weight.medium,
 											fontWeightMedium: theme.typography.weight.medium,
 											fontWeightBold: theme.typography.weight.medium,
-											borderRadius: STYLING.dimensions.borderRadiusField,
+											borderRadius: STYLING.dimensions.borderRadiusWrapper,
 											spacingUnit: '3.5px',
 										},
 									},
