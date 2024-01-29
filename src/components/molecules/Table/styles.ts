@@ -54,6 +54,9 @@ export const Body = styled.div`
 	::-webkit-scrollbar {
 		width: 0px;
 	}
+	@media (max-width: ${STYLING.cutoffs.initial}) {
+		overflow-y: hidden;
+	}
 `;
 
 export const Table = styled.div`
