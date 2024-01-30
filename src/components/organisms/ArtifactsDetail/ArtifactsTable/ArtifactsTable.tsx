@@ -5,8 +5,10 @@ import parse from 'html-react-parser';
 
 import { ARTIFACT_CONTRACT, formatKeywordString, getTagValue, STORAGE, TAGS } from 'arcframework';
 
+import { Button } from 'components/atoms/Button';
 import { Checkbox } from 'components/atoms/Checkbox';
 import { IconButton } from 'components/atoms/IconButton';
+import { Modal } from 'components/molecules/Modal';
 import { Table } from 'components/molecules/Table';
 import { ARTIFACT_TYPES, ASSETS, PAGINATORS } from 'helpers/config';
 import { language } from 'helpers/language';
@@ -25,6 +27,8 @@ export default function ArtifactsTable(props: IProps) {
 		null
 	);
 	const [selectedCallbackIdsState, setSelectedCallbackIdsState] = React.useState<string[]>([]);
+
+	const [showTableKey, setShowTableKey] = React.useState<boolean>(false);
 
 	const [stamps, _setStamps] = React.useState<any>(null);
 	const [updateStamps, setUpdateStamps] = React.useState<boolean>(false);
@@ -231,6 +235,40 @@ export default function ArtifactsTable(props: IProps) {
 						/>
 					</S.FilterWrapper>
 				)}
+				<>
+					<Button
+						type={'alt2'}
+						label={language.tableKey}
+						icon={ASSETS.key}
+						handlePress={() => setShowTableKey(true)}
+						noMinWidth
+					/>
+					{showTableKey && (
+						<Modal header={language.tableKey} handleClose={() => setShowTableKey(false)}>
+							<S.MWrapper>
+								<p>{language.tableKeyInfo}</p>
+								<S.MFlexItem>
+									<span>
+										<ReactSVG src={ASSETS.trade} />
+										&nbsp;&nbsp;&nbsp;{language.artifactTradeableInfo}
+									</span>
+								</S.MFlexItem>
+								<S.MFlexItem>
+									<span>
+										<ReactSVG src={ASSETS.media} />
+										&nbsp;&nbsp;&nbsp;{language.artifactMediaInfo}
+									</span>
+								</S.MFlexItem>
+								<S.MFlexItem>
+									<span>
+										<ReactSVG src={ASSETS.association} />
+										&nbsp;&nbsp;&nbsp;{language.artifactAssociationInfo}
+									</span>
+								</S.MFlexItem>
+							</S.MWrapper>
+						</Modal>
+					)}
+				</>
 			</S.AWrapper>
 		);
 	}

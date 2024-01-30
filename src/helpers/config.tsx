@@ -45,6 +45,7 @@ import fullScreenSVG from 'assets/full-screen.svg';
 import historicalSVG from 'assets/historical-icon.svg';
 import impressionsSVG from 'assets/impressions.svg';
 import infoSVG from 'assets/info.svg';
+import keySVG from 'assets/key.svg';
 import landingGraphicSVG from 'assets/landing-graphic.svg';
 import linkSVG from 'assets/link.svg';
 import logoSVG from 'assets/logo.svg';
@@ -146,6 +147,7 @@ export const ASSETS = {
 	historical: historicalSVG,
 	impressions: impressionsSVG,
 	info: infoSVG,
+	key: keySVG,
 	landingGraphic: landingGraphicSVG,
 	link: linkSVG,
 	logo: logoSVG,

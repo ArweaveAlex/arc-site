@@ -157,6 +157,7 @@ export const MWrapper = styled.div`
 export const MInfo = styled.div`
 	margin: 10px 0 0 0;
 	padding: 0 20px 0 0;
+	a,
 	p,
 	span {
 		line-height: 1.5;
@@ -167,10 +168,14 @@ export const MInfo = styled.div`
 		font-size: ${(props) => props.theme.typography.size.small};
 		margin: 0 0 5px 0;
 	}
+	a,
 	span {
 		color: ${(props) => props.theme.colors.font.primary.alt1};
 		font-weight: ${(props) => props.theme.typography.weight.regular};
-		font-size: ${(props) => props.theme.typography.size.xSmall};
+		font-size: ${(props) => props.theme.typography.size.small};
+	}
+	a {
+		color: ${(props) => props.theme.colors.font.primary.active.base};
 	}
 `;
 

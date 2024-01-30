@@ -132,6 +132,8 @@ export const CheckboxContainer = styled.div`
 export const AWrapper = styled.div`
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
+	gap: 15px;
 `;
 
 export const ActionsWrapper = styled.div``;
@@ -175,5 +177,35 @@ export const FCWrapper = styled.div`
 			height: 11.5px !important;
 			width: 11.5px !important;
 		}
+	}
+`;
+
+export const MWrapper = styled.div`
+	p {
+		color: ${(props) => props.theme.colors.font.primary.alt1};
+		font-size: ${(props) => props.theme.typography.size.small};
+		font-weight: ${(props) => props.theme.typography.weight.regular};
+		line-height: 1.5;
+		margin: 20px 0 0 0;
+	}
+	> * {
+		&:not(:last-child) {
+			margin: 0 0 20px 0;
+		}
+	}
+`;
+
+export const MFlexItem = styled.div`
+	span {
+		color: ${(props) => props.theme.colors.font.primary.active.base};
+		font-size: ${(props) => props.theme.typography.size.small};
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+		line-height: 1.5;
+		display: flex;
+	}
+	svg {
+		height: 12.5px !important;
+		width: 12.5px !important;
+		fill: ${(props) => props.theme.colors.font.primary.active.base};
 	}
 `;

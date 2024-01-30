@@ -1,6 +1,7 @@
 import React from 'react';
 import { Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import parse from 'html-react-parser';
 import { useTheme } from 'styled-components';
 
 import {
@@ -383,7 +384,7 @@ export default function PoolContribute(props: IProps) {
 						<S.MWrapper>
 							<S.MInfo>
 								<p>{language.fundTurboPaymentHeader}</p>
-								<span>{language.fundTurboPaymentDetail}</span>
+								<span>{parse(language.fundTurboPaymentDetail)}</span>
 							</S.MInfo>
 							<Elements
 								stripe={stripePromise}
