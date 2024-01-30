@@ -1,11 +1,12 @@
-import { ArweaveClient, getTagValue, TAGS } from 'arcframework';
+import { ArtifactDetailType, ArweaveClient, getArtifact, getTagValue, SequenceType, TAGS } from 'arcframework';
 
 import { getGQLData, getGQLResponseObject } from 'gql';
-import { GATEWAYS } from 'helpers/config';
+import { GATEWAYS, STORAGE } from 'helpers/config';
 import { getBalancesEndpoint } from 'helpers/endpoints';
 import { language } from 'helpers/language';
 import {
 	AGQLResponseType,
+	AssociationDetailType,
 	BalanceType,
 	GQLArgsType,
 	NotificationResponseType,
@@ -71,6 +72,82 @@ export async function getArtifactIdsByUser(args: UserArtifactsArgsType): Promise
 		console.error(e);
 	}
 	return [];
+}
+
+export async function getArtifactsByAssociation(
+	associationId: string,
+	sequence: SequenceType
+): Promise<AssociationDetailType | null> {
+	const artifacts: ArtifactDetailType[] = [];
+	const range = Array.from({ length: sequence.end - sequence.start + 1 }, (_, i) => (i + sequence.start).toString());
+
+	if (associationId) {
+		const fullThread: AGQLResponseType = await getGQLData({
+			gateway: GATEWAYS.arweave,
+			ids: null,
+			tagFilters: [
+				{
+					name: TAGS.keys.associationId,
+					values: [associationId],
+				},
+			],
+			owners: null,
+			cursor: null,
+			reduxCursor: null,
+			cursorObjectKey: null,
+		});
+
+		const gqlArtifacts: AGQLResponseType = await getGQLData({
+			gateway: GATEWAYS.arweave,
+			ids: null,
+			tagFilters: [
+				{
+					name: TAGS.keys.associationId,
+					values: [associationId],
+				},
+				{
+					name: TAGS.keys.associationSequence,
+					values: range,
+				},
+			],
+			owners: null,
+			cursor: null,
+			reduxCursor: null,
+			cursorObjectKey: null,
+		});
+
+		if (gqlArtifacts.data && gqlArtifacts.data.length) {
+			const filteredArtifacts: any[] = [];
+			for (let i = 0; i < gqlArtifacts.data.length; i++) {
+				const associationSequence = getTagValue(gqlArtifacts.data[i].node.tags, TAGS.keys.associationSequence);
+
+				if (associationSequence && associationSequence !== STORAGE.none) {
+					if (!filteredArtifacts.includes(associationSequence)) {
+						filteredArtifacts.push(gqlArtifacts.data[i]);
+					}
+					if (filteredArtifacts.length === range.length) {
+						break;
+					}
+				} else {
+					filteredArtifacts.push(gqlArtifacts.data[i]);
+				}
+			}
+
+			for (let i = 0; i < filteredArtifacts.length; i++) {
+				const artifact = await getArtifact(gqlArtifacts.data[i]);
+				if (artifact) {
+					artifacts.push(artifact);
+				}
+			}
+		}
+
+		return {
+			artifacts: artifacts,
+			length: fullThread.data.length,
+		};
+	} else {
+		return null;
+	}
 }
 
 export async function getArtifactIdsByBookmarks(args: UserArtifactsArgsType): Promise<string[]> {

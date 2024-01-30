@@ -51,19 +51,4 @@ export default function ArtifactViewList(props: IProps) {
 			) : null}
 		</S.Wrapper>
 	);
-
-	// return (
-	// 	<Query value={'type'} check={[ArtifactEnum.Image, ArtifactEnum.Messaging, ArtifactEnum.Nostr]}>
-	// 		<S.Wrapper>
-	// 			{List ? (
-	// 				<List
-	// 					data={props.data}
-	// 					loading={props.loading}
-	// 					updateSequence={props.updateSequence}
-	// 					updateDisabled={props.updateDisabled}
-	// 				/>
-	// 			) : null}
-	// 		</S.Wrapper>
-	// 	</Query>
-	// );
 }

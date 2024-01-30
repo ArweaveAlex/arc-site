@@ -1,3 +1,5 @@
+import { ArtifactDetailType } from 'arcframework';
+
 export type ButtonType = 'primary' | 'alt1' | 'alt2' | 'alt3' | 'success' | 'warning';
 export type FormFieldType = 'number' | 'password';
 export type NotificationType = 'success' | 'warning' | 'neutral';
@@ -166,6 +168,11 @@ export type GQLArgsType = {
 	cursorObjectKey: CursorObjectKeyType;
 	paginator?: number;
 };
+
+export interface AssociationDetailType {
+	artifacts: ArtifactDetailType[];
+	length: number;
+}
 
 export type PagingType = {
 	limit: number;

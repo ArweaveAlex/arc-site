@@ -1,8 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { AssociationDetailType, getArtifactsByAssociation, SequenceType } from 'arcframework';
+import { AssociationDetailType, SequenceType } from 'arcframework';
 
+import { getArtifactsByAssociation } from 'gql';
 import * as windowUtils from 'helpers/window';
 
 import { ArtifactList } from './ArtifactList';

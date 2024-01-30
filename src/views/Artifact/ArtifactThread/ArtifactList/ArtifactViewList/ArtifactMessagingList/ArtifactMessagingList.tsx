@@ -55,7 +55,7 @@ export default function ArtifactMessagingList(props: IProps) {
 
 	function getAction() {
 		if (props.loading) {
-			return <Loader sm />;
+			return <Loader sm relative />;
 		}
 		if (showAction) {
 			return (
@@ -72,7 +72,7 @@ export default function ArtifactMessagingList(props: IProps) {
 
 	function getHeaderData() {
 		if (!headerData) {
-			return <Loader sm />;
+			return <Loader sm relative />;
 		} else {
 			return (
 				<S.HeaderContent>
@@ -106,7 +106,7 @@ export default function ArtifactMessagingList(props: IProps) {
 
 	function getDetailData() {
 		if (!detailData) {
-			return <Loader sm />;
+			return <Loader sm relative />;
 		} else {
 			return (
 				<MessagingListItem
@@ -124,7 +124,7 @@ export default function ArtifactMessagingList(props: IProps) {
 		if (!listData) {
 			return (
 				<S.LoadingContainerInit>
-					<Loader sm />
+					<Loader sm relative />
 				</S.LoadingContainerInit>
 			);
 		} else {

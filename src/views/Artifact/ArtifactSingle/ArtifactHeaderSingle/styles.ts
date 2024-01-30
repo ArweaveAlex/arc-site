@@ -112,7 +112,9 @@ export const InfoStyled = styled(InfoData)`
 	}
 	border-left: 1px solid ${(props) => props.theme.colors.border.primary};
 	@media (max-width: ${STYLING.cutoffs.initial}) {
-		border: none;
+		background: ${(props) => props.theme.colors.container.alt4.background};
+		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+		box-shadow: 0 2.5px 3.5px 0 ${(props) => props.theme.colors.shadow.primary};
 		svg {
 			width: 17.5px;
 		}

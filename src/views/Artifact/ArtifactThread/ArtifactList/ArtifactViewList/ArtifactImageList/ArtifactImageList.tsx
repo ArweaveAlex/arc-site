@@ -144,15 +144,17 @@ export default function ArtifactImageList(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<S.HDWrapper>
-				<S.HDContentWrapper>
-					<S.HDContent>
-						<S.HeaderWrapper>
-							<S.HeaderContent>{getHeaderData()}</S.HeaderContent>
-						</S.HeaderWrapper>
-					</S.HDContent>
-				</S.HDContentWrapper>
-			</S.HDWrapper>
+			{headerData && (
+				<S.HDWrapper>
+					<S.HDContentWrapper>
+						<S.HDContent>
+							<S.HeaderWrapper>
+								<S.HeaderContent>{getHeaderData()}</S.HeaderContent>
+							</S.HeaderWrapper>
+						</S.HDContent>
+					</S.HDContentWrapper>
+				</S.HDWrapper>
+			)}
 			<S.ListWrapper>{getListData()}</S.ListWrapper>
 		</S.Wrapper>
 	);
