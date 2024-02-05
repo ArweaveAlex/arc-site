@@ -251,7 +251,7 @@ export const language = {
 				},
 				{
 					header: `Fund the pool`,
-					description: `Once a pool is configured and created, <span>($AR)</span> is needed to store the artifacts and run the mining processes. Users are encouraged to support pools by contributing <span>($AR)</span> to pools to pay for storage costs and become sponsors of artifacts.`,
+					description: `Once a pool is configured and created, <span>($AR)</span> is needed to store the artifacts and run the mining processes. Users are encouraged to support pools by contributing <span>($AR)</span> through Turbo to pools to pay for storage costs and become sponsors of artifacts.`,
 					action: {
 						label: `Learn About contributing`,
 						href: `/docs/contributing`,
