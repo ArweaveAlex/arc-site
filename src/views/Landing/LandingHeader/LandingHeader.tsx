@@ -26,7 +26,10 @@ export default function LandingHeader() {
 							<div>
 								<p>
 									{language.banner.subheader2}&nbsp;
-									<Link to="https://alex.arweave.dev/#/pools/create/" target="_blank">
+									<Link
+										to="https://frab5l3bxo4stup53rnpf6y2esgjm6uqud6m5ef5toq3ucizg3rq.arweave.net/LEAer2G7uSnR_dxa8vsaJIyWepCg_M6QvZuhugkZNuM"
+										target="_blank"
+									>
 										here.
 									</Link>
 								</p>

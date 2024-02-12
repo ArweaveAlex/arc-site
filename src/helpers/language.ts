@@ -130,7 +130,7 @@ export const language = {
 	banner: {
 		header1: `A decentralized archival platform that preserves human history and culture digitally.`,
 		subheader1: `Archives are permanently stored on`,
-		subheader2: `Create an archival pool`,
+		subheader2: `Win up to 60 $AR by joining the 2024 Alex Poolathon`,
 	},
 	basicInformation: `Basic information`,
 	bookmarks: `Bookmarks`,
