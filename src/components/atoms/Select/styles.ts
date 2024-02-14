@@ -25,7 +25,8 @@ export const Select = styled.select`
 	width: 100%;
 	pointer-events: ${(props) => (props.disabled ? `none` : `all`)};
 	font-size: ${(props) => props.theme.typography.size.xSmall};
-	font-weight: ${(props) => props.theme.typography.weight.bold};
+	font-weight: ${(props) => props.theme.typography.weight.medium};
+	font-family: ${(props) => props.theme.typography.family.primary};
 	margin: 5px auto;
 	box-sizing: border-box;
 	background-color: ${(props) => props.theme.colors.form.background};

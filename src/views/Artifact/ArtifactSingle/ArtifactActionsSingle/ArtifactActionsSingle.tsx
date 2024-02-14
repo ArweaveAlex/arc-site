@@ -6,7 +6,6 @@ import { Button } from 'components/atoms/Button';
 import { TradeDisclaimer } from 'components/atoms/TradeDisclaimer';
 import { Modal } from 'components/molecules/Modal';
 import { ArtifactSell } from 'components/organisms/ArtifactSell';
-import { FactWidget } from 'components/organisms/FactWidget';
 import { StampWidget } from 'components/organisms/StampWidget';
 import { APP } from 'helpers/config';
 import { language } from 'helpers/language';
@@ -22,7 +21,6 @@ export default function ArtifactActionsSingle(props: IProps) {
 
 	const [copied, setCopied] = React.useState<boolean>(false);
 	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
-	const [showFactWidget, setShowFactWidget] = React.useState<boolean>(false);
 	const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
 	const [sellDisabled, setSellDisabled] = React.useState<boolean>(false);
 
@@ -39,20 +37,12 @@ export default function ArtifactActionsSingle(props: IProps) {
 	}, [props.data]);
 
 	function handleShowStampWidget() {
-		setShowFactWidget(false);
 		setShowStampWidget(!showStampWidget);
-		setShowArtifactSell(false);
-	}
-
-	function handleShowFactWidget() {
-		setShowStampWidget(false);
-		setShowFactWidget(!showFactWidget);
 		setShowArtifactSell(false);
 	}
 
 	function handleShowArtifactSell() {
 		setShowStampWidget(false);
-		setShowFactWidget(false);
 		setShowArtifactSell(!showArtifactSell);
 	}
 
@@ -72,12 +62,6 @@ export default function ArtifactActionsSingle(props: IProps) {
 				handleStampCallback={() => setShowStampWidget(false)}
 				showWalletConnect={true}
 			/>
-		);
-	};
-
-	const factWidget = () => {
-		return (
-			<FactWidget txId={props.data.artifactId} walletAddress={arProvider.walletAddress} showWalletConnect={true} />
 		);
 	};
 
@@ -179,15 +163,6 @@ export default function ArtifactActionsSingle(props: IProps) {
 						width={100}
 					/>
 					{showStampWidget && getWidget(stampWidget, S.StampWidgetContainer, () => setShowStampWidget(false))}
-				</S.ButtonContainer>
-				<S.ButtonContainer>
-					<Button
-						type={'alt2'}
-						label={showFactWidget ? language.close : language.factMarket}
-						handlePress={handleShowFactWidget}
-						width={110}
-					/>
-					{showFactWidget && getWidget(factWidget, S.FactWidgetContainer, () => setShowFactWidget(false))}
 				</S.ButtonContainer>
 				{getArtifactSell()}
 				{getArtifactDownload()}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ArtifactEnum, getRendererEndpoint, RENDER_WITH_VALUES, STORAGE } from 'arcframework';
+import { ArtifactEnum, getRendererEndpoint, RENDER_WITH_VALUE, STORAGE } from 'arcframework';
 
 import { DOM } from 'helpers/config';
 
@@ -64,7 +64,7 @@ export default function ArtifactRendererSingle(props: IProps) {
 				<S.Frame
 					id={DOM.renderer}
 					ref={iframeRef}
-					src={getRendererEndpoint(RENDER_WITH_VALUES[0], props.artifactId)}
+					src={getRendererEndpoint(RENDER_WITH_VALUE, props.artifactId)}
 					allowFullScreen
 				/>
 			</div>

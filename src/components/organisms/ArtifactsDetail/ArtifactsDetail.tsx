@@ -43,10 +43,12 @@ export default function ArtifactsDetail(props: IProps) {
 		if (!currentCursorObject || currentCursorObject.value !== props.cursorObject.value) {
 			setDetailData(null);
 			setCurrentCursorObject(props.cursorObject);
+			setPaginatedIds(null);
 		}
 		if (currentCursorUpdate === STORAGE.none || currentCursorUpdate !== cursor) {
 			setDetailData(null);
 			setCurrentCursorUpdate(cursor);
+			setPaginatedIds(null);
 		}
 	}, [props.cursorObject, cursor]);
 
@@ -85,7 +87,7 @@ export default function ArtifactsDetail(props: IProps) {
 				setPaginatedIds(paginatedIdsObject);
 			}
 		})();
-	}, [props.cursorObject, props.useIdPagination, cursor]);
+	}, [props.cursorObject, paginatedIds, props.useIdPagination, cursor]);
 
 	React.useEffect(() => {
 		(async function () {
@@ -119,6 +121,7 @@ export default function ArtifactsDetail(props: IProps) {
 	React.useEffect(() => {
 		(async function () {
 			if (!props.useIdPagination) {
+				console.log(5);
 				setDetailData(null);
 				setShowNoResults(false);
 				setDetailDataUpdated(!detailDataUpdated);

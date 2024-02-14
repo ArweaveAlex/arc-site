@@ -15,7 +15,6 @@ import { ActionDropdown } from 'components/atoms/ActionDropdown';
 import { Notification } from 'components/atoms/Notification';
 import { Modal } from 'components/molecules/Modal';
 import { ArtifactSell } from 'components/organisms/ArtifactSell';
-import { FactWidget } from 'components/organisms/FactWidget';
 import { StampWidget } from 'components/organisms/StampWidget';
 import { getBookmarkIds, setBookmarkIds } from 'gql';
 import { DOM } from 'helpers/config';
@@ -58,7 +57,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	const [bookmarkNotification, setBookmarkNotification] = React.useState<NotificationResponseType | null>(null);
 
 	const [showStampWidget, setShowStampWidget] = React.useState<boolean>(false);
-	const [showFactWidget, setShowFactWidget] = React.useState<boolean>(false);
 	const [showArtifactSell, setShowArtifactSell] = React.useState<boolean>(false);
 
 	const [bookmarkIdsState, setBookmarkIdsState] = React.useState<string[]>([]);
@@ -173,17 +171,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		};
 	}
 
-	function getFactWidget() {
-		return {
-			node: (
-				<S.FactWidgetContainer>
-					<FactWidget txId={props.artifactId} walletAddress={arProvider.walletAddress} showWalletConnect={true} />
-				</S.FactWidgetContainer>
-			),
-			active: showFactWidget,
-		};
-	}
-
 	function getArtifactSell() {
 		return {
 			node: (
@@ -209,27 +196,18 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 	function handleShowPreview() {
 		setShowPreview(!showPreview);
 		setShowStampWidget(false);
-		setShowFactWidget(false);
 		handleView();
 	}
 
 	function handleShowStampWidget() {
 		setShowStampWidget(!showStampWidget);
 		setShowPreview(false);
-		setShowFactWidget(false);
-	}
-
-	function handleShowFactWidget() {
-		setShowFactWidget(!showFactWidget);
-		setShowPreview(false);
-		setShowStampWidget(false);
 	}
 
 	function handleShowArtifactSell() {
 		setShowArtifactSell(!showArtifactSell);
 		setShowPreview(false);
 		setShowStampWidget(false);
-		setShowFactWidget(false);
 	}
 
 	function handleViewRedirect() {
@@ -242,7 +220,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 		setDropdownOpen(!dropdownOpen);
 		setShowPreview(false);
 		setShowStampWidget(false);
-		setShowFactWidget(false);
 	}
 
 	function handlePreviewCallback() {
@@ -277,14 +254,6 @@ export default function ArtifactsTableActionDropdown(props: IProps) {
 				closeOnAction: false,
 				subComponent: getStampWidget(),
 				label: showStampWidget ? language.close : language.stamp,
-				disabled: false,
-				loading: false,
-			},
-			{
-				fn: handleShowFactWidget,
-				closeOnAction: false,
-				subComponent: getFactWidget(),
-				label: showFactWidget ? language.close : language.factMarket,
 				disabled: false,
 				loading: false,
 			},

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { formatAddress, formatDataSize, formatDate, getTxEndpoint } from 'arcframework';
+import { formatAddress, formatDataSize, formatDate, getTxEndpoint, STORAGE } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { ASSETS } from 'helpers/config';
@@ -117,6 +117,20 @@ export default function ArtifactDetailSingle(props: IProps) {
 						</S.LinkWrapper>
 					</S.InfoData>
 				</S.ContentLine>
+				{props.data.originalUrl && props.data.originalUrl !== STORAGE.none && (
+					<S.ContentLine className={'border-wrapper-alt'}>
+						<S.InfoData>
+							<S.DataWrapper>
+								<S.DataLine>
+									<S.DataHeader>{language.originalUrl}:&nbsp;</S.DataHeader>
+									<Link to={props.data.originalUrl} target={'_blank'}>
+										{props.data.originalUrl}
+									</Link>
+								</S.DataLine>
+							</S.DataWrapper>
+						</S.InfoData>
+					</S.ContentLine>
+				)}
 			</S.Content>
 		</S.Wrapper>
 	) : null;

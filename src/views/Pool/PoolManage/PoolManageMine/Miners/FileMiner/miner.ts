@@ -10,7 +10,7 @@ import {
 	getMimeType,
 	logValue,
 	PoolClient,
-	RENDER_WITH_VALUES,
+	RENDER_WITH_VALUE,
 	TAGS,
 } from 'arcframework';
 
@@ -71,7 +71,7 @@ export async function uploadFile(poolClient: PoolClient, data: FileMetadataType,
 			associationId: associationId,
 			associationSequence: null,
 			childAssets: null,
-			renderWith: RENDER_WITH_VALUES,
+			renderWith: RENDER_WITH_VALUE,
 			assetId: fileTxId,
 			fileType: fileType,
 		});

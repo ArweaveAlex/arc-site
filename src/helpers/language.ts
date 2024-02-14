@@ -382,6 +382,7 @@ export const language = {
 	openInNewTab: `Open in New Tab`,
 	operatorContributionsRestricted: `Operator contributions not allowed`,
 	oppose: `Oppose`,
+	originalUrl: `Original URL`,
 	owner: `Sponsor`,
 	ownerInfo: `Owner information`,
 	pageNotFound: `Page not found`,
