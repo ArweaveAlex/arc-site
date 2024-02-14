@@ -130,7 +130,7 @@ export const language = {
 	banner: {
 		header1: `A decentralized archival platform that preserves human history and culture digitally.`,
 		subheader1: `Archives are permanently stored on`,
-		subheader2: `Create an archival pool`,
+		subheader2: `Win up to 60 $AR by joining the 2024 Alex Poolathon`,
 	},
 	basicInformation: `Basic information`,
 	bookmarks: `Bookmarks`,
@@ -251,7 +251,7 @@ export const language = {
 				},
 				{
 					header: `Fund the pool`,
-					description: `Once a pool is configured and created, <span>($AR)</span> is needed to store the artifacts and run the mining processes. Users are encouraged to support pools by contributing <span>($AR)</span> to pools to pay for storage costs and become sponsors of artifacts.`,
+					description: `Once a pool is configured and created, <span>($AR)</span> is needed to store the artifacts and run the mining processes. Users are encouraged to support pools by contributing <span>($AR)</span> through Turbo to pools to pay for storage costs and become sponsors of artifacts.`,
 					action: {
 						label: `Learn About contributing`,
 						href: `/docs/contributing`,
