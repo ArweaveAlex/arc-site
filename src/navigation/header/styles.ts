@@ -106,6 +106,7 @@ export const SC = styled.div`
 		height: auto;
 		flex-direction: column;
 		align-items: start;
+		padding: 0 20px;
 	}
 `;
 
@@ -154,12 +155,12 @@ export const SubpathWrapper = styled.div`
 		margin: 0;
 		padding: 0;
 		min-width: 0;
-		left: 15px;
+		left: 0;
 		a {
 			height: 60px;
-			width: 100vw;
+			width: 100vw !important;
 			justify-content: left;
-			padding: 0 20px;
+			padding: 0 35px !important;
 		}
 	}
 `;
@@ -206,7 +207,7 @@ export const LinkWrapper = styled.div`
 			height: 60px;
 			width: 100vw;
 			justify-content: left;
-			padding: 0 20px;
+			padding: 0 35px;
 			&:hover {
 				text-decoration: none;
 				background: ${(props) => props.theme.colors.container.primary.hover};
