@@ -14,7 +14,7 @@ export const HeaderWrapper = styled.div`
 export const HeaderContent = styled.div``;
 
 export const HeaderContentFixed = styled.div`
-	width: calc(100% - 40px);
+	width: 100%;
 	max-width: calc(${STYLING.cutoffs.max} - 40px);
 	margin: 0 auto;
 	@media (max-width: ${STYLING.cutoffs.initialWrapper}) {
