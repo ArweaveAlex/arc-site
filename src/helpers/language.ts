@@ -322,6 +322,7 @@ export const language = {
 	groupExists: `Group already exists`,
 	handle: `Handle`,
 	headerImage: `Header image`,
+	headerImageInfo: `Recommended size: 16:9 aspect ratio, 1920 x 1080 pixels.`,
 	invalidAmountTurbo: `Amount must be between $5 - $10,000`,
 	invalidContributionPercentage: `This value can be between 0 and 100`,
 	invalidMetadataField: `Metadata fields must be unique`,
