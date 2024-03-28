@@ -1,18 +1,10 @@
 # Interacting with artifacts
 
-While browsing through artifacts on Alex. you can STAMP, share, and fact check.
-
-To STAMP an artifact means to give it a ‘like’. [Stamps](https://stamps.live/) are the universal ‘like’ button on all permaweb apps. Stamped artifacts along with all other stamped permaweb content is displayed on [now](https://now.arweave.dev/).
-
-Sharing artifacts is also easy within the platform. You can copy the Artifact link, Artifact ID, or share the Artifact link on Twitter.
-
-If you find yourself questioning the truthfulness of an artifact, you can ‘support’ or ‘oppose’ it by opening a Fact Market. [Fact Markets](https://facts.g8way.io/#/) are a new form of online quality checks that encourage community discourse to support or oppose assertions.
-
-While browsing through artifacts on Alex. you can share, STAMP, fact check or sell.
+You can share, STAMP or sell artifacts from the artifact pages or from the account page.
 
 ## Share
 
-Sharing artifacts is easy within the platform. You can copy the Artifact link, Artifact ID, or share the Artifact link on X.
+Sharing artifacts is easy within the platform. You can copy the artifact link, artifact ID, or share the artifact link on X.
 
 ## STAMP
 
@@ -20,7 +12,7 @@ Stamps are the universal ‘like’ button on all permaweb apps. Stamped artifac
 
 ## Sell
 
-Artifact sponsorships can be traded on the [Universal Content Marketplace](https://ucm-wiki.g8way.io/#/en/main) (UCM) protocol. BazAR is the first client built on the UCM and can be accessed [here](https://bazar.arweave.dev/#/). Artifacts can be traded on the UCM either individually or through collections.
+Artifact sponsorships can be traded on the [Universal Content Marketplace](https://ucm-wiki.g8way.io/#/en/main) (UCM) protocol. BazAR is the first user interface built on the UCM and can be accessed [here](https://bazar.arweave.dev/#/). Artifacts can be traded on the UCM either individually or through collections.
 
 - **Selling individual artifacts**
   When viewing an artifact that you own, select “sell artifact” and determine how much $U it will be listed for. Once submitted, you can now see it listed on BazAR.
