@@ -26,13 +26,6 @@ module.exports = {
 		client: {
 			overlay: true,
 		},
-		https:
-			process.env.NODE_ENV === 'development'
-				? {
-						key: fs.readFileSync('/Users/nickj/certs/localhost-key.pem'),
-						cert: fs.readFileSync('/Users/nickj/certs/localhost.pem'),
-				  }
-				: {},
 	},
 	optimization:
 		process.env.NODE_ENV === 'production'

@@ -9,6 +9,7 @@ const About = getLazyImport('About');
 const Account = getLazyImport('Account');
 const Artifact = getLazyImport('Artifact');
 const ArtifactThread = getLazyImport('Artifact/ArtifactThread');
+const Blog = getLazyImport('Blog');
 const CollectionsManage = getLazyImport('Collections/CollectionsManage');
 const Contribute = getLazyImport('Contribute');
 const Create = getLazyImport('Create');
@@ -168,6 +169,14 @@ export default function _Routes() {
 					element={
 						<View>
 							<Trade />
+						</View>
+					}
+				/>
+				<Route
+					path={urls.blog}
+					element={
+						<View>
+							<Blog />
 						</View>
 					}
 				/>

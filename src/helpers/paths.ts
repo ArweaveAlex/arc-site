@@ -42,6 +42,10 @@ export const NAV_PATHS = [
 
 export const SOCIAL_PATHS = [
 	{
+		name: language.social.blog,
+		href: urls.blog,
+	},
+	{
 		name: language.social.twitter,
 		href: 'https://twitter.com/thealexarchive',
 		svg: ASSETS.social.twitter,
