@@ -48,7 +48,7 @@ export const SOCIAL_PATHS = [
 	},
 	{
 		name: language.social.discord,
-		href: 'https://discord.gg/r3fj9m5AU5',
+		href: 'http://discord.gg/2uZsWuTNvN',
 		svg: ASSETS.social.discord,
 	},
 ];
