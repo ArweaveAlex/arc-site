@@ -4,16 +4,13 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div<{ isView: boolean }>`
-	width: ${(props) => (props.isView ? 'calc(100% - 300px)' : '100%')};
-	padding: ${(props) => (props.isView ? '0 0 0 30px' : '0')};
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 20px 40px;
+	background: ${(props) => props.theme.colors.container.alt3.background};
+	border-radius: ${STYLING.dimensions.borderRadius};
 	animation: ${open} ${fadeIn2};
-	margin: 0 0 0 auto;
-
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		width: 100%;
-		padding: 0;
-		margin: 0;
-	}
 
 	h1,
 	h2,
@@ -22,8 +19,8 @@ export const Wrapper = styled.div<{ isView: boolean }>`
 	h5,
 	h6 {
 		font-size: clamp(32px, 3.75vw, 44px) !important;
-		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
-		font-family: ${(props) => props.theme.typography.family.primary} !important;
+		font-weight: ${(props) => props.theme.typography.weight.bold} !important;
+		font-family: ${(props) => props.theme.typography.family.alt1} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 		margin: 0 0 20px 0;
 		line-height: 1.5 !important;

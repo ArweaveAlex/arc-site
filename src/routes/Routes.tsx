@@ -173,6 +173,14 @@ export default function _Routes() {
 					}
 				/>
 				<Route
+					path={`${urls.blog}:active/*`}
+					element={
+						<View>
+							<Blog />
+						</View>
+					}
+				/>
+				<Route
 					path={urls.blog}
 					element={
 						<View>
