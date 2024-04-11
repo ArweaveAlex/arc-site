@@ -33,6 +33,10 @@ Before uploading files, you have the option to create artifact groups:
 
 **Remember, artifact groups are permanent. Double-check the metadata before uploading.**
 
+## Evolve the pool contract
+
+If a new pool contract source is deployed and a contract evolve is required, this can be done in the UI by pressing the **Evolve pool** button. Our team will share more information about instances when pools must be evolved in our [Discord](https://t.co/TTwBLhZcBs).
+
 ## UI to CLI configuration
 
 If you would like to use mining sources not supported in the user interface, then you can download your pool configuration **(pools.json)** file to your local. To do this you must visit the Pools tab in your account and locate the pool that you created.

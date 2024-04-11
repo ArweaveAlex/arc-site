@@ -228,3 +228,5 @@ If a new pool contract source is deployed and a contract evolve is required, thi
 ```sh
 arcpool evolve <pool>
 ```
+
+Our team will share more information about instances when pools must be evolved in our [Discord](https://t.co/TTwBLhZcBs).
