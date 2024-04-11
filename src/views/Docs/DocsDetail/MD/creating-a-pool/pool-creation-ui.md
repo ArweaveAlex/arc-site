@@ -2,6 +2,8 @@
 
 To start, connect your wallet and fill out the pool information [here](https://alex.arweave.dev/#/pools/create).
 
+- Recommended pool banner image size: 16:9 aspect ratio, 1920 x 1080 pixels.
+
 Once you've created your pool, visit the individual Pool Manage Page located in the Pools tab within your account. From here, you can begin uploading files to your pool.
 
 ## Setting artifact metadata from the UI

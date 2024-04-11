@@ -1,3 +1,5 @@
+// tooltip={language.headerImageInfo}
+
 import React from 'react';
 
 import * as ArcFramework from 'arcframework';
