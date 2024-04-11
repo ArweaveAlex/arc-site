@@ -133,6 +133,7 @@ export const language = {
 		subheader2: `Win up to 60 $AR by joining the 2024 Alex Poolathon`,
 	},
 	basicInformation: `Basic information`,
+	blog: `Blog`,
 	bookmarks: `Bookmarks`,
 	bookmarksUpdated: `Bookmarks updated`,
 	cancel: `Cancel`,
@@ -458,6 +459,7 @@ export const language = {
 	showMoreReplies: `Show more replies`,
 	siteTitle: `Alex.`,
 	social: {
+		blog: 'Blog',
 		discord: `Discord`,
 		twitter: `Twitter`,
 	},

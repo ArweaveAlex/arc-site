@@ -22,7 +22,7 @@ export const Container = styled.div`
 	bottom: 0;
 `;
 
-export const SocialContainer = styled.div`
+export const EndContainer = styled.div`
 	display: flex;
 	a {
 		margin: 0 0 0 10px;

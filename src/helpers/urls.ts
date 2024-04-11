@@ -3,6 +3,7 @@ export const about = `${base}about/`;
 export const account = `${base}account/`;
 export const accountAll = `${account}all/`;
 export const accountBookmarks = `${account}bookmarks/`;
+export const blog = `${base}blog/`;
 export const accountCollections = `${account}collections/`;
 export const accountContributions = `${account}contributions/`;
 export const accountPools = `${account}pools/`;
