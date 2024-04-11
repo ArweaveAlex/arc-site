@@ -8,15 +8,15 @@ Learn more about the Alex. platform in this post.
 
 Alex. operates as a community archiving platform open to anyone interested in either archiving or contributing storage space for archives. These archives, known as **pools**, cover diverse topics, events, or ideas that individuals wish to preserve. The person that creates a pool is called the **pool operator**, and they are the person that uploads digital content to the pool. Further details on archival pools can be found [here](https://alex.arweave.dev/#/create/).
 
-(pools.png)
+![Pool page](https://lfm2oggmri6yg7klrzwo5lygyllsehzh63ucntivy2cahmgmkita.arweave.net/WVmnGMyKPYN9S45s7q8GwtciHyf26CbNFcaEA7DMUiY)
 
 Once a pool is created, other users known as **contributors**, interested in supporting the topic can donate $AR in the form of [Ardrive Turbo](https://ardrive.io/turbo-bundler/) credits, covering storage costs on Arweave.
 
-(contribute.png)
+![Contribute pop-up](https://7pouz6q55nnm7ayzw3p6nkfcittvqvh5o64z7kt6afffeoegryjq.arweave.net/-91M-h3rWs-DGbbf5qiiROdYVP13uZ-qfgFKUjiGjhM)
 
 With storage space contributed, the pool operator can begin uploading content. Contributors, in return for their storage space contribution, receive sponsorship credit for a portion of the uploaded content, known as **artifact sponsorships**. Essentially, contributors become sponsors of 1/1 pieces of digital history that can be collected and [traded](https://alex.arweave.dev/#/trade/). For example, the below article covering the recent Bitcoin rally is a unique piece of digital history. The artifact sponsor can trade the sponsorship on [BazAR](https://bazar.arweave.dev/#/asset/NMLa6zeVZERWyPM9Nzwl36IHIktXgxY-NqXihn6BVEk).
 
-(bitcoin-bazar.png)
+![Bitcoin artifact on BazAR](https://5fpjnmyhdndprsa6rwgu3tmytyiqfpidcgbz7jfmfzdeg4ohfbta.arweave.net/6V6WswcbRvjIHo2NTc2YnhECvQMRg5-krC5GQ3HHKGY)
 
 This incentivizes more archiving from historians and contributions from community members, fostering collaborative participation. Unlike the current archiving model, where the data owner bears the cost, Alex. allows the public to sponsor digital content archiving in an engaging, collaborative platform.
 
