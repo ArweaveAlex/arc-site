@@ -40,13 +40,6 @@ Since the early release in November 2022, we've pushed the boundaries of decentr
 
 Our next steps focus on enhancing the user experience for both pool operators and contributors, improving asset discoverability, and bridging the gap between the historical/archiving community and the technical crypto community with better tooling and educational resources.
 
-### Specific updates on our agenda include:
-
-- Migrating all new archival pools and artifacts onto [AO](https://ao.arweave.dev/).
-- Enabling pool operators to edit and customize pool pages.
-- Introducing multi-wallet operated pools.
-- Implementing automated mining in the UI.
-
 ## How to get involved
 
 Now that you understand how the Alex. Archive operates and why community archiving is a public good, you may be eager to get involved. If interested in starting an archival pool, we recommend checking out the [pool info page](https://alex.arweave.dev/#/create/) and technical [docs](https://alex.arweave.dev/#/docs/introduction). Additionally, we have a [contribute info page](https://alex.arweave.dev/#/contribute/) for those interested in contributing to existing pools.

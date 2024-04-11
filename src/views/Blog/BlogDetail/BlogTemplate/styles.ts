@@ -7,8 +7,6 @@ export const Wrapper = styled.div<{ isView: boolean }>`
 	width: 100%;
 	max-width: 900px;
 	margin: 0 auto;
-	padding: 20px 40px;
-	background: ${(props) => props.theme.colors.container.alt3.background};
 	border-radius: ${STYLING.dimensions.borderRadius};
 	animation: ${open} ${fadeIn2};
 
