@@ -45,3 +45,5 @@ Our next steps focus on enhancing the user experience for both pool operators an
 Now that you understand how the Alex. Archive operates and why community archiving is a public good, you may be eager to get involved. If interested in starting an archival pool, we recommend checking out the [pool info page](https://alex.arweave.dev/#/create/) and technical [docs](https://alex.arweave.dev/#/docs/introduction). Additionally, we have a [contribute info page](https://alex.arweave.dev/#/contribute/) for those interested in contributing to existing pools.
 
 For more information on how to get involved with Alex. and answers to any further questions, feel free to join our project [Discord](http://discord.gg/2uZsWuTNvN). There you can connect with the Alex. team, ask questions, promote your pool, and share interesting archived content with the Arweave archiving community.
+
+04.11.2024
